@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/xiao106347/chap2asleap
+	branch = master
+	commit = b62b8f18a1f02aeae2075cc649c9d3dce9e985c4
+	parent = 62dbe6cb825d950dca4247efed0b0ce9ada78905
+	cmdver = 0.2.0
