@@ -1,0 +1,50 @@
+#!/bin/bash
+# split input data to be two parts: more & less.
+
+loop=$1
+datin=$2
+picktool=/home/alexy/wlan-pos/tool/datpick_req-db
+
+datmore=incr.csv
+datless=db.csv
+#datmore=db.csv
+#datless=incr.csv
+req=req.csv
+datall=$datin.tmp
+
+rm -f $datmore $datless
+cp -f $datin $datall
+
+for i in $(seq $loop)
+do
+	$picktool $datall
+	if [ -f $datmore.old ]; then
+		if [ -f $datmore ]; then
+			# datmore = db.csv
+			cat $datmore >> $datmore.old 
+			rm -f $datmore
+			mv $req $datless
+		else
+			# datmore = incr.csv
+			cat $req >> $datmore.old 
+			rm -f $req
+		fi
+	else
+		if [ -f $datmore ]; then
+			# datmore = db.csv
+			mv $datmore $datmore.old 
+			mv $req $datless
+		else
+			# datmore = incr.csv
+			mv $req $datmore.old 
+		fi
+	fi
+	mv $datless $datall
+	ln_more=`wc -l $datmore.old |awk '{print $1}'`
+	ln_less=`wc -l $datall |awk '{print $1}'`
+	echo "split $i -> more|less: $ln_more|$ln_less"
+done
+
+mv $datmore.old $datmore
+mv $datall $datless
+echo -e "\nmore($datmore)|less($datless): $ln_more|$ln_less\n"

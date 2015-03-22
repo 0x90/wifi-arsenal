@@ -1,0 +1,15 @@
+# Lines starting with '#' and sections without content
+# are not displayed by a call to 'details'
+#
+[paths]
+db.py:WppDB:line 147
+
+
+[details]
+1)tables tobe operated over-coupling with tables available;
+2)Instance of class WppDB can NOT predict the name of the instance of the two wpp tables(wpp_clusteridaps,wpp_cfps).
+
+
+[expected]
+1)tables tobe operated tables_todo CAN be different from tables available tables_avail;
+2)tbl_names={tablename:tableinstance,}, like {'wpp_clusteridaps':'wpp_clusteridaps_incr'}, thus in config.py, we can define the table field name & type format according to each table name.

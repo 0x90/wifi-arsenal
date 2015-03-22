@@ -1,0 +1,11 @@
+over db-quering for all candidate clusters                                                           | owner:alexy, open:False, id:18f63781a09523ca879f2116736b2f8aff85c405, time:1294029215.16
+WppDB._insertMany() can NOT handle postgresql cases                                                  | owner:alexy, open:False, id:1af9c7649fde2538a802a35f4951b43fc6e3fd07, time:1294135293.6
+Static table name(e.g. table=wpp_cfps) in WppDB methods                                              | owner:alexy, open:True, id:658b32d0a8f22879f06a97b0f6f932004bc60dfe, time:1294116003.46
+wpp_uprecsver should include hostname,ver_uprecs,recnum for more than one FTP data sources           | owner:alexy, open:True, id:78084458483890d76f2069e2323ee3328b3611c7, time:1304391775.62
+Offline.py -u should be integrated into db.py                                                        | owner:alexy, open:False, id:7b37976e445c9343b46a56e35f49f566aeb187a7, time:1294111209.5
+Cluster query error of SQL in getCIDcntMaxSeq()                                                      | owner:alexy, open:False, id:a4e654c37a09e315d3a39e41c8ab6151b4bbb805, time:1294278390.44
+Add offline tasks: google loc crawling & backup, etc                                                 | owner:, open:True, id:cb1932244aad8a8739e0b496366a143694a8dc5d, time:1304579088.02
+rawdata in wpp_uprecsinfo without loc info should be moved to another table waiting for loc-enabling | owner:alexy, open:False, id:e68ea5bd1271f52204cb05759c8b7f451e2df6fc, time:1304476137.47
+online fixpos() return first FP as posfix for only one cluster found                                 | owner:, open:False, id:e6eff6cc7657c685ff19bc9fe52eaa525e679fdd, time:1297651298.76
+Object generation for db.WppDB should be outside of offline.doClusterIncr()                          | owner:alexy, open:False, id:f23269aafa3d1ec9c9d288d94796cc2e6de0aefd, time:1304315018.14
+SQL query returns clusters with different # of APs from input FP                                     | owner:alexy, open:False, id:f29287e6d9d1865a6a858eb2b551687bfa5ea489, time:1294220620.24

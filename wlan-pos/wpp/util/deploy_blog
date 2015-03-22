@@ -1,0 +1,46 @@
+#!/bin/bash
+# blog deploy.
+
+server_ip=192.168.109.58
+remote_dir=/usr/local/nginx/html/blog
+sphinx_book_dir=/home/alexy/downloads/site/writing_a_book_with_sphinx
+remote_dir_sphinxbook=$remote_dir/sphinx_book
+
+#read -s -p "Enter $server_ip password: " inputline
+#pwd_remote="$inputline"
+pwd_remote="password"
+echo
+
+echo -n "Rebuilding blog ..."
+rm html -fr && blaag
+echo "Done."
+
+[ -d ./html/sphinx_book ] && rm -fr ./html/sphinx_book 
+cp $sphinx_book_dir ./html/sphinx_book -fr 
+
+# upload static html.
+echo -n "Removing old static html ..."
+res=$(expect << EOF
+set timeout 60
+#exp_internal 1 # uncomment for debugging
+spawn ssh root@$server_ip 
+expect "password: " 
+send "$pwd_remote\n"
+expect "# "
+send "rm -fr $remote_dir\n"
+expect "# "
+send "logout\n"
+EOF)
+echo "Done."
+
+echo -n "Starting static html transfer..."
+res=$(expect <<EOF
+set timeout 60
+spawn scp -r html/ root@$server_ip:$remote_dir
+expect "password: "
+send "$pwd_remote\n"
+expect "# "
+EOF)
+echo "Done."
+
+[ -d ./html/sphinx_book ] && rm ./html/sphinx_book -fr

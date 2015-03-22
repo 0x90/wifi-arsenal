@@ -1,0 +1,11 @@
+#!/bin/bash
+
+max_interv=4
+
+while true
+do
+    python yc.py
+    #delay=$[ $RANDOM%$max_interv ]
+    #echo $delay
+    #sleep $delay
+done

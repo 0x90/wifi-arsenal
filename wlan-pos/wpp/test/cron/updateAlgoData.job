@@ -1,0 +1,1 @@
+10 */2 * * * /opt/wpp/src/wpp/wpp/test/cron/updateAlgoData.sh

@@ -1,0 +1,14 @@
+#!/bin/bash
+# picking up test cases(lines) from reqreterr($1) which have different pos/err results between cpp/python.
+
+awk -F, '
+BEGIN {
+    OFS=","
+} 
+{
+    ep_cpp_py = $15; ee_cpp_py = $16
+    if (ep_cpp_py > 10 || ee_cpp_py > 10){
+        print
+        #print $1,$2,ep_cpp_py
+    }
+} ' $1 |grep -v 'NaN'

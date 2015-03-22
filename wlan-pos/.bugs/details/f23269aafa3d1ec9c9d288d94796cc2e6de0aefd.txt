@@ -1,0 +1,13 @@
+# Lines starting with '#' and sections without content
+# are not displayed by a call to 'details'
+#
+[paths]
+offline.doClusterIncr()
+
+
+[expected]
+wppdb=WppDB() should be outside of doClusterIncr(), and only pass wppdb object to it.
+
+
+[actual]
+doClusterIncr() do object init itself.

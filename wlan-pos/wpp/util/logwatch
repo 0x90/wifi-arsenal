@@ -1,0 +1,31 @@
+#!/bin/bash
+# colorizing wpp tail -f log.
+# Usage: $0 <logfile>
+
+if [ $# = 1 ]; then
+    WPP_LOG=$1 
+    OPT_TYPE=OFFLINE
+else
+    WPP_LOG=~/tmp/log/wpp.log
+    OPT_TYPE=ONLINE
+fi 
+
+WPP_ROOT=~/wpp
+WPP_COLORIZE=$WPP_ROOT/wpp/util/colorize
+
+OPT_ERRINFO=-u18:ERROR
+OPT_POSERR=+l71:ErrCode=\\\"102\\\"
+
+OPT_UA=+l34:UserAgent=\\\".*?\\\"
+
+OPT_GOOGLE=-u38:Added
+
+
+if [ "$OPT_TYPE" = "ONLINE" ]; then
+    OPTS="$OPT_POSERR $OPT_ERRINFO $OPT_UA $OPT_GOOGLE"
+else
+    OPTS="+l34:^[1-9]\..*?,"
+fi
+
+#echo "tailf $WPP_LOG | $WPP_COLORIZE $OPTS"
+tailf $WPP_LOG | $WPP_COLORIZE $OPTS #+:"UserAgent=\".*?\""

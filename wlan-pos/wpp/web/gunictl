@@ -1,0 +1,111 @@
+#!/bin/bash
+# script for gunicorn control.
+# $0 [options]
+
+PATH_WPPWEB=`dirname $0`
+LOGDIR=log
+LOGPATH=$PATH_WPPWEB/$LOGDIR
+[ -d $LOGPATH ] || mkdir -p $LOGPATH
+WPPLOGFILE=wpp.log
+WPP_LOG=/dev/null
+#WPP_LOG=$LOGDIR/$WPPLOGFILE
+
+PFILE=/tmp/gunicorn.pid
+GU=gunicorn
+
+W_MH="egg:meinheld#gunicorn_worker"
+W_GE="egg:gunicorn#gevent"
+
+APP=wpp_server:wpp_handler
+port=8080
+
+TOUT=10
+
+start_gunic() {
+    #nworkers=`python -c 'import os; \
+    #    nps=os.sysconf("SC_NPROCESSORS_ONLN"); \
+    #    nps=(nps*2 if (nps<=5) else (nps+1)); \
+    #    print nps'`
+    nps=`cat /proc/cpuinfo  |grep processor |wc -l`
+    [ $nps -lt 5 ] && nworkers=`echo "$nps*3" |bc` || nworkers=`echo "$nps*2" |bc`
+    #nworkers=`echo "$nps*2" |bc`
+    echo "workers: $nworkers"
+
+    datetime=`date +%Y%m%d-%H%M%S`
+    GU_LOG=log/gunicorn_$datetime.log
+    cd $PATH_WPPWEB
+    touch $GU_LOG
+
+    # Check the size of logfile.
+    #if [ -f $WPP_LOG ]; then
+    #    nline=`wc -l $WPP_LOG |awk '{print $1}'`
+    #    if [ $nline -ge 500000 ]; then 
+    #        cd $LOGDIR
+    #        mv -f ${WPPLOGFILE} ${WPPLOGFILE}_$datetime 
+    #        bzip2 ${WPPLOGFILE}_$datetime 
+    #    fi
+    #fi
+
+    OPT="-b :$port -w $nworkers $APP --log-file $GU_LOG -p $PFILE -t $TOUT"
+    #worker=$W_GE
+    #OPT="$OPT -k $worker"
+    #echo -e "\n\n##### LOG START @ $datetime #####\n" #>> $WPP_LOG
+    #nohup  $GU $OPT >> $WPP_LOG 2>&1 &    # no -D(--daemon) option.
+    $GU $OPT -D >> $WPP_LOG 2>&1 &         # daemon mode(detached from controlling terminal).
+}
+
+count_workers(){
+    nprocs=`pskill -l gunicorn |wc -l`
+    [ $nprocs -gt 1 ] && nworkers=`echo "$nprocs-1" |bc` || nworkers=$nprocs
+    echo $nworkers
+}
+
+case "$1" in
+    start)
+        start_gunic
+        ;;
+    stop)
+        pskill gunicorn
+        ;;
+    reload)
+        kill -HUP `cat $PFILE`
+        ;;
+    restart)
+        pskill gunicorn
+        start_gunic
+        ;; 
+    addw)
+        addw_num=$2
+        [ $addw_num -ge 1 ] || exit 99
+        echo -ne "Adding from $(count_workers) "
+        for i in $(seq $addw_num)
+        do
+            kill -TTIN `cat $PFILE`
+            echo -n "."
+            sleep 1
+        done
+        echo " to $(count_workers) workers"
+        ;;
+    delw)
+        delw_num=$2
+		nprocs=`pskill -l gunicorn |wc -l`
+		nworkers=`echo "$nprocs-1" |bc`
+        [ $delw_num -ge $nworkers ] && exit 99
+		echo -ne "Decreasing from $(count_workers) "
+		for i in $(seq $delw_num)
+		do
+			kill -TTOU `cat $PFILE`
+			echo -n "."
+			sleep 1
+		done
+		echo " to $(count_workers) workers"
+        ;;
+    status)
+		nworkers=$(count_workers)
+		echo "workers: $nworkers"
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|reload|status|addw <num>|delw <num>}"
+        exit 1
+        ;;
+esac

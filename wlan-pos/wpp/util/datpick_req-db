@@ -1,0 +1,17 @@
+#!/bin/bash
+# picking up data respectively for request and db.
+
+awk -F, '
+BEGIN {
+    OFS=","
+    pick_req=0
+} 
+{
+    if (pick_req == 1){
+        print >> "req.csv"
+        pick_req = 0
+    }else{
+        print >> "db.csv"
+        pick_req = 1
+    }
+} ' $1 

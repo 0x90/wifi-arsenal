@@ -1,0 +1,15 @@
+#!/bin/bash
+# MUST be executed at WPP root dir.
+
+logdir_gunicorn=wpp/web/log
+
+logfile_gunicorn=`ls -tr ${logdir_gunicorn}/gunicorn_* |tail -1`
+numErr=`grep '\[ERROR\]' ${logfile_gunicorn} |wc -l`
+
+echo "Found $numErr ERROR(s) in ${logfile_gunicorn}"
+[ $numErr -eq 0 ] && exit 0
+
+echo -n "Press any key other than *n* to proceed: "
+read option
+[ "$option" == "n" ] && exit 0
+grep -A10 '\[ERROR\]' ${logfile_gunicorn}  |grep -v '\[INFO\]' |less
