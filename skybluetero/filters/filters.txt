@@ -1,0 +1,3 @@
+TCP,tcp
+MDNS,ip.dst==224.0.0.251
+UDP(no mdns),udp && !ip.dst==224.0.0.251
