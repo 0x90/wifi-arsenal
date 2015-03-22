@@ -1,0 +1,14 @@
+drone=<someDrone>
+sync_server=http://<server:port>
+key=<put_your_sync_key_here>
+location=<put_your_location_here>
+
+ssh_user=phonehome
+ssh_host=<ssh server ip>
+ssh_port=22
+remote_base_port=3300
+remote_port=$(($remote_base_port + $drone_num))
+monitor_port=$(($remote_port + 1000))
+ssh_keyfile=/home/ubuntu/.ssh/id_rsa
+
+APN="payandgo.o2.co.uk" #For 3G connectivity with Sakis. You may have to fiddle with sakis.conf for your needs

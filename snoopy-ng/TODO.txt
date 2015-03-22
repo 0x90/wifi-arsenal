@@ -1,0 +1,58 @@
+BUGS:
+Maltego transforms
+Default port when localsyncing
+
+
+* = Done
+- = Doing
+x = No longer appropriate
+
+1. Hardware
+[-] XBee
+[ ] GSM
+[-] UAV - attach
+[-] Test on N900
+[*] Test on PwnPad
+
+2. Software
+Client Side:
+[ ] Capture WPA handshake
+[ ] ToR
+[-] Maltego
+    -SSIDs around location
+[-] Google map creation
+[-] Google earth KML explorer
+[x] Fix up get_ident code
+[ ] sync module to handle server + client?
+[-] web cmd shell (launch web cmd in new thread/process, with timeout)
+[-] GZIP
+[ ] Log file gets overwritten?
+[ ] Migrate to Requests!
+[ ] Modify BT plugin to keep queue
+[-] Test GPS code - also write for N900
+[-] Write XBee code
+[ ] Incorporate RogueAP
+[-] Cookie/web extractor
+[*] Update Wigle plugin
+[ ] GPS.... OpenBTS?
+[ ] Extract WPA Key plugin
+[ ] ARP plugin
+[ ] mDNS plugin
+[ ] Trilateration plugin.
+[ ] Make Python setup file
+
+Server Side:
+[*] Flask + Apache
+[ ] SSL - recheck with new server code
+[*] JSON API
+[-] Data exploration webUI
+
+3. Testing
+[ ] Determine range
+[*] Unit tests
+[*] Replay captured traffic tests from Heathrow
+[ ] DB schema test - millions of rows?
+
+4. Other
+[-] Write documentation
+[ ] Write paper - submit to academic con?
