@@ -1,0 +1,22 @@
+ddns-update-style none;
+ignore client-updates;
+authoritative;
+option local-wpad code 252 = text;
+subnet
+$ip_subnet$ netmask $ip_netmask$ {
+option routers
+$ip_router$;
+option subnet-mask
+$ip_netmask$;
+option broadcast-address
+$ip_broadcast$;
+option domain-name
+"localhost";
+option domain-name-servers
+$ip_router$, $dns_1$, $dns_2$;
+option time-offset
+0;
+range $ip_range_min$ $ip_range_max$;
+default-lease-time 1209600;
+max-lease-time 1814400;
+}
