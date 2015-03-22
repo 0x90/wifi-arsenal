@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/linkp2p/WPS-PIN
+	branch = master
+	commit = c86beffbcfe435def14c6d9d285bf124684931fb
+	parent = b383e89e161161948f0b3dd38702040bbee5e4df
+	cmdver = 0.2.0

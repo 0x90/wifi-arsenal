@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/0x90/wps-scripts
+	branch = master
+	commit = b155c254ab578c9ff8e88ee2906ecd538df7f778
+	parent = b9609387819674ac3062f1266976eb165d55e9ea
+	cmdver = 0.2.0
