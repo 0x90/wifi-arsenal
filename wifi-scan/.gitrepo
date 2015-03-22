@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://bitbucket.org/edkeeble/wifi-scan
+	branch = master
+	commit = e2a08627f05ddc16792953449493d56b1c197b30
+	parent = 09b552e5d455661cbe28c06963c1ebaea299ed5d
+	cmdver = 0.2.0
