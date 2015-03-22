@@ -1,0 +1,107 @@
+Introduction
+------------
+
+AirScan is a Wi-Fi scanning utility for the Nintendo DS. It offers various
+filtering features to facilitate access point discovery.
+For example, it can be used to locate open access points in low WiFi density
+areas thanks to its sensivity.
+
+Interesting features include :
+	- Display only desired protection levels (open, WEP, WPA)
+	- Connectivity testing for open access points :
+		- DNS resolution of www.google.com
+		- Google homepage retrieval
+	- Easy scrolling
+	- Timeouts for out of range APs
+
+This app was inspired by wifi_lib_test v0.3a by Stephen Stair.
+Thanks a lot Stephen for dswifi !
+See his page at http://www.akkit.org/dswifi/.
+
+The icon is based on the "Wi-Fi icons colors" by NeoCorvis, licensed under the
+artistic license version 2.
+URL : http://kde-look.org/content/show.php?content=114621
+
+Usage
+-----
+AirScan will start discovering and displaying surrounding access points as soon
+as it is started.
+You can then scroll the list using the UP and DOWN buttons, and scroll a screen
+at a time using L and R.
+
+You can choose to display only certain APs based on protection : the B, A and X
+buttons will respectively toggle open, WEP and WPA access points display.
+
+If you want access points to disappear when they haven't been seen since some
+time, use the LEFT and RIGHT key to define the timeout, in seconds. A timeout
+of 0 disables the functionality.
+
+Finally, if you want to test the connectivity of an open (WEP and WPA are NOT
+and will NOT be supported) access point, you can "click" on it in the list.
+This will bring up a new screen and AirScan will try to associate to this
+access point, then do a DHCP request to get an IP address. If it succeeds, it
+will try to resolve the IP for www.google.com, get the Google homepage and
+display the beginning of the HTTP response on the top screen.  This feature is
+particularly interesting to check if a given AP is really open or a captive
+portal.
+
+Known bugs and limitations
+--------------------------
+Cycling through all present access points can be quite long if there are too
+many. This is a limitation of dswifi which implies that some parameters are not
+updated in real time, like signal strength.
+This also means that timeouts can behave strangely.
+
+Real known bugs :
+	- crashes sometimes when the number of APs is high (> 400)
+	- when connecting to an AP then going back to scanning 
+	  and trying to connect to another AP will not work
+	  every time (dswifi bug ?)
+	- timeouts handling is still probably a bit buggy
+
+Compiling
+---------
+1) make sure to use devkitARM >= 28 and dswifi > 0.3.12.
+2) Setup env vars
+3) Build by typing "make"
+
+
+History
+-------
+v1.0  : 07/11/2010
+	- DNS testing
+	- Google GET test
+	- new icon
+
+v0.6  : 20/02/2010 
+	- fixed scrolling
+	- hopefully fix timeouts related bugs
+
+v0.5.1: 18/01/2010
+	- bugfix (modes string off by one)
+	  thanks to the reporter.
+
+v0.5  : 09/01/2010
+	- got rid of PALib (way easier to build)
+	- timeouts should work better (correctly ?)
+	- cleaner code, split in different files
+	- connection test to open APs
+
+v0.2  : 02/03/2008
+	- Timeouts are now working
+
+v0.1a : 26/06/2008
+	- Initial public release
+
+
+Contact
+-------
+
+Please read the TODO file before mailing me.
+Do NOT mail me to ask me how to crack WEP/WPA ...
+Also, the DS is way too underpowered to be even close to useful
+to crack WEP/WPA access point. If you want to do that, use a PC
+and aircrack.
+
+mailbox : devel-nds
+domain : syscall.eu

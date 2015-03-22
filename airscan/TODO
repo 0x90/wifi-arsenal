@@ -1,0 +1,4 @@
+- when the stylus is used to "click" on a certain AP, switch to AP mode :
+	- packet sniffer
+- scan on specific channel (not doable with current lib wifi)
+- move options on top screen (maybe)
