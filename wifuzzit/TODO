@@ -1,0 +1,6 @@
+* multiple drivers for injection should be tested
+* implement other fuzz testing strategies (802.11n, 802.11e, WPS...)
+* implement support for radiotap/prism headers
+* merge common functions in a common lib
+* remove ugly settings and globals to replace with cmdline capabilities
+* fix resume issues
