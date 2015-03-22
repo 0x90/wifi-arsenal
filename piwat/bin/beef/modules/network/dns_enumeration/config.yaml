@@ -1,0 +1,16 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+beef:
+    module:
+        dns_enumeration:
+            enable: true
+            category: "Network"
+            name: "DNS Enumeration"
+            description: "Discover DNS hostnames within the victim's network using dictionary and timing attacks."
+            authors: ["jgaliana"]
+            target:
+                working: ["FF", "C"]
+                not_working: ["IE", "S", "O"]

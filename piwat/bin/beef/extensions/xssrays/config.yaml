@@ -1,0 +1,15 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+beef:
+    extension:
+        xssrays:
+            enable: true
+            name: 'XSSRays'
+            authors: ["antisnatchor"]
+            clean_timeout: 3000
+            cross_domain: true
+            # set js_console_logs to false when using BeEF in production (also because IE < 9 doesn't support the console object)
+            js_console_logs: true

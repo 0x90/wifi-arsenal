@@ -1,0 +1,16 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+beef:
+    module:
+        execute_tabs:
+            enable: true
+            category: "Chrome Extensions"
+            name: "Execute On Tab"
+            description: "Open a new tab and execute the Javascript code on it. The Chrome Extension needs to have the 'tabs' permission, as well as access to the domain."
+            authors: ["Kos", "antisnatchor"]
+            target:
+                user_notify: ["C"]
+                not_working: ["All"]

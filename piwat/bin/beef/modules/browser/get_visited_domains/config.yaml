@@ -1,0 +1,16 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+beef:
+    module:
+         get_visited_domains:
+            enable: true
+            category: "Browser"
+            name: "Get Visited Domains"
+            description: "This module will retrieve rapid history extraction through non-destructive cache timing.\nBased on work done by Michal Zalewski at http://lcamtuf.coredump.cx/cachetime/"
+            authors: ["@keith55", "oxplot", "quentin"]
+            target:
+                working: ["FF", "IE", "O"]
+                not_working: ["C", "S"]

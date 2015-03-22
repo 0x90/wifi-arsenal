@@ -1,0 +1,16 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+beef:
+    module:
+        get_internal_ip:
+            enable: true
+            category: "Host"
+            name: "Get Internal IP"
+            description: "Retrieve the internal (behind NAT) IP address of the victim machine using an unsigned Java applet"
+            authors: ["antisnatchor"]
+            target:
+                 working: ["IE", "FF", "O"]
+                 user_notify: ["C", "S"]

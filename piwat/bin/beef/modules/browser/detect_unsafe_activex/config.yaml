@@ -1,0 +1,17 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+beef:
+    module:
+        detect_unsafe_activex:
+            enable: true
+            category: "Browser"
+            name: "Detect Unsafe ActiveX"
+            description: "This module will check if IE has been insecurely configured. It will test if the option \"Initialize and script ActiveX controls not marked as safe for scripting\" is enabled.<br /><br />The setting can be found in: Tools Menu -> Internet Options -> Security -> Custom level -> \"Initialize and script ActiveX controls not marked as safe for scripting\""
+            authors: ["wade", "bcoles"]
+            target:
+                user_notify: ["IE"]
+                not_working: ["All"]
+

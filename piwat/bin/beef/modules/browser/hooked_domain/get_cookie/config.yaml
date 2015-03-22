@@ -1,0 +1,15 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+beef:
+    module:
+        get_cookie:
+            enable: true
+            category: ["Browser", "Hooked Domain"]
+            name: "Get Cookie"
+            description: "This module will retrieve the session cookie from the current page."
+            authors: ["bcoles"]
+            target:
+                working: ["ALL"]

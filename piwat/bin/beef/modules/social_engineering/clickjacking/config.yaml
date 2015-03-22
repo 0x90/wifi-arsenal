@@ -1,0 +1,16 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+
+beef:
+    module:
+        clickjacking:
+            enable: true
+            category: "Social Engineering"
+            name: "Clickjacking"
+            description: "Allows you to perform basic multi-click clickjacking. The iframe follows the mouse, so anywhere the user clicks on the page will be over x-pos,y-pos. The optional JS configuration values specify local Javascript to exectute when a user clicks, allowing the page can give visual feedback. The attack stops when y-pos is set to a non-numeric values (e.g. a dash). <br /><br />For a demo, visit /demos/clickjacking/clickjack_attack.html with the default settings (based on browser they may have to be adjusted)."
+            authors: ["Brigette Lundeen", "Rich Lundeen"]
+            target:
+                user_notify: ["FF", "C", "IE"]

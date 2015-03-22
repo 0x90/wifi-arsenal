@@ -1,0 +1,14 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+beef:
+    extension:
+        proxy:
+            name: 'Proxy'
+            enable: true 
+            address: "127.0.0.1"
+            port: 6789
+            authors: ["antisnatchor", "scotty"]
+

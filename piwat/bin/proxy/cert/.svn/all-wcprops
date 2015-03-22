@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 27
+/svn/!svn/ver/21/trunk/cert
+END
+serial
+K 25
+svn:wc:ra_dav:version-url
+V 34
+/svn/!svn/ver/19/trunk/cert/serial
+END
+createCA.sh
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/19/trunk/cert/createCA.sh
+END
+index.txt
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/svn/!svn/ver/19/trunk/cert/index.txt
+END
+proxpy.key
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/!svn/ver/19/trunk/cert/proxpy.key
+END
+openssl.cnf
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/19/trunk/cert/openssl.cnf
+END
+proxpyca.crt
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/!svn/ver/19/trunk/cert/proxpyca.crt
+END

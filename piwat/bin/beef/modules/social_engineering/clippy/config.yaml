@@ -1,0 +1,15 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+beef:
+    module:
+        clippy:
+            enable: true
+            category: "Social Engineering"
+            name: "Clippy"
+            description: "Brings up a clippy image and asks the user to do stuff."
+            authors: ["vt [nick.freeman@security-assessment.com]", "denden [denis.andzakovic@security-assessment.com]"]
+            target:
+                user_notify: ['ALL']

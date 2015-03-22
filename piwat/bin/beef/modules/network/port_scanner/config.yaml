@@ -1,0 +1,16 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+beef:
+    module:
+        port_scanner:
+            enable: true
+            category: "Network"
+            name: "Port Scanner"
+            description: "Scan ports in a given hostname, using WebSockets, CORS and img tags. It uses the three methods to avoid blocked ports or Same Origin Policy."
+            authors: ["javier.marcos"]
+            target:
+                working: ["FF", "C"]
+                not_working: ["S", "O", "IE"]

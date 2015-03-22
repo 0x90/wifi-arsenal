@@ -1,0 +1,16 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+beef:
+    module:
+        inter_protocol_irc:
+            enable: true
+            category: "IPEC"
+            name: "IRC"
+            description: "Using Inter-protocol Expliotation/Communication (IPEC) the hooked browser will connect to an IRC server, join a channel and send messages to it.<br><br>NOTE: Some IRC servers (like freenode) have implemented protections against connections from a web browser. This module is unlikely to work in those instances."
+            authors: ["jgaliana"]
+            target:
+                working: ["FF"]
+                not_working: ["C", "S", "O", "IE"]

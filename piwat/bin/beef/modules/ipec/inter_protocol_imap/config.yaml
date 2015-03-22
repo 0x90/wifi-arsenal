@@ -1,0 +1,16 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+beef:
+    module:
+        inter_protocol_imap:
+            enable: true
+            category: "IPEC"
+            name: "IMAP"
+            description: "Using Inter-protocol Communication (IPEC) zombie browser will send commands to an IMAP4 server. The target address can be on the zombie's subnet which is potentially not directly accessible from the Internet. Have in mind that browser Port Banning is denying connections to default IMAP port 143."
+            authors: ["jgaliana", "wade"]
+            target:
+                working: ["FF", "C", "S", "O"]
+                not_working: ["IE"]

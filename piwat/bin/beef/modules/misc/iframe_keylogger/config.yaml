@@ -1,0 +1,16 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+beef:
+    module:
+        iframe_keylogger:
+            enable: true
+            category: "Misc"
+            name: "iFrame Event Logger"
+            description: "Creates a 100% by 100% iFrame overlay with event logging. The content of the overlay is set in the 'iFrame Src' option."
+            authors: ["antisnatchor"]
+            target:
+                working: "All"
+                not_working: "O"

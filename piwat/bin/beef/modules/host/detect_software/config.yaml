@@ -1,0 +1,16 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+beef:
+    module:
+        Detect_software:
+            enable: true
+            category: "Host"
+            name: "Detect Software"
+            description: "Detects software installed on the host (Internet Explorer only)"
+            authors: ["mh"]
+            target:
+                working: ["IE"]
+                not_working: ["All"]

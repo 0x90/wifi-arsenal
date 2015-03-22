@@ -1,0 +1,16 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+beef:
+    module:
+        man_in_the_browser:
+            enable: true
+            category: "Persistence"
+            name: "Man-In-The-Browser"
+            description: "This module will use a Man-In-The-Browser attack to ensure that the BeEF hook will stay until the user leaves the domain (manually changing it in the URL bar)"
+            authors: ["mathias"]
+            target:
+                working: ["ALL"]
+                not_working: ["IE"]

@@ -1,0 +1,33 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+beef:
+    module:
+        physical_location:
+            enable: true
+            category: "Host"
+            name: "Get Geolocation"
+            description: "This module will retrieve the physical location of the hooked browser using the geolocation API."
+            authors: ["antisnatchor"]
+            target:
+                user_notify:
+                    IE:
+                        min_ver: 9
+                        max_ver: latest
+                    FF:
+                        # It's actually 3.5 but min_ver only supports integers
+                        min_ver: 4
+                        max_ver: latest
+                    O:
+                        # It's actually 10.6 but min_ver only supports integers
+                        min_ver: 11
+                        max_ver: latest
+                    C:
+                        min_ver: 5
+                        max_ver: latest
+                    S:
+                        min_ver: 5
+                        max_ver: latest
+

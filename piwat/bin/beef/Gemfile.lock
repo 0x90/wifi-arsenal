@@ -1,0 +1,79 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    addressable (2.3.4)
+    ansi (1.4.3)
+    daemons (1.1.9)
+    data_objects (0.10.13)
+      addressable (~> 2.1)
+    dm-core (1.2.1)
+      addressable (~> 2.3)
+    dm-do-adapter (1.2.0)
+      data_objects (~> 0.10.6)
+      dm-core (~> 1.2.0)
+    dm-migrations (1.2.0)
+      dm-core (~> 1.2.0)
+    dm-sqlite-adapter (1.2.0)
+      dm-do-adapter (~> 1.2.0)
+      do_sqlite3 (~> 0.10.6)
+    do_sqlite3 (0.10.13)
+      data_objects (= 0.10.13)
+    em-websocket (0.3.8)
+      addressable (>= 2.1.1)
+      eventmachine (>= 0.12.9)
+    erubis (2.7.0)
+    eventmachine (1.0.3)
+    faraday (0.8.7)
+      multipart-post (~> 1.1)
+    jsmin (1.0.1)
+    json (1.8.0)
+    librex (0.0.68)
+    msfrpc-client (1.0.1)
+      librex (>= 0.0.32)
+      msgpack (>= 0.4.5)
+    msgpack (0.5.5)
+    multi_json (1.7.6)
+    multipart-post (1.2.0)
+    parseconfig (1.0.2)
+    rack (1.5.2)
+    rack-protection (1.5.0)
+      rack
+    simple_oauth (0.2.0)
+    sinatra (1.4.2)
+      rack (~> 1.5, >= 1.5.2)
+      rack-protection (~> 1.4)
+      tilt (~> 1.3, >= 1.3.4)
+    term-ansicolor (1.2.2)
+      tins (~> 0.8)
+    thin (1.5.1)
+      daemons (>= 1.0.9)
+      eventmachine (>= 0.12.6)
+      rack (>= 1.0.0)
+    tilt (1.4.1)
+    tins (0.8.0)
+    twitter (4.7.0)
+      faraday (~> 0.8, < 0.10)
+      multi_json (~> 1.0)
+      simple_oauth (~> 0.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  ansi
+  data_objects
+  dm-core
+  dm-migrations
+  dm-sqlite-adapter
+  em-websocket (~> 0.3.6)
+  erubis
+  eventmachine (= 1.0.3)
+  jsmin (~> 1.0.1)
+  json
+  msfrpc-client
+  parseconfig
+  rack (= 1.5.2)
+  sinatra (= 1.4.2)
+  term-ansicolor
+  thin
+  twitter

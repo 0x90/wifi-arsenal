@@ -1,0 +1,20 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+beef:
+    module:
+        mobilesafari_address_spoofing:
+            enable: true
+            category: ["Browser", "Hooked Domain"]
+            name: "iOS Address Bar Spoofing"
+            description: "Mobile Safari iOS 5.1 Address Bar Spoofing. This is fixed in latest version of Mobile Safari (the URL turns 'blank')"
+            authors: ["bcoles", "xntrik", "majorsecurity.net"]
+            target:
+                working:
+                    S:
+                        os: ["iOS"]
+                not_working:
+                    ALL:
+                        os: ["All"]

@@ -1,0 +1,15 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+beef:
+    module:
+        replace_video:
+            enable: true
+            category: ["Browser", "Hooked Domain"]
+            name: "Replace Videos"
+            description: "Replaces an object selected with jQuery (all embed tags by default) with an embed tag containing the youtube video of your choice (rickroll by default)."
+            authors: ["Yori Kvitchko", "antisnatchor"]
+            target:
+                user_notify: ['ALL']

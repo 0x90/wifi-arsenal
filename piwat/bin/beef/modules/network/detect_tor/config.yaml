@@ -1,0 +1,15 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+beef:
+    module:
+        detect_tor:
+            enable: true
+            category: "Network"
+            name: "Detect Tor" 
+            description: "This module will detect if the zombie is currently using Tor (https://www.torproject.org/)."
+            authors: ["wade", "pdp", "bm", "xntrik"]
+            target:
+                working: ["ALL"]
