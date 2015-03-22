@@ -1,0 +1,4 @@
+AMI-Clean Compile	DSDT	Patches/ib1-ami_efi_clean_compile.txt
+Airport-Atheros-AR9x8x	DSDT	Patches/arpt1-ar928x-ar9380.txt
+Airport-Broadcom-BCM9432x	DSDT	Patches/arpt2-bcm4331-bcm943225.txt
+Airport-Broadcom-BCM94352	DSDT	Patches/arpt3-bcm4352.txt

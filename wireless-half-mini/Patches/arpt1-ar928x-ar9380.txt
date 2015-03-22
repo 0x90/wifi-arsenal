@@ -1,0 +1,40 @@
+# Maintained by: toleda for: github.com/toleda/wifi_ar9380-ar928x
+# File: arpt1-ar928x-ar9380_v2.txt
+# Credit: MasterChef, PikeRAlpha, THeKiNG
+#
+# Atheros AR9380/AR9280/AR9285/AR9287 WiFi dsdt edits  
+# Verify IOReg/pci168c device @1C,6/RP07 otherwise, edit patch file:
+# Find: RP07
+# Replace All: name (name = IOReg/pci168c device name, RP01, BR01, PEX1, etc.)
+#
+# If no PXSX, manually add Device (ARPT) after Name (_ADR, 0x001C000x) to dsdt and 
+# edit patch file:
+# Find: PXSX
+# Replace All: ARPT
+# dsdt edit looks like:
+#            Device (name)
+#            {
+#                Name (_ADR, 0x001C000x)
+#                Device (ARPT)
+#
+# 1.  Insert device ARPT dsdt injection
+into device Label PXSX parent_label RP07 replace_content  begin
+Name (_ADR, Zero)\n
+Name (_SUN, One)\n
+Name (_PRW, Package (0x02) {0x09,0x04})\n
+    Method (_DSM, 4, NotSerialized)\n
+    {\n
+	    If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }\n
+	    Return (Package()\n
+               {\n
+		 "AAPL,slot-name","AirPort",\n
+		 "built-in", Buffer () {0x00},\n
+		 "device-type","AirPort",\n
+		 "model","Atheros AR9x8x 802.11 a/b/g/n Wireless Network Controller",\n
+		"name", "AirPort Extreme",\n
+		 "compatible","pci168c,30"\n
+	    })\n
+    }\n
+end;
+into definitionblock code_regex . insert
+begin Store ("arpt1-ar928x-ar9380_v2 dsdt edits, github.com/toleda", Debug) end

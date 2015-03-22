@@ -1,0 +1,40 @@
+# Maintained by: toleda for: github.com/toleda/wifi
+# File: arpt2-bcm4331-bcm943225_v2.0.txt
+# Credit: PikeRAlpha
+#
+# Broadcom  BCM43225 WiFi dsdt edits
+# Verify IOReg/pci14e4 device @1C,6/RP07, otherwise, edit patch file:
+# Find: RP07
+# Replace All: name (name = IOReg/pci14e4 device name, RP01, BR01, PEX1, etc.)
+#
+# If no PXSX, manually add Device (ARPT) after Name (_ADR, 0x001C000x) to dsdt and 
+# edit patch file:
+# Find: PXSX
+# Replace All: ARPT
+# dsdt edit looks like:
+#            Device (name)
+#            {
+#                Name (_ADR, 0x001C000x)
+#                Device (ARPT)
+#
+# 1.  Insert device ARPT dsdt injection
+into device Label PXSX parent_label RP07 replace_content  begin
+Name (_ADR, Zero)\n
+Name (_SUN, One)\n
+Name (_PRW, Package (0x02) {0x09,0x04})\n
+Method (_DSM, 4, NotSerialized)\n
+{\n
+	If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }\n
+	Return (Package()\n
+	{\n
+		"AAPL,slot-name", "AirPort",\n
+		"built-in", Buffer () {0x00},\n
+		"device_type", "AirPort",\n
+		"model", "Broadcom BCM4322x 802.11 a/b/g/n Wireless Network Controller",\n
+		"name", "AirPort Extreme",\n
+		"compatible","pci14e4,43a0"\n
+	})\n
+}\n
+end;
+into definitionblock code_regex . insert
+begin Store ("arpt2-bcm4331-bcm943225_v2.0 dsdt edits, github.com/toleda", Debug) end
