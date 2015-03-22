@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block head %}
+<script language="javascript" src="/static/js-class.js" type="text/javascript"></script>
+<script language="javascript" src="/static/bluff-min.js" type="text/javascript"></script>
+<script>
+
+var data = {
+  items: 
+  [
+  {% for k,v in manuf %}
+  {label: '{{k}}', data: {{v}}},{% endfor %}
+  ]
+};
+
+function initialize() {
+
+{
+  var bluffGraph = new Bluff.Pie('bluffExample', 900);
+  bluffGraph.theme_keynote();
+  //bluffGraph.title = 'Top 10 Manufacturers';
+
+  for (i in data.items) 
+  {
+    var item = data.items[i];
+    bluffGraph.data(item.label, item.data);
+  }
+  bluffGraph.draw();
+}
+
+}
+
+</script>
+{% endblock %}
+
+{% block content %}
+<h2>Top 10 manufacturers</h2>
+<h3>Total: {{devicecount}}</h3>
+<canvas id="bluffExample"></canvas>
+
+{% endblock %}

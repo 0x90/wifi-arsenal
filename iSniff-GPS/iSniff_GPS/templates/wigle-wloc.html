@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load dict_lookup %}
+
+{% block head %}
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<style>
+  html, body, #map-canvas {
+   height: 100%;
+   margin: 0px;
+   padding: 0px
+  }
+</style>
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script src="/static/jquery-2.1.1-min.js"></script>
+<script>
+function initialize() {
+    var mapOptions = {
+      zoom: 3,
+      center: new google.maps.LatLng{{center}},
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    var map = new google.maps.Map(document.getElementById("map-canvas"),mapOptions);
+    var image = '/static/wifi.png'
+    var flag = '/static/flag.png'
+    
+{% for b in bssids %}
+    var myLatLng = new google.maps.LatLng{{ apdict|key:b }};
+    var marker = new google.maps.Marker({position: myLatLng, map: map, icon: {% if b == bssid %}flag{%else%}image{%endif%}});
+    google.maps.event.addListener(marker, "click", function() 
+{ 
+$.ajax({
+  type: "POST",
+  url: "{% url "updatessid" %}",
+  data: { ssid: "{{ssid}}", position:"{{apdict|key:b}}", csrf_token: "{{csrf_token}}" }
+}).done(function( msg ) {
+  alert(msg);
+});
+});{% endfor %}
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<h2>SSID</h2>
+<input id="SSID" value="{{ ssid }}">
+<input type="submit" value="Go" onclick='window.location="{% url "locatessid-base" %}/"+document.getElementById("SSID").value'>
+{% if hits %}{{hits}} APs returned.{%endif%}
+<div id="map-canvas"></div>
+{% endblock %}
