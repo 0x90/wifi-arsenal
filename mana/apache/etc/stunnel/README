@@ -1,0 +1,13 @@
+Stunnel 4 configuration files.
+
+Files found under the /etc/stunnel directory that end with .conf are
+used by the stunnel4 service as configuration files, and each will be
+used to start a daemon process setting up a tunnel with the given
+configuration. Note that this directory is initially empty, as the
+settings you may want for your tunnels are completely system dependent.
+
+In order to have the tunnels start up automatically on system boot you
+must *also* set ENABLED to 1 in /etc/default/stunnel4
+
+A sample configuration file with defaults may be found at
+ /usr/share/doc/stunnel4/examples/stunnel.conf-sample
