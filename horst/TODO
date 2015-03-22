@@ -1,0 +1,6 @@
+TODO:
+-----
+
+* 802.11ac support
+* Automatically create monitor interface
+* Integrate 'iw survey dump' info
