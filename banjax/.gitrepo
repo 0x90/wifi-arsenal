@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/0x90/banjax
+	branch = master
+	commit = a21b43f57d9c8cdb20bbe69e53fcce5e90cf787b
+	parent = bba801f781bdffa4862ac19ab63def11cc1f6195
+	cmdver = 0.2.0
