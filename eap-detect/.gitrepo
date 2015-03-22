@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/Raiton/eap_detect
+	branch = master
+	commit = f03d3b5bb4f185aa4d655e5584a410ad7cd9a41c
+	parent = ce39eb76246a8f461e1ac45a3b5231b7df83790d
+	cmdver = 0.2.0
