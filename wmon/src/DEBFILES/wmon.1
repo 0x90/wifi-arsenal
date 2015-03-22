@@ -1,0 +1,60 @@
+.\"Created with GNOME Manpages Editor
+.\"http://sourceforge.net/projects/gmanedit2
+
+.\"Replace <program> with the program name, x with the Section Number
+.TH wmon 1 "September 2011" "" "Linux User's Manual"
+
+.SH NAME
+wmon \- wireless network monitor
+
+.SH SYNOPSIS
+.B wmon
+.RI [ options ]*
+.br
+
+.SH DESCRIPTION
+\fBwmon\fP is a wireless network monitor that generates metrics of packet loss and network utilization based on the delays and losses of the beacons packets sent by the acces points.
+
+It also provides other information such as the received signal strength indication (RSSI), the security (i.e. WEP, WPA or WPA2 protected network), the BSSID of the access point, the SSID and channel of every network.
+
+The program has an easy interactive interface that is able to show metrics and sort information for some criteria.
+
+The program can export the calculated metrics to a CSV file, so they can be analyzed externally. 
+
+.SH OPTIONS
+.TP
+.B -h, --help
+Prints the help message.
+
+.TP
+.B -i, --interface interface
+Sets the interface to use (example: -i wlan0).
+By default tries to open one interface.
+
+.TP
+.B -c, --channel channel
+Configures the channels to scan (example: -c 1 -c 9).
+By default is all the channels between 1 and 13.
+
+.TP
+.B -t, --ctime seconds
+Time that the program will be in every channel.
+By default 8 seconds, 5 is the minimum value. 
+
+.TP
+.B -e, --ectime seconds
+Time that the program will be in every channel withouth capture any packet.
+By default 1 seconds. Needs to be less or equal than --ctime and greater or equal than 0.
+
+.TP
+.B -f, --file path
+Generates a output in the indicated file.
+
+.SH AUTHORS
+David Garcia Villalba <dagavi@gmail.com>
+.P
+Daniel López Rovira <daniellopezrovira@gmail.com>
+.P
+Marc Portoles Comeras <mportoles@cttc.cat>
+.P
+Albert Cabellos Aparicio <acabello@ac.upc.edu>

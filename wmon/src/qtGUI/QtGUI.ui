@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtGUI</class>
+ <widget class="QWidget" name="QtGUI">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>900</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>wmon - Wireless Network Monitor</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_4">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <layout class="QGridLayout" name="configurationLayout">
+         <item row="1" column="0">
+          <widget class="QComboBox" name="interfaces"/>
+         </item>
+         <item row="1" column="2">
+          <widget class="QSpinBox" name="ectime">
+           <property name="minimum">
+            <number>1</number>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="ectimeLabel">
+           <property name="text">
+            <string>Empty channel time (seconds)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="interfacesLabel">
+           <property name="text">
+            <string>Interface</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QSpinBox" name="ctime">
+           <property name="minimum">
+            <number>5</number>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="ctimeLabel">
+           <property name="text">
+            <string>Channel time (seconds)</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QTreeView" name="modelView">
+         <property name="alternatingRowColors">
+          <bool>true</bool>
+         </property>
+         <property name="rootIsDecorated">
+          <bool>false</bool>
+         </property>
+         <property name="itemsExpandable">
+          <bool>false</bool>
+         </property>
+         <property name="sortingEnabled">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="writeToFileLayout">
+         <item>
+          <widget class="QCheckBox" name="disappearedAtBottom">
+           <property name="text">
+            <string>Lower disappeared networks</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="Line" name="lineLowerFile">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="filePath"/>
+         </item>
+         <item>
+          <widget class="ExploreButton" name="exploreButton"/>
+         </item>
+         <item>
+          <widget class="WriteToFileCB" name="writeToFileCB">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Channels to scan:</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="ChannelsWidget" name="channelsList">
+         <property name="maximumSize">
+          <size>
+           <width>150</width>
+           <height>16777215</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="informationLayout">
+     <item>
+      <widget class="QLabel" name="currentChannelTextLabel">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Current channel:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="currentChannel">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>- - -</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="Line" name="lineChannelTime">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="timeLeftLabel">
+       <property name="text">
+        <string>Time left in the channel:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="timeLeft">
+       <property name="text">
+        <string>- - -</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="secondsLabel">
+       <property name="text">
+        <string>seconds</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ChannelsWidget</class>
+   <extends>QWidget</extends>
+   <header>ChannelsWidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ExploreButton</class>
+   <extends>QPushButton</extends>
+   <header>ExploreButton.h</header>
+  </customwidget>
+  <customwidget>
+   <class>WriteToFileCB</class>
+   <extends>QCheckBox</extends>
+   <header>WriteToFileCB.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>ctime</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>QtGUI</receiver>
+   <slot>setChannelTime(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>401</x>
+     <y>61</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>344</x>
+     <y>6</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ectime</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>QtGUI</receiver>
+   <slot>setEmptyChannelTime(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>606</x>
+     <y>61</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>597</x>
+     <y>5</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>interfaces</sender>
+   <signal>currentIndexChanged(QString)</signal>
+   <receiver>QtGUI</receiver>
+   <slot>setInterface(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>105</x>
+     <y>59</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>130</x>
+     <y>5</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>writeToFileCB</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>exploreButton</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>606</x>
+     <y>256</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>489</x>
+     <y>259</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>filePath</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>writeToFileCB</receiver>
+   <slot>setPath(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>277</x>
+     <y>259</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>606</x>
+     <y>256</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>writeToFileCB</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>filePath</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>606</x>
+     <y>256</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>277</x>
+     <y>259</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>exploreButton</sender>
+   <signal>selectPath(QString)</signal>
+   <receiver>filePath</receiver>
+   <slot>setText(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>489</x>
+     <y>259</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>277</x>
+     <y>259</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>disappearedAtBottom</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>QtGUI</receiver>
+   <slot>setDisappearedAtBottom(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>44</x>
+     <y>247</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>2</x>
+     <y>232</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>channelsList</sender>
+   <signal>addChannel(uint)</signal>
+   <receiver>QtGUI</receiver>
+   <slot>addChannel(uint)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>765</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>584</x>
+     <y>266</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>channelsList</sender>
+   <signal>removeChannel(uint)</signal>
+   <receiver>QtGUI</receiver>
+   <slot>removeChannel(uint)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>616</x>
+     <y>257</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>614</x>
+     <y>267</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>channelsList</sender>
+   <signal>selectChannel(uint)</signal>
+   <receiver>QtGUI</receiver>
+   <slot>selectChannel(uint)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>632</x>
+     <y>79</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>617</x>
+     <y>4</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>setChannelTime(int)</slot>
+  <slot>setEmptyChannelTime(int)</slot>
+  <slot>setInterface(QString)</slot>
+  <slot>setDisappearedAtBottom(bool)</slot>
+  <slot>addChannel(uint)</slot>
+  <slot>removeChannel(uint)</slot>
+  <slot>selectChannel(uint)</slot>
+ </slots>
+</ui>

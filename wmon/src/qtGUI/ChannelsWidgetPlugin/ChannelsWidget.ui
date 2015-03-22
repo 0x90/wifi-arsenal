@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ChannelsWidget</class>
+ <widget class="QWidget" name="ChannelsWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>196</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QListView" name="channelsList"/>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QSpinBox" name="channelSpin">
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>999</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="addButton">
+       <property name="maximumSize">
+        <size>
+         <width>35</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string>Add channel</string>
+       </property>
+       <property name="text">
+        <string>Add</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="removeButton">
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string>Removes the selected channel from the list</string>
+       </property>
+       <property name="text">
+        <string>Del</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>addButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ChannelsWidget</receiver>
+   <slot>addChannel()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>149</x>
+     <y>289</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>198</x>
+     <y>296</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>removeButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ChannelsWidget</receiver>
+   <slot>removeChannels()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>185</x>
+     <y>289</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>318</x>
+     <y>297</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>channelsList</sender>
+   <signal>doubleClicked(QModelIndex)</signal>
+   <receiver>ChannelsWidget</receiver>
+   <slot>selectChannel(QModelIndex)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>53</x>
+     <y>204</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>98</x>
+     <y>259</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>addChannel()</slot>
+  <slot>removeChannels()</slot>
+  <slot>selectChannel(QModelIndex)</slot>
+ </slots>
+</ui>
