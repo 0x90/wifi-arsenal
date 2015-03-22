@@ -1,0 +1,19 @@
+<html>
+<body>
+<script>
+src_list = {"this":{"lts": null, "ssidList": [], "fts": 1377141009.087588, "name": "accessPoint", "bssid": "asdfasdf", "encryption": null, "connectedClients": [], "oui": null, "auth": null, "cipher": null, "essid": null, "rssi": null, "hidden": false, "bcast": false, "channel": null},"that":{"lts": null, "ssidList": [], "fts": 1377141009.087588, "name": "accessPoint", "bssid": "asdfasdf", "encryption": null, "connectedClients": [], "oui": null, "auth": null, "cipher": null, "essid": null, "rssi": null, "hidden": false, "bcast": false, "channel": null}}
+
+console.log(Object.keys(src_list).length)
+remove_item(src_list)
+console.log(Object.keys(src_list).length)
+
+function remove_item( list ){
+    for (key in list){
+        delete list[key]
+        break
+    }
+}
+
+</script>
+</body>
+</html>
