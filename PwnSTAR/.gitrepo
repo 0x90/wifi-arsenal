@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/SilverFoxx/PwnSTAR
+	branch = master
+	commit = 2db6cde1962fb5f30738c501708ad788529ff8ae
+	parent = b2d9df2c5bd8ebe83e757d3e922dac3395a024f1
+	cmdver = 0.2.0
