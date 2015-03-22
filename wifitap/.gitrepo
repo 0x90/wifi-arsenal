@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/viscousliquid/wifitap
+	branch = master
+	commit = 63eaf79b914e661dd377af3c2e4efa29fb7aebf8
+	parent = 69d3b23a2c62f71cfa7932e6a9daebe9090145d4
+	cmdver = 0.2.0

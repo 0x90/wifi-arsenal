@@ -1,0 +1,43 @@
+0.1   - Initial release
+
+0.2   - BPF filter added on listening socket
+	WEP support
+
+0.3   - Code cleanup
+	Arguments input and parsing
+	Psyco optimizer support
+	Public release
+
+0.3.1 - Typo fixed
+
+0.3.2 - Versioning changed
+	Hostap and wlan-ng patches
+	More documentation
+
+0.3.3 - Updated patches from Christophe Devine for hostap and madwifi
+	New patches from Christophe Devine for rt2500 and rtl8180
+	Updated README
+
+0.3.4 - Updated patches from Christophe Devine
+	Updated documentation: README, PATCHING
+	Added links to drivers and patches on http://100h.org/
+	Added a sample ping answering machine (wifians.py)
+
+0.3.5 - Updated documentation: README
+	Renamed wifians.py into wifiping.py
+	Added a sample DNS answering machine (wifidns.py)
+
+0.3.6 - Code cleanup
+	Awful bugs corrected in wifitap.py and wifidns.py
+	Moved to Scapy v1.0.0.30
+
+0.3.7 - Adjusted frame size for tuntap (1526) and 802.11 (2346)
+
+0.4.0 - Updated documentation: README, PATCHING
+	Prism Headers handling removed as latest libpcap handles them
+	Added patch to enable Prism Headers if needed
+	Moved to Scapy v1.0.4.74
+	Added Scapy warnings support
+	Code cleanup, optimizations and bugfixing (thx to P. Biondi)
+	Added source MAC address setting support
+	Added a sample ARP answering machine (wifiarp.py)

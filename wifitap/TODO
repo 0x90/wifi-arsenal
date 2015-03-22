@@ -1,0 +1,5 @@
+o Bug tracking (always)
+o Communication with LAN side with custom association support
+    . Inject To-DS frames (todo)
+o "Shell-ification" : command line interface for wj interfaces creation on
+  demande with different parameters (so useless)
