@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/abnarain/wifi_dump_parser-v3
+	branch = master
+	commit = a398d124d94f1fbf6b6a00a599204beccd7d8a23
+	parent = d112c17cb1ba177d2bf4d2a725d9d224d6a932f5
+	cmdver = 0.2.0

@@ -1,0 +1,55 @@
+DATA FRAME frame format for each of the paths, the frames are collected frm :
+Transmitted frames from the Access Point :
+time :
+[txflags:],ampdu bit, fail, rts, cts, txagg
+retry count ,
+rate,
+tx_total,
+mpdu-queue-size
+ampdu-queue-size
+Queue-no(depending on the type of traffic AC class) 
+phy_type
+rates retried sequence with no. count on each,
+<mac header follows>
+src mac address 
+dst mac address
+seq number
+fragment number 
+[mac layer flags]wep, retry, order, power_mgmt, more_flag, more_data
+[frame-type]to-from fields
+frame size 
+
+Received frames at the Access Point :
+time :
+[flags],short_pre,wep,badfcs,frag
+freq ,
+protocol ,
+signal ,
+noise,
+antenna,
+[rx flags],badplcp, rxagg, failed phy
+rate,
+rx queue time,
+caplen,
+rssi,
+<mac header follows>
+src mac address 
+dst mac address
+seq number
+fragment number 
+[mac layer flags]wep, retry, order, power_mgmt, more_flag, more_data
+[frame-type]to-from fields
+frame size 
+
+The tx descriptor has the timestamp of the starting of the last retransmission of the frame
+=>If there are no retransmission, its exactly the time spent in queue and the contention of channel
+=>If the queue is empty and there are no retransmissions : then it is contention time of the channel
+
+When retransmission occur, subtract the propogation time of the number of retransmission count from 
+the total time. This will not give the time the channel was busy when there were exponential backoffs.
+
+Debug : Have to look at frames with screwed tx descriptors with time lost
+Update on Sept 18, 2013 : Can't help such frames, discard them !
+
+Data location : 
+/data/users/sburnett/synced-from-dp4
