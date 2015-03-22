@@ -1,0 +1,90 @@
+.TH EAPScan 1
+
+.SH NAME
+EAPScan - Actively Enumerate 802.1x Wireless Networks.
+
+.SH SYNOPSIS
+eapscan [-h] -e ESSID -b BSSID -i IFACE [-v] [-c CHANNEL] [--all]
+        [--check-wps] [--identity IDENTITY]
+        [--types EAP_TYPES [EAP_TYPES ...]] [--xml]
+
+.SH DESCRIPTION
+EAPScan is an open source tool, distributed with EAPeak that is designed
+to help the security assessment of wireless networks that utilize the 
+802.1x standard for authentication.  It works by forging association 
+requests to the target access point and then using the Legacy NAK 
+message described in the EAP RFC (3748) in an attempt to force the AP
+to authenticate it with an EAP type of EAPScan's choice.  Using this 
+method an attacker can actively enumerate which EAP types are supported
+on a given wireless network with out the need to passively monitor 
+client traffic.
+
+It is important that the wireless interface that is selected supports
+injection.  Use the Aircrack-ng utility to configure the wireless
+interface, and ensure that it is on the same channel as the target AP. 
+In the event that all types appear as 'Could Not Be Determined,' it is
+likely that the targeted Access Point does not support EAP
+authentication.
+
+.SH OPTIONS 
+usage: eapscan [-h] -e ESSID -b BSSID -i IFACE [-v] [-c CHANNEL] [--all]
+               [--check-wps] [--identity IDENTITY]
+               [--types EAP_TYPES [EAP_TYPES ...]] [--xml]
+
+EAPScan: Actively Enumerate 802.1x Wireless Networks
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -e ESSID, --essid ESSID
+                        target ESSID
+  -b BSSID, --bssid BSSID
+                        target BSSID
+  -i IFACE, --iface IFACE
+                        interface to use when capturing live
+  -v, --version         show program's version number and exit
+  -c CHANNEL, --channel CHANNEL
+                        target channel
+  --all                 scan all EAP types (4-254)
+  --check-wps           check if WPS is enabled
+  --identity IDENTITY   EAP outer identity string
+  --types EAP_TYPES [EAP_TYPES ...]
+                        list of specific EAP types to try
+  --xml                 export data to xml
+
+.SH RESOURCES
+EAPScan relies on the Scapy libraries from the community repository.
+
+.SH COPYRIGHT
+Copyright 2011 SecureState 
+
+This program is free software; you can redistribute it and/or modify 
+it under the terms of the GNU General Public License as published by 
+the Free Software Foundation; either version 2 of the License, or 
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of 
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License 
+along with this program; if not, write to the Free Software 
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+MA 02110-1301, USA.
+
+.SH BUGS
+EAPeak Developers
+E-mail : eapeakdev [at] SecureState [dot] com
+
+.SH AUTHOR 
+Spencer McIntyre 
+E-mail : SMcIntyre [at] SecureState [dot] com
+
+.SH SEE ALSO
+RFC 2716 (EAP-TLS)
+.P 
+RFC 3748 (EAP)
+.P
+RFC 4851 (EAP-FAST)
+.P
+RFC 5281 (EAP-TTLSv0)

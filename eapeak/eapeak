@@ -1,0 +1,314 @@
+#!/usr/bin/env python
+
+"""
+	-*- coding: utf-8 -*-
+	eapeak
+	
+	Author: Spencer McIntyre (Steiner) <smcintyre [at] securestate [dot] com>
+	
+	Copyright 2011 SecureState
+	
+	This program is free software; you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation; either version 2 of the License, or
+	(at your option) any later version.
+	
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+	MA 02110-1301, USA.
+	
+	Shout outs to the SecureState Profiling Team (Thanks Guys!)
+	agent0x0
+	f8lerror
+	jagar
+	WhIPsmACK0
+	Zamboni
+	
+	Additional Thanks To:
+	Joshua Wright
+	
+	Zero_Chaos
+	Steve Ocepek
+		
+"""
+
+__version_major__ = '0'
+__version_minor__ = '1'
+__version_build__ = '5'
+__version__ = "{0}.{1}.{2}".format(__version_major__, __version_minor__, __version_build__)
+del __version_major__, __version_minor__, __version_build__
+
+__authors__ = [ 'Spencer McIntyre', 'SecureState R&D Team' ]
+
+import sys
+try:
+	from scapy.layers.l2 import eap_types as EAP_TYPES
+	from scapy.layers.l2 import WPS
+except ImportError:
+	print 'Error: Missing Scapy Libraries, Please Install Scapy From The Community Repository'
+	print 'Error: Version Must Be >= 1538:d80170e42ced'
+	# http://hg.secdev.org/scapy-com # needs community repository because of the extra EAP layers I added.
+	print 'Error: Now Exiting...'
+	sys.exit(1)
+
+def main():
+	import os
+	from socket import error as socketError	# needed for the error
+	import thread
+	import logging
+	import argparse
+	from select import error as select_error
+	try:
+		import curses
+		curses_enabled = True
+	except ImportError:
+		curses_enabled = False
+	
+	from scapy.config import conf
+	try:
+		from M2Crypto import X509
+	except ImportError:
+		print 'Error: Missing M2Crypto, Please Install The M2Crypto Libraries'
+		print 'Error: Now Exiting...'
+		return 1
+		
+	# these edit the load_layers configuration to keep layers we don't need out and consume less memory
+	not_needed_layers = [	'bluetooth', 'cdp', 'dhcp', 'dhcp6', 'dns', 'eigrp', 'hsrp', 'inet6', 'ir',
+							'isakmp', 'l2tp', 'llmnr', 'mgcp', 'mobileip', 'netbios', 'netflow', 'ntp',
+							'ospf', 'ppi_cace', 'ppi_geotag', 'ppi', 'ppp', 'rip', 'rtp', 'sctp', 'sebek',
+							'skinny', 'smb', 'snmp', 'tftp', 'vrrp', 'x509'
+						]
+
+	for layer in not_needed_layers:
+		if layer in conf.load_layers:
+			conf.load_layers.remove(layer)
+	del layer, not_needed_layers
+	conf.ipv6_enabled = False
+	from scapy.sendrecv import sniff
+	try:																	# default to the systems libraries
+		from eapeak.parse import EapeakParsingEngine						# revert to ./lib on fail for development
+	except ImportError:
+		sys.path.append(os.getcwd() + os.sep + 'lib')
+		from eapeak.parse import EapeakParsingEngine
+	from eapeak.parse import CursesEapeakParsingEngine
+	
+	parser = argparse.ArgumentParser(description = 'EAPeak: Analysis tool for EAP enabled wireless networks', conflict_handler='resolve')
+	parser.add_argument('-f', '--file', dest = 'pcaps', nargs = '+', action = 'store', default = [], help = 'the path to the PCap file(s)')
+	parser.add_argument('-s', '--ssid', dest = 'target_ssids', nargs = '+', action = 'store', help = 'specific SSID(s) to analyze')
+	parser.add_argument('-l', '--live', dest = 'capture_live', action = 'store_true', default = False, help = 'analyze packets live')
+	if curses_enabled:
+		parser.add_argument('-c', '--curses', dest = 'use_curses', action = 'store_true', default = False, help = 'use the BETA curses interface when capturing live')
+	parser.add_argument('-i', '--iface', dest = 'interface', action = 'store', help = 'interface to use when capturing live')
+	parser.add_argument('-v', '--version', action = 'version', version = parser.prog + ' Version: ' + __version__)
+	save_xml_parser = parser.add_mutually_exclusive_group()
+	save_xml_parser.add_argument('--no-xml', dest = 'dont_save_xml', action = 'store_true', default = False, help = 'don\'t export data to xml (default: save when capturing)')
+	save_xml_parser.add_argument('--xml', dest = 'save_xml', action = 'store_true', default = False, help = 'export data to xml (default: save when capturing)')
+
+	cert_opts = parser.add_argument_group('access-point certificate export options')
+	cert_opts.add_argument('--export-x509', dest = 'export_x509', action = 'store_true', default = False, help = 'start EAPeak certificate export wizard')
+	cert_opts.add_argument('--x509-format', dest = 'export_x509_format', action = 'store', choices = ['der', 'pem'], default = 'pem', help = 'format to save certificates as, default: pem')
+
+	results = parser.parse_args()
+	storedFiles = results.pcaps
+	targetSSIDs = results.target_ssids
+	capture_live = results.capture_live
+	interface = results.interface
+	if capture_live and curses_enabled:
+		use_curses = results.use_curses
+	else:
+		use_curses = False
+	if not capture_live and not storedFiles:
+		parser.print_help()
+		return 0
+		
+	save_to_xml = (((not results.dont_save_xml) & results.capture_live) | results.save_xml)
+	export_x509 = results.export_x509
+	export_x509_format = results.export_x509_format
+	del results, parser, cert_opts
+	
+	if capture_live and not interface:
+		print 'Error: You must specify an interface when using live mode.'
+		return 1
+	if capture_live and os.getuid():
+		print 'Error: You must be root when using live mode.'
+		return 1
+	print """
+ ________ 
+< eapeak >
+ -------- 
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\\/\\
+                ||----w |
+                ||     ||
+"""
+	print 'Welcome To EAPeak\nVersion: ' + __version__ + '\n'
+	
+	# adjust the scapy logs to make them quiet, a hat tip to Philippe Biondi for setting it up so nicely
+	scapy_runtime_log = logging.getLogger("scapy.runtime")
+	scapy_runtime_log.setLevel(logging.ERROR)
+	
+	if use_curses:
+		eapeakParser = CursesEapeakParsingEngine(targetSSIDs)
+	else:
+		eapeakParser = EapeakParsingEngine(targetSSIDs)
+	del targetSSIDs
+	
+	xmlFiles = []
+	pcapFiles = []
+	for filename in storedFiles:
+		if 'xml' in filename.split('.')[-1]:
+			if filename in xmlFiles:
+				continue
+			if not os.access(filename, os.R_OK):
+				print 'Error: Could not read file \'' + filename + '\' (invalid permissions)'
+				continue
+			xmlFiles.append(filename)
+		elif 'cap' in filename.split('.')[-1]:
+			if filename in pcapFiles:
+				continue
+			if not os.access(filename, os.R_OK):
+				print 'Error: Could not read file \'' + filename + '\' (invalid permissions)'
+				continue
+			pcapFiles.append(filename)
+				
+	if xmlFiles:
+		eapeakParser.parseXMLFiles(xmlFiles, False)
+	if pcapFiles:
+		eapeakParser.parsePCapFiles(pcapFiles, False)
+	print ''
+	del pcapFiles, xmlFiles, storedFiles
+	
+	if capture_live:
+		print 'Begining Live Capture...'
+		if use_curses:
+			errCode = eapeakParser.initCurses()
+			if errCode:
+				print {1:'Screen must be at least 99x25 for Curses'}[errCode]
+				return 1
+			del errCode
+			timeout = 1.5
+			thread.start_new_thread(eapeakParser.cursesInteractionHandler, () )
+			thread.start_new_thread(eapeakParser.cursesScreenDrawHandler, (save_to_xml, ) )	# tuples are stupid
+		else:
+			timeout = None
+		while True:
+			try:
+				sniff(iface = interface, store = 0, prn = lambda packet: eapeakParser.parseLiveCapture(packet, use_curses), timeout = timeout )
+				if (use_curses and not eapeakParser.curses_enabled) or not use_curses:
+					break
+			except KeyboardInterrupt:
+				break
+			except socketError:
+				if use_curses:
+					eapeakParser.cleanupCurses()
+				print 'Error: Invalid Interface'
+				return 0
+			except select_error:
+				if use_curses and not eapeakParser.curses_enabled:
+					break
+		del timeout
+		if use_curses:
+			eapeakParser.cleanupCurses()
+		print '\nStopping Live Capture...'
+		print ''
+	
+	if not len(eapeakParser.KnownNetworks):
+		print 'Found No Usable Information\nTry Again With A Larger Capture'
+		return 0		# we didn't find anything don't continue
+	elif export_x509:	# I HATE menu driven programs with a passion
+		networks = eapeakParser.KnownNetworks.keys()
+		networks.sort()
+		certs = {}
+		for network in networks:
+			network = eapeakParser.KnownNetworks[network]
+			for cert in network.x509certs:
+				certs[cert] = network.ssid
+		if len(certs) == 0:
+			print 'No Certificates Are Available For Exporting'
+			return 0
+		output = '\nAvailable Certificates:\n'
+		i = 1
+		for cert in certs.keys():
+			output += 'Certificate #' + str(i) + ' SSID: ' + certs[cert]
+			output += '\n\tExpiration Date: ' + str(cert.get_not_after())
+			data = cert.get_issuer()
+			output += '\n\tIssuer:'
+			for X509_Name_Entry_inst in data.get_entries_by_nid(13): 	# 13 is CN
+				output += '\n\t\tCN: ' + X509_Name_Entry_inst.get_data().as_text()
+			for X509_Name_Entry_inst in data.get_entries_by_nid(18): 	# 18 is OU
+				output += '\n\t\tOU: ' + X509_Name_Entry_inst.get_data().as_text()
+			data = cert.get_subject()
+			output += '\n\tSubject:'
+			for X509_Name_Entry_inst in data.get_entries_by_nid(13): 	# 13 is CN
+				output += '\n\t\tCN: ' + X509_Name_Entry_inst.get_data().as_text()
+			for X509_Name_Entry_inst in data.get_entries_by_nid(18): 	# 18 is OU
+				output += '\n\t\tOU: ' + X509_Name_Entry_inst.get_data().as_text()
+			del data
+			output += '\n\n'
+			i += 1
+		print output[:-1]
+		del output
+		tries = 3
+		while tries:
+			try:
+				target = raw_input('Certificate To Export (1 - ' + str(i - 1) + '): ')
+			except KeyboardInterrupt:
+				print ''
+				return 0
+			if target.isdigit() and 0 < int(target) < i:
+				target = int(target)
+				break
+			else:
+				print 'Invalid Certificate.'
+				target = None
+			tries -= 1
+		del i, tries
+		if target == None:
+			print 'Now Exiting...'
+			return 0
+		cert = certs.keys()[target - 1]
+		
+		if export_x509_format in ['der', 'DER']:
+			filename = certs.values()[target - 1] + '_cert.crt'
+			try:
+				cert.save(filename, X509.FORMAT_DER)
+				print 'Certificate Successfully Saved To: ' + filename
+			except:
+				print 'There Was An Error Saving The Certificate...'
+		elif export_x509_format in ['pem', 'PEM']:
+			filename = certs.values()[target - 1] + '_cert.pem'
+			try:
+				cert.save(filename, X509.FORMAT_PEM)
+				print 'Certificate Successfully Saved To: ' + filename 
+			except:
+				print 'There Was An Error Saving The Certificate...'
+		print 'Now Exiting...'
+		return 0
+
+	if save_to_xml:
+		eapeakParser.exportXML()
+	intro0 = 'EAPeak Summary of Wireless Networks'
+	intro1 = 'Found ' + str(len(eapeakParser.KnownNetworks)) + ' Network(s)'
+	intro = '*' * len(intro0) + '****\n'
+	intro += '* ' + intro0 + ' *\n'
+	intro += '* ' + intro1 + ' ' * (len(intro0) - len(intro1)) + ' *\n'
+	intro += '*' * len(intro0) + '****\n'
+	print intro
+	del intro, intro0, intro1
+	networks = eapeakParser.KnownNetworks.keys()
+	networks.sort()
+	for network in networks:
+		print eapeakParser.KnownNetworks[network].show()
+		print ''
+
+	return 0
+
+if __name__ == '__main__':
+	main()
