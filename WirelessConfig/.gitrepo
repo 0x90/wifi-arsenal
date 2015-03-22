@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/acidprime/WirelessConfig
+	branch = master
+	commit = af0f125ab5b893b76af4f888d204dccc0007900d
+	parent = 06076c21b57da8433f4c382868cbade6a699a6c7
+	cmdver = 0.2.0
