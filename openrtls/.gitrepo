@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/konker/openrtls
+	branch = master
+	commit = 211eac8bcf696dc05e913d3525226fc6616757f8
+	parent = e53b2e68a1f28e122dece927641114e52e69039b
+	cmdver = 0.2.0
