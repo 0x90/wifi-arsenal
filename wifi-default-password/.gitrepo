@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://bitbucket.org/jpgerek/wifi-default-password
+	branch = master
+	commit = 4715ebcd3f36ce4aed7553aee46cc62064fc3bee
+	parent = 1a9429eb6a0a65c17f1a270aea8924e676d1aace
+	cmdver = 0.2.0
