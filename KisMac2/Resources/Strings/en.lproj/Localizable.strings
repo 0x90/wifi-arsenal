@@ -1,0 +1,826 @@
+﻿
+/* GPS status string. Needs leading space */
+" -- NO FIX" = " -- NO FIX";
+
+/* title of the scan button */
+" Start Scan " = " Start Scan ";
+
+/* menu item */
+"(No driver loaded)" = "(No driver loaded)";
+
+/* the any ssid for probe nets */
+"<any ssid>" = "<any ssid>";
+
+/* menu item for GPS prefs */
+"<do not use GPS integration>" = "<do not use GPS integration>";
+
+/* hidden ssid */
+"<hidden ssid>" = "<hidden ssid>";
+
+/* ssid for lucent tunnels */
+"<lucent tunnel>" = "<lucent tunnel>";
+
+/* for tunnels */
+"<no bssid>" = "<no bssid>";
+
+/* the ssid for tunnels */
+"<tunnel>" = "<tunnel>";
+
+/* unknown client ID */
+"<unknown>" = "<unknown>";
+
+/* Unresolved password */
+"<unresolved>" = "<unresolved>";
+
+/* menu item for GPS prefs */
+"<use GPSd to get coordinates>" = "<use GPSd to get coordinates>";
+
+/* Abort button */
+"Abort" = "Abort";
+
+/* For export Server. */
+"Access denied. Please check your account and password settings." = "Access denied. Please check your account and password settings.";
+
+/* table description */
+"ad-hoc" = "ad-hoc";
+
+/* short driver description */
+"Aironet Card" = "Aironet Card";
+
+/* short driver description */
+"Airport Card" = "Airport Card";
+
+/* short driver description */
+"Airport Extreme Card" = "Airport Extreme Card";
+
+/* Passive dialog description */
+"Airport Extreme passive may not work without persistent passive support enabled.  Some users have reported errors and even system crashes when attempting to use without persistent passive support.  Enable persistent passive support now?" = "Airport Extreme passive may not work without persistent passive support enabled.  Some users have reported errors and even system crashes when attempting to use without persistent passive support.  Enable persistent passive support now?";
+
+/* menu item. needs to be the same as in MainMenu.nib */
+"All FCC/IC Channels (1-11)" = "All FCC/IC Channels (1-11)";
+
+/* long driver description */
+"Apple Airport card, passive mode" = "Apple Airport card, passive mode";
+
+/* long driver description */
+"Apple Airport Extreme card, passive mode" = "Apple Airport Extreme card, passive mode";
+
+/* long driver description */
+"Apple Airport or Airport Extreme card, active mode" = "Apple Airport or Airport Extreme card, active mode";
+
+/* error box title */
+"Area mapping failed" = "Area mapping failed";
+
+/* short driver description */
+"Atheros based Card" = "Atheros based Card";
+
+/* long driver description */
+"Atheros based card, passive mode" = "Atheros based card, passive mode";
+
+/* menu item. description must be the same as in MainMenu.nib! */
+"Authentication Flood" = "Authentication Flood";
+
+/* table description */
+"AvgSignal" = "AvgSignal";
+
+/* busy dialog */
+"Bruteforce attack against WEP-40 alphanumerical..." = "Bruteforce attack against WEP-40 alphanumerical...";
+
+/* busy dialog */
+"Bruteforce attack against WEP-40 lowercase..." = "Bruteforce attack against WEP-40 lowercase...";
+
+/* busy dialog */
+"Bruteforce attack against WEP-40..." = "Bruteforce attack against WEP-40...";
+
+/* table description */
+"BSSID" = "BSSID";
+
+/* table description */
+"Bytes" = "Bytes";
+
+/* Title of busy dialog */
+"Caching Map..." = "Caching Map...";
+
+/* menu item, needs to be like in DownloadMap.nib */
+"Census Bureau Maps (United States)" = "Census Bureau Maps (United States)";
+
+/* table description */
+"Channel" = "Channel";
+
+/* LONG text about why this does not work with active attacks */
+"Channel hopping enabled failure description" = "You have channel hopping enabled! In order to send frames correctly you will need to disable it and select a channel, where you can receive the network correctly.";
+
+/* Error box title for active attacks */
+"Channel hopping enabled." = "Channel hopping enabled.";
+
+/* State for weak scheduling attack */
+"Checked %d,000 keys" = "Checked %d,000 keys";
+
+/* long driver description */
+"Cisco Aironet card, passive mode" = "Cisco Aironet card, passive mode";
+
+/* for speech */
+"closed" = "closed";
+
+/* table description */
+"Comment" = "Comment";
+
+/* PrismGT Error title */
+"Communication failure!" = "Communication failure!";
+
+/* dialog title */
+"Connect your device again!" = "Connect your device again!";
+
+/* Joining error */
+"Could not attach to Airport device." = "Could not attach to Airport device. Note: Joining a network is not possible, if the Airport passive driver is used!";
+
+/* GPS status */
+"Could not connect to GPSd." = "Could not connect to GPSd.";
+
+/* For export Server. */
+"Could not connect to Internet Server. Please check your internet connection and see if you can connect to http://binaervarianz.de." = "Could not connect to Internet Server. Please check your internet connection and see if you can connect to http://binaervarianz.de.";
+
+/* Error for Crashreporter */
+"Could not connect to server." = "Could not connect to server.";
+
+/* Download Map Error */
+"Could not connect to www.expedia.com" = "Could not connect to www.expedia.com";
+
+/* LONG error description with possible causes. */
+"Could not create dump" = "Could not create dump file %@. Are you sure that the permissions are set correctly?";
+
+/* GPS status */
+"Could not create GPSd socket." = "Could not create GPSd socket.";
+
+/* Error dialog title */
+"Could not enable Monitor Mode for Airport Extreme." = "Could not enable Monitor Mode for Airport Extreme.";
+
+/* LONG description */
+"Could not instanciate Driver description" = "KisMAC has not been able to load the driver (%@). Reasons for this failure could be:\n\n	1. You selecteted the wrong driver.\n	2. You did not insert your PCMCIA card (only if you selected such a driver).\n	3. Your kernel extensions screwed up. In this case simply reboot.\n	4. You are using a 3rd party card and you are having another driver for the card installed, which could not be unloaded by KisMAC. If you have the sourceforge wireless driver, please install the patch, provided with KisMAC.\n";
+
+/* Error title */
+"Could not instaniciate Driver." = "Could not instantiate Driver.";
+
+/* Driver init failed */
+"Could not instantiate Driver." = "Could not instantiate Driver.";
+
+/* Error dialog title */
+"Could not load Airport Driver." = "Could not load Airport Driver.";
+
+/* LONG desc */
+"Could not load Airport Driver. Apple API gone mad" = "KisMAC was able to find the driver, but the Apple API tells us, it is not there. No idea what this means.";
+
+/* LONG desc with solution */
+"Could not load Airport Driver. Apple Driver not loaded" = "KisMAC is not able to load the Apple Airport driver, if you killed it by loading the Viha driver. Try restarting KisMAC.";
+
+/* LONG desc */
+"Could not load Airport Driver. Attachment error" = "KisMAC could not attach to the Apple Airport Driver.";
+
+/* LONG Error dialog description */
+"Could not load Airport Driver. Drivers not found" = "KisMAC could not find your Apple Airport drivers. Please make sure they are properly installed and not replaced it with the Viha driver.";
+
+/* Error dialog title */
+"Could not load custom Airport Driver." = "Could not load custom Airport Driver.";
+
+/* LONG description */
+"Could not load custom Airport Driver. description" = "You have been running KisMAC with active drivers. You will need to restart KisMAC before you can use the passive Airport driver";
+
+/* Error dialog description */
+"Could not load Monitor Mode for Airport Extreme. Drivers were not found." = "Could not load Monitor Mode for Airport Extreme. Drivers were not found.";
+
+/* Error description. example dump is an internal file */
+"Could not open example dump file" = "Could not open example dump file";
+
+/* GPS status */
+"Could not open GPS." = "Could not open GPS.";
+
+/* Decrypt error title */
+"Could not open input Dump." = "Could not open input Dump.";
+
+/* Decrypt error title */
+"Could not open output dump." = "Could not open output dump.";
+
+/* Error for Crashreporter */
+"Could not read Response" = "Could not read Response";
+
+/* Download Map Error */
+"Could not resolve expedia server" = "Could not resolve expedia server";
+
+/* GPS status */
+"Could not resolve GPSd server." = "Could not resolve GPSd server.";
+
+/* Error for Crashreporter */
+"Could not resolve Server" = "Could not resolve Server";
+
+/* Crack dialog title */
+"Cracking successful" = "Cracking successful";
+
+/* Error box title for WEP attacks */
+"Cracking unsuccessful" = "Cracking unsuccessful";
+
+/* LONG description with possible causes */
+"Cracking unsuccessful description for brutforce" = "The key could not have been recovered. Possible reasons are:\n	1. The key was not a 40-bit/104-bit key.\n	2.The crypto algorithm is not WEP.\n	3. The key differs from the ones tested.\n	4. The key changed during the collection process.";
+
+/* LONG description with possible causes */
+"Cracking unsuccessful description for newsham" = "The key could not have been recovered. Possible reasons are:\n	1. The key was not a 40-bit key.\n	2.The crypto algorithm is not WEP.\n	3. The key is not vulnerable to the Newsham attack.\n	4. The key changed during the collection process.";
+
+
+/* LONG description with possible causes */
+"Cracking unsuccessful description for weak scheduling attack" = "KisMAC was not able to recover the WEP key. This is either because you have not collected enough unique packets, you will need a value way bigger than 100,000. Or another reason might be the fact that the base station is using extended features like WEP+ or the key was simply changed during the collection process.";
+
+/* default status string for crack dialog */
+"Cracking..." = "Cracking...";
+
+/* Error for Crashreporter */
+"Creating the stream failed." = "Creating the stream failed.";
+
+/* table description */
+"Data Packets" = "Data Packets";
+
+/* menu item. description must be the same as in MainMenu.nib! */
+"Deauthenticate" = "Deauthenticate";
+
+/* menu item */
+"Deauthenticating " = "Deauthenticating ";
+
+/* Decrypt error title */
+"Decryption done." = "Decryption done.";
+
+/* Decrypt error title */
+"Decryption failed." = "Decryption failed.";
+
+/* Network deletion dialog button */
+"Delete" = "Delete";
+
+/* Network deletion dialog button */
+"Delete and Filter" = "Delete and Filter";
+
+/* table description */
+"disabled" = "disabled";
+
+/* button text */
+"Don't bother me!" = "Don't bother me!";
+
+/* Save changes dialog button */
+"Don't Save" = "Don't Save";
+
+/* Persistent dialog title */
+"Don't say we didn't warn you!" = "Don't say we didn't warn you!";
+
+/* USB driver bug warning. */
+"Due a bug in Intersils Prism USB driver you must unplug your device now temporarily, otherwise you will not be able to use it any more. KisMAC will prompt you again to put it back in after loading is completed." = "Due a bug in Intersils Prism USB driver you must unplug your device now temporarily, otherwise you will not be able to use it any more. KisMAC will prompt you again to put it back in after loading is completed.";
+
+/* GPS status string. */
+"Elevation" = "Elevation";
+
+/* table description */
+"Encryption" = "Encryption";
+
+/* title for join network dialog */
+"Error joining Network" = "Error joining Network";
+
+/* Error for Crashreporter */
+"Error reading response" = "Error reading response";
+
+/* LONG Description of execution failure. No root privileges?! */
+"Execution failure description" = "KisMAC could not execute an internal shell script. This is most likely since you have no root privileges.";
+
+/* Execution failure title */
+"Execution failure." = "Execution failure.";
+
+/* menu item, needs to be like in DownloadMap.nib */
+"Expedia (Europe)" = "Expedia (Europe)";
+
+/* menu item, needs to be like in DownloadMap.nib */
+"Expedia (United States)" = "Expedia (United States)";
+
+/* Export failure dialog title */
+"Export failed" = "Export failed";
+
+/* LONG Export failure dialog text. Permissions?! */
+"Export failure description" = "KisMAC was unable to complete the export, because of an I/O error. Are permissions correct?";
+
+/* Status for busy dialog */
+"Exporting to %@..." = "Exporting to %@...";
+
+/* Status for busy dialog */
+"Exporting to .kismac Server..." = "Exporting to .kismac Server...";
+
+/* Internal KisMAC error title */
+"Fatal Error" = "Fatal Error";
+
+/* table description */
+"First Seen" = "First Seen";
+
+/* menu item */
+"Flooding " = "Flooding ";
+
+/* this is for speech output */
+"found %@ network. SSID is %@" = "found %@ network. SSID is %@";
+
+/* Download Map Error */
+"Got no response from expedia. Mapsize too big?" = "Got no response from expedia. Mapsize too big?";
+
+/* GPS status */
+"GPS device closed." = "GPS device closed.";
+
+/* LONG GPS status string with informations where to enable */
+"GPS disabled" = "GPS subsystem is disabled. You have to select a device in the preferences window.";
+
+/* LONG GPS status string with informations howto debug */
+"GPS not working" = "GPS subsystem is not working. See log file for more details.";
+
+/* GPS status */
+"GPS started in GPSd mode." = "GPS started in GPSd mode.";
+
+/* GPS status */
+"GPS started in serial mode." = "GPS started in serial mode.";
+
+/* GPS status */
+"GPS subsystem disabled." = "GPS subsystem disabled.";
+
+/* GPS status */
+"GPS subsystem initialized but not running." = "GPS subsystem initialized but not running.";
+
+/* GPS status */
+"GPS subsystem starting up." = "GPS subsystem starting up.";
+
+/* GPS status string */
+"GPS subsystem works, but there is no data.\nIf you are using gpsd, there may be no GPS connected.\nOtherwise, your GPS is probably connected but not yet reporting a position." = "GPS subsystem works, but there is no data.\nIf you are using gpsd, there may be no GPS connected.\nOtherwise, your GPS is probably connected but not yet reporting a position.";
+
+/* GPS status */
+"GPSd connection terminated." = "GPSd connection terminated.";
+
+/* for speech */
+"hidden" = "hidden";
+
+/* menu item */
+"Hide Details" = "Hide Details";
+
+/* menu item */
+"Hide Hierarchy" = "Hide Hierarchy";
+
+/* Import failure dialog title */
+"Import failed" = "Import failed";
+
+/* LONG description. Maybe no internet? */
+"Import failure description" = "KisMAC was unable to complete the import. Are you sure that you have a valid internet connection?";
+
+/* Status for busy dialog */
+"Importing %@..." = "Importing %@...";
+
+/* Status for busy dialog */
+"Importing from Server..." = "Importing from Server...";
+
+/* table description */
+"Inj. Packets" = "Inj. Packets";
+
+/* Decrypt error title */
+"Input file does not exist!" = "Input file does not exist!";
+
+/* LONG description of what might have gone wrong */
+"Instantiation Failure Description" = "KisMAC was able to load the driver backend for %@, but it was unable to create an interface. Make sure your capture device is properly plugged in. If you think everything is correct, you can try to restart your computer. Maybe your console.log and system.log show more details.";
+
+/* LONG Error description */
+"Invalid channel selection failure title" = "You have to select at least one channel, otherwise scanning makes no sense. Also please make sure that you have selected a valid start channel.";
+
+/* Decrypt error title */
+"Invalid hex key." = "Invalid hex key.";
+
+/* LONG description of the error */
+"Invalid Injection Option description" = "None of the drivers selected are able to send raw frames. Currently only PrismII based device are able to perform this task.";
+
+/* No injection driver title */
+"Invalid Injection Option." = "Invalid Injection Option.";
+
+/* for Filter PrefPane */
+"Invalid MAC Address" = "Invalid MAC Address";
+
+/* LONG description how a MAC looks like */
+"Invalid MAC Address description" = "You specified an illegal MAC address. MAC addresses consist of 6 hexvalues seperated by colons.";
+
+/* Invalid channel selection failure title */
+"Invalid Option" = "Invalid Option";
+
+/* table description */
+"Key" = "Key";
+
+/* Error for packet reinjection */
+"KisMAC can only attack managed networks!" = "KisMAC can only attack managed networks!";
+
+/* USB driver bug warning. */
+"KisMAC completed the unload process. Please plug your device back in before you continue." = "KisMAC completed the unload process. Please plug your device back in before you continue.";
+
+/* description for join network dialog */
+"KisMAC could not join the selected network, because of the following error: %@" = "KisMAC could not join the selected network, because of the following error: %@";
+
+/* Decrypt dialog */
+"KisMAC decrypted %u data frames. There were %u dropped frames, because of CRC errors." = "KisMAC decrypted %u data frames. There were %u dropped frames, because of CRC errors.";
+
+/* Decrypt dialog */
+"KisMAC decrypted all %u data frames." = "KisMAC decrypted all %u data frames.";
+
+/* Error description for WPA crack. */
+"KisMAC did already reveal the password." = "KisMAC did already reveal the password.";
+
+/* Decrypt dialog */
+"KisMAC dropped all %u data frames, because of CRC errors! This is most likely because you entered a wrong password." = "KisMAC dropped all %u data frames, because of CRC errors! This is most likely because you entered a wrong password.";
+
+/* Decrypt error */
+"KisMAC needs a password or a key in order to decrypt a file!" = "KisMAC needs a password or a key in order to decrypt a file!";
+
+/* Decrypt error */
+"KisMAC needs the name of an input file, which it shall decrypt!" = "KisMAC needs the name of an input file, which it shall decrypt!";
+
+/* Decrypt error */
+"KisMAC needs the name of an output file, where it can save the decrypted dump!" = "KisMAC needs the name of an output file, where it can save the decrypted dump!";
+
+/* crack dialog */
+"KisMAC was able to recover the key of the selected network. It is: %@" = "KisMAC was able to recover the key of the selected network. It is: %@";
+
+/* Decrypt error */
+"KisMAC was unable to open the input file because of the following error" = "KisMAC was unable to open the input file because of the following error";
+
+/* Decrypt error */
+"KisMAC was unable to open the output file!" = "KisMAC was unable to open the output file!";
+
+/* ext about what might have gone wrong with the injection */
+"KisMAC was unable to start a reinjection attack, because: %@" = "KisMAC was unable to start a reinjection attack, because: %@";
+
+/* table description */
+"Last Seen" = "Last Seen";
+
+/* table description */
+"LastIV" = "LastIV";
+
+/* table description */
+"Latitude" = "Latitude";
+
+/* table description */
+"LEAP" = "LEAP";
+
+/* for Backend loading */
+"Loading %@..." = "Loading %@...";
+
+/* table description */
+"Longitude" = "Longitude";
+
+/* table description */
+"lucent tunnel" = "lucent tunnel";
+
+/* for Filter PrefPane */
+"MAC Address exsist" = "MAC Address exsist";
+
+/* LONG description */
+"MAC Address exsist description" = "You specified a MAC address, which already exists in the list.";
+
+/* table description */
+"Main Channel" = "Main Channel";
+
+/* table description */
+"managed" = "managed";
+
+/* menu item, needs to be like in DownloadMap.nib */
+"Map24" = "Map24";
+
+/* table description */
+"MaxSignal" = "MaxSignal";
+
+/* LONG dialog text. The user needs more packets. active scanners are not able to do this */
+"Need more packets description" = "You have not collected enough data packets to perform this attack. Please capture some more traffic.";
+
+/* LONG dialog text. The user needs more weak packets. explain */
+"Need more weak packets description" = "KisMAC cannot recover your WEP key, using this method. The weak scheduling attack requires a lot of weak keys. Please see the help file for more details.";
+
+/* LONG description of what this dialog does */
+"Network deletion dialog text" = "Are you sure that you whish to delete the network? This action cannot be undone. You may also choose to add the network to the filter list in the preferences and prevent it from re-appearing.";
+
+/* table description */
+"NO" = "NO";
+
+/* For export Server. */
+"No account name given. Enter it in the preferences." = "No account name given. Enter it in the preferences.";
+
+/* gps status */
+"No GPS device available." = "No GPS device available.";
+
+/* LONG text about where you can enable it */
+"No injection driver failure description" = "You have no primary injection driver chosen, please select one in the preferences dialog.";
+
+/* Error box title for active attacks */
+"No injection driver." = "No injection driver.";
+
+/* Decrypt error title */
+"No input file given." = "No input file given.";
+
+/* Decrypt error title */
+"No key entered." = "No key entered.";
+
+/* map view status */
+"No map loaded! Please import or load one first." = "No map loaded! Please import or load one first.";
+
+/* LONG description */
+"No network selected failure description" = "You will have to select a network, which you wish to attack!";
+
+/* Error box title for active attacks */
+"No network selected." = "No network selected.";
+
+/* Decrypt error title */
+"No output file given." = "No output file given.";
+
+/* Download Map error title */
+"No server selected." = "No server selected.";
+
+/* LONG error description */
+"No server selected. description" = "KisMAC needs the name of a server from where it can load the map. Depending on your region and the look of the map you should find one in the pop-up menu. If you know how-to obtain a map from another server, please drop me a mail.";
+
+/* No button */
+"No, I like kernel panics." = "No, I like kernel panics.";
+
+/* for speech */
+"open" = "open";
+
+/* Status for busy dialog */
+"Opening %@..." = "Opening %@...";
+
+/* Error for Crashreporter */
+"Opening the stream failed." = "Opening the stream failed.";
+
+/* table description */
+"Packets" = "Packets";
+
+/* label of traffic view */
+"packets/sec" = "packets/sec";
+
+/* busy dialog */
+"Performing Newsham attack..." = "Performing Newsham attack...";
+
+/* Persistent dialog title */
+"Please enable persistent Airport Extreme passive." = "Please enable persistent Airport Extreme passive.";
+
+/* GPS status string. */
+"Position" = "Position";
+
+/* short driver description */
+"Prism2 USB device" = "Prism2 USB device";
+
+/* short driver description */
+"Prism2/Orinoco/Hermes Card" = "Prism2/Orinoco/Hermes Card";
+
+/* long driver description */
+"Prism2/Orinoco/Hermes card, passive mode" = "Prism2/Orinoco/Hermes card, passive mode";
+
+/* short driver description */
+"PrismGT based Card" = "PrismGT based Card";
+
+/* long driver description */
+"PrismGT based card, passive mode" = "PrismGT based card, passive mode";
+
+/* table description */
+"probe" = "probe";
+
+/* Error for packet reinjection */
+"Re-Injection failed" = "Re-Injection failed";
+
+/* LONG Warning text. Make the user think */
+"Really load MacJack? description" = "KisMAC detected, that there is an active instance of the Sourceforge Wireless Driver, which cannot be unloaded. It is most likely that you did not install the patch which is provided with KisMAC. Please reinstall KisMAC! If you still continue chances are that your system will crash completly.";
+
+/* Network deletion dialog title */
+"Really want to delete?" = "Really want to delete?";
+
+/* LONG description */
+"Really want to load Viha warning" = "KisMAC detected, that there is most likely still some kind of a program, which accesses your airport driver (such as a signal meter, internet connect, another stumbler or a preference pane). If you continue, your Airport Connection might not come back when you quit KisMAC.\nPlease note on MacOS X 10.3 and 10.3.1 there is a bug in a closed source component of Apple. Please upgrade to 10.3.2 to avoid this behavoir.";
+
+/* this is for speech output */
+"Reencountered network. SSID is %@" = "Reencountered network. SSID is %@";
+
+/* menu item. description must be the same as in MainMenu.nib! */
+"Reinject Packets" = "Reinject Packets";
+
+/* menu item */
+"Reinjecting into " = "Reinjecting into ";
+
+/* Error dialog title */
+"Reinjection unsuccessful" = "Reinjection unsuccessful";
+
+/* Status for busy dialog */
+"Resetting document..." = "Resetting document...";
+
+/* GPS status string */
+"Resetting GPS subsystem..." = "Resetting GPS subsystem...";
+
+/* Retry button */
+"Retry" = "Retry";
+
+/* Save changes dialog button */
+"Save" = "Save";
+
+/* LONG dialog text */
+"Save changes dialog text" = "You have been scanning since your last save. Do you want to save your results?";
+
+/* Save changes dialog title */
+"Save Changes?" = "Save Changes?";
+
+/* Saving failure dialog title */
+"Saving failed" = "Saving failed";
+
+/* LONG Saving failure dialog text. Permissions?! */
+"Saving failure description" = "KisMAC was unable to complete the saving process, because of an I/O error. Are permissions correct?";
+
+/* Status for busy dialog */
+"Saving to %@..." = "Saving to %@...";
+
+/* LONG Export failure dialog text. Enable it in preferences */
+"Server Export disabled" = "Exporting KisMAC data to a server is disabled by default for privacy reasons. Please enable it in the preferences!";
+
+/* Error for Crashreporter */
+"Setting the stream's client failed." = "Setting the stream's client failed.";
+
+/* busy dialog */
+"Setting up packet reinjection..." = "Setting up packet reinjection...";
+
+/* menu item */
+"Show Details" = "Show Details";
+
+/* menu item. needs to be same as MainMenu.nib */
+"Show Hierarchy" = "Show Hierarchy";
+
+/* menu item. description must be the same as in MainMenu.nib! */
+"Show Net Area" = "Show Net Area";
+
+/* menu item */
+"Show Net Area of " = "Show Net Area of ";
+
+/* table description */
+"Signal" = "Signal";
+
+/* label of traffic view */
+"signal" = "signal";
+
+/* table description */
+"SSID" = "SSID";
+
+/* GPS status */
+"Starting GPS in GPSd mode." = "Starting GPS in GPSd mode.";
+
+/* GPS status */
+"Starting GPS subsystem." = "Starting GPS subsystem.";
+
+/* table description */
+"Supported Rates" = "Supported Rates";
+
+/* menu item, needs to be like in DownloadMap.nib */
+"TerraServer (Map)" = "TerraServer (Map)";
+
+/* menu item, needs to be like in DownloadMap.nib */
+"TerraServer (Satellite)" = "TerraServer (Satellite)";
+
+/* For Reinjection */
+"Test suitable reinjection packets" = "Test suitable reinjection packets";
+
+/* Error description for LEAP crack. */
+"The captured challenge response packets are not sufficient to perform this attack" = "The captured challenge response packets are not sufficient to perform this attack";
+
+/* map view status */
+"The coordinates of waypoints are too close!" = "The coordinates of waypoints are too close!";
+
+/* Error description for cracking. */
+"The encryption of the selected network does not work with this attack." = "The encryption of the selected network does not work with this attack.";
+
+/* Decrypt error */
+"The hex key, that you entered is invalid. It must consist only of A-F and 0-9 signs and needs to have a specific length." = "The hex key, that you entered is invalid. It must consist only of A-F and 0-9 signs and needs to have a specific length.";
+
+/* For export Server. */
+"The Internet server reported an Internal Error. Please export your data and send it to us for debugging." = "The Internet server reported an Internal Error. Please export your data and send it to us for debugging.";
+
+/* Error description for WPA crack. */
+"The key was none of the tested passwords." = "The key was none of the tested passwords.";
+
+/* description why LEAP crack failed */
+"The LEAP key could not be recovered, because for the following reason: %@." = "The LEAP key could not be recovered, because for the following reason: %@.";
+
+/* Reinjection error */
+"The networks seems to be not reacting." = "The networks seems to be not reacting.";
+
+/* For export Server. */
+"The Server answerd with an unknown error code! Please check for a new KisMAC version." = "The Server answerd with an unknown error code! Please check for a new KisMAC version.";
+
+/* Dialog text for Crashreporter */
+"The transmittion of the report failed because of the following error" = "The transmittion of the report failed because of the following error";
+
+/* Dialog text for Crashreporter */
+"The transmittion of the report is complete. Thank you for your help!" = "The transmittion of the report is complete. Thank you for your help!";
+
+/* map view status */
+"The waypoints are too close!" = "The waypoints are too close!";
+
+/* description why WPA crack failed */
+"The WPA key could not be recovered, because for the following reason: %@." = "The WPA key could not be recovered, because for the following reason: %@.";
+
+/* Persistent dialog description */
+"There's just no helping some people." = "There's just no helping some people.";
+
+/* PrismGT Error */
+"This driver will not work with older Prism2 or USB devices.\nPlease make sure, that the network card is properly inserted and the GTDriver (gtdriver.binaervarianz.de) is installed and working." = "This driver will not work with older Prism2 or USB devices.\nPlease make sure, that the network card is properly inserted and the GTDriver (gtdriver.binaervarianz.de) is installed and working.";
+
+/* GPS status string. */
+"Time" = "Time";
+
+/* Title for Crashreporter */
+"Transmittion complete." = "Transmittion complete.";
+
+/* Title for Crashreporter */
+"Transmittion failed." = "Transmittion failed.";
+
+/* GPS status */
+"Trying to terminate GPS subsystem." = "Trying to terminate GPS subsystem.";
+
+/* table description */
+"tunnel" = "tunnel";
+
+/* table description */
+"Type" = "Type";
+
+/* table description */
+"Unique IVs" = "Unique IVs";
+
+/* table description */
+"unknown" = "unknown";
+
+/* long driver description */
+"USB device with Prism2 chipset, passive mode" = "USB device with Prism2 chipset, passive mode";
+
+/* Error box title */
+"USB device error" = "USB device error";
+
+/* LONG Error description */
+"USB device error description" = "A driver error occured with your USB device, make sure it is properly connected. Scanning will be canceled. Errors may have be printed to console.log.";
+
+/* GPS status string. */
+"Velocity" = "Velocity";
+
+/* table description */
+"Vendor" = "Vendor";
+
+/* For Reinjection */
+"Waiting for interesting packets..." = "Waiting for interesting packets...";
+
+/* Warning dialog title */
+"WARNING! Do you really want to load the MacJack driver?." = "WARNING! Do you really want to load the MacJack driver?";
+
+/* warning dialog title */
+"WARNING! Do you really want to load the Viha driver?." = "WARNING! Do you really want to load the Viha driver?";
+
+/* Warning dialog title */
+"WARNING! Please unplug your USB device now." = "WARNING! Please unplug your USB device now.";
+
+/* map view status */
+"Waypoint 1 is not set!" = "Waypoint 1 is not set!";
+
+/* map view status */
+"Waypoint 2 is not set!" = "Waypoint 2 is not set!";
+
+/* busy dialog */
+"Weak scheduling attack..." = "Weak scheduling attack...";
+
+/* table description */
+"WEP" = "WEP";
+
+/* table description */
+"WEP-40" = "WEP-40";
+
+/* busy dialog */
+"Wordlist attack against LEAP..." = "Wordlist attack against LEAP...";
+
+/* busy dialog */
+"Wordlist attack against WEP-Apple104..." = "Wordlist attack against WEP-Apple104...";
+
+/* busy dialog */
+"Wordlist attack against WEP-Apple40..." = "Wordlist attack against WEP-Apple40...";
+
+/* busy dialog */
+"Wordlist attack against WEP-MD5..." = "Wordlist attack against WEP-MD5...";
+
+/* busy dialog */
+"Wordlist attack against WPA-PSK..." = "Wordlist attack against WPA-PSK...";
+
+/* table description */
+"WPA" = "WPA";
+
+/* Yes button */
+"Yes please!" = "Yes please!";
+
+/* Error for packet reinjection */
+"You can only reinject into WEP encrypted networks!" = "You can only reinject into WEP encrypted networks!";
+
+/* Joining error */
+"You cannot join a hidden network, before you reveal the SSID." = "You cannot join a hidden network, before you reveal the SSID.";
+
+/* Joining error */
+"You do not have a password for this network." = "You do not have a password for this network.";
+
+/* area mapping failure */
+"You have to load a map in order to perform this action" = "You have to load a map in order to perform this action";
+
+/* Explain */
+"You will need to reveal a valid SSID before you are able to attack this network. The SSID is a vital part of the WPA encryption process" = "You will need to reveal a valid SSID before you are able to attack this network. The SSID is a vital part of the WPA encryption process";

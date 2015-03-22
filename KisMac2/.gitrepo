@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/IGRSoft/KisMac2
+	branch = master
+	commit = e9b37ff61cba74c21708c83d0d237cd116b797e8
+	parent = cfb8adebc7578f4ef2e4a650c09f898c520a3df4
+	cmdver = 0.2.0

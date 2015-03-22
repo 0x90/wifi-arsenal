@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+  <title>KisMAC Manual - The Main View</title>
+</head>
+
+<body bgcolor="#ffffff">
+
+<a name="KisMAC_Main_View"></a>
+
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tbody>
+    <tr height="40">
+      <td height="40" width="40"><img src="../gfx/kismacm.png" height="40" width="40"></td>
+      <td height="40" width="6"></td>
+      <td height="40" valign="middle"><font face="Lucida Grande,Helvetica,Arial" size="4"><b>KisMAC Manual - The Main View</b></font></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><font face="Lucida Grande,Geneva,Arial" size="2">This is an overview of KisMACs main view...</font></p>
+<p align="center"><img src="../gfx/mainview.png" alt="Main View" border="0" height="401" width="625"></p>
+<p></p>
+<ol>
+    <li>Use the "Scan" button to start and stop the scanning proccess.
+KisMAC will automatically load the required drivers. You might need to
+enter your password, depending on your preferences. </li>
+  <li>The buttons in the middle switch between the different views. You
+will need to select a network in order to show the "Details" view. It
+is also possible to make this selection from the "Window" menu. </li>
+  <li>The progress indicator spins, whenever KisMAC performs a scan. If
+the selected driver supports channel hopping, you will see the
+currently active channel in hexadecimal values (eg. 12 is shown as C).</li>
+  <li>The network table shows all encountered networks. All entries
+will be ordered by the selected row. A double-click will automatically
+switch to the "Details" view of the selected network. The following
+colums are shown:
+    <ul>
+      <li><b>Ch</b> - the last channel KisMAC received packets for this network</li>
+      <li><b>SSID</b> - the name of the network. Hidden networks will be decloaked automatically in passive mode.</li>
+      <li><b>BSSID</b> - a unique ID of the network. Usually the MAC address of the accesspoint.</li>
+      <li><b>Enc</b> - encryption of the network. Networks with LEAP
+will be detected in passive mode only after receiving an authentication
+packet. WPA networks will not be correctly identified in active mode.</li>
+      <li><b>Type</b> - KisMAC can detect ad-hoc, managed and tunnels.</li>
+      <li><b>Signal</b> - the current signal-noise-ratio</li>
+      <li><b>Avg</b> - the average SNR. You can chose the time in the preferences.</li>
+      <li><b>Max</b> - maximum signal-noise-ratio</li>
+      <li><b>Packets</b> - the number of packets that KisMAC received for this network. This field will be zero in active mode.</li>
+      <li><b>Data</b> - the total network traffic, which has been observed. This field will be zero in active mode, too.</li>
+      <li><b>Last Seen</b> - time of the last received packet</li>
+    </ul>
+  </li>
+  <li>The search field will allow you to filter all unwanted networks.
+   <ul>
+     <li><b>SSID</b> - Filter by the SSID (service set identifier)</li>
+     <li><b>BSSID</b> - Filter by the BSSID (basic service set identifier aka MAC address)</li>
+     <li><b>Vendor</b> - Filter by manufacturer</li>
+     <li><b>Encryption</b> - Filter by encryption type</li>
+     <li><b>Main Channel</b> - Filter by main channel of the WAP (wireless access point)</li>
+     <li><b>Type</b> - Filter by type of mode the wireless devices operate in</li>
+     <li><b>Comment</b> - Filter by a comment you have stored in the details window.</il>
+   </ul>
+  </li>
+</ol>
+
+<p>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tbody>
+    <tr valign="top">
+      <td align="left"><font face="Lucida Grande,Geneva,Arial" size="2"><a href="index.html">back</a></font></td>
+      <td align="right"><font face="Lucida Grande,Geneva,Arial" size="2"><a href="help:search=%27scanning%27%20bookID=KisMAC%20Help">Tell me more</a></font></td>
+    </tr>
+  </tbody>
+</table>
+</p>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+  <title>What do the different dumping filter preferences mean?</title>
+</head>
+
+<body bgcolor="#ffffff">
+
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tbody>
+    <tr height="40">
+      <td width="40" height="40"><img height="40" width="40"
+        src="../gfx/kismacm.png"></td>
+      <td width="6" height="40"></td>
+      <td height="40" valign="middle"><font
+        face="Lucida Grande,Helvetica,Arial" size="4"><b>What do the
+        different dumping filter preferences mean?</b></font></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><font size="2" face="Lucida Grande,Geneva,Arial">These options capture the
+following packets:<br>
+<br>
+<b>No dumping</b> - just what it says. No log file is written.<br>
+<b>Keep everything</b> - All intercepted traffic is written to the log
+file.<br>
+<b>Data only</b> - Only packets containing data are written to the log file;
+empty, "I'm here," traffic is ignored, but any packets with weak
+initialization vectors (IVs) will be logged.<br>
+<b>Weak frames only</b> - only packets with weak initialization vectors will
+be written to the log file.<br>
+</font></p>
+</div>
+
+<p>If you aren't interested in doing anything with the data, <strong>Weak
+frames only</strong> is probably the best choice.</p>
+
+<p></p>
+
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tbody>
+    <tr valign="top">
+      <td align="left"></td>
+      <td align="right"><font size="2" face="Lucida Grande,Geneva,Arial"><a
+        href="help:search='Deauthentication' bookID=KisMAC%20Help">Tell me
+        more</a></font></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</body>
+</html>

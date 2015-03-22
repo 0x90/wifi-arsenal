@@ -1,0 +1,1692 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		6910302C0F9E313700C4E466 /* Kismac.dmg */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 691030320F9E313700C4E466 /* Build configuration list for PBXAggregateTarget "Kismac.dmg" */;
+			buildPhases = (
+				6910302B0F9E313700C4E466 /* Create DMG */,
+				698665900FAF60BF002D1A84 /* ShellScript */,
+			);
+			dependencies = (
+				691030340F9E315D00C4E466 /* PBXTargetDependency */,
+			);
+			name = Kismac.dmg;
+			productName = Kismac.dmg;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		002E7DFC06A86C6F00C9D931 /* ImportController.m in Sources */ = {isa = PBXBuildFile; fileRef = 002E7DF806A86C6F00C9D931 /* ImportController.m */; };
+		0035337A06A5DD5700AB4577 /* example.dump in Resources */ = {isa = PBXBuildFile; fileRef = 0035332E06A5DD5700AB4577 /* example.dump */; };
+		0035337B06A5DD5700AB4577 /* KisMAC.scriptSuite in Resources */ = {isa = PBXBuildFile; fileRef = 0035332F06A5DD5700AB4577 /* KisMAC.scriptSuite */; };
+		0035337C06A5DD5700AB4577 /* KisMAC.scriptTerminology in Resources */ = {isa = PBXBuildFile; fileRef = 0035333006A5DD5700AB4577 /* KisMAC.scriptTerminology */; };
+		0035337D06A5DD5700AB4577 /* vendor.db in Resources */ = {isa = PBXBuildFile; fileRef = 0035333106A5DD5700AB4577 /* vendor.db */; };
+		0035339906A5DD5700AB4577 /* usbprism2_prep.sh in Resources */ = {isa = PBXBuildFile; fileRef = 0035334F06A5DD5700AB4577 /* usbprism2_prep.sh */; };
+		0035339A06A5DD5700AB4577 /* usbprism2_unprep.sh in Resources */ = {isa = PBXBuildFile; fileRef = 0035335006A5DD5700AB4577 /* usbprism2_unprep.sh */; };
+		0035342C06A5DD8500AB4577 /* InfoController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 003533A806A5DD8500AB4577 /* InfoController.mm */; };
+		0035342E06A5DD8500AB4577 /* ScanController.m in Sources */ = {isa = PBXBuildFile; fileRef = 003533AA06A5DD8500AB4577 /* ScanController.m */; };
+		0035342F06A5DD8500AB4577 /* ScanControllerMenus.m in Sources */ = {isa = PBXBuildFile; fileRef = 003533AB06A5DD8500AB4577 /* ScanControllerMenus.m */; };
+		0035343106A5DD8500AB4577 /* ScanControllerPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 003533AD06A5DD8500AB4577 /* ScanControllerPrivate.m */; };
+		0035343306A5DD8500AB4577 /* ScanControllerScriptable.m in Sources */ = {isa = PBXBuildFile; fileRef = 003533AF06A5DD8500AB4577 /* ScanControllerScriptable.m */; };
+		0035343506A5DD8500AB4577 /* TrafficController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 003533B106A5DD8500AB4577 /* TrafficController.mm */; };
+		0035343906A5DD8500AB4577 /* ScanHierarch.mm in Sources */ = {isa = PBXBuildFile; fileRef = 003533B606A5DD8500AB4577 /* ScanHierarch.mm */; };
+		0035343B06A5DD8500AB4577 /* WaveClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 003533B806A5DD8500AB4577 /* WaveClient.m */; };
+		0035343D06A5DD8500AB4577 /* WaveContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 003533BA06A5DD8500AB4577 /* WaveContainer.m */; };
+		0035344306A5DD8500AB4577 /* WaveNet.mm in Sources */ = {isa = PBXBuildFile; fileRef = 003533C006A5DD8500AB4577 /* WaveNet.mm */; };
+		0035344506A5DD8500AB4577 /* WavePacket.mm in Sources */ = {isa = PBXBuildFile; fileRef = 003533C206A5DD8500AB4577 /* WavePacket.mm */; };
+		0035344706A5DD8500AB4577 /* WaveScanner.mm in Sources */ = {isa = PBXBuildFile; fileRef = 003533C406A5DD8500AB4577 /* WaveScanner.mm */; };
+		0035345A06A5DD8500AB4577 /* PrefsClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 003533DD06A5DD8500AB4577 /* PrefsClient.m */; };
+		0035345C06A5DD8500AB4577 /* PrefsDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 003533DF06A5DD8500AB4577 /* PrefsDriver.m */; };
+		0035345E06A5DD8500AB4577 /* PrefsFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 003533E106A5DD8500AB4577 /* PrefsFilter.m */; };
+		0035346006A5DD8500AB4577 /* PrefsGPS.m in Sources */ = {isa = PBXBuildFile; fileRef = 003533E306A5DD8500AB4577 /* PrefsGPS.m */; };
+		0035346206A5DD8500AB4577 /* PrefsMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 003533E506A5DD8500AB4577 /* PrefsMap.m */; };
+		0035346406A5DD8500AB4577 /* PrefsScanning.m in Sources */ = {isa = PBXBuildFile; fileRef = 003533E706A5DD8500AB4577 /* PrefsScanning.m */; };
+		0035346806A5DD8500AB4577 /* PrefsSounds.m in Sources */ = {isa = PBXBuildFile; fileRef = 003533EB06A5DD8500AB4577 /* PrefsSounds.m */; };
+		0035346A06A5DD8500AB4577 /* PrefsTraffic.m in Sources */ = {isa = PBXBuildFile; fileRef = 003533ED06A5DD8500AB4577 /* PrefsTraffic.m */; };
+		0035346E06A5DD8500AB4577 /* PrefsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 003533F106A5DD8500AB4577 /* PrefsController.m */; };
+		0035347006A5DD8500AB4577 /* PrefsWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 003533F306A5DD8500AB4577 /* PrefsWindow.m */; };
+		0035347206A5DD8500AB4577 /* ScriptAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 003533F606A5DD8500AB4577 /* ScriptAdditions.m */; };
+		0035347406A5DD8500AB4577 /* ScriptController.m in Sources */ = {isa = PBXBuildFile; fileRef = 003533F806A5DD8500AB4577 /* ScriptController.m */; };
+		0035347606A5DD8500AB4577 /* GPSController.m in Sources */ = {isa = PBXBuildFile; fileRef = 003533FB06A5DD8500AB4577 /* GPSController.m */; };
+		0035348806A5DD8500AB4577 /* WaveDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 0035341006A5DD8500AB4577 /* WaveDriver.m */; };
+		0035348C06A5DD8500AB4577 /* WaveDriverAirport.m in Sources */ = {isa = PBXBuildFile; fileRef = 0035341406A5DD8500AB4577 /* WaveDriverAirport.m */; };
+		0035349406A5DD8500AB4577 /* WaveDriverUSBIntersil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0035341C06A5DD8500AB4577 /* WaveDriverUSBIntersil.mm */; };
+		0035349C06A5DD8500AB4577 /* WayPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 0035342506A5DD8500AB4577 /* WayPoint.m */; };
+		0042E7A609C0C8B600183F90 /* world.kismap in Resources */ = {isa = PBXBuildFile; fileRef = 0042E7A209C0C8B600183F90 /* world.kismap */; };
+		005B12690730051A00906C36 /* MapControlItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 005B12670730051A00906C36 /* MapControlItem.m */; };
+		00875D1C0708ADB300CACFCB /* WaveHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00875D1A0708ADB300CACFCB /* WaveHelper.m */; };
+		0090AC8606E5E3250096C5FC /* MapControlPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0090AC8406E5E3250096C5FC /* MapControlPanel.m */; };
+		0090B7CC07B2A43D005FEEB1 /* WaveStorageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0090B7CA07B2A43D005FEEB1 /* WaveStorageController.m */; };
+		0093E65506B2A1F300B3357A /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0093E65306B2A1F300B3357A /* AddressBook.framework */; };
+		00971F3F06E4FA6F004307EA /* BIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00971F3D06E4FA6F004307EA /* BIView.m */; };
+		00971F5706E4FFBF004307EA /* BISubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00971F5506E4FFBF004307EA /* BISubView.m */; };
+		0097241506E51844004307EA /* BIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0097241306E51844004307EA /* BIImageView.m */; };
+		0097243A06E51A99004307EA /* BITextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0097243806E51A99004307EA /* BITextView.m */; };
+		009B192406FC83A800E8883A /* ScriptingEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 009B192206FC83A800E8883A /* ScriptingEngine.m */; };
+		009D64F306FF73BA00B0F1EC /* MapViewAreaView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 009D64F206FF73BA00B0F1EC /* MapViewAreaView.mm */; };
+		00A622AA06FEE4FB005D248A /* Trace.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A622A806FEE4FB005D248A /* Trace.m */; };
+		00A7F9D306C6D20A00A6BB8F /* devilDocument.icns in Resources */ = {isa = PBXBuildFile; fileRef = 00A7F9D206C6D20A00A6BB8F /* devilDocument.icns */; };
+		00C5F12D06DE0C98001EC02F /* MapViewPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C5F12B06DE0C98001EC02F /* MapViewPrivate.m */; };
+		00CBA34106DB8FDE000ACD19 /* MapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CBA33F06DB8FDE000ACD19 /* MapView.m */; };
+		00DF456408B1E969003F3C7E /* WaveDriverAirportExtreme.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DF456208B1E969003F3C7E /* WaveDriverAirportExtreme.m */; };
+		00E1426E06E62A44009DC179 /* PointView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E1426C06E62A44009DC179 /* PointView.m */; };
+		00ED80A906E32C9600455A05 /* NetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ED80A706E32C9600455A05 /* NetView.m */; };
+		00F57BD306A881210035AE2F /* AppleScriptKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F57BD206A881210035AE2F /* AppleScriptKit.framework */; };
+		00F9C64006DB378F00E357F0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F9C63F06DB378F00E357F0 /* Security.framework */; };
+		00F9C65006DB37E200E357F0 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F9C64E06DB37E200E357F0 /* Carbon.framework */; };
+		00F9C65106DB37E200E357F0 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F9C64F06DB37E200E357F0 /* IOKit.framework */; };
+		691CF1B00E4CC47C0042B146 /* UsbVendorsIntersil.plist in Resources */ = {isa = PBXBuildFile; fileRef = 691CF1AC0E4CC47B0042B146 /* UsbVendorsIntersil.plist */; };
+		691CF1B10E4CC47C0042B146 /* UsbVendorsRT73.plist in Resources */ = {isa = PBXBuildFile; fileRef = 691CF1AD0E4CC47C0042B146 /* UsbVendorsRT73.plist */; };
+		691CF1B20E4CC47C0042B146 /* UsbVendorsRT2570.plist in Resources */ = {isa = PBXBuildFile; fileRef = 691CF1AE0E4CC47C0042B146 /* UsbVendorsRT2570.plist */; };
+		691CF1B30E4CC47C0042B146 /* UsbVendorsRTL8187.plist in Resources */ = {isa = PBXBuildFile; fileRef = 691CF1AF0E4CC47C0042B146 /* UsbVendorsRTL8187.plist */; };
+		69359CB30FB05DD2008B8722 /* WaveSpectrumDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 69359CB10FB05DD2008B8722 /* WaveSpectrumDriver.m */; };
+		694A888D0F3CD87E006B819C /* WavePcapDump.m in Sources */ = {isa = PBXBuildFile; fileRef = 694A888B0F3CD87E006B819C /* WavePcapDump.m */; };
+		697B46400F0620DC00AC69EB /* WavePluginDeauthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 697B463E0F0620DC00AC69EB /* WavePluginDeauthentication.m */; };
+		698665470FAF5899002D1A84 /* spin.gif in Resources */ = {isa = PBXBuildFile; fileRef = 698665460FAF5899002D1A84 /* spin.gif */; };
+		69A9B31F0F04D7C700D1E817 /* WavePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A9B31D0F04D7C700D1E817 /* WavePlugin.m */; };
+		69A9B3230F04EFCC00D1E817 /* WavePluginInjectionProbe.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A9B3210F04EFCC00D1E817 /* WavePluginInjectionProbe.m */; };
+		69AF11750E4B292800B1D770 /* IntersilJack.mm in Sources */ = {isa = PBXBuildFile; fileRef = 69AF11620E4B292800B1D770 /* IntersilJack.mm */; };
+		69AF11780E4B292800B1D770 /* RT73Jack.mm in Sources */ = {isa = PBXBuildFile; fileRef = 69AF11650E4B292800B1D770 /* RT73Jack.mm */; };
+		69AF117A0E4B292800B1D770 /* RalinkJack.mm in Sources */ = {isa = PBXBuildFile; fileRef = 69AF11670E4B292800B1D770 /* RalinkJack.mm */; };
+		69AF117C0E4B292800B1D770 /* USBJack.mm in Sources */ = {isa = PBXBuildFile; fileRef = 69AF11690E4B292800B1D770 /* USBJack.mm */; };
+		69AF11840E4B292800B1D770 /* rtl8187.mm in Sources */ = {isa = PBXBuildFile; fileRef = 69AF11710E4B292800B1D770 /* rtl8187.mm */; };
+		69AF11910E4B29C500B1D770 /* WaveDriverUSB.mm in Sources */ = {isa = PBXBuildFile; fileRef = 69AF11890E4B29C500B1D770 /* WaveDriverUSB.mm */; };
+		69AF11930E4B29C500B1D770 /* WaveDriverUSBRalinkRT73.mm in Sources */ = {isa = PBXBuildFile; fileRef = 69AF118B0E4B29C500B1D770 /* WaveDriverUSBRalinkRT73.mm */; };
+		69AF11950E4B29C500B1D770 /* WaveDriverUSBRalinkRT2570.mm in Sources */ = {isa = PBXBuildFile; fileRef = 69AF118D0E4B29C500B1D770 /* WaveDriverUSBRalinkRT2570.mm */; };
+		69AF11970E4B29C500B1D770 /* WaveDriverUSBRealtekRTL8187.mm in Sources */ = {isa = PBXBuildFile; fileRef = 69AF118F0E4B29C500B1D770 /* WaveDriverUSBRealtekRTL8187.mm */; };
+		69B54B300F0698C600AB7E6E /* WavePluginInjecting.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B54B2E0F0698C600AB7E6E /* WavePluginInjecting.m */; };
+		69BFC5770F077867008DB1AF /* WavePluginAuthenticationFlood.m in Sources */ = {isa = PBXBuildFile; fileRef = 69BFC5750F077867008DB1AF /* WavePluginAuthenticationFlood.m */; };
+		69BFC5F30F078532008DB1AF /* WavePluginBeaconFlood.m in Sources */ = {isa = PBXBuildFile; fileRef = 69BFC5F10F078532008DB1AF /* WavePluginBeaconFlood.m */; };
+		69DF1ABE0F0D0F93000E9B94 /* KMCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DF1ABD0F0D0F93000E9B94 /* KMCommon.m */; };
+		6C03D77009B547F2005B2316 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C03D76F09B547F2005B2316 /* Growl.framework */; };
+		6C03D77309B547F6005B2316 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6C03D76F09B547F2005B2316 /* Growl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		6C32713412CFC4070033A649 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C32713312CFC4070033A649 /* CoreLocation.framework */; };
+		6C41BAB10AA0B52900E0B411 /* GPSInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C41BAAF0AA0B52900E0B411 /* GPSInfoController.m */; };
+		6C461C6F12CEC58100156CBF /* WavePluginMidi.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C461C6D12CEC58100156CBF /* WavePluginMidi.m */; };
+		6C94AA300ADF3FBC001BE161 /* GPSSatInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C94AA2E0ADF3FBC001BE161 /* GPSSatInfo.m */; };
+		6CA3BCCB09B2A58F00DCB407 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CA3BCCA09B2A58F00DCB407 /* Accelerate.framework */; };
+		6CDAFD030AC4FA7D00A5D180 /* KismetXMLImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CDAFD010AC4FA7D00A5D180 /* KismetXMLImporter.m */; };
+		6CF938C410A7DFDF00B32F94 /* CoreWLAN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CF938C310A7DFDF00B32F94 /* CoreWLAN.framework */; };
+		6CF9EE6F0B6E9D2A00F54524 /* WaveDriverKismet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF9EE6D0B6E9D2A00F54524 /* WaveDriverKismet.m */; };
+		87C9272B0BAA137E0025A6AE /* WaveDriverKismetDrone.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C927290BAA137E0025A6AE /* WaveDriverKismetDrone.m */; };
+		87CEBA8309AEF03700AEB0B8 /* GrowlController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CEBA8109AEF03700AEB0B8 /* GrowlController.m */; };
+		87FA06BB0BF6C69C00A8F24C /* FSWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FA06B90BF6C69B00A8F24C /* FSWindow.m */; };
+		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		A5295C451653C3A600A0B5D9 /* BIGeneric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5295C441653C39800A0B5D9 /* BIGeneric.framework */; };
+		A5295C461653C3A600A0B5D9 /* BIGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5295C3A1653C38E00A0B5D9 /* BIGL.framework */; };
+		A5295C471653C3BD00A0B5D9 /* BIGeneric.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A5295C441653C39800A0B5D9 /* BIGeneric.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A5295C481653C3BD00A0B5D9 /* BIGL.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A5295C3A1653C38E00A0B5D9 /* BIGL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A529AD771A20A4A100CD8E1E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A529AD751A20A4A100CD8E1E /* Localizable.strings */; };
+		A529AD981A20A4B400CD8E1E /* Crack.xib in Resources */ = {isa = PBXBuildFile; fileRef = A529AD781A20A4B400CD8E1E /* Crack.xib */; };
+		A529AD991A20A4B400CD8E1E /* GPSDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = A529AD7A1A20A4B400CD8E1E /* GPSDialog.xib */; };
+		A529AD9A1A20A4B400CD8E1E /* Import.xib in Resources */ = {isa = PBXBuildFile; fileRef = A529AD7C1A20A4B400CD8E1E /* Import.xib */; };
+		A529AD9B1A20A4B400CD8E1E /* injectionProbe.xib in Resources */ = {isa = PBXBuildFile; fileRef = A529AD7E1A20A4B400CD8E1E /* injectionProbe.xib */; };
+		A529AD9C1A20A4B400CD8E1E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A529AD801A20A4B400CD8E1E /* MainMenu.xib */; };
+		A529AD9D1A20A4B400CD8E1E /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = A529AD821A20A4B400CD8E1E /* Preferences.xib */; };
+		A529AD9E1A20A4B400CD8E1E /* PrefsAdvanced.xib in Resources */ = {isa = PBXBuildFile; fileRef = A529AD841A20A4B400CD8E1E /* PrefsAdvanced.xib */; };
+		A529AD9F1A20A4B400CD8E1E /* PrefsDriver.xib in Resources */ = {isa = PBXBuildFile; fileRef = A529AD861A20A4B400CD8E1E /* PrefsDriver.xib */; };
+		A529ADA01A20A4B400CD8E1E /* PrefsFilter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A529AD881A20A4B400CD8E1E /* PrefsFilter.xib */; };
+		A529ADA11A20A4B400CD8E1E /* PrefsGPS.xib in Resources */ = {isa = PBXBuildFile; fileRef = A529AD8A1A20A4B400CD8E1E /* PrefsGPS.xib */; };
+		A529ADA21A20A4B400CD8E1E /* PrefsMap.xib in Resources */ = {isa = PBXBuildFile; fileRef = A529AD8C1A20A4B400CD8E1E /* PrefsMap.xib */; };
+		A529ADA31A20A4B400CD8E1E /* PrefsScanning.xib in Resources */ = {isa = PBXBuildFile; fileRef = A529AD8E1A20A4B400CD8E1E /* PrefsScanning.xib */; };
+		A529ADA41A20A4B400CD8E1E /* PrefsSounds.xib in Resources */ = {isa = PBXBuildFile; fileRef = A529AD901A20A4B400CD8E1E /* PrefsSounds.xib */; };
+		A529ADA51A20A4B400CD8E1E /* PrefsTraffic.xib in Resources */ = {isa = PBXBuildFile; fileRef = A529AD921A20A4B400CD8E1E /* PrefsTraffic.xib */; };
+		A529ADA61A20A4B400CD8E1E /* WayPointDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = A529AD941A20A4B400CD8E1E /* WayPointDialog.xib */; };
+		A529ADA71A20A4B400CD8E1E /* wepInjection.xib in Resources */ = {isa = PBXBuildFile; fileRef = A529AD961A20A4B400CD8E1E /* wepInjection.xib */; };
+		A5353826180ABCE1008BB6A1 /* md4.c in Sources */ = {isa = PBXBuildFile; fileRef = A53536B4180ABCE0008BB6A1 /* md4.c */; };
+		A5353827180ABCE1008BB6A1 /* md5.c in Sources */ = {isa = PBXBuildFile; fileRef = A53536B5180ABCE0008BB6A1 /* md5.c */; };
+		A5353972180B15B9008BB6A1 /* DESSupport.c in Sources */ = {isa = PBXBuildFile; fileRef = A5353970180B15B9008BB6A1 /* DESSupport.c */; };
+		A5353975180B1C99008BB6A1 /* sha1.c in Sources */ = {isa = PBXBuildFile; fileRef = A5353974180B1C99008BB6A1 /* sha1.c */; };
+		A57E644D1607BC9700BE1BCA /* AirCrackWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A57E64391607BC9700BE1BCA /* AirCrackWrapper.m */; };
+		A57E644F1607BC9700BE1BCA /* LEAP.m in Sources */ = {isa = PBXBuildFile; fileRef = A57E643B1607BC9700BE1BCA /* LEAP.m */; };
+		A57E64551607BC9700BE1BCA /* WaveNetLEAPCrack.m in Sources */ = {isa = PBXBuildFile; fileRef = A57E64411607BC9700BE1BCA /* WaveNetLEAPCrack.m */; };
+		A57E64571607BC9700BE1BCA /* WaveNetWEPCrack.m in Sources */ = {isa = PBXBuildFile; fileRef = A57E64431607BC9700BE1BCA /* WaveNetWEPCrack.m */; };
+		A57E64591607BC9700BE1BCA /* WaveNetWEPWeakCrack.m in Sources */ = {isa = PBXBuildFile; fileRef = A57E64451607BC9700BE1BCA /* WaveNetWEPWeakCrack.m */; };
+		A57E645B1607BC9700BE1BCA /* WaveNetWEPWordlist.m in Sources */ = {isa = PBXBuildFile; fileRef = A57E64471607BC9700BE1BCA /* WaveNetWEPWordlist.m */; };
+		A57E645D1607BC9700BE1BCA /* WaveNetWPACrack.m in Sources */ = {isa = PBXBuildFile; fileRef = A57E64491607BC9700BE1BCA /* WaveNetWPACrack.m */; };
+		A57E645F1607BC9700BE1BCA /* WPA.m in Sources */ = {isa = PBXBuildFile; fileRef = A57E644B1607BC9700BE1BCA /* WPA.m */; };
+		A57E64631607BD0900BE1BCA /* CrashReportController.m in Sources */ = {isa = PBXBuildFile; fileRef = A57E64611607BD0900BE1BCA /* CrashReportController.m */; };
+		A57E646B1607BD3200BE1BCA /* DownloadMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = A57E64671607BD3200BE1BCA /* DownloadMapController.m */; };
+		A57E646F1607BD6700BE1BCA /* MapDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = A57E646D1607BD6700BE1BCA /* MapDownload.m */; };
+		A57E64731607BD8C00BE1BCA /* WaveWeakContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A57E64711607BD8C00BE1BCA /* WaveWeakContainer.m */; };
+		A581FC2C177B36AC00C05CE9 /* FCS.m in Sources */ = {isa = PBXBuildFile; fileRef = A581FC2B177B36A800C05CE9 /* FCS.m */; };
+		A585F77B1771DB7100045928 /* HTTPStream.m in Sources */ = {isa = PBXBuildFile; fileRef = A585F77A1771DB7100045928 /* HTTPStream.m */; };
+		A5A2F59619DD74C20046299A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5A2F59519DD74C20046299A /* Images.xcassets */; };
+		A5A2F59A19DD9EB40046299A /* spin@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = A5A2F59919DD9EB40046299A /* spin@2x.gif */; };
+		A5A2F5A219DDA11A0046299A /* greengem.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A5A2F59F19DDA11A0046299A /* greengem.pdf */; };
+		A5A2F5A319DDA11A0046299A /* orangegem.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A5A2F5A019DDA11A0046299A /* orangegem.pdf */; };
+		A5A2F5A419DDA11A0046299A /* redgem.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A5A2F5A119DDA11A0046299A /* redgem.pdf */; };
+		A5A2F5AB19DDA55B0046299A /* NetworkLEAP.tif in Resources */ = {isa = PBXBuildFile; fileRef = A5A2F5A519DDA55B0046299A /* NetworkLEAP.tif */; };
+		A5A2F5AC19DDA55B0046299A /* NetworkNoEnc.tif in Resources */ = {isa = PBXBuildFile; fileRef = A5A2F5A619DDA55B0046299A /* NetworkNoEnc.tif */; };
+		A5A2F5AD19DDA55B0046299A /* NetworkStrange.tif in Resources */ = {isa = PBXBuildFile; fileRef = A5A2F5A719DDA55B0046299A /* NetworkStrange.tif */; };
+		A5A2F5AE19DDA55B0046299A /* NetworkUnkEnc.tif in Resources */ = {isa = PBXBuildFile; fileRef = A5A2F5A819DDA55B0046299A /* NetworkUnkEnc.tif */; };
+		A5A2F5AF19DDA55B0046299A /* NetworkWEP.tif in Resources */ = {isa = PBXBuildFile; fileRef = A5A2F5A919DDA55B0046299A /* NetworkWEP.tif */; };
+		A5A2F5B019DDA55B0046299A /* NetworkWPA.tif in Resources */ = {isa = PBXBuildFile; fileRef = A5A2F5AA19DDA55B0046299A /* NetworkWPA.tif */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		691030330F9E315D00C4E466 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D1107260486CEB800E47090;
+			remoteInfo = KisMAC;
+		};
+		A5295C391653C38E00A0B5D9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5295C321653C38D00A0B5D9 /* BIGL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteInfo = BIGL;
+		};
+		A5295C431653C39800A0B5D9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5295C3B1653C39700A0B5D9 /* BIGeneric.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteInfo = BIGeneric;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		00F57BA306A87EAE0035AE2F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A5295C471653C3BD00A0B5D9 /* BIGeneric.framework in CopyFiles */,
+				A5295C481653C3BD00A0B5D9 /* BIGL.framework in CopyFiles */,
+				6C03D77309B547F6005B2316 /* Growl.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		002E7DF706A86C6F00C9D931 /* ImportController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = ImportController.h; path = Sources/WindowControllers/ImportController.h; sourceTree = SOURCE_ROOT; };
+		002E7DF806A86C6F00C9D931 /* ImportController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = ImportController.m; path = Sources/WindowControllers/ImportController.m; sourceTree = SOURCE_ROOT; };
+		0035332E06A5DD5700AB4577 /* example.dump */ = {isa = PBXFileReference; lastKnownFileType = file; path = example.dump; sourceTree = "<group>"; };
+		0035332F06A5DD5700AB4577 /* KisMAC.scriptSuite */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.scriptSuite; path = KisMAC.scriptSuite; sourceTree = "<group>"; };
+		0035333006A5DD5700AB4577 /* KisMAC.scriptTerminology */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.scriptTerminology; path = KisMAC.scriptTerminology; sourceTree = "<group>"; };
+		0035333106A5DD5700AB4577 /* vendor.db */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = vendor.db; sourceTree = "<group>"; };
+		0035334106A5DD5700AB4577 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
+		0035334F06A5DD5700AB4577 /* usbprism2_prep.sh */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.sh; path = usbprism2_prep.sh; sourceTree = "<group>"; };
+		0035335006A5DD5700AB4577 /* usbprism2_unprep.sh */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.sh; path = usbprism2_unprep.sh; sourceTree = "<group>"; };
+		003533A706A5DD8500AB4577 /* InfoController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = InfoController.h; sourceTree = "<group>"; };
+		003533A806A5DD8500AB4577 /* InfoController.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = InfoController.mm; sourceTree = "<group>"; };
+		003533A906A5DD8500AB4577 /* ScanController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ScanController.h; sourceTree = "<group>"; };
+		003533AA06A5DD8500AB4577 /* ScanController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = ScanController.m; sourceTree = "<group>"; };
+		003533AB06A5DD8500AB4577 /* ScanControllerMenus.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = ScanControllerMenus.m; sourceTree = "<group>"; };
+		003533AC06A5DD8500AB4577 /* ScanControllerPrivate.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ScanControllerPrivate.h; sourceTree = "<group>"; };
+		003533AD06A5DD8500AB4577 /* ScanControllerPrivate.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = ScanControllerPrivate.m; sourceTree = "<group>"; };
+		003533AE06A5DD8500AB4577 /* ScanControllerScriptable.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ScanControllerScriptable.h; sourceTree = "<group>"; };
+		003533AF06A5DD8500AB4577 /* ScanControllerScriptable.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = ScanControllerScriptable.m; sourceTree = "<group>"; };
+		003533B006A5DD8500AB4577 /* TrafficController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = TrafficController.h; sourceTree = "<group>"; };
+		003533B106A5DD8500AB4577 /* TrafficController.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = TrafficController.mm; sourceTree = "<group>"; };
+		003533B306A5DD8500AB4577 /* 80211b.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = 80211b.h; sourceTree = "<group>"; };
+		003533B406A5DD8500AB4577 /* KisMACNotifications.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = KisMACNotifications.h; sourceTree = "<group>"; };
+		003533B506A5DD8500AB4577 /* ScanHierarch.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ScanHierarch.h; sourceTree = "<group>"; };
+		003533B606A5DD8500AB4577 /* ScanHierarch.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = ScanHierarch.mm; sourceTree = "<group>"; };
+		003533B706A5DD8500AB4577 /* WaveClient.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = WaveClient.h; sourceTree = "<group>"; };
+		003533B806A5DD8500AB4577 /* WaveClient.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = WaveClient.m; sourceTree = "<group>"; };
+		003533B906A5DD8500AB4577 /* WaveContainer.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = WaveContainer.h; sourceTree = "<group>"; };
+		003533BA06A5DD8500AB4577 /* WaveContainer.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = WaveContainer.m; sourceTree = "<group>"; };
+		003533BF06A5DD8500AB4577 /* WaveNet.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = WaveNet.h; sourceTree = "<group>"; };
+		003533C006A5DD8500AB4577 /* WaveNet.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = WaveNet.mm; sourceTree = "<group>"; };
+		003533C106A5DD8500AB4577 /* WavePacket.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = WavePacket.h; sourceTree = "<group>"; };
+		003533C206A5DD8500AB4577 /* WavePacket.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = WavePacket.mm; sourceTree = "<group>"; };
+		003533C306A5DD8500AB4577 /* WaveScanner.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = WaveScanner.h; sourceTree = "<group>"; };
+		003533C406A5DD8500AB4577 /* WaveScanner.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = WaveScanner.mm; sourceTree = "<group>"; };
+		003533DC06A5DD8500AB4577 /* PrefsClient.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PrefsClient.h; sourceTree = "<group>"; };
+		003533DD06A5DD8500AB4577 /* PrefsClient.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PrefsClient.m; sourceTree = "<group>"; };
+		003533DE06A5DD8500AB4577 /* PrefsDriver.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PrefsDriver.h; sourceTree = "<group>"; };
+		003533DF06A5DD8500AB4577 /* PrefsDriver.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PrefsDriver.m; sourceTree = "<group>"; };
+		003533E006A5DD8500AB4577 /* PrefsFilter.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PrefsFilter.h; sourceTree = "<group>"; };
+		003533E106A5DD8500AB4577 /* PrefsFilter.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PrefsFilter.m; sourceTree = "<group>"; };
+		003533E206A5DD8500AB4577 /* PrefsGPS.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PrefsGPS.h; sourceTree = "<group>"; };
+		003533E306A5DD8500AB4577 /* PrefsGPS.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PrefsGPS.m; sourceTree = "<group>"; };
+		003533E406A5DD8500AB4577 /* PrefsMap.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PrefsMap.h; sourceTree = "<group>"; };
+		003533E506A5DD8500AB4577 /* PrefsMap.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PrefsMap.m; sourceTree = "<group>"; };
+		003533E606A5DD8500AB4577 /* PrefsScanning.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PrefsScanning.h; sourceTree = "<group>"; };
+		003533E706A5DD8500AB4577 /* PrefsScanning.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PrefsScanning.m; sourceTree = "<group>"; };
+		003533EA06A5DD8500AB4577 /* PrefsSounds.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PrefsSounds.h; sourceTree = "<group>"; };
+		003533EB06A5DD8500AB4577 /* PrefsSounds.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PrefsSounds.m; sourceTree = "<group>"; };
+		003533EC06A5DD8500AB4577 /* PrefsTraffic.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PrefsTraffic.h; sourceTree = "<group>"; };
+		003533ED06A5DD8500AB4577 /* PrefsTraffic.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PrefsTraffic.m; sourceTree = "<group>"; };
+		003533F006A5DD8500AB4577 /* PrefsController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PrefsController.h; sourceTree = "<group>"; };
+		003533F106A5DD8500AB4577 /* PrefsController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PrefsController.m; sourceTree = "<group>"; };
+		003533F206A5DD8500AB4577 /* PrefsWindow.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PrefsWindow.h; sourceTree = "<group>"; };
+		003533F306A5DD8500AB4577 /* PrefsWindow.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PrefsWindow.m; sourceTree = "<group>"; };
+		003533F506A5DD8500AB4577 /* ScriptAdditions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ScriptAdditions.h; sourceTree = "<group>"; };
+		003533F606A5DD8500AB4577 /* ScriptAdditions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = ScriptAdditions.m; sourceTree = "<group>"; };
+		003533F706A5DD8500AB4577 /* ScriptController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ScriptController.h; sourceTree = "<group>"; };
+		003533F806A5DD8500AB4577 /* ScriptController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = ScriptController.m; sourceTree = "<group>"; };
+		003533FA06A5DD8500AB4577 /* GPSController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GPSController.h; sourceTree = "<group>"; };
+		003533FB06A5DD8500AB4577 /* GPSController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GPSController.m; sourceTree = "<group>"; };
+		0035340F06A5DD8500AB4577 /* WaveDriver.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = WaveDriver.h; sourceTree = "<group>"; };
+		0035341006A5DD8500AB4577 /* WaveDriver.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = WaveDriver.m; sourceTree = "<group>"; };
+		0035341306A5DD8500AB4577 /* WaveDriverAirport.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = WaveDriverAirport.h; sourceTree = "<group>"; };
+		0035341406A5DD8500AB4577 /* WaveDriverAirport.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = WaveDriverAirport.m; sourceTree = "<group>"; };
+		0035341B06A5DD8500AB4577 /* WaveDriverUSBIntersil.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = WaveDriverUSBIntersil.h; sourceTree = "<group>"; };
+		0035341C06A5DD8500AB4577 /* WaveDriverUSBIntersil.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = WaveDriverUSBIntersil.mm; sourceTree = "<group>"; };
+		0035342406A5DD8500AB4577 /* WayPoint.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = WayPoint.h; sourceTree = "<group>"; };
+		0035342506A5DD8500AB4577 /* WayPoint.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = WayPoint.m; sourceTree = "<group>"; };
+		0042E7A209C0C8B600183F90 /* world.kismap */ = {isa = PBXFileReference; lastKnownFileType = folder; name = world.kismap; path = Resources/Map/world.kismap; sourceTree = "<group>"; };
+		005B12660730051A00906C36 /* MapControlItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapControlItem.h; sourceTree = "<group>"; };
+		005B12670730051A00906C36 /* MapControlItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapControlItem.m; sourceTree = "<group>"; };
+		00875D190708ADB300CACFCB /* WaveHelper.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = WaveHelper.h; sourceTree = "<group>"; };
+		00875D1A0708ADB300CACFCB /* WaveHelper.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = WaveHelper.m; sourceTree = "<group>"; };
+		0090AC8306E5E3250096C5FC /* MapControlPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapControlPanel.h; sourceTree = "<group>"; };
+		0090AC8406E5E3250096C5FC /* MapControlPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapControlPanel.m; sourceTree = "<group>"; };
+		0090B7C907B2A43D005FEEB1 /* WaveStorageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveStorageController.h; sourceTree = "<group>"; };
+		0090B7CA07B2A43D005FEEB1 /* WaveStorageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveStorageController.m; sourceTree = "<group>"; };
+		0093E65306B2A1F300B3357A /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = /System/Library/Frameworks/AddressBook.framework; sourceTree = "<absolute>"; };
+		00971F3C06E4FA6F004307EA /* BIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIView.h; sourceTree = "<group>"; };
+		00971F3D06E4FA6F004307EA /* BIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIView.m; sourceTree = "<group>"; };
+		00971F5406E4FFBF004307EA /* BISubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BISubView.h; sourceTree = "<group>"; };
+		00971F5506E4FFBF004307EA /* BISubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BISubView.m; sourceTree = "<group>"; };
+		0097241206E51844004307EA /* BIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIImageView.h; sourceTree = "<group>"; };
+		0097241306E51844004307EA /* BIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIImageView.m; sourceTree = "<group>"; };
+		0097243706E51A99004307EA /* BITextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BITextView.h; sourceTree = "<group>"; };
+		0097243806E51A99004307EA /* BITextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BITextView.m; sourceTree = "<group>"; };
+		009B192106FC83A800E8883A /* ScriptingEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptingEngine.h; sourceTree = "<group>"; };
+		009B192206FC83A800E8883A /* ScriptingEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptingEngine.m; sourceTree = "<group>"; };
+		009D64F206FF73BA00B0F1EC /* MapViewAreaView.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 30; path = MapViewAreaView.mm; sourceTree = "<group>"; };
+		00A622A706FEE4FB005D248A /* Trace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trace.h; sourceTree = "<group>"; };
+		00A622A806FEE4FB005D248A /* Trace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trace.m; sourceTree = "<group>"; };
+		00A7F9D206C6D20A00A6BB8F /* devilDocument.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = devilDocument.icns; sourceTree = "<group>"; };
+		00C5F12A06DE0C98001EC02F /* MapViewPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewPrivate.h; sourceTree = "<group>"; };
+		00C5F12B06DE0C98001EC02F /* MapViewPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewPrivate.m; sourceTree = "<group>"; };
+		00C5F13206DE0EAF001EC02F /* MapViewAreaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewAreaView.h; sourceTree = "<group>"; };
+		00CBA33E06DB8FDE000ACD19 /* MapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapView.h; sourceTree = "<group>"; };
+		00CBA33F06DB8FDE000ACD19 /* MapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapView.m; sourceTree = "<group>"; };
+		00DF456108B1E969003F3C7E /* WaveDriverAirportExtreme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveDriverAirportExtreme.h; sourceTree = "<group>"; };
+		00DF456208B1E969003F3C7E /* WaveDriverAirportExtreme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveDriverAirportExtreme.m; sourceTree = "<group>"; };
+		00E1426B06E62A44009DC179 /* PointView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointView.h; sourceTree = "<group>"; };
+		00E1426C06E62A44009DC179 /* PointView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointView.m; sourceTree = "<group>"; };
+		00ED80A606E32C9600455A05 /* NetView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NetView.h; sourceTree = "<group>"; };
+		00ED80A706E32C9600455A05 /* NetView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NetView.m; sourceTree = "<group>"; };
+		00F57BD206A881210035AE2F /* AppleScriptKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppleScriptKit.framework; path = /System/Library/Frameworks/AppleScriptKit.framework; sourceTree = "<absolute>"; };
+		00F9C63F06DB378F00E357F0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
+		00F9C64E06DB37E200E357F0 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		00F9C64F06DB37E200E357F0 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = /System/Library/Frameworks/IOKit.framework; sourceTree = "<absolute>"; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		32CA4F630368D1EE00C91783 /* KisMAC_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KisMAC_Prefix.pch; sourceTree = "<group>"; };
+		689FF0710DB9AEF500ED7BE5 /* OUItoVendorDB.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = OUItoVendorDB.pl; sourceTree = "<group>"; };
+		691CF1AC0E4CC47B0042B146 /* UsbVendorsIntersil.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UsbVendorsIntersil.plist; sourceTree = "<group>"; };
+		691CF1AD0E4CC47C0042B146 /* UsbVendorsRT73.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UsbVendorsRT73.plist; sourceTree = "<group>"; };
+		691CF1AE0E4CC47C0042B146 /* UsbVendorsRT2570.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UsbVendorsRT2570.plist; sourceTree = "<group>"; };
+		691CF1AF0E4CC47C0042B146 /* UsbVendorsRTL8187.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UsbVendorsRTL8187.plist; sourceTree = "<group>"; };
+		69359CB00FB05DD2008B8722 /* WaveSpectrumDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveSpectrumDriver.h; sourceTree = "<group>"; };
+		69359CB10FB05DD2008B8722 /* WaveSpectrumDriver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveSpectrumDriver.m; sourceTree = "<group>"; };
+		694A888A0F3CD87E006B819C /* WavePcapDump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WavePcapDump.h; sourceTree = "<group>"; };
+		694A888B0F3CD87E006B819C /* WavePcapDump.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WavePcapDump.m; sourceTree = "<group>"; };
+		697B463D0F0620DC00AC69EB /* WavePluginDeauthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WavePluginDeauthentication.h; sourceTree = "<group>"; };
+		697B463E0F0620DC00AC69EB /* WavePluginDeauthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WavePluginDeauthentication.m; sourceTree = "<group>"; };
+		698665460FAF5899002D1A84 /* spin.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = spin.gif; sourceTree = "<group>"; };
+		69A9B31C0F04D7C700D1E817 /* WavePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WavePlugin.h; sourceTree = "<group>"; };
+		69A9B31D0F04D7C700D1E817 /* WavePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WavePlugin.m; sourceTree = "<group>"; };
+		69A9B3200F04EFCC00D1E817 /* WavePluginInjectionProbe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WavePluginInjectionProbe.h; sourceTree = "<group>"; };
+		69A9B3210F04EFCC00D1E817 /* WavePluginInjectionProbe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WavePluginInjectionProbe.m; sourceTree = "<group>"; };
+		69AF11610E4B292800B1D770 /* IntersilJack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntersilJack.h; sourceTree = "<group>"; };
+		69AF11620E4B292800B1D770 /* IntersilJack.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IntersilJack.mm; sourceTree = "<group>"; };
+		69AF11630E4B292800B1D770 /* RT73.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RT73.h; sourceTree = "<group>"; };
+		69AF11640E4B292800B1D770 /* RT73Jack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RT73Jack.h; sourceTree = "<group>"; };
+		69AF11650E4B292800B1D770 /* RT73Jack.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RT73Jack.mm; sourceTree = "<group>"; };
+		69AF11660E4B292800B1D770 /* RalinkJack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RalinkJack.h; sourceTree = "<group>"; };
+		69AF11670E4B292800B1D770 /* RalinkJack.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RalinkJack.mm; sourceTree = "<group>"; };
+		69AF11680E4B292800B1D770 /* USBJack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USBJack.h; sourceTree = "<group>"; };
+		69AF11690E4B292800B1D770 /* USBJack.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = USBJack.mm; sourceTree = "<group>"; };
+		69AF116A0E4B292800B1D770 /* eeprom_93cx6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eeprom_93cx6.h; sourceTree = "<group>"; };
+		69AF116B0E4B292800B1D770 /* prism2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prism2.h; sourceTree = "<group>"; };
+		69AF116C0E4B292800B1D770 /* ralink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ralink.h; sourceTree = "<group>"; };
+		69AF116F0E4B292800B1D770 /* rt2570.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rt2570.h; sourceTree = "<group>"; };
+		69AF11700E4B292800B1D770 /* rtl8187.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rtl8187.h; sourceTree = "<group>"; };
+		69AF11710E4B292800B1D770 /* rtl8187.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = rtl8187.mm; sourceTree = "<group>"; };
+		69AF11720E4B292800B1D770 /* rtl818x.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rtl818x.h; sourceTree = "<group>"; };
+		69AF11730E4B292800B1D770 /* structs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = structs.h; sourceTree = "<group>"; };
+		69AF11880E4B29C500B1D770 /* WaveDriverUSB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveDriverUSB.h; sourceTree = "<group>"; };
+		69AF11890E4B29C500B1D770 /* WaveDriverUSB.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WaveDriverUSB.mm; sourceTree = "<group>"; };
+		69AF118A0E4B29C500B1D770 /* WaveDriverUSBRalinkRT73.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveDriverUSBRalinkRT73.h; sourceTree = "<group>"; };
+		69AF118B0E4B29C500B1D770 /* WaveDriverUSBRalinkRT73.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WaveDriverUSBRalinkRT73.mm; sourceTree = "<group>"; };
+		69AF118C0E4B29C500B1D770 /* WaveDriverUSBRalinkRT2570.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveDriverUSBRalinkRT2570.h; sourceTree = "<group>"; };
+		69AF118D0E4B29C500B1D770 /* WaveDriverUSBRalinkRT2570.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WaveDriverUSBRalinkRT2570.mm; sourceTree = "<group>"; };
+		69AF118E0E4B29C500B1D770 /* WaveDriverUSBRealtekRTL8187.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveDriverUSBRealtekRTL8187.h; sourceTree = "<group>"; };
+		69AF118F0E4B29C500B1D770 /* WaveDriverUSBRealtekRTL8187.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WaveDriverUSBRealtekRTL8187.mm; sourceTree = "<group>"; };
+		69AF11980E4B29DC00B1D770 /* KisMAC80211.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KisMAC80211.h; sourceTree = "<group>"; };
+		69B54B2D0F0698C600AB7E6E /* WavePluginInjecting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WavePluginInjecting.h; sourceTree = "<group>"; };
+		69B54B2E0F0698C600AB7E6E /* WavePluginInjecting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WavePluginInjecting.m; sourceTree = "<group>"; };
+		69BFC5740F077867008DB1AF /* WavePluginAuthenticationFlood.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WavePluginAuthenticationFlood.h; sourceTree = "<group>"; };
+		69BFC5750F077867008DB1AF /* WavePluginAuthenticationFlood.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WavePluginAuthenticationFlood.m; sourceTree = "<group>"; };
+		69BFC5F00F078532008DB1AF /* WavePluginBeaconFlood.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WavePluginBeaconFlood.h; sourceTree = "<group>"; };
+		69BFC5F10F078532008DB1AF /* WavePluginBeaconFlood.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WavePluginBeaconFlood.m; sourceTree = "<group>"; };
+		69DF1ABB0F0D0E40000E9B94 /* KMCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMCommon.h; sourceTree = "<group>"; };
+		69DF1ABD0F0D0F93000E9B94 /* KMCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMCommon.m; sourceTree = "<group>"; };
+		6C03D76F09B547F2005B2316 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = Resources/Growl.framework; sourceTree = "<group>"; };
+		6C32713312CFC4070033A649 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		6C41BAAE0AA0B52900E0B411 /* GPSInfoController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GPSInfoController.h; sourceTree = "<group>"; };
+		6C41BAAF0AA0B52900E0B411 /* GPSInfoController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GPSInfoController.m; sourceTree = "<group>"; };
+		6C461C6C12CEC58100156CBF /* WavePluginMidi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WavePluginMidi.h; sourceTree = "<group>"; };
+		6C461C6D12CEC58100156CBF /* WavePluginMidi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WavePluginMidi.m; sourceTree = "<group>"; };
+		6C94AA2D0ADF3FBC001BE161 /* GPSSatInfo.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GPSSatInfo.h; sourceTree = "<group>"; };
+		6C94AA2E0ADF3FBC001BE161 /* GPSSatInfo.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GPSSatInfo.m; sourceTree = "<group>"; };
+		6CA3BCCA09B2A58F00DCB407 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = /System/Library/Frameworks/Accelerate.framework; sourceTree = "<absolute>"; };
+		6CDAFD000AC4FA7D00A5D180 /* KismetXMLImporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KismetXMLImporter.h; sourceTree = "<group>"; };
+		6CDAFD010AC4FA7D00A5D180 /* KismetXMLImporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KismetXMLImporter.m; sourceTree = "<group>"; };
+		6CF938C310A7DFDF00B32F94 /* CoreWLAN.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreWLAN.framework; path = System/Library/Frameworks/CoreWLAN.framework; sourceTree = SDKROOT; };
+		6CF9EE6C0B6E9D2A00F54524 /* WaveDriverKismet.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = WaveDriverKismet.h; sourceTree = "<group>"; };
+		6CF9EE6D0B6E9D2A00F54524 /* WaveDriverKismet.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = WaveDriverKismet.m; sourceTree = "<group>"; };
+		87C927280BAA137D0025A6AE /* WaveDriverKismetDrone.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = WaveDriverKismetDrone.h; sourceTree = "<group>"; };
+		87C927290BAA137E0025A6AE /* WaveDriverKismetDrone.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = WaveDriverKismetDrone.m; sourceTree = "<group>"; };
+		87CEBA8009AEF03700AEB0B8 /* GrowlController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GrowlController.h; sourceTree = "<group>"; };
+		87CEBA8109AEF03700AEB0B8 /* GrowlController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GrowlController.m; sourceTree = "<group>"; };
+		87FA06B80BF6C69B00A8F24C /* FSWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSWindow.h; sourceTree = "<group>"; };
+		87FA06B90BF6C69B00A8F24C /* FSWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSWindow.m; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* KisMac2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KisMac2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5295C321653C38D00A0B5D9 /* BIGL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BIGL.xcodeproj; path = BIGL/BIGL.xcodeproj; sourceTree = "<group>"; };
+		A5295C3B1653C39700A0B5D9 /* BIGeneric.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BIGeneric.xcodeproj; path = BIGeneric/BIGeneric.xcodeproj; sourceTree = "<group>"; };
+		A529AD761A20A4A100CD8E1E /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A529AD791A20A4B400CD8E1E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Crack.xib; sourceTree = "<group>"; };
+		A529AD7B1A20A4B400CD8E1E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GPSDialog.xib; sourceTree = "<group>"; };
+		A529AD7D1A20A4B400CD8E1E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Import.xib; sourceTree = "<group>"; };
+		A529AD7F1A20A4B400CD8E1E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/injectionProbe.xib; sourceTree = "<group>"; };
+		A529AD811A20A4B400CD8E1E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		A529AD831A20A4B400CD8E1E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Preferences.xib; sourceTree = "<group>"; };
+		A529AD851A20A4B400CD8E1E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PrefsAdvanced.xib; sourceTree = "<group>"; };
+		A529AD871A20A4B400CD8E1E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PrefsDriver.xib; sourceTree = "<group>"; };
+		A529AD891A20A4B400CD8E1E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PrefsFilter.xib; sourceTree = "<group>"; };
+		A529AD8B1A20A4B400CD8E1E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PrefsGPS.xib; sourceTree = "<group>"; };
+		A529AD8D1A20A4B400CD8E1E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PrefsMap.xib; sourceTree = "<group>"; };
+		A529AD8F1A20A4B400CD8E1E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PrefsScanning.xib; sourceTree = "<group>"; };
+		A529AD911A20A4B400CD8E1E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PrefsSounds.xib; sourceTree = "<group>"; };
+		A529AD931A20A4B400CD8E1E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PrefsTraffic.xib; sourceTree = "<group>"; };
+		A529AD951A20A4B400CD8E1E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/WayPointDialog.xib; sourceTree = "<group>"; };
+		A529AD971A20A4B400CD8E1E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/wepInjection.xib; sourceTree = "<group>"; };
+		A5353684180ABCE0008BB6A1 /* md4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md4.h; sourceTree = "<group>"; };
+		A5353685180ABCE0008BB6A1 /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
+		A53536B4180ABCE0008BB6A1 /* md4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = md4.c; sourceTree = "<group>"; };
+		A53536B5180ABCE0008BB6A1 /* md5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = md5.c; sourceTree = "<group>"; };
+		A5353966180ABFE6008BB6A1 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		A535396B180B073D008BB6A1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		A5353970180B15B9008BB6A1 /* DESSupport.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = DESSupport.c; sourceTree = "<group>"; };
+		A5353971180B15B9008BB6A1 /* DESSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DESSupport.h; sourceTree = "<group>"; };
+		A5353973180B1C8D008BB6A1 /* sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha1.h; sourceTree = "<group>"; };
+		A5353974180B1C99008BB6A1 /* sha1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sha1.c; sourceTree = "<group>"; };
+		A537417719DD457900434C6E /* dmgBackground.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = dmgBackground.tiff; sourceTree = "<group>"; };
+		A537418D19DD4AAC00434C6E /* WaveHelperTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveHelperTest.m; sourceTree = "<group>"; };
+		A537418E19DD4AAC00434C6E /* WaveNetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveNetTest.m; sourceTree = "<group>"; };
+		A537418F19DD4AAC00434C6E /* WavePacketTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WavePacketTest.m; sourceTree = "<group>"; };
+		A57E64381607BC9700BE1BCA /* AirCrackWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirCrackWrapper.h; sourceTree = "<group>"; };
+		A57E64391607BC9700BE1BCA /* AirCrackWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirCrackWrapper.m; sourceTree = "<group>"; };
+		A57E643A1607BC9700BE1BCA /* LEAP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEAP.h; sourceTree = "<group>"; };
+		A57E643B1607BC9700BE1BCA /* LEAP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEAP.m; sourceTree = "<group>"; };
+		A57E64401607BC9700BE1BCA /* WaveNetLEAPCrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveNetLEAPCrack.h; sourceTree = "<group>"; };
+		A57E64411607BC9700BE1BCA /* WaveNetLEAPCrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveNetLEAPCrack.m; sourceTree = "<group>"; };
+		A57E64421607BC9700BE1BCA /* WaveNetWEPCrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveNetWEPCrack.h; sourceTree = "<group>"; };
+		A57E64431607BC9700BE1BCA /* WaveNetWEPCrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveNetWEPCrack.m; sourceTree = "<group>"; };
+		A57E64441607BC9700BE1BCA /* WaveNetWEPWeakCrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveNetWEPWeakCrack.h; sourceTree = "<group>"; };
+		A57E64451607BC9700BE1BCA /* WaveNetWEPWeakCrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveNetWEPWeakCrack.m; sourceTree = "<group>"; };
+		A57E64461607BC9700BE1BCA /* WaveNetWEPWordlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveNetWEPWordlist.h; sourceTree = "<group>"; };
+		A57E64471607BC9700BE1BCA /* WaveNetWEPWordlist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveNetWEPWordlist.m; sourceTree = "<group>"; };
+		A57E64481607BC9700BE1BCA /* WaveNetWPACrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveNetWPACrack.h; sourceTree = "<group>"; };
+		A57E64491607BC9700BE1BCA /* WaveNetWPACrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveNetWPACrack.m; sourceTree = "<group>"; };
+		A57E644A1607BC9700BE1BCA /* WPA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPA.h; sourceTree = "<group>"; };
+		A57E644B1607BC9700BE1BCA /* WPA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPA.m; sourceTree = "<group>"; };
+		A57E64601607BD0900BE1BCA /* CrashReportController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrashReportController.h; sourceTree = "<group>"; };
+		A57E64611607BD0900BE1BCA /* CrashReportController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrashReportController.m; sourceTree = "<group>"; };
+		A57E64651607BD3200BE1BCA /* DownloadMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadMapController.h; sourceTree = "<group>"; };
+		A57E64671607BD3200BE1BCA /* DownloadMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadMapController.m; sourceTree = "<group>"; };
+		A57E646C1607BD6700BE1BCA /* MapDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapDownload.h; sourceTree = "<group>"; };
+		A57E646D1607BD6700BE1BCA /* MapDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapDownload.m; sourceTree = "<group>"; };
+		A57E64701607BD8B00BE1BCA /* WaveWeakContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveWeakContainer.h; sourceTree = "<group>"; };
+		A57E64711607BD8C00BE1BCA /* WaveWeakContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveWeakContainer.m; sourceTree = "<group>"; };
+		A581FC27177B2B6700C05CE9 /* Apple80211.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Apple80211.h; sourceTree = "<group>"; };
+		A581FC2A177B36A800C05CE9 /* FCS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FCS.h; sourceTree = "<group>"; };
+		A581FC2B177B36A800C05CE9 /* FCS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCS.m; sourceTree = "<group>"; };
+		A585F7791771DB7100045928 /* HTTPStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPStream.h; sourceTree = "<group>"; };
+		A585F77A1771DB7100045928 /* HTTPStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPStream.m; sourceTree = "<group>"; };
+		A59E42D71796ADBF00B1139F /* updateHelpIndex.command */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = updateHelpIndex.command; sourceTree = SOURCE_ROOT; };
+		A5A2F59519DD74C20046299A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Resources/Images.xcassets; sourceTree = "<group>"; };
+		A5A2F59919DD9EB40046299A /* spin@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "spin@2x.gif"; sourceTree = "<group>"; };
+		A5A2F59F19DDA11A0046299A /* greengem.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = greengem.pdf; sourceTree = "<group>"; };
+		A5A2F5A019DDA11A0046299A /* orangegem.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = orangegem.pdf; sourceTree = "<group>"; };
+		A5A2F5A119DDA11A0046299A /* redgem.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = redgem.pdf; sourceTree = "<group>"; };
+		A5A2F5A519DDA55B0046299A /* NetworkLEAP.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = NetworkLEAP.tif; sourceTree = "<group>"; };
+		A5A2F5A619DDA55B0046299A /* NetworkNoEnc.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = NetworkNoEnc.tif; sourceTree = "<group>"; };
+		A5A2F5A719DDA55B0046299A /* NetworkStrange.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = NetworkStrange.tif; sourceTree = "<group>"; };
+		A5A2F5A819DDA55B0046299A /* NetworkUnkEnc.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = NetworkUnkEnc.tif; sourceTree = "<group>"; };
+		A5A2F5A919DDA55B0046299A /* NetworkWEP.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = NetworkWEP.tif; sourceTree = "<group>"; };
+		A5A2F5AA19DDA55B0046299A /* NetworkWPA.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = NetworkWPA.tif; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5295C451653C3A600A0B5D9 /* BIGeneric.framework in Frameworks */,
+				A5295C461653C3A600A0B5D9 /* BIGL.framework in Frameworks */,
+				6C03D77009B547F2005B2316 /* Growl.framework in Frameworks */,
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				00F57BD306A881210035AE2F /* AppleScriptKit.framework in Frameworks */,
+				0093E65506B2A1F300B3357A /* AddressBook.framework in Frameworks */,
+				00F9C64006DB378F00E357F0 /* Security.framework in Frameworks */,
+				00F9C65006DB37E200E357F0 /* Carbon.framework in Frameworks */,
+				00F9C65106DB37E200E357F0 /* IOKit.framework in Frameworks */,
+				6CA3BCCB09B2A58F00DCB407 /* Accelerate.framework in Frameworks */,
+				6CF938C410A7DFDF00B32F94 /* CoreWLAN.framework in Frameworks */,
+				6C32713412CFC4070033A649 /* CoreLocation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0035332D06A5DD5700AB4577 /* Generic */ = {
+			isa = PBXGroup;
+			children = (
+				689FF0710DB9AEF500ED7BE5 /* OUItoVendorDB.pl */,
+				0035332E06A5DD5700AB4577 /* example.dump */,
+				0035332F06A5DD5700AB4577 /* KisMAC.scriptSuite */,
+				0035333006A5DD5700AB4577 /* KisMAC.scriptTerminology */,
+				0035333106A5DD5700AB4577 /* vendor.db */,
+			);
+			name = Generic;
+			path = Resources/Generic;
+			sourceTree = "<group>";
+		};
+		0035333206A5DD5700AB4577 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				A5A2F59919DD9EB40046299A /* spin@2x.gif */,
+				698665460FAF5899002D1A84 /* spin.gif */,
+				00A7F9D206C6D20A00A6BB8F /* devilDocument.icns */,
+			);
+			name = Icons;
+			path = Resources/Icons;
+			sourceTree = "<group>";
+		};
+		0035334206A5DD5700AB4577 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				A59E42D71796ADBF00B1139F /* updateHelpIndex.command */,
+				0035334F06A5DD5700AB4577 /* usbprism2_prep.sh */,
+				0035335006A5DD5700AB4577 /* usbprism2_unprep.sh */,
+			);
+			name = Scripts;
+			path = Resources/Scripts;
+			sourceTree = SOURCE_ROOT;
+		};
+		003533A006A5DD8500AB4577 /* 3rd Party */ = {
+			isa = PBXGroup;
+			children = (
+				A5353970180B15B9008BB6A1 /* DESSupport.c */,
+				A5353971180B15B9008BB6A1 /* DESSupport.h */,
+				A581FC2A177B36A800C05CE9 /* FCS.h */,
+				A581FC2B177B36A800C05CE9 /* FCS.m */,
+				A581FC27177B2B6700C05CE9 /* Apple80211.h */,
+			);
+			name = "3rd Party";
+			path = "Sources/3rd Party";
+			sourceTree = "<group>";
+		};
+		003533A406A5DD8500AB4577 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				87FA06B80BF6C69B00A8F24C /* FSWindow.h */,
+				87FA06B90BF6C69B00A8F24C /* FSWindow.m */,
+				003533A706A5DD8500AB4577 /* InfoController.h */,
+				003533A806A5DD8500AB4577 /* InfoController.mm */,
+				003533A906A5DD8500AB4577 /* ScanController.h */,
+				003533AA06A5DD8500AB4577 /* ScanController.m */,
+				003533AB06A5DD8500AB4577 /* ScanControllerMenus.m */,
+				003533AC06A5DD8500AB4577 /* ScanControllerPrivate.h */,
+				003533AD06A5DD8500AB4577 /* ScanControllerPrivate.m */,
+				003533AE06A5DD8500AB4577 /* ScanControllerScriptable.h */,
+				003533AF06A5DD8500AB4577 /* ScanControllerScriptable.m */,
+				003533B006A5DD8500AB4577 /* TrafficController.h */,
+				003533B106A5DD8500AB4577 /* TrafficController.mm */,
+				87CEBA8009AEF03700AEB0B8 /* GrowlController.h */,
+				87CEBA8109AEF03700AEB0B8 /* GrowlController.m */,
+			);
+			name = Controller;
+			path = Sources/Controller;
+			sourceTree = "<group>";
+		};
+		003533B206A5DD8500AB4577 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				A57E64701607BD8B00BE1BCA /* WaveWeakContainer.h */,
+				A57E64711607BD8C00BE1BCA /* WaveWeakContainer.m */,
+				69AF11980E4B29DC00B1D770 /* KisMAC80211.h */,
+				6CDAFD000AC4FA7D00A5D180 /* KismetXMLImporter.h */,
+				6CDAFD010AC4FA7D00A5D180 /* KismetXMLImporter.m */,
+				003533B306A5DD8500AB4577 /* 80211b.h */,
+				003533B406A5DD8500AB4577 /* KisMACNotifications.h */,
+				003533B506A5DD8500AB4577 /* ScanHierarch.h */,
+				003533B606A5DD8500AB4577 /* ScanHierarch.mm */,
+				003533B706A5DD8500AB4577 /* WaveClient.h */,
+				003533B806A5DD8500AB4577 /* WaveClient.m */,
+				003533B906A5DD8500AB4577 /* WaveContainer.h */,
+				003533BA06A5DD8500AB4577 /* WaveContainer.m */,
+				003533BF06A5DD8500AB4577 /* WaveNet.h */,
+				003533C006A5DD8500AB4577 /* WaveNet.mm */,
+				003533C106A5DD8500AB4577 /* WavePacket.h */,
+				003533C206A5DD8500AB4577 /* WavePacket.mm */,
+				003533C306A5DD8500AB4577 /* WaveScanner.h */,
+				003533C406A5DD8500AB4577 /* WaveScanner.mm */,
+				0090B7C907B2A43D005FEEB1 /* WaveStorageController.h */,
+				0090B7CA07B2A43D005FEEB1 /* WaveStorageController.m */,
+				00875D190708ADB300CACFCB /* WaveHelper.h */,
+				00875D1A0708ADB300CACFCB /* WaveHelper.m */,
+				69DF1ABB0F0D0E40000E9B94 /* KMCommon.h */,
+				69DF1ABD0F0D0F93000E9B94 /* KMCommon.m */,
+			);
+			name = Core;
+			path = Sources/Core;
+			sourceTree = "<group>";
+		};
+		003533D206A5DD8500AB4577 /* Driver */ = {
+			isa = PBXGroup;
+			children = (
+				69AF11600E4B292800B1D770 /* USBJack */,
+			);
+			name = Driver;
+			path = Sources/Driver;
+			sourceTree = "<group>";
+		};
+		003533DA06A5DD8500AB4577 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				003533DB06A5DD8500AB4577 /* PreferencePanes */,
+				003533F006A5DD8500AB4577 /* PrefsController.h */,
+				003533F106A5DD8500AB4577 /* PrefsController.m */,
+				003533F206A5DD8500AB4577 /* PrefsWindow.h */,
+				003533F306A5DD8500AB4577 /* PrefsWindow.m */,
+			);
+			name = Preferences;
+			path = Sources/Preferences;
+			sourceTree = "<group>";
+		};
+		003533DB06A5DD8500AB4577 /* PreferencePanes */ = {
+			isa = PBXGroup;
+			children = (
+				003533DC06A5DD8500AB4577 /* PrefsClient.h */,
+				003533DD06A5DD8500AB4577 /* PrefsClient.m */,
+				003533DE06A5DD8500AB4577 /* PrefsDriver.h */,
+				003533DF06A5DD8500AB4577 /* PrefsDriver.m */,
+				003533E006A5DD8500AB4577 /* PrefsFilter.h */,
+				003533E106A5DD8500AB4577 /* PrefsFilter.m */,
+				003533E206A5DD8500AB4577 /* PrefsGPS.h */,
+				003533E306A5DD8500AB4577 /* PrefsGPS.m */,
+				003533E406A5DD8500AB4577 /* PrefsMap.h */,
+				003533E506A5DD8500AB4577 /* PrefsMap.m */,
+				003533E606A5DD8500AB4577 /* PrefsScanning.h */,
+				003533E706A5DD8500AB4577 /* PrefsScanning.m */,
+				003533EA06A5DD8500AB4577 /* PrefsSounds.h */,
+				003533EB06A5DD8500AB4577 /* PrefsSounds.m */,
+				003533EC06A5DD8500AB4577 /* PrefsTraffic.h */,
+				003533ED06A5DD8500AB4577 /* PrefsTraffic.m */,
+			);
+			path = PreferencePanes;
+			sourceTree = "<group>";
+		};
+		003533F406A5DD8500AB4577 /* ScriptingCore */ = {
+			isa = PBXGroup;
+			children = (
+				009B192106FC83A800E8883A /* ScriptingEngine.h */,
+				009B192206FC83A800E8883A /* ScriptingEngine.m */,
+				003533F506A5DD8500AB4577 /* ScriptAdditions.h */,
+				003533F606A5DD8500AB4577 /* ScriptAdditions.m */,
+				003533F706A5DD8500AB4577 /* ScriptController.h */,
+				003533F806A5DD8500AB4577 /* ScriptController.m */,
+			);
+			name = ScriptingCore;
+			path = Sources/ScriptingCore;
+			sourceTree = "<group>";
+		};
+		003533F906A5DD8500AB4577 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				A585F7791771DB7100045928 /* HTTPStream.h */,
+				A585F77A1771DB7100045928 /* HTTPStream.m */,
+				A57E646C1607BD6700BE1BCA /* MapDownload.h */,
+				A57E646D1607BD6700BE1BCA /* MapDownload.m */,
+				003533FA06A5DD8500AB4577 /* GPSController.h */,
+				003533FB06A5DD8500AB4577 /* GPSController.m */,
+			);
+			name = Support;
+			path = Sources/Support;
+			sourceTree = "<group>";
+		};
+		003533FE06A5DD8500AB4577 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6C94AA2C0ADF3FBC001BE161 /* GPSSatInfo */,
+				00971F3B06E4FA52004307EA /* BIViews */,
+				00A622A706FEE4FB005D248A /* Trace.h */,
+				00A622A806FEE4FB005D248A /* Trace.m */,
+				00CBA33E06DB8FDE000ACD19 /* MapView.h */,
+				00CBA33F06DB8FDE000ACD19 /* MapView.m */,
+				00C5F13206DE0EAF001EC02F /* MapViewAreaView.h */,
+				009D64F206FF73BA00B0F1EC /* MapViewAreaView.mm */,
+				00C5F12A06DE0C98001EC02F /* MapViewPrivate.h */,
+				00C5F12B06DE0C98001EC02F /* MapViewPrivate.m */,
+				0090AC8306E5E3250096C5FC /* MapControlPanel.h */,
+				0090AC8406E5E3250096C5FC /* MapControlPanel.m */,
+				005B12660730051A00906C36 /* MapControlItem.h */,
+				005B12670730051A00906C36 /* MapControlItem.m */,
+				00ED80A606E32C9600455A05 /* NetView.h */,
+				00ED80A706E32C9600455A05 /* NetView.m */,
+				00E1426B06E62A44009DC179 /* PointView.h */,
+				00E1426C06E62A44009DC179 /* PointView.m */,
+			);
+			name = Views;
+			path = Sources/Views;
+			sourceTree = "<group>";
+		};
+		0035340E06A5DD8500AB4577 /* WaveDrivers */ = {
+			isa = PBXGroup;
+			children = (
+				69AF11880E4B29C500B1D770 /* WaveDriverUSB.h */,
+				69AF11890E4B29C500B1D770 /* WaveDriverUSB.mm */,
+				69AF118A0E4B29C500B1D770 /* WaveDriverUSBRalinkRT73.h */,
+				69AF118B0E4B29C500B1D770 /* WaveDriverUSBRalinkRT73.mm */,
+				69AF118C0E4B29C500B1D770 /* WaveDriverUSBRalinkRT2570.h */,
+				69AF118D0E4B29C500B1D770 /* WaveDriverUSBRalinkRT2570.mm */,
+				69AF118E0E4B29C500B1D770 /* WaveDriverUSBRealtekRTL8187.h */,
+				69AF118F0E4B29C500B1D770 /* WaveDriverUSBRealtekRTL8187.mm */,
+				6CF9EE6C0B6E9D2A00F54524 /* WaveDriverKismet.h */,
+				6CF9EE6D0B6E9D2A00F54524 /* WaveDriverKismet.m */,
+				0035340F06A5DD8500AB4577 /* WaveDriver.h */,
+				0035341006A5DD8500AB4577 /* WaveDriver.m */,
+				0035341306A5DD8500AB4577 /* WaveDriverAirport.h */,
+				0035341406A5DD8500AB4577 /* WaveDriverAirport.m */,
+				00DF456108B1E969003F3C7E /* WaveDriverAirportExtreme.h */,
+				00DF456208B1E969003F3C7E /* WaveDriverAirportExtreme.m */,
+				87C927280BAA137D0025A6AE /* WaveDriverKismetDrone.h */,
+				87C927290BAA137E0025A6AE /* WaveDriverKismetDrone.m */,
+				0035341B06A5DD8500AB4577 /* WaveDriverUSBIntersil.h */,
+				0035341C06A5DD8500AB4577 /* WaveDriverUSBIntersil.mm */,
+			);
+			name = WaveDrivers;
+			path = Sources/WaveDrivers;
+			sourceTree = "<group>";
+		};
+		0035341F06A5DD8500AB4577 /* WindowControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A57E64651607BD3200BE1BCA /* DownloadMapController.h */,
+				A57E64671607BD3200BE1BCA /* DownloadMapController.m */,
+				A57E64601607BD0900BE1BCA /* CrashReportController.h */,
+				A57E64611607BD0900BE1BCA /* CrashReportController.m */,
+				6C41BAAE0AA0B52900E0B411 /* GPSInfoController.h */,
+				6C41BAAF0AA0B52900E0B411 /* GPSInfoController.m */,
+				002E7DF706A86C6F00C9D931 /* ImportController.h */,
+				002E7DF806A86C6F00C9D931 /* ImportController.m */,
+				0035342406A5DD8500AB4577 /* WayPoint.h */,
+				0035342506A5DD8500AB4577 /* WayPoint.m */,
+			);
+			name = WindowControllers;
+			path = Sources/WindowControllers;
+			sourceTree = "<group>";
+		};
+		00971F3B06E4FA52004307EA /* BIViews */ = {
+			isa = PBXGroup;
+			children = (
+				00971F3C06E4FA6F004307EA /* BIView.h */,
+				00971F3D06E4FA6F004307EA /* BIView.m */,
+				00971F5406E4FFBF004307EA /* BISubView.h */,
+				00971F5506E4FFBF004307EA /* BISubView.m */,
+				0097241206E51844004307EA /* BIImageView.h */,
+				0097241306E51844004307EA /* BIImageView.m */,
+				0097243706E51A99004307EA /* BITextView.h */,
+				0097243806E51A99004307EA /* BITextView.m */,
+			);
+			path = BIViews;
+			sourceTree = "<group>";
+		};
+		00F57C1606A886350035AE2F /* XIB */ = {
+			isa = PBXGroup;
+			children = (
+				A529AD781A20A4B400CD8E1E /* Crack.xib */,
+				A529AD7A1A20A4B400CD8E1E /* GPSDialog.xib */,
+				A529AD7C1A20A4B400CD8E1E /* Import.xib */,
+				A529AD7E1A20A4B400CD8E1E /* injectionProbe.xib */,
+				A529AD801A20A4B400CD8E1E /* MainMenu.xib */,
+				A529AD821A20A4B400CD8E1E /* Preferences.xib */,
+				A529AD841A20A4B400CD8E1E /* PrefsAdvanced.xib */,
+				A529AD861A20A4B400CD8E1E /* PrefsDriver.xib */,
+				A529AD881A20A4B400CD8E1E /* PrefsFilter.xib */,
+				A529AD8A1A20A4B400CD8E1E /* PrefsGPS.xib */,
+				A529AD8C1A20A4B400CD8E1E /* PrefsMap.xib */,
+				A529AD8E1A20A4B400CD8E1E /* PrefsScanning.xib */,
+				A529AD901A20A4B400CD8E1E /* PrefsSounds.xib */,
+				A529AD921A20A4B400CD8E1E /* PrefsTraffic.xib */,
+				A529AD941A20A4B400CD8E1E /* WayPointDialog.xib */,
+				A529AD961A20A4B400CD8E1E /* wepInjection.xib */,
+			);
+			name = XIB;
+			path = Resources/XIBs;
+			sourceTree = "<group>";
+		};
+		00F57C4A06A886630035AE2F /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				A529AD751A20A4A100CD8E1E /* Localizable.strings */,
+			);
+			fileEncoding = 4;
+			name = Strings;
+			path = Resources/Strings;
+			sourceTree = "<group>";
+		};
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				A57E64371607BC9700BE1BCA /* Crypto */,
+				69359CAF0FB05D47008B8722 /* WaveSpectrumDrivers */,
+				69A9B3150F04D74B00D1E817 /* WavePlugins */,
+				003533A006A5DD8500AB4577 /* 3rd Party */,
+				003533A406A5DD8500AB4577 /* Controller */,
+				003533B206A5DD8500AB4577 /* Core */,
+				003533D206A5DD8500AB4577 /* Driver */,
+				003533DA06A5DD8500AB4577 /* Preferences */,
+				003533F406A5DD8500AB4577 /* ScriptingCore */,
+				003533F906A5DD8500AB4577 /* Support */,
+				003533FE06A5DD8500AB4577 /* Views */,
+				0035340E06A5DD8500AB4577 /* WaveDrivers */,
+				0035341F06A5DD8500AB4577 /* WindowControllers */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6CF938C310A7DFDF00B32F94 /* CoreWLAN.framework */,
+				6C32713312CFC4070033A649 /* CoreLocation.framework */,
+				6C03D76F09B547F2005B2316 /* Growl.framework */,
+				6CA3BCCA09B2A58F00DCB407 /* Accelerate.framework */,
+				00F9C64E06DB37E200E357F0 /* Carbon.framework */,
+				00F9C64F06DB37E200E357F0 /* IOKit.framework */,
+				00F9C63F06DB378F00E357F0 /* Security.framework */,
+				0093E65306B2A1F300B3357A /* AddressBook.framework */,
+				00F57BD206A881210035AE2F /* AppleScriptKit.framework */,
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+				A535396B180B073D008BB6A1 /* Cocoa.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* KisMac2.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* KisMAC */ = {
+			isa = PBXGroup;
+			children = (
+				69719DAF0F7E928900949310 /* Subprojects */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				A537418319DD4A8B00434C6E /* Tests */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = KisMAC;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* KisMAC_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A5A2F59E19DDA11A0046299A /* Indicators */,
+				A5A2F59519DD74C20046299A /* Images.xcassets */,
+				698665B80FAF61CA002D1A84 /* DMG Artwork */,
+				691CF1A00E4CC3C00042B146 /* UsbDevicesPlist */,
+				0042E7A209C0C8B600183F90 /* world.kismap */,
+				0035332D06A5DD5700AB4577 /* Generic */,
+				0035333206A5DD5700AB4577 /* Icons */,
+				00F57C1606A886350035AE2F /* XIB */,
+				0035334206A5DD5700AB4577 /* Scripts */,
+				00F57C4A06A886630035AE2F /* Strings */,
+				0035334106A5DD5700AB4577 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		691CF1A00E4CC3C00042B146 /* UsbDevicesPlist */ = {
+			isa = PBXGroup;
+			children = (
+				691CF1AC0E4CC47B0042B146 /* UsbVendorsIntersil.plist */,
+				691CF1AD0E4CC47C0042B146 /* UsbVendorsRT73.plist */,
+				691CF1AE0E4CC47C0042B146 /* UsbVendorsRT2570.plist */,
+				691CF1AF0E4CC47C0042B146 /* UsbVendorsRTL8187.plist */,
+			);
+			comments = "This folder contains Usb Devices files for matching vendors/products against drivers. ";
+			name = UsbDevicesPlist;
+			path = Resources/UsbDevicesPlist;
+			sourceTree = "<group>";
+		};
+		69359CAF0FB05D47008B8722 /* WaveSpectrumDrivers */ = {
+			isa = PBXGroup;
+			children = (
+				69359CB00FB05DD2008B8722 /* WaveSpectrumDriver.h */,
+				69359CB10FB05DD2008B8722 /* WaveSpectrumDriver.m */,
+			);
+			name = WaveSpectrumDrivers;
+			path = Sources/WaveSpectrumDrivers;
+			sourceTree = "<group>";
+		};
+		69719DAF0F7E928900949310 /* Subprojects */ = {
+			isa = PBXGroup;
+			children = (
+				A5353659180ABCDD008BB6A1 /* polarssl */,
+				A5295C3B1653C39700A0B5D9 /* BIGeneric.xcodeproj */,
+				A5295C321653C38D00A0B5D9 /* BIGL.xcodeproj */,
+			);
+			path = Subprojects;
+			sourceTree = "<group>";
+		};
+		698665B80FAF61CA002D1A84 /* DMG Artwork */ = {
+			isa = PBXGroup;
+			children = (
+				A537417719DD457900434C6E /* dmgBackground.tiff */,
+			);
+			path = "DMG Artwork";
+			sourceTree = "<group>";
+		};
+		69A9B3150F04D74B00D1E817 /* WavePlugins */ = {
+			isa = PBXGroup;
+			children = (
+				69A9B3200F04EFCC00D1E817 /* WavePluginInjectionProbe.h */,
+				69A9B3210F04EFCC00D1E817 /* WavePluginInjectionProbe.m */,
+				69A9B31C0F04D7C700D1E817 /* WavePlugin.h */,
+				69A9B31D0F04D7C700D1E817 /* WavePlugin.m */,
+				697B463D0F0620DC00AC69EB /* WavePluginDeauthentication.h */,
+				697B463E0F0620DC00AC69EB /* WavePluginDeauthentication.m */,
+				69B54B2E0F0698C600AB7E6E /* WavePluginInjecting.m */,
+				69B54B2D0F0698C600AB7E6E /* WavePluginInjecting.h */,
+				69BFC5740F077867008DB1AF /* WavePluginAuthenticationFlood.h */,
+				69BFC5750F077867008DB1AF /* WavePluginAuthenticationFlood.m */,
+				69BFC5F00F078532008DB1AF /* WavePluginBeaconFlood.h */,
+				69BFC5F10F078532008DB1AF /* WavePluginBeaconFlood.m */,
+				694A888A0F3CD87E006B819C /* WavePcapDump.h */,
+				694A888B0F3CD87E006B819C /* WavePcapDump.m */,
+				6C461C6C12CEC58100156CBF /* WavePluginMidi.h */,
+				6C461C6D12CEC58100156CBF /* WavePluginMidi.m */,
+			);
+			name = WavePlugins;
+			path = Sources/WavePlugins;
+			sourceTree = "<group>";
+		};
+		69AF11600E4B292800B1D770 /* USBJack */ = {
+			isa = PBXGroup;
+			children = (
+				69AF116A0E4B292800B1D770 /* eeprom_93cx6.h */,
+				69AF11610E4B292800B1D770 /* IntersilJack.h */,
+				69AF11620E4B292800B1D770 /* IntersilJack.mm */,
+				69AF11630E4B292800B1D770 /* RT73.h */,
+				69AF11640E4B292800B1D770 /* RT73Jack.h */,
+				69AF11650E4B292800B1D770 /* RT73Jack.mm */,
+				69AF11660E4B292800B1D770 /* RalinkJack.h */,
+				69AF11670E4B292800B1D770 /* RalinkJack.mm */,
+				69AF11680E4B292800B1D770 /* USBJack.h */,
+				69AF11690E4B292800B1D770 /* USBJack.mm */,
+				69AF116B0E4B292800B1D770 /* prism2.h */,
+				69AF116C0E4B292800B1D770 /* ralink.h */,
+				69AF116F0E4B292800B1D770 /* rt2570.h */,
+				69AF11700E4B292800B1D770 /* rtl8187.h */,
+				69AF11710E4B292800B1D770 /* rtl8187.mm */,
+				69AF11720E4B292800B1D770 /* rtl818x.h */,
+				69AF11730E4B292800B1D770 /* structs.h */,
+			);
+			path = USBJack;
+			sourceTree = "<group>";
+		};
+		6C94AA2C0ADF3FBC001BE161 /* GPSSatInfo */ = {
+			isa = PBXGroup;
+			children = (
+				6C94AA2D0ADF3FBC001BE161 /* GPSSatInfo.h */,
+				6C94AA2E0ADF3FBC001BE161 /* GPSSatInfo.m */,
+			);
+			path = GPSSatInfo;
+			sourceTree = "<group>";
+		};
+		A5295C331653C38D00A0B5D9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A5295C3A1653C38E00A0B5D9 /* BIGL.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A5295C3C1653C39700A0B5D9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A5295C441653C39800A0B5D9 /* BIGeneric.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A5353659180ABCDD008BB6A1 /* polarssl */ = {
+			isa = PBXGroup;
+			children = (
+				A5353668180ABCDF008BB6A1 /* include */,
+				A535369A180ABCE0008BB6A1 /* library */,
+			);
+			path = polarssl;
+			sourceTree = "<group>";
+		};
+		A5353668180ABCDF008BB6A1 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				A535366B180ABCDF008BB6A1 /* polarssl */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		A535366B180ABCDF008BB6A1 /* polarssl */ = {
+			isa = PBXGroup;
+			children = (
+				A5353973180B1C8D008BB6A1 /* sha1.h */,
+				A5353966180ABFE6008BB6A1 /* config.h */,
+				A5353684180ABCE0008BB6A1 /* md4.h */,
+				A5353685180ABCE0008BB6A1 /* md5.h */,
+			);
+			path = polarssl;
+			sourceTree = "<group>";
+		};
+		A535369A180ABCE0008BB6A1 /* library */ = {
+			isa = PBXGroup;
+			children = (
+				A5353974180B1C99008BB6A1 /* sha1.c */,
+				A53536B4180ABCE0008BB6A1 /* md4.c */,
+				A53536B5180ABCE0008BB6A1 /* md5.c */,
+			);
+			path = library;
+			sourceTree = "<group>";
+		};
+		A537418319DD4A8B00434C6E /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				A537418D19DD4AAC00434C6E /* WaveHelperTest.m */,
+				A537418E19DD4AAC00434C6E /* WaveNetTest.m */,
+				A537418F19DD4AAC00434C6E /* WavePacketTest.m */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		A57E64371607BC9700BE1BCA /* Crypto */ = {
+			isa = PBXGroup;
+			children = (
+				A57E64381607BC9700BE1BCA /* AirCrackWrapper.h */,
+				A57E64391607BC9700BE1BCA /* AirCrackWrapper.m */,
+				A57E643A1607BC9700BE1BCA /* LEAP.h */,
+				A57E643B1607BC9700BE1BCA /* LEAP.m */,
+				A57E64401607BC9700BE1BCA /* WaveNetLEAPCrack.h */,
+				A57E64411607BC9700BE1BCA /* WaveNetLEAPCrack.m */,
+				A57E64421607BC9700BE1BCA /* WaveNetWEPCrack.h */,
+				A57E64431607BC9700BE1BCA /* WaveNetWEPCrack.m */,
+				A57E64441607BC9700BE1BCA /* WaveNetWEPWeakCrack.h */,
+				A57E64451607BC9700BE1BCA /* WaveNetWEPWeakCrack.m */,
+				A57E64461607BC9700BE1BCA /* WaveNetWEPWordlist.h */,
+				A57E64471607BC9700BE1BCA /* WaveNetWEPWordlist.m */,
+				A57E64481607BC9700BE1BCA /* WaveNetWPACrack.h */,
+				A57E64491607BC9700BE1BCA /* WaveNetWPACrack.m */,
+				A57E644A1607BC9700BE1BCA /* WPA.h */,
+				A57E644B1607BC9700BE1BCA /* WPA.m */,
+			);
+			name = Crypto;
+			path = Sources/Crypto;
+			sourceTree = "<group>";
+		};
+		A5A2F59E19DDA11A0046299A /* Indicators */ = {
+			isa = PBXGroup;
+			children = (
+				A5A2F5A519DDA55B0046299A /* NetworkLEAP.tif */,
+				A5A2F5A619DDA55B0046299A /* NetworkNoEnc.tif */,
+				A5A2F5A719DDA55B0046299A /* NetworkStrange.tif */,
+				A5A2F5A819DDA55B0046299A /* NetworkUnkEnc.tif */,
+				A5A2F5A919DDA55B0046299A /* NetworkWEP.tif */,
+				A5A2F5AA19DDA55B0046299A /* NetworkWPA.tif */,
+				A5A2F59F19DDA11A0046299A /* greengem.pdf */,
+				A5A2F5A019DDA11A0046299A /* orangegem.pdf */,
+				A5A2F5A119DDA11A0046299A /* redgem.pdf */,
+			);
+			name = Indicators;
+			path = Resources/Indicators;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D1107260486CEB800E47090 /* KisMac2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00A9158E0858D6410093943F /* Build configuration list for PBXNativeTarget "KisMac2" */;
+			buildPhases = (
+				689FF0750DB9AF8E00ED7BE5 /* Update vendors.db */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				00F57BA306A87EAE0035AE2F /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KisMac2;
+			productInstallPath = "$(HOME)/Applications";
+			productName = KisMAC;
+			productReference = 8D1107320486CEB800E47090 /* KisMac2.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = NO;
+				LastTestingUpgradeCheck = 0600;
+				LastUpgradeCheck = 0600;
+			};
+			buildConfigurationList = 00A915960858D6410093943F /* Build configuration list for PBXProject "KisMac2" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+				Spanish,
+				en,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* KisMAC */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = A5295C3C1653C39700A0B5D9 /* Products */;
+					ProjectRef = A5295C3B1653C39700A0B5D9 /* BIGeneric.xcodeproj */;
+				},
+				{
+					ProductGroup = A5295C331653C38D00A0B5D9 /* Products */;
+					ProjectRef = A5295C321653C38D00A0B5D9 /* BIGL.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				8D1107260486CEB800E47090 /* KisMac2 */,
+				6910302C0F9E313700C4E466 /* Kismac.dmg */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		A5295C3A1653C38E00A0B5D9 /* BIGL.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BIGL.framework;
+			remoteRef = A5295C391653C38E00A0B5D9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A5295C441653C39800A0B5D9 /* BIGeneric.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BIGeneric.framework;
+			remoteRef = A5295C431653C39800A0B5D9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5A2F5A419DDA11A0046299A /* redgem.pdf in Resources */,
+				A5A2F5A319DDA11A0046299A /* orangegem.pdf in Resources */,
+				0035337A06A5DD5700AB4577 /* example.dump in Resources */,
+				A529ADA21A20A4B400CD8E1E /* PrefsMap.xib in Resources */,
+				A5A2F5B019DDA55B0046299A /* NetworkWPA.tif in Resources */,
+				0035337B06A5DD5700AB4577 /* KisMAC.scriptSuite in Resources */,
+				0035337C06A5DD5700AB4577 /* KisMAC.scriptTerminology in Resources */,
+				0035337D06A5DD5700AB4577 /* vendor.db in Resources */,
+				0035339906A5DD5700AB4577 /* usbprism2_prep.sh in Resources */,
+				A529AD981A20A4B400CD8E1E /* Crack.xib in Resources */,
+				A529ADA41A20A4B400CD8E1E /* PrefsSounds.xib in Resources */,
+				0035339A06A5DD5700AB4577 /* usbprism2_unprep.sh in Resources */,
+				A5A2F5A219DDA11A0046299A /* greengem.pdf in Resources */,
+				A529AD9C1A20A4B400CD8E1E /* MainMenu.xib in Resources */,
+				A529ADA61A20A4B400CD8E1E /* WayPointDialog.xib in Resources */,
+				A529AD771A20A4A100CD8E1E /* Localizable.strings in Resources */,
+				A5A2F5AF19DDA55B0046299A /* NetworkWEP.tif in Resources */,
+				A5A2F5AE19DDA55B0046299A /* NetworkUnkEnc.tif in Resources */,
+				A529AD9B1A20A4B400CD8E1E /* injectionProbe.xib in Resources */,
+				A529ADA51A20A4B400CD8E1E /* PrefsTraffic.xib in Resources */,
+				A5A2F5AD19DDA55B0046299A /* NetworkStrange.tif in Resources */,
+				A529ADA71A20A4B400CD8E1E /* wepInjection.xib in Resources */,
+				00A7F9D306C6D20A00A6BB8F /* devilDocument.icns in Resources */,
+				A529AD991A20A4B400CD8E1E /* GPSDialog.xib in Resources */,
+				A529ADA31A20A4B400CD8E1E /* PrefsScanning.xib in Resources */,
+				A529ADA11A20A4B400CD8E1E /* PrefsGPS.xib in Resources */,
+				0042E7A609C0C8B600183F90 /* world.kismap in Resources */,
+				A529ADA01A20A4B400CD8E1E /* PrefsFilter.xib in Resources */,
+				691CF1B00E4CC47C0042B146 /* UsbVendorsIntersil.plist in Resources */,
+				691CF1B10E4CC47C0042B146 /* UsbVendorsRT73.plist in Resources */,
+				691CF1B20E4CC47C0042B146 /* UsbVendorsRT2570.plist in Resources */,
+				691CF1B30E4CC47C0042B146 /* UsbVendorsRTL8187.plist in Resources */,
+				A529AD9F1A20A4B400CD8E1E /* PrefsDriver.xib in Resources */,
+				A529AD9E1A20A4B400CD8E1E /* PrefsAdvanced.xib in Resources */,
+				A5A2F59A19DD9EB40046299A /* spin@2x.gif in Resources */,
+				698665470FAF5899002D1A84 /* spin.gif in Resources */,
+				A529AD9D1A20A4B400CD8E1E /* Preferences.xib in Resources */,
+				A5A2F59619DD74C20046299A /* Images.xcassets in Resources */,
+				A5A2F5AB19DDA55B0046299A /* NetworkLEAP.tif in Resources */,
+				A529AD9A1A20A4B400CD8E1E /* Import.xib in Resources */,
+				A5A2F5AC19DDA55B0046299A /* NetworkNoEnc.tif in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		689FF0750DB9AF8E00ED7BE5 /* Update vendors.db */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			comments = "Update the vendors database on build.";
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Update vendors.db";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PROJECT_DIR/Resources/Generic/OUItoVendorDB.pl\" -d /tmp/OUI.txt \"$PROJECT_DIR/Resources/Generic/vendor.db\"";
+		};
+		6910302B0F9E313700C4E466 /* Create DMG */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Create DMG";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -ex\n\necho $ACTION\n\n\n[ \"$ACTION\" = \"build\" ] || exit 0\n[ \"$BUILD_VARIANTS\" = \"normal\" ] || exit 0\n\ndir=\"$TEMP_FILES_DIR/disk\"\ndmg=\"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.dmg\"\n\nrm -rf \"$dir\"\nmkdir \"$dir\"\ncp -R \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app\" \"$dir\"\n\nmkdir \"$dir/.background\"\ncp \"$SRCROOT/DMG Artwork/dmgBackground.tiff\" \"$dir/.background\"\nln -s /Applications $dir\n\nrm -f \"$dmg\"\nhdiutil create  -verbose -srcfolder \"$dir\" -format UDRW -volname \"$PROJECT_NAME\" \"$dmg\"\nhdiutil internet-enable -yes \"$dmg\"\nrm -rf \"$dir\"\n";
+		};
+		698665900FAF60BF002D1A84 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /usr/bin/osascript;
+			shellScript = "\non run\n\tset diskname to system attribute \"PROJECT_NAME\"\n\tset build_dir to system attribute \"BUILT_PRODUCTS_DIR\"\n\tset diskpath to build_dir & \"/\" & diskname & \".dmg\"\n\tset source_root to system attribute \"SRCROOT\"\n\ttell application \"Finder\"\n\t\tif (exists the disk diskname) then\n\t\t\teject diskname\n\t\tend if\n\t\tdo shell script (\"hdiutil attach \" & diskpath & \" -readwrite -mount required\")\n\t\trepeat until name of every disk contains diskname\n\t\t\tdelay 1\n\t\tend repeat\n\t\ttell disk diskname\n\t\t\topen\n\t\t\tset theXOrigin to 10\n\t\t\tset theYOrigin to 60\n\t\t\tset theWidth to 611\n\t\t\tset theHeight to 366\n\t\t\tset theBottomRightX to (theXOrigin + theWidth)\n\t\t\tset theBottomRightY to (theYOrigin + theHeight)\n\t\t\tset dsStore to \"\\\"/Volumes/\" & diskname & \"/\" & \".DS_Store\\\"\"\n\t\t\ttell container window\n\t\t\t\tset current view to icon view\n\t\t\t\tset toolbar visible to false\n\t\t\t\tset statusbar visible to false\n\t\t\t\tset the bounds to {theXOrigin, theYOrigin, theBottomRightX, theBottomRightY}\n\t\t\t\tset statusbar visible to false\n\t\t\tend tell\n\t\t\tset opts to the icon view options of container window\n\t\t\ttell opts\n\t\t\t\tset icon size to 120\n\t\t\t\tset arrangement to not arranged\n\t\t\tend tell\n\t\t\tset background picture of opts to file \".background:dmgBackground.tiff\"\n\t\t\tset position of item \"KisMac2.app\" to {180, 185}\n\t\t\tset position of item \"Applications\" to {420, 185}\n\t\t\ttell container window\n\t\t\t\tset statusbar visible to false\n\t\t\t\tset the bounds to {theXOrigin + 1, theYOrigin, theBottomRightX, theBottomRightY}\n\t\t\t\tset the bounds to {theXOrigin, theYOrigin, theBottomRightX, theBottomRightY}\n\t\t\tend tell\n\t\t\tupdate without registering applications\n\t\tend tell\n\t\t--give the finder some time to write the .DS_Store file\n\t\tset waitTime to 0\n\t\tset ejectMe to false\n\t\trepeat while ejectMe is false\n\t\t\tdelay 1\n\t\t\tset waitTime to waitTime + 1\n\t\t\tif (do shell script \"[ -f \" & dsStore & \" ]; echo $?\") = \"0\" then set ejectMe to true\n\t\tend repeat\n\t\tlog \"waited \" & waitTime & \" seconds for .DS_STORE to be created.\"\n\teject diskname\n\tdo shell script \"mv \" & diskpath & \" \" & diskpath & \".old\"\n\tdo shell script \"hdiutil convert \" & diskpath & \".old -format UDZO -imagekey zlib-level=9 -o \" & diskpath\n\tdo shell script \"rm \" & diskpath & \".old\"\n\tend tell\nend run\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072D0486CEB800E47090 /* main.m in Sources */,
+				0035342C06A5DD8500AB4577 /* InfoController.mm in Sources */,
+				0035342E06A5DD8500AB4577 /* ScanController.m in Sources */,
+				A581FC2C177B36AC00C05CE9 /* FCS.m in Sources */,
+				0035342F06A5DD8500AB4577 /* ScanControllerMenus.m in Sources */,
+				A5353827180ABCE1008BB6A1 /* md5.c in Sources */,
+				0035343106A5DD8500AB4577 /* ScanControllerPrivate.m in Sources */,
+				0035343306A5DD8500AB4577 /* ScanControllerScriptable.m in Sources */,
+				0035343506A5DD8500AB4577 /* TrafficController.mm in Sources */,
+				0035343906A5DD8500AB4577 /* ScanHierarch.mm in Sources */,
+				0035343B06A5DD8500AB4577 /* WaveClient.m in Sources */,
+				0035343D06A5DD8500AB4577 /* WaveContainer.m in Sources */,
+				0035344306A5DD8500AB4577 /* WaveNet.mm in Sources */,
+				0035344506A5DD8500AB4577 /* WavePacket.mm in Sources */,
+				0035344706A5DD8500AB4577 /* WaveScanner.mm in Sources */,
+				0035345A06A5DD8500AB4577 /* PrefsClient.m in Sources */,
+				0035345C06A5DD8500AB4577 /* PrefsDriver.m in Sources */,
+				0035345E06A5DD8500AB4577 /* PrefsFilter.m in Sources */,
+				0035346006A5DD8500AB4577 /* PrefsGPS.m in Sources */,
+				0035346206A5DD8500AB4577 /* PrefsMap.m in Sources */,
+				0035346406A5DD8500AB4577 /* PrefsScanning.m in Sources */,
+				0035346806A5DD8500AB4577 /* PrefsSounds.m in Sources */,
+				0035346A06A5DD8500AB4577 /* PrefsTraffic.m in Sources */,
+				0035346E06A5DD8500AB4577 /* PrefsController.m in Sources */,
+				0035347006A5DD8500AB4577 /* PrefsWindow.m in Sources */,
+				0035347206A5DD8500AB4577 /* ScriptAdditions.m in Sources */,
+				0035347406A5DD8500AB4577 /* ScriptController.m in Sources */,
+				0035347606A5DD8500AB4577 /* GPSController.m in Sources */,
+				0035348806A5DD8500AB4577 /* WaveDriver.m in Sources */,
+				0035348C06A5DD8500AB4577 /* WaveDriverAirport.m in Sources */,
+				0035349406A5DD8500AB4577 /* WaveDriverUSBIntersil.mm in Sources */,
+				0035349C06A5DD8500AB4577 /* WayPoint.m in Sources */,
+				002E7DFC06A86C6F00C9D931 /* ImportController.m in Sources */,
+				00CBA34106DB8FDE000ACD19 /* MapView.m in Sources */,
+				00C5F12D06DE0C98001EC02F /* MapViewPrivate.m in Sources */,
+				00ED80A906E32C9600455A05 /* NetView.m in Sources */,
+				00971F3F06E4FA6F004307EA /* BIView.m in Sources */,
+				00971F5706E4FFBF004307EA /* BISubView.m in Sources */,
+				0097241506E51844004307EA /* BIImageView.m in Sources */,
+				0097243A06E51A99004307EA /* BITextView.m in Sources */,
+				0090AC8606E5E3250096C5FC /* MapControlPanel.m in Sources */,
+				00E1426E06E62A44009DC179 /* PointView.m in Sources */,
+				009B192406FC83A800E8883A /* ScriptingEngine.m in Sources */,
+				00A622AA06FEE4FB005D248A /* Trace.m in Sources */,
+				009D64F306FF73BA00B0F1EC /* MapViewAreaView.mm in Sources */,
+				00875D1C0708ADB300CACFCB /* WaveHelper.m in Sources */,
+				005B12690730051A00906C36 /* MapControlItem.m in Sources */,
+				0090B7CC07B2A43D005FEEB1 /* WaveStorageController.m in Sources */,
+				00DF456408B1E969003F3C7E /* WaveDriverAirportExtreme.m in Sources */,
+				87CEBA8309AEF03700AEB0B8 /* GrowlController.m in Sources */,
+				6C41BAB10AA0B52900E0B411 /* GPSInfoController.m in Sources */,
+				6CDAFD030AC4FA7D00A5D180 /* KismetXMLImporter.m in Sources */,
+				6C94AA300ADF3FBC001BE161 /* GPSSatInfo.m in Sources */,
+				6CF9EE6F0B6E9D2A00F54524 /* WaveDriverKismet.m in Sources */,
+				87C9272B0BAA137E0025A6AE /* WaveDriverKismetDrone.m in Sources */,
+				87FA06BB0BF6C69C00A8F24C /* FSWindow.m in Sources */,
+				69AF11750E4B292800B1D770 /* IntersilJack.mm in Sources */,
+				69AF11780E4B292800B1D770 /* RT73Jack.mm in Sources */,
+				69AF117A0E4B292800B1D770 /* RalinkJack.mm in Sources */,
+				69AF117C0E4B292800B1D770 /* USBJack.mm in Sources */,
+				69AF11840E4B292800B1D770 /* rtl8187.mm in Sources */,
+				69AF11910E4B29C500B1D770 /* WaveDriverUSB.mm in Sources */,
+				69AF11930E4B29C500B1D770 /* WaveDriverUSBRalinkRT73.mm in Sources */,
+				A5353975180B1C99008BB6A1 /* sha1.c in Sources */,
+				69AF11950E4B29C500B1D770 /* WaveDriverUSBRalinkRT2570.mm in Sources */,
+				69AF11970E4B29C500B1D770 /* WaveDriverUSBRealtekRTL8187.mm in Sources */,
+				69A9B31F0F04D7C700D1E817 /* WavePlugin.m in Sources */,
+				69A9B3230F04EFCC00D1E817 /* WavePluginInjectionProbe.m in Sources */,
+				697B46400F0620DC00AC69EB /* WavePluginDeauthentication.m in Sources */,
+				69B54B300F0698C600AB7E6E /* WavePluginInjecting.m in Sources */,
+				69BFC5770F077867008DB1AF /* WavePluginAuthenticationFlood.m in Sources */,
+				69BFC5F30F078532008DB1AF /* WavePluginBeaconFlood.m in Sources */,
+				A5353826180ABCE1008BB6A1 /* md4.c in Sources */,
+				69DF1ABE0F0D0F93000E9B94 /* KMCommon.m in Sources */,
+				694A888D0F3CD87E006B819C /* WavePcapDump.m in Sources */,
+				69359CB30FB05DD2008B8722 /* WaveSpectrumDriver.m in Sources */,
+				6C461C6F12CEC58100156CBF /* WavePluginMidi.m in Sources */,
+				A57E644D1607BC9700BE1BCA /* AirCrackWrapper.m in Sources */,
+				A57E644F1607BC9700BE1BCA /* LEAP.m in Sources */,
+				A57E64551607BC9700BE1BCA /* WaveNetLEAPCrack.m in Sources */,
+				A57E64571607BC9700BE1BCA /* WaveNetWEPCrack.m in Sources */,
+				A57E64591607BC9700BE1BCA /* WaveNetWEPWeakCrack.m in Sources */,
+				A57E645B1607BC9700BE1BCA /* WaveNetWEPWordlist.m in Sources */,
+				A57E645D1607BC9700BE1BCA /* WaveNetWPACrack.m in Sources */,
+				A57E645F1607BC9700BE1BCA /* WPA.m in Sources */,
+				A57E64631607BD0900BE1BCA /* CrashReportController.m in Sources */,
+				A57E646B1607BD3200BE1BCA /* DownloadMapController.m in Sources */,
+				A57E646F1607BD6700BE1BCA /* MapDownload.m in Sources */,
+				A57E64731607BD8C00BE1BCA /* WaveWeakContainer.m in Sources */,
+				A5353972180B15B9008BB6A1 /* DESSupport.c in Sources */,
+				A585F77B1771DB7100045928 /* HTTPStream.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		691030340F9E315D00C4E466 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D1107260486CEB800E47090 /* KisMac2 */;
+			targetProxy = 691030330F9E315D00C4E466 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A529AD751A20A4A100CD8E1E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A529AD761A20A4A100CD8E1E /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		A529AD781A20A4B400CD8E1E /* Crack.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A529AD791A20A4B400CD8E1E /* en */,
+			);
+			name = Crack.xib;
+			sourceTree = "<group>";
+		};
+		A529AD7A1A20A4B400CD8E1E /* GPSDialog.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A529AD7B1A20A4B400CD8E1E /* en */,
+			);
+			name = GPSDialog.xib;
+			sourceTree = "<group>";
+		};
+		A529AD7C1A20A4B400CD8E1E /* Import.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A529AD7D1A20A4B400CD8E1E /* en */,
+			);
+			name = Import.xib;
+			sourceTree = "<group>";
+		};
+		A529AD7E1A20A4B400CD8E1E /* injectionProbe.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A529AD7F1A20A4B400CD8E1E /* en */,
+			);
+			name = injectionProbe.xib;
+			sourceTree = "<group>";
+		};
+		A529AD801A20A4B400CD8E1E /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A529AD811A20A4B400CD8E1E /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		A529AD821A20A4B400CD8E1E /* Preferences.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A529AD831A20A4B400CD8E1E /* en */,
+			);
+			name = Preferences.xib;
+			sourceTree = "<group>";
+		};
+		A529AD841A20A4B400CD8E1E /* PrefsAdvanced.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A529AD851A20A4B400CD8E1E /* en */,
+			);
+			name = PrefsAdvanced.xib;
+			sourceTree = "<group>";
+		};
+		A529AD861A20A4B400CD8E1E /* PrefsDriver.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A529AD871A20A4B400CD8E1E /* en */,
+			);
+			name = PrefsDriver.xib;
+			sourceTree = "<group>";
+		};
+		A529AD881A20A4B400CD8E1E /* PrefsFilter.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A529AD891A20A4B400CD8E1E /* en */,
+			);
+			name = PrefsFilter.xib;
+			sourceTree = "<group>";
+		};
+		A529AD8A1A20A4B400CD8E1E /* PrefsGPS.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A529AD8B1A20A4B400CD8E1E /* en */,
+			);
+			name = PrefsGPS.xib;
+			sourceTree = "<group>";
+		};
+		A529AD8C1A20A4B400CD8E1E /* PrefsMap.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A529AD8D1A20A4B400CD8E1E /* en */,
+			);
+			name = PrefsMap.xib;
+			sourceTree = "<group>";
+		};
+		A529AD8E1A20A4B400CD8E1E /* PrefsScanning.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A529AD8F1A20A4B400CD8E1E /* en */,
+			);
+			name = PrefsScanning.xib;
+			sourceTree = "<group>";
+		};
+		A529AD901A20A4B400CD8E1E /* PrefsSounds.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A529AD911A20A4B400CD8E1E /* en */,
+			);
+			name = PrefsSounds.xib;
+			sourceTree = "<group>";
+		};
+		A529AD921A20A4B400CD8E1E /* PrefsTraffic.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A529AD931A20A4B400CD8E1E /* en */,
+			);
+			name = PrefsTraffic.xib;
+			sourceTree = "<group>";
+		};
+		A529AD941A20A4B400CD8E1E /* WayPointDialog.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A529AD951A20A4B400CD8E1E /* en */,
+			);
+			name = WayPointDialog.xib;
+			sourceTree = "<group>";
+		};
+		A529AD961A20A4B400CD8E1E /* wepInjection.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A529AD971A20A4B400CD8E1E /* en */,
+			);
+			name = wepInjection.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		00A9158F0858D6410093943F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
+					"$(SRCROOT)/Resources",
+				);
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = KisMAC_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/Subprojects/polarssl/include",
+					"$(SRCROOT)/Subprojects/BIGeneric",
+				);
+				INFOPLIST_FILE = Resources/Info.plist;
+				INSTALL_PATH = /Applications;
+				OTHER_CFLAGS = "";
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_LDFLAGS = (
+					"-lcrypto",
+					"-lpcap",
+					"-framework",
+					Apple80211,
+				);
+				PRODUCT_NAME = KisMac2;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"-Wall",
+				);
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		00A915970858D6410093943F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				INFOPLIST_FILE = Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				WARNING_CFLAGS = "-Wall";
+			};
+			name = Debug;
+		};
+		6903779F0F8B1D8F00627C6D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				INFOPLIST_FILE = "Info-Release.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+				WARNING_CFLAGS = "-Wall";
+			};
+			name = Release;
+		};
+		690377A00F8B1D8F00627C6D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "IGR Software";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
+					"$(SRCROOT)/Resources",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = KisMAC_Prefix.pch;
+				GCC_UNROLL_LOOPS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/Subprojects/polarssl/include",
+					"$(SRCROOT)/Subprojects/BIGeneric",
+				);
+				INFOPLIST_FILE = Resources/Info.plist;
+				INSTALL_PATH = /Applications;
+				OTHER_CFLAGS = "";
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_LDFLAGS = (
+					"-lcrypto",
+					"-lpcap",
+					"-framework",
+					Apple80211,
+				);
+				PRODUCT_NAME = KisMac2;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"-Wall",
+				);
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		6910302E0F9E313700C4E466 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = Kismac.dmg;
+			};
+			name = Debug;
+		};
+		691030300F9E313700C4E466 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				PRODUCT_NAME = Kismac.dmg;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00A9158E0858D6410093943F /* Build configuration list for PBXNativeTarget "KisMac2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00A9158F0858D6410093943F /* Debug */,
+				690377A00F8B1D8F00627C6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		00A915960858D6410093943F /* Build configuration list for PBXProject "KisMac2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00A915970858D6410093943F /* Debug */,
+				6903779F0F8B1D8F00627C6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		691030320F9E313700C4E466 /* Build configuration list for PBXAggregateTarget "Kismac.dmg" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6910302E0F9E313700C4E466 /* Debug */,
+				691030300F9E313700C4E466 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

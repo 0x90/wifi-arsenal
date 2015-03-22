@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+  <meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+
+  <title>Why do you not support cracking of 128-bit or 64-bit keys?</title>
+</head>
+
+
+<body bgcolor="#ffffff">
+
+<div align="left">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr height="40">
+
+      <td height="40" width="40"><img src="../gfx/kismacm.png" height="40" width="40"></td>
+
+      <td height="40" width="6"></td>
+
+      <td height="40" valign="middle"><font face="Lucida Grande,Helvetica,Arial" size="4"><b>Why do you not support cracking of 128-bit or 64-bit keys?</b></font></td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+<p><font face="Lucida Grande,Geneva,Arial" size="2">Actually KisMAC
+supports this feature, but we do not follow the marketing of most
+wireless OEMs. Their "128-bit keys" are actually 104-bit secret keys
+plus a 24-bit long initialization vector (IV), which is submitted in
+plain text. Therefore, the effective key length is 104-bit.
+The same rule applies to "64-bit keys", which have an effective strength of
+40-bit.<br>
+<br>
+There are the occasional good apples out there. Nokia for example, uses
+128-bit secrets plus 24-bit IVs. We unfortunately do not have any of their
+hardware to test their algorithms. You could of course donate sample hardware
+if you would like us to work on implementing support for it.</font>
+</p>
+<p>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr valign="top">
+
+      <td align="left"></td>
+
+      <td align="right"><font face="Lucida Grande,Geneva,Arial" size="2"><a href="help:search=%27WEP%27%20bookID=KisMAC%20Help">Tell me more</a></font></td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>latdir</key>
+		<string>N</string>
+		<key>latitude</key>
+		<real>90</real>
+		<key>longdir</key>
+		<string>W</string>
+		<key>longitude</key>
+		<real>180</real>
+		<key>xpoint</key>
+		<integer>0</integer>
+		<key>ypoint</key>
+		<integer>2048</integer>
+	</dict>
+	<dict>
+		<key>latdir</key>
+		<string>S</string>
+		<key>latitude</key>
+		<real>90</real>
+		<key>longdir</key>
+		<string>E</string>
+		<key>longitude</key>
+		<real>180</real>
+		<key>xpoint</key>
+		<integer>4096</integer>
+		<key>ypoint</key>
+		<integer>0</integer>
+	</dict>
+	<dict>
+		<key>fileName</key>
+		<string>map.jpg</string>
+	</dict>
+</array>
+</plist>
