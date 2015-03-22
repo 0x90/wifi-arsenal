@@ -1,0 +1,196 @@
+<?xml version='1.0'?>
+<cells>
+<cell>
+	<address>00:23:EB:80:2A:20</address>
+	<essid>rit</essid>
+	<frequency>2412000000.000000</frequency>
+	<quality>86/100</quality>
+	<signal>-56 dBm</signal>
+	<noise>-92 dBm</noise>
+</cell>
+<cell>
+	<address>00:23:EB:81:2F:C1</address>
+	<essid>ritwpa</essid>
+	<frequency>2412000000.000000</frequency>
+	<quality>44/100</quality>
+	<signal>-72 dBm</signal>
+	<noise>-73 dBm</noise>
+</cell>
+<cell>
+	<address>00:25:84:23:4D:E2</address>
+	<essid>ritwpa2</essid>
+	<frequency>2412000000.000000</frequency>
+	<quality>50/100</quality>
+	<signal>-70 dBm</signal>
+	<noise>-92 dBm</noise>
+</cell>
+<cell>
+	<address>00:23:EB:81:2B:20</address>
+	<essid>rit</essid>
+	<frequency>2412000000.000000</frequency>
+	<quality>10/100</quality>
+	<signal>-86 dBm</signal>
+	<noise>-89 dBm</noise>
+</cell>
+<cell>
+	<address>00:25:84:23:4D:E0</address>
+	<essid>rit</essid>
+	<frequency>2412000000.000000</frequency>
+	<quality>15/100</quality>
+	<signal>-84 dBm</signal>
+	<noise>-93 dBm</noise>
+</cell>
+<cell>
+	<address>00:23:EB:81:2F:C0</address>
+	<essid>rit</essid>
+	<frequency>2412000000.000000</frequency>
+	<quality>10/100</quality>
+	<signal>-86 dBm</signal>
+	<noise>-89 dBm</noise>
+</cell>
+<cell>
+	<address>00:25:84:23:4D:E1</address>
+	<essid>ritwpa</essid>
+	<frequency>2412000000.000000</frequency>
+	<quality>65/100</quality>
+	<signal>-64 dBm</signal>
+	<noise>-92 dBm</noise>
+</cell>
+<cell>
+	<address>00:23:EB:81:2B:22</address>
+	<essid>ritwpa2</essid>
+	<frequency>2412000000.000000</frequency>
+	<quality>100/100</quality>
+	<signal>-44 dBm</signal>
+	<noise>-92 dBm</noise>
+</cell>
+<cell>
+	<address>00:23:EB:81:2F:C2</address>
+	<essid>ritwpa2</essid>
+	<frequency>2412000000.000000</frequency>
+	<quality>100/100</quality>
+	<signal>-50 dBm</signal>
+	<noise>-92 dBm</noise>
+</cell>
+<cell>
+	<address>00:23:EB:80:2A:22</address>
+	<essid>ritwpa2</essid>
+	<frequency>2412000000.000000</frequency>
+	<quality>91/100</quality>
+	<signal>-54 dBm</signal>
+	<noise>-92 dBm</noise>
+</cell>
+<cell>
+	<address>00:23:EB:80:31:10</address>
+	<essid>rit</essid>
+	<frequency>2412000000.000000</frequency>
+	<quality>10/100</quality>
+	<signal>-86 dBm</signal>
+	<noise>-93 dBm</noise>
+</cell>
+<cell>
+	<address>00:23:EB:81:26:60</address>
+	<essid>rit</essid>
+	<frequency>2437000000.000000</frequency>
+	<quality>15/100</quality>
+	<signal>-84 dBm</signal>
+	<noise>-79 dBm</noise>
+</cell>
+<cell>
+	<address>00:25:84:23:46:C0</address>
+	<essid>rit</essid>
+	<frequency>2437000000.000000</frequency>
+	<quality>15/100</quality>
+	<signal>-84 dBm</signal>
+	<noise>-79 dBm</noise>
+</cell>
+<cell>
+	<address>D2:84:61:D9:0E:CB</address>
+	<essid>hpsetup</essid>
+	<frequency>2437000000.000000</frequency>
+	<quality>29/100</quality>
+	<signal>-78 dBm</signal>
+	<noise>-73 dBm</noise>
+</cell>
+<cell>
+	<address>00:23:EB:81:26:61</address>
+	<essid>ritwpa</essid>
+	<frequency>2437000000.000000</frequency>
+	<quality>44/100</quality>
+	<signal>-72 dBm</signal>
+	<noise>-67 dBm</noise>
+</cell>
+<cell>
+	<address>00:25:84:23:46:C2</address>
+	<essid>ritwpa2</essid>
+	<frequency>2437000000.000000</frequency>
+	<quality>24/100</quality>
+	<signal>-80 dBm</signal>
+	<noise>-75 dBm</noise>
+</cell>
+<cell>
+	<address>00:23:EB:3B:2F:12</address>
+	<essid>ritwpa2</essid>
+	<frequency>2437000000.000000</frequency>
+	<quality>29/100</quality>
+	<signal>-78 dBm</signal>
+	<noise>-73 dBm</noise>
+</cell>
+<cell>
+	<address>00:25:84:23:62:E2</address>
+	<essid>ritwpa2</essid>
+	<frequency>2437000000.000000</frequency>
+	<quality>60/100</quality>
+	<signal>-66 dBm</signal>
+	<noise>-92 dBm</noise>
+</cell>
+<cell>
+	<address>00:23:EB:81:1D:00</address>
+	<essid>rit</essid>
+	<frequency>2462000000.000000</frequency>
+	<quality>15/100</quality>
+	<signal>-84 dBm</signal>
+	<noise>-90 dBm</noise>
+</cell>
+<cell>
+	<address>00:23:EB:81:1D:02</address>
+	<essid>ritwpa2</essid>
+	<frequency>2462000000.000000</frequency>
+	<quality>29/100</quality>
+	<signal>-78 dBm</signal>
+	<noise>-84 dBm</noise>
+</cell>
+<cell>
+	<address>00:23:EB:81:1D:01</address>
+	<essid>ritwpa</essid>
+	<frequency>2462000000.000000</frequency>
+	<quality>10/100</quality>
+	<signal>-86 dBm</signal>
+	<noise>-81 dBm</noise>
+</cell>
+<cell>
+	<address>00:25:84:23:4D:B1</address>
+	<essid>ritwpa</essid>
+	<frequency>2462000000.000000</frequency>
+	<quality>10/100</quality>
+	<signal>-86 dBm</signal>
+	<noise>-94 dBm</noise>
+</cell>
+<cell>
+	<address>00:25:84:23:4D:B0</address>
+	<essid>rit</essid>
+	<frequency>2462000000.000000</frequency>
+	<quality>24/100</quality>
+	<signal>-80 dBm</signal>
+	<noise>-75 dBm</noise>
+</cell>
+<cell>
+	<address>00:25:84:23:4D:B2</address>
+	<essid>ritwpa2</essid>
+	<frequency>2462000000.000000</frequency>
+	<quality>10/100</quality>
+	<signal>-86 dBm</signal>
+	<noise>-92 dBm</noise>
+</cell>
+
+</cells>
