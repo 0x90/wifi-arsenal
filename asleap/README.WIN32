@@ -1,0 +1,29 @@
+asleap - recovers weak LEAP password.  Pronounced "asleep".
+
+Copyright(c) 2004, Joshua Wright <jwright@hasborg.com>
+
+$Id: README.WIN32,v 1.3 2004/03/28 15:37:02 jwright Exp $
+
+--------------------------------------------------------------------------------
+
+USING ASLEAP ON WINDOWS
+
+I have successfully compiled and tested the asleap and genkeys tools under the
+cygwin environment on Windows XP SP1, using the WinPcap developer's pack 
+(winpcap.polito.it).
+
+Windows XP SP2 systems, on the other hand, intermittently get an error when trying to run asleap:
+
+C:\DEV\testing>asleap.exe
+c:\DEV\testing\asleap.exe (988): *** cygheap version mismatch detected - 0x61780000/0xBF0000.
+You have multiple copies of cygwin1.dll on your system.
+Search for cygwin1.dll using the Windows Start->Find/Search facility
+and delete all but the most recent version. The most recent version *should*
+reside in x:\cygwin\bin, where 'x' is the drive on which you have
+installed the cygwin distribution.
+C:\DEV\testing>
+
+I've been unable to resolve this problem, although several folks on the cygwin
+mailing list offered good suggestions.  I'm going to limit support for Windows
+systems with this and future versions of Asleap until I'm able to resolve
+this issue.  Sorry.

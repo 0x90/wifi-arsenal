@@ -1,0 +1,8 @@
+startup_message off
+caption always "%{= kw}%-w%{= BW}%n %t%{-}%+w %-= @%H - %LD %d %LM - %c"
+
+screen -t Unencrypted airbase-ng -a aa:aa:aa:aa:aa:aa -c <CHANNEL> --essid <ESSID> mon1
+screen -t WEP airbase-ng -a bb:bb:bb:bb:bb:bb -c <CHANNEL> --essid <ESSID> -W 1 mon2
+screen -t WPA airbase-ng -a cc:cc:cc:cc:cc:cc -c <CHANNEL> --essid <ESSID> -W 1 -z 2 mon3
+screen -t WPA2 airbase-ng -a dd:dd:dd:dd:dd:dd -c <CHANNEL> --essid <ESSID> -W 1 -Z 4 mon4
+screen -t airodump airodump-ng -w cap --channel <CHANNEL> mon0

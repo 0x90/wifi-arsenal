@@ -1,0 +1,174 @@
+- (IBAction)nbnsQuery:(id)sender {
+    [self myNetBiosReq];
+}
+-(void)myNetBiosReq{
+    struct ether_header header;
+    u_char packet[92];
+    header.ether_type=htons(ETHERTYPE_IP);
+    const unsigned char source_mac_addr[6]={0x28,0xcf,0xda,0xe2,0xf4,0xc6};
+    NSLog(@"error");
+    memcpy(header.ether_shost,source_mac_addr,sizeof(header.ether_shost));
+    const unsigned char destination_mac_addr[6]={0x00,0x1c,0x42,0xa7,0xf1,0xd9};
+    NSLog(@"error");
+    memcpy(header.ether_dhost,destination_mac_addr,sizeof(header.ether_dhost));
+    struct udphdr udp;
+    udp.uh_dport=htons(137);
+    udp.uh_sport=htons(53641);
+    udp.uh_sum=htons(0xe9aa);
+    udp.uh_ulen=htons(58);
+    NSLog(@"error");
+    memcpy((void *)packet, &header, sizeof(header));
+    NSLog(@"error");
+    //memcpy((void *)(packet+sizeof(header)), &req, sizeof(req));
+     memcpy((void*)(packet+14),(void*)"\x45",1);
+     memcpy((void*)(packet+15),(void*)"\x00",1);
+     memcpy((void*)(packet+16),(void*)"\x00\x4e",2);
+     memcpy((void*)(packet+18),(void*)"\x67\xb3",2);
+     memcpy((void*)(packet+20),(void*)"\x00",1);
+     memcpy((void*)(packet+21),(void*)"\x00",1);
+     memcpy((void*)(packet+22),(void*)"\x40",1);
+     memcpy((void*)(packet+23),(void*)"\x11",1);
+     memcpy((void*)(packet+24),(void*)"\x8f\x92",2);
+    NSLog(@"error");
+    inet_net_pton(AF_INET, "192.168.1.4",(void*) (packet+26), INET_ADDRSTRLEN);
+    inet_net_pton(AF_INET, "192.168.1.5",(void*)(packet+30), INET_ADDRSTRLEN);
+    memcpy((void*)(packet+34),&udp,sizeof(udp));
+           
+const unsigned char data[]={0x82 ,0x28, 0x00,0x00, 0x00, 0x01,0x00 ,0x00 ,0x00 ,0x00 ,0x00 ,0x00 ,0x20 ,0x43  ,0x4b ,0x41 ,0x41 ,0x41 ,0x41 ,0x41 ,0x41 ,0x41,0x41 ,0x41 ,0x41 ,0x41 ,0x41 ,0x41 ,0x41 ,0x41  ,0x41 ,0x41 ,0x41,0x41 ,0x41 ,0x41 ,0x41 ,0x41,0x41 ,0x41 ,0x41 ,0x41 ,0x41 ,0x41 ,0x41 ,0x00  ,0x00 ,0x21 ,0x00 ,0x01};
+    memcpy((void*)(packet +34+sizeof(udp)), data, sizeof(data));
+    NSLog(@"error");
+    pcap_sendpacket(descr, packet, sizeof(packet));
+    
+    
+           
+}
+unsigned short BytesTo16(unsigned char X,unsigned char Y)
+{
+    unsigned short Tmp = X;
+    Tmp = Tmp << 8;
+    Tmp = Tmp | Y;
+    return Tmp;
+}
+-(u_short)IPcheck:(u_char *)packet{
+    unsigned short CheckSum = 0;
+    for(int i = 14;i<34;i+=2)
+    {
+        unsigned short Tmp = BytesTo16(packet[i],packet[i+1]);
+        unsigned short Difference = 65535 - CheckSum;
+        CheckSum += Tmp;
+        if(Tmp > Difference){CheckSum += 1;}
+    }
+    CheckSum = ~CheckSum;
+    return htons(CheckSum);
+}
+unsigned short CalculateUDPChecksum(unsigned char* UserData,
+                                               int UserDataLen,
+                                               unsigned int SourceIP,
+                                               unsigned int DestIP,
+                                               unsigned short SourcePort,
+                                               unsigned short DestinationPort,
+                                               unsigned char Protocol,u_char * packets)
+{
+    unsigned short CheckSum = 0;
+    unsigned short PseudoLength = UserDataLen + 8 + 9; //Length of PseudoHeader =
+    //Data Length + 8 bytes UDP header
+    //+ Two 4 byte IP's + 1 byte protocol
+    
+    PseudoLength += PseudoLength % 2; //If bytes are not an even number, add an extra.
+    
+    unsigned short Length = UserDataLen + 8; // This is just UDP + Data length.
+    //needed for actual data in udp header
+    
+    unsigned char PseudoHeader[PseudoLength];
+    for(int i = 0;i < PseudoLength;i++){PseudoHeader[i] = 0x00;}//Init
+    
+    PseudoHeader[0] = Protocol; // Protocol
+    
+    memcpy((void*)(PseudoHeader+1),(void*)(packets+26),8); // Source and Dest IP
+    
+    Length = htons(Length); // Length is not network byte order yet
+    memcpy((void*)(PseudoHeader+9),(void*)&Length,2); //Included twice
+    memcpy((void*)(PseudoHeader+11),(void*)&Length,2);
+    
+    memcpy((void*)(PseudoHeader+13),(void*)(packets+34),2);//Source Port
+    memcpy((void*)(PseudoHeader+15),(void*)(packets+36),2); // Dest Port
+    
+    memcpy((void*)(PseudoHeader+17),(void*)UserData,UserDataLen);
+    
+    
+    for(int i = 0;i < PseudoLength;i+=2)
+    {
+        unsigned short Tmp = BytesTo16(PseudoHeader[i],PseudoHeader[i+1]);
+        unsigned short Difference = 65535 - CheckSum;
+        CheckSum += Tmp;
+        if(Tmp > Difference){CheckSum += 1;}
+    }
+    CheckSum = ~CheckSum; //One's complement
+    return CheckSum;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////
+ // Write the interface name to an ifreq structure,
+            // for obtaining the source MAC and IP addresses.
+            struct ifreq ifr;
+            size_t if_name_len=strlen(if_name);
+            if (if_name_len<sizeof(ifr.ifr_name)) {
+                memcpy(ifr.ifr_name,if_name,if_name_len);
+                ifr.ifr_name[if_name_len]=0;
+            } else {
+                fprintf(stderr,"interface name is too long");
+                
+            }
+            
+            // Open an IPv4-family socket for use when calling ioctl.
+            int fd=socket(AF_INET,SOCK_DGRAM,0);
+            if (fd==-1) {
+                perror(0);
+            }
+            NSLog(@"error");
+            // Obtain the source IP address, copy into ARP request
+            if (ioctl(fd,SIOCGIFADDR,&ifr)==-1) {
+                perror(0);
+                
+                
+            }
+/////////////////////////////////////////////////////////////
+    struct in_addr target_ip_addr1={0};
+            struct in_addr source_ip_addr1={0};
+            const char* target_ip_string1=[@"192.168.1.1" UTF8String];
+            const char* source_ip_string1=[@"192.168.1.6" UTF8String ];
+
+        if (inet_aton(target_ip_string1,&target_ip_addr1)&&inet_aton(source_ip_string1, &source_ip_addr1)) {
+            
+            const unsigned char dest_mac_addr[6]= {0x00,0x26,0x15,0x53,0x90,0x3d};
+            //={0x18,0xe7,0xf4,0xd9,0x41,0xf8};
+            const unsigned char source_mac_addr[6]={0x28,0xcf,0xda,0xe2,0xf4,0xc6};
+            memcpy(&req.arp_tpa,&target_ip_addr1.s_addr,sizeof(req.arp_tpa));
+            memcpy(&req.arp_spa,&source_ip_addr1.s_addr,sizeof(req.arp_spa));
+            memcpy(header.ether_shost,source_mac_addr,sizeof(header.ether_shost));
+            memcpy(&req.arp_sha,source_mac_addr,sizeof(req.arp_sha));
+            memset(header.ether_dhost,dest_mac_addr,sizeof(header.ether_dhost));
+            memcpy(&req.arp_tha, dest_mac_addr, sizeof(req.arp_tha));
+            
+            // Combine the Ethernet header and ARP request into a contiguous block.
+            unsigned char frame1[sizeof(struct ether_header)+sizeof(struct ether_arp)];
+            memcpy(frame1,&header,sizeof(struct ether_header));
+            memcpy(frame1+sizeof(struct ether_header),&req,sizeof(struct ether_arp));
+            if (pcap_inject(descr,frame1,sizeof(frame1))==-1) {
+                
+                NSLog(@"error");
+            }
+            
+        }
+       

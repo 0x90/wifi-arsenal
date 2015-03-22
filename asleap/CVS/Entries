@@ -1,0 +1,29 @@
+/COPYING/1.1.1.1/Wed Jul 16 09:22:16 2003//
+/INSTALL/1.3/Sat Jul 31 02:38:15 2004//
+/README/1.8/Sat Jul 31 02:38:15 2004//
+/README.WIN32/1.3/Sun Mar 28 15:37:02 2004//
+/airjack.h/1.1.1.1/Wed Jul 16 09:22:16 2003//
+/ajinject.c/1.4/Thu Sep 30 11:41:35 2004//
+/ajinject.h/1.2/Sun Mar 28 15:37:02 2004//
+/apeek.c/1.5/Sat Jul 31 02:38:15 2004//
+/apeek.h/1.3/Tue Apr 13 02:57:21 2004//
+/md4.c/1.1.1.1/Wed Jul 16 09:22:16 2003//
+/md4.h/1.1.1.1/Wed Jul 16 09:22:16 2003//
+/utils.c/1.5/Sat Jul 31 02:38:15 2004//
+/utils.h/1.7/Sat Jul 31 02:38:15 2004//
+D/cygwin////
+D/data////
+D/scripts////
+/TODO/1.22/Thu Nov  4 12:53:33 2004//
+/common.c/1.4/Fri Nov  5 13:24:08 2004//
+/genkeys.c/1.12/Thu Nov  4 12:51:50 2004//
+/FEATURES/1.4/Mon Nov 29 19:41:07 2004//
+/Makefile/1.14/Mon Nov 29 15:34:06 2004//
+/THANKS/1.2/Mon Nov 29 19:35:34 2004//
+/asleap.c/1.27/Mon Nov 29 19:56:33 2004//
+/asleap.h/1.15/Mon Nov 29 19:56:33 2004//
+/common.h/1.12/Mon Nov 29 19:56:33 2004//
+/makefile.cygwin/1.4/Mon Nov 29 19:55:54 2004//
+/version.h/1.4/Mon Nov 29 19:56:33 2004//
+/sha1.c/0/Initial sha1.c//
+/sha1.h/0/Initial sha1.h//

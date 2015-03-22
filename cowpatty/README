@@ -1,0 +1,124 @@
+coWPAtty - Brute-force dictionary attack against WPA-PSK.
+
+Copyright(c) 2004, Joshua Wright <jwright@hasborg.com>
+
+$Id: README,v 1.2 2004/11/02 11:49:03 jwright Exp $
+
+--------------------------------------------------------------------------------
+
+INTRO
+
+Right off the bat, this code isn't very useful.  The PBKDF2 function makes
+4096 SHA-1 passes for each passphrase, which takes quite a bit of time.  On
+my Pentium II development system, I'm getting ~4 passphrases/second.
+The SHA-1 code I'm using has been optimized to the best of my ability (which
+isn't saying that much), but I doubt if it would be possible to optimize it
+such that the tool experiences an exponential performance increase.
+
+However, if you are auditing WPA-PSK networks, you can use this tool to
+identify weak passphrases that were used to generate the PMK.  Supply a
+libpcap capture file that includes the 4-way handshake, a dictionary file of
+passphrases to guess with, and the SSID for the network:
+
+$ ./cowpatty -r eap-test.dump -f dict -s somethingclever
+coWPAtty 2.0 - WPA-PSK dictionary attack. <jwright@hasborg.com>
+
+Collected all necessary data to mount crack against passphrase.
+Loading words into memory, please be patient ... Done (10201 words).
+Starting dictionary attack.  Please be patient.
+[1000] [2000] [3000] [4000] 
+The PSK is "family movie night".
+
+4087 passphrases tested in 59.05 seconds:  69.22 passphrases/second
+$
+
+The files "dict" and "eap-test.dump" are included with this distribution
+for testing purposes.
+
+This tool can also accept dictionary words from STDIN, allowing us to utilize
+a tool such as John the Ripper to create lots of word permutations from a
+dictionary file:
+
+$ john -wordfile:dictfile -rules -session:johnrestore.dat -stdout:63 | \
+   cowpatty -r eap-test.dump -f - -s somethingclever
+
+In the default configuration of John the Ripper, common permutations of
+dictionary words will be sent as potential passwords to coWPAtty.  For
+example, here is a list of the words John will create from the input word
+"password":
+
+jwright@mercury:~$ echo password >word
+jwright@mercury:~$ john -session:/tmp/delme -wordfile:word -rules -stdout
+password
+Password
+passwords
+password1
+Password1
+drowssap
+1password
+PASSWORD
+password2
+password!
+password3
+password7
+password9
+password5
+password4
+password8
+password6
+password0
+password.
+password?
+psswrd
+drowssaP
+Drowssap
+passworD
+2password
+4password
+Password2
+Password!
+Password3
+Password9
+Password5
+Password7
+Password4
+Password6
+Password8
+Password.
+Password?
+Password0
+3password
+7password
+9password
+5password
+6password
+8password
+Passwords
+passworded
+passwording
+Passworded
+Passwording
+words: 49  time: 0:00:00:00 100%  w/s: 49.00  current: Passwording
+jwright@mercury:~$
+
+John the Ripper is available at http://www.openwall.com/john/.
+
+
+REFERENCE
+
+See Robert Moskowitz's paper "Weakness in Passphrase Choice in WPA Interface"
+for more information on WPA-PSK attacks at 
+http://wifinetnews.com/archives/002452.html.
+
+
+THANKS
+
+My sincere thanks to dragorn for merging in the assembly SHA1 code, and to
+Randy Chou for advice on optimizing the pbkdf2 function.
+
+
+QUESTIONS, COMMENTS, CONCERNS
+
+Please contact jwright@hasborg.com with any questions, comments or concerns.
+My PGP key is located at http://home.jwu.edu/jwright/pgpkey.htm.
+

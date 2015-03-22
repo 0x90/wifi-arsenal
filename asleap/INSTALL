@@ -1,0 +1,15 @@
+INSTALLATION
+
+Simply running "make" will compile the genkeys and asleap tools.  If you want to
+actively deauthenticate users on wireless networks, you will need the AirJack
+drivers from http://802.11ninja.net/.  Reading from a live interface or from a
+capture file requires the interface/capture to be in RFMON mode 
+(DLT_IEEE802_11).  You can also supply an AiroPeek NX capture file if you have
+that tool available (just pass the filename to asleap with the "-r" flag).
+
+
+QUESTIONS, COMMENTS, CONCERNS
+
+Please contact jwright@hasborg.com with any questions, comments on concerns.
+My PGP key is located at http://home.jwu.edu/jwright/pgpkey.htm.
+

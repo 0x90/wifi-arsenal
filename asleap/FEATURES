@@ -1,0 +1,40 @@
+A quick list of features:
+
+New in version 1.4:
+
++ Recovers weak PPTP passwords (new!).
++ Handles dictionary and genkeys files up to 4 TB in size.
++ Can read live from any wireless interface in RFMON mode (DLT_IEEE802_11,
+  DLT_TZSP).
++ Can read live from any network interface in Ethernet or Ethernet-
+  compatibility mode (DLT_EN10MB).  This was intended to let Windows users
+  capture LEAP transactions without RFMON support, but is also useful to
+  capture PPTP transactions on wireless or wired networks.
++ Added getopt to genkeys for advanced command-line parameter support.
++ Can read from STDIN with genkeys, useful to combining genkeys with John the
+  Ripper to create custom dictionaries.
++ Support for a standard dictionary attack without genkeys databases (-W).
+  Useful for trying to recover a password from a transaction that isn't in
+  your dictionary file when you have a lot of time, or little disk space.
+
+
+Features from version 1.0:
+
++ Recovers weak LEAP passwords.
++ Can monitor a single channel, or perform channel hopping to look for
+  targets.
++ Will actively deauthenticate users on LEAP networks, forcing them to
+  reauthenticate.  This makes the capture of LEAP passwords very fast.
++ Will only deauth users who have not already been seen, doesn't waste time
+  on users who are not running LEAP.
++ Can read from stored libpcap files in RFMON mode (DLT_IEEE802_11), 
+  or AiroPeek NX files (1.X or 2.X files).
++ Uses a dynamic database table and index to make lookups on large
+  files very fast.  Reduces the worst-case search time to .0015% as opposed
+  to lookups in a flat file.
++ Can write *just* the LEAP exchange information to a libpcap file.  This
+  could be used to capture LEAP credentials with a device short on disk
+  space (like an iPaq), and then process the LEAP credentials stored in the
+  libpcap file on a system with more storage resources.
++ Partial functionality on Windows, reading from supported capture files.
++ Probably other stuff I forgot, check the code or ask me.
