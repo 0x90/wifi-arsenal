@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/adambregenzer/libcowpatty
+	branch = master
+	commit = 51e2ef2694cfc434cbbfbed7b320e3325a13548c
+	parent = a63fcbace6bf7749d127e60321acb588f969a2e3
+	cmdver = 0.2.0
