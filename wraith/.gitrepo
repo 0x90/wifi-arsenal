@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/wraith-wireless/wraith
+	branch = master
+	commit = 716ee9e8a6e4a54cdd13f4b9e0443ffd95d2d037
+	parent = 0fc49f8d5d88f244ffb75fa44fd3708efba0c70e
+	cmdver = 0.2.0
