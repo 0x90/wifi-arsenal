@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/DanMcInerney/wifijammer
+	branch = master
+	commit = c188ccdc9abd682c3cc85ba9604f14e59370c2e1
+	parent = f1e2d48d7efa48874fd7bdcbc92f52cac3ea0b61
+	cmdver = 0.2.0
