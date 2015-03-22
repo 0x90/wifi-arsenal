@@ -1,0 +1,65 @@
+<!DOCTYPE HTML> 
+<html> 
+<head> 
+	<title>WARCARRIER Wardriving Map</title> 
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> 
+	<style type="text/css"> 
+		.top{
+			width:100%
+			text-align:left;
+			padding-left:100px;
+		}
+		@font-face{
+        		font-family: post;
+        		src: url('../../includes/html/style/terminus.ttf')
+		}
+      		body { 
+			height: 100%; 
+			margin: 10px; 
+			padding: 0; 
+			background: #000;
+			color:#729fcf;
+			font-family:post;
+			font-weight:bold;
+		}
+      		#map_canvas { 
+			height:500px; 
+			width:750px;  
+			margin-top:10px;
+			border: thin solid #729fcf;
+			padding:10px;
+ 
+		}
+		.infowindow{
+			font-family:post;
+			color:#729fcf;
+			background:#000;
+			font-size:15px;
+			padding:2px;
+			text-align:left;
+		}
+		.borderline{
+			background:#101010;
+			border: thin solid #729fcf;
+			padding: 10px;
+			width: 750px;
+			margin-top:10px;
+			text-align:left;
+		}
+		a{
+			color:#729fcf;
+			cursor:pointer;
+		}
+    	</style> 
+    	<script type="text/javascript"
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhrS1Ufbopg0fnC_7A6405vWGGs1XiIH4&sensor=false"> 
+    	</script> 
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=weather&sensor=false"> 
+	</script> 
+	<script type="text/javascript"> 
+		var t = google.maps.MapTypeId.TERRAIN;
+		var r = google.maps.MapTypeId.ROADMAP;
+		var h = google.maps.MapTypeId.HYBRID;
+		var s = google.maps.MapTypeId.SATELLITE;
+		var map; // now a global object
+		var type = '';

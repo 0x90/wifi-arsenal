@@ -1,0 +1,45 @@
+#!/usr/bin/perl -w
+use strict;
+open(UBTS,"spectool_raw|grep ': -[0-9]'|");
+while(<UBTS>){
+	my @bars= ( # from -100dBm to -70dBm (Reset Bars);
+		"","","","","","","","","","",
+		"","","","","","","","","","",
+		"","","","","","","","","","",
+	); # [0] = 50, [1] = 60, [4] = 90 
+	my $l = $_;
+	$l =~ s/Ubert.*ne [0-9]+: //;
+	chomp $l;
+	my @lvls = split(/ /,$l);
+	for(my $i=0;$i<=$#lvls;$i++){
+		if($lvls[$i] =~ m/[0-9]/){
+			$lvls[$i] = abs($lvls[$i]); # drop the sign
+			$lvls[$i] = 100 - $lvls[$i];
+		}else{
+			$lvls[$i] = 0; # ?
+		}
+		if($lvls[$i] < 0){ # apperently abs doesnt work sometimes...
+			$lvls[$i] = 0;
+		}
+		for(my$j=0;$j<=$#bars;$j++){ 
+			if($bars[$j] !~ m/MHz/){
+				if($j<=($lvls[$i]-1)){
+					$bars[$j].="P";
+				}else{
+					$bars[$j].=" ";
+				}
+			}
+		}
+	}
+	my $graph = "";
+	for(my$i=$#bars;$i>=0;$i--){
+		$graph .= $bars[$i]."\n";
+	}
+		# print the graph
+	open(UBT,">ubt.raw"); # ubertooth RAW data for "Recording"
+	print UBT $l . "\n";
+	close(UBT);
+	open(FLE,">ubt.out"); # ubertooth output
+	print FLE $graph;
+	close(FLE);
+}	
