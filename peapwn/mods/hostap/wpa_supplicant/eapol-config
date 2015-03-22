@@ -1,0 +1,9 @@
+network={
+eap=PEAP
+eapol_flags=0
+key_mgmt=IEEE8021X
+identity="steve"
+password="testing"
+ca_cert="/home/netphyx/Unief/2master/MASTERPROEF/mods/freeradius-server/raddb/certs/ca.pem"
+phase2="auth=MSCHAPV2"
+}
