@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/hack1thu7ch/WAPMap
+	branch = master
+	commit = 1f21ec57a86cc8f5507a94457224d2220451e793
+	parent = c2e50481c69c12d4089746cba806a62137a3b3a0
+	cmdver = 0.2.0
