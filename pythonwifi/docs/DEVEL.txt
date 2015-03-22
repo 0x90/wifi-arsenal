@@ -1,0 +1,93 @@
+What is implemented?
+--------------------
+
+    - pyiwconfig: 
+
+            read                                write
+            --------------------------------||--------
+            Accesspoint MAC                     Mode
+            Bitrate
+            available Bitrates
+            available Channels/Frequency
+            ESSID
+            Encryption
+            Frequency
+            Mode
+            WirelessName
+            Powermanagement
+            Retrylimit
+            RTS
+            Sensitivity
+            TXPower
+            Statistics
+
+    - pyiwlist: prints detailed information about:
+
+            o Bitrates
+            o Channels/Frequency
+            o Scanning support!
+
+Python Wireless developers:
+---------------------------
+So, you want to know what the other classes doing? Well, lets talk about
+the wireless tools at first. If you don't know anything about C, forget
+the following information. Learn C first or at least read some tutorials
+about C (I don't know C very well, but know how to handle all this C
+stuff which works for me ;).
+
+The wireless tools store the request in a union which is passed with a
+pointer to the kernel by a system call. The union is defined in the
+wireless.h and holds the following structures:
+
+union iwreq_data
+{
+  /* Config - generic */
+  char    name[IFNAMSIZ];
+  /* Name : used to verify the presence of  wireless extensions.
+   * Name of the protocol/provider... */
+
+  struct iw_point essid;    /* Extended network name */
+  struct iw_param nwid;   /* network id (or domain - the cell) */
+  struct iw_freq  freq;   /* frequency or channel :
+           * 0-1000 = channel
+           * > 1000 = frequency in Hz */
+
+  struct iw_param sens;   /* signal level threshold */
+  struct iw_param bitrate;  /* default bit rate */
+  struct iw_param txpower;  /* default transmit power */
+  struct iw_param rts;    /* RTS threshold threshold */
+  struct iw_param frag;   /* Fragmentation threshold */
+  __u32   mode;   /* Operation mode */
+  struct iw_param retry;    /* Retry limits & lifetime */
+
+  struct iw_point encoding; /* Encoding stuff : tokens */
+  struct iw_param power;    /* PM duration/timeout */
+  struct iw_quality qual;   /* Quality part of statistics */
+
+  struct sockaddr ap_addr;  /* Access point address */
+  struct sockaddr addr;   /* Destination address (hw/mac) */
+
+  struct iw_param param;    /* Other small parameters */
+  struct iw_point data;   /* Other large parameters */
+};
+
+Well, anyway -- the interesting thing here is, that I need to build a
+C struct in Python, where the kernel can write his information in. 
+For example the ESSID (relevant methods are: pack_wrq and iw_get_ext in
+Iwstruct):
+
+    First, we build a buffer with a buffersize of 32
+    byte:
+        
+        buff = array.array('c', '\0'*buffsize)
+    
+    Then, the system call needs the address of this buffer and the
+    length, which can be optained by a method on the buffer. 
+    This information need to be packed in C like style by 'struct':
+
+        caddr_t, length = buff.buffer_info()
+        s = struct.pack('Pi', caddr_t, length)
+
+    Then, the request can be made by specifying the interface name,
+    which is passed as a second argument to the ioctl method.
+

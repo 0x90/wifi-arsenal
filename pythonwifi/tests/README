@@ -1,0 +1,3 @@
+I wrote these tests to improve the quality of the libraries. Most of
+them are hardware dependend, so they may not work with your hardware and
+therefore fail.

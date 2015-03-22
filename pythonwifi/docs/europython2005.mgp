@@ -1,0 +1,23 @@
+
+%include "default.mgp"
+motivation:
+    - collection of wireless statistics involves the use of executing
+      external programs and parsing the output -> depends on the
+      output formating
+      -> external program dependencies
+
+    - spare time project -> investing not much time
+    - i'm not a kernel hacker -> educational project for me
+
+pywifi:
+    - implementation of the wireless tools for linux in pure python
+    - does system calls to the linux kernel and parses the output
+
+    current development status:
+        o can read most of the wireless parameters
+        o 2 parameters can be set
+        o scaning not possible
+
+    whats missing:
+        o setting wireless parameters (ESSID)
+        o scanning

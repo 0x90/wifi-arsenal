@@ -1,0 +1,33 @@
+=======
+Changes
+=======
+
+pythonwifi 0.6.0 release
+------------------------
+    - various improvements to WEXT modules and examples
+    - updates to URLs and documentation
+
+pythonwifi 0.5.0 release
+------------------------
+    - make licensing on each file more explicit
+    - added documentation
+    - fuller implementation of the wireless extensions 22
+    - bug fixes
+
+pythonwifi 0.3.1 release
+------------------------
+    - bugfixes
+    - mostly code cleanups
+
+
+pythonwifi 0.3 release
+----------------------
+    - renamed to python-wifi and package cleanup
+    - included patch submitted by Mike Auty <m.auty@softhome.net>, which
+      adds scanning functionality
+
+PyWifi 0.2 release
+-------------------
+    - big refactoring, most low level code moved to Iw* classes
+    - little documentation
+    - able to set the wireless mode

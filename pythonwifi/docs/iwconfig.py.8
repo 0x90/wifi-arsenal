@@ -1,0 +1,143 @@
+.\" Author: Sean Robinson <seankrobinson@gmail.com>
+.\" iwconfig.py.8
+.\"
+.TH IWCONFIG.py 8 "16 December 2009" "Python WiFi" "Linux Programmer's Manual"
+.\"
+.\" NAME part
+.\"
+.SH NAME
+iwconfig.py \- configure a wireless network interface via Python
+.\"
+.\" SYNOPSIS part
+.\"
+.SH SYNOPSIS
+.BI "iwconfig.py [" interface ]
+.br
+.BI "iwconfig.py " interface " [essid " X "] [nwid " N "] [mode " M "] [freq " F "]
+.br
+.BI "                   [channel " C ] [sens " S "] [ap " A "] [nick " NN ]
+.br
+.BI "                   [rate " R "] [rts " RT "] [frag " FT "] [txpower " T ]
+.br
+.BI "                   [enc " E "] [key " K "] [power " P "] [retry " R ]
+.br
+.BI "                   [modu " M "] [commit]
+.br
+.BI "iwconfig.py --help"
+.br
+.BI "iwconfig.py --version"
+.\"
+.\" DESCRIPTION part
+.\"
+.SH DESCRIPTION
+.B iwconfig.py
+intends to be a drop-in replacement for
+.IR iwconfig (8),
+but uses the pythonwifi module to implement its functionality in pure Python.
+See the
+.IR iwconfig (8)
+man page for more detail about what
+.B iwconfig.py
+can do.
+.PP
+But, at this time, this program does not work well (if at all).
+.PP
+The compatitibilty of specific operations
+.B iwconfig.py
+has with
+.IR iwconfig (8)
+are listed below.
+.\"
+.\" COMPATIBILITY part
+.\"
+.SH COMPATIBILITY
+.TP
+.BR essid
+Not working.
+
+.TP
+.BR nwid
+Not working.
+
+.TP
+.BR nick [name]
+Not working.
+
+.TP
+.BR mode
+Not working.
+
+.TP
+.BR freq / channel
+Not working.
+
+.TP
+.BR ap
+Not working.
+
+.TP
+.BR rate / bit [rate]
+Not working.
+
+.TP
+.BR txpower
+Not working.
+
+.TP
+.BR sens
+Not working.
+
+.TP
+.BR retry
+Not working.
+
+.TP
+.BR rts [_threshold]
+Not working.
+
+.TP
+.BR frag [mentation_threshold]
+Not working.
+
+.TP
+.BR key / enc [ryption]
+Not working.
+
+.TP
+.BR power
+Not working.
+
+.TP
+.BR modu [lation]
+Not working.
+
+.TP
+.BR commit
+Not working.
+
+.\"
+.\" AUTHOR part
+.\"
+.SH AUTHOR
+Sean Robinson \- seankrobinson@gmail.com
+.\"
+.\" COPYRIGHT part
+.\"
+.SH COPYRIGHT
+Portions Copyright 1996-2006 Jean Tourrilhes
+.br
+Copyright 2004-2005 Roman Joost
+.br
+Copyright 2009 Sean Robinson
+.\"
+.\" FILES part
+.\"
+.SH FILES
+.I /proc/net/dev,
+.I /proc/net/wireless
+.\"
+.\" SEE ALSO part
+.\"
+.SH SEE ALSO
+.BR iwconfig (8),
+.BR iwlist.py (8),

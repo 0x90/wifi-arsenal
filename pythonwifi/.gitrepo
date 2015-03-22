@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = http://git.tuxfamily.org/pythonwifi/pythonwifi.git
+	branch = master
+	commit = 4a92d936bc9b052d065c0d8a49a306e1a8daf11d
+	parent = 244628d12d3675acbb91e23c36212e7a9b62989f
+	cmdver = 0.2.0

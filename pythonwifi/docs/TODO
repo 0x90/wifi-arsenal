@@ -1,0 +1,7 @@
+TODO
+----
+
+- increase exception use
+- the whole wireless extensions, of course
+- use NETLINK (cfg80211) interface in addition to Wireless Ext.
+- better error control if something goes wrong
