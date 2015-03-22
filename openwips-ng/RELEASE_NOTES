@@ -1,0 +1,51 @@
+OpenWIPS-ng (www.OpenWIPS-ng.org)
+---------------------------------
+
+OpenWIPS-ng is an open source and modular 
+Wireless IPS (Intrusion Prevention System). 
+
+It is composed of three parts:
+ * Sensor(s): 
+    "Dumb" devices who capture the wireless traffic 
+    and send it to the server for analysis.
+    Also responds to attacks.
+ * Server:
+    Aggregates the data from all sensors, analyze it
+    and respond to attacks. It also logs and alert in
+    case of an attack.
+ * Interface:
+    GUI to manage the server and display informations
+    about the threats on your wireless network(s).
+
+
+Limitations
+- The interface is not available yet.
+- It doesn't go into the background yet (will be implemented for v1.0 final).
+- Limited to one sensor connection (it will accept more but the result is unexpected)
+- Sensor and server CPU architecture must be the same (will be fixed for v1.0 final).
+- The sensor/server doesn't respond to threats yet (will be implemented for v1.0 final).
+- There is a limited number of plugins. More will come.
+- Recommended to use with a mac80211 driver (others will be implemented for v1.0 final).
+- Traffic between sensor and server is not encrypted (yet).
+
+Others things:
+- Default user and password for the sensor is sensor1/sensor1 (it goes without saying it
+  highly recommended to change it). Use -m to generate the hash and update the configuration file.
+- If you want to develop a plugin, there is a parameter that can check if the plugin is valid: -p
+  The documentation is in server/plugins.c.
+- The server configuration file can be validated using -c
+- IRC: #OpenWIPS-ng on freenode.net
+
+Bugs
+- It should be stable but since it is a beta version and hasn't been fully tested on
+  a large number of different machines, expect bugs.
+- How to report?
+  * First, check if it hasn't been fixed in SVN
+  * Recompile with 'make DEBUG=normal'. It will record all the frames 
+    to a capture files and display more information on the screen.
+  * If possible, run it with valgrind (default options are enough).
+  * Include 'uname -a' output for both server and server (only once if they're on the same machine).
+  * Don't forget to specify what revision if you are using. It is very important.
+- The more information you provide, the more chance I have to find the bug quickly and fix it.
+- If you can fix it, it's even better. I just need a patch done with 'diff -ur' or 'svn diff'. Don't forget to sign off the patch. 
+- A bug tracker will be available soon. In the meantime, please email me at tdotreppe@openwips-ng.org or find me on IRC (Mister_X)

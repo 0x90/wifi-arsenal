@@ -1,0 +1,36 @@
+.TH OPENWIPS-NG-SERVER 1 "JANUARY 2012" "Version 0.1 BETA"
+
+.SH NAME
+openwips-ng-server - Server part of OpenWIPS-ng, a 802.11 wireless intrusion prevention system.
+
+.SH SYNOPSIS
+.B openwips-ng-server [options]
+
+
+.SH DESCRIPTION
+.BI openwips-ng-server
+handle the analysis process, threat detection and handling, logging and alert.
+
+.SH OPTIONS
+.TP
+.I -p, --check-plugin <plugin>
+Checks if all functions for that plugin are present and reports back then exit.
+.TP
+.I -c, --check-config <config>
+Specifies the configuration file to be loaded (if not specified, it will use /usr/local/etc/openwips-ng/openwips-ng-server.conf)
+.TP
+.\ .I -d, --daemonize
+.\ Run in background.
+.TP
+.I -v, --version
+Display version and exit.
+.TP
+.I -h, --help
+Shows the help screen.
+
+.SH AUTHOR
+This manual page was written by Steve Cloutier <scloutier@openwips-ng.org> and Thomas d'Otreppe <tdotreppe@openwips-ng.org>.
+Permission is granted to copy, distribute and/or modify this document under the terms of the GNU General Public License, Version 2 or any later version published by the Free Software Foundation
+.SH SEE ALSO
+.br
+.B openwips-ng(1)

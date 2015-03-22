@@ -1,0 +1,40 @@
+v0.1:
+* Write documentation
+  * Website
+  * Manpages
+* Attack detection and plugins:
+  * Deauth attackers
+  * Ban attacker for a specific time
+* OpenWIPS-ng sensor: convert server connection to new system
+* Common: Move logging system to common and use that for logging everything
+* Database for logging and management (or use the file system to do that)
+* Allow user connection to manage the WIPS
+* Replay detection attack
+* Build server on windows (cygwin at least)
+* Deamonize
+* Fix SHA1 (result from sha1sum and OpenSSL are different but we need to figure it out)
+
+v0.1.1:
+* Rewrite attack handling (and plugins) to handle better multiple attacks
+* Handle prism headers
+* Handle PPI headers
+* Windows sensor (Airpcap - require PPI headers)
+
+v0.2
+* Basic prevention (rogue access point, etc.)
+* Handle multiple sensor: frame reassembly
+* Channel hopping
+* Encrypt communications
+* Add plugins (frame analysis, alert and logging)
+
+v0.3
+* Real remote PCAP (compatible with Wireshark)
+* Database storage (more stuff)
+* More plugins (database, script wrapper)
+
+v1.0
+* Rewrite in C++
+
+v1.1
+* Improve performance
+* Improve stability
