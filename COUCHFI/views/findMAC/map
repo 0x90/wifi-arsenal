@@ -1,0 +1,5 @@
+function(doc) {
+    if(doc.networks.length>0){
+        doc.networks.forEach(function(m){emit(m.SSID,m.MAC)})
+    }
+}

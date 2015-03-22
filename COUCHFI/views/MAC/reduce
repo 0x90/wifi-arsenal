@@ -1,0 +1,16 @@
+function (key, values){
+    function red(a,b){
+            var wa = Math.pow(a.strength,2);
+            var wb = Math.pow(b.strength,2);
+            var qa=wa/(wa+wb);
+            var qb=wb/(wa+wb);
+            var r={SSID:a.SSID,MAC:a.MAC,geometry:{"type": "Point"}};
+            r.geometry.coordinates=a.geometry.coordinates.map(function(v,i){
+                return (v*qa)+(b.geometry.coordinates[i]*qb);
+            });
+            r.strength=(a.strength*qa)+(b.strength*qb);
+            return r;
+        
+    }
+    return values.reduce(red);
+}

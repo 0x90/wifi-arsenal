@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset='utf-8'/>
+
+    <style>
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0;}
+      #map{ height: 100% }
+			#tabs{
+				position:absolute;
+			  z-index:10;
+  			margin-left:75px;
+  			margin-top:5px;
+  			padding:0;
+  			font-size:12px;
+			}
+    </style>
+   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/smoothness/jquery-ui.css"/>
+
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4.2/leaflet.css" />
+    <!--[if lte IE 8]>
+      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4.2/leaflet.ie.css" />
+    <![endif]-->
+    <script src="http://cdn.leafletjs.com/leaflet-0.4.2/leaflet.js"></script>
+   
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+ <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+    <title>
+     Wifi
+    </title>
+  </head>
+  <body><div id="tabs">
+    <ul>
+    <li><a href="#search">Search</a></li>
+		</ul> 
+		<div id="search"><form id="mac"><input type="text" class="tbox" id="gm" placeholder="Enter a MAC address" />
+  <input type="submit" value="lookup" id="getMAC"/>
+  <input type="reset" value="Reset" id="resetMAC"/></form>
+        </div></div>
+    <div id="map"></div>
+
+    <script type="text/javascript" src="script.js"></script>
+  </body>
+</html>
