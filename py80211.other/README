@@ -1,0 +1,16 @@
+Introduction
+------------
+py80211 provides a high-level API to interact with the kernel
+provided nl80211 interface.
+
+This project relies on Python support provided by libnl. This
+means this project will likely result in patches on libnl. The
+repository information for libnl can be found at:
+
+https://github.com/tgraf/libnl
+
+Requirements
+------------
+- python
+- pycparser
+- libnl-3 python wrappers (incl. genl)
