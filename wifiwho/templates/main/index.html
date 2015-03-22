@@ -1,0 +1,14 @@
+<html>
+<body>
+<table border="1">
+{% for device in devices %}
+<tr>
+<td>{{ device.src_mac }}</td>
+<td>{{ device.dst_mac }}</td>
+<td>{{ device.signal }}</td>
+<td>{{ device.lastseen }}</td>
+</tr>
+{% endfor %}
+</table>
+</body>
+</html>

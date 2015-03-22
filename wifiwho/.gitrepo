@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/meeuw/wifiwho
+	branch = master
+	commit = 103304453c4ba9a1df0727aaba375668658d9dde
+	parent = 01974f6b1d169d09dbbb4082c026e5cec43146c8
+	cmdver = 0.2.0
