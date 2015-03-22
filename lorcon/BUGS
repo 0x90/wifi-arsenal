@@ -1,0 +1,31 @@
+24-JUL-2005 - JWRIGHT
+wlan-ng and other drivers based on Prism2 chipsets (AirJack, Hostap) firmware
+will reverse the supplied order of DA and SA addresses when the FromDS bit is
+set.  Need to decide if this should be handled with a capabilities flag, or if
+the injection code for these drivers should check for the presence of FromDS
+and switch the address order automatically.
+
+23-APR-2006 - JWRIGHT
+HostAP drivers are in Prism_AVS mode by default for monitor, need to change
+to DLT_IEEE802_11 before packet injection
+
+6-JAN-2007 - JWRIGHT
+Error on "make install" if $PREFIX/include doesn't exist.
+
+25-FEB-2007 - JWRIGHT
+selfack() function not working at this time.
+
+8-MAR-2007 - JWRIGHT
+When dependencies are in directories with spaces in them (on Windows), libtool gets all confused, generating this error:
+
+libtool: link: cannot find the library `' or unhandled argument `and'
+make: *** [liborcon.la] Error 1
+
+Solution: don't put dependencies in directory paths that include spaces.  I use C:\DEV, you should too.
+
+13-MAR-2007 - JWRIGHT
+Formerly, you could say tx80211_init, tx80211_setchannel, tx80211_open, 
+tx80211_txpacket, tx80211_close.  With the changes to the madwifing handling
+code however, we create a new VAP during tx80211_open which changes the
+interface name. As such, it is mandatory to call tx80211_init followed by
+tx80211_open BEFORE tx80211_setfuncmode or tx80211_setchannel.

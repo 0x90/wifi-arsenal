@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/0x90/lorcon
+	branch = master
+	commit = 1482b71b8d75c62453b97f3dbdd48bf70e804fe5
+	parent = 7c35c55023c426f0a87723f209ec9118f4c497cc
+	cmdver = 0.2.0

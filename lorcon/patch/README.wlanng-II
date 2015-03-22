@@ -1,0 +1,7 @@
+Follow the directions in README.wlanng.
+
+This is a slightly different version of the wlanng rfmon+rawtx patch, by Rick 
+Farina.
+
+It is supposed to reduce the load on the firmware of doing rfmon+rawtx.
+

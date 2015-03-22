@@ -1,0 +1,4 @@
+include PyLorcon2.h
+include COPYING
+include README
+include test.py

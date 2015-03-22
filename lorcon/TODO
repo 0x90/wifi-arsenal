@@ -1,0 +1,4 @@
++ Figure out how to register STA MAC with Atheros cards to accommodate ACK'ing
+  while in monitor mode.
+    - prism54, set_mac_address function, "mgt_update_addr"
++ Disable backoff or CCA to enable instant TX

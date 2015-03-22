@@ -1,0 +1,12 @@
+diff -u prism54/islpci_eth.c prism54-diff/islpci_eth.c
+--- prism54/islpci_eth.c	2004-12-24 16:33:51.000000000 -0500
++++ prism54-diff/islpci_eth.c	2005-03-02 16:44:15.000000000 -0500
+@@ -99,7 +99,7 @@
+ 
+ 	/* determine the amount of fragments needed to store the frame */
+ 
+-	frame_size = skb->len < ETH_ZLEN ? ETH_ZLEN : skb->len;
++	frame_size = skb->len;
+ 	if (init_wds)
+ 		frame_size += 6;
+ 

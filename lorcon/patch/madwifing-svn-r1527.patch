@@ -1,0 +1,20 @@
+diff -ru --exclude entries madwifi-ng/ath/if_ath.c madwifi-ng-patch/ath/if_ath.c
+--- madwifi-ng/ath/if_ath.c	2006-04-25 07:20:37.000000000 -0400
++++ madwifi-ng-patch/ath/if_ath.c	2006-04-25 07:15:15.000000000 -0400
+@@ -2248,6 +2248,7 @@
+ 	struct ath_softc *sc = dev->priv;
+ 	struct ath_hal *ah = sc->sc_ah;
+ 	struct ieee80211_phy_params *ph = (struct ieee80211_phy_params *) (skb->cb + sizeof(struct ieee80211_cb));
++	struct ieee80211com *ic = &sc->sc_ic;
+ 	const HAL_RATE_TABLE *rt;
+ 	int pktlen;
+ 	int hdrlen;
+@@ -2262,7 +2263,7 @@
+ 	struct ieee80211_frame *wh; 
+ 	
+ 	wh = (struct ieee80211_frame *) skb->data;
+-	try0 = ATH_TXMAXTRY;
++	try0 = (ic->ic_opmode == IEEE80211_M_MONITOR) ? 1 : ATH_TXMAXTRY;
+ 	rt = sc->sc_currates;
+ 	txrate = dot11_to_ratecode(sc, rt, ph->rate0);
+ 	power = ph->power > 60 ? 60 : ph->power;
