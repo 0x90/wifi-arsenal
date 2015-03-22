@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/SYWorks/wpa-bruteforcer
+	branch = master
+	commit = d5f8586fe9b7c90d75c59dade38e68faf3d5bb3e
+	parent = 683cf061ee393218fb21fca4f63d9fd7f986c6a2
+	cmdver = 0.2.0
