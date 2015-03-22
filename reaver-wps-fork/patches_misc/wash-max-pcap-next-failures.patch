@@ -1,0 +1,140 @@
+--- a/trunk/src/80211.c	2014-06-22 16:19:30.329975344 +0400
++++ b/trunk/src/80211.c	2014-06-22 17:04:28.357220443 +0400
+@@ -37,10 +37,23 @@
+ const u_char *next_packet(struct pcap_pkthdr *header)
+ {
+ 	const u_char *packet = NULL;
++	int pcap_next_failures = 0;
++	const int max_pcap_next_failures = get_max_pcap_next_failures();
+ 
+-	/* Loop until we get a valid packet, or until we run out of packets */
+-	while((packet = pcap_next(get_handle(), header)) != NULL)
++	/* Loop until we get a valid packet, or until we run out of packets, or until pcap_next_failures >= max_pcap_next_failures */
++	while( ( max_pcap_next_failures < 0 ) || ( (pcap_next_failures <= max_pcap_next_failures) && ( pcap_next_failures != INT_MAX ) ) )
+ 	{
++		packet = pcap_next(get_handle(), header);
++		
++		if (packet == NULL)
++		{
++			if ( (pcap_next_failures < INT_MAX) && (max_pcap_next_failures >= 0) )
++			{
++				pcap_next_failures++;
++			}
++			continue;
++		}
++		
+ 		if(get_validate_fcs())
+ 		{
+ 			if(check_fcs(packet, header->len))
+--- a/trunk/src/80211.h	2014-06-22 16:19:30.352975324 +0400
++++ b/trunk/src/80211.h	2014-06-22 17:00:28.885292972 +0400
+@@ -34,6 +34,7 @@
+ #ifndef DOT11_H
+ #define DOT11_H
+ 
++#include <limits.h>
+ #include "defs.h"
+ #include "globule.h"
+ #include "argsparser.h"
+--- a/trunk/src/defs.h	2014-06-22 16:19:30.352975324 +0400
++++ b/trunk/src/defs.h	2014-06-22 16:39:26.930865469 +0400
+@@ -46,6 +46,7 @@
+ 
+ #define NULL_MAC		"\x00\x00\x00\x00\x00\x00"
+ #define DEFAULT_MAX_NUM_PROBES	15
++#define DEFAULT_MAX_NUM_PCAP_NEXT_FAILURES	10
+ #define MAX_ASSOC_FAILURES	10
+ 
+ #define TIMESTAMP_LEN		8
+--- a/trunk/src/globule.c	2014-06-22 16:19:30.353975323 +0400
++++ b/trunk/src/globule.c	2014-06-22 16:49:54.379776855 +0400
+@@ -258,6 +258,15 @@
+ 	return globule->max_num_probes;
+ }
+ 
++void set_max_pcap_next_failures(int value)
++{
++	globule->max_pcap_next_failures = value;
++}
++int get_max_pcap_next_failures()
++{
++	return globule->max_pcap_next_failures;
++}
++
+ void set_rx_timeout(int value)
+ {
+ 	globule->rx_timeout = value;
+--- a/trunk/src/globule.h	2014-06-22 16:19:29.199976328 +0400
++++ b/trunk/src/globule.h	2014-06-22 17:08:55.101148732 +0400
+@@ -102,6 +102,8 @@
+ 
+ 	int max_num_probes;		/* Maximum number of probe requests to send to an AP during survey mode */
+ 	
++	int max_pcap_next_failures;		/* Maximum number of pcap_next() failures (returning NULL) before giving up on it */
++	
+ 	int validate_fcs;		/* If 1, validate each packet's FCS. If 0, process packets even with invalid FCS. */
+ 
+         enum wsc_op_code opcode;        /* WFA opcode, received by exchange.c and used by builder.c */
+@@ -178,6 +180,8 @@
+ int get_max_pin_attempts();
+ int get_max_num_probes();
+ void set_max_num_probes(int value);
++void set_max_pcap_next_failures(int value);
++int get_max_pcap_next_failures();
+ void set_rx_timeout(int value);
+ int get_rx_timeout();
+ void set_timeout_is_nack(int value);
+--- a/trunk/src/wpsmon.c	2014-06-22 16:19:29.524976045 +0400
++++ b/trunk/src/wpsmon.c	2014-06-22 17:02:21.205257967 +0400
+@@ -41,13 +41,14 @@
+ 	int source = INTERFACE, ret_val = EXIT_FAILURE;
+ 	struct bpf_program bpf = { 0 };
+ 	char *out_file = NULL, *last_optarg = NULL, *target = NULL, *bssid = NULL;
+-	char *short_options = "i:c:n:o:b:5sfuCDh";
++	char *short_options = "i:c:n:p:o:b:5sfuCDh";
+         struct option long_options[] = {
+ 		{ "bssid", required_argument, NULL, 'b' },
+                 { "interface", required_argument, NULL, 'i' },
+                 { "channel", required_argument, NULL, 'c' },
+ 		{ "out-file", required_argument, NULL, 'o' },
+ 		{ "probes", required_argument, NULL, 'n' },
++		{ "max-pcap-next-failures", required_argument, NULL, 'p' },
+ 		{ "daemonize", no_argument, NULL, 'D' },
+ 		{ "file", no_argument, NULL, 'f' },
+ 		{ "ignore-fcs", no_argument, NULL, 'C' },
+@@ -70,6 +71,7 @@
+ 	set_validate_fcs(1);
+ 	set_log_file(stdout);
+ 	set_max_num_probes(DEFAULT_MAX_NUM_PROBES);
++	set_max_pcap_next_failures(DEFAULT_MAX_NUM_PCAP_NEXT_FAILURES);
+ 
+ 	while((c = getopt_long(argc, argv, short_options, long_options, &long_opt_index)) != -1)
+         {
+@@ -94,6 +96,9 @@
+ 			case 'n':
+ 				set_max_num_probes(atoi(optarg));
+ 				break;
++			case 'p':
++				set_max_pcap_next_failures(atoi(optarg));
++				break;
+ 			case 'o':
+ 				out_file = strdup(optarg);
+ 				break;
+@@ -426,6 +431,7 @@
+ 	fprintf(stderr, "\t-c, --channel=<num>                  Channel to listen on [auto]\n");
+ 	fprintf(stderr, "\t-o, --out-file=<file>                Write data to file\n");
+ 	fprintf(stderr, "\t-n, --probes=<num>                   Maximum number of probes to send to each AP in scan mode [%d]\n", DEFAULT_MAX_NUM_PROBES);
++	fprintf(stderr, "\t-p, --max-pcap-next-failures=<num>   Maximum number of pcap_next failures before giving up (set it to -1 to wait forever, maximum is %d) [%d]\n", INT_MAX, DEFAULT_MAX_NUM_PCAP_NEXT_FAILURES);
+ 	fprintf(stderr, "\t-D, --daemonize                      Daemonize wash\n");
+ 	fprintf(stderr, "\t-C, --ignore-fcs                     Ignore frame checksum errors\n");
+ 	fprintf(stderr, "\t-5, --5ghz                           Use 5GHz 802.11 channels\n");
+--- a/trunk/src/wpsmon.h	2014-06-22 16:19:29.524976045 +0400
++++ b/trunk/src/wpsmon.h	2014-06-22 17:00:08.605299492 +0400
+@@ -39,6 +39,7 @@
+ #include <sys/time.h>
+ #include <arpa/inet.h>
+ #include <libwps.h>
++#include <limits.h>
+ #include "defs.h"
+ #include "globule.h"
+ #include "misc.h"

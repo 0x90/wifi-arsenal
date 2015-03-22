@@ -1,0 +1,11 @@
+http://code.google.com/p/reaver-wps/issues/detail?id=524
+--- libwps/libwps.h.orig	2012-01-18 03:02:39.000000000 -0600
++++ libwps/libwps.h	2013-08-03 04:41:31.000000000 -0500
+@@ -12,6 +12,7 @@
+ #ifndef LIBWPS_H
+ #define LIBWPS_H
+ 
++#include <sys/types.h>
+ #include <stdlib.h>
+ #include <stdint.h>
+ #include <stdio.h>

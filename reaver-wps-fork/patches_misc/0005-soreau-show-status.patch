@@ -1,0 +1,97 @@
+Index: cracker.c
+===================================================================
+--- cracker.c	(revision 113)
++++ cracker.c	(working copy)
+@@ -285,18 +285,65 @@
+ 	}
+ }
+ 
++char *get_max_time_remaining(int average, int attempts_remaining)
++{
++	char *max_time, hours[12], minutes[2], seconds[2];
++	int max_hours = 0, max_minutes = 0, max_seconds = 0;
++
++	max_time = malloc(16);
++
++	if(!max_time)
++		exit(-1);
++
++	if(average)
++	{
++		max_seconds = attempts_remaining * average;
++		if(max_seconds > 60)
++		{
++			max_minutes = max_seconds / 60;
++			max_seconds -= max_minutes * 60;
++		}
++		if(max_minutes > 60)
++		{
++			max_hours = max_minutes / 60;
++			max_minutes -= max_hours * 60;
++		}
++
++		if(max_seconds < 0 || max_minutes < 0 || max_hours < 0)
++		{
++			free(max_time);
++			return NULL;
++		}
++
++		sprintf(hours, "%d", max_hours);
++		sprintf(minutes, "%s%d", max_minutes > 9 ? "" : "0", max_minutes);
++		sprintf(seconds, "%s%d", max_seconds > 9 ? "" : "0", max_seconds);
++
++		sprintf(max_time, "%s:%s:%s", hours, minutes, seconds);
++	}
++	else
++	{
++		free(max_time);
++		return NULL;
++	}
++
++	return max_time;
++}
++
+ /* Displays the status and rate of cracking */
+ void display_status(float pin_count, time_t start_time)
+ {
+ 	float percentage = 0;
+ 	int attempts = 0, average = 0;
++	int attempts_remaining = 0;
+ 	time_t now = 0, diff = 0;
+ 	struct tm *tm_p = NULL;
+-        char time_s[256] = { 0 };
++        char time_s[256] = { 0 }, *max_time;
+ 
+ 	if(get_key_status() == KEY1_WIP)
+ 	{
+ 		attempts = get_p1_index() + get_p2_index();
++		attempts_remaining = 11000 - attempts;
+ 	}
+ 	/* 
+ 	 * If we've found the first half of the key, then the entire key1 keyspace
+@@ -305,10 +352,12 @@
+ 	else if(get_key_status() == KEY2_WIP)
+ 	{
+ 		attempts = P1_SIZE + get_p2_index();
++		attempts_remaining = 11000 - attempts;
+ 	}
+ 	else if(get_key_status() == KEY_DONE)
+ 	{
+ 		attempts = P1_SIZE + P2_SIZE;
++		attempts_remaining = 0;
+ 	}
+ 
+ 	percentage = (float) (((float) attempts / (P1_SIZE + P2_SIZE)) * 100);
+@@ -335,7 +384,12 @@
+ 		average = 0;
+ 	}
+ 
++	max_time = get_max_time_remaining(average, attempts_remaining);
++
+ 	cprintf(INFO, "[+] %.2f%% complete @ %s (%d seconds/pin)\n", percentage, time_s, average);
++	cprintf(INFO, "[+] Max time remaining at this rate: %s (%d pins left to try)\n", max_time ? max_time : "(undetermined)", attempts_remaining);
+ 
++	free(max_time);
++
+ 	return;
+ }
