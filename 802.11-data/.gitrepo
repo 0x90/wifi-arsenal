@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/ewa/802.11-data
+	branch = master
+	commit = 7ed5f9d4bfb6ff7ff8d5d8a1d9643846c10aa4c8
+	parent = f8a4e49957e300359ae4ed535a00f5f84c22102a
+	cmdver = 0.2.0
