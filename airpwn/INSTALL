@@ -1,0 +1,15 @@
+1) Install lorcon (contained in lorcon-current.tgz)  Just untar, make
+and make install.
+
+2) edit the Makefile to adjust any paths that may be different on your
+system.
+
+3) run 'make'
+
+4) Do any necessary preparation to your card to allow it to have packets
+injected to it directly.  (For atheros chipsets, use the atheros_prep.sh
+script.)
+
+5) Choose a config, and/or write one of your own
+
+6) Run airpwn and enjoy!

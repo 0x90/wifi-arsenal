@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/M0Rf30/airpwn
+	branch = master
+	commit = a8b1bad30e2b617f9f1d4b096a25cde2b20a1aa5
+	parent = 521604136087fd3ec9a38f242a37625ab568b8e7
+	cmdver = 0.2.0
