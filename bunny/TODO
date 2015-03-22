@@ -1,0 +1,10 @@
+- Ping server mode does not close when given ctl+c
+- Add a warning to the user if when building the model, no implemented packet types are found.
+	1. Add a y/n for scanning for a longer time?
+		-Not very module like.
+	2. Make a BunnyError class so we can raise shit like this.
+- Why is the round trip for pings 0.1s on a Raspberry pi?
+	1. Profile
+	2. Speed up
+- Clean up Bunny/Traffic model to be more module like.
+

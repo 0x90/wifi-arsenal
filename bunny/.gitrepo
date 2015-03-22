@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/mothran/bunny
+	branch = master
+	commit = cbdb98a0ff36b488bbc2659a46365509f0a1045b
+	parent = e06d2ed99b9ae4f323c8c5e2abc89b71c0b8c55f
+	cmdver = 0.2.0
