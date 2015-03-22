@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/0x90/pykismetstats
+	branch = master
+	commit = e15c9d4b9398fe014a73cf3dc23766af559561ce
+	parent = efa534eac47973a300ea2f7c2ad7344345a590f9
+	cmdver = 0.2.0
