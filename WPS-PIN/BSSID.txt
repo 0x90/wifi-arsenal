@@ -1,0 +1,385 @@
+STA ROUTEURS y BSSID SOPORTADOS - PIN POR DEFECTO
+
+
+
+---------------------------------------------------
+Fabricante >   HUAWEI
+essid      >   FTE-XXXX 
+modelo     >   HG532c "Echo Life"
+---------------------------------------------------
+
+bssid soportados 
+
+04:C0:6F
+20:2B:C1
+28:5F:DB
+34:6B:D3
+80:B6:86
+84:A8:E4
+B4:74:9F
+BC:76:70
+CC:96:A0
+F8:3D:FF
+
+
+--------------------------------------------------
+Fabricante >   HUAWEI
+essid      >   vodafoneXXXX 
+modelo     >   HG566a
+--------------------------------------------------
+
+bssid soportados 
+
+5C:4C:A9
+62:23:3D
+62:3C:E4
+62:3D:FF
+62:55:9C
+62:7D:5E
+62:A8:E4 
+62:B6:86          
+62:C0:6F
+62:C6:1F
+62:C7:14
+62:E8:7B
+6A:3D:FF
+6A:23:3D
+6A:3D:FF
+6A:53:D4
+6A:55:9C
+6A:6B:D3
+6A:7D:5E
+6A:A8:E4
+6A:C0:6F
+6A:C6:1F
+6A:C7:14
+6A:D1:5E
+6A:D1:67 
+72:53:D4 
+72:55:9C
+72:A8:E4
+72:C0:6F
+72:C7:14
+72:D1:5E
+72:6B:D3 
+72:7D:5E
+72:A8:E4
+72:E8:7B
+72:3D:FF          
+72:53:D4        
+
+
+
+
+--------------------------------------------------
+Fabricante >   Belkin
+essid      >   Belkin_N+_XXXXXX
+modelo     >   F5D8235-4 v 1000
+--------------------------------------------------
+
+bssid soportados 
+
+00:22:75  
+
+
+
+--------------------------------------------------
+Fabricante >   Belkin
+essid      >   belkin.XXX
+modelo     >   F9K1104(N900 DB Wireless N+ Routeur)
+--------------------------------------------------
+
+bssid soportados 
+
+08:86:3B  
+
+
+
+--------------------------------------------------
+Fabricante >   Belkin 
+essid      >   belkin.XXX
+modelo     >   F5D8231-4  ver. 5000
+--------------------------------------------------
+
+bssid soportados
+
+00:1C:DF
+
+
+
+--------------------------------------------------
+Fabricante >   Teldat
+essid      >   WLAN_XXXX
+modelo     >   iRouter1104-W
+--------------------------------------------------
+
+bssid soportados
+
+00:A0:26
+
+
+
+--------------------------------------------------
+Fabricante >   Zyxel
+essid      >   ZyXEL
+modelo     >   zyxel NBG-419n
+--------------------------------------------------
+
+bssid soportados
+
+50:57:F0
+
+
+
+-------------------------------------------------
+Fabricante >   Tenda
+essid      >   algoritmo original de zhaochunsheng
+modelo     >   W309R
+-------------------------------------------------
+
+bssid soportados
+
+C8:3A:35
+00:B0:0C
+08:10:75
+
+
+
+--------------------------------------------------
+Fabricante >   SAMSUNG
+essid      >   SEC_ LinkShare_XXXXXX
+modelo     >   SWL (Samsung Wireless Link)
+--------------------------------------------------
+
+bssid soportados
+
+E4:7C:F9
+80:1F:02
+
+
+
+--------------------------------------------------
+Fabricante >   Conceptronic
+essid      >   C300BRS4A
+modelo     >   c300brs4a 
+--------------------------------------------------
+
+bssid soportados
+
+00:22:F7
+
+
+
+--------------------------------------------------
+Fabricante >   TP-LINK
+essid      >   TP-LINK_XXXXXX
+modelo     >   TD-W8961ND v2.1 
+--------------------------------------------------
+
+bssid soportados
+
+64:70:02
+B0:48:7A
+F8:D1:11
+
+
+
+--------------------------------------------------
+Fabricante >   EDIMAX
+essid      >   Default
+modelo     >   3G-6200n
+--------------------------------------------------
+
+bssid soportados
+
+00:1F:1F
+
+
+
+
+
+
+--------------------------------------------------
+Fabricante >   EDIMAX
+essid      >   Default
+modelo     >   3G-6210n
+--------------------------------------------------
+
+bssid soportados
+
+00:1F:1F
+
+
+
+
+
+--------------------------------------------------
+Fabricante >   KUZOMI
+essid      >   Default
+modelo     >   K1500
+--------------------------------------------------
+
+bssid soportados
+
+00:26:CE
+
+
+
+--------------------------------------------------
+Fabricante >   KUZOMI
+essid      >   Default
+modelo     >   K1550
+--------------------------------------------------
+
+bssid soportados
+
+00:26:CE
+
+
+
++----------------------------------------------------------------------------------------------------+
+| SE HAN INCLUIDO LOS PIN(s) GENERICOS DEL HILO http://lampiweb.com/foro/index.php/topic,8188.0.html |
++----------------------------------------------------------------------------------------------------+
+
+
+LISTA ROUTEURS y BSSID SOPORTADOS - PIN(s) GENERICO(s)
+
+
+-----------------------------------------------
+Fabricante >   OBSERVA TELECOM
+essid      >   WLAN_XXXX 
+modelo     >   AW4062
+-----------------------------------------------
+
+bssid soportados
+
+00:19:15 
+
+
+
+-----------------------------------------------
+Fabricante >   ZYXELL
+essid      >   WLAN_XXXX 
+modelo     >   P-870HW-51A V2
+-----------------------------------------------
+
+bssid soportados
+
+40:4A:03
+
+
+
+-----------------------------------------------
+Fabricante >   ZYXELL
+essid      >   WLAN_XXXX 
+modelo     >   P-870HNU-51B
+-----------------------------------------------
+
+bssid soportados
+
+FC:F5:28
+
+
+
+-----------------------------------------------
+Fabricante >   OEM Shenzhen Gongjin Electronics
+essid      >   WLAN_XXXX 
+modelo     >   Encore ENDSL-4R5G
+-----------------------------------------------
+
+bssid soportados
+
+F4:3E:61
+00:1F:A4
+
+
+
+-----------------------------------------------
+Fabricante >   Comtrend
+essid      >   JAZZTEL_XXXX 
+modelo     >   AR-5387un
+-----------------------------------------------
+
+bssid soportados
+
+38:72:C0
+
+
+
+-----------------------------------------------
+Fabricante >  Comtrend
+essid      >  WLAN_XXXX 
+modelo     >  Gigabit 802.11n
+-----------------------------------------------
+
+bssid soportados
+
+00:1A:2B
+
+
+
+-----------------------------------------------
+Fabricante >   ADB-Broadband
+essid      >   WLAN_XXXX 
+modelo     >   PDG-A4001N
+-----------------------------------------------
+
+bssid soportados
+
+30:39:F2
+74:88:8B
+A4:52:6F
+DC:0B:1A
+
+
+
+-----------------------------------------------
+Fabricante >  TP-LINK
+essid      >  TP-LINK_XXXXXX 
+modelo     >  TL-WA7510N
+-----------------------------------------------
+
+bssid soportados
+
+90:F6:52
+
+
+
+
+-----------------------------------------------
+Fabricante >  SAGEM 
+essid      >  SAGEM_XXXX  
+modelo     >  fast 1704
+-----------------------------------------------
+
+bssid soportados
+
+7C:D3:4C
+
+
+
+
+-----------------------------------------------
+Fabricante >  BEWAN 
+essid      >  DartyBox_XXX_X  
+modelo     >  Bewan iBox V1.0
+-----------------------------------------------
+
+bssid soportados
+
+00:0C:C3
+
+
+
+
+
+-----------------------------------------------
+Fabricante >  BEWAN 
+essid      >  TELE2BOX_XXXX  
+modelo     >  Bewan iBox V1.0
+-----------------------------------------------
+
+bssid soportados
+
+00:0C:C3
+
