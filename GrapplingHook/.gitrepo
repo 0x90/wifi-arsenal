@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/nseetharaman/GrapplingHook
+	branch = master
+	commit = c99dde09b4da1d6e24e1b782bb2a20ddfccff2df
+	parent = dc24976f6383221679eca679aaf75b76f9635e95
+	cmdver = 0.2.0
