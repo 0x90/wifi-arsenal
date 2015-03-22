@@ -1,0 +1,2 @@
+#!/bin/bash
+./showMyPinDates | grep -P -e "---|"$(date +%Y-%m)
