@@ -1,0 +1,47 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+nodes = ['airoiv', 'apt_host']
+
+puppet_nodes = []
+subnet = 10
+nodes.each { |node_name|
+  (1..10).each { |n|
+    nodenum = "#{n}".rjust(2, '0')
+    subnet += 1
+    puppet_nodes << {:hostname => "#{node_name}#{nodenum}", :ip => "172.16.32.#{subnet}", :node_name => "#{node_name}"}
+  }
+}
+
+puppet_nodes.each { |n| 
+  puts "#{n[:hostname]} : #{n[:ip]}" 
+}
+
+Vagrant.configure("2") do |config|
+  puppet_nodes.each do |node|
+    config.vm.define node[:hostname] do |node_config|
+      node_config.vm.box = "precise32"
+      node_config.vm.box_url = "http://files.vagrantup.com/precise32.box"
+      node_config.vm.hostname = "#{node[:hostname]}"
+      node_config.vm.network :private_network, ip: node[:ip]
+
+      node_config.ssh.forward_agent = true
+      node_config.ssh.forward_x11 = true
+
+      node_config.vm.provider :virtualbox do |vb|
+         # vb.gui = true
+         vb.customize ["modifyvm", :id, 
+          "--memory", "9216",
+          # '--cpus', '2',
+          # '--vram', '16',
+          # '--accelerate3d', 'on',
+          "--usb", "on"]
+       end
+
+      node_config.vm.provision :puppet do |puppet|
+        puppet.module_path  = "modules"
+        puppet.manifest_file = "#{node[:node_name]}.pp"
+      end
+    end
+  end
+end
