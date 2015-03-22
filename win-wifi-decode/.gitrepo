@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/cmpxchg8/wifi_decode
+	branch = master
+	commit = a8b6aa3148dc4997925ffefd2ac25d0be9e095df
+	parent = cf2570e3f5ea7b9b79b5e52edf914b3210fc72a0
+	cmdver = 0.2.0
