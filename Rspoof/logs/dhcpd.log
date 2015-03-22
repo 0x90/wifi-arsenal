@@ -1,0 +1,8 @@
+Internet Systems Consortium DHCP Server 4.2.2
+Copyright 2004-2011 Internet Systems Consortium.
+All rights reserved.
+For info, please visit https://www.isc.org/software/dhcp/
+Wrote 2 leases to leases file.
+Listening on LPF/at0/00:1d:e0:0f:4a:89/192.168.1.128/25
+Sending on   LPF/at0/00:1d:e0:0f:4a:89/192.168.1.128/25
+Sending on   Socket/fallback/fallback-net

@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/zackiles/Rspoof
+	branch = master
+	commit = f50028fc9add4e692027c9ebc2976289f024006c
+	parent = 5183ca3223eda1053a7465463cb40ff3e8dbb68b
+	cmdver = 0.2.0
