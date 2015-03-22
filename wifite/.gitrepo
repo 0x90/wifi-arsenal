@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/derv82/wifite
+	branch = master
+	commit = fd486ba7d4714cc79405eb895d3808b0f9928472
+	parent = fc178b3ba74b6ecc05276fddbf06e0e145f5774e
+	cmdver = 0.2.0
