@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/Frozenbox/airmode
+	branch = master
+	commit = 83c05a5eed86db0833cb7adc21c32cd97240ec20
+	parent = 4ebeb325d9215690414d82f1d3915910d06ea822
+	cmdver = 0.2.0
