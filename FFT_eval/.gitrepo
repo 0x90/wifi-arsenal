@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/simonwunderlich/FFT_eval
+	branch = master
+	commit = f6927ec2df985a3625fa0e3e90b03908ef71110d
+	parent = 2041e3440342ef4775bf0d2b249995be38db0d3c
+	cmdver = 0.2.0
