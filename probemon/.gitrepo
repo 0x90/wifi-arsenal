@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/jjb3tee3/probemon
+	branch = master
+	commit = a60348d76717a4eca46d28945edf91ed5b6fc263
+	parent = 57eb0505c57495fb392a3c990a2b1e537173eb07
+	cmdver = 0.2.0
