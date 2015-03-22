@@ -1,0 +1,45 @@
+<div ng:controller="GraphsCtrl">
+
+  <div class="row bla-vsep">
+    <div class="col-md-12 form-inline"> 
+      <div class="form-group bla-rsep">
+        <button class="btn btn-primary"
+                title="Refresh graph"                
+                ng:disabled="refreshing == true"
+                ng:click="refreshGraph()">
+          <i ng:class="{'glyphicon-refresh-animate': refreshing == true}"
+             class="glyphicon glyphicon-refresh"></i>
+        </button>
+      </div>
+      
+      <div class="form-group">
+        <div ng:click="refreshGraph()" class="btn-group">
+          <label class="btn btn-default" ng:model="graphType" btn-radio="'ssids'">SSIDs</label>
+          <label class="btn btn-default" ng:model="graphType" btn-radio="'full_ssids'">Full SSIDs</label>
+          <label class="btn btn-default" ng:model="graphType" btn-radio="'macs'">MAC<->MAC</label>
+          <label class="btn btn-default" ng:model="graphType"
+                 title="Seen within the same tagged places"
+                 btn-radio="'places'">Places</label>
+          <label class="btn btn-default" ng:model="graphType"
+                 title="Seen together within some time period"
+                 btn-radio="'time'">Time</label>
+        </div>
+      </div>
+    </div>     
+  </div>
+
+  <!-- Chart view -->
+  <div class="row bla-vsep">
+    <div class="col-md-12">
+      <h3>Relation graph</h3>
+      <p ng:if="graphData == undefined">
+        Graph data is loading...
+      </p>
+      <div class="row">
+        <div id="relgraph-{{tab.id}}" class="graph" graph:data="graphData" wifi:graph></div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>

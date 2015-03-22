@@ -1,0 +1,135 @@
+
+/* Bootstrap UI Fix */
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+
+/* Navbar fix */
+.navbar-nav > li >a:focus {
+    outline: none;
+}
+
+.nav-tabs a {
+    outline: none;
+}
+
+td.client {
+    font-weight: bold;
+}
+
+tr.selected {
+    background-color: #22aa22 !important;
+}
+
+div.map {
+    position: relative;
+}
+
+.map_tags {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+}
+
+.map_tags p.label {
+    font-weight: bold;
+    color: black;
+}
+
+.map_tags p.info {
+    display: none;
+}
+
+.map_tags:hover p.info {
+    position: relative;
+    left: 50px;
+    top: -60px;
+    width: 120px;
+    display: block;
+    color: black;
+    background-color: white;
+    opacity: 0.9;
+    padding: 3px;
+    border-radius: 0.2;
+}
+
+.bla-close {
+    visibility: hidden;
+}
+
+tab-heading:hover .bla-close {
+    visibility: visible;
+}
+
+
+.bla-macalias .bla-mac {
+    display: none;
+}
+
+.bla-macalias:hover .bla-mac {
+    display: block;
+}
+
+.bla-macalias:hover .bla-alias {
+    display: none;
+}
+
+
+
+.bla-vsep {
+    margin-top: 10px;
+}
+
+.bla-rsep {
+    margin-right: 10px;
+}
+
+.bla-clickable {
+    cursor: pointer;
+}
+
+/* SSIDs */
+.bla-client {
+    font-weight: bold;
+}
+
+.bla-ap {
+    font-weight: bold;
+}
+
+.bla-probes {
+    font-weight: bold;
+}
+
+.bla-beacons {
+}
+
+.bla-other {
+    font-style: italic;
+}
+
+/* END OF SSIDs */
+
+
+/* Refresh spinner */
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -ms-animation: spin .7s infinite linear;
+    -webkit-animation: spinw .7s infinite linear;
+    -moz-animation: spinm .7s infinite linear;
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+
+@-webkit-keyframes spinw {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@-moz-keyframes spinm {
+    from { -moz-transform: rotate(0deg);}
+    to { -moz-transform: rotate(360deg);}
+} 
+

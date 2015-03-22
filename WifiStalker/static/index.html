@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en" ng:app=wifiStalker>
+  <head>
+    <meta charset="utf-8">
+    <title>WIFI STALKER</title>
+    <meta name="author" content="Tomasz bla Fortuna" />
+    <meta name="license" content="MIT" />
+
+    <!-- Splashscreen and cloaking -->
+    <style type="text/css">
+      [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+          display: none !important;
+      }
+
+      .splash {
+          background-color: #265a88;
+          color: white;
+          font-size: 200%;
+          text-align: center;
+          padding-bottom: 5px;
+          padding-top: 1px;
+          margin-bottom: 5px;
+      }
+
+      .splash h3 {
+          letter-spacing: 10px;
+          margin: 0;
+          pading: 0;
+      }
+
+      html {
+          overflow-y: scroll;
+      }
+    </style>
+
+    <!-- Bootstrap -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+
+  <body ng-controller="MainCtrl">
+    <div class="container-fluid">
+      <noscript>
+        This page uses HEAVILY Javascipt. Won't work without it - sorry.
+      </noscript>
+      
+      <div class="row splash">
+        <h3>WIFI STALKER</h3>
+      </div>
+
+      <!-- Current view -->
+      <div ng:view ng:cloak></div>
+
+      <!-- CSS, Vendor -->
+      <link rel="stylesheet" href="css/vendor/bootstrap/css/bootstrap.css">
+      <link rel="stylesheet" href="css/vendor/bootstrap/css/bootstrap-theme.css">
+
+      <!-- JS, vendor -->
+      <script src="js/vendor/angular.js"></script>
+      <script src="js/vendor/angular-route.min.js"></script>
+      <script src="js/vendor/ui-bootstrap-tpls.min.js"></script>
+
+      <!-- Vendor - graphs/charts -->
+      <script src="js/vendor/chart.min.js"></script>
+      <script src="js/vendor/jquery.min.js"></script>
+      <script src="js/vendor/graphs/raphael-min.js"></script>
+      <script src="js/vendor/graphs/dracula_graffle.js"></script>
+      <script src="js/vendor/graphs/dracula_graph.js"></script>
+      <script src="js/vendor/graphs/dracula_algorithms.js"></script>
+
+      <!-- This app -->
+      <script src="js/app.js"></script>
+      <script src="js/ctrl_log.js"></script>
+      <!-- <script src="js/ctrl_map.js"></script> -->
+      <script src="js/knowledge/ctrl_knowledge.js"></script>
+      <script src="js/knowledge/ctrl_table.js"></script>
+      <script src="js/knowledge/ctrl_sender.js"></script>
+      <script src="js/knowledge/ctrl_charts.js"></script>
+      <script src="js/knowledge/ctrl_graphs.js"></script>
+
+      <link rel="stylesheet" href="css/main.css">
+    </div>
+  </body>
+</html>

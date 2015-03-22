@@ -1,0 +1,198 @@
+<div ng:controller="SenderCtrl">
+  <!-- Data -->
+  <div class="row">
+    <div class="col-md-8"> <!-- left col -->
+
+      <!-- Buttons -->
+      <div class="row" >
+        <div class="col-md-2">
+        </div>
+
+        <div class="col-md-4 bla-vsep">
+          <button ng:disabled="refreshing == true"
+                  ng:click="refreshSender()"
+                  class="btn btn-primary" title="Refresh data">
+            <i ng:class="{'glyphicon-refresh-animate': refreshing == true}"
+               class="glyphicon glyphicon-refresh"></i>
+          </button>
+
+          <button class="btn btn-primary" title="Show charts and relations"
+                  ng:click="openTab(sender.mac, sender.user.alias, 'charts', {ap: sender.meta.ap})">
+            <i class="glyphicon glyphicon-stats"></i>
+          </button>
+
+          <button class="btn btn-primary" title="Display relations"
+                  ng:click="openTab(sender.mac, sender.user.alias, 'graphs', {ap: sender.meta.ap})">
+            <i class="glyphicon glyphicon-eye-open"></i>
+            <!-- <i class="glyphicon glyphicon-record"></i> -->
+          </button>
+
+          <button ng:if="sender.meta.geo.length > 0"
+                  class="btn btn-primary" title="Show recorded positions"
+                  ng:click="openTab(sender.mac, sender.user.alias, 'geo', {ap: sender.meta.ap})">
+            <i class="glyphicon glyphicon-map-marker"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="row form-horizontal bla-vsep">
+        <label class="col-md-2 control-label">MAC</label>
+        <p class="col-md-4 form-control-static">{{sender.mac}}</p>
+
+        <label class="col-md-2 control-label">Vendor</label>
+        <p class="col-md-4 form-control-static">{{sender.meta.vendor}}</p>
+      </div>
+
+      <form class="form-horizontal bla-vsep">
+        <div class="form-group">
+          <label class="col-md-2 control-label">Alias</label>
+          <div class="col-md-10">
+            <input class="form-control" ng:model="sender.user.alias"></input>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-2 control-label">Owner</label>
+          <div class="col-md-10">
+            <input class="form-control" ng:model="sender.user.owner"></input>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-2 control-label">Notes:</label>
+          <div class="col-md-10">
+            <textarea class="form-control" rows="3" ng:model="sender.user.notes"></textarea>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-2"></div>
+          <div class="col-md-2">
+            <button ng:click="saveTab(tab)" class="form-control btn btn-primary">Save</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Static info -->
+
+      <div class="row form-horizontal">
+        <label class="col-md-2 control-label">Probed SSIDs</label>
+        <p class="col-md-10 form-control-static">
+          <span ng:repeat="ssid in sender.aggregate.ssid_probe">{{ssid}}; </span>
+        </p>
+      </div>
+      <div class="row form-horizontal">
+        <label class="col-md-2 control-label">Beaconed SSIDs</label>
+        <p class="col-md-10 form-control-static">
+          <span ng:repeat="ssid in sender.aggregate.ssid_beacon">{{ssid}}; </span>
+        </p>
+      </div>
+      <div class="row form-horizontal">
+        <label class="col-md-2 control-label">Other SSIDs</label>
+        <p class="col-md-10 form-control-static">
+          <span ng:repeat="ssid in sender.aggregate.ssid_other">{{ssid}}; </span>
+        </p>
+      </div>
+
+      <div class="row form-horizontal">
+        <label class="col-md-2 control-label">First seen</label>
+        <p class="col-md-4 form-control-static">{{sender.aggregate.first_seen*1000 | date:'yyyy-MM-dd HH:mm:ss'}}</p>
+
+        <label class="col-md-2 control-label">Last seen</label>
+        <p class="col-md-4 form-control-static">{{sender.aggregate.last_seen*1000 | date:'yyyy-MM-dd HH:mm:ss'}}</p>
+      </div>
+
+
+      <div ng:repeat="loc in sender.meta.geo">
+        <div class="row form-horizontal">
+          <label class="col-md-2 control-label">Latitude</label>
+          <p class="col-md-2 form-control-static">{{loc.lat | number: 4}}</p>
+
+          <label class="col-md-2 control-label">Longitude</label>
+          <p class="col-md-2 form-control-static">{{loc.lon | number: 4}}</p>
+
+          <label class="col-md-2 control-label">Source</label>
+          <p class="col-md-2 form-control-static">{{loc.source}}</p>
+        </div>
+      </div>
+
+      <div class="row form-horizontal">
+        <div class="col-md-12">
+          <table class="table table-striped">
+            <tr>
+              <th>all</th>
+              <th>beacons</th>
+              <th>disassoc</th>
+              <th>assoc req</th>
+              <th>assoc resp</th>
+              <th>probe req</th>
+              <th>probe resp</th>
+              <th>data</th>
+              <th>ip</th>
+            </tr>
+            <tr>
+              <td>{{sender.stat.all}}</td>
+              <td>{{sender.stat.beacons}}</td>
+              <td>{{sender.stat.disass}}</td>
+              <td>{{sender.stat.assoc_req}}</td>
+              <td>{{sender.stat.assoc_resp}}</td>
+              <td>{{sender.stat.probe_req}}</td>
+              <td>{{sender.stat.data}}</td>
+              <td>{{sender.stat.ip || 0}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+
+      <!-- FIXME - knowledge_by_mac doesn't exist, but was limited too -->
+      <div class="row form-horizontal">
+        <div class="col-md-12">
+          <table class="table table-striped">
+            <tr>
+              <th>destination</th>
+              <th>Total</th>
+              <th>DATA</th>
+              <th>MGMT</th>
+              <th>PROBE_REQ</th>
+              <th>PROBE_RESP</th>
+
+              <th>ASSOC_REQ</th>
+              <th>ASSOC_RESP</th>
+
+              <th>DISASS</th>
+              <th>BEACON</th>
+
+              <th>IP</th>
+              <th>DNS</th>
+              <th>HTTP/S</th>
+
+            </tr>
+            <tr ng:repeat="entry in sender.aggregate.tags_dst">
+              <td
+                 ng:click="openTab(entry[0], related[entry[0]], 'sender')"
+                 ng:if="related.hasOwnProperty(entry[0])">
+                <a href="">{{entry[0]}} <span ng:if="related[entry[0]]">({{related[entry[0]]}})</span></a>
+              </td>
+              <td ng:if="!related.hasOwnProperty(entry[0])">{{entry[0]}}</td>
+              <td>{{ entry[1]._sum || 0 }}</td>
+              <td>{{ entry[1].DATA || 0 }}</td>
+              <td>{{ entry[1].MGMT || 0 }}</td>
+              <td>{{ entry[1].PROBE_REQ || 0 }}</td>
+              <td>{{ entry[1].PROBE_RESP || 0}}</td>
+              <td>{{ entry[1].ASSOC_REQ || 0 }}</td>
+              <td>{{ entry[1].ASSOC_RESP || 0}}</td>
+              <td>{{ entry[1].DISASS || 0}}</td>
+              <td>{{ entry[1].BEACON || 0}}</td>
+
+              <td>{{ entry[1].IP || 0}}</td>
+              <td>{{ entry[1].DNS || 0}}</td>
+              <td>{{ entry[1].HTTP || 0}}/{{ entry[1].HTTPS || 0}}</td>
+          </table>
+
+        </div>
+      </div>
+
+    </div> <!-- End left col -->
+  </div>
+</div>
