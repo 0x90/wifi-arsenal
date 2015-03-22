@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/flupzor/80211-fun
+	branch = master
+	commit = 1905d3b4dbc55b452665cb5fe81665ad1f310a32
+	parent = 10bee370cfd73ecafd02ae16c66b9bc88d98479f
+	cmdver = 0.2.0
