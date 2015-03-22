@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/balle/airxploit
+	branch = master
+	commit = afd19e3bc7b06eae9bf1ca653cab4bae16471d4d
+	parent = 35547d51e4892a683548583aa226d728cee15154
+	cmdver = 0.2.0

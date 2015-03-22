@@ -1,0 +1,50 @@
+airXploit is a event based pluggable system for wireless world discovery and 
+exploitation.
+
+for an UML diagram of the scanning process and how the event machine and 
+blackboard system works togehter with the plugin system see scanning.png, an 
+overview of the plugin mechanism can be found in plugin_mechanism.png.
+
+IMPORTANT: the class name must contain the plugin category name at the end for 
+example an airxploit.scanner.w00w00 plugin must implement a class named 
+W00w00Scanner.
+
+this is the skeleton of a "w00w00 wireless is wonderfull" scanner example plugin
+
+import airxploit.core
+
+class ExampleScanner(object):
+
+    EVENT = "GOT_YA"
+    
+    def __init__(self, pcc):
+        self._pcc = pcc
+        self._pcc.registerEvent(ExampleScanner.EVENT)
+        self._pcc.registerForEvent("ALL", self)
+	self._pcc.registerService("ExampleScanner", self)
+	self.result = []
+
+    def run(self):
+	# do whatever you want
+        for target in self.__pcc.readAllWithoutInfo("example"):
+		print "w00w00"
+
+    def got_event(self, event):        
+ 	self.run()
+
+every pluggable component such as scanners, discovery services, tools and 
+exploits get a PluginControlCenter (pcc) object injected in the constructor.
+this pcc is used for information gathering, searching, service registration, 
+event handling and basic configuration.
+in the constructor you can use it to register your own events in this case the 
+"GOT_YA" event, register yourself for whatever events you are interested in 
+(in this case all events identified by the keyword "ALL") and register yourself 
+as a service that other plugins (especially exploit plugins) can use your damn 
+freaky stuff. note that it's recommend that you register your plugin under it's 
+class name to avoid name clashes.
+
+if an event got fired by another plugin the method got_event() will get invoked 
+and you can do whatever you want (for example read all targets from the pcc that 
+dont have the info you collect and process them). additionally every plugin must
+implement a run() method and a result list or set attribute if the plugin should 
+be called directly instead of being triggered by an event.
