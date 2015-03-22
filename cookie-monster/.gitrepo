@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/0x90/cookie-monster
+	branch = master
+	commit = 13b2fce7df635016f43aa257868659acd9461002
+	parent = 78ee9184d81a5eec31f1e1935b30a2284a54d48a
+	cmdver = 0.2.0
