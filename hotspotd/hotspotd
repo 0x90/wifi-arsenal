@@ -1,0 +1,22 @@
+#!/usr/bin/env python
+#@author: Prahlad Yeri
+#@description: Small daemon to create a wifi hotspot on linux
+#@license: MIT
+#python -m hotspotd $*
+import hotspotd.main
+import sys
+import os
+import argparse
+
+
+if __name__ == "__main__":
+	#check root or not
+	if os.getenv('USER') != 'root':
+		print "You need root permissions to do this, sloth!"
+		sys.exit(1)
+
+	parser = argparse.ArgumentParser(description='A small daemon to create a wifi hotspot on linux')
+	parser.add_argument('-v', '--verbose', required=False, action='store_true')
+	parser.add_argument('command', choices=['start', 'stop', 'configure'])
+	args = parser.parse_args()
+	hotspotd.main.main(args)
