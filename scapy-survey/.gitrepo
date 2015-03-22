@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/tuomasb/scapy-survey
+	branch = master
+	commit = b55bdc0ef49c650d67867c870e76b5fb3bc8eb8c
+	parent = 22abe00f2b5008c502db893e9946250f7f382181
+	cmdver = 0.2.0
