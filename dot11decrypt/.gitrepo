@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/mfontanini/dot11decrypt
+	branch = master
+	commit = 00dd93e9bfe2c45ca890373543178fe15c48488c
+	parent = 584d2483b2bbf19dbeb0ee6829b83d20af712cb0
+	cmdver = 0.2.0
