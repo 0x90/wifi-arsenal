@@ -1,0 +1,14 @@
+{
+  "name": "radioparse",
+  "version": "0.1.1",
+  "description": "radiotap and 802.11 packet parser",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alexander Selzer <aselzer3@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "pcap": "^2.0.1"
+  }
+}
