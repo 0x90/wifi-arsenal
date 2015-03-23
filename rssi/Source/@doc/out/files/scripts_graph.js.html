@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>scripts/graph.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title=""></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/collection.html">collection</a></li>
+                                <li><a href="../classes/controller.html">controller</a></li>
+                                <li><a href="../classes/floor.html">floor</a></li>
+                                <li><a href="../classes/globals.html">globals</a></li>
+                                <li><a href="../classes/graph.html">graph</a></li>
+                                <li><a href="../classes/utils.html">utils</a></li>
+                                <li><a href="../classes/view.html">view</a></li>
+                            </ul>
+                
+                            <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/APP.html">APP</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: scripts/graph.js</h1>
+                        
+                        <div class="file">
+                            <pre class="code prettyprint linenums">
+                        /**
+                        * Graph gets an Array of RSSI values and draws a Histogram using D3.JS
+                        *
+                        * @class graph
+                        */
+                        app.graph = {
+                        
+                            /**
+                             It draws the SVG based Graph
+                             @method draw
+                             @param {Array} rssi RSSI values of the selected accesspoint
+                             **/
+                            draw: function (values) {
+                        
+                                app.view.clearGraph()
+                        
+                                var width = 930;
+                                var height = 470;
+                                var padding = 60;
+                                var barWidth = 30;
+                        
+                                var startValue = d3.max(values);
+                                var endValue = d3.min(values);
+                                var binTicks = 10;
+                        
+                                if ((startValue - endValue) &gt; 10) {
+                                    binTicks = startValue - endValue
+                                } else {
+                                    startValue += 9 - (startValue - endValue)
+                                }
+                        
+                                var x = d3.scale.linear()
+                                    .domain([ startValue + 1 , endValue - 1])
+                                    .range([0, width - 2 * padding]);
+                        
+                                var data = d3.layout.histogram()
+                                    .bins(x.ticks(binTicks))
+                                    (values);
+                        
+                                var y = d3.scale.linear()
+                                    .domain([0, d3.max(data, function (d) {
+                                        return d.y + 1;
+                                    })])
+                                    .range([height - 2 * padding, 0]);
+                        
+                        
+                                var xAxis = d3.svg.axis();
+                        
+                                xAxis.scale(x)
+                                    .orient(&quot;bottom&quot;);
+                        
+                                xAxis.ticks(binTicks)
+                        
+                                var yAxis = d3.svg.axis();
+                        
+                                yAxis.scale(y)
+                                    .orient(&quot;left&quot;);
+                        
+                                yAxis.ticks(d3.max(data, function (d) {
+                                    return d.y + 1;
+                                }));
+                        
+                                var svg = d3.select(&quot;#graph&quot;).append(&quot;svg&quot;)
+                                    .attr(&quot;width&quot;, width)
+                                    .attr(&quot;height&quot;, height)
+                        
+                                var bar = svg.selectAll(&quot;.bar&quot;)
+                                    .data(data)
+                                    .enter()
+                                    .append(&quot;g&quot;)
+                                    .attr(&quot;class&quot;, &quot;bar&quot;);
+                        
+                                bar.append(&quot;rect&quot;)
+                                    .attr(&quot;x&quot;, function (d) {
+                                        return x(d.x) + padding - (barWidth / 2)
+                                    })
+                                    .attr(&quot;y&quot;, height)
+                                    .attr(&quot;width&quot;, barWidth)
+                                    .transition()
+                                    .delay(function (d, i) {
+                                        return i * 50;
+                                    })
+                                    .duration(500)
+                                    .attr(&quot;height&quot;, function (d) {
+                                        return height - 2 * padding - y(d.y);
+                                    })
+                                    .attr(&quot;y&quot;, function (d) {
+                                        return y(d.y) + padding
+                                    });
+                        
+                                bar.append(&quot;text&quot;)
+                                    .attr(&quot;x&quot;, function (d) {
+                                        return x(d.x) + padding
+                                    })
+                                    .attr(&quot;y&quot;, function (d) {
+                                        return y(d.y) + padding + 15
+                                    })
+                                    .attr(&quot;text-anchor&quot;, &quot;middle&quot;)
+                                    .text(function (d) {
+                                        return d.y
+                                    });
+                        
+                                svg.append(&quot;g&quot;)
+                                    .attr(&quot;class&quot;, &quot;x axis&quot;)
+                                    .attr(&quot;transform&quot;, &quot;translate(&quot; + padding + &quot;,&quot; + (height - padding) + &quot;)&quot;)
+                                    .call(xAxis)
+                                    .append(&quot;text&quot;)
+                                    .attr(&quot;class&quot;, &quot;axisLabel&quot;)
+                                    .attr(&quot;x&quot;, (width - 2 * padding) / 2)
+                                    .attr(&quot;y&quot;, padding - 20)
+                                    .style(&quot;text-anchor&quot;, &quot;middle&quot;)
+                                    .text(&quot;RSSI Values in dBm&quot;);
+                        
+                                svg.append(&quot;g&quot;)
+                                    .attr(&quot;class&quot;, &quot;y axis&quot;)
+                                    .attr(&quot;transform&quot;, &quot;translate(&quot; + padding + &quot;,&quot; + padding + &quot;)&quot;)
+                                    .call(yAxis)
+                                    .append(&quot;text&quot;)
+                                    .attr(&quot;transform&quot;, &quot;rotate(-90)&quot;)
+                                    .attr(&quot;class&quot;, &quot;axisLabel&quot;)
+                                    .attr(&quot;y&quot;, 0 - padding + 20)
+                                    .attr(&quot;x&quot;, 0 - (height / 2))
+                                    .text(&quot;Number of Beacon Packets&quot;);
+                        
+                            }
+                        }
+                        
+                        
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

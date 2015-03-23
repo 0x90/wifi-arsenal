@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/AravinthPanch/rssi
+	branch = master
+	commit = 1d1ffaef8f50f65cd404b4952d86dd39b62d38ca
+	parent = 08f7f6208a7035c6e96186489541a982886617a9
+	cmdver = 0.2.0

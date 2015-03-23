@@ -1,0 +1,270 @@
+body {
+    font-size: 62.5%;
+    font-family: "Trebuchet MS", "Arial", "Helvetica", "Verdana", "sans-serif";
+}
+
+table {
+    font-size: 1em;
+}
+
+.ui-draggable, .ui-droppable {
+    background-position: top;
+}
+
+#loader {
+    display: none;
+    position: fixed;
+    left: 600px;
+    top: 300px;
+    height: 60px;
+    width: 200px;
+    background-color: #d3d3d3;
+    border: solid 1px;
+    z-index: 20;
+    text-align: center;
+    padding-top: 30px;
+    font-size: 20px;
+}
+
+.selectableList .ui-selecting {
+    background: #d3d3d3;
+}
+
+.selectableList .ui-selected {
+    background: steelblue;
+    color: white;
+}
+
+.selectableList {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow-wrap: break-word;
+}
+
+.selectableList li {
+    margin: 3px;
+    padding: 0.4em;
+    font-size: 1.1em;
+    height: auto;
+}
+
+.selectableList {
+    cursor: pointer;
+}
+
+.selectablePoints .ui-selecting {
+    background: #d3d3d3;
+}
+
+.selectablePoints .ui-selected {
+    background: steelblue;
+    border: solid 1px
+}
+
+.selectablePoints {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.selectablePoints li {
+    background: brown;
+    border: none
+}
+
+/*-------------------------------------------- Index Tab ----*/
+#titleTabs {
+    margin-bottom: 5px;
+}
+
+#indexTab {
+    height: 60px;
+}
+
+#indexTab #title {
+    float: right;
+    font-family: Impact;
+    font-size: 48px;
+    color: steelblue;
+    letter-spacing: 2px;
+    margin-top: 5px;
+}
+
+#indexTab #title {
+    float: left;
+    font-family: Impact;
+    font-size: 45px;
+    color: steelblue;
+    letter-spacing: 2px;
+}
+
+#indexTab #tkn {
+    float: right;
+    background-image: url(../images/tkn2.gif);
+    height: 33px;
+    width: 100px;
+    margin-top: 20px;
+}
+
+#indexTab #twist {
+    float: right;
+    background-image: url(../images/twist.png);
+    height: 60px;
+    width: 100px;
+    background-size: contain;
+    margin-right: 5px;
+    display: none;
+}
+
+#indexTab #iMind {
+    float: right;
+    background-image: url(../images/iLabt.jpg);
+    height: 44px;
+    width: 150px;
+    margin-top: 10px;
+    margin-right: 5px;
+    display: none;
+}
+
+#indexTab #evarilos {
+    float: right;
+    background-image: url(../images/evarilos-logo.jpg);
+    height: 60px;
+    width: 150px;
+    background-size: contain;
+    margin-right: 5px;
+    display: none;
+}
+
+/*-------------------------------------------- Dashboard Tab ----*/
+#servers {
+    float: left;
+    width: 20%;
+    height: 95%;
+}
+
+#databases {
+    float: left;
+    width: 20%;
+    height: 95%;
+    margin-left: 10px;
+}
+
+#collections {
+    float: left;
+    width: 35%;
+    height: 95%;
+    margin-left: 10px;
+    overflow: scroll;
+}
+
+#floorPlans {
+    float: left;
+    width: 20%;
+    height: 95%;
+    margin-left: 10px;
+}
+
+/*-------------------------------------------- Floor Plan Tab ----*/
+
+.node {
+    position: absolute;
+    height: 14px;
+    width: 14px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.node .xy {
+    left: 0px;
+    top: 366px;
+}
+
+#floorContainer {
+    width: 65%;
+    float: left;
+}
+
+#floor {
+    border: solid 1px #000000;
+    width: 960px;
+    height: 480px;
+    background-size: 100% 100%;
+}
+
+.defaultFloor {
+    background-image: url(../images/floor_twist_2.png);
+}
+
+.twist2Floor {
+    background-image: url(../images/floor_twist_2.png);
+}
+
+.twist3Floor {
+    background-image: url(../images/floor_twist_3.png);
+}
+
+.twist4Floor {
+    background-image: url(../images/floor_twist_4.png);
+}
+
+.iLab1 {
+    background-image: url(../images/floor_ilab_1.png);
+}
+
+.iLab2 {
+    background-image: url(../images/floor_ilab_2.png);
+}
+
+.ui-menu {
+    width: 100px;
+    margin: 10px;
+}
+
+#channelMenu {
+    display: none;
+}
+
+#accesspoints {
+    float: right;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    width: 25%;
+    height: 68%;
+    overflow: scroll;
+}
+
+.accessPointUri {
+    color: darkblue;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 2px;
+}
+
+#floorInfoTabs {
+    float: right;
+    margin-left: 10px;
+    width: 25%;
+    height: 27%;
+}
+
+/*-------------------------------------------- Graph Tab ----*/
+#graph {
+    float: left;
+}
+
+#graphInfoTabs {
+    float: right;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    width: 325px;
+    height: 96%;
+    overflow-wrap: break-word;
+}
+
+
+

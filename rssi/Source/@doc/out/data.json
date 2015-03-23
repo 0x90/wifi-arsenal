@@ -1,0 +1,2062 @@
+{
+    "project": {},
+    "files": {
+        "libs/jquery-ui.js": {
+            "name": "libs/jquery-ui.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "libs/jquery.js": {
+            "name": "libs/jquery.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "libs/require.js": {
+            "name": "libs/require.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "plot/lib/jquery.js": {
+            "name": "plot/lib/jquery.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "plot/lib/semantic.min.js": {
+            "name": "plot/lib/semantic.min.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "scripts/app.js": {
+            "name": "scripts/app.js",
+            "modules": {
+                "APP": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "scripts/collection.js": {
+            "name": "scripts/collection.js",
+            "modules": {},
+            "classes": {
+                "collection": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "scripts/controller.js": {
+            "name": "scripts/controller.js",
+            "modules": {},
+            "classes": {
+                "controller": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "scripts/floor.js": {
+            "name": "scripts/floor.js",
+            "modules": {},
+            "classes": {
+                "floor": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "scripts/globals.js": {
+            "name": "scripts/globals.js",
+            "modules": {},
+            "classes": {
+                "globals": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "scripts/graph.js": {
+            "name": "scripts/graph.js",
+            "modules": {},
+            "classes": {
+                "graph": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "scripts/utils.js": {
+            "name": "scripts/utils.js",
+            "modules": {},
+            "classes": {
+                "utils": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "scripts/view.js": {
+            "name": "scripts/view.js",
+            "modules": {},
+            "classes": {
+                "view": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "APP": {
+            "name": "APP",
+            "submodules": {},
+            "classes": {
+                "collection": 1,
+                "controller": 1,
+                "floor": 1,
+                "globals": 1,
+                "graph": 1,
+                "utils": 1,
+                "view": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "scripts/view.js",
+            "line": 1,
+            "description": "Raw Ranging Data Visualization Tool <br />\nAuthor: Aravinth, S. Panchadcharam <br />\nDate: 20 November 2013 <br />\nEmail: me@aravinth.info <br />\nRevised: 08 January 2015 <br />"
+        }
+    },
+    "classes": {
+        "collection": {
+            "name": "collection",
+            "shortname": "collection",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "APP",
+            "namespace": "",
+            "file": "scripts/collection.js",
+            "line": 1,
+            "description": "Collection deals with the process of retrieving JSON data from backend and processing them according to the requirement"
+        },
+        "controller": {
+            "name": "controller",
+            "shortname": "controller",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "APP",
+            "namespace": "",
+            "file": "scripts/controller.js",
+            "line": 1,
+            "description": "Controller is the hub of APP. APP is implemented with the Event-Driven-Architecture.\nController is responsible for capturing events and sets the respective callbacks for every events which are triggered\nthroughout APP."
+        },
+        "floor": {
+            "name": "floor",
+            "shortname": "floor",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "APP",
+            "namespace": "",
+            "file": "scripts/floor.js",
+            "line": 1,
+            "description": "Floor translates and maps the coordinates of the location information that is included in the RawData.\nThis is achieved based on Offset and Units which are calculated from every Floor Plan image.\nFloorPlan Image properties are calculated using utils/floor_mapper.html and stored under globals.js"
+        },
+        "globals": {
+            "name": "globals",
+            "shortname": "globals",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "APP",
+            "namespace": "",
+            "file": "scripts/globals.js",
+            "line": 1,
+            "description": "Globals contains properties, constants and variables used in APP.\nImportant data used during the lifecycle of APP are stored under Globals for the purpose having clean global variables and debugging."
+        },
+        "graph": {
+            "name": "graph",
+            "shortname": "graph",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "APP",
+            "namespace": "",
+            "file": "scripts/graph.js",
+            "line": 1,
+            "description": "Graph gets an Array of RSSI values and draws a Histogram using D3.JS"
+        },
+        "utils": {
+            "name": "utils",
+            "shortname": "utils",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "APP",
+            "namespace": "",
+            "file": "scripts/utils.js",
+            "line": 1,
+            "description": "Util contains functions of Javascript functions which are used in APP.\nThere are also other standalone utilities have been used which can be found under /utils/*.html"
+        },
+        "view": {
+            "name": "view",
+            "shortname": "view",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "APP",
+            "namespace": "",
+            "file": "scripts/view.js",
+            "line": 1,
+            "description": "View is responsible for UI manipulation, Templates, UI events handling, etc"
+        }
+    },
+    "classitems": [
+        {
+            "file": "libs/jquery-ui.js",
+            "line": 5447,
+            "class": "collection"
+        },
+        {
+            "file": "libs/jquery-ui.js",
+            "line": 5448,
+            "class": "collection"
+        },
+        {
+            "file": "libs/jquery-ui.js",
+            "line": 5449,
+            "class": "collection"
+        },
+        {
+            "file": "libs/jquery-ui.js",
+            "line": 5652,
+            "class": "collection"
+        },
+        {
+            "file": "libs/jquery-ui.js",
+            "line": 5653,
+            "class": "collection"
+        },
+        {
+            "file": "libs/jquery-ui.js",
+            "line": 5654,
+            "class": "collection"
+        },
+        {
+            "file": "libs/jquery-ui.js",
+            "line": 5999,
+            "class": "collection"
+        },
+        {
+            "file": "libs/jquery-ui.js",
+            "line": 6000,
+            "class": "collection"
+        },
+        {
+            "file": "libs/jquery-ui.js",
+            "line": 6001,
+            "class": "collection"
+        },
+        {
+            "file": "libs/jquery.js",
+            "line": 3837,
+            "description": "For feature detection",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "The function to test for native support",
+                    "type": "Function"
+                }
+            ],
+            "class": "collection"
+        },
+        {
+            "file": "libs/jquery.js",
+            "line": 3845,
+            "description": "Create key-value caches of limited size",
+            "return": {
+                "description": "Returns the Object data after storing it on itself with\n\tproperty name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)\n\tdeleting the oldest entry",
+                "type": "Function(string, Object)"
+            },
+            "class": "collection"
+        },
+        {
+            "file": "libs/jquery.js",
+            "line": 3865,
+            "description": "Mark a function for special use by Sizzle",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "The function to mark",
+                    "type": "Function"
+                }
+            ],
+            "class": "collection"
+        },
+        {
+            "file": "libs/jquery.js",
+            "line": 3874,
+            "description": "Support testing using an element",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "Passed the created div and expects a boolean result",
+                    "type": "Function"
+                }
+            ],
+            "class": "collection"
+        },
+        {
+            "file": "libs/jquery.js",
+            "line": 4001,
+            "description": "Detect xml",
+            "params": [
+                {
+                    "name": "elem",
+                    "description": "An element or a document",
+                    "type": "Element|Object"
+                }
+            ],
+            "class": "collection"
+        },
+        {
+            "file": "libs/jquery.js",
+            "line": 4012,
+            "description": "Sets document-related variables once based on the current document",
+            "params": [
+                {
+                    "name": "doc",
+                    "description": "An element or document object to use to set the document",
+                    "type": "Element|Object",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "Returns the current document",
+                "type": "Object"
+            },
+            "class": "collection"
+        },
+        {
+            "file": "libs/jquery.js",
+            "line": 4505,
+            "description": "Utility function for retrieving the text value of an array of DOM nodes",
+            "params": [
+                {
+                    "name": "elem",
+                    "description": "",
+                    "type": "Array|Element"
+                }
+            ],
+            "class": "collection"
+        },
+        {
+            "file": "libs/require.js",
+            "line": 1,
+            "license": "RequireJS 2.1.10 Copyright (c) 2010-2014, The Dojo Foundation All Rights Reserved.\nAvailable via the MIT or new BSD license.\nsee: http://github.com/jrburke/requirejs for details",
+            "class": "collection"
+        },
+        {
+            "file": "libs/require.js",
+            "line": 49,
+            "description": "Helper function for iterating over an array. If the func returns\na true value, it will break out of the loop.",
+            "class": "collection"
+        },
+        {
+            "file": "libs/require.js",
+            "line": 64,
+            "description": "Helper function for iterating over an array backwards. If the func\nreturns a true value, it will break out of the loop.",
+            "class": "collection"
+        },
+        {
+            "file": "libs/require.js",
+            "line": 87,
+            "description": "Cycles over properties in an object and calls a function for each\nproperty value. If the function returns a truthy value, then the\niteration is stopped.",
+            "class": "collection"
+        },
+        {
+            "file": "libs/require.js",
+            "line": 103,
+            "description": "Simple function to mix in properties from source into target,\nbut only if target does not already have a property of the same name.",
+            "class": "collection"
+        },
+        {
+            "file": "libs/require.js",
+            "line": 157,
+            "description": "Constructs an error with a pointer to an URL with more information.",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "the error ID that maps to an ID on a web page.",
+                    "type": "String"
+                },
+                {
+                    "name": "message",
+                    "description": "human readable error.",
+                    "type": "String"
+                },
+                {
+                    "name": "err",
+                    "description": "the original error, if there is one.",
+                    "type": "Error",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Error"
+            },
+            "class": "collection"
+        },
+        {
+            "file": "libs/require.js",
+            "line": 225,
+            "description": "Trims the . and .. from an array of path segments.\nIt will keep a leading path segment if a .. will become\nthe first path segment, to help with module name lookups,\nwhich act like paths, but can be remapped. But the end result,\nall paths that use this function should look normalized.\nNOTE: this method MODIFIES the input array.",
+            "params": [
+                {
+                    "name": "ary",
+                    "description": "the array of path segments.",
+                    "type": "Array"
+                }
+            ],
+            "class": "collection"
+        },
+        {
+            "file": "libs/require.js",
+            "line": 258,
+            "description": "Given a relative module name, like ./something, normalize it to\na real name that can be mapped to a path.",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "the relative name",
+                    "type": "String"
+                },
+                {
+                    "name": "baseName",
+                    "description": "a real name that the name arg is relative\nto.",
+                    "type": "String"
+                },
+                {
+                    "name": "applyMap",
+                    "description": "apply the map config to the value. Should\nonly be done if this normalization is for a dependency ID.",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "normalized name",
+                "type": "String"
+            },
+            "class": "collection"
+        },
+        {
+            "file": "libs/require.js",
+            "line": 400,
+            "description": "Creates a module mapping that includes plugin prefix, module\nname, and path. If parentModuleMap is provided it will\nalso normalize the name via require.normalize()",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "the module name",
+                    "type": "String"
+                },
+                {
+                    "name": "parentModuleMap",
+                    "description": "parent module map\nfor the module name, used to resolve relative names.",
+                    "type": "String",
+                    "optional": true
+                },
+                {
+                    "name": "isNormalized:",
+                    "description": "is the ID already normalized.\nThis is true if this call is done for a define() module ID.",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "applyMap:",
+                    "description": "apply the map config to the ID.\nShould only be true if this map is for a dependency.",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "collection"
+        },
+        {
+            "file": "libs/require.js",
+            "line": 542,
+            "description": "Internal method to transfer globalQueue items to this context's\ndefQueue.",
+            "class": "collection"
+        },
+        {
+            "file": "libs/require.js",
+            "line": 824,
+            "description": "Checks if the module is ready to define itself, and if so,\ndefine it.",
+            "class": "collection"
+        },
+        {
+            "file": "libs/require.js",
+            "line": 1189,
+            "description": "Given an event from a script node, get the requirejs info from it,\nand then removes the event listeners on the node.",
+            "params": [
+                {
+                    "name": "evt",
+                    "description": "",
+                    "type": "Event"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "collection"
+        },
+        {
+            "file": "libs/require.js",
+            "line": 1242,
+            "description": "Set a configuration for the context.",
+            "params": [
+                {
+                    "name": "cfg",
+                    "description": "config object to integrate.",
+                    "type": "Object"
+                }
+            ],
+            "class": "collection"
+        },
+        {
+            "file": "libs/require.js",
+            "line": 1429,
+            "description": "Converts a module name + .extension into an URL path.\n*Requires* the use of a module name. It does not support using\nplain URLs like nameToUrl.",
+            "class": "collection"
+        },
+        {
+            "file": "libs/require.js",
+            "line": 1502,
+            "description": "Called to enable a module if it is still in the registry\nawaiting enablement. A second arg, parent, the parent module,\nis passed in for context, when this method is overriden by\nthe optimizer. Not shown here to keep code compact.",
+            "class": "collection"
+        },
+        {
+            "file": "libs/require.js",
+            "line": 1515,
+            "description": "Internal method used by environment adapters to complete a load event.\nA load event could be a script load or just a load pass from a synchronous\nload call.",
+            "params": [
+                {
+                    "name": "moduleName",
+                    "description": "the name of the module to potentially complete.",
+                    "type": "String"
+                }
+            ],
+            "class": "collection"
+        },
+        {
+            "file": "libs/require.js",
+            "line": 1571,
+            "description": "Converts a module name to a file path. Supports cases where\nmoduleName may actually be just an URL.\nNote that it **does not** call normalize on the moduleName,\nit is assumed to have already been normalized. This is an\ninternal API, not a public one. Use toUrl for the public API.",
+            "class": "collection"
+        },
+        {
+            "file": "libs/require.js",
+            "line": 1642,
+            "description": "Executes a module callback function. Broken out as a separate function\nsolely to allow the build system to sequence the files in the built\nlayer in the right sequence.",
+            "access": "private",
+            "tagname": "",
+            "class": "collection"
+        },
+        {
+            "file": "libs/require.js",
+            "line": 1653,
+            "description": "callback for script loads, used to check status of loading.",
+            "params": [
+                {
+                    "name": "evt",
+                    "description": "the event from the browser for the script\nthat was loaded.",
+                    "type": "Event"
+                }
+            ],
+            "class": "collection"
+        },
+        {
+            "file": "libs/require.js",
+            "line": 1675,
+            "description": "Callback for script errors.",
+            "class": "collection"
+        },
+        {
+            "file": "libs/require.js",
+            "line": 1690,
+            "description": "Main entry point.\n\nIf the only argument to require is a string, then the module that\nis represented by that string is fetched for the appropriate context.\n\nIf the first argument is an array, then it will be treated as an array\nof dependency string names to fetch. An optional function callback can\nbe specified to execute when all of those dependencies are available.\n\nMake a local req variable to help Caja compliance (it assumes things\non a require that are not standardized), and to give a short\nname for minification/local scope use.",
+            "class": "collection"
+        },
+        {
+            "file": "libs/require.js",
+            "line": 1740,
+            "description": "Support require.config() to make it easier to cooperate with other\nAMD loaders on globally agreed names.",
+            "class": "collection"
+        },
+        {
+            "file": "libs/require.js",
+            "line": 1748,
+            "description": "Execute something after the current tick\nof the event loop. Override for other envs\nthat have a better solution than setTimeout.",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "function to execute later.",
+                    "type": "Function"
+                }
+            ],
+            "class": "collection"
+        },
+        {
+            "file": "libs/require.js",
+            "line": 1758,
+            "description": "Export require as a global, but only if it does not already exist.",
+            "class": "collection"
+        },
+        {
+            "file": "libs/require.js",
+            "line": 1805,
+            "description": "Any errors that require explicitly generates will be passed to this\nfunction. Intercept/override it if you want custom error handling.",
+            "params": [
+                {
+                    "name": "err",
+                    "description": "the error object.",
+                    "type": "Error"
+                }
+            ],
+            "class": "collection"
+        },
+        {
+            "file": "libs/require.js",
+            "line": 1812,
+            "description": "Creates the node for the load command. Only used in browser envs.",
+            "class": "collection"
+        },
+        {
+            "file": "libs/require.js",
+            "line": 1825,
+            "description": "Does the request to load a module for the browser case.\nMake this a separate function to allow other environments\nto override it.",
+            "params": [
+                {
+                    "name": "context",
+                    "description": "the require context to find state.",
+                    "type": "Object"
+                },
+                {
+                    "name": "moduleName",
+                    "description": "the name of the module.",
+                    "type": "String"
+                },
+                {
+                    "name": "url",
+                    "description": "the URL to the module.",
+                    "type": "Object"
+                }
+            ],
+            "class": "collection"
+        },
+        {
+            "file": "libs/require.js",
+            "line": 1981,
+            "description": "The function that handles definitions of modules. Differs from\nrequire() in that a string for the module should be the first argument,\nand the function to execute after dependencies are loaded should\nreturn a value to define the module corresponding to the first argument's\nname.",
+            "class": "collection"
+        },
+        {
+            "file": "libs/require.js",
+            "line": 2055,
+            "description": "Executes the text. Normally just uses eval, but can be modified\nto use a better, environment-specific call. Only used for transpiling\nloader plugins, not for plain JS modules.",
+            "params": [
+                {
+                    "name": "text",
+                    "description": "the text to execute/evaluate.",
+                    "type": "String"
+                }
+            ],
+            "class": "collection"
+        },
+        {
+            "file": "plot/lib/jquery.js",
+            "line": 3837,
+            "description": "For feature detection",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "The function to test for native support",
+                    "type": "Function"
+                }
+            ],
+            "class": "collection"
+        },
+        {
+            "file": "plot/lib/jquery.js",
+            "line": 3845,
+            "description": "Create key-value caches of limited size",
+            "return": {
+                "description": "Returns the Object data after storing it on itself with\n\tproperty name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)\n\tdeleting the oldest entry",
+                "type": "Function(string, Object)"
+            },
+            "class": "collection"
+        },
+        {
+            "file": "plot/lib/jquery.js",
+            "line": 3865,
+            "description": "Mark a function for special use by Sizzle",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "The function to mark",
+                    "type": "Function"
+                }
+            ],
+            "class": "collection"
+        },
+        {
+            "file": "plot/lib/jquery.js",
+            "line": 3874,
+            "description": "Support testing using an element",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "Passed the created div and expects a boolean result",
+                    "type": "Function"
+                }
+            ],
+            "class": "collection"
+        },
+        {
+            "file": "plot/lib/jquery.js",
+            "line": 4001,
+            "description": "Detect xml",
+            "params": [
+                {
+                    "name": "elem",
+                    "description": "An element or a document",
+                    "type": "Element|Object"
+                }
+            ],
+            "class": "collection"
+        },
+        {
+            "file": "plot/lib/jquery.js",
+            "line": 4012,
+            "description": "Sets document-related variables once based on the current document",
+            "params": [
+                {
+                    "name": "doc",
+                    "description": "An element or document object to use to set the document",
+                    "type": "Element|Object",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "Returns the current document",
+                "type": "Object"
+            },
+            "class": "collection"
+        },
+        {
+            "file": "plot/lib/jquery.js",
+            "line": 4505,
+            "description": "Utility function for retrieving the text value of an array of DOM nodes",
+            "params": [
+                {
+                    "name": "elem",
+                    "description": "",
+                    "type": "Array|Element"
+                }
+            ],
+            "class": "collection"
+        },
+        {
+            "file": "plot/lib/semantic.min.js",
+            "line": 1,
+            "description": "Version: 0.18.0\nhttp://github.com/jlukic/semantic-ui\n\n\nCopyright 2014 Contributors\nReleased under the MIT license\nhttp://opensource.org/licenses/MIT\n\nRelease Date: 06/06/2014",
+            "class": "collection"
+        },
+        {
+            "file": "scripts/app.js",
+            "line": 11,
+            "description": "APP is started after DOM is READY.",
+            "class": "collection",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/collection.js",
+            "line": 8,
+            "description": "It retrieves the list of Databases from backend in Local or Remote Machine based on the selection",
+            "itemtype": "method",
+            "name": "getDatabaseList",
+            "params": [
+                {
+                    "name": "databaseURL",
+                    "description": "The URL of the selected Server in Local or Remote machine",
+                    "type": "String"
+                }
+            ],
+            "class": "collection",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/collection.js",
+            "line": 25,
+            "description": "It retrieves the list of Collections from backend",
+            "itemtype": "method",
+            "name": "getCollectionList",
+            "params": [
+                {
+                    "name": "databaseUri",
+                    "description": "The URI of the selected Database",
+                    "type": "String"
+                }
+            ],
+            "class": "collection",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/collection.js",
+            "line": 50,
+            "description": "It retrieves the internal list of the selected Collection from backend",
+            "itemtype": "method",
+            "name": "getSelectedCollectionData",
+            "params": [
+                {
+                    "name": "collectionUri",
+                    "description": "The URI of the selected Collection",
+                    "type": "String"
+                }
+            ],
+            "class": "collection",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/collection.js",
+            "line": 64,
+            "description": "It retrieves the complete RawData of the selected Collection from backend",
+            "itemtype": "method",
+            "name": "getRawData",
+            "params": [
+                {
+                    "name": "selectedCollectionUrls",
+                    "description": "The Internal URLs of the selected Collection",
+                    "type": "Array"
+                }
+            ],
+            "class": "collection",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/collection.js",
+            "line": 88,
+            "description": "It filters the RawData based on the selected Floor Plan",
+            "itemtype": "method",
+            "name": "filterRawDataByFloor",
+            "params": [
+                {
+                    "name": "rawData",
+                    "description": "The rawData of the selected Collection",
+                    "type": "Array"
+                }
+            ],
+            "class": "collection",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/collection.js",
+            "line": 121,
+            "description": "It gets the data of the selected Node in the FloorPlan",
+            "itemtype": "method",
+            "name": "getSelectedNodeData",
+            "params": [
+                {
+                    "name": "selectedNodeId",
+                    "description": "The Id of the selected Node in the FloorPlan",
+                    "type": "String"
+                }
+            ],
+            "class": "collection",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/collection.js",
+            "line": 135,
+            "description": "It groups the data of the selected Node based on Channel Number and sorted ascending",
+            "itemtype": "method",
+            "name": "groupNodeDataByChannel",
+            "params": [
+                {
+                    "name": "selectedNodeData",
+                    "description": "The Data of the selected Node in the FloorPlan",
+                    "type": "Array"
+                }
+            ],
+            "class": "collection",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/collection.js",
+            "line": 163,
+            "description": "It gets the data of the selected Channel",
+            "itemtype": "method",
+            "name": "getSelectedChannelData",
+            "params": [
+                {
+                    "name": "selectedChannel",
+                    "description": "The Number of the selected Channel",
+                    "type": "String"
+                }
+            ],
+            "class": "collection",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/collection.js",
+            "line": 177,
+            "description": "It groups the data of the selected Channel based on SSID_BSSID and then sorted alphabetically",
+            "itemtype": "method",
+            "name": "groupSelectedChannelDataBySsid",
+            "params": [
+                {
+                    "name": "selectedChannelData",
+                    "description": "The Data of  of the selected Channel",
+                    "type": "Array"
+                }
+            ],
+            "class": "collection",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/collection.js",
+            "line": 198,
+            "description": "It picks only rssi valued from the data of the selected AccessPoint to feed to the Chart",
+            "itemtype": "method",
+            "name": "processGraphData",
+            "params": [
+                {
+                    "name": "selectedSsidData",
+                    "description": "The SSID_BSSID Data of the selected AccessPoint",
+                    "type": "Array"
+                }
+            ],
+            "class": "collection",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/collection.js",
+            "line": 215,
+            "description": "It retrieves the Metadata from backend",
+            "itemtype": "method",
+            "name": "getMetadata",
+            "params": [
+                {
+                    "name": "metadataId",
+                    "description": "The MetadataId of the selected collection",
+                    "type": "String"
+                }
+            ],
+            "class": "collection",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/controller.js",
+            "line": 10,
+            "description": "It initialises the controller to process the captured events. These events are triggered in various parts of APP\nand captured by the controller",
+            "itemtype": "method",
+            "name": "initialize",
+            "class": "controller",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/controller.js",
+            "line": 17,
+            "description": "Triggered when a server is selected by user",
+            "itemtype": "event",
+            "name": "server:selected",
+            "params": [
+                {
+                    "name": "serverId",
+                    "description": "The name of the selected Server",
+                    "type": "String"
+                }
+            ],
+            "class": "controller",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/controller.js",
+            "line": 27,
+            "description": "Triggered when database is retrieved from the Remote API",
+            "itemtype": "event",
+            "name": "databaseList:retrieved",
+            "class": "controller",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/controller.js",
+            "line": 36,
+            "description": "Triggered when a Database is selected by user",
+            "itemtype": "event",
+            "name": "database:selected",
+            "params": [
+                {
+                    "name": "databaseUri",
+                    "description": "The URI of the selected Database",
+                    "type": "String"
+                }
+            ],
+            "class": "controller",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/controller.js",
+            "line": 46,
+            "description": "Triggered when list of Collections is retrieved from backend",
+            "itemtype": "event",
+            "name": "collectionList:retrieved",
+            "class": "controller",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/controller.js",
+            "line": 55,
+            "description": "Triggered when a Collection is selected by user",
+            "itemtype": "event",
+            "name": "collection:selected",
+            "params": [
+                {
+                    "name": "collectionUri",
+                    "description": "The URI of the selected Collection",
+                    "type": "String"
+                }
+            ],
+            "class": "controller",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/controller.js",
+            "line": 66,
+            "description": "Triggered when internal list of the selected Collection is retrieved from backend",
+            "itemtype": "event",
+            "name": "selectedCollectionData:retrieved",
+            "class": "controller",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/controller.js",
+            "line": 74,
+            "description": "Triggered when complete RawData of the selected Collection is retrieved from backend",
+            "itemtype": "event",
+            "name": "rawData:retrieved",
+            "class": "controller",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/controller.js",
+            "line": 92,
+            "description": "Triggered when Metadata of the selected collection is retrieved from backend",
+            "itemtype": "event",
+            "name": "metadata:retrieved",
+            "class": "controller",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/controller.js",
+            "line": 101,
+            "description": "Triggered when a Floor Plan is selected by user",
+            "itemtype": "event",
+            "name": "floorPlan:selected",
+            "class": "controller",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/controller.js",
+            "line": 111,
+            "description": "Triggered when coordinates are mapped to the selected Floor Plan",
+            "itemtype": "event",
+            "name": "coordinates:mapped",
+            "class": "controller",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/controller.js",
+            "line": 122,
+            "description": "Triggered when a Node in the FloorPlan is selected by user",
+            "itemtype": "event",
+            "name": "node:selected",
+            "params": [
+                {
+                    "name": "selectedNodeId",
+                    "description": "The Id of the selected Node in the FloorPlan",
+                    "type": "String"
+                }
+            ],
+            "class": "controller",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/controller.js",
+            "line": 135,
+            "description": "Triggered when a Channel is selected by user",
+            "itemtype": "event",
+            "name": "channel:selected",
+            "params": [
+                {
+                    "name": "selectedChannel",
+                    "description": "The number of the selected channel",
+                    "type": "Integer"
+                }
+            ],
+            "class": "controller",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/controller.js",
+            "line": 147,
+            "description": "Triggered when an AccessPoint is selected by user",
+            "itemtype": "event",
+            "name": "accessPoint:selected",
+            "params": [
+                {
+                    "name": "selectedSsidData",
+                    "description": "The SSID_BSSID of the selected AccessPoint",
+                    "type": "String"
+                }
+            ],
+            "class": "controller",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/controller.js",
+            "line": 163,
+            "description": "It is a callback for an event when a server is selected by user",
+            "itemtype": "method",
+            "name": "serverSelected",
+            "params": [
+                {
+                    "name": "serverId",
+                    "description": "The name of the selected Server",
+                    "type": "String"
+                }
+            ],
+            "class": "controller",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/floor.js",
+            "line": 10,
+            "description": "It maps the coordinates of location in RawData to the selected Floor Plan",
+            "itemtype": "method",
+            "name": "mapCoordinates",
+            "params": [
+                {
+                    "name": "rawData",
+                    "description": "The RawData of the selected collection",
+                    "type": "Array"
+                }
+            ],
+            "class": "floor",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/floor.js",
+            "line": 64,
+            "description": "It translates the original coordinates according to the size of the Floor Plan",
+            "itemtype": "method",
+            "name": "pixelConverter",
+            "params": [
+                {
+                    "name": "x",
+                    "description": "Original X axis of the location",
+                    "type": "Number"
+                },
+                {
+                    "name": "y",
+                    "description": "Original Y axis of the location",
+                    "type": "Number"
+                },
+                {
+                    "name": "x_unit",
+                    "description": "One Unit of X Axis of the location in pixels of Floor Plan",
+                    "type": "Number"
+                },
+                {
+                    "name": "y_unit",
+                    "description": "One Unit of Y Axis of the location in pixels of Floor Plan",
+                    "type": "Number"
+                },
+                {
+                    "name": "left_offset",
+                    "description": "Offset of the Floor Plan Image from left",
+                    "type": "Number"
+                },
+                {
+                    "name": "top_offset",
+                    "description": "Offset of the Floor Plan Image from top",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "Translated X and Y axis",
+                "type": "Object"
+            },
+            "class": "floor",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/globals.js",
+            "line": 9,
+            "description": "AmplifyJS global variable is assigned as Eventbus",
+            "itemtype": "property",
+            "name": "eventBus",
+            "type": "Object",
+            "class": "globals",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/globals.js",
+            "line": 17,
+            "description": "URL of the remote server",
+            "itemtype": "property",
+            "name": "dataBaseUriRemote",
+            "type": "String",
+            "class": "globals",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/globals.js",
+            "line": 25,
+            "description": "URL of the local server",
+            "itemtype": "property",
+            "name": "dataBaseUriLocal",
+            "type": "String",
+            "class": "globals",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/globals.js",
+            "line": 33,
+            "description": "URL of the metadata collection",
+            "itemtype": "property",
+            "name": "metadataUri",
+            "type": "String",
+            "class": "globals",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/globals.js",
+            "line": 41,
+            "description": "metadataId of the selected experiment",
+            "itemtype": "property",
+            "name": "metadataId",
+            "type": "String",
+            "class": "globals",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/globals.js",
+            "line": 49,
+            "description": "Metadata of the selected experiment",
+            "itemtype": "property",
+            "name": "metadata",
+            "type": "Object",
+            "class": "globals",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/globals.js",
+            "line": 57,
+            "description": "List of databases of selected server",
+            "itemtype": "property",
+            "name": "databaseList",
+            "type": "Array",
+            "class": "globals",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/globals.js",
+            "line": 65,
+            "description": "Name and URI of the selected database",
+            "itemtype": "property",
+            "name": "selectedDatabase",
+            "type": "Object",
+            "class": "globals",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/globals.js",
+            "line": 73,
+            "description": "List of collections of the selected database",
+            "itemtype": "property",
+            "name": "collectionList",
+            "type": "Array",
+            "class": "globals",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/globals.js",
+            "line": 81,
+            "description": "Name and URI of the selected collection",
+            "itemtype": "property",
+            "name": "selectedCollection",
+            "type": "Object",
+            "class": "globals",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/globals.js",
+            "line": 89,
+            "description": "Internal URI List of the selected collection",
+            "itemtype": "property",
+            "name": "selectedCollectionData",
+            "type": "Array",
+            "class": "globals",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/globals.js",
+            "line": 97,
+            "description": "RawData of the selected collection which is a list of RawData from all measurement points of the selected experiment",
+            "itemtype": "property",
+            "name": "rawData",
+            "type": "Array",
+            "class": "globals",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/globals.js",
+            "line": 105,
+            "description": "Name of the selected floor plan",
+            "itemtype": "property",
+            "name": "selectedFloorPlan",
+            "type": "String",
+            "class": "globals",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/globals.js",
+            "line": 113,
+            "description": "RawData filtered by FloorPlan. Even though FloorPlan is selected by USER, some Big collections have data of various FloorPlans altogether\nIn order to filter such RawData, extra function is implemented and the result stored in this variable",
+            "itemtype": "property",
+            "name": "filteredRawDataByFloor",
+            "type": "Array",
+            "class": "globals",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/globals.js",
+            "line": 122,
+            "description": "List of all measurement points of the selected collection. Measurement Points are defined as nodes through out APP",
+            "itemtype": "property",
+            "name": "nodeList",
+            "type": "Array",
+            "class": "globals",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/globals.js",
+            "line": 130,
+            "description": "Data of the selected node",
+            "itemtype": "property",
+            "name": "selectedNodeData",
+            "type": "Array",
+            "class": "globals",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/globals.js",
+            "line": 138,
+            "description": "List of Channel Number which are extracted from the selectedNodeData, if available",
+            "itemtype": "property",
+            "name": "channelList",
+            "type": "Array",
+            "class": "globals",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/globals.js",
+            "line": 146,
+            "description": "Data of selected Node grouped by Channel number",
+            "itemtype": "property",
+            "name": "groupedNodeDataByChannel",
+            "type": "Array",
+            "class": "globals",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/globals.js",
+            "line": 154,
+            "description": "Data of selected Channel",
+            "itemtype": "property",
+            "name": "selectedChannelData",
+            "type": "Object",
+            "class": "globals",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/globals.js",
+            "line": 162,
+            "description": "RSSI Data grouped by SSID_BSSID",
+            "itemtype": "property",
+            "name": "groupedSsidData",
+            "type": "Array",
+            "class": "globals",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/globals.js",
+            "line": 170,
+            "description": "RSSI Data of the selected SSID_BSSID",
+            "itemtype": "property",
+            "name": "selectedSsidData",
+            "type": "Object",
+            "class": "globals",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/globals.js",
+            "line": 178,
+            "description": "Extracted RSSI values of the selected SSID_BSSID that will be fed to the graph",
+            "itemtype": "property",
+            "name": "graphData",
+            "type": "Array",
+            "class": "globals",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/globals.js",
+            "line": 186,
+            "description": "Properties of FloorPlans that contains size of the FloorPlan Image and One Unit of X,Y Axis of the location in pixels of Floor Plan,\nOffset of the Floor Plan Image from left and top. These properties are calculated using utils/floor_mapper.html",
+            "itemtype": "property",
+            "name": "floorPlanScale",
+            "type": "Object",
+            "class": "globals",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/graph.js",
+            "line": 8,
+            "description": "It draws the SVG based Graph",
+            "itemtype": "method",
+            "name": "draw",
+            "params": [
+                {
+                    "name": "rssi",
+                    "description": "RSSI values of the selected accesspoint",
+                    "type": "Array"
+                }
+            ],
+            "class": "graph",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/utils.js",
+            "line": 8,
+            "description": "It calculates statistics such as mean, variance, deviation of RSSI",
+            "itemtype": "method",
+            "name": "statisticsCalculator",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "An Array of RSSI values",
+                    "type": "Array"
+                }
+            ],
+            "return": {
+                "description": "Statistics",
+                "type": "Number, Array"
+            },
+            "class": "utils",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/view.js",
+            "line": 8,
+            "description": "It initializes UI by activating JqueryUI components and binds EventHandlers",
+            "itemtype": "method",
+            "name": "initialize",
+            "class": "view",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/view.js",
+            "line": 33,
+            "description": "It binds EventHandlers with Callback to Tabs in title.",
+            "itemtype": "method",
+            "name": "bindTitleTabsUi",
+            "class": "view",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/view.js",
+            "line": 48,
+            "description": "It binds EventHandlers with Callback to the list of servers",
+            "itemtype": "method",
+            "name": "bindServerListUi",
+            "class": "view",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/view.js",
+            "line": 58,
+            "description": "It binds EventHandlers with Callback to the list of FloorPlans",
+            "itemtype": "method",
+            "name": "bindFloorPlanListUi",
+            "class": "view",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/view.js",
+            "line": 69,
+            "description": "It shows the loader when data is being retrieved",
+            "itemtype": "method",
+            "name": "showLoader",
+            "class": "view",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/view.js",
+            "line": 77,
+            "description": "It hides the loader after data is retrieved",
+            "itemtype": "method",
+            "name": "hideLoader",
+            "class": "view",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/view.js",
+            "line": 85,
+            "description": "It dynamically creates a database list and activates as JqueryUI Selectable List",
+            "itemtype": "method",
+            "name": "createDatabaseListUi",
+            "class": "view",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/view.js",
+            "line": 95,
+            "description": "It clears the database list",
+            "itemtype": "method",
+            "name": "clearDatabaseList",
+            "class": "view",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/view.js",
+            "line": 103,
+            "description": "It adds templates to the list items and add them to the database list and binds EventHandlers with Callback",
+            "itemtype": "method",
+            "name": "updateDatabaseListUi",
+            "params": [
+                {
+                    "name": "databaseList",
+                    "description": "The list of databases",
+                    "type": "Array"
+                }
+            ],
+            "class": "view",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/view.js",
+            "line": 123,
+            "description": "It clears the collection list",
+            "itemtype": "method",
+            "name": "clearCollectionList",
+            "class": "view",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/view.js",
+            "line": 131,
+            "description": "It dynamically creates a collection list and activates as JqueryUI Selectable List",
+            "itemtype": "method",
+            "name": "createCollectionListUi",
+            "class": "view",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/view.js",
+            "line": 141,
+            "description": "It adds templates to the list items and add them to the collection list and binds EventHandlers with Callback",
+            "itemtype": "method",
+            "name": "updateCollectionListUi",
+            "params": [
+                {
+                    "name": "collectionList",
+                    "description": "The list of collections",
+                    "type": "Array"
+                }
+            ],
+            "class": "view",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/view.js",
+            "line": 161,
+            "description": "It clears the floor",
+            "itemtype": "method",
+            "name": "clearFloor",
+            "class": "view",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/view.js",
+            "line": 169,
+            "description": "It dynamically creates a nodes list and activates as JqueryUI Selectable List",
+            "itemtype": "method",
+            "name": "createNodeList",
+            "class": "view",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/view.js",
+            "line": 179,
+            "description": "It shows the floor plan Tab",
+            "itemtype": "method",
+            "name": "showFloorPanel",
+            "class": "view",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/view.js",
+            "line": 189,
+            "description": "It creates the floorPlan container",
+            "itemtype": "method",
+            "name": "createFloorPlan",
+            "class": "view",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/view.js",
+            "line": 198,
+            "description": "It resets the selected node on FloorPlan",
+            "itemtype": "method",
+            "name": "resetFloorPlanList",
+            "class": "view",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/view.js",
+            "line": 206,
+            "description": "It adds templates to the list items and add them to the nodes list and binds EventHandlers with Callback",
+            "itemtype": "method",
+            "name": "updateNodeUi",
+            "params": [
+                {
+                    "name": "filteredRawDataByFloor",
+                    "description": "The RawData of the selected FloorPlan",
+                    "type": "Array"
+                }
+            ],
+            "class": "view",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/view.js",
+            "line": 239,
+            "description": "It activates the Channel Menu under accesspoints tab",
+            "itemtype": "method",
+            "name": "activateChannelMenu",
+            "class": "view",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/view.js",
+            "line": 248,
+            "description": "It clears the Channel menu",
+            "itemtype": "method",
+            "name": "clearChannelMenu",
+            "class": "view",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/view.js",
+            "line": 257,
+            "description": "It adds templates to the list items and add them to the channels list and binds EventHandlers with Callback",
+            "itemtype": "method",
+            "name": "updateChannelList",
+            "params": [
+                {
+                    "name": "channelList",
+                    "description": "The list of channel numbers of selected node",
+                    "type": "Array"
+                }
+            ],
+            "class": "view",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/view.js",
+            "line": 278,
+            "description": "It clears the accesspoints list",
+            "itemtype": "method",
+            "name": "clearAccesspointList",
+            "class": "view",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/view.js",
+            "line": 286,
+            "description": "It dynamically creates a accesspoints list and activates as JqueryUI Selectable List",
+            "itemtype": "method",
+            "name": "createAccesspointListUi",
+            "class": "view",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/view.js",
+            "line": 296,
+            "description": "It adds templates to the list items and add them to the accesspoints list and binds EventHandlers with Callback",
+            "itemtype": "method",
+            "name": "updateAccessPointUi",
+            "params": [
+                {
+                    "name": "groupedSsidData",
+                    "description": "The grouped RSSI data of selected node",
+                    "type": "Array"
+                }
+            ],
+            "class": "view",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/view.js",
+            "line": 317,
+            "description": "It updates the information related to the selected node of the selected experiment",
+            "itemtype": "method",
+            "name": "updateFloorInfo",
+            "class": "view",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/view.js",
+            "line": 334,
+            "description": "It updates the information related to the selected node of the selected experiment",
+            "itemtype": "method",
+            "name": "updateFloorInfoUi",
+            "class": "view",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/view.js",
+            "line": 347,
+            "description": "It shows the graph panel Tab",
+            "itemtype": "method",
+            "name": "showGraphPanel",
+            "class": "view",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/view.js",
+            "line": 357,
+            "description": "It clears the graph panel",
+            "itemtype": "method",
+            "name": "clearGraph",
+            "class": "view",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/view.js",
+            "line": 365,
+            "description": "It updates the information related to graph of the selected experiment",
+            "itemtype": "method",
+            "name": "updateGraphInfoUi",
+            "params": [
+                {
+                    "name": "selectedNodeData.location",
+                    "description": "The Location data of the selected node",
+                    "type": "Object"
+                }
+            ],
+            "class": "view",
+            "module": "APP"
+        },
+        {
+            "file": "scripts/view.js",
+            "line": 405,
+            "description": "It updates the information related to the selected experiment",
+            "itemtype": "method",
+            "name": "updateMetadataUi",
+            "params": [
+                {
+                    "name": "metadata",
+                    "description": "The metadata of the selected experiment",
+                    "type": "Object"
+                }
+            ],
+            "class": "view",
+            "module": "APP"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " libs/jquery.js:3845"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " libs/jquery.js:4012"
+        },
+        {
+            "message": "unknown tag: license",
+            "line": " libs/require.js:1"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " libs/require.js:157"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " libs/require.js:258"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " libs/require.js:400"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " libs/require.js:1189"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " plot/lib/jquery.js:3845"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " plot/lib/jquery.js:4012"
+        },
+        {
+            "message": "Missing item type",
+            "line": " libs/jquery-ui.js:5447"
+        },
+        {
+            "message": "Missing item type",
+            "line": " libs/jquery-ui.js:5448"
+        },
+        {
+            "message": "Missing item type",
+            "line": " libs/jquery-ui.js:5449"
+        },
+        {
+            "message": "Missing item type",
+            "line": " libs/jquery-ui.js:5652"
+        },
+        {
+            "message": "Missing item type",
+            "line": " libs/jquery-ui.js:5653"
+        },
+        {
+            "message": "Missing item type",
+            "line": " libs/jquery-ui.js:5654"
+        },
+        {
+            "message": "Missing item type",
+            "line": " libs/jquery-ui.js:5999"
+        },
+        {
+            "message": "Missing item type",
+            "line": " libs/jquery-ui.js:6000"
+        },
+        {
+            "message": "Missing item type",
+            "line": " libs/jquery-ui.js:6001"
+        },
+        {
+            "message": "Missing item type\nFor feature detection",
+            "line": " libs/jquery.js:3837"
+        },
+        {
+            "message": "Missing item type\nCreate key-value caches of limited size",
+            "line": " libs/jquery.js:3845"
+        },
+        {
+            "message": "Missing item type\nMark a function for special use by Sizzle",
+            "line": " libs/jquery.js:3865"
+        },
+        {
+            "message": "Missing item type\nSupport testing using an element",
+            "line": " libs/jquery.js:3874"
+        },
+        {
+            "message": "Missing item type\nDetect xml",
+            "line": " libs/jquery.js:4001"
+        },
+        {
+            "message": "Missing item type\nSets document-related variables once based on the current document",
+            "line": " libs/jquery.js:4012"
+        },
+        {
+            "message": "Missing item type\nUtility function for retrieving the text value of an array of DOM nodes",
+            "line": " libs/jquery.js:4505"
+        },
+        {
+            "message": "Missing item type",
+            "line": " libs/require.js:1"
+        },
+        {
+            "message": "Missing item type\nHelper function for iterating over an array. If the func returns\na true value, it will break out of the loop.",
+            "line": " libs/require.js:49"
+        },
+        {
+            "message": "Missing item type\nHelper function for iterating over an array backwards. If the func\nreturns a true value, it will break out of the loop.",
+            "line": " libs/require.js:64"
+        },
+        {
+            "message": "Missing item type\nCycles over properties in an object and calls a function for each\nproperty value. If the function returns a truthy value, then the\niteration is stopped.",
+            "line": " libs/require.js:87"
+        },
+        {
+            "message": "Missing item type\nSimple function to mix in properties from source into target,\nbut only if target does not already have a property of the same name.",
+            "line": " libs/require.js:103"
+        },
+        {
+            "message": "Missing item type\nConstructs an error with a pointer to an URL with more information.",
+            "line": " libs/require.js:157"
+        },
+        {
+            "message": "Missing item type\nTrims the . and .. from an array of path segments.\nIt will keep a leading path segment if a .. will become\nthe first path segment, to help with module name lookups,\nwhich act like paths, but can be remapped. But the end result,\nall paths that use this function should look normalized.\nNOTE: this method MODIFIES the input array.",
+            "line": " libs/require.js:225"
+        },
+        {
+            "message": "Missing item type\nGiven a relative module name, like ./something, normalize it to\na real name that can be mapped to a path.",
+            "line": " libs/require.js:258"
+        },
+        {
+            "message": "Missing item type\nCreates a module mapping that includes plugin prefix, module\nname, and path. If parentModuleMap is provided it will\nalso normalize the name via require.normalize()",
+            "line": " libs/require.js:400"
+        },
+        {
+            "message": "Missing item type\nInternal method to transfer globalQueue items to this context's\ndefQueue.",
+            "line": " libs/require.js:542"
+        },
+        {
+            "message": "Missing item type\nChecks if the module is ready to define itself, and if so,\ndefine it.",
+            "line": " libs/require.js:824"
+        },
+        {
+            "message": "Missing item type\nGiven an event from a script node, get the requirejs info from it,\nand then removes the event listeners on the node.",
+            "line": " libs/require.js:1189"
+        },
+        {
+            "message": "Missing item type\nSet a configuration for the context.",
+            "line": " libs/require.js:1242"
+        },
+        {
+            "message": "Missing item type\nConverts a module name + .extension into an URL path.\n*Requires* the use of a module name. It does not support using\nplain URLs like nameToUrl.",
+            "line": " libs/require.js:1429"
+        },
+        {
+            "message": "Missing item type\nCalled to enable a module if it is still in the registry\nawaiting enablement. A second arg, parent, the parent module,\nis passed in for context, when this method is overriden by\nthe optimizer. Not shown here to keep code compact.",
+            "line": " libs/require.js:1502"
+        },
+        {
+            "message": "Missing item type\nInternal method used by environment adapters to complete a load event.\nA load event could be a script load or just a load pass from a synchronous\nload call.",
+            "line": " libs/require.js:1515"
+        },
+        {
+            "message": "Missing item type\nConverts a module name to a file path. Supports cases where\nmoduleName may actually be just an URL.\nNote that it **does not** call normalize on the moduleName,\nit is assumed to have already been normalized. This is an\ninternal API, not a public one. Use toUrl for the public API.",
+            "line": " libs/require.js:1571"
+        },
+        {
+            "message": "Missing item type\nExecutes a module callback function. Broken out as a separate function\nsolely to allow the build system to sequence the files in the built\nlayer in the right sequence.",
+            "line": " libs/require.js:1642"
+        },
+        {
+            "message": "Missing item type\ncallback for script loads, used to check status of loading.",
+            "line": " libs/require.js:1653"
+        },
+        {
+            "message": "Missing item type\nCallback for script errors.",
+            "line": " libs/require.js:1675"
+        },
+        {
+            "message": "Missing item type\nMain entry point.\n\nIf the only argument to require is a string, then the module that\nis represented by that string is fetched for the appropriate context.\n\nIf the first argument is an array, then it will be treated as an array\nof dependency string names to fetch. An optional function callback can\nbe specified to execute when all of those dependencies are available.\n\nMake a local req variable to help Caja compliance (it assumes things\non a require that are not standardized), and to give a short\nname for minification/local scope use.",
+            "line": " libs/require.js:1690"
+        },
+        {
+            "message": "Missing item type\nSupport require.config() to make it easier to cooperate with other\nAMD loaders on globally agreed names.",
+            "line": " libs/require.js:1740"
+        },
+        {
+            "message": "Missing item type\nExecute something after the current tick\nof the event loop. Override for other envs\nthat have a better solution than setTimeout.",
+            "line": " libs/require.js:1748"
+        },
+        {
+            "message": "Missing item type\nExport require as a global, but only if it does not already exist.",
+            "line": " libs/require.js:1758"
+        },
+        {
+            "message": "Missing item type\nAny errors that require explicitly generates will be passed to this\nfunction. Intercept/override it if you want custom error handling.",
+            "line": " libs/require.js:1805"
+        },
+        {
+            "message": "Missing item type\nCreates the node for the load command. Only used in browser envs.",
+            "line": " libs/require.js:1812"
+        },
+        {
+            "message": "Missing item type\nDoes the request to load a module for the browser case.\nMake this a separate function to allow other environments\nto override it.",
+            "line": " libs/require.js:1825"
+        },
+        {
+            "message": "Missing item type\nThe function that handles definitions of modules. Differs from\nrequire() in that a string for the module should be the first argument,\nand the function to execute after dependencies are loaded should\nreturn a value to define the module corresponding to the first argument's\nname.",
+            "line": " libs/require.js:1981"
+        },
+        {
+            "message": "Missing item type\nExecutes the text. Normally just uses eval, but can be modified\nto use a better, environment-specific call. Only used for transpiling\nloader plugins, not for plain JS modules.",
+            "line": " libs/require.js:2055"
+        },
+        {
+            "message": "Missing item type\nFor feature detection",
+            "line": " plot/lib/jquery.js:3837"
+        },
+        {
+            "message": "Missing item type\nCreate key-value caches of limited size",
+            "line": " plot/lib/jquery.js:3845"
+        },
+        {
+            "message": "Missing item type\nMark a function for special use by Sizzle",
+            "line": " plot/lib/jquery.js:3865"
+        },
+        {
+            "message": "Missing item type\nSupport testing using an element",
+            "line": " plot/lib/jquery.js:3874"
+        },
+        {
+            "message": "Missing item type\nDetect xml",
+            "line": " plot/lib/jquery.js:4001"
+        },
+        {
+            "message": "Missing item type\nSets document-related variables once based on the current document",
+            "line": " plot/lib/jquery.js:4012"
+        },
+        {
+            "message": "Missing item type\nUtility function for retrieving the text value of an array of DOM nodes",
+            "line": " plot/lib/jquery.js:4505"
+        },
+        {
+            "message": "Missing item type\nVersion: 0.18.0\nhttp://github.com/jlukic/semantic-ui\n\n\nCopyright 2014 Contributors\nReleased under the MIT license\nhttp://opensource.org/licenses/MIT\n\nRelease Date: 06/06/2014",
+            "line": " plot/lib/semantic.min.js:1"
+        },
+        {
+            "message": "Missing item type\nAPP is started after DOM is READY.",
+            "line": " scripts/app.js:11"
+        }
+    ]
+}

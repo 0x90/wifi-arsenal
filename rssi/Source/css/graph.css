@@ -1,0 +1,26 @@
+.bar rect {
+    fill: steelblue;
+    shape-rendering: crispEdges;
+}
+
+.bar rect:hover {
+    fill: brown;
+}
+
+.bar text {
+    fill: #fff;
+}
+
+.axis path, .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+svg {
+    border: solid #000000 1px;
+}
+
+.axisLabel {
+    font: 15px sans-serif;
+}
