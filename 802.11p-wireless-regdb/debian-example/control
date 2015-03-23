@@ -1,0 +1,15 @@
+Source: wireless-regdb
+Section: admin
+Priority: optional
+Maintainer: Luis R. Rodriguez <mcgrof@gmail.com>
+Build-Depends: cdbs, debhelper (>= 5), python
+Standards-Version: 3.7.3
+
+Package: wireless-regdb
+Architecture: all
+Depends:
+Suggests: crda
+Description: The Linux wireless regulatory database
+ This package contains the wireless regulatory database used by all
+ cfg80211 based Linux wireless drivers. The wireless database being
+ used is maintained by John Linville, the Linux wireless kernel maintainer.
