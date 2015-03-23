@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/mike-albano/frame-randomizer
+	branch = master
+	commit = 0d6c5989334f112f0febfd7c99fab5b424192d07
+	parent = e9710c98a6cf79076a9cf5f9d0212ca788428ed2
+	cmdver = 0.2.0
