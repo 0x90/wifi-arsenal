@@ -1,0 +1,44 @@
+Ehash1= HMAC(ES1||PSK1||PKe||PKr)AuthKey
+Ehash2= HMAC(ES2||PSK2||PKe||PKr)AuthKey
+Rhash1= HMAC(RS1||PSK1||PKe||PKr)AuthKey
+Rhash2= HMAC(RS2||PSK2||PKe||PKr)AuthKey
+
+
+PSK1 = first 128bits of HMAC(1rd half of PIN)AuthKey
+PSK2 = first 128bits of HMAC(2nd half of PIN)AuthKey
+
+ES1 = 128 random bits nonce
+ES2 = 128 random bits nonce
+RS1 = 128 random bits nonce
+RS2 = 128 random bits nonce
+
+
+Authenticator = HMAC(last message||current message)
+			Authenticator = HMAC(M1||M2)
+AuthKey && KeyWrapKey derived from DH shared key
+E_keyWrapKey = AES-CBC(stuff)KeyWrapKey
+
+
+AuthKey    == used to authenticate the Registration Protocol messages            (256 bits) 
+KeyWrapKey == used to encrypt secret nonces and ConfigData                       (128 bits)
+EMSK       == Extended Master Session Key that is used to derive additional keys (256 bits)
+
+
+
+
+
+Attack: (M3) Find out ES1 and ES2 , then bruteforce offline PSK1 and PSK2
+
+Ehash1= HMAC(ES1||PSK1||PKe||PKr)AuthKey
+Ehash2= HMAC(ES2||PSK2||PKe||PKr)AuthKey
+
+(M3)  =  E-R       Ehash1||Ehash2
+
+
+
+
+
+
+
+https://github.com/RMerl/asuswrt-merlin/blob/master/release/src-rt/bcmcrypto/random.c
+http://trac.umnaem.webfactional.com/browser/trunk/Hardware/eCos/packages/language/c/libc/stdlib/v3_0/src/rand.cxx?rev=39

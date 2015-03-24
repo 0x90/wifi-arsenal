@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://bitbucket.org/dudux/wpsoffline
+	branch = master
+	commit = 2373991b179142811df8c1732cad218306a58b5a
+	parent = 7316600dba4751ec195a96c72bbc5a271b5bc882
+	cmdver = 0.2.0
