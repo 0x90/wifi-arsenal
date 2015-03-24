@@ -1,0 +1,8 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+
+#define dIOLog(level, a, b...) {if (org_mklinux_iokit_swim3_debug & level) IOLog(a, ## b); }

@@ -1,0 +1,3 @@
+FULL_PRODUCT_NAME=ath9k.kext
+BUILT_PRODUCTS_DIR=/Users/ryan/Library/Developer/Xcode/DerivedData/ath9k-afocpnfstvwyyybhbmlbajavpncz/Build/Products/Debug
+MODULE_NAME=com.ryan.driver.ath9k
