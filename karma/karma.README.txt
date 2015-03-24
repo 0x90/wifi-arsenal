@@ -1,0 +1,95 @@
+				KARMA
+	          CanSecWest/core05 Release 20060124
+	       Dino A. Dai Zovi and Shane "K2" Macaulay
+
+OVERVIEW
+
+KARMA is a set of tools for assessing the security of wireless clients
+at multiple layers.  Wireless sniffing tools discover clients and
+their preferred/trusted networks by passively listening for 802.11
+Probe Request frames.  From there, individual clients can be targetted
+by creating a Rogue AP for one of their probed networks (which they
+may join automatically) or using a custom driver that responds to
+probes and association requests for any SSID.  Higher-level fake
+services can then capture credentials or exploit client-side
+vulnerabilities on the host.
+
+KARMA includes patches for the Linux MADWifi driver to allow the
+creation of an 802.11 Access Point that responds to any probed SSID.
+So if a client looks for 'linksys', it is 'linksys' to them (even
+while it may be 'tmobile' to someone else).  Operating in this fashion
+has revealed vulnerabilities in how Windows XP and MacOS X look for
+networks, so clients may join even if their preferred networks list is
+empty.
+
+Currently, these releases are BYOX (Bring Your Own Exploits), although
+a number of client-side exploits have been written, tested and
+demonstrated within this framework.  Some may be included in a future
+release.  Automated agent deployment is also planned.
+
+What's included:
+
+bin/karma       - Run this
+etc/            - Directory of sample KARMA configurations
+src/karma       - Curses display of wireless clients and probed networks
+modules/servers - Fake DNS, POP3, and HTTP servers
+src/misc/
+  samba.patch   - Samba patch to point all SMB queries to our share,
+                  nmbd will also resolve to our IP
+  madwifi.patch - Patch to MadWifi driver to respond to probe and
+                  association requests for any SSID
+
+Currently, the following configurations are supported:
+ - Linux 2.6 w/ Atheros-based WLAN cards (Primary development platform)
+ - Linux 2.4/2.6 with HostAP drivers should work fine, but with some
+   annoying, but harmless error messages
+ - FreeBSD 5 with PrismII PCMCIA cards may need a bit of hacking and
+   patching
+
+USAGE
+
+First, set card into monitor mode and launch the Karma curses display:
+
+# cd karma-*/
+# ./bin/monitor-mode.sh ath0
+# (cd ./src/ && make) && ./src/karma ath0
+
+This display will list wireless clients in range and the networks they
+send probe requests for.  This reveals the entries in their preferred
+networks list.  Type Control-c to exit the curses display.
+
+Now, we we will launch KARMA with one of the configurations defined in
+etc/.  First we'll use a file that just launches a rogue access point,
+DHCP, and DNS server.  This will let us log insecure clients joining
+our network.
+
+# ./bin/karma etc/karma-scan.xml
+Starting KARMA...
+Loading config file etc/karma-scan.xml
+ ACCESS-POINT is running
+ DNS-SERVER is running
+ DHCP-SERVER is running
+Delivering judicious KARMA, hit Control-C to quit.
+DhcpServer: 00:0d:69:42:78:23 (victim1) <- 169.254.0.254
+DhcpServer: 00:0d:69:42:78:23 (victim1) <- 169.254.0.254
+AccessPoint: 00:0d:69:42:78:23 associated with SSID linksys 
+DhcpServer: 00:08:48:94:52:c4 (victim2) <- 169.254.0.253
+DhcpServer: 00:08:48:94:52:c4 (victim2) <- 169.254.0.253
+AccessPoint: 00:08:48:94:52:c4 associated with SSID t-mobile
+<Control-C>
+ DHCP-SERVER has stopped
+ DNS-SERVER has stopped
+ ACCESS-POINT has stopped
+#
+
+Another sample file in etc/karma.xml will launch an HTTP server that
+redirects all queries to a servlet.  The included module,
+ExampleWebExploit, despite its name, just displays a simple HTML
+page.  This could be used to inform the user that their insecure
+wireless configuration is a security policy violation, among other
+things ;).
+ 
+AUTHORS
+
+Dino A. Dai Zovi <ddz@theta44.org> (All Things Ruby)
+Shane "K2" Macaulay <ktwo@ktwo.ca> (MADWifi and Samba patches)

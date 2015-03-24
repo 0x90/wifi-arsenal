@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<module
+   id      = "HTTP-SERVER"
+   version = "0.0.0"
+   name    = "HTTP Server"
+   file    = "http.rb"
+   class   = "HttpServer">
+   
+  <!-- A longer description of what this module is/does -->
+  <description>
+    An HTTP server that transparently proxies requests if an outside
+    connection is available.  Also Hosts web-based exploits as
+    servlets (whether proxying or serving).
+  </description>
+
+  <option name="port" value="80"/>
+
+  <!-- Our IP address is retrieved from the running NETWORK-INTERFACE -->
+  <requires id="NETWORK-INTERFACE"/>
+
+</module>

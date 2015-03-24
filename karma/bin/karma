@@ -1,0 +1,62 @@
+#!/usr/bin/env ruby
+#
+#
+#
+
+require 'rexml/document'
+require File::dirname(__FILE__) + "/../modules/loader"
+
+###
+# Main
+###
+
+if (ARGV.length < 1)
+    puts "usage: #{$0} <karma-config.xml>"
+    exit -1
+end
+
+#
+# Splash
+#
+puts "Starting KARMA..."
+
+Thread.abort_on_exception = true
+
+# Scan module directories for XML descriptor files when loaded
+Karma::ScanModules()
+
+#
+# Load configuration file
+#
+
+puts "Loading config file #{ARGV[0]}"
+
+config = REXML::Document.new(File.new(ARGV[0]))
+
+# Parse options first
+config.elements.each('karma/option') { |element|
+    module_id = element.attributes['module']
+    option_name = element.attributes['name']
+    option_value = element.attributes['value']
+
+    Karma::MODULES[module_id].options[option_name] = option_value
+}
+
+# Run modules now
+config.elements.each('karma/run') { |element|
+    module_id = element.attributes['module']
+
+    Karma::MODULES[module_id].run()
+}
+
+puts "Delivering judicious KARMA, hit Control-C to quit."
+
+# Wait for all threads to terminate or SIGINT
+trap ("SIGINT") {
+    Karma::MODULES.each_value() {|m|
+        m.stop()
+    }
+    
+    exit(0)
+}
+sleep()  # Sleep forever

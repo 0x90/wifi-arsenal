@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<module
+   id      = "NETWORK-INTERFACE"
+   version = "0.0.0"
+   name    = "Network interface used by Karma"
+   file    = "netif.rb"
+   class   = "NetworkInterface">
+   
+  <!-- A longer description of what this module is/does -->
+  <description>
+    Represents the host's network interface used by Karma
+  </description>
+
+  <option name="ifconfig"  value="/sbin/ifconfig"/>
+  <option name="interface" value="lo"/>
+
+</module>

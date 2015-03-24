@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<module
+   id      = "DHCP-SERVER"
+   version = "0.0.0"
+   name    = "DHCP Server"
+   file    = "dhcp.rb"
+   class   = "DhcpServer">
+   
+  <!-- A longer description of what this module is/does -->
+  <description>
+    Controls DHCP server
+  </description>
+
+  <option name="dhcpd" value="/usr/sbin/dhcpd"/>
+  
+  <!-- Zero or more module/symbol dependencies -->
+  <requires id="NETWORK-INTERFACE"/>
+  <requires id="DNS-SERVER"/>
+  
+</module>

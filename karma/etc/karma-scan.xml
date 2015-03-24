@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<!--
+  -- KARMA configuration that simply attempts to find insecure
+  -- wireless clients that will associate to a rogue network and
+  -- possibly obtain an IP address via DHCP.
+  -->
+
+<karma>
+
+  <!-- Configure modules -->
+  <option module="ACCESS-POINT" name="ssid" value="karma"/>
+  <option module="ACCESS-POINT" name="interface" value="ath0"/>
+
+  <!-- Run modules -->
+  <run module="ACCESS-POINT"/>
+  <run module="DHCP-SERVER"/>
+
+</karma>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<module
+   id      = "CONTROLLER-SERVLET"
+   version = "0.0.0"
+   name    = "Http Controller Servlet"
+   file    = "controller.rb"
+   class   = "ControllerServlet">
+   
+  <!-- A longer description of what this module is/does -->
+  <description>
+    This servlet fingerprints a client and redirects them to appropriate
+    web-browser based exploits.
+  </description>
+
+  <!-- Zero or more module dependencies -->
+  <requires id="HTTP-SERVER"/>
+
+</module>  

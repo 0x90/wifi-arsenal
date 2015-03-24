@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<module
+   id      = "FTP-SERVER"
+   version = "0.0.0"
+   name    = "FTP Server"
+   file    = "ftp.rb"
+   class   = "FtpServer">
+   
+  <!-- A longer description of what this module is/does -->
+  <description>
+    A rogue FTP server that captures user passwords.
+  </description>
+
+  <!-- Our IP address is retrieved from the running NETWORK-INTERFACE -->
+  <requires id="NETWORK-INTERFACE"/>
+  
+</module>

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<module
+   id      = "ACCESS-POINT"
+   version = "0.0.0"
+   name    = "HostAP-based Access Point"
+   file    = "accesspoint.rb"
+   class   = "AccessPoint">
+   
+  <!-- A longer description of what this module is/does -->
+  <description>
+    Runs an 802.11 Access Point on this host.
+  </description>
+
+  <!--
+    -- Module options and defaults
+    -->
+
+  <!-- Command-line tool and file paths -->
+  <option name="ifconfig"  value="/sbin/ifconfig"/>
+  <option name="iwconfig"  value="/usr/sbin/iwconfig"/>
+  <option name="iwpriv"    value="/usr/sbin/iwpriv"/>
+  <option name="iwevent"    value="/usr/sbin/iwevent"/>
+  <option name="messages"  value="/var/log/messages"/>
+
+  <!-- Wireless options -->
+  <option name="interface" value="ath0"/>
+  <option name="radiomode" value="b"/>
+  <option name="allssids"  value="true"/>
+  <option name="cloaked"   value="true"/>
+  <option name="auth"      value="open"/>
+  <option name="ssid"      value="karma"/>
+  <option name="channel"   value="1"/>
+  
+  <!-- Ethernet interface options -->
+  <option name="address"   value="169.254.133.7"/>
+  <option name="netmask"   value="255.255.0.0"/>
+  
+  <!-- Additional symbols (if any) provided by this module -->
+  <provides id="NETWORK-INTERFACE"/>
+
+</module>
