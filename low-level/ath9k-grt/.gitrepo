@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/valkjsaaa/ath9k_grt
+	branch = master
+	commit = 76888da717a721ab951e206b7c129cb159998451
+	parent = 126ca84b395c0ac8b76c69e8c51f24d6eed42f65
+	cmdver = 0.2.0
