@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/abnarain/mac-analyzer
+	branch = master
+	commit = 9779b2a305e9475dd51ac06df80ca5d065ce2ac4
+	parent = f8e587c4bfc4c7d0720695d1352718fbbbb9ebfb
+	cmdver = 0.2.0
