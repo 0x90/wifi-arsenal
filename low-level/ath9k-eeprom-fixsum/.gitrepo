@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/hackpascal/fixsum
+	branch = master
+	commit = 6dd9bc66bc8d8d1e7f5e312c8dcf87da1291b0b8
+	parent = 3d75d4aa01133ed2244b032b175fcecd41963aa0
+	cmdver = 0.2.0
