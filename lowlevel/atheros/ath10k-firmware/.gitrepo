@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/kvalo/ath10k-firmware
+	branch = master
+	commit = b3c19af2be35a7f72c8339192846d2f34b153665
+	parent = 00cd93ec3a181b51029d165852246bfd01c7c1e5
+	cmdver = 0.2.0
