@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/LorenzoBianconi/ath9k_dynack
+	branch = master
+	commit = 88dbad54de3f601e830d0638a3db344e0a5e25e7
+	parent = 9664c9112195928dd36603f489208730df171062
+	cmdver = 0.2.0
