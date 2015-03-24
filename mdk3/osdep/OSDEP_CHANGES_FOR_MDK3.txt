@@ -1,0 +1,6 @@
+* copied common.mak into osdep folder
+* removed first two lines of Makefile and replaced it with:
+  include common.mak
+* added common.o to OBJS
+* changed REVISION in common.mak to mdk3-v6
+* changed -Werror into -Wextra in common.mak to prevent future problems

@@ -1,0 +1,147 @@
+MDK3 Changelog
+
+version 6
+* Amok Mode now works on Ad-Hoc and MANET networks (WARNING: Clients may not reconnect automatically,
+  so they may stay disconnected after the attack stopped!)
+* Removed duplicate WPA downgrade in Deauth Mode (sry for the confusion)
+* SSID Bruteforce Mode understands 0 and 1 byte placeholders in hidden SSIDs now
+* GCC 4.4 support, all warnings and extra warnings fixed
+* Whitelists and Blacklists in Amok Mode are re-read periodically every 3 seconds.
+  You can use this to dynamically allow or block hosts with scripts.
+* A lot of small bugfixes
+
+version 5
+* Enhanced MAC-Filter Bruteforce Mode
+* Another WDS/WIDS/WIPS Confusion Test
+* Amok Mode supports QoS packets
+* Michael Countermeasure Exploit (also known as TKIP QoS Exploit)
+  can shut down APs using TKIP encryption and QoS Extension with 1 sniffed and 2 injected QoS Data Packets.
+* WPA-Downgrade Test - deauthenticates Stations and APs sending WPA encrypted packets.
+  With this test you can check if the sysadmin will try setting his network to WEP or disable encryption.
+  mdk3 will let WEP and unencrypted clients work, so if the sysadmin simply thinks "WPA is broken" he sure isn't the right one for this job.
+  (this can/should be combined with social engineering)
+
+version 4
+* Added experimental high speed MAC-Filter Bruteforce Mode
+
+version 3
+* Added a channel hopper for Amok Mode
+* Added WIDS confusion mode
+* fresh & bugfixed osdep included
+* Fixed White- and Blacklisting again...
+
+version 2
+* More Documentation
+* Added -Wall to Makefile to always keep the code clean
+* Fixed the Warnings produced by -Wall ;)
+* Updated osdep
+* Merged some patches from Andy Green to clean up the code
+* Poured some holy water all over the code, because mdk3 is used by professionals
+* Added intelligent Authentication DoS mode
+* Fixed White- and Blacklist function in Amok mode
+
+version 1
+* NOW USING OSDEP INJECTION from aircrack-ng project
+  -> mdk2 should now run on LINUX and FREEBSD (and soon more)
+* Started writing some docs (now that mdk3 may soon run on Windows, the kids may need it...)
+
+
+MDK2 version history:
+version 37 (has never been released, went directly to mdk3)
+* Better Madwifi-ng handling
+* Blacklist mode fixed
+
+version 36
+* Blacklist support for Deauth Mode
+* Fixed some minor gcc warnings
+* Advanced FakeAP mode. Reads SSIDs and MACs from file.
+  See example file.
+
+version 35
+* telek0miker seems to have his EAPOL-Start test fixed
+* Help screen is now splitted into several sexy parts.
+
+version 34
+* Compilation fix for PPC architecture
+* Le_Vert added all copyright and license informations. (thx)
+* Rewrite Makefile.
+
+version 33
+* Added telek0miker's EAPOL-Logoff Test (thanks again)
+
+version 32
+* Added telek0miker's EAPOL-Start flood (thanx!)
+
+version 31
+* fixed race condition in bruteforce mode
+
+version 30
+AKA "Hell, I don't know how to do the versioning!"
+* Just counting version numbers now, no beta and dev versions
+* Added beacon flood variety patch from ducttape (THANKS!)
+* Ace's SSID Bruteforcer works now
+
+beta version 3
+AKA "Zuo Meng Hua, I love you!"-Edition
+* Used thefkboss' "motherfucker" version
+* Added Whitelist support for deauth mode
+* Updated TODO list, looks good to have more "DONE" in there ;)
+* Cleaned up a little
+* Stabilized and cleaned SSID Bruteforcer
+* Added Ace's SSID Bruteforcer - HUGE THANKS! (Doesnt work yet...)
+* Added Hirte's TKIP Shutdown Exploit - THANK YOU!
+* Makefile fixed
+
+development version 0028
+AKA BETA 2
+* cleaned up code, removed gcc warnings
+* fixed -e/-s confusion in probe mode
+* fixed signedness bug in beacon mode display
+* now using Makefile from Zero_Chaos (thx!)
+* implemented Ace's SSID Bruteforce (thx!)
+* probe checks works on rt2570 using my 1.4.0 driver (required for SSID Bruteforce)
+
+development version 0027
+* speeding up tests which need to sniff
+* Added option to use valid MAC adresses from OUI database
+
+development version 0026
+* Added SSID wordlist mode (thanks to moongray)
+* Added SSID lenght checkings and warnings
+* Total rewrite of Deauth-Amok-Mode, now it's even more aggressive ;)
+
+development version 0024
+* fixed header files for newer distributions (SuSE 10.1, FC5, maybe others)
+* fixed very stupid bug causing segfault in some cases
+* Added some more options to Fake AP mode (thanks to Antragon)
+
+beta version 1 - had the feeling to make one... ;)
+* added fully automatic deauthentication/disassociation mode (Amok-Mode!)
+
+development version 00xx
+* added probe mode
+* probe check does not work on rt2570, need to investigate why
+
+development version 0019
+* tweaked auth dos to react faster in conditions with low traffic
+* additional information and out of range warning in auth DoS checker
+* Beacon Flood mode now supports channel hopping
+
+development version 0016
+* auth dos mode more fixup
+* auth dos checker is now kind of mature (perhaps needs tweaking)
+* cleaning up code, removing unused variables
+* adding a lot of comments to make easier to understand
+
+development version 0014
+* auth dos mode fixed
+* auth dos checker working very unreliable
+* New method to generate random SSIDs
+
+development version 0012
+* basic beacon mode functional
+* very basic and buggy auth dos mode without check for success
+* this code was mostly copied from old mdk version
+
+preparing version 0000
+* preparing copied functions from aireplay
