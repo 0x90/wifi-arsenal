@@ -1,0 +1,8 @@
+acs
+*~
+*.o
+.config
+.gitconfig
+version.c
+acs.8.gz
+*-stamp
