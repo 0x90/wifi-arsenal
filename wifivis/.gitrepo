@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/mitdbg/wifivis
+	branch = master
+	commit = c4b5a28fca469986b2944451926efb82024cf24a
+	parent = 7ea502e5747418abc0bca8706a2aa63eeb1aa36c
+	cmdver = 0.2.0
