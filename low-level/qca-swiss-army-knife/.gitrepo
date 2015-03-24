@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/mcgrof/qca-swiss-army-knife
+	branch = master
+	commit = 957c4b05fbef8ff5521cededbdd9e24a6ef2cfb3
+	parent = f47f3afd912ce80d19f943389a15b4fac175d277
+	cmdver = 0.2.0
