@@ -1,0 +1,43 @@
+
+config BCM4334
+	tristate "---Broadcom WiFi Driver for 4334"
+	depends on WLAN
+	---help---
+		Select this option to build Broadcom wlan driver
+
+config BCM4330
+	tristate "---Broadcom WiFi Driver for 4330"
+	depends on WLAN
+	---help---
+		Select this option to build Broadcom wlan driver
+
+config BCM43241
+	tristate "---Broadcom WiFi Driver for 43241"
+	depends on WLAN
+	---help---
+		Select this option to build Broadcom wlan driver
+
+config BROADCOM_WIFI_RESERVED_MEM
+	bool "BROADCOM Reserved memory for wifi device"
+    depends on (BCM4330 || BCM4334 || BCM43241)
+	---help---
+		This is a configuration for broadcom WLAN driver.
+
+config WLAN_COUNTRY_CODE
+	tristate "---Broadcom WiFi Driver for 5GH channel setting"
+   	depends on WLAN
+   	default	n
+
+config WLAN_REGION_CODE
+	int "---Region codes for Broadcom WiFi Driver"
+	depends on (BCM4330 || BCM4334 || BCM43241)
+	default 100
+	---help---
+		This is a region code for Broadcom Wi-Fi featured functions.
+		- 100 : EUR OPEN
+		- 101 : EUR ORG
+		- 200 : KOR OPEN
+		- 201 : KOR SKT
+		- 202 : KOR KTT
+		- 203 : KOR LGT
+		- 300 : CHN OPEN

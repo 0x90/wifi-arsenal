@@ -1,0 +1,2 @@
+0x00000000	bcmsdh_remove	drivers/net/wireless/bcm4329/bcm4329	EXPORT_SYMBOL
+0x00000000	bcmsdh_probe	drivers/net/wireless/bcm4329/bcm4329	EXPORT_SYMBOL
