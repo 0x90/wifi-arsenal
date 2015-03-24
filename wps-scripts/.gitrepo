@@ -6,6 +6,6 @@
 [subrepo]
 	remote = https://github.com/0x90/wps-scripts
 	branch = master
-	commit = 32e8be60fe7d151a1b7248dd7f2a4965f8453064
-	parent = d44053462728ac07c337eada24aa7e9ea8873528
+	commit = bdcf636c7d54f3bd47f24f5fbf4bb3ec17a172a8
+	parent = 30ffb3cd7e5bf7af1138cdecfa41b7bf6134e243
 	cmdver = 0.2.0

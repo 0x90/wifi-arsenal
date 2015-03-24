@@ -1,0 +1,714 @@
+#    The maclistreaversav file is a configuration file to be used with varmacreaversav, a mass # attack tool to be used in the final stages of a reaver attack. See the help files for
+# use.
+#    Many routers now lock their WPS system after X number of pin request and then unlock
+# sometime in the future. Others become unresponsive after several pin requests and go into
+# long endless EAPOL requests which eventually clear after a long period of time. 
+
+# Rather than waste time putting reaver in sleep mode for 30 minutes this program harvests
+# pins from targetAP1 and then continues toi the next target after the time rqr by the user,  
+
+#   You can load up to 5 targets. The first target has remarks preceeeded by a # with
+# explanations for each entry. All other entries are blank.
+
+# To use a target block remove the # and enter data rqr after the equal sign
+
+# If the target block is not used make sure the unused blocks are considered remarks by
+#placing a # at the start of each line.
+
+# The USE_R1= Variable
+#
+#   Each block has a USE_R1= variable. This variable determines if you want to use the -r x:y  # option. You must answer this block with y for yes or n for no. If you select y you must fill #in the RX1 and RY1 variables For example
+
+#      USE_R1=y
+#      RX1=3
+#      RY1=15
+
+# Means in reaver -r 3:15 or make three requests and rest 15 seconds
+#
+# If you place a n then the -r is not used and RX1= RY1= are not used 
+
+#      USE_R1=n
+#      RX1=3
+#      RY1=15
+#
+#
+# If you leave the blank then program will skip that target. 
+#      USE_R1=
+
+# Place this file in root
+# Reaver configurations start below
+#
+### Enter name below Names with spaces must be surrounded by "" as seen in example below
+NAME1="Wifi Home"
+###
+# TARGETAP1 is the mac address of the first target AP.
+#
+###Enter mac address in the format seen below. No error handling exits 
+TARGETAP1=55:44:33:22:11:00
+###
+#
+# CHANNEL1 is the channel of targetAP1 one
+#
+###Enter channel number 1 thru 14 below
+CHANNEL1=1
+###
+# The next choices deal with the  -r, --recurring-delay=<x:y> command
+#  You MUST either enter a y or n in this block
+#  i.e. Sleep for y seconds every x pin attempts
+#  You can choose to run Reaver with or without the -r command. 
+#  To use -r x:y commands with reaver enter  y  after the USE_R= (ie USE_R=y)
+#  To NOT use the -r command enter n after the USE_R= (ie USE_R=n)
+#  If -r commands are to be used Enter the x and y required
+#     in the -r x:y  the x = RX1 and y = RY1 for targetAP1 (ie RX1=3 RY=15)
+#
+###Enter y or n below
+USE_R1=n
+###
+#
+### Enter number of requests and rest period in seconds
+RX1=3
+RY1=15
+###
+#
+# Live is the length of time in seconds the reaver attack will be  conducted against targetAP
+# You can set length of each targetAP dependent on the reaction seen by the targetAP
+# WARNING DO NOT SET THE LIVE TIME BELOW 120
+#
+###Enter time in seconds no less than 120 below;
+LIVE1=120
+###
+#
+# This program contains a reaver command line meant to be used against targetAPs which are at
+# extreme range. If you have a RSSI(i.e. relative signal strength indicator ) showing a number
+# greater then 72 change the USE_LONG1=n to USE_LONG41=y and give it a try.. The default is n
+#(i.e. no)
+#
+###Enter y or n below;
+USE_LONG1=n
+###
+#   The USE_PIN1= entry. In cases where you have the WPS Pin but the WPA Key has been changed, 
+# there is a high chance that the WPS Pin has NOT been changed. If the WPS Key is the same,
+# you can obtain the WPA key quickly sometimes within less then 10 WPS pin attempts if you
+# enter the WPS pin into the reaver command line . This would then easily defeat and WPS
+# locking feature. You MUST enter either n to not use this feature or y to use the wps pin
+# function or the program will skip this target. If you select y make sure you enter the WPS
+# pin in the WPS_PIN1= entry   
+#
+###Enter  y or n below;
+USE_PIN1=n
+###
+#
+###Enter WPS pin below
+WPS_PIN1=
+###
+#   The KEEP_FILE1= entry determines if reaver screen output written by varmacreaversav to
+# VARMAC_LOG directory as a text file will be stored or erased. This directory is made at
+# program start.
+#
+#                  Enter y to keep the files for reference or n to erase
+#
+# These files are used by varmacreaversav in two(2) ways; 1. a WPA Key if found will be stored
+# in these files as text and 2. the script reads these fles as they are written
+# looking for AP locked states among other things. Erasing these files has no effect on reaver
+# as reaver writes its list of pins checked to etc/reaver/. If you think a target is near
+# completion you should keep these file in case the WPA key is found.  
+#
+###Enter y or n below
+KEEP_FILE1=n
+###
+#
+###
+#
+# The above is an expanded version of the configuration targetAP1
+# Fill in the data as required for other targetAPs. Remove the # if present to activate the
+# entries in these blocks.
+#
+NAME2=
+TARGETAP2=
+CHANNEL2=3
+USE_R2=n
+RX2=3
+RY2=15 
+LIVE2=120
+USE_LONG2=n
+USE_PIN2=n
+WPS_PIN2=
+KEEP_FILE2=n
+#
+NAME3=
+TARGETAP3=
+CHANNEL3=
+USE_R3=y
+RX3=2
+RY3=15
+LIVE3=120
+USE_LONG3=n
+USE_PIN3=n
+WPS_PIN3=
+KEEP_FILE3=n
+#
+NAME4=
+TARGETAP4=
+CHANNEL4=
+USE_R4=y
+RX4=2
+RY4=15
+LIVE4=120
+USE_LONG4=n
+USE_PIN4=n
+WPS_PIN4=
+KEEP_FILE4=n
+#
+NAME5=
+TARGETAP5=
+CHANNEL5=
+USE_R5=y
+RX5=2
+RY5=15
+LIVE5=120
+USE_LONG5=n
+USE_PIN5=n
+WPS_PIN5=
+KEEP_FILE5=n
+#
+NAME6=
+TARGETAP6=
+CHANNEL6=
+USE_R6=y
+RX6=3
+RY6=15
+LIVE6=120
+USE_LONG6=n
+USE_PIN6=n
+WPS_PIN6=
+KEEP_FILE6=n
+#
+NAME7=
+TARGETAP7=
+CHANNEL7=
+USE_R7=y
+RX7=2
+RY7=15
+LIVE7=120
+USE_LONG7=n
+USE_PIN7=n
+WPS_PIN7=
+KEEP_FILE7=n
+#
+NAME8=
+TARGETAP8=
+CHANNEL8=
+USE_R8=y
+RX8=2
+RY8=15
+LIVE8=120
+USE_LONG8=n
+USE_PIN8=n
+WPS_PIN8=
+KEEP_FILE8=n
+#
+NAME9=
+TARGETAP9=
+CHANNEL9=
+USE_R9=y
+RX9=2
+RY9=15
+LIVE9=120
+USE_LONG9=n
+USE_PIN9=n
+WPS_PIN9=
+KEEP_FILE9=n
+#
+#NAME10=
+#TARGETAP10=
+#CHANNEL10=
+#USE_R10=y
+#RX10=3
+#RY10=15
+#LIVE10=120
+#USE_LONG10=n
+#USE_PIN10=n
+#WPS_PIN10=
+#KEEP_FILE10=n
+#
+#NAME11=
+#TARGETAP11=
+#CHANNEL11=
+#USE_R11=y
+#RX11=3
+#RY11=15
+#LIVE11=120
+#USE_LONG11=n
+#USE_PIN11=n
+#WPS_PIN11=
+#KEEP_FILE11=n
+#
+#NAME12=
+#TARGETAP12=
+#CHANNEL12=
+#USE_R12=y
+#RX12=3
+#RY12=15
+#LIVE12=120
+#USE_LONG12=n
+#USE_PIN12=n
+#WPS_PIN12=
+#KEEP_FILE12=n
+#
+#NAME13=
+#TARGETAP13=
+#CHANNEL13=
+#USE_R13=y
+#RX13=3
+#RY13=15
+#LIVE13=120
+#USE_LONG13=n
+#USE_PIN13=n
+#WPS_PIN13=
+#KEEP_FILE13=n
+#
+#NAME14=
+#TARGETAP14=
+#CHANNEL14=
+#USE_R14=y
+#RX14=3
+#RY14=15
+#LIVE14=120
+#USE_LONG14=n
+#USE_PIN14=n
+#WPS_PIN14=
+#KEEP_FILE14=n
+#
+#NAME15=
+#TARGETAP15=
+#CHANNEL15=
+#USE_R15=y
+#RX15=3
+#RY15=15
+#LIVE15=120
+#USE_LONG15=n
+#USE_PIN15=n
+#WPS_PIN15=
+#KEEP_FILE15=n
+#
+#NAME16=
+#TARGETAP16=
+#CHANNEL16=
+#USE_R16=y
+#RX16=3
+#RY16=15
+#LIVE16=120
+#USE_LONG16=n
+#USE_PIN16=n
+#WPS_PIN16=
+#KEEP_FILE16=n
+#
+#NAME17=
+#TARGETAP17=
+#CHANNEL17=
+#USE_R17=y
+#RX17=3
+#RY17=15
+#LIVE17=120
+#USE_LONG17=n
+#USE_PIN17=n
+#WPS_PIN17=
+#KEEP_FILE17=n
+#
+#NAME18=
+#TARGETAP18=
+#CHANNEL18=
+#USE_R18=y
+#RX18=3
+#RY18=15
+#LIVE18=120
+#USE_LONG18=n
+#USE_PIN18=n
+#WPS_PIN18=
+#KEEP_FILE18=n
+#
+#NAME19=
+#TARGETAP19=
+#CHANNEL19=
+#USE_R19=y
+#RX19=3
+#RY19=15
+#LIVE19=120
+#USE_LONG19=n
+#USE_PIN19=n
+#WPS_PIN19=
+#KEEP_FILE19=n
+#
+#NAME20=
+#TARGETAP20=
+#CHANNEL20=
+#USE_R20=y
+#RX20=3
+#RY20=15
+#LIVE20=120
+#USE_LONG20=n
+#USE_PIN20=n
+#WPS_PIN20=
+#KEEP_FILE20=n
+#
+#NAME21=
+#TARGETAP21=
+#CHANNEL21=
+#USE_R21=y
+#RX21=3
+#RY21=15
+#LIVE21=120
+#USE_LONG21=n
+#USE_PIN21=n
+#WPS_PIN21=
+#KEEP_FILE21=n
+#
+#NAME22=
+#TARGETAP22=
+#CHANNEL22=
+#USE_R22=y
+#RX22=3
+#RY22=15
+#LIVE22=120
+#USE_LONG22=n
+#USE_PIN22=n
+#WPS_PIN22=
+#KEEP_FILE22=n
+#
+#NAME23=
+#TARGETAP23=
+#CHANNEL23=
+#USE_R23=y
+#RX23=3
+#RY23=15
+#LIVE23=120
+#USE_LONG23=n
+#USE_PIN23=n
+#WPS_PIN23=
+#KEEP_FILE23=n
+#
+#NAME24=
+#TARGETAP24=
+#CHANNEL24=
+#USE_R24=y
+#RX24=3
+#RY24=15
+#LIVE24=120
+#USE_LONG24=n
+#USE_PIN24=n
+#WPS_PIN24=
+#KEEP_FILE24=n
+#
+#NAME25=
+#TARGETAP25=
+#CHANNEL25=
+#USE_R25=y
+#RX25=3
+#RY25=15
+#LIVE25=120
+#USE_LONG25=n
+#USE_PIN25=n
+#WPS_PIN25=
+#KEEP_FILE25=n
+#
+#NAME26=
+#TARGETAP26=
+#CHANNEL26=
+#USE_R26=y
+#RX26=3
+#RY26=15
+#LIVE26=120
+#USE_LONG26=n
+#USE_PIN26=n
+#WPS_PIN26=
+#KEEP_FILE26=n
+#
+#NAME27=
+#TARGETAP27=
+#CHANNEL27=
+#USE_R27=y
+#RX27=3
+#RY27=15
+#LIVE27=120
+#USE_LONG27=n
+#USE_PIN27=n
+#WPS_PIN27=
+#KEEP_FILE27=n
+#
+#NAME28=
+#TARGETAP28=
+#CHANNEL28=
+#USE_R28=y
+#RX28=3
+#RY28=15
+#LIVE28=120
+#USE_LONG28=n
+#USE_PIN28=n
+#WPS_PIN28=
+#KEEP_FILE28=n
+#
+#NAME29=
+#TARGETAP29=
+#CHANNEL29=
+#USE_R29=y
+#RX29=3
+#RY29=15
+#LIVE29=120
+#USE_LONG29=n
+#USE_PIN29=n
+#WPS_PIN29=
+#KEEP_FILE29=n
+#
+#NAME30=
+#TARGETAP30=
+#CHANNEL30=
+#USE_R30=y
+#RX30=3
+#RY30=15
+#LIVE30=120
+#USE_LONG30=n
+#USE_PIN30=n
+#WPS_PIN30=
+#KEEP_FILE30=n
+#
+#NAME31=
+#TARGETAP31=
+#CHANNEL31=
+#USE_R31=y
+#RX31=3
+#RY31=15
+#LIVE31=120
+#USE_LONG31=n
+#USE_PIN31=n
+#WPS_PIN31=
+#KEEP_FILE31=n
+#
+#NAME32=
+#TARGETAP32=
+#CHANNEL32=
+#USE_R32=y
+#RX32=3
+#RY32=15
+#LIVE32=120
+#USE_LONG32=n
+#USE_PIN32=n
+#WPS_PIN32=
+#KEEP_FILE32=n
+#
+#NAME33=
+#TARGETAP33=
+#CHANNEL33=
+#USE_R33=y
+#RX33=3
+#RY33=15
+#LIVE33=120
+#USE_LONG33=n
+#USE_PIN33=n
+#WPS_PIN33=
+#KEEP_FILE33=n
+#
+#NAME34=
+#TARGETAP34=
+#CHANNEL34=
+#USE_R34=y
+#RX34=3
+#RY34=15
+#LIVE34=120
+#USE_LONG34=n
+#USE_PIN34=n
+#WPS_PIN34=
+#KEEP_FILE34=n
+#
+#NAME35=
+#TARGETAP35=
+#CHANNEL35=
+#USE_R35=y
+#RX35=3
+#RY35=15
+#LIVE35=120
+#USE_LONG35=n
+#USE_PIN35=n
+#WPS_PIN35=
+#KEEP_FILE35=n
+#
+#NAME36=
+#TARGETAP36=
+#CHANNEL36=
+#USE_R36=y
+#RX36=3
+#RY36=15
+#LIVE36=120
+#USE_LONG36=n
+#USE_PIN36=n
+#WPS_PIN36=
+#KEEP_FILE36=n
+#
+#NAME37=
+#TARGETAP37=
+#CHANNEL37=
+#USE_R37=y
+#RX37=3
+#RY37=15
+#LIVE37=120
+#USE_LONG37=n
+#USE_PIN37=n
+#WPS_PIN37=
+#KEEP_FILE37=n
+#
+#NAME38=
+#TARGETAP38=
+#CHANNEL38=
+#USE_R38=y
+#RX38=3
+#RY38=15
+#LIVE38=120
+#USE_LONG38=n
+#USE_PIN38=n
+#WPS_PIN38=
+#KEEP_FILE38=n
+#
+#NAME39=
+#TARGETAP39=
+#CHANNEL39=
+#USE_R39=y
+#RX39=3
+#RY39=15
+#LIVE39=120
+#USE_LONG39=n
+#USE_PIN39=n
+#WPS_PIN39=
+#KEEP_FILE39=n
+#
+#NAME40=
+#TARGETAP40=
+#CHANNEL40=
+#USE_R40=y
+#RX40=3
+#RY40=15
+#LIVE40=120
+#USE_LONG40=n
+#USE_PIN40=n
+#WPS_PIN40=
+#KEEP_FILE40=n
+#
+#NAME41=
+#TARGETAP41=
+#CHANNEL41=
+#USE_R41=y
+#RX41=3
+#RY41=15
+#LIVE41=120
+#USE_LONG41=n
+#USE_PIN41=n
+#WPS_PIN41=
+#KEEP_FILE41=n
+#
+#NAME42=
+#TARGETAP42=
+#CHANNEL42=
+#USE_R42=y
+#RX42=3
+#RY42=15
+#LIVE42=120
+#USE_LONG42=n
+#USE_PIN42=n
+#WPS_PIN42=
+#KEEP_FILE42=n
+#
+#NAME43=
+#TARGETAP43=
+#CHANNEL43=
+#USE_R43=y
+#RX43=3
+#RY43=15
+#LIVE43=120
+#USE_LONG43=n
+#USE_PIN43=n
+#WPS_PIN43=
+#KEEP_FILE43=n
+#
+#NAME44=
+#TARGETAP44=
+#CHANNEL44=
+#USE_R44=y
+#RX44=3
+#RY44=15
+#LIVE44=120
+#USE_LONG44=n
+#USE_PIN44=n
+#WPS_PIN44=
+#KEEP_FILE44=n
+#
+#NAME45=
+#TARGETAP45=
+#CHANNEL45=
+#USE_R45=y
+#RX45=3
+#RY45=15
+#LIVE45=120
+#USE_LONG45=n
+#USE_PIN45=n
+#WPS_PIN45=
+#KEEP_FILE45=n
+#
+#NAME46=
+#TARGETAP46=
+#CHANNEL46=
+#USE_R46=y
+#RX46=3
+#RY46=15
+#LIVE46=120
+#USE_LONG46=n
+#USE_PIN46=n
+#WPS_PIN46=
+#KEEP_FILE46=n
+#
+#NAME47=
+#TARGETAP47=
+#CHANNEL47=
+#USE_R47=y
+#RX47=3
+#RY47=15
+#LIVE47=120
+#USE_LONG47=n
+#USE_PIN47=n
+#WPS_PIN47=
+#KEEP_FILE47=n
+#
+#NAME48=
+#TARGETAP48=
+#CHANNEL48=
+#USE_R48=y
+#RX48=3
+#RY48=15
+#LIVE48=120
+#USE_LONG48=n
+#USE_PIN48=n
+#WPS_PIN48=
+#KEEP_FILE48=n
+#
+#NAME49=
+#TARGETAP49=
+#CHANNEL49=
+#USE_R49=y
+#RX49=3
+#RY49=15
+#LIVE49=120
+#USE_LONG49=n
+#USE_PIN49=n
+#WPS_PIN49=
+#KEEP_FILE49=n
+#
+#NAME50=
+#TARGETAP50=
+#CHANNEL50=
+#USE_R50=y
+#RX50=3
+#RY50=15
+#LIVE50=120
+#USE_LONG50=n
+#USE_PIN50=n
+#WPS_PIN50=
+#KEEP_FILE50=n
+#
+#varmacreaversav6 accepts only 50 APs
