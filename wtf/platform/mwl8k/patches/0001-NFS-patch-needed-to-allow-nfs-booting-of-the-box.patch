@@ -1,0 +1,52 @@
+From 0fda926a4c873bdcdfac9769e3a8f9c79336014f Mon Sep 17 00:00:00 2001
+From: Nishant Sarmukadam <nishants@marvell.com>
+Date: Wed, 29 Sep 2010 22:04:28 -0700
+Subject: [PATCH 1/5] NFS patch needed to allow nfs booting of the box
+
+---
+ net/ipv4/ipconfig.c |   15 ++++++++++-----
+ 1 files changed, 10 insertions(+), 5 deletions(-)
+
+diff --git a/net/ipv4/ipconfig.c b/net/ipv4/ipconfig.c
+index 3a6e1ec..a621dee 100644
+--- a/net/ipv4/ipconfig.c
++++ b/net/ipv4/ipconfig.c
+@@ -218,7 +218,11 @@ static int __init ic_open_devs(void)
+ 	for_each_netdev(&init_net, dev) {
+ 		if (dev->flags & IFF_LOOPBACK)
+ 			continue;
+-		if (ic_device_match(dev)) {
++		if (strncmp(dev->name, "wlan", 4) &&
++		    strncmp(dev->name, "wmaster", 7) &&
++		     (!(dev->flags & IFF_LOOPBACK) &&
++		     (dev->flags & (IFF_POINTOPOINT|IFF_BROADCAST)) &&
++		     strncmp(dev->name, "dummy", 5))) {
+ 			int able = 0;
+ 			if (dev->mtu >= 364)
+ 				able |= IC_BOOTP;
+@@ -271,6 +275,8 @@ static void __init ic_close_devs(void)
+ 	struct ic_device *d, *next;
+ 	struct net_device *dev;
+ 
++	return;
++
+ 	rtnl_lock();
+ 	next = ic_first_dev;
+ 	while ((d = next)) {
+@@ -1367,10 +1373,9 @@ static int __init ip_auto_config(void)
+ #ifdef IPCONFIG_DYNAMIC
+  try_try_again:
+ #endif
+-	/* Wait for devices to appear */
+-	err = wait_for_devices();
+-	if (err)
+-		return err;
++
++        /* Give hardware a chance to settle */
++        msleep(CONF_PRE_OPEN);
+ 
+ 	/* Setup all network devices */
+ 	err = ic_open_devs();
+-- 
+1.7.0.1
+

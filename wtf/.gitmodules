@@ -1,0 +1,4 @@
+[submodule "submodules/wpa_supplicant"]
+	path = submodules/wpa_supplicant
+	url = git@github.com:cozybit/wpa_s_mesh_android.git
+	branch = latest_mesh_enabled
