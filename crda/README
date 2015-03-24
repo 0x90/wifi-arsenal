@@ -1,0 +1,96 @@
+ Central Regulatory Domain Agent (CRDA)
+========================================
+
+This is the Central Regulatory Domain Agent for Linux. It serves one
+purpose: tell Linux kernel what to enforce. In essence it is a udev
+helper for communication between the kernel and userspace. You only
+need to run this manually for debugging purposes. For manual changing
+of regulatory domains use iw (iw reg set) or wpa_supplicant (feature
+yet to be added).
+
+ HOST REQUIREMENTS
+===================
+
+CRDA is provided as a binary file so all the host needs is libc/uclibc.
+You will also need udev and at least libnl1.
+
+ BUILD REQUIREMENTS
+====================
+
+The package build requirements currently are:
+
+ * python and the m2crypto package (python-m2crypto)
+ * libgcrypt or libssl (openssl) header files
+ * nl library and header files (libnl1 and libnl-dev)
+   available at git://git.kernel.org/pub/scm/libs/netlink/libnl.git
+ * RSA public key of John Linville, we include this as part of this package
+   so you do not need to install it. This RSA public key comes
+   from the wireless-regdb.git tree and we keep it up to date here.
+ * regulatory database, clone this tree:
+
+   git://git.kernel.org/pub/scm/linux/kernel/git/linville/wireless-regdb.git
+
+   and then stuff regulatory.bin (no need to build) provided there in
+   REG_BIN location specified in this Makefile. This regulatory.bin file
+   is only required to verify the CRDA built here can read its database file
+   which has been signed with the RSA private key.
+
+ CALLING CRDA -- UDEV
+======================
+
+Distributions can set up a udev rule to allow the kernel's regulatory
+domain change request to be reviewed by CRDA so CRDA can pass an
+appropriate regulatory domain. An example regulatory rule is provided
+with this package as regulatory.rules
+
+ OVERVIEW
+==========
+
+The database is maintained on the wireless-regdb.git tree. This git
+tree maintains a binary regulatory database file which is produced
+using its own ASCII db.txt into binary form for size efficiency. The
+contents of the binary database are then signed using the private key.
+
+CRDA will use regulatory.bin if its signature checks out with the public
+key provided. This will prevent us from using corrupted data (in case
+of hard drive failure) in the running kernel. This separation between
+CRDA and the regulatory database also allows us to provide regulatory
+updates on distributions without having to require an update on CRDA.
+
+Note that upon updating the regulatory database it is advised the
+user reboots or all the wireless modules get unloaded and reloaded.
+
+Under certain circumstances it may be desirable to have the regulatory
+agent accept multiple keys, this can be achieved by stuffing all the keys
+desired into pubkeys. Right now we only use John Linville's public key.
+
+ REGDB AUTHORS
+===============
+
+Authors of regulatory.bin (John Linville) first need a private key, which can
+be generated with something like this:
+
+	openssl genrsa -out your.key.priv.pem 2048
+
+You'll then need to generate the public key and publish it. You
+can generate it as follows:
+
+	openssl rsa -in your.key.priv.pem -out your.key.pub.pem -pubout -outform PEM
+
+Then with this key you can generate regulatory.bin files like this:
+
+	./utils/db2bin.py regulatory.bin db.txt your.key.priv.pem
+
+ MAGIC PATTERN
+===============
+
+Use the following magic(5) pattern to recognise CRDA binary regulatory
+database files:
+
+---- %< ----
+# CRDA Regulatory database file
+# http://git.kernel.org/?p=linux/kernel/git/mcgrof/crda.git;a=summary
+# (see regdb.h)
+0	belong		0x52474442	CRDA regulatory database file
+>4	belong		19		(Version 1)
+---- >% ----
