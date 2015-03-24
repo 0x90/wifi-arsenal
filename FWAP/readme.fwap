@@ -1,0 +1,16 @@
++++++++++
+Install:+
++++++++++
+- make
+
++++++++++
+Run:	+
++++++++++
+1. ifconfig [wlanX] down
+2. ifconfig [wlanX] hw ether D0:0E:A4:81:FC:00
+3. ifconfig [wlanX] up
+-> If 3. fails because of rfkill, unblock your device with:
+-> 3.1 rfkill list (look for the number of your device
+-> 3.2 rfkill unblock 0 (replace 0 with the number of your device found at 3.1)
+-> 3.3 ifconfig [wlanX] up
+4. run as root ./fwap
