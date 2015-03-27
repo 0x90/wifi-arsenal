@@ -6,6 +6,6 @@
 [subrepo]
 	remote = https://github.com/xtr4nge/FruityWifi
 	branch = master
-	commit = aa7d07955c13379b0ad3c6404f53c5ca8742e042
-	parent = 5daa366e435e02de115ec1e8046f6478a3f1346b
+	commit = 056fa2b059b8403e17806cc888b689c1053a2c85
+	parent = 1941534880ec227a0321db7223dbffd11892a977
 	cmdver = 0.2.0
