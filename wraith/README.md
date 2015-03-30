@@ -58,16 +58,20 @@ Nidus is the Data Storage manager processing data received from DySKT. Nidus is 
 interface to the backend Postgresql database, processing data in terms of raw 802.11
 frames, gps location, and 'device' details/status. 
 
-### d. GUI: non-operational gui
+### d. wraith-rt: GUI
+
+In progress gui. Currently configured to provide start/stop of services, display
+and editing of configuration files, some manipulation of backened storage.
 
 ## 4. ARCHITECTURE/HEIRARCHY: Brief Overview of the project file structure
 
-* wraith/                Top-level package
+* wraith/               Top-level package
  - \_\_init\_\_.py      initialize the top-level
- - wraith-rt.py         the gui
+ - wraith-rt.py         the main Panel gui
+ - subpanels.py         child panels
  - wraith.conf          gui configuration file
  - LICENSE              software license
- - README.txt           details
+ - README.md            this file
  - CONFIGURE.txt        setup details
  * widgets              gui subpackage
      *  icons           icons folder
@@ -77,9 +81,9 @@ frames, gps location, and 'device' details/status.
     -  \_\_init\_\_.py  initialize utils subpackage
     - bits.py           bitmask functions
     - timestamps        timestamp conversion functions
+    - cmdline.py        various cmdline utilities for testing processes
  *  radio               subpackage for radio/radiotap
      - \_\_init\_\_.py  initialize radio subpackage
-     - bits.py          bitmask related funcs, bit extraction functions
      - iwtools.py       iwconfig, ifconfig interface and nic utilities
      - iw.py            iw 3.17 interface
      - radiotap.py      radiotap parsing
@@ -93,7 +97,6 @@ frames, gps location, and 'device' details/status.
      - dyskt.conf       configuration file for dyskt
      - dyskt.log.conf   configuration file for dyskt logging
      - dyskt.py         primary module
-     - internal.py      defines the Report class
      - rdoctl.py        radio controler with tuner, sniffer
      - rto.py           data collation and forwarding
      - dysktd           dyskt daemon

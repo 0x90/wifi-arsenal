@@ -68,6 +68,9 @@ TODO:
        to allow nidusdb to see the error
   - TIM (#5) from beacons could be useful
   - parse timing advance
+13) move to pcap-ng format?
+14) need to further test writing mgmt frames to db, there are still some errors
+    mainly syntatic in the sql statements
 """
 __name__ = 'nidus'
 __license__ = 'GPL v3.0'

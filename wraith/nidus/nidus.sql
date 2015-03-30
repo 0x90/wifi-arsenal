@@ -15,6 +15,12 @@
 -- CREATE EXTENSION postgis;
 -- \q
 
+-- ERRORS
+-- Error in reassocreq table
+-- DB Error:  ('42601', 'ERROR:  syntax error at or near ")"
+-- \nLINE 7: vendors))\n
+-- ^\n', 'reassocreq', 539L)
+
 -- to login with nidus & verify postgis
 psql -h localhost -U nidus -d nidus
 -- SELECT postgis_full_version();

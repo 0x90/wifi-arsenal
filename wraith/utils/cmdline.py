@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 """ cmdline: command line similar functions
 
 """

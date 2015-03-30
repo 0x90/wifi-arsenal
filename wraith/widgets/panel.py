@@ -211,6 +211,16 @@ class Panel(Tix.Frame):
         """ notifies all open panels to close """
         for name in self._panels: self._panels[name].pnl.close()
 
+    # message box methods
+    def err(self,t,m): tkMB.showerror(t,m,parent=self)
+    def warn(self,t,m): tkMB.showwarning(t,m,parent=self)
+    def info(self,t,m): tkMB.showinfo(t,m,parent=self)
+    def ask(self,t,m,opts=None):
+        if opts == 'retrycancel': return tkMB.askretrycancel(t,m,parent=self)
+        elif opts == 'yesno': return tkMB.askyesno(t,m,parent=self)
+        elif opts == 'okcancel': return tkMB.askokcancel(t,m,parent=self)
+        else: return tkMB.askquestion(t,m,parent=self)
+
 class SlavePanel(Panel):
     """
      SlavePanel - defines a slave panel which has a controlling panel. i.e. it
@@ -280,8 +290,10 @@ class SimplePanel(SlavePanel):
         SlavePanel.__init__(self,toplevel,chief,iconpath)
         self.master.title(title)
         self.pack(expand=True,fill=Tix.BOTH,side=Tix.TOP)
-        self._body()
-    def _body(self): raise NotImplementedError("SimplePanel::_body")
+        frm = Tix.Frame(self)
+        frm.pack(side=Tix.TOP,fill=Tix.BOTH,expand=True)
+        self._body(frm)
+    def _body(self,frm): raise NotImplementedError("SimplePanel::_body")
     def reset(self): pass
     def update(self): pass
     def _shutdown(self): pass
@@ -299,7 +311,9 @@ class ConfigPanel(SlavePanel):
       _makegui add widgets to view/edit configuration file entries
       _initialize initial entry of config file values into the widgets. It is
         also used by the reset to button
-      _validate validate entries before writing
+      _validate validate entries before writing (derived class must handle
+       displaying error messages to user) returns True if all widget entries
+       are valid, False otherwise
       _write writes the values of the entries into the config file
     """
     def __init__(self,toplevel,chief,title):
@@ -658,7 +672,7 @@ class MasterPanel(Panel):
 
     def close(self):
         """ cleanly exits - shuts down as necessary """
-        ans = tkMB.askquestion('Quit?','Really Quit',parent=self)
+        ans = self.ask('Quit?','Really Quit')
         if ans == 'no':
             return
         else:
@@ -699,12 +713,12 @@ class MasterPanel(Panel):
 
     def unimplemented(self):
         """ displays info dialog with not implmented message """
-        tkMB.showinfo('Not Implemented',"This function not currently implemented",parent=self)
+        self.info('Not Implemented',"This function not currently implemented")
         
     def guisave(self):
         """ saves current toolset configuration """
         fpath = tkFD.asksaveasfilename(title='Save Toolset',
-                                      filetypes=[('Toolset files','*.ts')])
+                                       filetypes=[('Toolset files','*.ts')])
         if fpath:
             gs = self.tk.winfo_geometry().split('+')
             ts = {}
@@ -756,7 +770,7 @@ class MasterPanel(Panel):
         if log:
             log.logwrite(msg,mtype)
         elif mtype == LOG_ERR:
-             tkMB.showerror('Error',msg,parent=self)
+             self.err('Error',msg)
 
     # Panel/date update functionality
 
