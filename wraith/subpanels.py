@@ -267,7 +267,7 @@ class CalculatePanel(gui.SimplePanel):
      Base calculator panel - a simple panel that displays specified entries and
      calculates a specified formula
     """
-    def __init__(self,toplevel,chief,ttl,inputs,result):
+    def __init__(self,toplevel,chief,ttl,inputs,result,rc=None):
         """
           inputs is a list of tuples of the form t = (label,width,type) where:
            label is the text to display in the entry's label
@@ -279,6 +279,8 @@ class CalculatePanel(gui.SimplePanel):
            i.e. "$0 * $1" results in the multiplication of the value in entry 0
            and entry 1
            and measurement is the answer's measurement (string)
+          rc (if specified) can be used to define how many entries per row to
+          place. i.e. [3,2,2] designates 3 rows of 3 entries, 2 entries and 2 entries
         """
         self._entries = []
         self._inputs = inputs
@@ -286,20 +288,42 @@ class CalculatePanel(gui.SimplePanel):
         self._ans.set("")
         self._formula = result[0]
         self._meas = result[1]
+        self._rc = rc if rc else [len(inputs)]
         gui.SimplePanel.__init__(self,toplevel,chief,ttl,"widgets/icons/calculator.png")
 
     def _body(self,frm):
         """ creates the body """
+        # entries frame
         frmEnt = Tix.Frame(frm,borderwidth=0)
         frmEnt.grid(row=0,column=0,sticky=Tix.W)
-        for i in xrange(len(self._inputs)):
-            Tix.Label(frmEnt,text=" %s: " % self._inputs[i][0]).grid(row=0,column=(i*2))
-            self._entries.append(Tix.Entry(frmEnt,width=self._inputs[i][1]))
-            self._entries[i].grid(row=0,column=(i*2)+1)
+
+        # create the widgets
+        inputs = []
+        x = 0
+        for r in self._rc:
+            inputs.append(self._inputs[x:x+r])
+            x += r
+
+        r = 0
+        i = 0
+        for input in inputs:
+            for c in xrange(len(input)):
+                Tix.Label(frmEnt,text=" %s: " % input[c][0]).grid(row=r,column=(c*2))
+                self._entries.append(Tix.Entry(frmEnt,width=input[c][1]))
+                self._entries[i].grid(row=r,column=(c*2)+1)
+                i += 1
+            r += 1
+
+        #for i in xrange(len(self._inputs)):
+        #    Tix.Label(frmEnt,text=" %s: " % self._inputs[i][0]).grid(row=0,column=(i*2))
+        #    self._entries.append(Tix.Entry(frmEnt,width=self._inputs[i][1]))
+        #    self._entries[i].grid(row=0,column=(i*2)+1)
+
+        # answer frame, then button frames
         frmAns = Tix.Frame(frm,borderwidth=0)
         frmAns.grid(row=1,column=0,sticky=Tix.N)
         Tix.Label(frmAns,text="Answer: ").grid(row=0,column=0)
-        Tix.Label(frmAns,width=25,textvariable=self._ans).grid(row=0,column=1)
+        Tix.Label(frmAns,width=20,textvariable=self._ans).grid(row=0,column=1)
         Tix.Label(frmAns,text=" %s" % self._meas).grid(row=0,column=2)
         frmBtns = Tix.Frame(frm,borderwidth=0)
         frmBtns.grid(row=2,column=0,sticky=Tix.N)
