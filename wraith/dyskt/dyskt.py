@@ -15,21 +15,21 @@ __maintainer__ = 'Dale Patterson'
 __email__ = 'wraith.wireless@yandex.com'
 __status__ = 'Development'
 
-import os                           # for path validations
-import signal                       # signal processing
-import time                         # for sleep, timestamps
-import logging                      # log
-import logging.config               # log configuration
-import logging.handlers             # handlers for log
-import multiprocessing as mp        # multiprocessing process, events etc
-import argparse as ap               # reading command line arguments
-import ConfigParser                 # reading configuration files
-from wraith import dyskt            # for rev number, author
-from internal import Report         # message report template
-from rto import RTO                 # the rto
-from rdoctl import RadioController  # Radio object etc
-from wraith.radio import channels   # channel specifications
-from wraith.radio import iw         # channel widths and region set/get
+import os                                       # for path validations
+import signal                                   # signal processing
+import time                                     # for sleep, timestamps
+import logging                                  # log
+import logging.config                           # log configuration
+import logging.handlers                         # handlers for log
+import multiprocessing as mp                    # multiprocessing process, events etc
+import argparse as ap                           # reading command line arguments
+import ConfigParser                             # reading configuration files
+from wraith import dyskt                        # for rev number, author
+from wraith.dyskt.rto import RTO                # the rto
+from wraith.dyskt.rdoctl import RadioController # Radio object etc
+from wraith.radio import channels               # channel specifications
+from wraith.radio import iw                     # channel widths and region set/get
+from wraith.radio.iwtools import wifaces        # check for interface presents
 
 #### set up log
 # have to configure absolute path
@@ -43,7 +43,53 @@ class DySKTConfException(DySKTException): pass
 class DySKTParamException(DySKTException): pass
 class DySKTRuntimeException(DySKTException): pass
 
-#### CONSTANTS
+def parsechlist(pattern,ptype):
+    """
+      parse channel list pattern of type ptype = oneof {'scan','pass'} and return
+      a list of tuples (ch,chwidth)
+    """
+    if not pattern: chs,ws = [],[]
+    else:
+        # split the pattern by ch,width separator
+        chs,ws = pattern.split(':')
+
+        # parse channel portion
+        if not chs: chs = []
+        else:
+            if chs.lower().startswith('b'): # band specification
+                band = chs[1:]
+                if band == '2.4':
+                    chs = sorted(channels.ISM_24_C2F.keys())
+                elif band == '5':
+                    chs = sorted(channels.UNII_5_C2F.keys())
+                else:
+                    raise ValueError("Band specification %s for %s not supported" % (chs,ptype))
+            elif '-' in chs: # range specification
+                [l,u] = chs.split('-')
+                chs = [c for c in xrange(int(l),int(u)+1) if c in channels.channels()]
+            else: # list or single specification
+                try:
+                    chs = [int(c) for c in chs.split(',')]
+                except ValueError:
+                    raise ValueError("Invalid channel list specification %s for %s" % (chs,ptype))
+
+            # parse width portion
+            if not ws or ws.lower() == 'all': ws = []
+            else:
+                if ws.lower() == "noht": ws = [None,'HT20']
+                elif ws.lower() == "ht": ws = ['HT40+','HT40-']
+                else: raise ValueError("Invalid specification for width %s for %s" % (ws,ptype))
+
+    # compile all possible combinations
+    if (chs,ws) == ([],[]):
+        if ptype == 'scan': return [(ch,chw) for chw in iw.IW_CHWS for ch in channels.channels()]
+    elif not chs: return [(ch,chw) for chw in ws for ch in channels.channels()]
+    elif not ws: return [(ch,chw) for chw in iw.IW_CHWS for ch in chs]
+    else:
+        return [(ch,chw) for chw in ws for ch in chs]
+
+    return [],[]
+
 # WASP STATES
 DYSKT_INVALID         = -1 # dyskt is unuseable
 DYSKT_CREATED         =  0 # dyskt is created but not yet started
@@ -87,8 +133,13 @@ class DySKT(object):
         # a RuntimeError failure
         logging.info("Initializing subprocess...")
         try:
-            # set the region? if so, we need to do it prior to starting the
-            # RadioController
+            # start RTO first
+            logging.info("Starting RTO")
+            (conn1,conn2) = mp.Pipe()
+            self._pConns['rto'] = conn1
+            self._rto = RTO(self._ic,conn2,self._conf)
+
+            # set the region? if so, do it prior to starting the RadioController
             rd = self._conf['local']['region']
             if rd:
                 logging.info("Setting regulatory domain to %s",rd)
@@ -115,12 +166,6 @@ class DySKT(object):
                 except RuntimeError as e:
                     # continue without collector, but log it
                     logging.warning("Collection Radio (%s), continuing without",e)
-
-            # RTO
-            logging.info("Starting RTO")
-            (conn1,conn2) = mp.Pipe()
-            self._pConns['rto'] = conn1
-            self._rto = RTO(self._ic,conn2,self._conf)
         except RuntimeError as e:
             # e should have the form "Major:Minor:Description"
             ms = e.message.split(':')
@@ -143,9 +188,9 @@ class DySKT(object):
         self._state = DYSKT_EXITING
 
         # reset regulatory domain if necessary
-        logging.info("Resetting regulatory domain")
         if self._rd:
             try:
+                logging.info("Resetting regulatory domain")
                 iw.regset(self._rd)
                 if iw.regget() != self._rd: raise RuntimeError
             except:
@@ -156,8 +201,8 @@ class DySKT(object):
         # any holding for data block
         logging.info("Stopping Sub-processes")
         self._halt.set()
-        self._ic.put(Report('dyskt',time.time(),'!CHECK!',[]))
-        for key in self._pConns.keys():
+        self._ic.put(('dyskt',time.time(),'!CHECK!',[]))
+        for key in self._pConns:
             try:
                 self._pConns[key].send('!STOP!')
             except IOError:
@@ -192,7 +237,7 @@ class DySKT(object):
         # execution loop
         while not self._halt.is_set():
             # get message a tuple: (level,originator,type,message)
-            for key in self._pConns.keys():
+            for key in self._pConns:
                 try:
                     if self._pConns[key].poll():
                         (l,o,t,m) = self._pConns[key].recv()
@@ -243,25 +288,24 @@ class DySKT(object):
                 else:
                     self._conf['collection'] = None
                     logging.info("No collection radio specified")
-            except (ConfigParser.NoSectionError,ConfigParser.NoOptionError,ValueError):
+            except (ConfigParser.NoSectionError,ConfigParser.NoOptionError,
+                    RuntimeError,ValueError):
                 logging.warning("Invalid collection specification. Continuing without...")
 
             # GPS section
             self._conf['gps'] = {}
-            if conf.has_section('GPS'):
-                self._conf['gps']['fixed'] = conf.getboolean('GPS','fixed')
-                if self._conf['gps']['fixed']:
-                    self._conf['gps']['lat'] = conf.getfloat('GPS','lat')
-                    self._conf['gps']['lon'] = conf.getfloat('GPS','lon')
-                    self._conf['gps']['alt'] = conf.getfloat('GPS','alt')
-                    self._conf['gps']['dir'] = conf.getfloat('GPS','heading')
-                else:
-                    self._conf['gps']['host'] = conf.get('GPS','host')
-                    self._conf['gps']['port'] = conf.getint('GPS','port')
-                    self._conf['gps']['id'] = conf.get('GPS','devid')
-                    self._conf['gps']['poll'] = conf.getfloat('GPS','poll')
-                    self._conf['gps']['epx'] = conf.getfloat('GPS','epx')
-                    self._conf['gps']['epy'] = conf.getfloat('GPS','epy')
+            self._conf['gps']['fixed'] = conf.getboolean('GPS','fixed')
+            if self._conf['gps']['fixed']:
+                self._conf['gps']['lat'] = conf.getfloat('GPS','lat')
+                self._conf['gps']['lon'] = conf.getfloat('GPS','lon')
+                self._conf['gps']['alt'] = conf.getfloat('GPS','alt')
+                self._conf['gps']['dir'] = conf.getfloat('GPS','heading')
+            else:
+                self._conf['gps']['port'] = conf.getint('GPS','port')
+                self._conf['gps']['id'] = conf.get('GPS','devid')
+                self._conf['gps']['poll'] = conf.getfloat('GPS','poll')
+                self._conf['gps']['epx'] = conf.getfloat('GPS','epx')
+                self._conf['gps']['epy'] = conf.getfloat('GPS','epy')
 
             # Storage section
             self._conf['store'] = {'host':conf.get('Storage','host'),
@@ -277,15 +321,17 @@ class DySKT(object):
                     logging.warn("Regulatory domain %s is invalid" % reg)
                 else:
                     self._conf['local']['region'] = conf.get('Local','region')
-        except ConfigParser.NoSectionError as e:
+        except (ConfigParser.NoSectionError,ConfigParser.NoOptionError) as e:
             raise DySKTConfException("%s" % e)
-        except ConfigParser.NoOptionError as e:
-            raise DySKTConfException("%s" % e)
-        except ValueError as e:
+        except (RuntimeError,ValueError) as e:
             raise DySKTConfException("%s" % e)
 
     def _readradio(self,conf,rtype='Recon'):
         """ read in the rtype radio configuration from conf and return parsed dict """
+        # don't bother if specified radio is not present
+        if not conf.get(rtype,'nic') in wifaces():
+            raise RuntimeError("Radio %s not present/not wireless" % conf.get(rtype,'nic'))
+
         # get nic and set role setting default antenna config
         r = {'nic':conf.get(rtype,'nic'),
              'spoofed':None,
@@ -299,10 +345,8 @@ class DySKT(object):
              'antennas':{}}
 
         # get optional properties
-        if conf.has_option(rtype,'spoof'):
-            r['spoofed'] = conf.get(rtype,'spoof')
-        if conf.has_option(rtype,'desc'):
-            r['desc'] = conf.get(rtype,'desc')
+        if conf.has_option(rtype,'spoof'): r['spoofed'] = conf.get(rtype,'spoof')
+        if conf.has_option(rtype,'desc'):  r['desc'] = conf.get(rtype,'desc')
 
         # process antennas - get the number first
         try:
@@ -347,11 +391,16 @@ class DySKT(object):
         # get scan pattern
         r['dwell'] = conf.getfloat(rtype,'dwell')
         if r['dwell'] <= 0: raise ValueError("dwell must be > 0")
-        r['scan'] = self._parsechlist(conf.get(rtype,'scan'),'scan')
-        r['pass'] = self._parsechlist(conf.get(rtype,'pass'),'pass')
+        r['scan'] = parsechlist(conf.get(rtype,'scan'),'scan')
+        r['pass'] = parsechlist(conf.get(rtype,'pass'),'pass')
         if conf.has_option(rtype,'scan_start'):
             try:
-                (ch,chw) = conf.get(rtype,'scan_start').split(':')
+                scanspec = conf.get(rtype,'scan_start')
+                if ':' in scanspec:
+                    (ch,chw) = scanspec.split(':')
+                else:
+                    ch = scanspec
+                    chw = None
                 ch = int(ch) if ch else r['scan'][0][0]
                 if not chw in iw.IW_CHWS: chw = r['scan'][0][1]
                 r['scan_start'] = (ch,chw) if (ch,chw) in r['scan'] else r['scan'][0]
@@ -362,57 +411,6 @@ class DySKT(object):
             r['scan_start'] = r['scan'][0]
 
         return r
-
-    @staticmethod
-    def _parsechlist(pattern,ptype):
-        """
-         parse channel list pattern of type ptype = oneof {'scan','pass'} and return
-         a list of tuples (ch,chwidth)
-        """
-        if not pattern:
-            chs,ws = ([],[])
-        else:
-            # split the pattern by ch,width separator
-            chs,ws = pattern.split(':')
-
-            # parse channel portion
-            if not chs: chs = []
-            else:
-                if chs.lower().startswith('b'): # band specification
-                    band = chs[1:]
-                    if band == '2.4':
-                        chs = sorted(channels.ISM_24_C2F.keys())
-                    elif band == '5':
-                        chs = sorted(channels.UNII_5_C2F.keys())
-                    else:
-                        raise ValueError("Band specification %s not supported" % chs)
-                elif '-' in chs: # range specification
-                    [l,u] = chs.split('-')
-                    chs = [c for c in xrange(int(l),int(u)+1) if c in channels.channels()]
-                else: # list or single specification
-                    try:
-                        chs = [int(c) for c in chs.split(',')]
-                    except ValueError:
-                        raise ValueError("Invalid channel list specification %s" % chs)
-
-            # parse width portion
-            if not ws or ws.lower() == 'all': ws = []
-            else:
-                if ws.lower() == "noht": ws = [None,'HT20']
-                elif ws.lower() == "ht": ws = ['HT40+','HT40-']
-                else: raise ValueError("Invalid specification for width: %s" % ws)
-
-        # compile all possible combinations
-        if (chs,ws) == ([],[]):
-            if ptype == 'scan': return [(ch,chw) for chw in iw.IW_CHWS for ch in channels.channels()]
-        elif not chs:
-            return [(ch,chw) for chw in ws for ch in channels.channels()]
-        elif not ws:
-            return [(ch,chw) for chw in iw.IW_CHWS for ch in chs]
-        else:
-            return [(ch,chw) for chw in ws for ch in chs]
-
-        return [],[]
 
 if __name__ == 'dyskt':
     try:

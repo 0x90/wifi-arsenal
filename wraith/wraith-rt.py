@@ -1,18 +1,8 @@
 #!/usr/bin/env python
 """ wraith-rt.py - defines the Master(main) Panel of the wraith gui
-
- TODO:
-  1) make tkMessageBox,tkFileDialog and tkSimpleDialog derive match
-    main color scheme
-  4) move display of log panel to after intializiation() so that
-     wraith panel is 'first', leftmost panel - will have to figure out
-     how to save messages from init to later
-  8) need to periodically recheck state -> status of postgres,nidusd and dyskt
-  9) get log panel to scroll automatically
- 10) add labels to frames
 """
 
-__name__ = 'wraith-rt'
+#__name__ = 'wraith-rt'
 __license__ = 'GPL v3.0'
 __version__ = '0.0.3'
 __revdate__ = 'February 2015'
@@ -25,7 +15,6 @@ import os                                  # file info etc
 import time                                # sleeping, timestamps
 import psycopg2 as psql                    # postgresql api
 import Tix                                 # Tix gui stuff
-import tkMessageBox as tkMB                # info dialogs
 import ConfigParser                        # config file parsing
 import wraith                              # version info
 import wraith.widgets.panel as gui         # graphics suite
@@ -47,6 +36,12 @@ _STATE_FLAGS_ = {'init':(1 << 0),   # initialized properly
                  'nidus':(1 << 3),  # nidus storage manager running
                  'dyskt':(1 << 4),  # at least one sensor is collecting data
                  'exit':(1 << 5)}   # exiting/shutting down
+
+#### CALCULATIONS - dict of calculation options for CalculatePanel
+_CALCS_ = {'EIRP':{'inputs':[('Pwr (mW)',5,'float'),('Gain (dBi)',5,'float')],
+                   'answer':("10*math.log10($0) + $1",'dB')},
+           'FSPL':{'inputs':[('Distance (m)',7,'float'),('RF (MHz)',5,'float')],
+                   'answer':("20*math.log10($0/1000) + 20*math.log10($1) + 32.44",'dB')}}
 
 class WraithPanel(gui.MasterPanel):
     """ WraithPanel - master panel for wraith gui """
@@ -160,7 +155,7 @@ class WraithPanel(gui.MasterPanel):
         """ make the menu """
         self.menubar = Tix.Menu(self)
 
-        # File Menu
+        # Wraith Menu
         # all options will always be enabled
         self.mnuWraith = Tix.Menu(self.menubar,tearoff=0)
         self.mnuWraithGui = Tix.Menu(self.mnuWraith,tearoff=0)
@@ -175,7 +170,10 @@ class WraithPanel(gui.MasterPanel):
         # Tools Menu
         # all options will always be enabled
         self.mnuTools = Tix.Menu(self.menubar,tearoff=0)
+        self.mnuTools.add_command(label="Convert",command=self.viewconvert)
         self.mnuToolsCalcs = Tix.Menu(self.mnuTools,tearoff=0)
+        self.mnuToolsCalcs.add_command(label="EIRP",command=lambda:self.calc('EIRP'))
+        self.mnuToolsCalcs.add_command(label="FSPL",command=lambda:self.calc('FSPL'))
         self.mnuTools.add_cascade(label="Calcuators",menu=self.mnuToolsCalcs)
 
         # View Menu
@@ -242,13 +240,39 @@ class WraithPanel(gui.MasterPanel):
 #### MENU CALLBACKS
 
 #### Wraith Menu
+
     def configwraith(self):
         """ display config file preference editor """
-        panel = self.getpanels("preferences",False)
+        panel = self.getpanels('preferences',False)
         if not panel:
             t = Tix.Toplevel()
             pnl = subgui.WraithConfigPanel(t,self)
-            self.addpanel(pnl.name,gui.PanelRecord(t,pnl,"preferences"))
+            self.addpanel(pnl.name,gui.PanelRecord(t,pnl,'preferences'))
+        else:
+            panel[0].tk.deiconify()
+            panel[0].tk.lift()
+
+#### Tools Menu
+
+    def viewconvert(self):
+        """ display conversion panel """
+        panel = self.getpanels('convert',False)
+        if not panel:
+            t = Tix.Toplevel()
+            pnl = subgui.ConvertPanel(t,self)
+            self.addpanel(pnl.name,gui.PanelRecord(t,pnl,'convert'))
+        else:
+            panel[0].tk.deiconify()
+            panel[0].tk.lift()
+
+    def calc(self,key):
+        """ calculate the function defined by key in the _CALCS_ dict"""
+        panel = self.getpanels('%scalc' % key)
+        if not panel:
+            t = Tix.Toplevel()
+            pnl = subgui.CalculatePanel(t,self,key,_CALCS_[key]['inputs'],
+                                                   _CALCS_[key]['answer'])
+            self.addpanel(pnl.name,gui.PanelRecord(t,pnl,'%scalc' % key))
         else:
             panel[0].tk.deiconify()
             panel[0].tk.lift()
@@ -257,11 +281,11 @@ class WraithPanel(gui.MasterPanel):
 
     def viewdatabins(self):
         """ display the data bins panel """
-        panel = self.getpanels("databin",False)
+        panel = self.getpanels('databin',False)
         if not panel:
             t = Tix.Toplevel()
             pnl = subgui.DataBinPanel(t,self)
-            self.addpanel(pnl.name,gui.PanelRecord(t,pnl,"databin"))
+            self.addpanel(pnl.name,gui.PanelRecord(t,pnl,'databin'))
         else:
             panel[0].tk.deiconify()
             panel[0].tk.lift()
@@ -368,8 +392,7 @@ class WraithPanel(gui.MasterPanel):
         # and a sensor is not running, but check anyway
         flags = bits.bitmask_list(_STATE_FLAGS_,self._state)
         if flags['store'] and flags['conn'] and not flags['dyskt']:
-            ans = tkMB.askquestion('Delete Records','Delete all DB records?',
-                                   parent=self)
+            ans = self.ask('Delete Records','Delete all DB records?')
             if ans == 'no': return
             curs = None
             try:
@@ -381,8 +404,7 @@ class WraithPanel(gui.MasterPanel):
                 self.logwrite("Deleted all records")
             except psql.Error as e:
                 self._conn.rollback()
-                self.logwrite("Failed to delete records <%s: %s>" % (e.pgcode,e.pgerror),
-                              gui.LOG_ERR)
+                self.logwrite("Delete Failed<%s: %s>" % (e.pgcode,e.pgerror),gui.LOG_ERR)
             finally:
                 if curs: curs.close()
 
@@ -426,7 +448,7 @@ class WraithPanel(gui.MasterPanel):
         if not panel:
             t = Tix.Toplevel()
             pnl = gui.TailLogPanel(t,self,"Nidus Log",0.2,wraith.NIDUSLOG)
-            self.addpanel(pnl.name,gui.PanelRecord(t,pnl,"niduslog"))
+            self.addpanel(pnl.name,gui.PanelRecord(t,pnl,'niduslog'))
         else:
             panel[0].tk.deiconify()
             panel[0].tk.lift()
@@ -436,8 +458,7 @@ class WraithPanel(gui.MasterPanel):
         # prompt first
         finfo = os.stat(wraith.NIDUSLOG)
         if finfo.st_size > 0:
-            ans = tkMB.askquestion("Clear Log","Clear contents of Nidus log?",
-                                   parent=self)
+            ans = self.ask("Clear Log","Clear contents of Nidus log?")
             if ans == 'no': return
             lv = self.getpanel('niduslog')
             #if lv: lv.close()
@@ -447,11 +468,11 @@ class WraithPanel(gui.MasterPanel):
 
     def confignidus(self):
         """ display nidus config file preference editor """
-        panel = self.getpanels("nidusprefs",False)
+        panel = self.getpanels('nidusprefs',False)
         if not panel:
             t = Tix.Toplevel()
             pnl = subgui.NidusConfigPanel(t,self)
-            self.addpanel(pnl.name,gui.PanelRecord(t,pnl,"nidusprefs"))
+            self.addpanel(pnl.name,gui.PanelRecord(t,pnl,'nidusprefs'))
         else:
             panel[0].tk.deiconify()
             panel[0].tk.lift()
@@ -490,8 +511,7 @@ class WraithPanel(gui.MasterPanel):
         # prompt first
         finfo = os.stat(wraith.DYSKTLOG)
         if finfo.st_size > 0:
-            ans = tkMB.askquestion("Clear Log","Clear contents of DySKT log?",
-                                   parent=self)
+            ans = self.ask("Clear Log","Clear contents of DySKT log?")
             if ans == 'no': return
             with open(wraith.DYSKTLOG,'w'): pass
             lv = self.getpanel('dysktlog')
@@ -499,11 +519,11 @@ class WraithPanel(gui.MasterPanel):
 
     def configdyskt(self):
         """ display dyskt config file preference editor """
-        panel = self.getpanels("dysktprefs",False)
+        panel = self.getpanels('dysktprefs',False)
         if not panel:
             t = Tix.Toplevel()
             pnl = subgui.DySKTConfigPanel(t,self)
-            self.addpanel(pnl.name,gui.PanelRecord(t,pnl,"dysktprefs"))
+            self.addpanel(pnl.name,gui.PanelRecord(t,pnl,'dysktprefs'))
         else:
             panel[0].tk.deiconify()
             panel[0].tk.lift()
@@ -512,11 +532,11 @@ class WraithPanel(gui.MasterPanel):
 
     def about(self):
         """ display the about panel """
-        panel = self.getpanels("about",False)
+        panel = self.getpanels('about',False)
         if not panel:
             t = Tix.Toplevel()
             pnl = subgui.AboutPanel(t,self)
-            self.addpanel(pnl.name,gui.PanelRecord(t,pnl,"about"))
+            self.addpanel(pnl.name,gui.PanelRecord(t,pnl,'about'))
         else:
             panel[0].tk.deiconify()
             panel[0].tk.lift()
@@ -531,6 +551,12 @@ class WraithPanel(gui.MasterPanel):
         """ opens a panel of type desc """
         if desc == 'log': self.viewlog()
         elif desc == 'databin': self.viewdatabins()
+        elif desc == 'preferences': self.configwraith()
+        elif desc == 'niduslog': self.viewniduslog()
+        elif desc == 'nidusprefs': self.confignidus()
+        elif desc == 'dysktlog': self.viewdysktlog()
+        elif desc == 'dysktprefs': self.configdyskt()
+        elif desc == 'about': self.about()
         else: raise RuntimeError, "WTF Cannot open %s" % desc
 
 #### HELPER FUNCTIONS
@@ -765,7 +791,7 @@ class WraithPanel(gui.MasterPanel):
         # if DySKT is running, prompt for clearance
         flags = bits.bitmask_list(_STATE_FLAGS_,self._state)
         if flags['dyskt']:
-            ans = tkMB.askquestion('DySKT Running','Quit and lose queued data?',parent=self)
+            ans = self.ask('DySKT Running','Quit and lose queued data?')
             if ans == 'no': return
 
         # return if no storage component is running
@@ -906,13 +932,13 @@ class WraithPanel(gui.MasterPanel):
         except AttributeError:
             return None # canceled
 
-if __name__ == 'wraith-rt':
+if __name__ == '__main__':
     t = Tix.Tk()
     t.option_add('*foreground','blue')                # normal fg color
     t.option_add('*background','black')               # normal bg color
     t.option_add('*activeBackground','black')         # bg on mouseover
     t.option_add('*activeForeground','blue')          # fg on mouseover
     t.option_add('*disabledForeground','gray')        # fg on disabled widget
-    t.option_add('*disabledBackground','black')       # bg on disabled widget
+    t.option_add('*disabledBackground','gray')       # bg on disabled widget
     t.option_add('*troughColor','black')              # trough on scales/scrollbars
     WraithPanel(t).mainloop()

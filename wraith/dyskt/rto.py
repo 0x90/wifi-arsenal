@@ -29,31 +29,22 @@ from wraith.radio.iw import regget         # regulatory domain
 
 class GPSPoller(threading.Thread):
     """ periodically checks gps for current location """
-    def __init__(self,ev,poll,did,epx,epy,host='127.0.0.1',port=2947):
+    def __init__(self,ev,conf):
         """
          ev - event queue between rto and this Thread
-         tC - DySKT token connnection
-         poll - time to poll gps device
-         did - device id
-         epx - quality control
-         epy - quality control
-         host - device address
-         port - device port
+         conf - config file for gps
         """
         threading.Thread.__init__(self)
         self._done = threading.Event()
         self._eQ = ev      # event queue from radio controller
-        self._poll = poll  # poll time
-        self._id = did     # device id
-        self._qcx = epx    # longitudal qc
-        self._qcy = epy    # latitudal qc
-        self._gpsd = None  # gps device connection
-        self._setup(host,port)
+        self._conf = conf  # gps configuration
+        self._setup()
 
-    def _setup(self,host,port):
-        """ attempt to connect to device """
+    def _setup(self):
+        """ attempt to connect to device if fixed is off """
+        if self._conf['fixed']: return # static, do nothing
         try:
-            self._gpsd = gps.gps(host,port)
+            self._gpsd = gps.gps('127.0.0.1',self._conf['port'])
             self._gpsd.stream(gps.WATCH_ENABLE)
         except socket.error as e:
             raise RuntimeError(e)
@@ -62,19 +53,36 @@ class GPSPoller(threading.Thread):
 
     def run(self):
         """ query for current location """
+        static = self._conf['fixed'] # dynamic gps or a fixed location
+
         # two execution loops - 1) get device details 2) get location
 
+        # initialize device details dict
+        if self._conf['fixed']:
+            # configure a 'fake' device
+            poll = 0.5 # default poll time for fixed flt
+            dd = {'id':'xxxx:xxxx',
+                  'version':'0.0',
+                  'flags':0,
+                  'driver':'static',
+                  'bps':0,
+                  'path':'None'}
+        else:
+            poll = self._conf['poll'] # extract polltime from config
+            qpx = self._conf['epx']   # extract quality ellipse x from config
+            qpy = self._conf['epy']   # extract quality ellipse x from config
+            dd = {'id':self._conf['id'],
+                  'version':None,
+                  'driver':None,
+                  'bps':None,
+                  'path':None,
+                  'flags':None}
+
         # Device Details Loop - get complete details or quit on done
-        dd = {'id':self._id,
-              'version':None,
-              'driver':None,
-              'bps':None,
-              'path':None,
-              'flags':None}
-        while not dd['flags']:
+        while dd['flags'] is None:
             if self._done.is_set(): break
             else:
-                # loop while data is on serial (could block)
+                # loop while data is on serial, polling first
                 while self._gpsd.waiting():
                     dev = self._gpsd.next()
                     try:
@@ -89,44 +97,52 @@ class GPSPoller(threading.Thread):
                             dd['path'] = dev['path']
                     except KeyError:
                         pass
-                    if dd['version'] and dd['flags']:
-                        # send device details and break from inner loop
-                        self._eQ.put(('!DEV!',time.time(),dd))
-                        break
-            time.sleep(self._poll)
 
-        # Location
+        # send device details
+        if not self._done.is_set(): self._eQ.put(('!DEV!',time.time(),dd))
+
+        # Location - loop until told to quit
         while not self._done.is_set():
-            # while there's data, get it (NOTE: this loop may exit without data)
-            while self._gpsd.waiting() and not self._done.is_set():
-                rpt = self._gpsd.next()
-                if rpt['class'] != 'TPV': continue
-                geo = {}
-                try:
-                    # get all values
-                    geo['id'] = self._id
-                    geo['fix'] = rpt['mode']
-                    geo['lat'] = (rpt['lat'],rpt['epy'])
-                    geo['lon'] = (rpt['lon'],rpt['epx'])
-                    geo['alt'] = rpt['alt'] if 'alt' in rpt else float("nan")
-                    geo['dir'] = rpt['track'] if 'track' in rpt else float("nan")
-                    geo['spd'] = rpt['spd'] if 'spd' in rpt else float("nan")
-                    geo['dop'] = {'xdop':self._gpsd.xdop,
-                                  'ydop':self._gpsd.ydop,
-                                  'pdop':self._gpsd.pdop}
-
-                    # no error check quality &
-                    if rpt['epy'] <= self._qcy and rpt['epx'] <= self._qcx:
-                        self._eQ.put(('!GEO!',time.time(),geo))
-                    break
-                except KeyError: # not all values present
-                    pass
-                except AttributeError: # not all dop values present
-                    pass
-            time.sleep(self._poll)
+            if static:
+                # send static front line trace
+                self._eQ.put(('!GEO!',time.time(),{'id':dd['id'],
+                                                  'fix':-1,
+                                                  'lat':(self._conf['lat'],0.0),
+                                                  'lon':(self._conf['lon'],0.0),
+                                                  'alt':self._conf['alt'],
+                                                  'dir':self._conf['dir'],
+                                                  'spd':0.0,
+                                                  'dop':{'xdop':1,'ydop':1,'pdop':1}}))
+            else:
+                # while there's data, get it (NOTE: this loop may exit without data)
+                while self._gpsd.waiting() and not self._done.is_set():
+                    rpt = self._gpsd.next()
+                    if rpt['class'] != 'TPV': continue
+                    try:
+                        if rpt['epx'] > qpx or rpt['epy'] > qpy: continue
+                        else:
+                            # get all values
+                            geo = {}
+                            geo['id'] = dd['id']
+                            geo['fix'] = rpt['mode']
+                            geo['lat'] = (rpt['lat'],rpt['epy'])
+                            geo['lon'] = (rpt['lon'],rpt['epx'])
+                            geo['alt'] = rpt['alt'] if 'alt' in rpt else float("nan")
+                            geo['dir'] = rpt['track'] if 'track' in rpt else float("nan")
+                            geo['spd'] = rpt['spd'] if 'spd' in rpt else float("nan")
+                            geo['dop'] = {'xdop':self._gpsd.xdop,
+                                          'ydop':self._gpsd.ydop,
+                                          'pdop':self._gpsd.pdop}
+                            self._eQ.put(('!GEO',time.time(),geo))
+                            break
+                    except (KeyError,AttributeError): # not all values present
+                        # a KeyError means not all values are present, an
+                        # AttributeError means not all dop values are present
+                        pass
+            time.sleep(poll)
 
         # close out connection
-        self._gpsd.close()
+        if self._gpsd: self._gpsd.close()
 
 class RTO(mp.Process):
     """ RTO - handles further processing of raw frames from the sniffer """
@@ -134,6 +150,8 @@ class RTO(mp.Process):
         """
          initializes RTO
          comms - internal communication
+          NOTE: all messages sent on internal comms must be a tuple T where
+           T = (sender callsign,timestamp of event,type of message,event message)
          conn - connection to/from DySKT
          conf - necessary config details
         """
@@ -143,9 +161,10 @@ class RTO(mp.Process):
         self._mgrs = None                  # lat/lon to mgrs conversion
         self._conf = conf['gps']           # configuration for gps/datastore
         self._nidus = None                 # nidus server
-        self._flt = None                   # geo thread
-        self._q = None                     # our queue to gps poller
-        self._setup(conf['store']['host'],conf['store']['port'])
+        self._flt = None                   # geo thread for front line traces
+        self._q = None                     # internal queue for gps poller
+        self._setup(conf['store']['host'], # nidus storage manager connection
+                    conf['store']['port'])
 
     def _setup(self,host,port):
         """ connect to Nidus for data transfer and pass sensor up event """
@@ -171,15 +190,16 @@ class RTO(mp.Process):
 
         # radio map: maps callsigns to mac addr
         rmap = {}
+        gpsid = None
 
         # send sensor up notification, platform details and gpsid
-        gpsid = None
+
         ret = self._send('DEVICE',time.time(),['sensor',socket.gethostname(),1])
         if ret: self._conn.send(('err','RTO','Nidus',ret))
         else:
             ret = self._send('PLATFORM',time.time(),self._pfdetails())
             if ret: self._conn.send(('err','RTO','Nidus',ret))
-            else: gpsid = self._setgpsd()
+            else: self._setgpsd()
 
         # execution loop
         tkn = None
@@ -193,28 +213,25 @@ class RTO(mp.Process):
                     continue
 
             # 2. gps device/frontline trace?
-            if self._flt:
-                try:
-                    (t,ts,msg) = self._q.get_nowait()
-                except Empty: # no new messages
-                    pass
-                else:
-                    if t == '!DEV!': # device up message
-                        gpsid = msg['id']
-                        self._conn.send(('info','RTO','GPSD',"%s initiated" % gpsid))
-                        ret = self._send('GPSD',ts,msg)
-                        if ret: self._conn.send(('err','RTO','Nidus',ret))
-                    elif t == '!GEO!': # frontline trace
-                        if not gpsid:
-                            self._conn.send(('warn','RTO','GPSD','out of order'))
-                        ret = self._send('GPS',ts,msg)
-                        if ret: self._conn.send(('err','RTO','Nidus',ret))
+            try:
+                t,ts,msg = self._q.get_nowait()
+            except (Empty,AttributeError): # no new messages (or no gps poller)
+                pass
+            else:
+                if t == '!DEV!': # device up message
+                    gpsid = msg['id']
+                    self._conn.send(('info','RTO','GPSD',"device %s initiated" % gpsid))
+                    ret = self._send('GPSD',ts,msg)
+                    if ret: self._conn.send(('err','RTO','Nidus',ret))
+                elif t == '!GEO!': # frontline trace
+                    ret = self._send('GPS',ts,msg)
+                    if ret: self._conn.send(('err','RTO','Nidus',ret))
 
             # 3. queued data from radios (possibly DySKT)
             ev = msg = None
             try:
                 rpt = self._comms.get() # blocking call
-                (cs,ts,ev,msg,_) = rpt.report
+                cs,ts,ev,msg = rpt[0],rpt[1],rpt[2],rpt[3]
 
                 # DySKT pushes a token onto the internal comms allowing us to
                 # break the blocking call and check the token
@@ -228,6 +245,8 @@ class RTO(mp.Process):
                     if ret: self._conn.send(('err','RTO','Nidus',ret))
                     else:
                         # send antennas
+                        # TODO: make sure for below that nA = [] if no antennas
+                        # are specified
                         for i in xrange(msg['nA']):
                             ret = self._send('ANTENNA',ts,{'mac':msg['mac'],
                                                            'index':i,
@@ -240,8 +259,7 @@ class RTO(mp.Process):
                             if ret:
                                 self._conn.send(('err','RTO','Nidus',ret))
                                 break
-                #elif ev == '!DOWN!':
-                #    pass
+                elif ev == '!DOWN!': pass
                 elif ev == '!FAIL!':
                     # send fail to nidus, notify DySKT & delete cs from rmap
                     ret = self._send('RADIO_EVENT',ts,[rmap[cs],'fail',msg])
@@ -252,13 +270,11 @@ class RTO(mp.Process):
                     sl = ",".join(["%d:%s" % (c,w) for (c,w) in msg])
                     ret = self._send('RADIO_EVENT',ts,[rmap[cs],'scan',sl])
                     if ret: self._conn.send(('err','RTO','Nidus',ret))
-                #elif ev == '!LISTEN!':
-                #    pass
+                elif ev == '!LISTEN!': pass
                 elif ev == '!HOLD!':
                     ret = self._send('RADIO_EVENT',ts,[rmap[cs],'hold',msg])
                     if ret: self._conn.send(('err','RTO','Nidus',ret))
-                #elif ev == '!PAUSE!':
-                #    pass
+                elif ev == '!PAUSE!': pass
                 elif ev == '!FRAME!': # pass the frame on
                     ret = self._send('FRAME',ts,[rmap[cs],msg])
                     if ret: self._conn.send(('err','RTO','Nidus',ret))
@@ -276,7 +292,7 @@ class RTO(mp.Process):
         # notify Nidus of closing (radios, sensor,gpsd). hopefully no errors on send
         ts = time.time()
         for cs in rmap: self._send('DEVICE',ts,['radio',rmap[cs],0])
-        if gpsid: self._send('DEVICE',ts,['gpsd',gpsid,0])
+        self._send('DEVICE',ts,['gpsd',gpsid,0])
         self._send('DEVICE',ts,['sensor',socket.gethostname(),0])
 
         # shut down
@@ -302,7 +318,44 @@ class RTO(mp.Process):
             clean = False
         return clean
 
-#### send helper functions
+    #### private helper functions
+
+    def _setgpsd(self):
+        """ determines whether to use no gps, fixed gps or gps device """
+        #if not self._conf: return # if there is no gps config, do nothing
+        self._q = Queue()
+        try:
+            self._flt = GPSPoller(self._q,self._conf)
+        except RuntimeError as e:
+            self._conn.send(('warn','RTO','GPS',"Failed to connnect %s" %e))
+            self._flt = None
+        else:
+            self._flt.start()
+
+    @staticmethod
+    def _pfdetails():
+        """ get platform details as dict and return """
+        d = {'rd':None,'dist':None,'osvers':None,'name':None}
+        d['os'] = platform.system().capitalize()
+        try:
+            d['dist'],d['osvers'],d['name'] = platform.linux_distribution()
+        except:
+            pass
+        try:
+            d['rd'] = regget()
+        except:
+            pass
+        d['kernel'] = platform.release()
+        d['arch'] = platform.machine()
+        d['pyvers'] = "%d.%d.%d" % (sys.version_info.major,
+                                    sys.version_info.minor,
+                                    sys.version_info.micro)
+        d['bits'],d['link'] = platform.architecture()
+        d['compiler'] = platform.python_compiler()
+        d['libcvers'] = " ".join(platform.libc_ver())
+        return d
+
+    #### send helper functions
 
     def _send(self,t,ts,d):
         """
@@ -333,69 +386,6 @@ class RTO(mp.Process):
             return ret
         except Exception, ret:
             return ret
-
-    def _setgpsd(self):
-        """ determines whether to use no gps, fixed gps or gps device """
-        gpsid = None
-        if self._conf:
-            if self._conf['fixed']:
-                # send a 'fake' gps device and the fixed location
-                gpsid = 'xxxx:xxxx'
-                ts = time.time()
-                ret = self._send('GPSD',ts,{'id':gpsid,
-                                            'version':'0.0',
-                                            'flags':0,
-                                            'driver':'static',
-                                            'bps':0,
-                                            'path':'None'})
-                if ret: self._conn.send(('err','RTO','Nidus',ret))
-                ret = self._send('GPS',time.time(),{'fix':-1,
-                                                    'id':gpsid,
-                                                    'lat':(self._conf['lat'],0.0),
-                                                    'lon':(self._conf['lon'],0.0),
-                                                    'alt':self._conf['alt'],
-                                                    'dir':self._conf['dir'],
-                                                    'spd':0.0,
-                                                    'dop':{'xdop':1,
-                                                           'ydop':1,
-                                                           'pdop':1}})
-                if ret: self._conn.send(('err','RTO','Nidus',ret))
-            else:
-                # start the GPSPoller thread
-                self._q = Queue()
-                try:
-                    self._flt = GPSPoller(self._q,self._conf['poll'],self._conf['id'],
-                                          self._conf['epx'],self._conf['epy'],
-                                          self._conf['host'],self._conf['port'])
-                except RuntimeError as e:
-                    self._conn.send(('warn','RTO','GPS',"Failed to connnect %s" %e))
-                else:
-                    self._flt.start()
-                    self._conn.send(('info','RTO','GPS',"Started GPS Polling"))
-        return gpsid
-
-    @staticmethod
-    def _pfdetails():
-        """ get platform details as dict and return """
-        d = {'rd':None,'dist':None,'osvers':None,'name':None}
-        d['os'] = platform.system().capitalize()
-        try:
-            d['dist'],d['osvers'],d['name'] = platform.linux_distribution()
-        except:
-            pass
-        try:
-            d['rd'] = regget()
-        except:
-            pass
-        d['kernel'] = platform.release()
-        d['arch'] = platform.machine()
-        d['pyvers'] = "%d.%d.%d" % (sys.version_info.major,
-                                    sys.version_info.minor,
-                                    sys.version_info.micro)
-        d['bits'],d['link'] = platform.architecture()
-        d['compiler'] = platform.python_compiler()
-        d['libcvers'] = " ".join(platform.libc_ver())
-        return d
 
     @staticmethod
     def _craftdevice(ts,d):

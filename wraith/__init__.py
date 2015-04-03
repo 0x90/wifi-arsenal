@@ -15,16 +15,28 @@ Requires:
 
 wraith 0.0.2
  desc: dyskt,nidus are developmentally sound, begin work on gui
- includes: wraith-rt.py and wraith.conf (also all subdirectories etc)
+ includes: wraith-rt. py,subpanels.py and wraith.conf (also all subdirectories etc)
  changes:
-  - added extraction of all management frames (excluding timing adv)
-  - added nidusd daemon file to start nidus server
+  - added multiple panels for non-data related functionality
+  - began adding calculation panels
 
  TODO:
   1) tried --remove-pid/--remove-pidfile to remove pids of dysktd and nidusd
      from /var/run but does not work. Have to use --make-pid to force creation
      of pid file but then, the pidfile is not removed (ubuntu does not have
      --remove-pid flag
+  2) make tkMessageBox,tkFileDialog and tkSimpleDialog derive match
+    main color scheme
+  5) move display of log panel to after intializiation() so that
+     wraith panel is 'first', leftmost panel - will have implement mechanism
+     to send 'batch' messages after the fact
+  6) need to periodically recheck state -> status of postgres,nidusd and dyskt
+ 10) get log panel to scroll automatically
+ 11) add labels to frames. Have to use grid or pack not both otherwise, LabelFrame
+     throws an error
+ 13) viewniduslog and viewdysktlog hang whenever respective logs are cleared
+ 14) need to further test config panels primarily DySKTConfigPanel
+ 15) see 11, need to convert all pack to grid (or vice versa)
 """
 __name__ = 'wraith'
 __license__ = 'GPL v3.0'

@@ -6,6 +6,6 @@
 [subrepo]
 	remote = https://github.com/wraith-wireless/wraith
 	branch = master
-	commit = 716ee9e8a6e4a54cdd13f4b9e0443ffd95d2d037
-	parent = 0fc49f8d5d88f244ffb75fa44fd3708efba0c70e
+	commit = f8c5bacfa3ef57963b771fad75097e7502360fe7
+	parent = 22fc1a2a7d39e9da89d85554555887959ac48c99
 	cmdver = 0.2.0

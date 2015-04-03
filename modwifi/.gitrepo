@@ -4,8 +4,8 @@
 ; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
 ;
 [subrepo]
-	remote = https://github.com/xtr4nge/FruityWifi
+	remote = https://github.com/vanhoefm/modwifi
 	branch = master
-	commit = 056fa2b059b8403e17806cc888b689c1053a2c85
-	parent = 1941534880ec227a0321db7223dbffd11892a977
+	commit = c1a69b3948af04b73472bc03b8d05052bbf4911d
+	parent = eebeca24dd824b76865cc36231cb3c7221069dd5
 	cmdver = 0.2.0
