@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/tgraf/libnl
+	branch = master
+	commit = cd4f66c321c91b10776af8749a60396185f462e1
+	parent = eae790eae93147a3db493fee1f57d64b92c18e42
+	cmdver = 0.2.1
