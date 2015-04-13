@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/t6x/reaver-wps-fork-t6x
+	branch = master
+	commit = ec2980983f6d799eca5685ece249fa642d246f0f
+	parent = d8278186945b560e17bddfe86a22fc1063e43334
+	cmdver = 0.2.0
