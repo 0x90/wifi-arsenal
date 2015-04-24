@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/wiire/pixiewps
+	branch = master
+	commit = 83a876072770dad4915866de1ee86116cd787d42
+	parent = 79fc5339247336fc213fd24791249c0ec25dfba2
+	cmdver = 0.2.1
