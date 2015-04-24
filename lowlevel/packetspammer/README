@@ -1,0 +1,34 @@
+Packetspammer
+Andy Green <andy@warmcat.com>
+
+Packetspammer sends unencrypted broadcast packets down a mac80211 wireless
+interface that should be set for Monitor mode.  It spams the packets down the
+interface as fast as it can, although you can specify a delay between packets.
+
+At the same time it is listening for packets with a MAC of 13:22:33:44:xx:xx
+and will display metadata about any incoming packets (like the bitrate) and
+the packet contents.  So if you run packetspammer on two nearby machines, they
+will show each other's packets like this:
+
+RX: Rate: 54.0Mbps, Freq: 2.417GHz, Ant: 0, Flags: 10
+0000: 50 61 63 6B 65 74 73 70 61 6D 6D 65 72 20 2D 2D  Packetspammer --
+0010: 62 72 6F 61 64 63 61 73 74 20 70 61 63 6B 65 74  broadcast packet
+0020: 23 34 37 39 31 36 20 2D 2D 20 3A 2D 44 20 2D 2D  #47916 -- :-D --
+0030: 75 6C 74 72 61 63 61 74 2E 68 6F 6D 65 2E 77 61  ultracat.home.wa
+0040: 72 6D 63 61 74 2E 63 6F 6D                       rmcat.com
+
+
+Typical usage:
+
+  echo -n mon0 > /sys/class/ieee80211/phy0/add_iface
+  iwconfig mon0 mode monitor
+  ifconfig mon0 up
+  packetspammer mon0
+
+You may need to bring up your normal interface first and set its channel, eg
+
+ifconfig wlan0 up
+iwconfig wlan0 channel 2
+
+If you normal interface is associated to an AP on a particular channel, that's
+fine, the packet injection won't disturb the association.

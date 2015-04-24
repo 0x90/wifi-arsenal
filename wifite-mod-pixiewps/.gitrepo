@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/aanarchyy/wifite-mod-pixiewps
+	branch = master
+	commit = 22ed5395de81e6ca20912761a5d38f863a48e3e8
+	parent = 3db684cd6e5862e6ff1875e43b8d27bdad24a9d4
+	cmdver = 0.2.1

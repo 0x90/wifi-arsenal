@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = git://git.warmcat.com/packetspammer.git
+	branch = master
+	commit = 715f898b7731da5e5f3508504bb9d271199d6f71
+	parent = 07a6d02aeaa557876e0d27b7c3fbcd5da3445217
+	cmdver = 0.2.1
