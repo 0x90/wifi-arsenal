@@ -1,3 +1,0 @@
-impacket==0.9.12
--e hg+https://bitbucket.org/secdev/scapy-com@cc06add6dbd9b470b6d2696507989574910df811#egg=scapy-dev
-wsgiref==0.1.2
