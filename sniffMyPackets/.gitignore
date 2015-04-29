@@ -1,0 +1,10 @@
+#Exclude conf files generated when canari package installed, not the main conf file though
+*.conf
+!/src/sniffMyPackets/resources/etc/*.conf
+
+#Exclude python autosave and complied files
+*.pyc
+*.py~
+
+#Exclude sniffMyPackets.mtz from src directory
+/src/sniffMyPackets.mtz
