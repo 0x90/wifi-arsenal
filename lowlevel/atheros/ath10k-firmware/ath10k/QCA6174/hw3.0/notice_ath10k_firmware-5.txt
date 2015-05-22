@@ -1,0 +1,1748 @@
+This Notice.txt file contains certain notices of software components included 
+with the software that Qualcomm Atheros, Inc. (¡°Qualcomm Atheros¡±) is required
+to provide you. Except where prohibited by the open source license, the 
+content of this notices file is only provided to satisfy Qualcomm Atheros's 
+attribution and notice requirement; your use of these software components 
+together with the Qualcomm Atheros software (Qualcomm Atheros software 
+hereinafter referred to as ¡°Software¡±) is subject to the terms of your 
+license from Qualcomm Atheros.  Compliance with all copyright laws and 
+software license agreements included in the notice section of this file 
+are the responsibility of the user.  Except as may be granted by separate 
+express written agreement, this file provides no license to any Qualcomm 
+Atheros patents, trademarks, copyrights, or other intellectual property.
+ 
+Copyright (c) 2014 Qualcomm Atheros, Inc.  All rights reserved. 
+ 
+Qualcomm is a trademark of Qualcomm Incorporated, registered in the 
+United States and other countries.  All Qualcomm Incorporated trademarks 
+are used with permission.  Atheros is a trademark of Qualcomm Atheros, Inc., 
+registered in the United States and other countries.  Other products and 
+brand names may be trademarks or registered trademarks of their respective owners. 
+ 
+NOTICES:
+ 
+=============================================================================
+
+* Copyright (c) 2014 Qualcomm Atheros, Inc.
+* All Rights Reserved.
+* Qualcomm Atheros Confidential and Proprietary.
+ *Notifications and licenses are retained for attribution purposes only *
+
+Copyright (c) 2002-2004 Sam Leffler, Errno Consulting
+// All rights reserved.
+// $ATH_LICENSE_NULL$
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
+// are met:
+// 1. Redistributions of source code must retain the above copyright
+//    notice, this list of conditions and the following disclaimer,
+//    without modification.
+// 2. Redistributions in binary form must reproduce at minimum a disclaimer
+//    similar to the "NO WARRANTY" disclaimer below ("Disclaimer") and any
+//    redistribution must be conditioned upon including a substantially
+//    similar Disclaimer requirement for further binary redistribution.
+// 3. Neither the names of the above-listed copyright holders nor the names
+//    of any contributors may be used to endorse or promote products derived
+//    from this software without specific prior written permission.
+//
+// Alternatively, this software may be distributed under the terms of the
+// GNU General Public License ("GPL") version 2 as published by the Free
+// Software Foundation.
+//
+// NO WARRANTY
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF NONINFRINGEMENT, MERCHANTIBILITY
+// AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+// THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE LIABLE FOR SPECIAL, EXEMPLARY,
+// OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+// IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+// THE POSSIBILITY OF SUCH DAMAGES.
+
+*For this file, which was received with alternative licensing options for  
+* distribution, Qualcomm Atheros, Inc. has selected the BSD license.
+
+NOTICES:
+
+
+/*
+ * FILE:	sha2.c
+ * AUTHOR:	Aaron D. Gifford - http://www.aarongifford.com/
+ * 
+ * Copyright (c) 2000-2001, Aaron D. Gifford
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. Neither the name of the copyright holder nor the names of contributors
+ *    may be used to endorse or promote products derived from this software
+ *    without specific prior written permission.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTOR(S) ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTOR(S) BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ *
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_protocol_cmn.cnss/1.0.0/src/nan/sha2.c
+
+/*
+ * FILE:	sha2.h
+ * AUTHOR:	Aaron D. Gifford - http://www.aarongifford.com/
+ * 
+ * Copyright (c) 2000-2001, Aaron D. Gifford
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. Neither the name of the copyright holder nor the names of contributors
+ *    may be used to endorse or promote products derived from this software
+ *    without specific prior written permission.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTOR(S) ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTOR(S) BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ *
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_mac_core.cnss/1.0/romexport/AR6320/hw.3/include/sha2.h
+
+/*
+ * Copyright (c) 1998 The NetBSD Foundation, Inc.
+ * All rights reserved.
+ *
+ * This code is derived from software contributed to The NetBSD Foundation
+ * by Lennart Augustsson (lennart@augustsson.net) at
+ * Carlstedt Research & Technology.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *        This product includes software developed by the NetBSD
+ *        Foundation, Inc. and its contributors.
+ * 4. Neither the name of The NetBSD Foundation nor the names of its
+ *    contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE NETBSD FOUNDATION, INC. AND CONTRIBUTORS
+ * ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+ * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR CONTRIBUTORS
+ * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_mac_core.cnss/1.0/romexport/AR6320/hw.3/include/usb.h
+
+/*
+ * Copyright (c) 2011 Qualcomm Atheros, Inc.
+ * All Rights Reserved.
+ * Qualcomm Atheros Confidential and Proprietary.
+ * Notifications and licenses are retained for attribution purposes only.
+ */
+/*
+ * For this file, which was received with alternative licensing options for
+ * distribution, Qualcomm Atheros, Inc. has selected the BSD license.
+ */
+
+/*
+ * WPA Supplicant / wrapper functions for crypto libraries
+ * Copyright (c) 2004-2005, Jouni Malinen <jkmaline@cc.hut.fi>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * Alternatively, this software may be distributed under the terms of BSD
+ * license.
+ *
+ * See README and COPYING for more details.
+ *
+ * This file defines the cryptographic functions that need to be implemented
+ * for wpa_supplicant and hostapd. When TLS is not used, internal
+ * implementation of MD5, SHA1, and AES is used and no external libraries are
+ * required. When TLS is enabled (e.g., by enabling EAP-TLS or EAP-PEAP), the
+ * crypto library used by the TLS implementation is expected to be used for
+ * non-TLS needs, too, in order to save space by not implementing these
+ * functions twice.
+ *
+ * Wrapper code for using each crypto library is in its own file (crypto*.c)
+ * and one of these files is build and linked in to provide the functions
+ * defined here.
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_protocol_cmn.cnss/1.0.0/src/supplicant/crypto.h
+
+/*
+ * Copyright (c) 2011 Qualcomm Atheros, Inc.
+ * All Rights Reserved.
+ * Qualcomm Atheros Confidential and Proprietary.
+ * Notifications and licenses are retained for attribution purposes only.
+ */
+/*
+ * For this file, which was received with alternative licensing options for
+ * distribution, Qualcomm Atheros, Inc. has selected the BSD license.
+ */
+
+/*
+ * WPA Supplicant / Configuration file structures
+ * Copyright (c) 2003-2005, Jouni Malinen <jkmaline@cc.hut.fi>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * Alternatively, this software may be distributed under the terms of BSD
+ * license.
+ *
+ * See README and COPYING for more details.
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_protocol_cmn.cnss/1.0.0/include/config.h
+
+/*
+ * Copyright (c) 2014 Qualcomm Atheros, Inc.
+ * All Rights Reserved.
+ * Qualcomm Atheros Confidential and Proprietary.
+ * Notifications and licenses are retained for attribution purposes only.
+ */
+/*
+ * For this file, which was received with alternative licensing options for
+ * distribution, Qualcomm Atheros, Inc. has selected the BSD license.
+ */
+
+/*
+ * WPA Supplicant - Common definitions
+ * Copyright (c) 2004-2005, Jouni Malinen <jkmaline@cc.hut.fi>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * Alternatively, this software may be distributed under the terms of BSD
+ * license.
+ *
+ * See README and COPYING for more details.
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_protocol_cmn.cnss/1.0.0/include/suppl_auth_api.h
+
+/*
+ * Copyright (c) 2011 Qualcomm Atheros, Inc.
+ * All Rights Reserved.
+ * Qualcomm Atheros Confidential and Proprietary.
+ * Notifications and licenses are retained for attribution purposes only.
+ */
+/*
+ * For this file, which was received with alternative licensing options for
+ * distribution, Qualcomm Atheros, Inc. has selected the BSD license.
+ */
+
+/*
+ * wpa_supplicant - WPA definitions
+ * Copyright (c) 2003-2005, Jouni Malinen <jkmaline@cc.hut.fi>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * Alternatively, this software may be distributed under the terms of BSD
+ * license.
+ *
+ * See README and COPYING for more details.
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_protocol_cmn.cnss/1.0.0/include/wpa.h
+
+
+/*
+ * Copyright (c) 2011 Qualcomm Atheros, Inc.
+ * All Rights Reserved.
+ * Qualcomm Atheros Confidential and Proprietary.
+ * Notifications and licenses are retained for attribution purposes only.
+ */
+/*
+ * For this file, which was received with alternative licensing options for
+ * distribution, Qualcomm Atheros, Inc. has selected the BSD license.
+ */
+
+/*
+ * wpa_supplicant - Internal WPA state machine definitions
+ * Copyright (c) 2004-2005, Jouni Malinen <jkmaline@cc.hut.fi>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * Alternatively, this software may be distributed under the terms of BSD
+ * license.
+ *
+ * See README and COPYING for more details.
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_protocol_cmn.cnss/1.0.0/include/wpa_i.h
+
+
+/*
+ * Copyright (c) 2014 Qualcomm Atheros, Inc.
+ * All Rights Reserved.
+ * Qualcomm Atheros Confidential and Proprietary.
+ * Notifications and licenses are retained for attribution purposes only.
+ */
+/*
+ * For this file, which was received with alternative licensing options for
+ * distribution, Qualcomm Atheros, Inc. has selected the BSD license.
+ */
+
+/*
+ * SHA256 hash implementation and interface functions
+ * Copyright (c) 2003-2006, Jouni Malinen <j@w1.fi>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * Alternatively, this software may be distributed under the terms of BSD
+ * license.
+ *
+ * See README and COPYING for more details.
+ */
+
+p4://qctp411.qualcomm.com/components/rel/wlanfw_protocol_cmn.cnss/1.0.0/src/supplicant/sha256.h
+
+
+/*
+ * Copyright (c) 2014 Qualcomm Atheros, Inc.
+ * All Rights Reserved.
+ * Qualcomm Atheros Confidential and Proprietary.
+ * Notifications and licenses are retained for attribution purposes only.
+ */
+/*
+ * For this file, which was received with alternative licensing options for
+ * distribution, Qualcomm Atheros, Inc. has selected the BSD license.
+ */
+
+/*
+ * WPA Supplicant - IEEE 802.11r - Fast BSS Transition
+ * Copyright (c) 2006-2007, Jouni Malinen <j@w1.fi>
+
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * Alternatively, this software may be distributed under the terms of BSD
+ * license.
+ *
+ * See README and COPYING for more details.
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_protocol_cmn.cnss/1.0.0/src/supplicant/mywpa_ft.h
+
+/*
+ * Copyright (c) 2014 Qualcomm Atheros, Inc.
+ * All Rights Reserved.
+ * Qualcomm Atheros Confidential and Proprietary.
+ * Notifications and licenses are retained for attribution purposes only.
+ */
+/*
+ * For this file, which was received with alternative licensing options for
+ * distribution, Qualcomm Atheros, Inc. has selected the BSD license.
+ */
+
+/*
+ * SHA-256 hash implementation and interface functions
+ * Copyright (c) 2003-2007, Jouni Malinen <j@w1.fi>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * Alternatively, this software may be distributed under the terms of BSD
+ * license.
+ *
+ * See README and COPYING for more details.
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_protocol_cmn.cnss/1.0.0/src/supplicant/sha256.c
+
+/*
+ * Copyright (c) 2011 Qualcomm Atheros, Inc.
+ * All Rights Reserved.
+ * Qualcomm Atheros Confidential and Proprietary.
+ * Notifications and licenses are retained for attribution purposes only.
+ */
+/*
+ * For this file, which was received with alternative licensing options for
+ * distribution, Qualcomm Atheros, Inc. has selected the BSD license.
+ */
+
+/*
+ * WPA Supplicant - WPA state machine and EAPOL-Key processing
+ * Copyright (c) 2003-2005, Jouni Malinen <jkmaline@cc.hut.fi>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * Alternatively, this software may be distributed under the terms of BSD
+ * license.
+ *
+ * See README and COPYING for more details.
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_protocol_cmn.cnss/1.0.0/src/supplicant/mywpa.c
+
+/*
+ * Copyright (c) 2014 Qualcomm Atheros, Inc.
+ * All Rights Reserved.
+ * Qualcomm Atheros Confidential and Proprietary.
+ * Notifications and licenses are retained for attribution purposes only.
+ */
+/*
+ * For this file, which was received with alternative licensing options for
+ * distribution, Qualcomm Atheros, Inc. has selected the BSD license.
+ */
+
+/*
+ * WPA Supplicant - IEEE 802.11r - Fast BSS Transition
+ * Copyright (c) 2006-2007, Jouni Malinen <j@w1.fi>
+
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * Alternatively, this software may be distributed under the terms of BSD
+ * license.
+ *
+ * See README and COPYING for more details.
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_protocol_cmn.cnss/1.0.0/src/supplicant/mywpa_ft.c
+
+/*
+ * Copyright (c) 2014 Qualcomm Atheros, Inc.
+ * All Rights Reserved.
+ * Qualcomm Atheros Confidential and Proprietary.
+ * Notifications and licenses are retained for attribution purposes only.
+ */
+/*
+ * For this file, which was received with alternative licensing options for
+ * distribution, Qualcomm Atheros, Inc. has selected the BSD license.
+ */
+
+/*
+ * WPA definitions shared between hostapd and wpa_supplicant
+ * Copyright (c) 2002-2013, Jouni Malinen <j@w1.fi>
+
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * Alternatively, this software may be distributed under the terms of BSD
+ * license.
+ *
+ * See README and COPYING for more details.
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_protocol_cmn.cnss/1.0.0/src/supplicant/mywpa_common.h
+
+/*
+ * Copyright (c) 2011 Qualcomm Atheros, Inc.
+ * All Rights Reserved.
+ * Qualcomm Atheros Confidential and Proprietary.
+ * Notifications and licenses are retained for attribution purposes only.
+ */
+/*
+ * For this file, which was received with alternative licensing options for
+ * distribution, Qualcomm Atheros, Inc. has selected the BSD license.
+ */
+
+/*
+ * MD5 hash implementation and interface functions
+ * Copyright (c) 2003-2005, Jouni Malinen <jkmaline@cc.hut.fi>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * Alternatively, this software may be distributed under the terms of BSD
+ * license.
+ *
+ * See README and COPYING for more details.
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_mac_core.cnss/1.0/include/md5_api.h
+
+/*
+ * Copyright (c) 2011 Qualcomm Atheros, Inc.
+ * All Rights Reserved.
+ * Qualcomm Atheros Confidential and Proprietary.
+ * Notifications and licenses are retained for attribution purposes only.
+ */
+/*
+ * For this file, which was received with alternative licensing options for
+ * distribution, Qualcomm Atheros, Inc. has selected the BSD license.
+ */
+
+/*
+ * AES-based functions
+ *
+ * - AES Key Wrap Algorithm (128-bit KEK) (RFC3394)
+ * - One-Key CBC MAC (OMAC1) hash with AES-128
+ * - AES-128 CTR mode encryption
+ * - AES-128 EAX mode encryption/decryption
+ * - AES-128 CBC
+ *
+ * Copyright (c) 2003-2005, Jouni Malinen <jkmaline@cc.hut.fi>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * Alternatively, this software may be distributed under the terms of BSD
+ * license.
+ *
+ * See README and COPYING for more details.
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_mac_core.cnss/1.0/romexport/AR6320/hw.3/include/aes_wrap.h
+
+/*
+ * Copyright (c) 2011 Qualcomm Atheros, Inc.
+ * All Rights Reserved.
+ * Qualcomm Atheros Confidential and Proprietary.
+ * Notifications and licenses are retained for attribution purposes only.
+ */
+/*
+ * For this file, which was received with alternative licensing options for
+ * distribution, Qualcomm Atheros, Inc. has selected the BSD license.
+ */
+
+/*
+ * SHA1 hash implementation and interface functions
+ * Copyright (c) 2003-2005, Jouni Malinen <jkmaline@cc.hut.fi>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * Alternatively, this software may be distributed under the terms of BSD
+ * license.
+ *
+ * See README and COPYING for more details.
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_mac_core.cnss/1.0/romexport/AR6320/hw.3/include/sha1.h
+
+/*
+ * Copyright (c) 2011 Qualcomm Atheros, Inc.
+ * All Rights Reserved.
+ * Qualcomm Atheros Confidential and Proprietary.
+ * Notifications and licenses are retained for attribution purposes only.
+ */
+/*
+ * For this file, which was received with alternative licensing options for
+ * distribution, Qualcomm Atheros, Inc. has selected the BSD license.
+ */
+
+/*
+ * wpa_supplicant/hostapd / common helper functions, etc.
+ * Copyright (c) 2002-2005, Jouni Malinen <jkmaline@cc.hut.fi>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * Alternatively, this software may be distributed under the terms of BSD
+ * license.
+ *
+ * See README and COPYING for more details.
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_mac_core.cnss/1.0/romexport/AR6320/hw.3/include/common.h
+
+/*
+ * Copyright (c) 2011 Qualcomm Atheros, Inc.
+ * All Rights Reserved.
+ * Qualcomm Atheros Confidential and Proprietary.
+ * Notifications and licenses are retained for attribution purposes only.
+ */
+/*
+ * For this file, which was received with alternative licensing options for
+ * distribution, Qualcomm Atheros, Inc. has selected the BSD license.
+ */
+/*
+ * Common helper macros, etc.
+ * Copyright (c) 2002-2005, Jouni Malinen <jkmaline@cc.hut.fi>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * Alternatively, this software may be distributed under the terms of BSD
+ * license.
+ *
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_mac_core.cnss/1.0/romexport/AR6320/hw.3/include/seccommon.h
+
+/*
+ *  COPYRIGHT (C) 1986 Gary S. Brown.  You may use this program, or
+ *  code or tables extracted from it, as desired without restriction.
+ *
+ *  First, the polynomial itself and its table of feedback terms.  The
+ *  polynomial is
+ *  X^32+X^26+X^23+X^22+X^16+X^12+X^11+X^10+X^8+X^7+X^5+X^4+X^2+X^1+X^0
+ *
+ *  Note that we take it "backwards" and put the highest-order term in
+ *  the lowest-order bit.  The X^32 term is "implied"; the LSB is the
+ *  X^31 term, etc.  The X^0 term (usually shown as "+1") results in
+ *  the MSB being 1
+ *
+ *  Note that the usual hardware shift register implementation, which
+ *  is what we're using (we're merely optimizing it by doing eight-bit
+ *  chunks at a time) shifts bits into the lowest-order term.  In our
+ *  implementation, that means shifting towards the right.  Why do we
+ *  do it this way?  Because the calculated CRC must be transmitted in
+ *  order from highest-order term to lowest-order term.  UARTs transmit
+ *  characters in order from LSB to MSB.  By storing the CRC this way
+ *  we hand it to the UART in the order low-byte to high-byte; the UART
+ *  sends each low-bit to hight-bit; and the result is transmission bit
+ *  by bit from highest- to lowest-order term without requiring any bit
+ *  shuffling on our part.  Reception works similarly
+ *
+ *  The feedback terms table consists of 256, 32-bit entries.  Notes
+ *
+ *      The table can be generated at runtime if desired; code to do so
+ *      is shown later.  It might not be obvious, but the feedback
+ *      terms simply represent the results of eight shift/xor opera
+ *      tions for all combinations of data and CRC register values
+ *
+ *      The values must be right-shifted by eight bits by the "updcrc
+ *      logic; the shift must be unsigned (bring in zeroes).  On some
+ *      hardware you could probably optimize the shift in assembler by
+ *      using byte-swap instructions
+ *      polynomial $edb88320
+ *
+ *
+ * CRC32 code derived from work by Gary S. Brown.
+*/
+p4://qctp411.qualcomm.com/components/rel/wlanfw_protocol_cmn.cnss/1.0.0/src/nan/wlan_nan_crc.c
+
+
+//
+// Copyright (c) 1991, 1993
+//  The Regents of the University of California.  All rights reserved.
+// $ATH_LICENSE_NULL$
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
+// are met:
+// 1. Redistributions of source code must retain the above copyright
+//    notice, this list of conditions and the following disclaimer.
+// 2. Redistributions in binary form must reproduce the above copyright
+//    notice, this list of conditions and the following disclaimer in the
+//    documentation and/or other materials provided with the distribution.
+// 3. All advertising materials mentioning features or use of this software
+//    must display the following acknowledgement:
+//      This product includes software developed by the University of
+//      California, Berkeley and its contributors.
+// 4. Neither the name of the University nor the names of its contributors
+//    may be used to endorse or promote products derived from this software
+//    without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+// FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+// DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+// OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+// HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+// LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+// OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+// SUCH DAMAGE.
+//
+//  @(#)queue.h 8.5 (Berkeley) 8/20/94
+// $FreeBSD: src/sys/sys/queue.h,v 1.58 2004/04/07 04:19:49 imp Exp $
+// $Id: //components/rel/wlanfw_cmn.cnss/1.0/cnss_proc/wlan/fwcommon/include/queue.h#1 $
+//
+p4://qctp411.qualcomm.com/components/rel/wlanfw_cmn.cnss/1.0.0/include/queue.h
+
+
+/*
+ * Copyright (c) 2012 Qualcomm Atheros, Inc.
+ * All Rights Reserved.
+ * Qualcomm Atheros Confidential and Proprietary.
+ */
+
+/*
+ * For this file, which was received with alternative licensing options for
+ * distribution, Qualcomm Atheros, Inc. has selected the BSD license.
+ */
+
+//-
+// Copyright (c) 2002-2004 Sam Leffler, Errno Consulting
+// All rights reserved.
+// $ATH_LICENSE_NULL$
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
+// are met:
+// 1. Redistributions of source code must retain the above copyright
+//    notice, this list of conditions and the following disclaimer,
+//    without modification.
+// 2. Redistributions in binary form must reproduce at minimum a disclaimer
+//    similar to the "NO WARRANTY" disclaimer below ("Disclaimer") and any
+//    redistribution must be conditioned upon including a substantially
+//    similar Disclaimer requirement for further binary redistribution.
+// 3. Neither the names of the above-listed copyright holders nor the names
+//    of any contributors may be used to endorse or promote products derived
+//    from this software without specific prior written permission.
+//
+// Alternatively, this software may be distributed under the terms of the
+// GNU General Public License ("GPL") version 2 as published by the Free
+// Software Foundation.
+//
+// NO WARRANTY
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF NONINFRINGEMENT, MERCHANTIBILITY
+// AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+// THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE LIABLE FOR SPECIAL, EXEMPLARY,
+// OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+// IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+// THE POSSIBILITY OF SUCH DAMAGES.
+//
+// $Id: //components/rel/wlanfw.cnss/1.0.1/cnss_proc/wlan/fw/target/src/wlan/proto/include/if_llc.h#3 $
+// $NetBSD: if_llc.h,v 1.12 1999/11/19 20:41:19 thorpej Exp $
+// $Id: //components/rel/wlanfw.cnss/1.0.1/cnss_proc/wlan/fw/target/src/wlan/proto/include/if_llc.h#3 $
+//
+
+/*
+ * Copyright (c) 1988, 1993
+ *      The Regents of the University of California.  All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *      This product includes software developed by the University of
+ *      California, Berkeley and its contributors.
+ * 4. Neither the name of the University nor the names of its contributors
+ *    may be used to endorse or promote products derived from this software
+ *    without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ *
+ *      @(#)if_llc.h    8.1 (Berkeley) 6/10/93
+ * $FreeBSD: src/sys/net/if_llc.h,v 1.9 2002/09/23 06:25:08 alfred Exp $
+ */
+                                                                             
+p4://qctp411.qualcomm.com/components/rel/wlanfw_protocol_cmn.cnss/1.0.0/include/if_llc.h
+
+/*
+ * Copyright (c) 2012 Qualcomm Atheros, Inc.
+ * All Rights Reserved.
+ * Qualcomm Atheros Confidential and Proprietary.
+ */
+
+/*
+ * For this file, which was received with alternative licensing options for
+ * distribution, Qualcomm Atheros, Inc. has selected the BSD license.
+ */
+
+//-
+// Copyright (c) 2002-2004 Sam Leffler, Errno Consulting
+// All rights reserved.
+// $ATH_LICENSE_NULL$
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
+// are met:
+// 1. Redistributions of source code must retain the above copyright
+//    notice, this list of conditions and the following disclaimer,
+//    without modification.
+// 2. Redistributions in binary form must reproduce at minimum a disclaimer
+//    similar to the "NO WARRANTY" disclaimer below ("Disclaimer") and any
+//    redistribution must be conditioned upon including a substantially
+//    similar Disclaimer requirement for further binary redistribution.
+// 3. Neither the names of the above-listed copyright holders nor the names
+//    of any contributors may be used to endorse or promote products derived
+//    from this software without specific prior written permission.
+//
+// Alternatively, this software may be distributed under the terms of the
+// GNU General Public License ("GPL") version 2 as published by the Free
+// Software Foundation.
+//
+// NO WARRANTY
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF NONINFRINGEMENT, MERCHANTIBILITY
+// AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+// THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE LIABLE FOR SPECIAL, EXEMPLARY,
+// OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+// IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+// THE POSSIBILITY OF SUCH DAMAGES.
+//
+
+p4://qctp411.qualcomm.com/components/rel/wlanfw_protocol_cmn.cnss/1.0.0/include/if_ethersubr.h
+
+/*
+ * Copyright (c) 2014 Qualcomm Atheros, Inc.
+ * All Rights Reserved.
+ * Qualcomm Atheros Confidential and Proprietary.
+ * Notifications and licenses are retained for attribution purposes only.
+ */
+/*
+ * For this file, which was received with alternative licensing options for
+ * distribution, Qualcomm Atheros, Inc. has selected the BSD license.
+ */
+
+/*
+ * SHA1 hash implementation and interface functions
+ * Copyright (c) 2003-2005, Jouni Malinen <jkmaline@cc.hut.fi>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * Alternatively, this software may be distributed under the terms of BSD
+ * license.
+ *
+ * See README and COPYING for more details.
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_mac_core.cnss/1.0/patch/AR6320/v3/sha1_patch.c
+
+/*
+ * Copyright (c) 2014 Qualcomm Atheros, Inc.
+ * All Rights Reserved.
+ * Qualcomm Atheros Confidential and Proprietary.
+ * Notifications and licenses are retained for attribution purposes only.
+ */
+/*
+ * For this file, which was received with alternative licensing options for
+ * distribution, Qualcomm Atheros, Inc. has selected the BSD license.
+ */
+ 
+/*
+ * WPA/RSN - Shared functions for supplicant and authenticator
+ * Copyright (c) 2002-2013, Jouni Malinen <j@w1.fi>
+
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * Alternatively, this software may be distributed under the terms of BSD
+ * license.
+ *
+ * See README and COPYING for more details.
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_protocol_cmn.cnss/1.0.0/src/supplicant/mywpa_common.c
+
+/*
+ * Copyright (c) 2014 Qualcomm Atheros, Inc.
+ * All Rights Reserved.
+ * Qualcomm Atheros Confidential and Proprietary.
+ * Notifications and licenses are retained for attribution purposes only.
+ */
+/*
+ * For this file, which was received with alternative licensing options for
+ * distribution, Qualcomm Atheros, Inc. has selected the BSD license.
+ */
+ 
+/*
+ * WPA definitions shared between hostapd and wpa_supplicant
+ * Copyright (c) 2002-2013, Jouni Malinen <j@w1.fi>
+ 
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * Alternatively, this software may be distributed under the terms of BSD
+ * license.
+ *
+ * See README and COPYING for more details.
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_protocol_cmn.cnss/1.0.0/src/supplicant/mywpa_common.h
+
+/*
+ * Copyright (c) 2011 Qualcomm Atheros, Inc.
+ * All Rights Reserved.
+ * Qualcomm Atheros Confidential and Proprietary.
+ * $ATH_LICENSE_NULL$
+ */
+
+//####ECOSGPLCOPYRIGHTBEGIN####
+// -------------------------------------------
+// This file is part of eCos, the Embedded Configurable Operating System.
+// Copyright (C) 1998, 1999, 2000, 2001, 2002 Red Hat, Inc.
+// Copyright (C) 2002 Gary Thomas
+//
+// eCos is free software; you can redistribute it and/or modify it under
+// the terms of the GNU General Public License as published by the Free
+// Software Foundation; either version 2 or (at your option) any later version.
+//
+// eCos is distributed in the hope that it will be useful, but WITHOUT ANY
+// WARRANTY; without even the implied warranty of MERCHANTABILITY or
+// FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+// for more details.
+//
+// You should have received a copy of the GNU General Public License along
+// with eCos; if not, write to the Free Software Foundation, Inc.,
+// 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.
+//
+// As a special exception, if other files instantiate templates or use macros
+// or inline functions from this file, or you compile this file and link it
+// with other works to produce a work based on this file, this file does not
+// by itself cause the resulting work to be covered by the GNU General Public
+// License. However the source code for this file must still be made available
+// in accordance with section (3) of the GNU General Public License.
+//
+// This exception does not invalidate any other reasons why a work based on
+// this file might be covered by the GNU General Public License.
+//
+// Alternative licenses for eCos may be arranged by contacting Red Hat, Inc.
+// at http://sources.redhat.com/ecos/ecos-license/
+// -------------------------------------------
+//####ECOSGPLCOPYRIGHTEND####
+p4://qctp411.qualcomm.com/components/rel/wlanfw_mac_core.cnss/1.0/src/os/common/cmnos_printf.c
+/*
+ * Copyright (c) 2011 Qualcomm Atheros, Inc.
+ * All Rights Reserved.
+ * Qualcomm Atheros Confidential and Proprietary.
+ * $ATH_LICENSE_TARGET_C$
+ */
+
+//####ECOSGPLCOPYRIGHTBEGIN####
+// -------------------------------------------
+// This file is part of eCos, the Embedded Configurable Operating System.
+// Copyright (C) 1998, 1999, 2000, 2001, 2002 Red Hat, Inc.
+//
+// eCos is free software; you can redistribute it and/or modify it under
+// the terms of the GNU General Public License as published by the Free
+// Software Foundation; either version 2 or (at your option) any later version.
+//
+// eCos is distributed in the hope that it will be useful, but WITHOUT ANY
+// WARRANTY; without even the implied warranty of MERCHANTABILITY or
+// FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+// for more details.
+//
+// You should have received a copy of the GNU General Public License along
+// with eCos; if not, write to the Free Software Foundation, Inc.,
+// 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.
+//
+// As a special exception, if other files instantiate templates or use macros
+// or inline functions from this file, or you compile this file and link it
+// with other works to produce a work based on this file, this file does not
+// by itself cause the resulting work to be covered by the GNU General Public
+// License. However the source code for this file must still be made available
+// in accordance with section (3) of the GNU General Public License.
+//
+// This exception does not invalidate any other reasons why a work based on
+// this file might be covered by the GNU General Public License.
+//
+// Alternative licenses for eCos may be arranged by contacting Red Hat, Inc.
+// at http://sources.redhat.com/ecos/ecos-license/
+// -------------------------------------------
+//####ECOSGPLCOPYRIGHTEND####
+p4://qctp411.qualcomm.com/components/rel/wlanfw_mac_core.cnss/1.0/src/os/common/cmnos_sscanf.c
+
+/*
+ * WPA Supplicant - CCX Fast Roaming with CCKM Enhancements
+ * Copyright (c) 2003-2008, Jouni Malinen <j@w1.fi>
+ * Copyright (c) 2010-2011, embWiSe Technologies
+ *
+ * Licensed under a proprietary license.
+ * Notifications and licenses are retained for attribution purposes only.
+
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are
+ * met:
+ *
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * 3. Neither the name(s) of the above-listed copyright holder(s) nor the
+ *    names of its contributors may be used to endorse or promote products
+ *    derived from this software without specific prior written permission.
+ */
+/*original files: ccx_cckm.c and part of wpa_common.c in proprietary patch
+ * of open source supplicant */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_protocol_cmn.cnss/1.0.0/src/supplicant/mywpa_cckm.c
+
+/*
+ * Copyright (c) 2012 Qualcomm Atheros, Inc.
+ * All Rights Reserved.
+ * Qualcomm Atheros Confidential and Proprietary.
+ */
+
+/*
+ * For this file, which was received with alternative licensing options for   
+ * distribution, Qualcomm Atheros, Inc. has selected the BSD license.
+ */
+
+//-
+// Copyright (c) 2002-2004 Sam Leffler, Errno Consulting
+// All rights reserved.
+// $ATH_LICENSE_NULL$
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
+// are met:
+// 1. Redistributions of source code must retain the above copyright
+//    notice, this list of conditions and the following disclaimer,
+//    without modification.
+// 2. Redistributions in binary form must reproduce at minimum a disclaimer
+//    similar to the "NO WARRANTY" disclaimer below ("Disclaimer") and any
+//    redistribution must be conditioned upon including a substantially
+//    similar Disclaimer requirement for further binary redistribution.
+// 3. Neither the names of the above-listed copyright holders nor the names
+//    of any contributors may be used to endorse or promote products derived
+//    from this software without specific prior written permission.
+//
+// Alternatively, this software may be distributed under the terms of the
+// GNU General Public License ("GPL") version 2 as published by the Free
+// Software Foundation.
+//
+// NO WARRANTY
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF NONINFRINGEMENT, MERCHANTIBILITY
+// AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+// THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE LIABLE FOR SPECIAL, EXEMPLARY,
+// OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+// IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+// THE POSSIBILITY OF SUCH DAMAGES.
+//
+// $Id: //components/rel/wlanfw.cnss/1.0.1/cnss_proc/wlan/fw/target/src/wlan/proto/include/if_llc.h#3 $
+// $NetBSD: if_llc.h,v 1.12 1999/11/19 20:41:19 thorpej Exp $
+// $Id: //components/rel/wlanfw.cnss/1.0.1/cnss_proc/wlan/fw/target/src/wlan/proto/include/if_llc.h#3 $
+//
+
+/*
+ * Copyright (c) 1988, 1993
+ *	The Regents of the University of California.  All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the University of
+ *	California, Berkeley and its contributors.
+ * 4. Neither the name of the University nor the names of its contributors
+ *    may be used to endorse or promote products derived from this software
+ *    without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ *
+ *	@(#)if_llc.h	8.1 (Berkeley) 6/10/93
+ * $FreeBSD: src/sys/net/if_llc.h,v 1.9 2002/09/23 06:25:08 alfred Exp $
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_protocol_cmn.cnss/1.0.0/include/if_llc.h
+
+/*
+ * Copyright (c) 2011 Qualcomm Atheros, Inc.
+ * All Rights Reserved.
+ * Qualcomm Atheros Confidential and Proprietary.
+ * Notifications and licenses are retained for attribution purposes only.
+ */
+/*
+ * For this file, which was received with alternative licensing options for
+ * distribution, Qualcomm Atheros, Inc. has selected the BSD license.
+ */
+
+/*
+ * AES (Rijndael) cipher
+ *
+ * Modifications to public domain implementation:
+ * - support only 128-bit keys
+ * - cleanup
+ * - use C pre-processor to make it easier to change S table access
+ * - added option (AES_SMALL_TABLES) for reducing code size by about 8 kB at
+ *   cost of reduced throughput (quite small difference on Pentium 4,
+ *   10-25% when using -O1 or -O2 optimization)
+ *
+ * Copyright (c) 2003-2005, Jouni Malinen <jkmaline@cc.hut.fi>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * Alternatively, this software may be distributed under the terms of BSD
+ * license.
+ *
+ * See README and COPYING for more details.
+ */
+
+/*
+ * rijndael-alg-fst.c
+ *
+ * @version 3.0 (December 2000)
+ *
+ * Optimised ANSI C code for the Rijndael cipher (now AES)
+ *
+ * @author Vincent Rijmen <vincent.rijmen@esat.kuleuven.ac.be>
+ * @author Antoon Bosselaers <antoon.bosselaers@esat.kuleuven.ac.be>
+ * @author Paulo Barreto <paulo.barreto@terra.com.br>
+ *
+ * This code is hereby placed in the public domain.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE AUTHORS ''AS IS'' AND ANY EXPRESS
+ * OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHORS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+ * BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+ * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_mac_core.cnss/1.0/src/misc/crypto/aes.c
+
+/*
+ * Copyright (c) 2011 Qualcomm Atheros, Inc.
+ * All Rights Reserved.
+ * Qualcomm Atheros Confidential and Proprietary.
+ * Notifications and licenses are retained for attribution purposes only.
+ */
+/*
+ * For this file, which was received with alternative licensing options for
+ * distribution, Qualcomm Atheros, Inc. has selected the BSD license.
+ */
+
+/*
+ * AES-based functions
+ *
+ * - AES Key Wrap Algorithm (128-bit KEK) (RFC3394)
+ * - One-Key CBC MAC (OMAC1) hash with AES-128
+ * - AES-128 CTR mode encryption
+ * - AES-128 EAX mode encryption/decryption
+ * - AES-128 CBC
+ *
+ * Copyright (c) 2003-2005, Jouni Malinen <jkmaline@cc.hut.fi>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * Alternatively, this software may be distributed under the terms of BSD
+ * license.
+ *
+ * See README and COPYING for more details.
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_mac_core.cnss/1.0/src/misc/crypto/aes_wrap.c
+
+/*
+ * Copyright (c) 2011 Qualcomm Atheros, Inc.
+ * All Rights Reserved.
+ * Qualcomm Atheros Confidential and Proprietary.
+ * Notifications and licenses are retained for attribution purposes only.
+ */
+/*
+ * For this file, which was received with alternative licensing options for
+ * distribution, Qualcomm Atheros, Inc. has selected the BSD license.
+ */
+
+/*
+ * SHA1 hash implementation and interface functions
+ * Copyright (c) 2003-2005, Jouni Malinen <jkmaline@cc.hut.fi>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * Alternatively, this software may be distributed under the terms of BSD
+ * license.
+ *
+ * See README and COPYING for more details.
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_mac_core.cnss/1.0/src/misc/crypto/sha1.c
+
+/*
+ * Copyright (c) 2013 Atheros Communications Inc.
+ *
+ * Permission to use, copy, modify, and/or distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+ * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_protocol_cmn.cnss/1.0.0/src/wmi/wmi_tlv_platform.c
+
+/*
+ * Copyright (c) 2012, Atheros Communications Inc.
+ *
+ * Permission to use, copy, modify, and/or distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+ * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_protocol_cmn.cnss/1.0.0/include/qvit/qvit_init_api.h
+
+/*
+ * Copyright (c) 2013 Atheros Communications Inc.
+ *
+ * Permission to use, copy, modify, and/or distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+ * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_cmn.cnss/1.0.0/fw_interface/include/wmi_version_whitelist.c
+
+/*
+ * Copyright (c) 2011 Qualcomm Atheros, Inc.
+ * All Rights Reserved.
+ * Qualcomm Atheros Confidential and Proprietary. 
+ * $ATH_LICENSE_TARGET_C$
+ */
+
+//
+// $Id: //components/rel/wlanfw.cnss/1.0.1/cnss_proc/wlan/fw/target/src/misc/crypto/md5.c#3 $
+//
+// This code implements the MD5 message-digest algorithm.
+// The algorithm is due to Ron Rivest.  This code was
+// written by Colin Plumb in 1993, no copyright is claimed.
+// This code is in the public domain; do with it what you wish.
+//
+// Equivalent code is available from RSA Data Security, Inc.
+// This code has been tested against that, and is equivalent,
+// except that you don't need to include two pages of legalese
+// with every copy.
+//
+// To compute the message digest of a chunk of bytes, declare an
+// MD5Context structure, pass it to MD5Init, call MD5Update as
+// needed on buffers full of bytes, and then call MD5Final, which
+// will fill a supplied 16-byte array with the digest.
+//
+p4://qctp411.qualcomm.com/components/rel/wlanfw_mac_core.cnss/1.0/src/misc/crypto/md5.c
+
+
+/*===========================================================================
+  @file secrsa_encryption.c
+  
+   This file provides RSA PKCS #1 v1.5 encryption/decryption implementation.
+  ===========================================================================
+
+                           EDIT HISTORY FOR FILE
+  $Header: //components/dev/wlanfw.cnss/1.0.1/dennis.rome_emu_es2_rel_fw/cnss_proc/wlan/fw/target/src/misc/binsig/rsa.c#2 $
+  $DateTime: 2013/10/21 08:09:59 $ 
+  $Author: changhon $
+
+  when       who     what, where, why
+  --------   ---     ----------------------------------------------------------
+  04/11/11   qxu     initial version
+
+  Copyright (c) 2011 by QUALCOMM Technologies, Incorporated.  All Rights Reserved.
+  =============================================================================*/
+p4://qctp411.qualcomm.com/components/rel/wlanfw_mac_core.cnss/1.0/src/misc/binsig/rsa.c
+
+/* ==========================================================================
+ * $File: //components/rel/wlanfw.cnss/1.0.1/cnss_proc/wlan/fw/target/include/cil.h $
+ * $Revision: #3 $
+ * $Date: 2013/08/06 $
+ * $Change: 2161544 $
+ *
+ * Synopsys SS USB3 Linux Software Driver and documentation (hereinafter,
+ * "Software") is an Unsupported proprietary work of Synopsys, Inc. unless
+ * otherwise expressly agreed to in writing between Synopsys and you.
+ *
+ * The Software IS NOT an item of Licensed Software or Licensed Product under
+ * any End User Software License Agreement or Agreement for Licensed Product
+ * with Synopsys or any supplement thereto. You are permitted to use and
+ * redistribute this Software in source and binary forms, with or without
+ * modification, provided that redistributions of source code must retain this
+ * notice. You may not view, use, disclose, copy or distribute this file or
+ * any information contained herein except pursuant to this license grant from
+ * Synopsys. If you do not agree with this notice, including the disclaimer
+ * below, then you are not authorized to use the Software.
+ *
+ * THIS SOFTWARE IS BEING DISTRIBUTED BY SYNOPSYS SOLELY ON AN "AS IS" BASIS
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE HEREBY DISCLAIMED. IN NO EVENT SHALL SYNOPSYS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
+ * DAMAGE.
+ * ========================================================================== */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_mac_core.cnss/1.0/include/cil.h
+
+/* ==========================================================================
+ * $File: //components/rel/wlanfw.cnss/1.0.1/cnss_proc/wlan/fw/target/include/dev.h $
+ * $Revision: #3 $
+ * $Date: 2013/08/06 $
+ * $Change: 2161544 $
+ *
+ * Synopsys SS USB3 Linux Software Driver and documentation (hereinafter,
+ * "Software") is an Unsupported proprietary work of Synopsys, Inc. unless
+ * otherwise expressly agreed to in writing between Synopsys and you.
+ *
+ * The Software IS NOT an item of Licensed Software or Licensed Product under
+ * any End User Software License Agreement or Agreement for Licensed Product
+ * with Synopsys or any supplement thereto. You are permitted to use and
+ * redistribute this Software in source and binary forms, with or without
+ * modification, provided that redistributions of source code must retain this
+ * notice. You may not view, use, disclose, copy or distribute this file or
+ * any information contained herein except pursuant to this license grant from
+ * Synopsys. If you do not agree with this notice, including the disclaimer
+ * below, then you are not authorized to use the Software.
+ *
+ * THIS SOFTWARE IS BEING DISTRIBUTED BY SYNOPSYS SOLELY ON AN "AS IS" BASIS
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE HEREBY DISCLAIMED. IN NO EVENT SHALL SYNOPSYS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
+ * DAMAGE.
+ * ========================================================================== */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_mac_core.cnss/1.0/include/dev.h
+
+/* ==========================================================================
+ * $File: //components/rel/wlanfw.cnss/1.0.1/cnss_proc/wlan/fw/target/include/pcd.h $
+ * $Revision: #3 $
+ * $Date: 2013/08/06 $
+ * $Change: 2161544 $
+ *
+ * Synopsys SS USB3 Linux Software Driver and documentation (hereinafter,
+ * "Software") is an Unsupported proprietary work of Synopsys, Inc. unless
+ * otherwise expressly agreed to in writing between Synopsys and you.
+ *
+ * The Software IS NOT an item of Licensed Software or Licensed Product under
+ * any End User Software License Agreement or Agreement for Licensed Product
+ * with Synopsys or any supplement thereto. You are permitted to use and
+ * redistribute this Software in source and binary forms, with or without
+ * modification, provided that redistributions of source code must retain this
+ * notice. You may not view, use, disclose, copy or distribute this file or
+ * any information contained herein except pursuant to this license grant from
+ * Synopsys. If you do not agree with this notice, including the disclaimer
+ * below, then you are not authorized to use the Software.
+ *
+ * THIS SOFTWARE IS BEING DISTRIBUTED BY SYNOPSYS SOLELY ON AN "AS IS" BASIS
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE HEREBY DISCLAIMED. IN NO EVENT SHALL SYNOPSYS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
+ * DAMAGE.
+ * ========================================================================== */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_mac_core.cnss/1.0/include/pcd.h
+
+/* ==========================================================================
+ * $File: //components/rel/wlanfw.cnss/1.0.1/cnss_proc/wlan/fw/target/src/soc/usbhwcore/drv/snps/cil.c $
+ * $Revision: #3 $
+ * $Date: 2013/08/06 $
+ * $Change: 2161544 $
+ *
+ * Synopsys SS USB3 Linux Software Driver and documentation (hereinafter,
+ * "Software") is an Unsupported proprietary work of Synopsys, Inc. unless
+ * otherwise expressly agreed to in writing between Synopsys and you.
+ *
+ * The Software IS NOT an item of Licensed Software or Licensed Product under
+ * any End User Software License Agreement or Agreement for Licensed Product
+ * with Synopsys or any supplement thereto. You are permitted to use and
+ * redistribute this Software in source and binary forms, with or without
+ * modification, provided that redistributions of source code must retain this
+ * notice. You may not view, use, disclose, copy or distribute this file or
+ * any information contained herein except pursuant to this license grant from
+ * Synopsys. If you do not agree with this notice, including the disclaimer
+ * below, then you are not authorized to use the Software.
+ *
+ * THIS SOFTWARE IS BEING DISTRIBUTED BY SYNOPSYS SOLELY ON AN "AS IS" BASIS
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE HEREBY DISCLAIMED. IN NO EVENT SHALL SYNOPSYS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
+ * DAMAGE.
+ * ========================================================================== */
+
+/** @file
+ *
+ * The Core Interface Layer provides basic services for accessing and
+ * managing the DWC_usb3 hardware. These services are used by both the
+ * Peripheral Controller Driver and the On The Go Driver.
+ *
+ * The CIL manages the memory map for the core so that the PCD and OTG drivers
+ * don't have to do this separately. The CIL also performs basic services
+ * that are not specific to either the Device or OTG modes of operation.
+ * These services include all functionality that requires specific
+ * knowledge of the CSR layout or the DMA descriptor (TRB) layout. Also
+ * included are services for invoking each of the commands provided by
+ * the DGCMD and DEPCMD registers (see the "Control and Status Registers"
+ * chapter of the USB3 controller databook for details).
+ *
+ * The Core Interface Layer has the following requirements:
+ * - Provides basic controller operations.
+ * - Minimal use of OS services.
+ * - The OS services used will be abstracted by using inline functions
+ *   or macros.
+ *
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_mac_core.cnss/1.0/src/soc/usbhwcore/drv/snps/cil.c
+
+/* ==========================================================================
+ * $File: //components/rel/wlanfw.cnss/1.0.1/cnss_proc/wlan/fw/target/src/soc/usbhwcore/drv/snps/pcd_intr.c $
+ * $Revision: #3 $
+ * $Date: 2013/08/06 $
+ * $Change: 2161544 $
+ *
+ * Synopsys SS USB3 Linux Software Driver and documentation (hereinafter,
+ * "Software") is an Unsupported proprietary work of Synopsys, Inc. unless
+ * otherwise expressly agreed to in writing between Synopsys and you.
+ *
+ * The Software IS NOT an item of Licensed Software or Licensed Product under
+ * any End User Software License Agreement or Agreement for Licensed Product
+ * with Synopsys or any supplement thereto. You are permitted to use and
+ * redistribute this Software in source and binary forms, with or without
+ * modification, provided that redistributions of source code must retain this
+ * notice. You may not view, use, disclose, copy or distribute this file or
+ * any information contained herein except pursuant to this license grant from
+ * Synopsys. If you do not agree with this notice, including the disclaimer
+ * below, then you are not authorized to use the Software.
+ *
+ * THIS SOFTWARE IS BEING DISTRIBUTED BY SYNOPSYS SOLELY ON AN "AS IS" BASIS
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE HEREBY DISCLAIMED. IN NO EVENT SHALL SYNOPSYS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
+ * DAMAGE.
+ * ========================================================================== */
+
+/** @file
+ * This file contains the implementation of the PCD Interrupt handlers.
+ *
+ * The PCD handles the device interrupts. Many conditions can cause a
+ * device interrupt. When an interrupt occurs, the device interrupt
+ * service routine determines the cause of the interrupt and
+ * dispatches handling to the appropriate routine. These interrupt
+ * handling routines are described below.
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_mac_core.cnss/1.0/src/soc/usbhwcore/drv/snps/pcd_intr.c
+
+/* ==========================================================================
+ * $File: //components/rel/wlanfw.cnss/1.0.1/cnss_proc/wlan/fw/target/include/os_dev.h $
+ * $Revision: #3 $
+ * $Date: 2013/08/06 $
+ * $Change: 2161544 $
+ *
+ * Synopsys SS USB3 Linux Software Driver and documentation (hereinafter,
+ * "Software") is an Unsupported proprietary work of Synopsys, Inc. unless
+ * otherwise expressly agreed to in writing between Synopsys and you.
+ *
+ * The Software IS NOT an item of Licensed Software or Licensed Product under
+ * any End User Software License Agreement or Agreement for Licensed Product
+ * with Synopsys or any supplement thereto. You are permitted to use and
+ * redistribute this Software in source and binary forms, with or without
+ * modification, provided that redistributions of source code must retain this
+ * notice. You may not view, use, disclose, copy or distribute this file or
+ * any information contained herein except pursuant to this license grant from
+ * Synopsys. If you do not agree with this notice, including the disclaimer
+ * below, then you are not authorized to use the Software.
+ *
+ * THIS SOFTWARE IS BEING DISTRIBUTED BY SYNOPSYS SOLELY ON AN "AS IS" BASIS
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE HEREBY DISCLAIMED. IN NO EVENT SHALL SYNOPSYS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
+ * DAMAGE.
+ * ========================================================================== */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_mac_core.cnss/1.0/include/os_dev.h
+
+/* ==========================================================================
+ * $File: //components/rel/wlanfw.cnss/1.0.1/cnss_proc/wlan/fw/target/src/soc/usbhwcore/drv/snps/cil_intr.c $
+ * $Revision: #3 $
+ * $Date: 2013/08/06 $
+ * $Change: 2161544 $
+ *
+ * Synopsys SS USB3 Linux Software Driver and documentation (hereinafter,
+ * "Software") is an Unsupported proprietary work of Synopsys, Inc. unless
+ * otherwise expressly agreed to in writing between Synopsys and you.
+ *
+ * The Software IS NOT an item of Licensed Software or Licensed Product under
+ * any End User Software License Agreement or Agreement for Licensed Product
+ * with Synopsys or any supplement thereto. You are permitted to use and
+ * redistribute this Software in source and binary forms, with or without
+ * modification, provided that redistributions of source code must retain this
+ * notice. You may not view, use, disclose, copy or distribute this file or
+ * any information contained herein except pursuant to this license grant from
+ * Synopsys. If you do not agree with this notice, including the disclaimer
+ * below, then you are not authorized to use the Software.
+ *
+ * THIS SOFTWARE IS BEING DISTRIBUTED BY SYNOPSYS SOLELY ON AN "AS IS" BASIS
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE HEREBY DISCLAIMED. IN NO EVENT SHALL SYNOPSYS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
+ * DAMAGE.
+ * ========================================================================== */
+
+/** @file
+ *
+ * The Core Interface Layer provides basic services for accessing and
+ * managing the DWC_usb3 hardware. These services are used by both the
+ * Peripheral Controller Driver and the On The Go Driver.
+ *
+ * This file contains the common interrupt handling functions.
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_mac_core.cnss/1.0/src/soc/usbhwcore/drv/snps/cil_intr.c
+
+/* ==========================================================================
+ * $File: //components/rel/wlanfw.cnss/1.0.1/cnss_proc/wlan/fw/target/src/soc/usbhwcore/drv/snps/pcd.c $
+ * $Revision: #3 $
+ * $Date: 2013/08/06 $
+ * $Change: 2161544 $
+ *
+ * Synopsys SS USB3 Linux Software Driver and documentation (hereinafter,
+ * "Software") is an Unsupported proprietary work of Synopsys, Inc. unless
+ * otherwise expressly agreed to in writing between Synopsys and you.
+ *
+ * The Software IS NOT an item of Licensed Software or Licensed Product under
+ * any End User Software License Agreement or Agreement for Licensed Product
+ * with Synopsys or any supplement thereto. You are permitted to use and
+ * redistribute this Software in source and binary forms, with or without
+ * modification, provided that redistributions of source code must retain this
+ * notice. You may not view, use, disclose, copy or distribute this file or
+ * any information contained herein except pursuant to this license grant from
+ * Synopsys. If you do not agree with this notice, including the disclaimer
+ * below, then you are not authorized to use the Software.
+ *
+ * THIS SOFTWARE IS BEING DISTRIBUTED BY SYNOPSYS SOLELY ON AN "AS IS" BASIS
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE HEREBY DISCLAIMED. IN NO EVENT SHALL SYNOPSYS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
+ * DAMAGE.
+ * ========================================================================== */
+
+/** @file
+ * This file implements the Peripheral Controller Driver.
+ *
+ * The Peripheral Controller Driver (PCD) is responsible for translating
+ * requests from the Function Driver into the appropriate actions on the
+ * DWC_usb3 controller. It isolates the Function Driver from the specifics
+ * of the controller by providing an API to the Function Driver.
+ *
+ * The Peripheral Controller Driver for Linux will implement the Gadget API,
+ * so that the existing Gadget drivers can be used. (Gadget Driver is the
+ * Linux terminology for a Function Driver.)
+ *
+ * The Linux Gadget API is defined in the header file
+ * <code><linux/usb/gadget.h></code>. The USB EP operations API is defined
+ * in the structure <code>usb_ep_ops</code> and the USB Controller API is
+ * defined in the structure <code>usb_gadget_ops</code>.
+ *
+ * An important function of the PCD is managing interrupts generated by the
+ * DWC_usb3 controller. The implementation of the DWC_usb3 device mode
+ * interrupt service routines is in pcd_intr.c.
+ */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_mac_core.cnss/1.0/src/soc/usbhwcore/drv/snps/pcd.c
+
+/* ==========================================================================
+ * $File: //components/rel/wlanfw.cnss/1.0.1/cnss_proc/wlan/fw/target/include/usb3_hw.h $
+ * $Revision: #3 $
+ * $Date: 2013/08/06 $
+ * $Change: 2161544 $
+ *
+ * Synopsys SS USB3 Linux Software Driver and documentation (hereinafter,
+ * "Software") is an Unsupported proprietary work of Synopsys, Inc. unless
+ * otherwise expressly agreed to in writing between Synopsys and you.
+ *
+ * The Software IS NOT an item of Licensed Software or Licensed Product under
+ * any End User Software License Agreement or Agreement for Licensed Product
+ * with Synopsys or any supplement thereto. You are permitted to use and
+ * redistribute this Software in source and binary forms, with or without
+ * modification, provided that redistributions of source code must retain this
+ * notice. You may not view, use, disclose, copy or distribute this file or
+ * any information contained herein except pursuant to this license grant from
+ * Synopsys. If you do not agree with this notice, including the disclaimer
+ * below, then you are not authorized to use the Software.
+ *
+ * THIS SOFTWARE IS BEING DISTRIBUTED BY SYNOPSYS SOLELY ON AN "AS IS" BASIS
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE HEREBY DISCLAIMED. IN NO EVENT SHALL SYNOPSYS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
+ * DAMAGE.
+ * ========================================================================== */
+p4://qctp411.qualcomm.com/components/rel/wlanfw_mac_core.cnss/1.0/include/usb3_hw.h
+
+/*
+ * Copyright (c) 2011 Qualcomm Atheros, Inc.
+ * All Rights Reserved.
+ * Qualcomm Atheros Confidential and Proprietary.
+ * $ATH_LICENSE_NULL$
+ */
+
+// 
+// Name:        lzuncompr.c
+// Author:      Vitaly Luban
+// Based on code from Marcus Geelnard
+// Description: LZ77 decoder implementation.
+// Reentrant:   Yes
+// 
+// ------------------------------------------------------------------------
+// Copyright (c) 2003-2006 Marcus Geelnard
+// Copyright (c) 2006-2007 Atheros Communications Inc.
+// $ATH_LICENSE_NULL$
+// This software is provided 'as-is', without any express or implied
+// warranty. In no event will the authors be held liable for any damages
+// arising from the use of this software.
+// 
+// Permission is granted to anyone to use this software for any purpose,
+// including commercial applications, and to alter it and redistribute it
+// freely, subject to the following restrictions:
+// 
+// 1. The origin of this software must not be misrepresented; you must not
+//    claim that you wrote the original software. If you use this software
+//    in a product, an acknowledgment in the product documentation would
+//    be appreciated but is not required.
+// 
+// 2. Altered source versions must be plainly marked as such, and must not
+//    be misrepresented as being the original software.
+// 
+// 3. This notice may not be removed or altered from any source
+//    distribution.
+// 
+// Marcus Geelnard
+// marcus.geelnard at home.se
+// 
+p4://qctp411.qualcomm.com/components/rel/wlanfw_mac_core.cnss/1.0/src/misc/lzuncompr/lzuncompr1.c
