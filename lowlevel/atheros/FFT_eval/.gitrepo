@@ -6,6 +6,6 @@
 [subrepo]
 	remote = https://github.com/simonwunderlich/FFT_eval
 	branch = master
-	commit = f6927ec2df985a3625fa0e3e90b03908ef71110d
-	parent = 2041e3440342ef4775bf0d2b249995be38db0d3c
+	commit = bee66215f2d3c76406688d3b3ff0cc82c88cf4ce
+	parent = 75f185ef0e719b89633be6e529c7d81693d6e64d
 	cmdver = 0.2.0

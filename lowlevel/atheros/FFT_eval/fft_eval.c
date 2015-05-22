@@ -131,6 +131,7 @@ SDL_Surface *screen = NULL;
 TTF_Font *font = NULL;
 struct scanresult *result_list;
 int scanresults_n = 0;
+static int color_invert = 0;
 
 int graphics_init_sdl(char *name)
 {
@@ -205,16 +206,28 @@ int bigpixel(Uint32 *pixels, int x, int y, Uint32 color, uint8_t opacity)
 	if (y - SIZE < 0 || y + SIZE >= HEIGHT)
 		return -1;
 
+	if (color_invert)
+		color ^= RMASK | GMASK | BMASK;
+
 	for (x1 = x - SIZE; x1 < x + SIZE; x1++)
 	for (y1 = y - SIZE; y1 < y + SIZE; y1++) {
-		Uint32 r, g, b;
+		int r, g, b;
 
-		r = ((pixels[x1 + y1 * WIDTH] & RMASK) >> RBITS) + ((((color & RMASK) >> RBITS) * opacity) / 255);
-		if (r > 255) r = 255;
-		g = ((pixels[x1 + y1 * WIDTH] & GMASK) >> GBITS) + ((((color & GMASK) >> GBITS) * opacity) / 255);
-		if (g > 255) g = 255;
-		b = ((pixels[x1 + y1 * WIDTH] & BMASK) >> BBITS) + ((((color & BMASK) >> BBITS) * opacity) / 255);
-		if (b > 255) b = 255;
+		if (color_invert) {
+			r = ((pixels[x1 + y1 * WIDTH] & RMASK) >> RBITS) - ((((color & RMASK) >> RBITS) * opacity) / 255);
+			if (r < 0) r = 0;
+			g = ((pixels[x1 + y1 * WIDTH] & GMASK) >> GBITS) - ((((color & GMASK) >> GBITS) * opacity) / 255);
+			if (g < 0) g = 0;
+			b = ((pixels[x1 + y1 * WIDTH] & BMASK) >> BBITS) - ((((color & BMASK) >> BBITS) * opacity) / 255);
+			if (b < 0) b = 0;
+		} else {
+			r = ((pixels[x1 + y1 * WIDTH] & RMASK) >> RBITS) + ((((color & RMASK) >> RBITS) * opacity) / 255);
+			if (r > 255) r = 255;
+			g = ((pixels[x1 + y1 * WIDTH] & GMASK) >> GBITS) + ((((color & GMASK) >> GBITS) * opacity) / 255);
+			if (g > 255) g = 255;
+			b = ((pixels[x1 + y1 * WIDTH] & BMASK) >> BBITS) + ((((color & BMASK) >> BBITS) * opacity) / 255);
+			if (b > 255) b = 255;
+		}
 
 		pixels[x1 + y1 * WIDTH] = r << RBITS | g << GBITS | b << BBITS | (color & AMASK);
 	}
@@ -224,11 +237,19 @@ int bigpixel(Uint32 *pixels, int x, int y, Uint32 color, uint8_t opacity)
 int render_text(SDL_Surface *surface, char *text, int x, int y)
 {
 	SDL_Surface *text_surface;
-	SDL_Color fontcolor = {255, 255, 255, 255};
+	SDL_Color fontcolor_white = {255, 255, 255, 255};
+	SDL_Color fontcolor_black = {0, 0, 0, 255};
+	SDL_Color fontcolor;
 	SDL_Rect fontdest = {0, 0, 0, 0};
 
 	fontdest.x = x;
 	fontdest.y = y;
+
+	if (color_invert) {
+		fontcolor = fontcolor_black;
+	} else {
+		fontcolor = fontcolor_white;
+	}
 
 	text_surface = TTF_RenderText_Solid(font, text, fontcolor);
 	if (!text_surface)
@@ -416,8 +437,12 @@ int draw_picture(int highlight, int startfreq)
 	surface = SDL_CreateRGBSurface(SDL_SWSURFACE, WIDTH, HEIGHT, BPP, RMASK, GMASK, BMASK, AMASK);
 	pixels = (Uint32 *) surface->pixels;
 	for (y = 0; y < HEIGHT; y++)
-		for (x = 0; x < WIDTH; x++)
-			pixels[x + y * WIDTH] = AMASK;
+		for (x = 0; x < WIDTH; x++) {
+			if (color_invert)
+				pixels[x + y * WIDTH] = RMASK | GMASK | BMASK | AMASK;
+			else
+				pixels[x + y * WIDTH] = AMASK;
+		}
 
 	/* vertical lines (frequency) */
 	for (i = 2300; i < 6000; i += 10) {
@@ -688,6 +713,10 @@ void graphics_main(char *name)
 				startfreq = 5150;
 				accel +=1;
 				scroll = 1;
+				break;
+			case 'i':
+				color_invert = !color_invert;
+				change = 1;
 				break;
 			default:
 				break;
