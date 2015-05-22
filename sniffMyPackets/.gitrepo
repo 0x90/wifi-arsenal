@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/catalyst256/sniffMyPackets.git
+	branch = master
+	commit = f10b476cfbb30e05aa4942d18a42fc30be106aab
+	parent = 78868fcca8ea596876edebd4b34a4edfc250ae13
+	cmdver = 0.2.1

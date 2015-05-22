@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/catalyst256/Watcher.git
+	branch = master
+	commit = 14123f501643475fc97b64093284c1b509897550
+	parent = 8fade2d05815d97208e7679cdb3a0fc10f816fab
+	cmdver = 0.2.1
