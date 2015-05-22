@@ -1,0 +1,17 @@
+# Select all distinct MAC addresses
+SELECT DISTINCT COALESCE(addr1, addr2, addr3, addr4) as Address FROM MACHeaders ;
+
+# Select all distinct MAC addresses for the given addr field
+SELECT DISTINCT addr1 FROM MACHeaders WHERE addr1 NOT NULL ;
+
+# Select all distinct MAC addresses sending beacon frames
+SELECT DISTINCT addr2 FROM MACHeaders WHERE type = 0 AND subtype = 8;
+
+# Select distinct MAC addresses receiving data frames
+SELECT DISTINCT addr1 FROM MACHeaders WHERE type = 2 AND subtype = 0;
+
+# Select average frame length
+SELECT AVG(length) FROM `Packets`;
+
+# Get the list of times between packets
+SELECT p2.timestamp - p1.timestamp AS time FROM `Packets` as p1 JOIN `Packets` as p2 ON p2.rowid = p1.rowid + 1;

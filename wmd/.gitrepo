@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/securestate/wmd
+	branch = master
+	commit = 6094e95bb9ad233ce4b90969e693704a8a822691
+	parent = 266c134b5c1522f44c8a9d049de86404a10d3b04
+	cmdver = 0.2.0

@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 22
+/svn/!svn/ver/26/trunk
+END
+core.py
+K 25
+svn:wc:ra_dav:version-url
+V 30
+/svn/!svn/ver/26/trunk/core.py
+END
+logger.py
+K 25
+svn:wc:ra_dav:version-url
+V 31
+/svn/!svn/ver/2/trunk/logger.py
+END
+http.py
+K 25
+svn:wc:ra_dav:version-url
+V 30
+/svn/!svn/ver/26/trunk/http.py
+END
+proxpy.py
+K 25
+svn:wc:ra_dav:version-url
+V 32
+/svn/!svn/ver/26/trunk/proxpy.py
+END
+history.py
+K 25
+svn:wc:ra_dav:version-url
+V 33
+/svn/!svn/ver/12/trunk/history.py
+END
+https.py
+K 25
+svn:wc:ra_dav:version-url
+V 30
+/svn/!svn/ver/5/trunk/https.py
+END

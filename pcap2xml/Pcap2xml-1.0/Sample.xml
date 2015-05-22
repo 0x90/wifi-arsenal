@@ -1,0 +1,40 @@
+<packets>
+	<packet timestamp="12365612" length="102">
+		<wlan-mac-header>
+			<frame-control value="8">
+				<protocol-version>0</protocol-version>
+				<type>0</type>
+				<subtype>0</subtype>
+				<to-ds>true</to-ds>
+				<from-ds>true</from-ds>
+				<more-fragments>true</more-fragments>
+				<retry>true</retry>
+				<power-management>false</power-management>
+				<more-data>0</more-data> <!-- 0 == False, 1 == True in XML -->
+				<protected-frame>1</protected-frame>
+				<order>true</order>
+			</frame-control>
+			<duration-id>0</duration-id>
+			<address-1>FF:FF:FF:FF:FF:FF</address-1>
+			<address-2>FF:FF:FF:FF:FF:FF</address-2>
+			<address-3>01:23:45:67:89:AB</address-3>
+
+			<!-- Not present on control frames -->
+			<sequence-control value="16568">
+				<fragment-number>0</fragment-number>
+				<sequence-number>2948</sequence-number>
+			</sequence-control>
+
+			<!-- Only present when from-ds = 1 and to-ds = 1 -->
+			<address-4>01:23:45:67:89:AB</address-4>
+
+			<!-- Only present on data frames where QoS is active -->
+			<qos-control>012</qos-control>
+
+			<!-- Only present in control frames or data/mgmt frames when order = 1 -->
+			<ht-control>123</ht-control>
+
+		</wlan-mac-header>
+	</packet>
+</packets>
+

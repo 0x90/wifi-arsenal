@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/gnab/rtl8812au
+	branch = master
+	commit = 17d050d5d26a3bd64d78a4aec5447b99b6e968f3
+	parent = 15ee529b97f10674ee5aec15ea64cd5c6ca115c4
+	cmdver = 0.2.0

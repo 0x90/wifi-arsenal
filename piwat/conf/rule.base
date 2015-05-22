@@ -1,0 +1,8 @@
+{
+    "att": {
+        "attack":"1",
+        "ruletype":"deny",
+        "type":"client",
+        "mac":"any"
+    }
+}

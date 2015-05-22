@@ -1,0 +1,8 @@
+Complete overview on my blog at:
+http://www.shortbus.ninja/wardriving-with-kismet-and-wapmap/
+
+Usage: ./wap_mapper.py <Kismet.netxml File> <Mode> <Output File Name>
+Example: ./wap_mapper.py /root/Kismet-20140725-22-33-53-1.netxml -wep wep_networks.csv
+Example will parse the provided .netxml file and output a csv file of WEP networks for upload to Google Maps Engine
+
+Modes: -open or -wep 

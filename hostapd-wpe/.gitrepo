@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/OpenSecurityResearch/hostapd-wpe
+	branch = master
+	commit = a3bc3dd9cf9a94f42d6f43de3bfa50b7045042cf
+	parent = 84e1b4be0bbda3bddec7488616dabd5560a88188
+	cmdver = 0.2.0

@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/0x90/warcarrier
+	branch = master
+	commit = bca6672c06801bd31c70feeef3c82db0ba2ee2ef
+	parent = 545dcae99df9bce48567b2b1b9e571a688456841
+	cmdver = 0.2.0

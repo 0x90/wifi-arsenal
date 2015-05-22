@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/szehl/FWAP
+	branch = master
+	commit = 48b02c9e4af844773a5461a66d4d311954284536
+	parent = 6d055005a5566438c173f92571c7beeef17d642e
+	cmdver = 0.2.0

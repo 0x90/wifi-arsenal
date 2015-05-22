@@ -1,0 +1,9 @@
+qca-swiss-army-knife
+====================
+
+This is the qca-swiss-army-knife, which hosts a set of utilities that we use
+to debug / help with our driver development.
+
+Documentation:
+
+https://github.com/mcgrof/qca-swiss-army-knife/wiki

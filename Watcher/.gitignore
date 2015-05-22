@@ -1,0 +1,17 @@
+#Exclude conf files generated when canari package installed, not the main conf file though
+*.conf
+!/src/Watcher/resources/etc/*.conf
+
+#Exclude python autosave and complied files
+*.pyc
+*.py~
+
+#Exclude Watcher.mtz from src directory
+/src/Watcher.mtz
+
+#Exclude Watcher sqlite database
+/src/Watcher/resources/databases/watcher.db
+!/src/Watcher/resources/databases/macaddr.db
+
+# Exclude config file
+/src/Watcher.conf

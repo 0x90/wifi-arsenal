@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/gauravpatwardhan/Wireless-Sniffer
+	branch = master
+	commit = bf3a43a6f88b363654b4331e5c38e7a3cebb5187
+	parent = 2c1e493a292f9fac86967cd80da4be15a7e31a82
+	cmdver = 0.2.0

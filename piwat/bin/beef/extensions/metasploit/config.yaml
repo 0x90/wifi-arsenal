@@ -1,0 +1,26 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+# Enable MSF by changing extension:metasploit:enable to true
+# Then set msf_callback_host to be the public IP of your MSF server
+#
+# Ensure you load the xmlrpc interface in Metasploit
+# msf > load msgrpc ServerHost=10.211.55.2 Pass=abc123 ServerType=Web
+# Please note that the ServerHost parameter must have the same value of host and callback_host variables here below.
+# Also always use the IP of your machine where MSF is listening.
+beef:
+    extension:
+        metasploit:
+            name: 'Metasploit'
+            enable: true
+            host: "127.0.0.1"
+            port: 55552
+            user: "pi"
+            pass: "raspberry"
+            uri: '/api'
+            ssl: false
+            ssl_version: 'SSLv3'
+            callback_host: "127.0.0.1"
+            autopwn_url: "autopwn"

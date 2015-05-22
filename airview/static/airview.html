@@ -1,0 +1,127 @@
+<html>
+<head>
+<script>
+KEEP_AFTER_LTS_SECONDS = 2
+setInterval("xhr_loop()",2000)
+master_list = {}
+
+function xhr_loop(){
+        if (window.XMLHttpRequest){
+                xmlhttp = new XMLHttpRequest();
+        }
+
+        xmlhttp.onreadystatechange=function(){
+                if (xmlhttp.readyState==4 && xmlhttp.status==200){
+                        response = JSON.parse(xmlhttp.responseText)
+                        update_list = {}
+                        for (id in response){
+                            if (master_list[id] == undefined){
+                                update_list[id] = response[id]
+                            }
+                            master_list[id] = response[id]
+
+                        }
+                        
+                        display(update_list)
+                        remove_old(master_list)
+                }
+        }
+        xmlhttp.open("GET","http://127.0.0.1:8080/",true)
+        xmlhttp.send()
+}
+
+function display(displaylist){
+    for (index in displaylist){
+        obj = displaylist[index]
+        //we use the name here since we must handle free clients and access points.
+        parent_div = create_element(index,obj['name'],index)
+        for (attribute in obj){
+            value = obj[attribute]
+            if (type(value) == "Array"){
+                laterlist.push(attribute)
+            }else{
+                append_element(parent_div,index+attribute,attribute,value)
+            }
+        }
+        //I'm least proud of this section of code, but at least it'll work
+        for (attr in laterlist){
+            attribute = laterlist[attr]
+            if (attribute == 'connectedClients'){
+                for (client in obj[attribute]){
+                    sub_parent = append_element(parent_div,index+client.mac,attribute,null)
+                    for (client_attr in client){
+                        append_element(sub_parent,index+client.mac+client_attr,client_attr,client_attr+":"+client[client_attr])
+                    }
+                }
+            }
+            if (attribute == 'probes'){
+                for (ssid in obj[attribute]){
+                    // do the stuff here that would display with the option to build a query on that ssid name
+                }
+            }
+        }
+    }
+}
+
+function remove_old(master_list){
+    for (index in master_list){
+        for (obj in master_list[index]){
+            //it'd be more efficient to move the time comparison to here rather than do it twice
+            if (obj.name == "client"){
+                if (((new Date()/1000) - obj.lts) > KEEP_AFTER_LTS_SECONDS){
+                    remove_element(index)
+                }
+            }else if (obj.name == "accessPoint"){
+                if (((new Date()/1000) - obj.lts) > KEEP_AFTER_LTS_SECONDS){
+                    remove_element(index)
+                }
+                //now look at each lts on each client in the access point.
+                for (clientnum in obj.connectedClients){
+                    client = obj.connectedClients[clientnum]
+                    if (((new Date()/1000) - client.lts) > KEEP_AFTER_LTS_SECONDS){
+                        remove_element(index+client.mac)
+                    }
+                }
+            }
+        }
+    }
+}
+
+function remove_element(elementID){
+    element = document.getElementById(elementID)
+    element.parentNode.removeChild(element)
+}
+
+function type(obj){
+    return Object.prototype.toString.call(obj).slice(8, -1);
+}
+
+function append_element(parent_div,divid,divclass,html){
+    //parent_div = document.getElementById(parent_div_id)
+    newdiv = document.createElement("div")
+    newdiv.id = divid
+    newdiv.className = divclass
+    newdiv.innerHTML = html
+    parent_div.appendChild(newdiv)
+    return newdiv
+}
+
+//Appends a new div to the main content div
+function create_element(thename,divclass,html){
+    newdiv = document.createElement("div")
+    newdiv.id = thename
+    newdiv.className = divclass
+    newdiv.innerHTML = html
+    document.getElementById("content").appendChild(newdiv)
+    return newdiv
+}
+
+</script>
+<link rel='stylesheet' type='text/css' href='css.css'/>
+</head>
+<body>
+        <div id="content"></div>
+</body>
+</html>
+
+

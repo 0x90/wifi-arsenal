@@ -1,0 +1,9 @@
+Thu Jan 5, 20:52 PM GMT-3 (leandrinux)
+- Added -t option for choosing whether you want each tcp thread to be dumped to file or not
+- Fixed messages, wrong warnings
+- Fixed freezing after reading capture files
+
+Wed Jan 4, 10:39 PM GMT-3 (leandrinux)
+- Added dumpfile feature
+- Added basic command line parameter parsing
+- Replaced pylibcap with pcapy due to lack of certain necessary libpcap functions (e.g. dump_flush)

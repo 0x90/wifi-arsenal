@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/0x90/piwat
+	branch = master
+	commit = 3938c951bc97c9c51a25ea90138fe947b384b674
+	parent = 230d2b5bd16cfc23ee7638eb91ca85a3fc0ab4e6
+	cmdver = 0.2.0

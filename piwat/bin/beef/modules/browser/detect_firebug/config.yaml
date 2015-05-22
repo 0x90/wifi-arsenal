@@ -1,0 +1,16 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+beef:
+    module:
+        detect_firebug:
+            enable: true
+            category: "Browser"
+            name: "Detect FireBug"
+            description: "This module checks if the Mozilla Firefox Firebug extension is being use to inspect the current window."
+            authors: ["bcoles"]
+            target:
+                 working: ["FF"]
+                 not_working: ["All"]

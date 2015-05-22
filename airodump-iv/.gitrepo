@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/ivanlei/airodump-iv
+	branch = master
+	commit = 896a76cca3ff55f5c282595ff07fcb9bc7ac89db
+	parent = 6f44237db6567f5dd7936acdd6d5d5f65a500e1a
+	cmdver = 0.2.0

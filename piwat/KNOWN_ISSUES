@@ -1,0 +1,18 @@
+A list of known issues for second alpha release:
+
+These are all currently being worked on:
+ > HTTPS Interception is/isn't working. It's not reccomended you use it anyways
+ > Injection Proxy occasionally crashes. It's not been looked into why.
+ > BEeF is slow
+
+These are also being worked on as features:
+ > Automated, Remote MSF Payloads
+
+Stuff I'm not really working on yet:
+ > Security*
+
+* It's a security product meant for legitimate testing.
+  if you're using this in an environment you might get counter-attacked in, 
+  you'll want to change the default MSFRPC, User, BEEF, and other passwords.
+
+--Updated 7/7/2013--

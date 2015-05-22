@@ -1,0 +1,171 @@
+{
+    Name = "KisMAC";
+    Description = "The WiFi sniffer from binaervarianz.de...";
+    
+    Classes = {
+        NSApplication = {
+            Name = "application";
+            PluralName = "applications";
+            Description = "The KisMAC application.";
+        };
+    };
+    
+    Commands = {
+        showNetworks = {
+            Name = showNetworks;
+            Description = "opens the networks view";
+        };
+        showTraffic = {
+            Name = showTraffic;
+            Description = "opens the traffic view";
+        };
+        showMap = {
+            Name = showMap;
+            Description = "opens the map view";
+        };
+        showDetails = {
+            Name = showDetails;
+            Description = "opens the details view";
+        };
+        startScan = {
+            Name = startScan;
+            Description = "starts KisMACs scanning process";
+        };
+        stopScan = {
+            Name = stopScan;
+            Description = "stops the scanning process";
+        };
+        New = {
+            Name = new;
+            Description = "clears all networks and gives a fresh start";
+        };
+        ImportKisMAC = {
+            Name = importKisMAC;
+            Description = "imports a KisMAC file";
+            UnnamedArgument = { Description = "The file to be imported."; };
+        };
+		ImportImageForMap = {
+            Name = importImageForMap;
+            Description = "imports an image file and handles it as a map";
+            UnnamedArgument = { Description = "The file to be imported."; };
+        };
+		ImportPCAP = {
+            Name = importPCAP;
+            Description = "imports a PCAP file, with 802.11 packets and without prism headers";
+            UnnamedArgument = { Description = "The file to be imported."; };
+        };
+        ExportKML = {
+            Name = exportKML;
+            Description = "exports a Google Earth KML file";
+            UnnamedArgument = { Description = "The file to be exported."; };
+        };
+        DownloadMap = {
+            Name = downloadMapFrom;
+            Description = "imports a map for a specific coordinate from some server";
+            Arguments = {
+                Latitude = { Name = "latitude"; Description = "Latitude on globe. Negatives for western hemisphere."; };
+                Longitude = { Name = "longitude"; Description = "Longitude on globe. Negatives for southern hemisphere."; };
+                Width = { Name = "width"; Description = "Width of the map. Defaults to 1000. Ignored for Map24 server."; };
+                Height = { Name = "height"; Description = "Height of the map. Defaults to 1000. Ignored for Map24 server."; };
+                Zoom = { Name = "zoom"; Description = "Zoom factor. Defaults to 3. Ignored for Map24 server."; };
+            };
+            UnnamedArgument = { Description = "The Name of the Server. Eg. Map24, TerraServer (Map), Expedia (Europe) etc."; };
+        };
+        SelectNetworkAtIndex = {
+            Name = selectNetworkAtIndex; 
+            Description = "selects a network at a certain index number";
+            UnnamedArgument = { Description = "The index to be selected."; };
+        }; 
+        SelectNetworkWithBSSID = {
+            Name = selectNetworkWithBSSID; 
+            Description = "selects a network with a given bssid";
+            UnnamedArgument = { Description = "The BSSID."; };
+        }; 
+        NetworkCount = {
+            Name = networkCount;
+            Description = "the number of available networks";
+        };
+        BruteforceNewsham = {
+            Name = bruteforceNewsham;
+            Description = "start a newsham attack against the selected network";
+        };
+        Bruteforce40bitLow = {
+            Name = bruteforce40bitLow;
+            Description = "start an attack against a 40-bit network";
+        };
+        Bruteforce40bitAlpha = {
+            Name = bruteforce40bitAlpha;
+            Description = "start an attack against a 40-bit network";
+        };
+        Bruteforce40bitAll = {
+            Name = bruteforce40bitAll;
+            Description = "start an attack against a 40-bit network";
+        };
+        Wordlist40bitApple = {
+            Name = wordlist40bitApple;
+            Description = "start a wordlist attack against a 40-bit apple network";
+            UnnamedArgument = { Description = "The Wordlist to use. Words separated by newlines."; };
+        };
+        Wordlist104bitApple = {
+            Name = wordlist104bitApple;
+            Description = "start a wordlist attack against a 104-bit apple network";
+            UnnamedArgument = { Description = "The Wordlist to use. Words separated by newlines."; };
+        };
+        Wordlist104bitMD5 = {
+            Name = wordlist104bitMD5;
+            Description = "start a wordlist attack against a 104-bit generic network";
+            UnnamedArgument = { Description = "The Wordlist to use. Words separated by newlines."; };
+        };
+        WordlistWPA = {
+            Name = wordlistWPA;
+            Description = "start a wordlist attack against a WPA-PSK protected network";
+            UnnamedArgument = { Description = "The Wordlist to use. Words separated by newlines."; };
+        };
+        WordlistLEAP = {
+            Name = wordlistLEAP;
+            Description = "start a wordlist attack against a Cisco LEAP protected network";
+            UnnamedArgument = { Description = "The Wordlist to use. Words separated by newlines."; };
+        };
+        WeakSchedulingAttack = {
+            Name = weakSchedulingAttack;
+            Description = "Performs a weak scheduling attack. Requires a lot of data packets to succeed.";
+            Arguments = {
+                KeyID = { Name = "keyID"; Description = "Selects the key ID to attack. Defaults to 0."; };
+                KeyLen = { Name = "keyLen"; Description = "Length of the WEP key in bytes. Must be 5 for 40-bit or 13 for 104-bit attack. Defaults to 13."; };
+            };
+        };
+        ShowNetworksInMap = {
+            Name = showNetworksInMap;
+            Description = "set whether networks are shown in the map view";
+            UnnamedArgument = { Description = "show or not ;)"; };        
+        };
+        ShowTraceInMap = {
+            Name = showTraceInMap;
+            Description = "set whether the trace is shown in the map view";
+            UnnamedArgument = { Description = "show or not ;)"; };        
+        };
+        SetCurrentPosition = {
+            Name = setCurrentPosition;
+            Description = "sets KisMACs current GPS position";
+            Arguments = {
+                Latitude = { Name = "latitude"; Description = "Latitude on globe. Negatives for western hemisphere."; };
+                Longitude = { Name = "longitude"; Description = "Longitude on globe. Negatives for southern hemisphere."; };
+            };
+        };
+        SetWaypoint = {
+            Name = setWaypoint;
+            Description = "sets a waypoint in KisMAC";
+            Arguments = {
+                Latitude = { Name = "latitude"; Description = "Latitude on globe. Negatives for western hemisphere."; };
+                Longitude = { Name = "longitude"; Description = "Longitude on globe. Negatives for southern hemisphere."; };
+                X = { Name = "x"; Description = "X Position of the pixel on the unscaled map."; };
+                Y = { Name = "y"; Description = "Y Position of the pixel on the unscaled map."; };
+            };
+            UnnamedArgument = { Description = "The selected waypoint. Currently this must be 1 or 2."; };
+        };
+        Busy = {
+            Name = busy;
+            Description = "Returns true if there is an asynchronous operation still taking place";
+        };
+    };
+}

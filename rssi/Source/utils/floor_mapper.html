@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <script src="../libs/jquery.js"></script>
+    <script src="../libs/underscore.js"></script>
+    <link rel="stylesheet" href="../libs/css/jquery-ui.min.css">
+    <script src="../libs/jquery-ui.js"></script>
+
+    <script>
+        $(function () {
+            $('#floorFitter').draggable()
+            $('#floorFitter').resizable()
+        })
+
+    </script>
+
+    <style>
+        #floor {
+            border: solid 1px #000000;
+            /*background-image: url(../images/floor_twist_2.png);*/
+            /*background-image: url(../images/floor_twist_3.png);*/
+            /*background-image: url(../images/floor_twist_4.png);*/
+            /*background-image: url(../images/floor_ilab_1.png);*/
+            background-image: url(../images/floor_ilab_2.png);
+            width: 960px;
+            height: 460px;
+            background-size: 100% 100%;
+        }
+
+        #floorFitter {
+            position: relative;
+            background-color: red;
+            opacity: 0.5;
+            width: 100px;
+            height: 100px;
+        }
+
+        .t2 {
+            background-color: red;
+            opacity: 0.5;
+            left: 67px;
+            top: 38px;
+            position: absolute;
+            height: 360px;
+            width: 782px;
+
+            /*
+            x_30_units = 782px
+            x_1_unit =  782 / 30 = 26.07
+            y_15_units = 360px
+            y_1_unit =  360 / 15 = 24
+            */
+
+            /*
+            5m = 150.67px
+            left: 20px;
+            top: 23px;                        
+            x_25_units = 736.67px
+            x_1_unit =  736.67 / 25 = 29.47
+            y_15_units = 411.67px
+            y_1_unit =  411.67 / 15 = 27.45            
+            */
+        }
+
+        .t3 {
+            position: absolute;
+            background-color: red;
+            opacity: 0.5;
+            left: 40px;
+            top: 34px;
+            height: 339px;
+            width: 778px;
+
+            /*
+            x_30_units = 778px
+            x_1_unit =  778 / 30 = 25.9
+            y_15_units = 339px
+            y_1_unit =  339 / 15 = 22.6
+            */
+
+            /*
+            left: 22px;
+            top: 21px;
+            
+            x_25_units = 733.67px
+            x_1_unit =  733.67 / 25 = 29.35
+            y_15_units = 416.67px
+            y_1_unit =  416.67 / 15 = 27.78
+            */
+        }
+
+        .t4 {
+            position: absolute;
+            background-color: red;
+            opacity: 0.5;
+            left: 40px;
+            top: 28px;
+            position: absolute;
+            height: 370px;
+            width: 807px;
+
+            /*
+            x_30_units = 807px
+            x_1_unit =  807 / 30 = 26.9
+            y_15_units = 370px
+            y_1_unit =  370 / 15 = 24.6
+            */
+
+            /*
+            left: 22px;
+            top: 21px;
+            
+
+            x_25_units = 733.4px
+            x_1_unit =  733.4 / 25 = 29.34
+            y_15_units = 418.4px
+            y_1_unit =  418.4 / 15 = 27.9
+
+            
+            */
+        }
+
+        .ilab1 {
+            background-color: red;
+            opacity: 0.5;
+            left: 15px;
+            top: 50px;
+            position: absolute;
+            width: 944px;
+            height: 412px;
+
+            /*
+            x_51_units = 944px - 30px
+            x_1_unit =  914 / 51 = 17.92
+            y_15_units = 412 -50 - 15
+            y_1_unit =  347 / 15 = 23.13
+            */
+
+            /*
+            left: 15px;
+            top: 20px;
+
+            width: 948px;
+            x_units =  948 / 57.5 = 16.49
+            y_unit = 415 / 16.8 = 24.7
+            height: 415px;
+            */
+
+        }
+
+        .ilab2 {
+            background-color: red;
+            opacity: 0.5;
+            left: 15px;
+            top: 50px;
+            position: absolute;
+            width: 944px;
+            height: 412px;
+
+
+            /*
+            left: 43px;
+            top: 55px;
+
+            width: 918;
+            x_units =  918 / 52.5 = 17.48
+            y_unit = 387 / 16.5 = 23.45
+            height: 387;
+            */
+
+        }
+
+    </style>
+
+
+</head>
+<body>
+
+<div id="floor">
+    <!--<div class="t2"></div>-->
+    <!--<div class="t3"></div>-->
+    <!--<div class="t4"></div>-->
+    <!--<div class="ilab"></div>-->
+    <div id="floorFitter" class="ui-widget-content"></div>
+</div>
+
+
+</body>
+</html>

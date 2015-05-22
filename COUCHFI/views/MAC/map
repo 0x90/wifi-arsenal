@@ -1,0 +1,13 @@
+function(doc) {
+    if(doc.networks&&doc.networks.length>0){
+    	if(doc.point&&doc.point.acc&&doc.point.acc<100){
+        doc.networks.forEach(function(m){
+            var out ={geometry:doc.point.geometry};
+            out.strength=m.strength;
+            out.SSID=m.SSID;
+            out.MAC=m.MAC;
+            emit(m.MAC,out);
+        })
+    }
+    }
+}

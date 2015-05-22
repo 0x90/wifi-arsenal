@@ -1,0 +1,106 @@
+.\" $Id: $
+.TH LORCON 3 "12 Sep 2009"
+.SH NAME
+LORCON \- 802.11 Wireless Packet Injection Library
+.SH SYNOPSIS
+.nf
+.ft B
+#include <lorcon2/lorcon.h>
+#include <lorcon2/lorcon_packet.h>
+.ft
+.LP
+.nf
+.ft B
+typedef void (*lorcon_handler)(lorcon_t *, lorcon_packet_t *, u_char *user);
+.ft
+.LP
+.ft B
+const char *lorcon_get_error(lorcon_t *context)
+.ft
+.LP
+.ft B
+lorcon_driver_t *lorcon_list_drivers()
+lorcon_driver_t *lorcon_find_driver(const char *driver)
+lorcon_driver_t *lorcon_auto_driver(const char *interface)
+void lorcon_free_driver_list(lorcon_driver_t *listhead)
+.ft
+.LP
+.ft B
+lorcon_t *lorcon_create(const char *interface, lorcon_driver_t *driver)
+voir lorcon_close(lorcon_t *context)
+void lorcon_free(lorcon_t *context)
+.ft
+.LP
+.ft B
+int lorcon_open_inject(lorcon_t *context)
+int lorcon_open_monitor(lorcon_t *context)
+int lorcon_open_injmon(lorcon_t *context)
+.ft
+.LP
+.ft B
+void lorcon_set_vap(lorcon-t *context, const char *vap)
+const char *lorcon_et_vap(lorcon_t *context)
+const char *lorcon_get_capiface(lorcon_t *context)
+const char *lorcon_get_driver_name(lorcon_t *context)
+.ft
+.LP
+.ft B
+int lorcon_get_datalink(lorcon_t *context)
+int lorcon_set_datalink(lorcon_t *context, int dlt)
+.ft
+.LP
+.ft B
+int lorcon_get_channel(lorcon_t *context)
+int lorcon_set_channel(lorcon_t *context, int channel)
+.ft
+.LP
+.ft B
+pcap_t *lorcon_get_pcap(lorcon_t *context)
+int lorcon_get_selectable_fd(lorcon_t *context)
+.ft
+.LP
+.ft B
+int lorcon_next_ex(lorcon_t *context, lorcon_packet_t **packet)
+.ft
+.LP
+.ft B
+int lorcon_set_filter(lorcon_t *context, const char *filter)
+int lorcon_loop(lorcon_t *context, int count, lorcon_handler callback, u_char *user)
+int lorcon_dispatch(lorcon_t *context, int count, lorcon_handler callback, u_char *user)
+void lorcon_breakloop(lorcon_t *context);
+.ft
+.LP
+.ft B
+int lorcon_send_bytes(lotcon_t *context, int length, u_char *bytes)
+int lorcon_inject(lorcon_t *context, lorcon_packet_t *packet)
+.ft
+.ft B
+lorcon_packet_t *lorcon_packet_from_pcap(struct lorcon *context, const struct pcap_pkthdr *h, const u_char *bytes)
+lorcon_packet_t *lorcon_packet_from_dot3(u_char *bssid, int dot11_direction, u_char *data, int length)
+.ft
+.fi
+
+.SH DESCRIPTION
+
+LORCON - Loss Of Radio CONnectivity
+.LP
+The LORCON packet library provides a higher-level interface to transmit and
+process wireless packets.  
+
+.PP
+.SH AUTHORS
+.LP
+Joshua Wright <jwright@hasborg.com>
+.LP
+Mike Kershaw <dragorn@kismetwireless.net>
+.LP
+
+.SH BUGS
+Please send problems, bugs, questions, desirable enhancements, patches and source code contributions to:
+.LP
+.RS
+lorcon@802.11ninja.net
+
+.SH RESOURCES
+Please see http://802.11ninja.net/lorcon for updates to LORCON, documentation and the bug database.
+.RE

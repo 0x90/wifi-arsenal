@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/nims11/hostapd.py
+	branch = master
+	commit = 14fb5533031702989e9785180e2547772628eb40
+	parent = f6d90b6770a3fb3d2090da5c8ff5112a3eb815e3
+	cmdver = 0.2.0

@@ -1,0 +1,22 @@
+function(keys, values,rr) {
+
+	if(rr){
+		function rred(a,b){
+			b.forEach(function(v){
+				if(a.indexOf(v)===-1&&a.length<10){
+					a.push(v);
+				}
+			});
+		return a;
+		}
+	return values.reduce(rred);
+	}else{
+		function r(a,b){
+			if(a.indexOf(b)===-1&&a.length<10){
+				a.push(b);
+			}
+			return a;
+		}
+   return values.reduce(r,[]);
+	}
+}

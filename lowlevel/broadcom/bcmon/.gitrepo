@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/0x90/bcmon
+	branch = master
+	commit = 46a676339097e10ea24cafe09c116e891c5d49bc
+	parent = 631699d1c451639e0bc9484ac5730d3b1dbe7e3e
+	cmdver = 0.2.0

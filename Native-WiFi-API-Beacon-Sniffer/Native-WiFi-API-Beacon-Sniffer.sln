@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C++ Express 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Native-WiFi-API-Beacon-Sniffer", "Native-WiFi-API-Beacon-Sniffer\Native-WiFi-API-Beacon-Sniffer.vcxproj", "{7E5388F0-5F6D-465B-869E-280544773044}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7E5388F0-5F6D-465B-869E-280544773044}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7E5388F0-5F6D-465B-869E-280544773044}.Debug|Win32.Build.0 = Debug|Win32
+		{7E5388F0-5F6D-465B-869E-280544773044}.Release|Win32.ActiveCfg = Release|Win32
+		{7E5388F0-5F6D-465B-869E-280544773044}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,53 @@
+#!/bin/bash
+#usage: test basic cases in config.py for online algos.
+VER=0.1
+
+Version ()
+{
+    cat <<VER
+
+GNU `basename $0` version $VER, by Yan Xiaotian
+Built on i686-ubuntu-linux-gnu
+Copyright (C) `date +%Y` Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.
+There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.
+
+Report bugs to <xiaotian.yan@gmail.com>.
+
+VER
+    exit 0
+}
+Usage()
+{
+	cat <<HELP
+
+algotest -- algo basic case test script.
+
+USAGE: algotest [OPTION] ...
+EXAMPLE:
+# record out/err log in all.log.
+[prompt] algotest >all.log 2>&1
+
+HELP
+	exit 0
+}
+
+algonums=35
+pathout=log/out
+patherr=log/err
+timestamp=`date +%Y-%m%d-%H%M`
+cmdname="python online.py"
+
+[ -d $patherr ] || mkdir -p $patherr
+[ -d $pathout ] || mkdir -p $pathout
+errf=$patherr/algotest-$timestamp.err
+outf=$pathout/algotest-$timestamp.out
+allf=$pathout/algotest-$timestamp.log
+for i in $(seq $algonums) 
+do
+	echo -e "\n*****TEST [$i]*****"
+	cmdargs="-v -a 2 -f $i"
+	#($cmdname $cmdargs 2>&1 1>&3 |tee -a $errf) 3>&1 1>&2 |tee -a $outf
+	$cmdname $cmdargs >$allf 2>&1 
+done

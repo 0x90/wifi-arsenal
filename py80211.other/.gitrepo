@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/arend/py80211
+	branch = master
+	commit = 4f6ef735d96bddc24a0090af8876bb20a84fb3ff
+	parent = 23745e6b9c8810d4a7e3e978db6c52d96448f911
+	cmdver = 0.2.0

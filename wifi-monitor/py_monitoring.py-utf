@@ -1,0 +1,244 @@
+#! /usr/bin/env python
+
+import sys
+import pcap
+import string
+import time
+import socket
+import struct
+import getopt
+
+SNR_FITLER = False
+
+try:
+   optlist, args = getopt.getopt(sys.argv[1:], "i:t:d:s:", longopts=["interface=", "threshold=", "src-addr=", "dst-addr="])
+except getopt.GetoptError:
+   sys.exit(0)
+
+for opt, args in optlist:
+   if opt in ("-i", "--interface"):
+       interface = args
+   if opt in ("-t", "--threshold"):
+       snr_threshold = args
+       SNR_FILTER = True
+   if opt in ("-s", "--src-addr"):
+       src_addr = args
+   if opt in ("-d", "--dst-addr"):
+       dst_addr = args
+
+protocols = { socket.IPPROTO_TCP:'tcp',
+              socket.IPPROTO_UDP:'udp',
+              socket.IPPROTO_ICMP:'icmp'}
+
+BITRATE = 18
+CHANNEL_FREQ = 19 # 19, 20
+SSISIGNAL = 26
+
+FILTER_RADIOTAP = { BITRATE:BITRATE,
+                    CHANNEL_FREQ:CHANNEL_FREQ,
+                    SSISIGNAL:SSISIGNAL}
+
+SUBTYPE = 27
+RETRY_FLAG = 28
+DST_ADDR = 31 # 31 - 36
+SRC_ADDR = 37 # 37 - 42
+BSSID = 43 # 43 - 48
+
+FILTER_IEEE_DATA = { SUBTYPE:SUBTYPE,
+                     RETRY_FLAG:RETRY_FLAG,
+                     DST_ADDR:DST_ADDR,
+                     SRC_ADDR:SRC_ADDR,
+                     BSSID:BSSID}
+
+FILTER_RX = { SRC_ADDR:FILTER_IEEE_DATA[SRC_ADDR],
+              DST_ADDR:FILTER_IEEE_DATA[DST_ADDR],
+              SSISIGNAL:FILTER_RADIOTAP[SSISIGNAL],
+              SUBTYPE:FILTER_IEEE_DATA[SUBTYPE],
+              BITRATE:FILTER_RADIOTAP[BITRATE],
+              RETRY_FLAG:FILTER_IEEE_DATA[RETRY_FLAG]}
+
+##### FROME HERE, CLASS DEFINITION
+class FrameFilter(object):
+    def __init__(self):
+        super(FrameFilter, self).__init__()
+        
+        self.rules = []
+        self.rate = []
+        self.rt = 0
+        
+
+    def set_rules(self, rule):
+        """docstring for set_rules"""
+        self.rules.append(rule)
+
+    def filter_data(self, raw):
+        if not raw[27:28] == '\x80':
+            return
+
+    def filter_rx(self, paketlen, raw, timestamp):
+        """docstring for filter_rx"""
+
+        self.filter_data(raw)
+        
+        print "", raw[FILTER_RX[SRC_ADDR]]
+        print "", raw[FILTER_RX[SRC_ADDR] + 1]
+        print "", raw[FILTER_RX[SRC_ADDR] + 2]
+        print "", raw[FILTER_RX[SRC_ADDR] + 3]
+        print "", raw[FILTER_RX[SRC_ADDR] + 4]
+        print "", raw[FILTER_RX[SRC_ADDR] + 5]
+
+        print string.join(raw[FILTER_RX[SRC_ADDR]:FILTER_RX[SRC_ADDR] + 6], ':')
+        if cmp(string.join(raw[FILTER_RX[SRC_ADDR]:FILTER_RX[SRC_ADDR] + 6], ':'), src_addr) == 0:
+            pass
+        else:
+            print "FILTERD by SRC_ADDR"
+            return 0
+        
+        if cmp(string.join(raw[FILTER_RX[DST_ADDR]:FILTER_RX[DST_ADDR] + 6], ':'), dst_addr) == 0:
+            pass
+        else:
+            print "FILTERD by DST_ADDR"
+            return 1
+
+        if ord(raw[FILTER_RX[SUBTYPE]]) == chr(0x08):
+            pass
+        else:
+            print "FILTERD by TYPE"
+            return 2
+
+        if SNR_FILTER and raw[FILTER_RX[SSISIGNAL]] > SNR_THRESHOLD:
+            pass
+        elif not SNR_FILTER:
+            pass
+        else:
+            print "FILTERD by SNR"
+            return 3
+       
+        if raw[FILTER_RX[BITRATE]] == 0:
+            print "FILTERD by BITRATE"
+            return 4
+        else:
+            self.rate.append(raw[FILTER_RX[BITRATE]])
+
+        if raw[FILTER_RX[RETRY_FLAG]] == 1:
+            self.rt += 1
+
+    def filter_tx(self, raw):
+        """docstring for filter_tx"""
+        pass
+    
+    def print_filter(self):
+        print "retransmission count:", self.rt
+        print "bitrate average:", self.rate
+
+def decode_radiotap_frame(s):
+    d={}
+
+    return d
+
+
+
+##--------------------------------------------------------------------------
+## FUNCTION  : decode_ip_packet, dumphex, print_ip_packet
+## PURPOSE   : capture and print TCP, UDP, ICMP packets
+## ARGUMENTS : 
+## RETURN    : 
+## External Library : pcap
+##--------------------------------------------------------------------------
+def decode_ip_packet(s):
+    d={}
+    d['version']=(ord(s[0]) & 0xf0) >> 4
+    d['header_len']=ord(s[0]) & 0x0f
+    d['tos']=ord(s[1])
+    d['total_len']=socket.ntohs(struct.unpack('H',s[2:4])[0])
+    d['id']=socket.ntohs(struct.unpack('H',s[4:6])[0])
+    d['flags']=(ord(s[6]) & 0xe0) >> 5
+    d['fragment_offset']=socket.ntohs(struct.unpack('H',s[6:8])[0] & 0x1f)
+    d['ttl']=ord(s[8])
+    d['protocol']=ord(s[9])
+    d['checksum']=socket.ntohs(struct.unpack('H',s[10:12])[0])
+    d['source_address']=pcap.ntoa(struct.unpack('i',s[12:16])[0])
+    d['destination_address']=pcap.ntoa(struct.unpack('i',s[16:20])[0])
+    if d['header_len']>5:
+        d['options']=s[20:4*(d['header_len']-5)]
+    else:
+        d['options']=None
+    d['data']=s[4*d['header_len']:]
+    return d
+
+
+def dumphex(s):
+    bytes = map(lambda x: '%.2x' % x, map(ord, s))
+    for i in xrange(0,len(bytes)/16):
+        print '        %s' % string.join(bytes[i*16:(i+1)*16],' ')
+    print '        %s' % string.join(bytes[(i+1)*16:],' ')
+        
+
+def print_packet(pktlen, data, timestamp):
+    if not data:
+        return
+
+    if data[12:14]=='\x08\x00':
+        decoded=decode_ip_packet(data[14:])
+        print '\n%s.%f %s > %s' % (time.strftime('%H:%M',
+                                time.localtime(timestamp)),
+                                timestamp % 60,
+                                decoded['source_address'],
+                                decoded['destination_address'])
+        for key in ['version', 'header_len', 'tos', 'total_len', 'id',
+                                'flags', 'fragment_offset', 'ttl']:
+            print '    %s: %d' % (key, decoded[key])
+        print '    protocol: %s' % protocols[decoded['protocol']]
+        print '    header checksum: %d' % decoded['checksum']
+        print '    data:'
+        dumphex(decoded['data'])
+ 
+
+if __name__=='__main__':
+
+    if len(sys.argv) < 2:
+        print 'usage: monitoring_py.py -i <interface> -s <src_address> -d <dst_address> [ -t <SNR_theshold> ]'
+        sys.exit(0)
+
+    f = FrameFilter()
+    p = pcap.pcapObject()
+
+    #dev = pcap.lookupdev()
+    dev = interface
+    #net, mask = pcap.lookupnet(dev)
+
+    # note:    to_ms does nothing on linux
+    p.open_live(dev, 1600, 0, 100)
+    #p.dump_open('dumpfile')
+
+    #p.setfilter(string.join(sys.argv[2:],' '), 0, 0)
+    
+    packet = p.next()
+    print "FIRST", packet[0]
+    print "FIRST", packet[1]
+    print "FIRST", packet[2]
+
+    # try-except block to catch keyboard interrupt.    Failure to shut
+    # down cleanly can result in the interface not being taken out of promisc.
+    # mode
+    #p.setnonblock(1)
+    try:
+        while 1:
+        #    p.dispatch(1, print_packet)
+
+        # specify 'None' to dump to dumpfile, assuming you have called
+        # the dump_open method
+        #    p.dispatch(0, None)
+
+        # the loop method is another way of doing things
+        #    p.loop(1, print_packet)
+
+        # as is the next() method
+        # p.next() returns a (pktlen, data, timestamp) tuple 
+            apply(f.filter_rx,p.next())
+            f.print_filter()
+
+    except KeyboardInterrupt:
+        print '%s' % sys.exc_type
+        print 'shutting down'
+        print '%d packets received, %d packets dropped, %d packets dropped by interface' % p.stats()

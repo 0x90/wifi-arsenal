@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/atimorin/karma
+	branch = master
+	commit = 7399a35e825cc200f8bdf78fa8bd1725b237bc64
+	parent = 4634540949632519e980ab949f5c88ac06aaaaf4
+	cmdver = 0.2.0

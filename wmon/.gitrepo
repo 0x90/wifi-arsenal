@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/wmon/wmon
+	branch = master
+	commit = bd743c9a172ad0eba14e11310b7d90dc995b2f82
+	parent = 979cb06779a604ad6c47389dade7b8f75c25cbf3
+	cmdver = 0.2.0

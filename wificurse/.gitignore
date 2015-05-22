@@ -1,0 +1,7 @@
+*.o
+*~
+.*
+\#*#
+!.gitignore
+/TAGS
+/wificurse

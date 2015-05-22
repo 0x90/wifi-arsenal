@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/mcgrof/crda
+	branch = master
+	commit = 2019d7085c8b4dea3bb22f13e168fe4a8844e5ba
+	parent = c12555376cdb90fc05f270279401171060405842
+	cmdver = 0.2.0

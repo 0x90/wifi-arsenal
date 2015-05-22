@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/tadashi/wifi-monitor
+	branch = master
+	commit = f0ae1a1dce82e5faf6342775dbdee288d5755d7a
+	parent = 5cf740dd5b6a0881e70af98e6c457cbe9034eb97
+	cmdver = 0.2.0

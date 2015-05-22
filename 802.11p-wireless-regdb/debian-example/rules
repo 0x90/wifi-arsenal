@@ -1,0 +1,10 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+
+PREFIX = /usr
+CRDA_LIB ?= $(PREFIX)/lib/crda
+
+install/wireless-regdb::
+	install -o 0 -g 0 -m 755 -d debian/$(cdbs_curpkg)/$(CRDA_LIB)
+	install -o 0 -g 0 -m 644 regulatory.bin debian/$(cdbs_curpkg)/$(CRDA_LIB)/regulatory.bin

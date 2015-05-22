@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<!--
+  -- KARMA configuration file that runs rogue DHCP, DNS, and HTTP
+  -- services on an existing network connection.  The HTTP service
+  -- redirects all requests to the ExampleWebExploit module that
+  -- displays a simple HTML page.
+  -->
+
+<karma>
+
+  <option module="NETWORK-INTERFACE" name="interface" value="ath0"/>
+
+  <!-- Run modules -->
+  <run module="NETWORK-INTERFACE"/>
+  <run module="DHCP-SERVER"/>
+  <run module="POP3-SERVER"/>
+  <run module="FTP-SERVER"/>
+  <run module="CONTROLLER-SERVLET"/>
+  <run module="EXAMPLE-WEB-EXPLOIT"/>
+
+</karma>

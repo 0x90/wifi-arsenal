@@ -1,0 +1,36 @@
+#!/bin/bash
+if [ -z "$1" ] || [ -z "$2" ]; then
+  echo "This script can open reaver session file if you don't know it's path";
+  echo "You just need to know MAC ADDRESS of the access point, and give the PROGRAM name in which you want to open it";
+  echo "Opening command will be validated as: eval [PROGRAM] [SESSION FILE PATH]";
+  echo "Usage: $0 [PROGRAM] [MAC ADDRESS]";
+  echo "Ex: $0 kwrite 00:12:34:AA:BB:CC";
+  echo "WARNING! Program includes configurationSettings (autoReaver configuration file), and gets reaver session dir path from its settings";
+  exit
+fi
+
+isValidMac(){
+  if [[ ! -z "$(echo $1 | grep -i -P ^[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}$)" ]]; then
+    echo 1;
+  else 
+    echo 0;
+  fi
+}
+
+CUR_PROGRAM=$1;
+CUR_MAC=$2;
+if [ $(isValidMac "$CUR_MAC") == "0" ]; then
+    echo "Wrong MAC ADDRESS, make sure it's valid like: AA:BB:CC:DD:EE:FF";
+    exit;
+fi;
+CLEAR_MAC=$(echo $CUR_MAC | sed s/://g);
+source $(pwd)/configurationSettings
+CUR_FILE=$REAVER_SESSION_DIR'/'$CLEAR_MAC'.wpc';
+if [[ ! -f "$CUR_FILE" ]]; then
+    echo "$CUR_FILE does not exist";
+    exit;
+fi
+echo "Evaluating command: $CUR_PROGRAM $CUR_FILE";
+eval "$CUR_PROGRAM $CUR_FILE";
+
+

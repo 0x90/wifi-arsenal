@@ -1,0 +1,11 @@
+//
+// Prefix header for all source files of the 'GLCocoa' target in the 'GLCocoa' project.
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <AppKit/AppKit.h>
+    #import <OpenGL/gl.h>
+    #import <OpenGL/glext.h>
+    #import <OpenGL/glu.h>
+#endif

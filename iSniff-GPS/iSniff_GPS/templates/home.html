@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block head %}
+<script>
+function initialize() {
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<h2>Hi</h2>
+{%if devicecount%}<h3>Total: {{devicecount}}</h3>{%endif%}
+
+{% endblock %}

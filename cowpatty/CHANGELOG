@@ -1,0 +1,20 @@
+Noc 02 2004  Changed name to coWPAtty, thanks T. Brian Granier for the tip.
+Oct 12 2004  Fixed bug that occured from the lack of a multicast key delivery
+             following the four-way handshake.  Thanks Seth Fogie for the caps.
+Sep 22 2004  Fixed bug in parsing frames that caused the SPA to be incorrectly
+             reported.
+Sep 12 2004  Removed code to load words into memory before processing.  Added
+             functionality to read words from STDIN to interoperate with John
+             the Ripper or other tools.
+Aug 21 2004  Fixed logic to handle incomplete four-way TKIP exchanges with an
+             error message and exit.
+Aug 20 2004  Added Makefile option to use OpenSSL's SHA1 functions instead of
+             the assembler code - big performance boost from 4.2 to 9.09
+             passphrases/second.  P4 3GHz gets ~47.4 passphrases/second.
+Aug 19 2004  Optimized hmac-sha1 handling specific to pbdfk2 by caching
+             repetitive values.  Resulted in 25% performance gain.
+Aug 18 2004  Load words into memory instead of reverting to a read for each
+             new word.  Minor performance gain.
+Aug 11 2004  Merged patch from dragorn to use i386-optimized code from Ted 
+             Krovetz.  My system's performance went from 2.37 passphrases/sec to
+             3.13/sec.  Thanks dragorn!

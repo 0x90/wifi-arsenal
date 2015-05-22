@@ -1,0 +1,38 @@
+#!/usr/bin/perl -w
+#
+# This needed to be a sep app to minimize lag.
+#
+# Bluetooth is REALLY slow and scanning
+#  but with Net::Bluetooth, the device is actually
+#  found automatically, so that's a plus.
+#
+use Net::Bluetooth;
+if(!$ARGV[0]){
+	print "This is a daemon application and should not be ran alone\n";
+	die;
+}
+if($ARGV[0] eq 'bt'){
+	my $lat = $ARGV[1];
+	my $lon = $ARGV[2];
+	my $chk = `ps aux | grep "/usr/bin/per[l] -w ./wcd bt" | wc -l`;
+	if($chk > 1){ exit; } # why scan twice at the same time?
+	my @bt;
+	my $devs = get_remote_devices();
+	foreach $addr (keys %$devs){
+        	push(@bt,$devs->{$addr}.",".$addr);
+ 	}
+	if($bt[0]){
+		open(FLE,">bt.out");
+		foreach(@bt){
+			chomp $_;
+			$_ =~ s/\t/,/g;
+			print FLE $_ . ", ".$lat.", ".$lon."\n";
+		}
+		close FLE;
+	}
+}else{
+	my $gps = `gpspipe -w | grep -m 1 $ARGV[0]`;
+	open(FLE,">gps.$ARGV[0]");
+	print FLE $gps;
+	close FLE;
+}

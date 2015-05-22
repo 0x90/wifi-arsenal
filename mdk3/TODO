@@ -1,0 +1,72 @@
+MDK3 TODO List
+
+Current version:
+0003
+
+IMPORTANT:
+     SSID Bruteforce reported to not work anymore with osdep!
+DONE Check if ToDS and FromDS bits are set correctly for EVERY attack
+     MAC filter bruteforcer
+DONE channel hopper for amok
+     and authdos attack
+     Add Ace's SSID bruteforce enhancement patch
+      http://tinyshell.be/aircrackng/forum/index.php?topic=1852
+      -> Recognize SSID length 0 and 1 as FULL hidden
+       -> Maybe run a quick 256er to check if the length may really be just 1 byte ;)
+     Add ad-hoc compatibility
+     change from GPLv2 to GPLv2 or later
+
+Unfinished:
+- ZC says: standard auth dos stops after the first 500 and doesnt find another AP
+- standard auth dos should go up to 600 instead of 500 (because 512 kills a lot of people)
+- Intelligent AuthDOS with Shared Key Auth
+- one function for ssid_brute and ssid_brute_real
+- SSID Bruteforce Attack - Memory problem with long wordlists
+DONE                     - Doesnt start sometimes
+-                        - Read Wordlist from stdin
+- CTS control frame flooding (What does a CTS flood cause?)
+- Add support for changing tx speed and tx power to avoid locating the attack (WIDS evasion)
+
+Done:
+DONE auth dos response checker needs packet detection
+DONE get_target_ap should only work on beacon frames!
+DONE APs sending no beacon frames then have to be targetted via -a option
+DONE When faking BSSID on channel X, the adaptor should also send on channel X
+DONE fixing auth dos stopping when not finding new target
+DONE Full Assoc/Auth (like aireplay) DoS
+DONE More variety to beacon parameters (WEP, WPA, Open, 54 MBit, adhoc...)
+DONE Invalid (Beacon) frames generator
+DONE Probe Check doesnt work on rt2570, Driver issue? Fix?
+DONE Fixed Channel in Beacon flood mode
+DONE Fixed MAC in Beacon flood mode
+DONE Single mode (Client/AP) for Amokmode -> Zero's Whitelist mode
+DONE Use random VALID MAC adresses (from OUI database) instead of really random ones.
+WONTDO pcap replay including correct timing. (useful for honeypot, fakeIV) -> use airtun-ng
+DONE Hopping thread for amok mode
+DONE Add Zero_Chaos Makefile
+DONE Add Ace SSID wordlist patch
+DONE Improve SSID wordlist speed (threading), let it sniff one beacon to get SSID length, check if SSID may be just empty and not hidden.
+DONE Add ACK frames to all attacks
+DONE --help option, divide help screen into several pages, or --longhelp for the whole screen
+DONE beacon flood mode with AdHoc, WDS and WPA(2) networks
+DONE blacklist mode, only attack MACs specified
+
+EAP attacks:
+
+DONE 802.11 TKIP MIC Exploit
+     Generating invalid TKIP data to exceed the target AP's MIC error threshold, suspending WLAN service.
+
+DONE 802.1X EAP-Start Flood
+Flooding an AP with EAP-Start messages to consume resources or crash the target.
+
+802.1X EAP-Failure
+Observing a valid 802.1X EAP exchange, and then sending the station a forged EAP-Failure message.
+
+802.1X EAP-of-Death
+Sending a malformed 802.1X EAP Identity response known to cause some APs to crash.
+
+802.1X EAP Length Attacks
+Sending EAP type-specific messages with bad length fields to try to crash an AP or RADIUS server.
+
+Above table was taken from
+http://searchsecurity.techtarget.com/general/0,295582,sid14_gci1167611,00.html?track=wsland

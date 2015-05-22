@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/rizasabuncu/wpspin
+	branch = master
+	commit = 94493989eac7f42852175a425462abf33f08f9b3
+	parent = aee45bff1e6b19982fc4540118082452ca742be4
+	cmdver = 0.2.0

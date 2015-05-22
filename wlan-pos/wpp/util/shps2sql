@@ -1,0 +1,111 @@
+#!/bin/bash
+
+sqlterm=psql
+SHP2SQL=shp2pgsql 	# shape file to sql converter
+opt_srs="-s 4326"	# spatial reference system, default: EPSG 4326(i.e. WGS84)
+
+SCHEMA=gis_schema 	# gis schema for gistemplate in postgis
+dbhost=localhost
+dbname=gisdb
+dbuser=gis
+
+pathout=log/out
+patherr=log/err
+
+#flow control args
+fc_shp2sql=0
+fc_sql2pg=0
+
+Usage()
+{
+	cat <<HELP
+
+`basename $0` -- ERSI Shapefile to PostGIS converter.
+
+USAGE: `basename $0` [OPTION] <input files>
+OPTION: 
+-a <shpfile(s)>   all in one processing(-s and -f)
+-s <shpfile(s)>   generate .sql script only
+-f <script(s)>     execute .sql script to import postgresql tables
+-h                 show this help
+
+EXAMPLE:
+$`basename $0` -s ../*/*.shp
+$`basename $0` -a ../*/*.shp
+$`basename $0` -f *.sql
+
+HELP
+	exit 0
+}
+
+[ $# -eq 0 ] && Usage
+#[ $# -eq 0 ] && echo -e "\nUsage: ${0##*/} <shape files>\n"
+
+while getopts "a:f:hs:" opt; do
+    OPTERR=0 #error msg shutup
+    case $opt in
+        a ) 
+            fc_shp2sql=1 
+            fc_sql2pg=1 
+            shift
+            infiles=$@
+        ;;
+        f ) 
+            fc_shp2sql=0
+            fc_sql2pg=1 
+            shift
+            infiles=$@
+        ;;
+        h ) Usage ;;
+        s ) 
+            fc_shp2sql=1 
+            fc_sql2pg=0
+            shift
+            infiles=$@
+        ;;
+        * )
+			echo -e "\nSorry, BAD or IMCOMPLETE options: '$@' !"
+            Usage
+        ;;
+    esac
+  x=$OPTIND
+done
+
+[ $fc_shp2sql -eq 0 -a $fc_sql2pg -eq 0 ] && Usage
+
+# infile may be shp or sql
+for infile in $infiles
+do
+    echo 
+    if [ ! -f $infile ]; then echo -e "Error: '$infile' NOT exist!\n"; exit 99; fi
+    path=${infile%/*}
+    fullname=${infile##*/}		    # <filename>.shp
+    mainname=${fullname%\.*} 	# <filename> - might contains '.'
+    tabname=${fullname%%\.*} 	# ensure that table name contains no '.'
+    echo -n "Coverting $fullname..."
+
+    if [ $fc_shp2sql -eq 1 ]; then 
+        isGBencoded=`enca $path/$mainname.dbf |grep "Chinese"`
+        # Pbeijing also needs GBK encoding, whose dBASE contains chinese chars
+        if [ ! "$isGBencoded" = '' -o "$mainname" = "Pbeijing" ]; then 
+            opt_enc='-W "GBK"' 
+            echo -n "altering encoding: ${opt_enc#*' '}..."
+        else 
+            opt_enc='' 
+        fi
+        $SHP2SQL -I $opt_srs $opt_enc $path/$fullname $SCHEMA.$tabname > $mainname.sql
+    fi
+
+    if [ $fc_sql2pg -eq 1 ]; then 
+        timestamp=`date +%Y-%m%d-%H%M`
+        [ -d $patherr ] || mkdir -p $patherr
+        [ -d $pathout ] || mkdir -p $pathout
+        errf=$patherr/$mainname-$timestamp.err
+        outf=$pathout/$mainname-$timestamp.out
+        # redirect std out/err to different places
+        ($sqlterm -h $dbhost -d $dbname -U $dbuser -f $mainname.sql \
+            2>&1 1>&3 | tee -a $errf) \
+            3>&1 1>&2 | tee -a $outf
+    fi
+    echo 'Done'
+done

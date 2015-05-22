@@ -1,0 +1,80 @@
+.accessPoint{
+	display:block;
+	white-space:nowrap;
+}
+.accessPoint  *:not(.connectedClients) {
+	display:inline;
+	margin: 10px;
+}
+.accessPoint .connectedClients{
+	display:block;
+        background: red;
+}
+
+.client{
+
+}
+.connectedClients{
+	display:block;
+	margin-left: 30px;	
+	background: red;	
+}
+//Example of subclass reference
+.accessPoint .something{
+
+}
+
+.lts{
+	
+}
+
+.ssid{
+
+}
+
+.fts{
+
+}
+
+.name{
+
+}
+
+.bssid{
+
+}
+
+.encryption{
+
+}
+
+.connectedClients{
+
+}
+
+.oui{
+
+}
+
+.cipher{
+
+}
+
+.essid{
+
+}
+
+.rssi{
+
+}
+
+.hidden{
+
+}
+
+.bcast{
+
+}
+
+.channel{
+}

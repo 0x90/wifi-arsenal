@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/lostincynicism/FuzzAP
+	branch = master
+	commit = f13932c0bdf1374b0519fde2eb0d215069dcd35d
+	parent = dbc11c3b5e3f95baed6d3f90116545412e767540
+	cmdver = 0.2.0

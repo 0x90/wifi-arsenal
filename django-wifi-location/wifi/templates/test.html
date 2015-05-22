@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+        <title>Manager Login</title>
+        <link rel="stylesheet" type="text/css" href="login.css">
+        <link href="assets/css/bootstrap.css" rel="stylesheet">
+        <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+
+        <style type="text/css">
+            header, .header, #header{
+                font-size: 200%;
+                font-weight: 50;
+                margin: 20px 20px 20px 20px;
+                line-height: 22px;
+            }
+            container, .container, #container{
+                width: 500px;
+                color: blue;
+                background-color: white;
+                border: 3px solid blue;
+            }
+        </style>
+    </head>
+
+<center>
+
+<div id="login-page" class="container" style="position: absolute; top:200px; left:400px;">
+    <div id="login-message" class="header"></div>
+    <div id="errmsg" style="color: red;"></div>
+    <center>
+        <form class="form-signin" method="post">
+            <input id="login-username" type="text" name="username" placeholder="Username"><br>
+            <input id="login-password" type="password" name="pwd" placeholder="Password"><br>
+            <button id="login-button" class="btn btn-primary">Login</button>
+        </form>
+    </center>
+
+</div>
+</center>
+
+<script type="text/javascript">
+
+function loginPage(message){
+    if (! message){
+        message = "Please enter your credentials below";
+    }
+    $('#login-username').val("");
+    $('#login-password').val("");
+    $('#login-message').html(message);
+    $('#login-page').show();
+}
+
+function handleResponse(data){
+    console.log(data);
+    if (data.command == 'login'){
+        if (data.loginResult == 'true'){
+            window.location = "/home";
+        } else {
+            jQuery("#errmsg").html("Incorrect username/password.");
+        }
+    }
+}
+
+function clickButton(command, username, password) {
+    if (command == 'login') {
+        url = "/login/managerLogin";
+    } else if (command == 'add'){
+        url = "/login/managerAdd";
+    } else if (command == 'logout'){
+        url = "/login/managerLogout";
+    }
+    $.ajax({
+        type: 'POST',
+        url: "http://10.10.67.197:8000/wifi/add_fingerprint",
+        data: {"fingerprint": "test"},
+        contentType: "application/json",
+        dataType: "json",
+        success: function(data) {alert("success")},
+        error: function(err) { console.log(err);}
+    });
+}
+
+$('#login-button').click(function() {
+    username = $('#login-username').val();
+    password = $('#login-password').val();
+    clickButton('login', username, password);
+    return false;
+});
+
+$('#add-manager-button').click(function() {
+    username = $('#login-username').val();
+    password = $('#login-password').val();
+    clickButton('add', username, password);
+    return false;
+});
+
+$('#logout-button').click(function() {
+    loginPage();
+    return false;
+});
+    
+$(document).ready(function() {
+    loginPage();
+});
+
+</script>
+
+<body>
+</body>
+</html>

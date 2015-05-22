@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>titleText</key>
+	<string>Setup theSSID</string>
+	<key>subTitleText</key>
+	<string></string>
+	<key>completeTitleText</key>
+	<string>theSSID Setup Complete</string>
+	<key>completeSubTitleText</key>
+	<string>theSSID has been configured on your system</string>
+	<key>mainTitle</key>
+	<string>Welcome to the theSSID Setup Utility</string>
+	<key>mainSubTitle</key>
+	<string>Please click setup to setup the theSSID network</string>
+	<key>orgName</key>
+	<string>WirelessConfig</string>
+	<key>debugEnabled</key>
+	<false/>
+	<key>identifier</key>
+	<string>com.github.acidprime.wirelessconfig.thessid</string>
+	<key>networkRemoveList</key>
+	<array>
+		<string>theSSID</string>
+		<string>oldWPANetwork</string>
+	</array>
+	<key>networkAddList</key>
+	<array>
+		<dict>
+			<key>pass</key>
+			<string>superSecurePassword</string>
+			<key>ssid</key>
+			<string>theSSID</string>
+			<key>type</key>
+			<string>WPA2</string>
+			<key>sect</key>
+			<string>WPA2 Personal</string>
+			<key>chan</key>
+			<integer>11</integer>
+			<key>guid</key>
+			<string>4ADD0300-D249-4010-A384-7B7C5A1E41FB</string>
+			<key>keyc</key>
+			<string>4B1AE2C5-7C66-47FA-814A-D65873A6B6F5</string>
+		</dict>
+	</array>
+</dict>
+</plist>

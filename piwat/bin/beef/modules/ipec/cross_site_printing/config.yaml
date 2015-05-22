@@ -1,0 +1,15 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+beef:
+    module:
+        cross_site_printing:
+            enable: true
+            category: "IPEC"
+            name: "Cross-Site Printing (XSP)"
+            description: "Using Inter-protocol Exploitation/Communication (IPEC) the hooked browser will send a message to a listening print port (9100 by default) on the target specified in the 'Target Address' input field.<br /><br />The target address can be on the hooked browser's subnet which is potentially not directly accessible from the Internet."
+            authors: ["bcoles"]
+            target:
+                working: ["FF"]

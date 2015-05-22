@@ -1,0 +1,24 @@
+2006-04-21/jwright
+
+The madwifing-svn-r1518.patch patch makes a minor change to the TX properties
+of the driver to disable the retransmission of frames when in monitor mode.
+Applying this patch will not interfere with normal operation of the driver in
+managed or master mode.
+
+Injection will work with madwifi-ng without this patch, but it will cause all
+frames to be retransmitted 10 times (total of 11 frames for each tx80211_send).
+We're looking into getting something merged into the mainline madwifi-ng code
+to accommodate setting the retransmission properties without having to patch
+the driver.
+
+To apply this patch, check out the madwifing driver using svn, copy the patch
+to the top of the directory structure and patch.  Assuming you're putting
+everything in /usr/src, it would look like this:
+
+# cd /usr/src
+# svn co https://felloffthebackofatruck.com/svn/tx-80211/trunk lorcon
+# svn co -r 1518 http://svn.madwfi.org/trunk madwifi-ng
+# cp lorcon/patch/madwifing-svn-r1518.patch madwifi-ng
+# cd madwifi-ng
+# patch -p1 <madwifing-svn-r1518.patch
+<follow madwifi-ng README/INSTALL to build the driver here>

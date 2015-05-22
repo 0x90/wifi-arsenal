@@ -1,0 +1,14 @@
+# Email me if you want to help. I'm working on these:
+
+GSM
+NFC
+WPA_handshake
+trilaterator
+remoteCommand
+MotionSensor
+Camera
+Thermal
+dataServer (d3.js)
+OpenCV
+planeTracker (SDR)
+[redacted]

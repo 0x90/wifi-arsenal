@@ -1,0 +1,36 @@
+Only in reaver-wps-read-only/: .svn
+Only in reaver-wps-read-only/src/crypto: .gitignore
+Only in reaver-1.4/src: test
+Only in reaver-wps-read-only/src/tls: .gitignore
+Only in reaver-wps-read-only/src/utils: .gitignore
+diff -u -r reaver-1.4/src/wpsmon.c reaver-wps-read-only/src/wpsmon.c
+--- reaver-1.4/src/wpsmon.c	2012-01-18 09:02:39.000000000 +0000
++++ reaver-wps-read-only/src/wpsmon.c	2014-07-14 15:51:23.846210326 +0100
+@@ -132,6 +132,11 @@
+ 		usage(argv[0]);
+ 		goto end;
+ 	}
++	else if(get_iface())
++	{
++		/* Get the MAC address of the specified interface */
++		read_iface_mac();
++	}
+ 
+ 	if(get_iface() && source == PCAP_FILE)
+ 	{
+@@ -300,6 +305,7 @@
+ 
+ 	set_ssid(NULL);
+ 	bssid = (char *) mac2str(frame_header->addr3, ':');
++	set_bssid((unsigned char *) frame_header->addr3);
+ 
+ 	if(bssid)
+ 	{
+@@ -383,6 +389,7 @@
+ 
+ end:
+ 	if(wps) free(wps);
++	set_bssid((unsigned char *) NULL_MAC);
+ 
+ 	return;
+ }

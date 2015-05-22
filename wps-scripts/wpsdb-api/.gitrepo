@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/mmsystems/wpsdb_api
+	branch = master
+	commit = 02bcc7d482cb4419234e30578c1015d30321c089
+	parent = 4853a5d89efb11ab74306b6107864abdfc47370a
+	cmdver = 0.2.0

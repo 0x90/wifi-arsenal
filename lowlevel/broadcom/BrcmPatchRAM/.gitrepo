@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/the-darkvoid/BrcmPatchRAM
+	branch = master
+	commit = 6db0529cd2b2cabda58dbe6648a951975e7a8ac3
+	parent = cec5cdac48bd52654767707b8810a82e9c7193cc
+	cmdver = 0.2.0

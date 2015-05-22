@@ -1,0 +1,52 @@
+Requirements
+------------
+
+	Hardware
+	- A wireless capable of monitor mode
+
+	Operating system
+	- Linux
+
+	Development software (build-essential package on Debian/Ubuntu based distro):
+	- gcc
+	- make
+	
+	Libraries
+	- Openssl development package
+	- libpcap
+	- libz
+	- m
+	- sqlite3 (development package)
+
+Libpcap installation on cygwin
+------------------------------
+ 
+1. Install Winpcap 4.1.1 or higher (http://winpcap.org)
+2. Close any cygwin shell opened
+3. Open a new cygwin shell and do the following to install it on cygwin
+	wget https://www.winpcap.org/install/bin/WpdPack_4_1_2.zip
+	unzip WpdPack_4_1_2.zip
+	cd WpdPack
+	cp Lib/*.a /lib
+	cp -R Include /usr/include/pcap
+
+	# The following should return the path to these files
+	#  and usually it is /cygdrive/c/WINDOWS/system32/
+	which Packet.dll
+	which wpacp.dll
+
+Compilation
+-----------
+
+make
+sudo make install
+
+Configuration
+-------------
+
+Edit the configuration file /usr/local/etc/openwips-ng/openwips-ng-server.conf
+
+Usage
+-----
+openwips-ng MONITOR_MODE_INTERFACE SERVER_IP SERVER_PORT LOGIN PASS
+openwips-ng-server PATH_TO_CONFIGURATION_FILE

@@ -1,0 +1,39 @@
+# Maintained by: toleda for: github.com/toleda_hdmi_hd4000
+# File: ib1-ami_efi_clean_compile_v1.1
+# Credits: http://olarila.com/forum/patches.php, PJALM http://repo.pjalm.info/general
+#
+# Complier fixes for newly extracted AMI/UEFI/dsdts
+# Change _T_0 to T_0 
+into_all all code_regex _T_0 replaceall_matched begin T_0 end;
+into_all all code_regex _T_1 replaceall_matched begin T_1 end;
+into_all all code_regex _T_2 replaceall_matched begin T_2 end;
+into_all all code_regex _T_3 replaceall_matched begin T_3 end;
+into_all all code_regex _T_4 replaceall_matched begin T_4 end;
+into_all all code_regex _T_5 replaceall_matched begin T_5 end;
+into_all all code_regex _T_6 replaceall_matched begin T_6 end;
+# Qword field fix
+into method label _CRS parent_label PCI0 code_regex CreateDWordField\s\(BUF0,\s\\_SB.PCI0._Y0F._LEN,\sMSLN\) replace_matched begin CreateQWordField (BUF0, \\_SB.PCI0._Y0F._LEN, MSLN) end;
+into method label _CRS parent_label PCI0 code_regex CreateDWordField\s\(BUF0,\s\\_SB.PCI0._Y0F._LEN,\sM4LN\) replace_matched begin CreateQWordField (BUF0, \\_SB.PCI0._Y0F._LEN, M4LN) end;
+# MUT0 warning fix
+into_all all code_regex (Acquire\s\(MUT0,\s0x)....\) replace_matched begin Acquire (MUT0, 0xFFFF) end;
+# _HID name fix
+into_all all code_regex (Name\s\(_HID,\s"ABCDEFGH") replace_matched begin Name (_HID, EisaId ("PNP0C15") end;
+# Fix non-hex caps
+into_all all code_regex pnp0c14 replaceall_matched begin PNP0C14 end;
+# Fix TCMF
+into_all all code_regex If\s\(TCMF\)\s\{\} replace_matched begin 
+If (TCMF)\n
+{\n
+    Return (Zero)\n
+}\n
+end;
+# Fix the Min/Max/Len/Gran are all zero error
+into device label SIO1 code_regex 0x00(,\s+//\s+L) replaceall_matched begin 0x01%1 end;
+# Fix IO (Decode…_length_0
+into_all all code_regex 0x00,(\s+)//\sLength replaceall_matched begin 0x01,%1// Length
+end;
+# Fix the 'Possible operator timeout is ignored' error
+into_all all code_regex (Acquire\s\(....,\s0x)....\) replace_matched begin %1FFFF) end;
+# Debug
+into definitionblock code_regex . insert
+begin Store ("ib1-ami_efi_clean_compile_v1.1 dsdt edits, github.com/toleda", Debug) end

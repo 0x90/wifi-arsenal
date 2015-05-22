@@ -1,0 +1,86 @@
+		     MADWiFi KARMA Patch 20060124
+
+This patch will adjust the behaviour of the MADWiFi driver so that in HostAP
+mode, the driver will respond to Probe Requests for any SSID.
+
+Instructions:
+svn checkout -r '{20060124}' http://svn.madwifi.org/branches/madwifi-old madwifi
+patch -p0 < madwifi-KARMA-20060124.diff
+cd madwifi
+make
+make install
+
+- ddz, 20050124
+
+Index: madwifi/net80211/ieee80211_input.c
+===================================================================
+--- madwifi/net80211/ieee80211_input.c	(revision 1412)
++++ madwifi/net80211/ieee80211_input.c	(working copy)
+@@ -2153,7 +2153,8 @@
+ 		}
+ 		IEEE80211_VERIFY_ELEMENT(rates, IEEE80211_RATE_MAXSIZE);
+ 		IEEE80211_VERIFY_ELEMENT(ssid, IEEE80211_NWID_LEN);
+-		IEEE80211_VERIFY_SSID(ic->ic_bss, ssid);
++		// KARMA: Don't verify SSID on Probe Requests
++		//IEEE80211_VERIFY_SSID(ic->ic_bss, ssid);
+ 		if ((ic->ic_flags & IEEE80211_F_HIDESSID) && ssid[1] == 0) {
+ 			IEEE80211_DISCARD(ic, IEEE80211_MSG_INPUT,
+ 			    wh, ieee80211_mgt_subtype_name[subtype >>
+@@ -2196,7 +2197,8 @@
+ 				IEEE80211_FC0_SUBTYPE_SHIFT],
+ 			    "%s", "recv'd rate set invalid");
+ 		} else {
+-			IEEE80211_SEND_MGMT(ic, ni, IEEE80211_FC0_SUBTYPE_PROBE_RESP, 0);
++			// KARMA: Patch in the SSID that the client requested
++			IEEE80211_SEND_MGMT(ic, ni, IEEE80211_FC0_SUBTYPE_PROBE_RESP, (int)ssid);
+ 		}
+ 		if (allocbs && ic->ic_opmode != IEEE80211_M_IBSS) {
+ 			/* reclaim immediately */
+@@ -2344,7 +2346,8 @@
+ 		}
+ 		IEEE80211_VERIFY_ELEMENT(rates, IEEE80211_RATE_MAXSIZE);
+ 		IEEE80211_VERIFY_ELEMENT(ssid, IEEE80211_NWID_LEN);
+-		IEEE80211_VERIFY_SSID(ic->ic_bss, ssid);
++		// KARMA: Don't verify SSID on Association Requests
++		//IEEE80211_VERIFY_SSID(ic->ic_bss, ssid);
+ 		if ((ic->ic_flags & IEEE80211_F_HIDESSID) && ssid[1] == 0) {
+ 			IEEE80211_DISCARD(ic, IEEE80211_MSG_INPUT,
+ 			    wh, ieee80211_mgt_subtype_name[subtype >>
+@@ -2483,6 +2486,13 @@
+ 			ni->ni_wme_ie = NULL;
+ 			ni->ni_flags &= ~IEEE80211_NODE_QOS;
+ 		}
++
++		// KARMA: Log SSID that client thinks they are associating to
++		printf("KARMA: Node [%s] associating to ssid [",
++		       ether_sprintf(wh->i_addr2)); 
++		ieee80211_print_essid(ssid + 2, ssid[1]);
++		printf("]\n");
++
+ 		ieee80211_node_join(ic, ni, resp);
+ 		break;
+ 	}
+Index: madwifi/net80211/ieee80211_output.c
+===================================================================
+--- madwifi/net80211/ieee80211_output.c	(revision 1412)
++++ madwifi/net80211/ieee80211_output.c	(working copy)
+@@ -1071,8 +1071,17 @@
+ 		*(u_int16_t *)frm = htole16(capinfo);
+ 		frm += 2;
+ 
+-		frm = ieee80211_add_ssid(frm, ic->ic_bss->ni_essid,
+-				ic->ic_bss->ni_esslen);
++		// KARMA: If argument is specified, on PROBE_RESP, it is
++		// the SSID to use in the response which is the same SSID 
++		// has the client sent).
++                if (arg) {
++			u_int8_t* ssid = (u_int8_t*)arg;
++			frm = ieee80211_add_ssid(frm, ssid + 2, ssid[1]);
++		}
++		else {
++			frm = ieee80211_add_ssid(frm, ic->ic_bss->ni_essid,
++					ic->ic_bss->ni_esslen);
++		}
+ 		frm = ieee80211_add_rates(frm, &ni->ni_rates);
+ 
+ 		if (ic->ic_phytype == IEEE80211_T_FH) {

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   UsbVendorsRtl8187.plist
+   KisMAC
+
+   Created by pr0gg3d on 10/04/08.
+   Copyright 2008 __MyCompanyName__. All rights reserved.
+-->
+<plist version="1.0">
+    <dict>
+        <key>Realtek</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>33159</integer>
+            <key>idVendor</key>
+            <integer>3034</integer>
+        </dict>
+        <key>Netgear1</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>24832</integer>
+            <key>idVendor</key>
+            <integer>2118</integer>
+        </dict>
+        <key>Netgear2</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>27136</integer>
+            <key>idVendor</key>
+            <integer>2118</integer>
+        </dict>
+        <key>HP</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>51714</integer>
+            <key>idVendor</key>
+            <integer>1008</integer>
+        </dict>
+        <key>Sitecom WL-168</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>13</integer>
+            <key>idVendor</key>
+            <integer>3574</integer>
+        </dict>
+    </dict>
+</plist>

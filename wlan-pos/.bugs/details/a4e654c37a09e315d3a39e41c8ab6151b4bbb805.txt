@@ -1,0 +1,8 @@
+# Lines starting with '#' and sections without content
+# are not displayed by a call to 'details'
+#
+[paths]
+db.py:WppDB():line 170
+
+[details]
+when del a.cid=t.clusterid for where clause

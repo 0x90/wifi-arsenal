@@ -1,0 +1,2 @@
+*/5 9-21 * * * /opt/wpp/src/wpp/wpp/test/cron/reserveCourse.sh
+0 */2 * * * /opt/wpp/src/wpp/wpp/test/cron/updateAlgoData.sh

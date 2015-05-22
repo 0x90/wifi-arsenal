@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/sajjanbh/WLAN-Monitoring
+	branch = master
+	commit = c40fa04e2cfab68c428d57fe84341b6cdf82a99b
+	parent = 35d1a6ef258b803e5404da2cdfbdd633dfcc3877
+	cmdver = 0.2.0

@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/bcopeland/python-radiotap
+	branch = master
+	commit = 8793031a32dfd0f55c7b36f591f49a9dcbe7360e
+	parent = bbf332a559f2c2746d92747e1a7d223d251f3951
+	cmdver = 0.2.0

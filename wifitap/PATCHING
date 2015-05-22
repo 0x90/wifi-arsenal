@@ -1,0 +1,25 @@
+#########################################
+#
+# wifitap.py --- WiFi injection tool through tun/tap device
+# Cedric Blancher <sid@rstack.org>
+#
+# http://sid.rstack.org/index.php/Wifitap (french)
+# http://sid.rstack.org/index.php/Wifitap_EN (english)
+#
+#########################################
+
+Wifitap relies on a raw injection capable Linux wireless driver. Supported
+drivers are currently :
+
+	. Intersil PrismGT FullMAC with prism54 driver
+	. Atheros with Madwifi driver (old and ng supported)
+	. Intersil Prism2/2.5/3 with hostap or wlan-ng driver
+	. Ralink rt2500/2750 with rt2500 driver
+	. Realtek RTL8180 with rtl8180-sa2400 driver
+
+Patches can be found in aircrack-ng.org.tgz archive, or can be downloaded at
+Aircrack-ng website:
+
+	http://patches.aircrack-ng.org/
+
+Untar driver tarball, patch with according driver, build and install.

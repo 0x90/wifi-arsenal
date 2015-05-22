@@ -1,0 +1,8 @@
+*.html
+libnl.dict
+Doxyfile
+/aclocal.m4
+/autom4te.cache/
+/build-aux/
+/config.*
+/configure

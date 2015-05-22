@@ -1,0 +1,19 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+beef:
+    module:
+        hook_default_browser:
+            enable: true
+            category: "Host"
+            name: "Hook Default Browser"
+            description: "This module will use a PDF to attempt to hook the default browser (assuming it isn't currently hooked). <br><br>Normally, this will be IE but it will also work when Chrome is set to the default. When executed, the hooked browser will load a PDF and use that to start the default browser. If successful another browser will appear in the browser tree."
+            authors: ["saafan"]
+            target:
+                not_working:
+                    ALL:
+                        os: ["iOS"]
+                working: ["All"]
+                user_notify: ["FF", "C"]

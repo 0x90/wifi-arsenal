@@ -1,0 +1,11 @@
+*~
+regulatory.sqlite
+regulatory.bin
+crda
+dump
+intersect
+regdbdump
+*.o
+*.pyc
+keys-*.c
+key.priv.pem

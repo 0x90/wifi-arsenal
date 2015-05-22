@@ -1,0 +1,204 @@
+Introduction
+============
+
+The mwl8k is a reference Access Point platform from Marvell.  This document
+describes where the source comes from, how to bring the target up, etc.  I do
+all of my work from the location of this README.  So any reference to files,
+patches, etc. are usually with respect to this directory if not otherwise
+mentioned.
+
+Marvell Firmware API Versioning Algorithm
+=========================================
+
+Anytime a discussion about whether to increment the firmware API version (the
+'-Vn' tag on the firmware image file), simply refer to this pseudocode to save
+some time:
+
+switch (fw_change):
+	case (adds_fields_to_GET_HW_SPEC_cmd)
+		# NOTE! fields MUST be added to the end of the CMD resp.
+		increment_version = true;
+		break;
+	case (breaks_existing_functionality)
+		increment_version = true;
+		break
+	case (is_bugfix)
+		increment_version = false;
+		break
+	case (new_feature)
+		if (driver using new feature w/ old fw w/ same API fails gracefully)
+			increment_version = false;
+		else
+			increment_version = true;
+		break
+
+Development Machine Setup
+=========================
+
+These instructions were developed using Ubuntu 10.04:
+
+1. Get a suitable uclibc toolchain (armv5tel).  I use code sourcery's
+   arm-none-eabi-gcc (Sourcery G++ Lite 2009q3-68) 4.4.1.
+
+2. Set up a tftp server somewhere.  I use my own development machine, and the
+   tftp root directory happens to be /srv/tftp.  Make sure the permissions are
+   sufficiently liberal.
+
+3. Set up an nfs server to share the target's root somewhere.  
+   I use my own development machine for this too. 
+   Don't forget to add the option no_root_squash to your /etc/exports line.
+
+4. Ensure you have the u-boot utility "mkimage" available in your path
+   somewhere.
+
+5. Set up your environment:
+
+   $ export PATH=$PATH:/path/to/CodeSourcery/Sourcery_G++_Lite/bin
+   $ export CROSS_COMPILE=arm-none-eabi-
+   $ export ARCH=arm
+   $ export TFTPROOT=/srv/tftp/
+   $ export ROOTDIR=/path/to/your/nfs/roots/rootfs-f12
+   [ see "Preparing the rootfs" for more details on this ]
+   $ export INSTALL_MOD_PATH=$ROOTDIR
+
+Preparing the rootfs
+====================
+
+Fedora provides an arm build.  Handy.
+
+1. Get the prebuilt rootfs:
+
+   $ wget http://ftp.linux.org.uk/pub/linux/arm/fedora/rootfs/rootfs-f12.tar.bz2
+   $ tar xjf rootfs-f12.tar.bz2
+   $ sudo chmod -R 777 rootfs-f12/
+
+2. Make rootfs-f12/etc/inittab drop you to single user mode by default:
+
+   id:1:initdefault:
+
+3. Enable Magic SysRq key support (BREAK on serial), so we can recover remotely.
+    
+   $ echo "echo 1 > /proc/sys/kernel/sysrq" >> $ROOTDIR/etc/rc.d/rc.local
+   $ ln -s $ROOTDIR/etc/rc.d/rc.local $ROOTDIR/etc/rc1.d/S50local
+
+4. Get firmware files from linux-firmware and copy to device root:
+
+    $ git clone git://git.kernel.org/pub/scm/linux/kernel/git/dwmw2/linux-firmware.git
+    $ cd linux-firmare
+    $ git am $WTFDIR/platform/mwl8k/patches/0001-linux-firmware-add-firmware-files-for-Marvell-8366.patch 
+    $ cp -R mwl8k/ $ROOTDIR/lib/firmware/
+
+5. At this point, you should go build the kernel, install the headers, boot the
+   device, and come back here.  See the "Building the Kernel" section below.
+
+6. After you successfully build the kernel (see below), boot the system and use
+   yum to install some packages.  You'll have to connect lan1 or some other
+   ethernet port to the Internet for this step.  Note that we can't yum install
+   everything because of some broken upstream dependencies.  So we have to
+   manually fetch some RPMs.
+
+   set the date to this century or all hell breaks loose:
+   $ ntpdate ntp.ubuntu.com
+
+   $ yum update
+   $ yum install iw make ntp libnl-devel keyutils-libs-devel libcom_err-devel \
+     libselinux-devel krb5-libs wireless-tools wpa_supplicant
+   $ rpm -Uvh http://ftp.linux.org.uk/pub/linux/arm/fedora/pub/fedora/linux/releases/12/Everything/arm/os/Packages/krb5-devel-1.7-8.fc12.bs.1.armv5tel.rpm
+   $ yum install openssl-devel
+
+7. Build hostapd:
+
+   On your dev host:
+   $ cd /path/to/rootfs-f12/root
+   $ wget http://hostap.epitest.fi/releases/hostapd-0.7.3.tar.gz
+   $ tar xzf hostapd-0.7.3.tar.gz
+   $ cp $WTFDIR/platform/wml8k/hostapd.config ./hostapd-0.7.3/hostapd/.config
+
+   Now build it on the device.  That's right.  Native arm build.
+   $ cd /root/hostapd-0.7.3/hostapd
+   $ make
+   $ make install
+
+8. Eliminate persistent net udev rules, which kinda get in the way:
+
+   $ rm /etc/udev/rules.d/70-persistent-net.rules
+   $ rm /lib/udev/rules.d/75-persistent-net-generator.rules
+
+9. Set regulatory domain to US on boot:
+
+   $ echo "iw reg set US" >> $ROOTDR/etc/rc.d/rc.local
+
+10. Make /tmp a tmpfs by adding this line to $ROOTDIR/etc/fstab
+tmpfs                   /tmp                    tmpfs   defaults        0 0
+
+Building the Kernel
+===================
+
+0. Make sure your environment variables are set!
+
+1. Get the source:
+
+   $ git clone git://git.kernel.org/pub/scm/linux/kernel/git/linville/wireless-testing.git
+   $ cd wireless-testing
+
+2. Apply patches
+
+    $ git am patches/0001-NFS-patch-needed-to-allow-nfs-booting-of-the-box.patch
+
+3. Configure, build, and deploy the kernel:
+
+   $ cp $WTFDIR/platform/mwl8k/config_mwl8k ./.config
+   $ make uImage
+   $ cp arch/arm/boot/uImage $TFTPROOT
+   $ make modules
+   $ make modules_install
+
+4. If this is the first time you built the kernel, install the headers
+   $ export INSTALL_HDR_PATH=$ROOTDIR
+   $ make headers_install
+
+Setup the Target
+================
+
+I connect the WAN port of the mwl8k to my dev machine via a crossover cable,
+and I get a console on the serial port.  I set up my u-boot environment like
+this for network booting (based on Marvell uboot.txt and altered for my env.):
+
+setenv ipaddr $TARGET_DEVICE_IP
+setenv serverip $TFTP_HOST_IP
+setenv x_bootargs console='ttyS0,115200 mtdparts=spi0.0:512k(uboot),512k@512k(psm),3m@1m(kernel),12m@4m(rootfs)'
+setenv x_bootcmd 'protect off 0xf8000000 +1; $(x_bootcmd_kernel); setenv bootargs $(x_bootargs) $(x_bootargs_root); bootm 0x6400000'
+setenv x_bootcmd_kernel tftp 0x6400000 /srv/tftp/uImage
+setenv x_bootargs_root root=/dev/nfs rw nfsroot=$(serverip):/path/to/nfs/rootfs_f12 ip=dhcp
+setenv bootcmd $(x_bootcmd)
+saveenv
+
+TODO: These instructions require a dhcp server up on the dev host.  Surely we
+can eliminate that!
+
+If you ever want to change back to booting from flash:
+
+setenv y_bootargs console='ttyS0,115200 mtdparts=spi0.0:1m(uboot),8m@1m(rootfs),7m@9m(data)'
+setenv y_bootargs_root root=/dev/mtdblock1 rw rootfstype=jffs2
+setenv y_bootcmd 'fsload 0x6400000 uImage;setenv bootargs $(y_bootargs) $(y_bootargs_root) ip=$(ipaddr):$(serverip)$(bootargs_end); bootm 0x6400000'
+setenv bootcmd $(y_bootcmd)
+saveenv
+
+Other Notes
+===========
+
+-- openocd kinda works.  I use the olimex/USB adapter and I pretend the mwl8k
+   is a sheeva plug.  This is what my openocd.cfg looks like:
+
+   source [find interface/olimex-arm-usb-ocd.cfg]
+   source [find target/feroceon.cfg]
+   source [find board/sheevaplug.cfg]
+
+References
+==========
+
+[1] Marvell's bring-up guide: 3x3ap_mwl8k_quickstart_guide.doc.  It assumes you
+have a Fedora machine.
+
+[2] Many details/files/etc. from this document came from the
+mwl8k-quick-start.zip from the Marvell Extranet.

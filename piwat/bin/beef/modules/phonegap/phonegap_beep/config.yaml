@@ -1,0 +1,17 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+#   phonegap
+#
+beef:
+    module:
+        phonegap_beep:
+            enable: true
+            category: "Phonegap"
+            name: "Beep"
+            description: "Make the phone beep"
+            authors: ["mh"]
+            target:
+                working: ["All"]

@@ -1,0 +1,11 @@
+Build
+DerivedData
+Distribute
+Index
+Logs
+TextIndex
+BrcmPatchRAM.xcodeproj/project.xcworkspace/xcuserdata
+BrcmPatchRAM.xcodeproj/xcuserdata
+scm.plist
+*.xccheckout
+.DS_Store

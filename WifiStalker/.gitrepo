@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/blaa/WifiStalker
+	branch = master
+	commit = b7b956c6cebc3e0f007045bc53ed91894f97cf48
+	parent = 2e5e6f1ed8827ce5dbf136e28bfd446398dd7c55
+	cmdver = 0.2.0

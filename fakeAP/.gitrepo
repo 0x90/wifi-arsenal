@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/DanMcInerney/fakeAP
+	branch = master
+	commit = bd23f4de4da0f1aa167b1a4eb3e8175e190d2821
+	parent = efae6ff76ac202eb1fc69ff417b42293b71816f3
+	cmdver = 0.2.0

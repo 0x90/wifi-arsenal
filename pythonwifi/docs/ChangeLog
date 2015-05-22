@@ -1,0 +1,245 @@
+2009-02-13  Roman Joost  <roman@bromeco.de>
+
+	* docs/AUTHORS
+	* pythonwifi/iwlibs.py: bugfix #2636, submitted by Sean Robinson
+
+2009-02-13  Roman Joost  <roman@bromeco.de>
+
+	* pythonwifi/iwlibs.py: fixes ##13090 (Error parsing the event
+	stream if no available acces points) spotted by Pierre-Nicolas
+
+	* setup.py
+	* README: small spelling fix
+
+2008-08-01  Roman Joost  <roman@bromeco.de>
+
+	* docs/DEVEL.txt: moved devel instructions
+	
+	* examples/pyiwlist.py
+	* pythonwifi/iwlibs.py
+	* pythonwifi/flags.py: mostly code cleanup
+
+	* setup.py: cleanup
+
+2008-08-01  Roman Joost  <roman@bromeco.de>
+
+	* docs/NEWS
+	* NEWS
+	* INSTALL
+	* README: restructured and moved devel instructions out to docs
+
+2008-08-01  Roman Joost  <roman@bromeco.de>
+
+	* setup.py: bumped to version 0.3.1
+
+	* version.txt
+	* PKG-INFO: removed, because they're not needed
+
+2008-07-28  Roman Joost  <roman@bromeco.de>
+
+	* pythonwifi/iwlibs.py: fixes a small bug in the regular
+	expression for detecting the interface name, spotted by Paulo
+	Ferreira
+
+2006-07-05  Roman Joost  <roman@bromeco.de>
+
+	* docs/BUGS
+	* docs/pywifi_english.tpp
+	* docs/pywifi.tpp
+	* docs/NEWS
+	* PKG-INFO
+	* README: minor package changes and updates
+
+	* examples/pyiwconfig.py
+	* examples/pyiwlist.py: import the correct module from the
+	correct package
+
+2006-07-05  Roman Joost  <roman@bromeco.de>
+
+	* pythonwifi
+	* setup.py
+	* python-wireless
+	* python-wireless/iwlibs.py
+	* python-wireless/flags.py
+	* python-wireless/__init__.py: as I already figured, this
+	package name is not suitable
+
+2006-07-05  Roman Joost  <roman@bromeco.de>
+
+	* LICENSE: GPL -> LGPL
+
+	* docs/README
+	* README: updated description and moved README to toplevel
+
+	* setup.py
+	* PKG-INFO
+	* ez_setup.py: boilerplate for setuptools and metadata
+
+	* lib
+	* lib/iwlibs.py
+	* lib/flags.py
+	* docs/AUTHORS
+	* python-wireless
+	* python-wireless/iwlibs.py
+	* python-wireless/flags.py
+	* python-wireless/__init__.py: updated copyright date and
+	renamed to a better package name
+
+2006-07-05  Roman Joost  <roman@bromeco.de>
+
+	* iwlibs.py
+	* flags.py
+	* pyiwconfig.py
+	* pyiwlist.py
+	* trunk/lib/iwlibs.py
+	* trunk/lib/flags.py
+	* trunk/examples
+	* trunk/examples/pyiwconfig.py
+	* trunk/examples/pyiwlist.py: moved files in designated areas
+
+2006-07-05  Roman Joost  <roman@bromeco.de>
+
+	* LICENSE
+	* pyiwlist
+	* pyiwlist.py
+	* ChangeLog
+	* docs
+	* docs/BUGS
+	* docs/profiling.py
+	* docs/pywifi_english.tpp
+	* docs/europython2005.mgp
+	* docs/TODO
+	* docs/AUTHORS
+	* docs/pywifi.tpp
+	* docs/NEWS
+	* docs/README
+	* README
+	* tests
+	* tests/test_wireless.py
+	* tests/test_wireless_doctest.py
+	* tests/README
+	* version.txt
+	* trunk/LICENSE
+	* trunk/tests
+	* trunk/version.txt
+	* trunk/lib
+	* trunk/ChangeLog
+	* trunk/docs
+	* trunk/README: moved everything to trunk directory, some more
+	files and dirs will follow
+
+2006-07-05  Roman Joost  <roman@bromeco.de>
+
+	* version.txt: bumped to 0.3
+
+	* iwlibs.py
+	* flags.py
+	* pyiwlist
+	* pyiwconfig.py
+	* docs/pywifi_english.tpp
+	* docs/pywifi.tpp
+	* docs/AUTHORS
+	* docs/README: added patch submitted by Mike Auty which adds
+	scanning functionality
+
+2005-08-026 Roman Joost	<roman@bromeco.de>
+
+	* docs/europython2005.mgp: added presentation from the
+	europython
+
+2005-06-05  Roman Joost	<roman@bromeco.de>
+
+	* tests/test_wireless.py
+	* tests/test_wirelessconfig.py
+	* pyiwconfig
+	* pyiwconfig.py: renamed
+	
+	* iwlibs.py: new methods for returning the right power
+	management values
+
+	* flags.py: moved ioctl calls and flags out to seperate module
+
+	* README: hint to check the docs directory
+	
+2005-06-05  Roman Joost	<roman@bromeco.de>
+
+	* iwlibs.py
+	* tests
+	* tests/README
+	* tests/test_wireless_doctest.py
+	* tests/test_wirelessconfig.py: added doctests and a method to
+	get the ifnames by a systemcall if /proc/net/wireless doesn't
+	exist
+	
+	* README
+	* NEWS
+	* BUGS
+	* AUTHORS
+	* TODO
+	* docs
+	* docs/profiling.py
+	* docs/BUGS
+	* docs/TODO
+	* docs/AUTHORS
+	* docs/NEWS
+	* docs/README: moved to seperate docs directory
+	
+	* pyiwconfig: specified the copyright year 
+	
+2005-05-22  Roman Joost	<roman@bromeco.de>
+
+	* version.txt: bumped to 0.2
+	
+	* iwlibs.py: fixed spelling in docstring
+
+	* pyiwlist: fixed wrong exception catch
+	
+	* AUTHORS
+	* TODO
+	* NEWS
+	* README: moving some text to their right directions, added
+	some tutorial style code for pywifi relevant 'users'
+
+2005-05-18  Roman Joost	<roman@bromeco.de>
+
+	* iwlibs.py
+	* pyiwlist: refactoring
+
+	* TODO: added possible todo item
+	
+2005-05-17  Roman Joost	<roman@bromeco.de>
+
+	* iwlibs.py
+	* pyiwlist
+	* pyiwconfig: added 'bitrates' option and fixed some syntax
+	errors and bugs
+
+2005-05-16  Roman Joost	<roman@bromeco.de>
+
+	* iwconfig.py
+	* pyiwconfig: renamed 
+
+2005-05-16  Roman Joost	<roman@bromeco.de>
+
+	* pyiwlist
+	* iwlibs.py: new method for gathering detailed information
+	
+	* BUGS: known bugs
+	
+	* iwconfig.py: minor modifications for main program 
+
+2005-05-08  Roman Joost	<roman@bromeco.de>
+
+	* iwlibs.py
+	* iwconfig.py: new parsing style to achieve same options parsing
+	like the wireless tools
+	
+	* README: descriptions about whats going on
+	
+2005-05-08  Roman Joost	<roman@bromeco.de>
+
+	* main.py: removed, because iwconfig should be doing this now
+	* iwconfig.py
+	* iwlibs.py: factored out most of iwconfig methods to new
+	Wireless class. Not sure if this is the right name for this, but
+	it'll store all necessary methods for read/write to the driver.

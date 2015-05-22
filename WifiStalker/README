@@ -1,0 +1,62 @@
+# -*- mode: org coding: utf-8 -*-
+
+See README.md for generic description + HOWTO.
+
+* TODOs / Plan:
+** TODO Cleanup code, publish on github, add license
+
+** Sniffer
+*** TODO Sniff for higher layers - IP, etc. And gather additional metadata.
+*** TODO Detect automatically outlier packets
+*** TODO Intelligent channel hopping / client following
+    Aggregating beacons is simple, when sniffing for a client packet
+    prelong a visit on a specified channel to sniff more of client
+    communication - because of power savings those happen in bursts.
+*** TODO I like using timestamps but datetime would probably be better.
+** Timetable / knowledge book
+*** TODO ESSID tab - all clients calling this essid.
+*** TODO Viewing and comparison of presence snapshots, existance in a presence dump
+*** TODO Sorting and filtering for time table.
+*** TODO Refresh interval selection.
+*** DONE Create a service for diagram which shows better information.
+*** DONE Knowledge book - page with details on cli/ap
+*** DONE Return knowledge as an array, not dict, and sort in different ways.
+*** Charts
+**** TODO Add time range for strength chart
+**** TODO Add refresh button
+**** TODO Add graph display of relations.
+*** Splitting aggregated data and user data would render optimistic locking not needed.
+** Marauder's Map
+*** Allow selecting BSSID in Map view and then placing it on map.
+*** Localization services for map.
+    - Dump place (almost works)
+    - Dumped places (show)
+    - Add map, change image
+    - Show current sniffer localizations
+    - IDEA: Rewind history and display different localizations (`seen' on a map)
+** TODO Config view
+   Allow for changing:
+   - Seen algorithm parameters
+   - Purge all_frames
+   - Get DB stats
+
+** Analyzer
+*** Idea: Allow to mark specified time range as a sniffing in a particular location
+    Then - automatically mark all bssids as located within this
+    localization (home, work, tram, shop)
+*** TODO Better mobile detection - sometimes they are both stations and clients.
+    And we want them to be treated as clients.
+*** TODO `event/Seen' knowledge should contain a context - visible BSSID during seeing.
+*** TODO Fix `event/seen' algorithm - nice parametrized filtering.
+*** TODO Events should contain stamp of highest signal strength.
+*** TODO If more time passed than current_frames keep - use all_frames for initialization automatically
+
+** Map
+*** Map image changing / location changing.
+*** Point removal
+*** Placing Stations by click on the map.
+
+
+** Logs
+*** Display controller on all views on the navbar
+

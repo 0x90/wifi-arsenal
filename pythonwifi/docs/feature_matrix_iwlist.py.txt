@@ -1,0 +1,43 @@
+iwlist Feature Matrix
+-----------------------
+
+Comparison of Linux iwlist vs Python WiFi iwlist.py.  iwlist is the baseline
+to which iwlist.py must match-up.
+
+Feature                iwlist      iwlist.py       Version     Note
+---------------        --------    -----------     -------     ----------------
+usage message           yes         yes             0.5         close match
+
+unknown command error   yes         yes             0.3.1       close match
+
+commands:
+ scanning               yes         yes             0.3.1
+ frequency              yes         yes             0.3.1       exact match
+ channel                yes         yes             0.3.1       exact match
+
+ bitrate                yes         yes             0.3.1       75% match
+ rate                   yes         yes             0.3.1       75% match
+
+ encryption             yes         yes             0.5         close
+ keys                   yes         yes             0.5         close
+
+ power                  yes         yes             0.5         close
+ txpower                yes         yes
+
+ retry                  yes         yes
+
+ ap                     yes         yes
+ accesspoints           yes         yes
+ peers                  yes         yes
+
+ events                 yes         no
+
+ auth                   yes         no
+
+ wpakeys                yes         no
+
+ genie                  yes         no
+
+ modulation             yes         no
+
+

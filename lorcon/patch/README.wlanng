@@ -1,0 +1,20 @@
+To patch your wlan-ng drivers, copy the patch for the version of wlan-ng 
+that you are using into the directory where you extracted the tarball:
+
+# cd /usr/src
+# tar xfj linux-wlan-ng-0.2.1-pre26.tar.bz2
+# cd linux-wlan-ng-0.2.1-pre26
+# cp /path-to-tx80211/tx-80211/patch/linux-wlan-ng-0.2.1-pre26.patch.0.1 .
+
+Next, patch the source:
+
+# patch -p1 <linux-wlan-ng-0.2.1-pre26.patch.0.1
+patching file src/p80211/p80211netdev.c
+patching file src/prism2/driver/hfa384x.c
+patching file src/prism2/driver/prism2mgmt.c
+patching file src/prism2/driver/prism2sta.c
+#
+
+Then, configure and build the wlan-ng drivers per the instructions in the 
+wlan-ng README.
+

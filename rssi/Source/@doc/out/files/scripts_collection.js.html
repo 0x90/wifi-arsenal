@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>scripts/collection.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title=""></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/collection.html">collection</a></li>
+                                <li><a href="../classes/controller.html">controller</a></li>
+                                <li><a href="../classes/floor.html">floor</a></li>
+                                <li><a href="../classes/globals.html">globals</a></li>
+                                <li><a href="../classes/graph.html">graph</a></li>
+                                <li><a href="../classes/utils.html">utils</a></li>
+                                <li><a href="../classes/view.html">view</a></li>
+                            </ul>
+                
+                            <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/APP.html">APP</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: scripts/collection.js</h1>
+                        
+                        <div class="file">
+                            <pre class="code prettyprint linenums">
+                        /**
+                         * Collection deals with the process of retrieving JSON data from backend and processing them according to the requirement
+                         *
+                         * @class collection
+                         */
+                        app.collection = {
+                        
+                        	/**
+                        	 It retrieves the list of Databases from backend in Local or Remote Machine based on the selection
+                        	 @method getDatabaseList
+                        	 @param {String} databaseURL The URL of the selected Server in Local or Remote machine
+                        	 **/
+                        	getDatabaseList: function (data) {
+                        		app.view.showLoader();
+                        		app.view.createDatabaseListUi();
+                        		$.getJSON(data, function (results) {
+                        			app.view.hideLoader();
+                        			app.databaseList = results;
+                        			app.metadataUri = results.metadata;
+                        			app.eventBus.publish(&quot;databaseList:retrieved&quot;)
+                        		})
+                        	},
+                        
+                        
+                        	/**
+                        	 It retrieves the list of Collections from backend
+                        	 @method getCollectionList
+                        	 @param {String} databaseUri The URI of the selected Database
+                        	 **/
+                        	getCollectionList: function (data) {
+                        		app.view.showLoader();
+                        		app.view.clearCollectionList();
+                        		app.view.createCollectionListUi();
+                        		$.getJSON(data, function (results) {
+                        			app.view.hideLoader();
+                        			app.collectionList = results;
+                        
+                        			app.collectionList = [];
+                        			$.each(results, function (key, val) {
+                        				app.collectionList.push({collection: key, uri: val})
+                        			});
+                        			app.collectionList = _.sortBy(app.collectionList, function (val) {
+                        				return val.collection.toLowerCase();
+                        			});
+                        			app.eventBus.publish(&quot;collectionList:retrieved&quot;)
+                        		})
+                        	},
+                        
+                        
+                        	/**
+                        	 It retrieves the internal list of the selected Collection from backend
+                        	 @method getSelectedCollectionData
+                        	 @param {String} collectionUri The URI of the selected Collection
+                        	 **/
+                        	getSelectedCollectionData: function (data) {
+                        		$.getJSON(data, function (results) {
+                        			app.selectedCollectionData = results;
+                        			app.metadataId = results[0].metadata_id;
+                        			app.eventBus.publish(&quot;selectedCollectionData:retrieved&quot;)
+                        		})
+                        	},
+                        
+                        
+                        	/**
+                        	 It retrieves the complete RawData of the selected Collection from backend
+                        	 @method getRawData
+                        	 @param {Array} selectedCollectionUrls The Internal URLs of the selected Collection
+                        	 **/
+                        	getRawData: function (data) {
+                        		app.rawData = [];
+                        		$.each(data, function (key, val) {
+                        			$.ajax({
+                        				url: val.URI,
+                        				async: false
+                        			}).done(function (results) {
+                        				results = JSON.parse(results);
+                        				results.receiver_location = results.raw_measurement[0].receiver_location;
+                        				app.rawData.push(results);
+                        			});
+                        		});
+                        		app.rawData = _.sortBy(app.rawData, function (res) {
+                        			return res.receiver_location.coordinate_x;
+                        		});
+                        		app.eventBus.publish(&quot;rawData:retrieved&quot;)
+                        	},
+                        
+                        
+                        	/**
+                        	 It filters the RawData based on the selected Floor Plan
+                        	 @method filterRawDataByFloor
+                        	 @param {Array} rawData The rawData of the selected Collection
+                        	 **/
+                        	filterRawDataByFloor: function (data) {
+                        		var zAxis;
+                        		app.filteredRawDataByFloor = [];
+                        		switch (app.selectedFloorPlan) {
+                        			case &#x27;twist2Floor&#x27;:
+                        				zAxis = 9.53;
+                        				break;
+                        			case &#x27;twist3Floor&#x27;:
+                        				zAxis = 12.37;
+                        				break;
+                        			case &#x27;twist4Floor&#x27;:
+                        				zAxis = 16.05;
+                        				break;
+                        			case &#x27;iLab1&#x27;:
+                        				zAxis = 3;
+                        				break;
+                        			case &#x27;iLab2&#x27;:
+                        				zAxis = 0;
+                        				break;
+                        		}
+                        		$.each(data, function (key, val) {
+                        			if (val.receiver_location.coordinate_z == zAxis) {
+                        				app.filteredRawDataByFloor.push(val)
+                        			}
+                        		})
+                        	},
+                        
+                        
+                        	/**
+                        	 It gets the data of the selected Node in the FloorPlan
+                        	 @method getSelectedNodeData
+                        	 @param {String} selectedNodeId The Id of the selected Node in the FloorPlan
+                        	 **/
+                        	getSelectedNodeData: function (data) {
+                        		$.each(app.rawData, function (key, val) {
+                        			if (val.data_id == data) {
+                        				app.selectedNodeData = val
+                        			}
+                        		})
+                        	},
+                        
+                        
+                        	/**
+                        	 It groups the data of the selected Node based on Channel Number and sorted ascending
+                        	 @method groupNodeDataByChannel
+                        	 @param {Array} selectedNodeData The Data of the selected Node in the FloorPlan
+                        	 **/
+                        	groupNodeDataByChannel: function (data) {
+                        		if (&#x27;channel&#x27; in data.raw_measurement[0]) {
+                        			var nodeDataGroupedByChannel = _.groupBy(data.raw_measurement, function (val) {
+                        				return val.channel
+                        			});
+                        
+                        			app.groupedNodeDataByChannel = [];
+                        			app.channelList = [];
+                        
+                        			$.each(nodeDataGroupedByChannel, function (key, val) {
+                        				app.channelList.push(key);
+                        				app.groupedNodeDataByChannel.push({channel: key, data: val})
+                        			});
+                        			app.channelList = _.sortBy(app.channelList)
+                        
+                        		} else {
+                        			app.groupedNodeDataByChannel = [];
+                        			app.channelList = [&#x27;unknown&#x27;];
+                        			app.groupedNodeDataByChannel.push({channel: &#x27;unknown&#x27;, data: data.raw_measurement})
+                        		}
+                        	},
+                        
+                        
+                        	/**
+                        	 It gets the data of the selected Channel
+                        	 @method getSelectedChannelData
+                        	 @param {String} selectedChannel The Number of the selected Channel
+                        	 **/
+                        	getSelectedChannelData: function (data) {
+                        		$.each(app.groupedNodeDataByChannel, function (key, val) {
+                        			if (val.channel == data) {
+                        				app.selectedChannelData = val
+                        			}
+                        		})
+                        	},
+                        
+                        
+                        	/**
+                        	 It groups the data of the selected Channel based on SSID_BSSID and then sorted alphabetically
+                        	 @method groupSelectedChannelDataBySsid
+                        	 @param {Array} selectedChannelData The Data of  of the selected Channel
+                        	 **/
+                        	groupSelectedChannelDataBySsid: function (data) {
+                        		var rssiDataGrouped = _.groupBy(data.data, function (val) {
+                        			return val.sender_id + &#x27;_&#x27; + val.sender_bssid
+                        		})
+                        
+                        		var rssiDataArrayed = [];
+                        
+                        		$.each(rssiDataGrouped, function (key, val) {
+                        			rssiDataArrayed.push({ssid: key, data: val})
+                        		})
+                        
+                        		app.groupedSsidData = _.sortBy(rssiDataArrayed, function (val) {
+                        			return val.ssid.toLowerCase()
+                        		})
+                        	},
+                        
+                        	/**
+                        	 It picks only rssi valued from the data of the selected AccessPoint to feed to the Chart
+                        	 @method processGraphData
+                        	 @param {Array} selectedSsidData The SSID_BSSID Data of the selected AccessPoint
+                        	 **/
+                        	processGraphData: function (data) {
+                        		$.each(app.groupedSsidData, function (key, val) {
+                        			if (val.ssid == data) {
+                        				app.selectedSsidData = val;
+                        				app.graphData = _.map(app.selectedSsidData.data, function (d) {
+                        					return d.rssi
+                        				})
+                        			}
+                        		})
+                        	},
+                        
+                        
+                        	/**
+                        	 It retrieves the Metadata from backend
+                        	 @method getMetadata
+                        	 @param {String} metadataId The MetadataId of the selected collection
+                        	 **/
+                        	getMetadata: function (data) {
+                        		$.getJSON(app.metadataUri, function (results) {
+                        			var uri = results[app.selectedDatabase.name];
+                        			$.getJSON(uri, function (results) {
+                        				$.each(results, function (key, val) {
+                        					if (val.metadata_id == data) {
+                        						$.getJSON(val.URI, function (results) {
+                        							app.metadata = results;
+                        							app.eventBus.publish(&quot;metadata:retrieved&quot;)
+                        						})
+                        					}
+                        
+                        				})
+                        			})
+                        		})
+                        	}
+                        
+                        };
+                        
+                        
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

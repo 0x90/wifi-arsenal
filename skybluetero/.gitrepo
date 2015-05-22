@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/0x90/skybluetero
+	branch = master
+	commit = 2c01dbe9eaa813c164e7ed1066ac2de83cff94f2
+	parent = 677577bea5b85916b4a6bbb646c0d20d36a1292d
+	cmdver = 0.2.0

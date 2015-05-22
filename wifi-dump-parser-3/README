@@ -1,0 +1,16 @@
+#Documentation for Dave Levin
+print-frame.py is used to print the packet contents of the trace collected on the router 
+
+The NOTES files have the IP address of the server and the client ( I realize its not of use, since our Router trace doesn't have it)
+Please have a look at the test-6, test-7 folders.
+They have exactly the setup you wanted!
+Two laptops connected wireless to the AP and doing a iperf transfer 
+Srikanth's laptop has a mac address starting with 74:
+My router has a mac address starting with 00:19 
+
+The transmitted frames collected have the format as : 
+time ,txflags,retx,successful_rate,total_time,Q len ,A-Q len, Q-no,phy_type,retx_rate_list ,seq no,fragment no,mac-layer-flags, frame-prop-type,framesize,prop time
+
+received frame output have the format as follows : 
+time ,flags,freq, rx_flags,success rate, rx_queue_time,framesize , signal,RSSI, seq number, fragment no,retry frame,prop time   
+

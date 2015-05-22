@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>RSSI</title>
+
+    <!--libs-->
+    <script src="libs/jquery.js"></script>
+    <script src="libs/underscore.js"></script>
+    <link rel="stylesheet" href="libs/css/jquery-ui.min.css">
+    <script src="libs/jquery-ui.js"></script>
+    <script src="libs/d3.js"></script>
+    <script src="libs/amplify.min.js"></script>
+
+    <!--index-->
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/graph.css">
+    <link rel="stylesheet" href="css/table.css">
+    <script src="data/data.js"></script>
+    <!---->
+    <script src="data/smallStat_63.js"></script>
+    <script src="data/wifiStat_63.js"></script>
+    <script src="data/sigGenStat_63.js"></script>
+    <!---->
+    <!--<script src="data/wifiStat_11.js"></script>-->
+    <!--<script src="data/smallStat_11.js"></script>-->
+    <!--<script src="data/sigGenStat_11.js"></script>-->
+    <!---->
+    <!--<script src="data/wifiStat_d9.js"></script>-->
+    <!--<script src="data/smallStat_d9.js"></script>-->
+    <!--<script src="data/sigGenStat_d9.js"></script>-->
+    <!---->
+    <!--<script src="data/wifiStat_ef.js"></script>-->
+    <!--<script src="data/smallStat_ef.js"></script>-->
+    <!--<script src="data/sigGenStat_ef.js"></script>-->
+    <!---->
+
+    <script src="scripts/globals.js"></script>
+    <script src="scripts/floor.js"></script>
+    <script src="scripts/graph.js"></script>
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/collection.js"></script>
+    <script src="scripts/view.js"></script>
+    <script src="scripts/controller.js"></script>
+    <script src="scripts/app.js"></script>
+
+</head>
+<body>
+<div id="loader">Retrieving Data ....</div>
+<!--Menu Tabs-->
+<div id="titleTabs">
+    <ul>
+        <li><a href="#indexTab">Index</a></li>
+        <li><a href="#infoTab">Info</a></li>
+        <li><a href="#docTab">JavascriptDoc</a></li>
+        <li><a href="#plotTab">Plot</a></li>
+        <li><a href="#statTab">Statistics</a></li>
+    </ul>
+    <div id="indexTab">
+        <div id="title">Raw Ranging Data Visualization Tool</div>
+        <div id="tkn"></div>
+        <div id="twist"></div>
+        <div id="iMind"></div>
+        <div id="evarilos"></div>
+    </div>
+    <div id="infoTab">
+        <h1>RAW RANGING DATA VISUALIZATION TOOL v1.0</h1>
+
+        <h2>DESCRIPTION</h2>
+
+        <p>This tool is implemented to visualize raw data that are received from experiments and stored in EVARILOS
+            Database. It
+            is a standalone tool that can be viewed in Internet Browser. </p>
+
+        <h2>AUTHOR</h2>
+
+        <p>Aravinth, Sivalingam Panchadcharam - <a href="mailto:me@aravinth.info">me@aravinth.info</a>
+        </p>
+
+        <h2>ACKNOWLEDGEMENTS</h2>
+        <ul>
+            <li>Filip Lemić : PhD Candiate of Telecommunication Networks faculty at Technical University of Berlin</li>
+            <li>Dr. Arash Behboodi : Telecommunication Networks faculty at Technical University of Berlin</li>
+        </ul>
+        <h2>INSTALLATION</h2>
+
+        <p>This tools does not have to be installed. Internet Browser that supports HTML5 is needed to run this
+            tool. </p>
+
+        <h2>USAGE</h2>
+        <ul>
+            <li>index.html - starts the tool</li>
+            <li>@doc/out/index.html - shows the Javascript Doc of the tool</li>
+            <li>utils/floor_mapper.html - used to calculate properties of FloorPlan</li>
+        </ul>
+        <h2>TESTED ON</h2>
+        <ul>
+            <li>Google Chrome</li>
+            <li>Mozilla Firefox</li>
+            <li>Microsoft Internet Explorer</li>
+        </ul>
+        <h2>GIT</h2>
+
+        <p>To Download the latest version of this tool from GitHub, make a Pull Request at <a
+                href="https://github.com/AravinthPanch/rssi">https://github.com/AravinthPanch/rssi</a></p>
+
+        <h2>CONTACT</h2>
+
+        <p>If you have problems or querries, please contact </p>
+        <ul>
+            <li>Filip Lemić - <a href="mailto:lemic@tkn.tu-berlin.de">lemic@tkn.tu-berlin.de</a></li>
+            <li>Aravinth, Sivalingam Panchadcharam - <a
+                    href="mailto:me@aravinth.info">me@aravinth.info</a></li>
+        </ul>
+        <h2>COPYING / LICENSE</h2>
+        <ul>
+            <li>EVARILOS</li>
+            <li>TKN - TU Berlin</li>
+        </ul>
+
+    </div>
+
+    <div id="docTab">
+        <iframe src="@doc/out/modules/APP.html" height="700" width="100%" seamless="seamless">
+            <p>Your browser does not support iframes.</p>
+        </iframe>
+    </div>
+    <div id="plotTab"></div>
+    <div id="statTab">
+        <h2> Group variances of reference scenario experiments of Access Point
+            CREW_64:70:02:3e:9f:63 </h2>
+        <!--<h2> Group variances of reference scenario experiments of Access Point-->
+            <!--CREW_64:70:02:3e:aa:11 </h2>-->
+        <!--<h2> Group variances of reference scenario experiments of Access Point-->
+        <!--CREW_64:70:02:3e:aa:d9 </h2>-->
+        <!--<h2> Group variances of reference scenario experiments of Access Point-->
+            <!--CREW_64:70:02:3e:aa:ef </h2>-->
+
+        <br>
+        <table id="smallTab" class="CSSTableGenerator"></table>
+        <br>
+
+        <h2> Group variances of signal generator interference scenario experiments of Access Point
+            CREW_64:70:02:3e:9f:63 </h2>
+
+        <!--<h2> Group variances of signal generator interference scenario experiments of Access Point-->
+            <!--CREW_64:70:02:3e:aa:11  </h2>-->
+        <!--<h2> Group variances of signal generator interference scenario experiments of Access Point-->
+        <!--CREW_64:70:02:3e:aa:d9  </h2>-->
+        <!--<h2> Group variances of signal generator interference scenario experiments of Access Point-->
+            <!--CREW_64:70:02:3e:aa:ef  </h2>-->
+        <br>
+        <table id="sigGenTab" style="width: 400px; height: 300px" class="CSSTableGenerator"></table>
+        <br>
+
+        <h2> Group variances of wifi interference scenario experiments of Access Point
+            CREW_64:70:02:3e:9f:63 </h2>
+
+        <!--<h2> Group variances of wifi interference scenario experiments of Access Point-->
+            <!--CREW_64:70:02:3e:aa:11  </h2>-->
+
+        <!--<h2> Group variances of wifi interference scenario experiments of Access Point-->
+        <!--CREW_64:70:02:3e:aa:d9  </h2>-->
+        <!--<h2> Group variances of wifi interference scenario experiments of Access Point-->
+            <!--CREW_64:70:02:3e:aa:ef  </h2>-->
+        <br>
+        <table id="wifiTab" style="width: 400px; height: 300px" class="CSSTableGenerator"></table>
+
+    </div>
+
+
+</div>
+
+<!--Accordions-->
+<div id="accordion">
+
+    <!------------------------- Dashboard Tab  -------------------------->
+    <h3>Dashboard</h3>
+
+    <div>
+        <!-- List of Severs -->
+        <div id="servers">
+            <ul>
+                <li><a href="#server-1">List of Servers</a></li>
+            </ul>
+            <div id="server-1">
+                <ol id="serverList" class="selectableList">
+                    <li class="ui-widget-content" id="server1">Local Server</li>
+                    <li class="ui-widget-content" id="server2">Remote Server</li>
+                    <li class="ui-widget-content" id="server3">Static Data</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- List of databases -->
+        <div id="databases">
+            <ul>
+                <li><a href="#database-1">List of Databases</a></li>
+            </ul>
+            <div id="database-1"></div>
+        </div>
+
+        <!-- List of collections -->
+        <div id="collections">
+            <ul>
+                <li><a href="#collection-1">List of Collections</a></li>
+            </ul>
+            <div id="collection-1"></div>
+        </div>
+
+        <!-- List of Floor Plans -->
+        <div id="floorPlans">
+            <ul>
+                <li><a href="#floorPlan-1">List of Floor Plans</a></li>
+            </ul>
+            <div id="floorPlan-1">
+                <ol id="floorPlanList" class="selectableList">
+                    <li class="ui-widget-content" id="twist2Floor">TWIST 2nd Floor</li>
+                    <li class="ui-widget-content" id="twist3Floor">TWIST 3rd Floor</li>
+                    <li class="ui-widget-content" id="twist4Floor">TWIST 4th Floor</li>
+                    <li class="ui-widget-content" id="iLab1">iLab1</li>
+                    <li class="ui-widget-content" id="iLab2">iLab2</li>
+                </ol>
+            </div>
+        </div>
+
+    </div>
+
+    <!------------------------- Floor Tab  -------------------------->
+    <h3>Floor Plan</h3>
+
+    <div>
+
+        <!-- Floor Plan -->
+        <div id="floorContainer">
+            <div id="floor" class="defaultFloor"></div>
+        </div>
+
+        <!-- List of AccessPoints -->
+        <div id="accesspoints">
+            <ul>
+                <li><a href="#accesspoint-1">List of Access Points</a></li>
+            </ul>
+
+            <ul id="channelMenu">
+                <li><a>Channel</a>
+                    <ul id="channelList">
+                    </ul>
+                </li>
+            </ul>
+
+            <div id="accesspoint-1">
+            </div>
+        </div>
+
+        <!-- Floor Info -->
+        <div id="floorInfoTabs">
+            <ul>
+                <li><a href="#floorInfoTab-1">Info</a></li>
+            </ul>
+            <div id="floorInfoTab-1"></div>
+        </div>
+
+    </div>
+
+    <!------------------------- Graph Tab  -------------------------->
+    <h3>Graph</h3>
+
+    <div>
+
+        <!-- Graph -->
+        <div id="graph"></div>
+
+        <!-- Graph Info -->
+        <div id="graphInfoTabs">
+            <ul>
+                <li><a href="#graphInfoTab-1">Info</a></li>
+            </ul>
+            <div id="graphInfoTab-1"></div>
+        </div>
+
+    </div>
+
+    <!------------------------- Description Tab  -------------------------->
+    <h3>Experiment Description</h3>
+
+    <div>
+        <!-- Metadata -->
+        <ol id="description" class="selectableList"></ol>
+    </div>
+
+</div>
+
+</body>
+</html>

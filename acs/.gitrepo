@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/mcgrof/acs
+	branch = master
+	commit = 7de8203feb7d5ff1cba39757820b696f136ea08b
+	parent = 6a8ec70e28aae68a36916dd4aa1980d523b9607d
+	cmdver = 0.2.0

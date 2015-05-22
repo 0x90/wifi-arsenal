@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<module
+   id      = "DNS-SERVER"
+   version = "0.0.0"
+   name    = "DNS Server"
+   file    = "dns.rb"
+   class   = "DnsServer">
+   
+  <!-- A longer description of what this module is/does -->
+  <description>
+    A DNS server that returns our IP address for every query as well
+    as records the queries that a client makes.
+  </description>
+
+  <!-- Our IP address is retrieved from the running NETWORK-INTERFACE -->
+  <requires id="NETWORK-INTERFACE"/>
+  
+  <!-- Additional symbols (if any) provided by this module -->
+  <provides/>
+
+</module>

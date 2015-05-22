@@ -1,0 +1,263 @@
+Help Files: varmacreaversav.sh
+
+    This script file replaces varmacreaverlocked. It adds the ability to save reaver text data individually, erase files globally or erase or keep individually. We have added the ability to insert WPS Pins into the reaver command line. 
+
+    The enclosed varmacreaversav.sh file, allows users to automate the reaver attack process against up to fifty(50) targetAPs. It is designed to be used against routers which stop responding to reaver attacks either by locking their WPS temporarily or stop responding to WPS pin requests but remain open after being subjected to a series of requests for pins. In both cases the target routers must have been seen to eventually unlock and/or accept pin requests. Do not employ the program against a router that responds normally to reaver attacks or routers that are permanently locked.
+
+    The varmacreaversav script increases the efficiency of reaver pin harvesting in cases where pin access is short lived. Instead of attacking one(1) targetAP by requesting pins for three(3) minutes and then resting two(2) hours as the router has locked, varmacreaversav allows the user to request pins and move on to the next target automatically. If you load 40 targets and spend 180 seconds on each target, it will take two(2) hours to work thru the target list and start again. Furthermore, once the maclistreaver configuration file is written, daily pin harvesting against multiple targets is feasible. The attack can be run in less then a minute against multiple routers.
+
+The varmacreaversav.zip file when downloaded and unzipped contains;
+
+    1. varmacreaversav.sh
+    2. maclistreaversav
+    4. help files
+
+1. Place the maclistreaversav file in root
+2. You can place the varmacreaversav.sh program in root and/or you can place the file in the /usr/bin/ folder and type varmacreaversav.sh from a terminal window. Changing the name to something shorter will have no effect on the program. Make sure the varmacreaversav programs in root and/or /usr/bin/ can be executed as a program. We suggest you make a copy of these files and place them in some folder as a backup. When you first setup the configuration file you may make mistake.
+
+
+Preparation - Selecting Targets:
+
+
+   Run wash from a terminal window and let it scan for a few hours and collect all the possible targets in your area. You can do this daily and add routers to your target list.
+
+     wash -i mon0
+
+   Stop the wash program with ctrl-c and then copy the data collected on the screen by pasting the data to a text editor like leafpad and save it as a text file.
+
+   Go thru the list and select your targets. These should be AP's which lock their WPS System then unlock sometime later and/or routers which stop responding to WPS requests after a period then start responding again. If you are unsure just include it. You can later remove it if found to be permanently locked.
+
+  
+Setting up the maclistreaversav configuration file.
+
+1. Make a backup copy of the maclistreaversav file then open with a text editor like leafpad.
+
+       You can make as many configuration files as you wish to fit the situation as long as they use the maclistreaversav format template. When the varmacreaversav runs, it will allow you to use the default maclistreaversav configuration file or if you select (n/N) no, the program will then allow you to enter an alternate name of the file you wish to use. Hence you can collect pins from many routers with one configuration file and later focus the attack on only a few targets by simply switching configuration files written for that purpose.
+
+        When you open the configuration file you will find 50 blocks. Each block has eleven(11) entries. The first target has explanations with the # symbol proceeding for quick reference. An example of the second and third blocks of 11 entries per block can be seen below.
+
+Example
+ 
+#NAME2=
+#TARGETAP2=
+#CHANNEL2=
+#USE_R2=n
+#RX2=3
+#RY2=15
+#LIVE2=180
+#USE_LONG2=n
+#USE_PIN2=n
+#WPS_PIN2=
+#KEEP_FILE2=n
+#
+#NAME3=
+#TARGETAP3=
+#CHANNEL3=
+#USE_R3=n
+#RX3=3
+#RY3=15
+#LIVE3=180
+#USE_LONG3=n
+#USE_PIN2=n
+#WPS_PIN2=
+#KEEP_FILE2=n
+#
+
+NAME2=  The name of the second targetAP.
+
+	Example:
+
+           NAME2=Homewifi
+
+   If the name has spaces, enclose in parenthesis as seen below
+
+        Example:
+
+          NAME2="Wifi Corner"
+   
+You must enter a name for the program to function. 
+
+
+TARGETAP2=  The mac address of the second target AP. There is no error handling for this entry.
+
+
+        Example:
+
+            TARGETAP2=55:44:33:22:11:00
+
+CHANNEL2=  The channel of the second targetAP
+
+
+        Example:  targetAP2 is using channel one(1)
+
+           CHANNEL2=1
+
+USE_R2=	  Determines the use of the -r x:y with reaver for the 2nd target.
+
+			You !!!!MUST!!! enter either y for yes or n for no. Failure to enter either a y or n will cause the program to skip the target.
+
+        Example: using the -r x:y command
+
+            USE_R2=y
+
+RX3=    The x number of times to request pins in the -r x:y reaver command.
+
+        Example:   make three(3) pin requests
+      
+             RX2=3
+
+
+RY3=   The y rest time in seconds after x pin attempts  in the -r x:y reaver command.
+        
+        Example 15 seconds
+
+             RY2=15
+
+        Example: Use the -r x:y command and make 3 pin requests and then wait 15 seconds
+
+             USE_R2=y
+             RX2=3
+             RY2=15
+
+         Example: Do not use -r command, the x:y commands are ignored
+
+
+             USE_R2=n
+             RX2=3
+             RY2=15
+
+LIVE2=   The total time that reaver will attempt to request pins in seconds from that target.
+
+		At the end of this time reaver will shut down, save the session, and move on to the next target.
+        
+         Example: Reaver will request pins from TARGETAP2 for 180 seconds, then shut down, save the session and move to the next active target.
+
+              LIVE2=180
+
+        The script uses a complicated process to limit the attack to the LIVE time entered by the user while it reads the output to the screen for warning messages and also tests to see if there is any activity. If warning messages or a lack of activity exists, the script moves on to the next target before the time in LIVE has expired. DONOT use a LIVE time less than 120 to allow these processes the time to function. 
+
+USE_LONG2=y    If the Relative Signal Strength Indicator(RSSI) for the targetAP is greater then 72, you might consider using a series of reaver commands developed by the author of autoreaver. These commands seem to enhance pin harvesting from routers with weak signal strength, at long range, or routers which respond to pin requests erratically.
+   You MUST enter either y to use these long range command line or n to use a normal reaver command line. Failure to enter either y or n in the USE_LONG variable, will cause the program to skip the target. We suggest you download autoreaver and read the authors suggestions concerning reaver attacks in the comments section of the autoreaver script. Autoreaver cannot be used by
+
+	Using the below listed reaver command line in a terminal window, Musket Teams have tested the suggestions by the author of autoreaver against weak, and erratically responding routers.
+
+    reaver –i mon0 –a –f –c 1 –b 55:44:33:22:11:00 –r 3:30 –E –S –vv –N –T 1 –t 20 –d 0 –l 420 --mac=00:11:22:33:44:55
+
+       To our surprise routers which were previously not responding, began providing pins at a reasonable speed. We immediately added this choice to the script.
+
+USE_PIN2=n
+WPS_PIN2=
+
+      If you have the WPS pin of the router but the owner has changed the WPA Key there is a very good chance that the WPS pin has not been changed. If the router starts locking its WPS system after the WPA key change, then change the USE_PIN2=n to USE_PIN2=y and enter WPs pin.
+
+USE_PIN2=y
+WPS_PIN2=12345670
+
+     iN THE example above Changing the n to y will activate a command line using thos wps pin. Make sure you include the pin or the command line will fail. If the WPS pin has not been changed you will obtain the WPS Key quickly possibly within ten(10) key requests which is well below what normally triggers the locking system. We have seen routers with similiar names all with the same WPA and WPS key. These routers are not of the same make and one was previously open to WPS [pin requests hence we had the WPS key. Later the owner changed the key and locked all the WPS systems. When the routers were temporarily unlocked we were able to get the new WPA key by using the old WPS pin even though the routers WPS pin lock after 10 pin requests.         
+
+     You must enter either n or y or the program will skip this target
+
+KEEP_FILE2=n When the program runs it writes a directory to root called VARMAC_LOGS. Screen text output is written to a text file and stored in this directory. This text file is then monitored during the reaver attack. If the WPS system locks or there is no activity the attack is terminated and the program moves on to the next target. As the program starts and then shuts down reaver any key if found might be lost therefore users can choose to keep this file for reference.
+
+     KEEP_FILE2=n  The program will delete the file when reaver terminated its attackl and moves on to the next target
+
+     KEEP_FILE2=y  The program will KEEP the file wen reaver moves on to the next target.
+
+
+The Comment(i.e. remarks) symbol # in the configuration file
+
+		To activate each target block make sure you remove the remarks # from the beginning of all 8 entries in the target block.
+
+		For example in the case below, Homewifi will be attacked while Wifi Corner will be ignored due to the presence of #
+
+
+Also notice the parenthesis surrounding the WiFi Corner name. 
+
+NAME2=Homewifi
+TARGETAP2=55:44:33:22:11:00
+CHANNEL2=1
+USE_R2=y
+RX2=3
+RY2=15
+LIVE2=180
+USE_LONG2=n
+USE_PIN2=n
+WPS_PIN2=
+KEEP_FILE2=n
+#
+#NAME3="Wifi Corner"
+#TARGETAP3=77:44:33:22:11:00
+#CHANNEL3=
+#USE_R3=n
+#RX3=3
+#RY3=15
+#LIVE3=90
+#USE_LONG2=y
+#USE_PIN2=n
+#WPS_PIN2=
+#KEEP_FILE2=n
+#
+
+Running the varmacreaversav script
+
+    1. Allow the varmacreaversav file to be executed as a program. Right mouse click on the file, select permissions, click on the check block near the bottom - Execute Allow executing file as program. 
+
+    2. The file can be placed in the /user/bin folder and then type varmacreaversav.sh and the program will run and/or leave the program in root and click on the file from Applications > Accessories > Files /root. Click on the file and choose Run in Terminal. Finally, if the program is in the root directory you can also type ./varmacreaver.sh to run the program.
+
+
+      When started the script will ask;
+
+       1. Do you wish to continue - a maclistreaversav configuration file or any named file using the maclistreaversav template must be prepared?
+
+       2. Do you wish to use the maclistreaversav file?
+
+		If you select y the file will be loaded. If you select n just follow the menu prompts and then enter new file name.
+
+       3. When the configuration file loads you may get error messages. The program asks if you wish to abort or continue.
+
+       4. What is the designation of your wifi device? (i.e. ath0, wlan0, wlan1 etc.)
+
+       5. Do you want to boost power?
+
+       6. What is the designation of your monitor? (i.e. mon0)
+
+       7. How long do you want the program to pause in seconds?
+
+		The Program Pause:   The script will work thru all your targets allocating time to each target as per your LIVE entry. After working thru all the targets entered, the program can be ordered to pause for a set number of minutes prior to continuing thru the entire list again.
+
+		If you have loaded only a few targets, you may work thru the list too quickly. The pause command allows you to stretch the time before restarting.  If you do not want to pause, just enter a zero(0) as per the menu prompt. The script will finish the last target, change the mac address of your wifi device and continue thru the list of APs found in the configuration file again.
+
+       8. How many times do you want the program to cycle thru all targetAPs? Enter to total number of times you want to pass thru the total list of targets.
+
+
+ 
+   Daily Use
+        Sometimes routers change their channel. Users should occasionally scan the target thru wash or airodump-ng and confirm that the target routers are still on the same channel as loaded into the configuration file. You can also use this time to add any targets that may arise.
+
+
+        This script is not meant to be employed against routers which are responding normally. It is meant to be used against routers which require a lot of sleep time between pin requests. For example you have four routers. Three are responding slowly and one locks then unlocks 3000 second later. Write a configuration file that includes only these four routers. Attack the first three(3) routers 1000 seconds per router then attack the router that locks for only 180 seconds or until the router locks and then go back to the three routers again in an endless cycle. Your attacks are no longer linear tied up on one target at a time.
+
+        We have tested this program on a live usb install of kali-linux1.09. This program uses awk commands. If print functions fail on older kali-versions a possible solution might be to install gawk:
+
+    apt-get install gawk
+
+
+Addittions
+
+varmacreaversav992   
+
+
+
+    Users now have the ability to change the configuratiob file while the program is running. Once the reaction of routers to reaver is seen we suggest you adjust the setting in the config file to meet the situation, For example if one router is active at a longer period of time then others simply increase the live time. Varmacreaversav loads the config file at the beginning of the program. Once started users can access this configuration file and adjust the contents and save the file any time the program is using reaver. When the program reaches the end of the routers liated it reloads the configuration again then changes the mac address and starts the list from the top again. Changes made will be implimented when the program changes the mac addrsss and starts working thru the list again.
+
+     New routines have been developed to sense reavers failure to obtain pins. If the router fails to respond the program will move on to the next target within one(1) minute. If the router stops responding after one(1) minute the program will move on to the next target dependent on the live time set. The program also moves on to the next target when recieving several warnings from reaver. Response time to these warning is dependent on live time set so give the program time to respond. 
+
+
+
+
+
+          
+       Musket Teams
+       Bring into view that which is hidden
+
+ 

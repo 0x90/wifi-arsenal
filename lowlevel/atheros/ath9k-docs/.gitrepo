@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/erikarn/ath9k-docs
+	branch = master
+	commit = e1f81989130750681a4479988c788cad1bb19e29
+	parent = 611c6b438726b21df13af18e3ce9544934119894
+	cmdver = 0.2.0

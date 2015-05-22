@@ -1,0 +1,48 @@
+LORCON Examples and Patches (10/08/2012)
+by brad antoniewicz
+brad.antoniewicz@foundstone.com
+---------------------------------------------------
+
+Various examples and patches for LORCON. These have 
+all been tested on BT5R3. More detail concerning these
+examples can be found here:
+
+http://blog.opensecurityresearch.com/2012/09/getting-started-with-lorcon.html
+
+
+beacon_flood_lcpa.c -
+	Basic beacon flooder that uses LORCON's packet assembly 
+	functionality.
+
+	To build:
+
+		gcc -o beacon_flood_lcpa -lorcon2 beacon_flood_lcpa.c
+
+	To run:
+		
+		 ./beacon_flood_lcpa -i wlan1 -c 11 -s BRAD
+
+beacon_flood_raw.c -
+	Basic beacon flooder that sends raw packet bytes.
+
+	To build:
+
+		gcc -o beacon_flood_raw -lorcon2 beacon_flood_raw.c
+
+	To run:
+
+		./beacon_flood_raw -i wlan1 -c 11
+
+beacon_flood_raw.py - 
+	Basic beacon flooder that sends raw packet bytes using
+	PyLorcon2. 
+
+	To build:
+		root@bt:~# apt-get install libnl-dev
+                root@bt:~# wget http://pylorcon2.googlecode.com/files/PyLorcon2-0.1.tar.gz
+		root@bt:~# tar -zxvf PyLorcon2-0.1.tar.gz
+		root@bt:~# cd PyLorcon2-0.1
+		root@bt:~/PyLorcon2-0.1# python setup.py build
+		root@bt:~/PyLorcon2-0.1# python setup.py install
+	To run:
+		python beacon_flood_raw.py -i wlan1 -c 11	

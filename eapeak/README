@@ -1,0 +1,52 @@
+::::::::::     :::     :::::::::  ::::::::::     :::     :::    ::: 
+:+:          :+: :+:   :+:    :+: :+:          :+: :+:   :+:   :+:  
++:+         +:+   +:+  +:+    +:+ +:+         +:+   +:+  +:+  +:+   
++#++:++#   +#++:++#++: +#++:++#+  +#++:++#   +#++:++#++: +#++:++    
++#+        +#+     +#+ +#+        +#+        +#+     +#+ +#+  +#+   
+#+#        #+#     #+# #+#        #+#        #+#     #+# #+#   #+#  
+########## ###     ### ###        ########## ###     ### ###    ### 
+
+== Summary ==
+EAPeak is a suite of open source tools to facilitate auditing of
+wireless networks that utilize the Extensible Authentication Protocol
+framework for authentication. It is meant to give useful information
+relating to the security of these networks for pentesters to use while
+searching for vulnerabilities. 
+
+== License ==
+Copyright (C) 2011, SecureState
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+MA 02110-1301, USA.
+
+This license does not apply to the following components:
+ * Scapy
+ * M2Crypto
+ * argparse
+
+== About ==
+Author: Spencer McIntyre <smcintyre [at] securestate [dot] com>
+Author Home Page: http://www.securestate.com/
+Project Home Page: http://code.google.com/p/eapeak
+Project Blog: http://blog.securestate.com/?tag=/EAPeak
+
+
+Please Send Bug Reports To: <eapeakdev [at] securestate [dot] com>
+
+== Install ==
+For install information please see the INSTALL file.
+The newest Scapy Community build (2.1.1-dev) is required because of
+the changes made to it by the author(s).  It can be downloaded here:
+http://hg.secdev.org/scapy-com

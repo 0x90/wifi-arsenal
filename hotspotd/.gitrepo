@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/prahladyeri/hotspotd
+	branch = master
+	commit = ade756904debe44eb4d73b472049715f175608d1
+	parent = 276b58085d145af3e0a3dc733efd749837dce850
+	cmdver = 0.2.0

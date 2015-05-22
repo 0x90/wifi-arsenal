@@ -1,0 +1,13 @@
+# Lines starting with '#' and sections without content
+# are not displayed by a call to 'details'
+#
+[paths]
+db.py:WppDB:line 140
+
+
+[details]
+_insertMany() can NOT handle postgresql db.
+
+
+[expected]
+copy_from(StringIO(str(data)), table)

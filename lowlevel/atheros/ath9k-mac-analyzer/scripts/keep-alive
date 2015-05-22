@@ -1,0 +1,10 @@
+#!/bin/sh
+
+while [ 1 ]; do
+    /usr/bin/mac-analyzer.bin "$@" &  # argument to be passed ?from where 
+    trap "kill $!; rm -f $2; exit" INT TERM
+    wait $!
+    trap - INT TERM
+    sleep 10
+    echo "Restarting mac-analyzer"
+done

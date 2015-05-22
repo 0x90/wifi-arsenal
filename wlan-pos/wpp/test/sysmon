@@ -1,0 +1,47 @@
+#!/bin/bash
+# $0 <reqs> <concur>
+
+LOOP=5000
+LOGDIR=$HOME/tmp/sysmon_log
+[ -d $LOGDIR ] || mkdir -p $LOGDIR
+datetime=`date +%Y%m%d-%H%M%S`
+LOGFILE=$LOGDIR/sysmon_${datetime}_n$1c$2.log
+
+
+PREV_TOTAL=0
+PREV_IDLE=0
+
+echo "#time,cpu usage(%),mem free(m)" >> $LOGFILE
+for i in $(seq $LOOP)
+do
+	CPU=(`cat /proc/stat | grep '^cpu '`) # Get the total CPU statistics.
+	unset CPU[0]                          # Discard the cpu prefix.
+	IDLE=${CPU[4]}                        # Get the idle CPU time.
+	
+	# Calculate the total CPU time.
+	TOTAL=0
+	for VALUE in "${CPU[@]}"; do
+	  let "TOTAL=$TOTAL+$VALUE"
+	done
+	
+	# Calculate the CPU usage since we last checked.
+	let "DIFF_IDLE=$IDLE-$PREV_IDLE"
+	let "DIFF_TOTAL=$TOTAL-$PREV_TOTAL"
+	let "DIFF_USAGE=(1000*($DIFF_TOTAL-$DIFF_IDLE)/$DIFF_TOTAL+5)/10"
+	#echo -en "\rCPU: $DIFF_USAGE%  \b\b"
+	
+	# Remember the total and idle CPU times for the next check.
+	PREV_TOTAL="$TOTAL"
+	PREV_IDLE="$IDLE"
+	
+	# Mem usage.
+	#CPU=`top -n 1|grep "Cpu"| awk '{printf $5}' |awk -F% '{printf $1}'`
+	MEMFree=`free -m| grep "Mem:"| awk '{print $4}'`
+	#MEMTotal=`free -m| grep "Mem:"| awk '{print $2}'`
+	#IO=`vmstat 1 2| sed -n '/[0-9]/p' | sed -n '2p' | gawk '{print $16}'`
+	tstamp=`date +%H%M%S-%D`
+
+	echo "$tstamp,$DIFF_USAGE,$MEMFree" 2>&1 |tee -a $LOGFILE
+	# Wait before checking again.
+	sleep 1
+done

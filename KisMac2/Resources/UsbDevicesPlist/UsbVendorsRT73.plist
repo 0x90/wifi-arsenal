@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>WUSB54GR</key>
+	<dict>
+		<key>idProduct</key>
+		<integer>35</integer>
+		<key>idVendor</key>
+		<integer>5041</integer>
+	</dict>
+	<key>WLI-U2-SG54HG-AP</key>
+	<dict>
+		<key>idProduct</key>
+		<integer>244</integer>
+		<key>idVendor</key>
+		<integer>1089</integer>
+	</dict>
+	<key>WUSB54GC</key>
+	<dict>
+		<key>idProduct</key>
+		<integer>32</integer>
+		<key>idVendor</key>
+		<integer>5041</integer>
+	</dict>
+	<key>D-LINK 1</key>
+	<dict>
+		<key>idProduct</key>
+		<integer>15363</integer>
+		<key>idVendor</key>
+		<integer>2001</integer>
+	</dict>
+	<key>D-LINK 2</key>
+	<dict>
+		<key>idProduct</key>
+		<integer>15364</integer>
+		<key>idVendor</key>
+		<integer>2001</integer>
+	</dict>
+	<key>Belkin</key>
+	<dict>
+		<key>idProduct</key>
+		<integer>28762</integer>
+		<key>idVendor</key>
+		<integer>1293</integer>
+	</dict>
+	<key>Belkin F5D9050</key>
+	<dict>
+		<key>idProduct</key>
+		<integer>36956</integer>
+		<key>idVendor</key>
+		<integer>1293</integer>
+	</dict>
+	<key>CNET CWD-854</key>
+	<dict>
+		<key>idProduct</key>
+		<integer>9587</integer>
+		<key>idVendor</key>
+		<integer>5263</integer>
+	</dict>
+	<key>Conceptronic</key>
+	<dict>
+		<key>idProduct</key>
+		<integer>15394</integer>
+		<key>idVendor</key>
+		<integer>5298</integer>
+	</dict>
+	<key>ASUS WL-167G RALINK RT2500</key>
+	<dict>
+		<key>idProduct</key>
+		<integer>5923</integer>
+		<key>idVendor</key>
+		<integer>2821</integer>
+	</dict>
+	<key>Sitecom WL-172</key>
+	<dict>
+		<key>idProduct</key>
+		<integer>37036</integer>
+		<key>idVendor</key>
+		<integer>3574</integer>
+	</dict>
+	<key>Sitecom WL-113 v.1.002</key>
+	<dict>
+		<key>idProduct</key>
+		<integer>38674</integer>
+		<key>idVendor</key>
+		<integer>3574</integer>
+	</dict>
+	<key>Hercules HWGUSB2-54-V2</key>
+	<dict>
+		<key>idProduct</key>
+		<integer>57360</integer>
+		<key>idVendor</key>
+		<integer>1784</integer>
+	</dict>
+	<key>Hercules HWGUSB2-54V2-AP</key>
+	<dict>
+		<key>idProduct</key>
+		<integer>57376</integer>
+		<key>idVendor</key>
+		<integer>1784</integer>
+	</dict>
+	<key>BUFFALO WLI-U2-G54HP</key>
+	<dict>
+		<key>idProduct</key>
+		<integer>217</integer>
+		<key>idVendor</key>
+		<integer>1041</integer>
+	</dict>
+	<key>Engenius EUB-3701 EXT</key>
+	<dict>
+		<key>idProduct</key>
+		<integer>14081</integer>
+		<key>idVendor</key>
+		<integer>5952</integer>
+	</dict>
+	<key>D-LINK DWA-110</key>
+	<dict>
+		<key>idProduct</key>
+		<integer>2001</integer>
+		<key>idVendor</key>
+		<integer>15367</integer>
+	</dict>
+	<key>D-LINK DWA-111</key>
+	<dict>
+		<key>idProduct</key>
+		<integer>2001</integer>
+		<key>idVendor</key>
+		<integer>15366</integer>
+	</dict>
+	<key>Belkin F5D9050 (2)</key>
+	<dict>
+		<key>idProduct</key>
+		<integer>36955</integer>
+		<key>idVendor</key>
+		<integer>1293</integer>
+	</dict>
+	<key>TechnicLAN WUSB-54GR</key>
+	<dict>
+		<key>idProduct</key>
+		<integer>9587</integer>
+		<key>idVendor</key>
+		<integer>5263</integer>
+	</dict>
+	<key>7318USG</key>
+	<dict>
+		<key>idProduct</key>
+		<integer>29464</integer>
+		<key>idVendor</key>
+		<integer>29586</integer>
+	</dict>
+</dict>
+</plist>

@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>globals</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title=""></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/collection.html">collection</a></li>
+                                <li><a href="../classes/controller.html">controller</a></li>
+                                <li><a href="../classes/floor.html">floor</a></li>
+                                <li><a href="../classes/globals.html">globals</a></li>
+                                <li><a href="../classes/graph.html">graph</a></li>
+                                <li><a href="../classes/utils.html">utils</a></li>
+                                <li><a href="../classes/view.html">view</a></li>
+                            </ul>
+                
+                            <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/APP.html">APP</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1>globals Class</h1>
+                        <div class="box meta">
+                        
+                        
+                                <div class="foundat">
+                                    Defined in: <a href="../files/scripts_globals.js.html#l1"><code>scripts&#x2F;globals.js:1</code></a>
+                                </div>
+                        
+                                    Module: <a href="../modules/APP.html">APP</a>
+                        
+                        </div>
+                        
+                        
+                        <div class="box intro">
+                            <p>Globals contains properties, constants and variables used in APP.
+                        Important data used during the lifecycle of APP are stored under Globals for the purpose having clean global variables and debugging.</p>
+                        
+                        </div>
+                        
+                        
+                        <div id="classdocs" class="tabview">
+                            <ul class="api-class-tabs">
+                                <li class="api-class-tab index"><a href="#index">Index</a></li>
+                        
+                                    <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
+                            </ul>
+                        
+                            <div>
+                                <div id="index" class="api-class-tabpanel index">
+                                    <h2 class="off-left">Item Index</h2>
+                        
+                        
+                                        <div class="index-section properties">
+                                            <h3>Properties</h3>
+                        
+                                            <ul class="index-list properties">
+                                                    <li class="index-item property">
+                                                        <a href="#property_channelList">channelList</a>
+                        
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#property_collectionList">collectionList</a>
+                        
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#property_databaseList">databaseList</a>
+                        
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#property_dataBaseUriLocal">dataBaseUriLocal</a>
+                        
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#property_dataBaseUriRemote">dataBaseUriRemote</a>
+                        
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#property_eventBus">eventBus</a>
+                        
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#property_filteredRawDataByFloor">filteredRawDataByFloor</a>
+                        
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#property_floorPlanScale">floorPlanScale</a>
+                        
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#property_graphData">graphData</a>
+                        
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#property_groupedNodeDataByChannel">groupedNodeDataByChannel</a>
+                        
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#property_groupedSsidData">groupedSsidData</a>
+                        
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#property_metadata">metadata</a>
+                        
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#property_metadataId">metadataId</a>
+                        
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#property_metadataUri">metadataUri</a>
+                        
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#property_nodeList">nodeList</a>
+                        
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#property_rawData">rawData</a>
+                        
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#property_selectedChannelData">selectedChannelData</a>
+                        
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#property_selectedCollection">selectedCollection</a>
+                        
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#property_selectedCollectionData">selectedCollectionData</a>
+                        
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#property_selectedDatabase">selectedDatabase</a>
+                        
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#property_selectedFloorPlan">selectedFloorPlan</a>
+                        
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#property_selectedNodeData">selectedNodeData</a>
+                        
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#property_selectedSsidData">selectedSsidData</a>
+                        
+                                                    </li>
+                                            </ul>
+                                        </div>
+                        
+                        
+                                </div>
+                        
+                        
+                                    <div id="properties" class="api-class-tabpanel">
+                                        <h2 class="off-left">Properties</h2>
+                        
+                                            <div id="property_channelList" class="property item">
+                                                <h3 class="name"><code>channelList</code></h3>
+                                                <span class="type">Array</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/scripts_globals.js.html#l138"><code>scripts&#x2F;globals.js:138</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>List of Channel Number which are extracted from the selectedNodeData, if available</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_collectionList" class="property item">
+                                                <h3 class="name"><code>collectionList</code></h3>
+                                                <span class="type">Array</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/scripts_globals.js.html#l73"><code>scripts&#x2F;globals.js:73</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>List of collections of the selected database</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_databaseList" class="property item">
+                                                <h3 class="name"><code>databaseList</code></h3>
+                                                <span class="type">Array</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/scripts_globals.js.html#l57"><code>scripts&#x2F;globals.js:57</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>List of databases of selected server</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_dataBaseUriLocal" class="property item">
+                                                <h3 class="name"><code>dataBaseUriLocal</code></h3>
+                                                <span class="type">String</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/scripts_globals.js.html#l25"><code>scripts&#x2F;globals.js:25</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>URL of the local server</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_dataBaseUriRemote" class="property item">
+                                                <h3 class="name"><code>dataBaseUriRemote</code></h3>
+                                                <span class="type">String</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/scripts_globals.js.html#l17"><code>scripts&#x2F;globals.js:17</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>URL of the remote server</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_eventBus" class="property item">
+                                                <h3 class="name"><code>eventBus</code></h3>
+                                                <span class="type">Object</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/scripts_globals.js.html#l9"><code>scripts&#x2F;globals.js:9</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>AmplifyJS global variable is assigned as Eventbus</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_filteredRawDataByFloor" class="property item">
+                                                <h3 class="name"><code>filteredRawDataByFloor</code></h3>
+                                                <span class="type">Array</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/scripts_globals.js.html#l113"><code>scripts&#x2F;globals.js:113</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>RawData filtered by FloorPlan. Even though FloorPlan is selected by USER, some Big collections have data of various FloorPlans altogether
+                                            In order to filter such RawData, extra function is implemented and the result stored in this variable</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_floorPlanScale" class="property item">
+                                                <h3 class="name"><code>floorPlanScale</code></h3>
+                                                <span class="type">Object</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/scripts_globals.js.html#l186"><code>scripts&#x2F;globals.js:186</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Properties of FloorPlans that contains size of the FloorPlan Image and One Unit of X,Y Axis of the location in pixels of Floor Plan,
+                                            Offset of the Floor Plan Image from left and top. These properties are calculated using utils/floor_mapper.html</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_graphData" class="property item">
+                                                <h3 class="name"><code>graphData</code></h3>
+                                                <span class="type">Array</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/scripts_globals.js.html#l178"><code>scripts&#x2F;globals.js:178</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Extracted RSSI values of the selected SSID_BSSID that will be fed to the graph</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_groupedNodeDataByChannel" class="property item">
+                                                <h3 class="name"><code>groupedNodeDataByChannel</code></h3>
+                                                <span class="type">Array</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/scripts_globals.js.html#l146"><code>scripts&#x2F;globals.js:146</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Data of selected Node grouped by Channel number</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_groupedSsidData" class="property item">
+                                                <h3 class="name"><code>groupedSsidData</code></h3>
+                                                <span class="type">Array</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/scripts_globals.js.html#l162"><code>scripts&#x2F;globals.js:162</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>RSSI Data grouped by SSID_BSSID</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_metadata" class="property item">
+                                                <h3 class="name"><code>metadata</code></h3>
+                                                <span class="type">Object</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/scripts_globals.js.html#l49"><code>scripts&#x2F;globals.js:49</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Metadata of the selected experiment</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_metadataId" class="property item">
+                                                <h3 class="name"><code>metadataId</code></h3>
+                                                <span class="type">String</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/scripts_globals.js.html#l41"><code>scripts&#x2F;globals.js:41</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>metadataId of the selected experiment</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_metadataUri" class="property item">
+                                                <h3 class="name"><code>metadataUri</code></h3>
+                                                <span class="type">String</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/scripts_globals.js.html#l33"><code>scripts&#x2F;globals.js:33</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>URL of the metadata collection</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_nodeList" class="property item">
+                                                <h3 class="name"><code>nodeList</code></h3>
+                                                <span class="type">Array</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/scripts_globals.js.html#l122"><code>scripts&#x2F;globals.js:122</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>List of all measurement points of the selected collection. Measurement Points are defined as nodes through out APP</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_rawData" class="property item">
+                                                <h3 class="name"><code>rawData</code></h3>
+                                                <span class="type">Array</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/scripts_globals.js.html#l97"><code>scripts&#x2F;globals.js:97</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>RawData of the selected collection which is a list of RawData from all measurement points of the selected experiment</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_selectedChannelData" class="property item">
+                                                <h3 class="name"><code>selectedChannelData</code></h3>
+                                                <span class="type">Object</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/scripts_globals.js.html#l154"><code>scripts&#x2F;globals.js:154</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Data of selected Channel</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_selectedCollection" class="property item">
+                                                <h3 class="name"><code>selectedCollection</code></h3>
+                                                <span class="type">Object</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/scripts_globals.js.html#l81"><code>scripts&#x2F;globals.js:81</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Name and URI of the selected collection</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_selectedCollectionData" class="property item">
+                                                <h3 class="name"><code>selectedCollectionData</code></h3>
+                                                <span class="type">Array</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/scripts_globals.js.html#l89"><code>scripts&#x2F;globals.js:89</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Internal URI List of the selected collection</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_selectedDatabase" class="property item">
+                                                <h3 class="name"><code>selectedDatabase</code></h3>
+                                                <span class="type">Object</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/scripts_globals.js.html#l65"><code>scripts&#x2F;globals.js:65</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Name and URI of the selected database</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_selectedFloorPlan" class="property item">
+                                                <h3 class="name"><code>selectedFloorPlan</code></h3>
+                                                <span class="type">String</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/scripts_globals.js.html#l105"><code>scripts&#x2F;globals.js:105</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Name of the selected floor plan</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_selectedNodeData" class="property item">
+                                                <h3 class="name"><code>selectedNodeData</code></h3>
+                                                <span class="type">Array</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/scripts_globals.js.html#l130"><code>scripts&#x2F;globals.js:130</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Data of the selected node</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_selectedSsidData" class="property item">
+                                                <h3 class="name"><code>selectedSsidData</code></h3>
+                                                <span class="type">Object</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/scripts_globals.js.html#l170"><code>scripts&#x2F;globals.js:170</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>RSSI Data of the selected SSID_BSSID</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                    </div>
+                        
+                        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

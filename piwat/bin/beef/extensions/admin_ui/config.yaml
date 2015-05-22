@@ -1,0 +1,14 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+beef:
+    extension:
+        admin_ui:
+            name: 'Admin UI'
+            enable: true
+            favicon_file_name: "favicon.ico"
+            favicon_dir: "/images"
+            login_fail_delay: 1
+

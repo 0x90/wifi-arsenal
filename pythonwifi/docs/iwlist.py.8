@@ -1,0 +1,167 @@
+.\" Author: Sean Robinson <seankrobinson@gmail.com>
+.\" iwlist.py.8
+.\"
+.TH IWLIST.py 8 "16 December 2009" "Python WiFi" "Linux Programmer's Manual"
+.\"
+.\" NAME part
+.\"
+.SH NAME
+iwlist.py \- Get more detailed wireless information from a wireless interface via Python
+.\"
+.\" SYNOPSIS part
+.\"
+.SH SYNOPSIS
+.BI "iwlist.py [" interface ]
+.br
+.BI "iwlist.py [" interface ]
+scanning
+.br
+.BI "iwlist.py [" interface ]
+frequency
+.br
+.BI "iwlist.py [" interface ]
+rate
+.br
+.BI "iwlist.py [" interface ]
+keys
+.br
+.BI "iwlist.py [" interface ]
+power
+.br
+.BI "iwlist.py [" interface ]
+txpower
+.br
+.BI "iwlist.py [" interface ]
+retry
+.br
+.BI "iwlist.py [" interface ]
+event
+.br
+.BI "iwlist.py [" interface ]
+auth
+.br
+.BI "iwlist.py [" interface ]
+wpakeys
+.br
+.BI "iwlist.py [" interface ]
+genie
+.br
+.BI "iwlist.py [" interface ]
+modulation
+.br
+.BI "iwlist.py --help"
+.br
+.BI "iwlist.py --version"
+.\"
+.\" DESCRIPTION part
+.\"
+.SH DESCRIPTION
+.B iwlist.py
+is a drop-in replacement for
+.IR iwlist (8),
+but uses the pythonwifi module to implement its functionality in pure Python.
+See the
+.IR iwlist (8)
+man page for more detail about what
+.B iwlist.py
+can do.
+.PP
+The compatitibilty of specific operations
+.B iwlist.py
+has with
+.IR iwlist (8)
+are listed below.
+.\"
+.\" COMPATIBILITY part
+.\"
+.SH COMPATIBILITY
+.TP
+.BR scanning
+
+Essentially the same as
+.IR iwlist (8),
+but with a possible different line order in the results and probably less 
+information per AP.
+
+.TP
+.BR frequency
+
+Not working, but it should be.
+
+.TP
+.BR rate
+
+Probably as unreliable as
+.IR iwlist (8).
+
+.TP
+.BR keys
+
+Very close to the same output.
+
+.TP
+.BR power
+
+Close, but not well tested.
+
+.TP
+.BR txpower
+
+Not working.
+
+.TP
+.BR retry
+
+Very close to the same output.
+
+.TP
+.BR event
+
+Not working.
+
+.TP
+.BR auth
+
+Not working.
+
+.TP
+.BR wpakeys
+
+Not working.
+
+.TP
+.BR genie
+
+Not working.
+
+.TP
+.BR modulation
+
+Not working.
+
+.\"
+.\" AUTHOR part
+.\"
+.SH AUTHOR
+Sean Robinson \- seankrobinson@gmail.com
+.\"
+.\" COPYRIGHT part
+.\"
+.SH COPYRIGHT
+Portions Copyright 1996-2006 Jean Tourrilhes
+.br
+Copyright 2004-2005 Roman Joost
+.br
+Copyright 2009 Sean Robinson
+.\"
+.\" FILES part
+.\"
+.SH FILES
+.I /proc/net/dev,
+.I /proc/net/wireless
+.\"
+.\" SEE ALSO part
+.\"
+.SH SEE ALSO
+.BR iwlist (8),
+.BR iwconfig.py (8),

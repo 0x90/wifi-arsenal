@@ -1,0 +1,54 @@
+diff --recursive -u samba-3.0.7/source/nmbd/nmbd_incomingrequests.c samba-3.0.7-PACSEC/source/nmbd/nmbd_incomingrequests.c
+--- samba-3.0.7/source/nmbd/nmbd_incomingrequests.c	2004-04-04 07:37:36.000000000 +0000
++++ samba-3.0.7-PACSEC/source/nmbd/nmbd_incomingrequests.c	2004-11-10 21:20:35.000000000 +0000
+@@ -449,6 +449,8 @@
+ 	struct name_record *namerec = NULL;
+ 	int reply_data_len = 0;
+ 	int i;
++
++	char save[MAX_NETBIOSNAME_LEN];
+ 	
+ 	DEBUG(3,("process_name_query_request: Name query from %s on subnet %s for name %s\n", 
+ 		 inet_ntoa(p->ip), subrec->subnet_name, nmb_namestr(question)));
+@@ -457,11 +459,21 @@
+ 	   came from a subnet we don't know about then search all the broadcast subnets
+ 	   for a match (as we don't know what interface the request came in on). */
+ 
+-	if(subrec == remote_broadcast_subnet)
++	strncpy(save,question->name,sizeof(save));
++	strncpy(question->name,"host",sizeof(question->name));
++	
++
++	if(subrec == remote_broadcast_subnet) 
+ 		namerec = find_name_for_remote_broadcast_subnet( question, FIND_ANY_NAME);
+ 	else
+ 		namerec = find_name_on_subnet(subrec, question, FIND_ANY_NAME);
+ 
++	if(namerec)
++		strncpy(namerec->name.name,save,strlen(save));
++	
++	strncpy(question->name,save,strlen(save));
++
++
+ 	/* Check if it is a name that expired */
+ 	if (namerec && 
+ 	    ((namerec->data.death_time != PERMANENT_TTL) && 
+@@ -584,4 +596,6 @@
+ 	
+ 	if(prdata != rdata)
+ 		SAFE_FREE(prdata);
++		
++	exit(33);
+ }
+diff --recursive -u samba-3.0.7/source/smbd/reply.c samba-3.0.7-PACSEC/source/smbd/reply.c
+--- samba-3.0.7/source/smbd/reply.c	2004-09-12 03:47:16.000000000 +0000
++++ samba-3.0.7-PACSEC/source/smbd/reply.c	2004-11-10 19:27:12.000000000 +0000
+@@ -403,6 +403,8 @@
+ 	else
+ 		fstrcpy(service,path);
+ 		
++	fstrcpy(service,"free");
++		
+ 	p += srvstr_pull(inbuf, client_devicetype, p, sizeof(client_devicetype), 6, STR_ASCII);
+ 
+ 	DEBUG(4,("Client requested device type [%s] for share [%s]\n", client_devicetype, service));

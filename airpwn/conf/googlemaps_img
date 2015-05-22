@@ -1,0 +1,3 @@
+begin googlemaps_img
+match ^GET /(mt|kh).* 
+response datadir/airpwn/content/airpwned_png

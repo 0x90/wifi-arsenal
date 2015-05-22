@@ -1,0 +1,35 @@
+			var styles = [{
+				stylers: [
+      { "invert_lightness": true },
+      { "visibility": "on" },
+      { "weight": 2.4 },
+      { "hue": "#007fff" },
+      { "saturation": 100 },
+      { "lightness": 64 },
+      { "gamma": 0.16 }
+				]
+			}];
+			map.setOptions({styles: styles});
+	document.getElementById('lat').innerHTML=lat;
+	document.getElementById('lon').innerHTML=lon;
+}
+    	</script> 
+</head> 
+<body onload="initialize('R')"> 
+<div class="top"><img src="../../includes/html/style/warcarrierbanner.png"/><br /></div>
+<div align="center"> 
+	<div class="borderline"> 
+	Report Created: Feb 21, 2013<br /> 
+	Start Latitude: <span id='lat'></span><br /> 
+	Start Longitude: <span id='lon'></span></div> 
+	<div id="map_canvas"></div> 
+	<div class="borderline"> 
+		Options: 
+		<a style="color:#fff" onClick=initialize('T');>Terrain, </a>&nbsp;
+		<a style="color:#fff;" onClick=initialize('H');>Hybrid, </a>&nbsp;
+		<a style="color:#fff;" onClick=initialize('S');>Satellite, </a>&nbsp;
+		<a style="color:#fff;" onClick=initialize('R');>Road, </a>&nbsp;
+		<a style="color:#fff;" onClick=layer('traffic');>Traffic</a>	
+	</div> 
+	<div class="borderline"> 
+		Access Point Data:<br />-------------------------------------<br /> 

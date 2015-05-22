@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   UsbVendorsIntersil.plist
+   KisMAC
+
+   Created by pr0gg3d on 10/04/08.
+   Copyright 2008 __MyCompanyName__. All rights reserved.
+-->
+<plist version="1.0">
+    <dict>
+        <key>IOData AirPort WN-B11/USBS</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>2338</integer>
+            <key>idVendor</key>
+            <integer>1211</integer>
+        </dict>
+        <key>Corega Wireless LAN USB Stick-11</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>18</integer>
+            <key>idVendor</key>
+            <integer>1962</integer>
+        </dict>
+        <key>Prism2.x 11Mbps WLAN USB Adapter</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>13890</integer>
+            <key>idVendor</key>
+            <integer>2474</integer>
+        </dict>
+        <key>Actiontec Prism2.5 11Mbps WLAN USB Adapter</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>1032</integer>
+            <key>idVendor</key>
+            <integer>5736</integer>
+        </dict>
+        <key>Actiontec Prism2.5 11Mbps WLAN USB Adapter</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>1057</integer>
+            <key>idVendor</key>
+            <integer>5736</integer>
+        </dict>
+        <key>Linksys WUSB11v2.5 11Mbps WLAN USB Adapter</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>8722</integer>
+            <key>idVendor</key>
+            <integer>1643</integer>
+        </dict>
+        <key>Linksys WUSB12v1.1 11Mbps WLAN USB Adapter</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>8723</integer>
+            <key>idVendor</key>
+            <integer>1643</integer>
+        </dict>
+        <key>Siemens SpeedStream 1022 11Mbps WLAN USB Adapter</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>4130</integer>
+            <key>idVendor</key>
+            <integer>1660</integer>
+        </dict>
+        <key>Compaq/Intel W100 PRO/Wireless 11Mbps multiport WLAN Adapter</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>51</integer>
+            <key>idVendor</key>
+            <integer>1183</integer>
+        </dict>
+        <key>Melco WLI-USB-S11 11Mbps WLAN Adapter</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>22</integer>
+            <key>idVendor</key>
+            <integer>1041</integer>
+        </dict>
+        <key>PRISM25 IEEE 802.11 Mini USB Adapter</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>31233</integer>
+            <key>idVendor</key>
+            <integer>2270</integer>
+        </dict>
+        <key>Intel PRO/Wireless 2011B LAN USB Adapter</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>4369</integer>
+            <key>idVendor</key>
+            <integer>32902</integer>
+        </dict>
+        <key>PRISM25 IEEE 802.11 Mini USB Adapter</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>31233</integer>
+            <key>idVendor</key>
+            <integer>3470</integer>
+        </dict>
+        <key>Microsoft MN510 Wireless USB Adapter</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>110</integer>
+            <key>idVendor</key>
+            <integer>1118</integer>
+        </dict>
+        <key>Acer Warplink USB Adapter</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>516</integer>
+            <key>idVendor</key>
+            <integer>2407</integer>
+        </dict>
+        <key>Z-Com 725/726 Prism2.5 USB/USB Integrated</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>2</integer>
+            <key>idVendor</key>
+            <integer>3294</integer>
+        </dict>
+        <key>Dell TrueMobile 1180 Wireless USB Adapter</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>33024</integer>
+            <key>idVendor</key>
+            <integer>16700</integer>
+        </dict>
+        <key>ALLNET 0193 11Mbps WLAN USB Adapter</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>5633</integer>
+            <key>idVendor</key>
+            <integer>2875</integer>
+        </dict>
+        <key>ZyXEL ZyAIR B200 Wireless USB Adapter</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>5634</integer>
+            <key>idVendor</key>
+            <integer>2875</integer>
+        </dict>
+        <key>USRobotics USR1120 Wireless USB Adapter</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>235</integer>
+            <key>idVendor</key>
+            <integer>2991</integer>
+        </dict>
+        <key>Melco WLI-USB-KS11G 11Mbps WLAN Adapter</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>39</integer>
+            <key>idVendor</key>
+            <integer>1041</integer>
+        </dict>
+        <key>JVC MP-XP7250 Builtin USB WLAN Adapter</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>12297</integer>
+            <key>idVendor</key>
+            <integer>1265</integer>
+        </dict>
+        <key>Adaptec AWN-8020 USB WLAN Adapter</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>32</integer>
+            <key>idVendor</key>
+            <integer>1011</integer>
+        </dict>
+        <key>ZyDAS ZD1201 Wireless USB Adapter</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>4609</integer>
+            <key>idVendor</key>
+            <integer>2766</integer>
+        </dict>
+        <key>ASUS-WL140 Wireless USB Adapter</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>13056</integer>
+            <key>idVendor</key>
+            <integer>10273</integer>
+        </dict>
+        <key>DWL-122 Wireless USB Adapter</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>14080</integer>
+            <key>idVendor</key>
+            <integer>8193</integer>
+        </dict>
+        <key>NetGear MA111</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>16656</integer>
+            <key>idVendor</key>
+            <integer>2118</integer>
+        </dict>
+        <key>MacSense WUA-700</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>22321</integer>
+            <key>idVendor</key>
+            <integer>1906</integer>
+        </dict>
+        <key>AirVast WN-220?</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>16407</integer>
+            <key>idVendor</key>
+            <integer>4682</integer>
+        </dict>
+        <key>Sitecom WL-022 - new version</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>6189</integer>
+            <key>idVendor</key>
+            <integer>36886</integer>
+        </dict>
+        <key>SMC WUSB32</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>60932</integer>
+            <key>idVendor</key>
+            <integer>1799</integer>
+        </dict>
+        <key>WUSB11 version 3.0</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>8758</integer>
+            <key>idVendor</key>
+            <integer>6421</integer>
+        </dict>
+        <key>SAGEM F@st 1400W</key>
+        <dict>
+            <key>idProduct</key>
+            <integer>5</integer>
+            <key>idVendor</key>
+            <integer>3294</integer>
+        </dict>
+    </dict>
+</plist>

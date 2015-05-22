@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/securitytube/pcap2xml
+	branch = master
+	commit = 5507ad4ff0ae598d49e86d0826bff52d9436099e
+	parent = e421b0e1767b7a75978dfbeb6c5c80c44bfdbd98
+	cmdver = 0.2.0

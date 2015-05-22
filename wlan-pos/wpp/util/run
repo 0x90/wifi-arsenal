@@ -1,0 +1,333 @@
+#!/bin/bash
+#usage: basename [OPTION], use '-h/--help' for more info.
+VER=0.1
+
+# Default init
+aio=0
+start_spid=1
+stop_spid=1
+runtimes=60
+fakegps=0
+makepyc=0
+nstop=0
+stabtest=0
+stabtest_times=50
+log_analysis=0
+
+pathout=log/out
+patherr=log/err
+
+online="python online.py"
+offline="python offline.py"
+
+Version ()
+{
+    cat <<VER
+
+GNU `basename $0` version $VER, by Yan Xiaotian
+Built on i686-ubuntu-linux-gnu
+Copyright (C) `date +%Y` Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.
+There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.
+
+Report bugs to <xiaotian.yan@gmail.com>.
+
+VER
+    exit 0
+}
+Usage()
+{
+	cat <<HELP
+
+run -- WLAN location fingerprinting running script.
+
+USAGE: run [OPTION] ...
+OPTION: 
+-a     all in one processing(default: no, only offline processing)
+-f     start spid number(included)(default: 1)
+-g     offline fake GPS receiving(default: yes)
+-h     show this help
+-l     location evaluation for data in log files (*.err or *.out)
+-m     make pyc files of *.py
+-n     non-stop automated offline calibration
+-r     number of samples for each spid(default: 60)
+-s     stability test for stabtest_times(default=200) times, with stdout/stderr logged.
+	   usage: <basename> -s <cmdname> '<cmdarg1> ...'.
+-t     stop spid number(included)(default: 1)
+-v     show version information
+
+EXAMPLE:
+Offline radio map generation for spid from 1 to 100(60 scans each, 
+with fake GPS enabled), followed by online locationing.
+#run -a -g -f 1 -t 100 -r 60
+Offline WLAN data calibration, filtering, clustering and sql tabling continuously.
+#run -n <start_spid>
+Compile all *.py to *.pyc
+#run -m
+Loop test for stability
+#run -s test.py '-t -g -f 1'
+
+HELP
+	exit 0
+}
+
+[ $# -eq 0 ] && Usage
+#x=1   # Avoids an error if we get no options at all.
+while getopts "af:ghl:mn:or:s:t:v" opt; do
+    OPTERR=0 #error msg shutup
+    case $opt in
+        a ) aio=1 ;;
+        f ) start_spid=$OPTARG ;;
+        g ) fakegps=1 ;;
+        h ) Usage ;;
+        l ) 
+			log_analysis=1 
+			logfile=$OPTARG
+		;;
+        m ) makepyc=1 ;;
+        n ) 
+            nstop=1 
+			cnt=$OPTARG
+        ;;
+        r ) runtimes=$OPTARG ;;
+		# NOTE: To guarantee security, in case the cmdargs contains same args as this script's.
+		# 		usage: $0 -s <cmd> '<cmdarg1> <cmdarg2> ...' 
+		s )  
+			stabtest=1
+			declare -a input=( "$@" )
+			posptr=1
+			cmdname="${input[$posptr]}" 
+			hassudo=0
+			if [ "$cmdname" = "sudo" ]; then
+				posptr=`expr $posptr + 1`
+				cmdname=./${input[$posptr]}
+				hassudo=1
+			fi	
+			if [ -f ${cmdname} -a -x ${cmdname} ]; then
+				posptr=`expr $posptr + 1`
+				[ $hassudo -eq 1 ] && cmdname=sudo" ./"${cmdname}
+				declare -a cmdargs=( "${input[@]:$posptr}" )
+				log_analysis=1
+			else
+				echo -e "\nCommand NOT available: ${cmdname}!!"
+				echo -e "NOTE: Make sure the file is executable, and located/linked in CWD!"
+				Usage
+			fi
+		;;
+        t ) stop_spid=$OPTARG ;;
+        v ) Version ;;
+        * )
+			echo -e "\nSorry, BAD or IMCOMPLETE options: '$@' !"
+            Usage
+        ;;
+    esac
+  x=$OPTIND
+done
+#shift $(($x-1))
+#echo "Left overs: $@"
+#exit 0
+
+timestamp=`date +%Y-%m%d-%H%M`
+#date=`date +%Y-%m%d`
+date=${timestamp%-*}
+
+if [ $stabtest -eq 1 ]; then
+    [ -d $patherr ] || mkdir -p $patherr
+    [ -d $pathout ] || mkdir -p $pathout
+    errf=$patherr/stabtest-$timestamp.err
+    outf=$pathout/stabtest-$timestamp.out
+    for i in $(seq $stabtest_times) 
+    do
+        echo -e "\n*****TEST [$i]*****"
+        ($cmdname $cmdargs 2>&1 1>&3 |tee -a $errf) 3>&1 1>&2 |tee -a $outf
+        sleep 4
+    done
+fi
+
+if [ $log_analysis -eq 1 ]; then
+	if [ ! $stabtest -eq 1 ]; then
+		logf=`basename $logfile`
+		mainfile=${logf%\.*}
+		suffix=${logf##*\.}
+		if [ "$suffix" = "out" ]; then
+			outf=$pathout/$logf
+			errf=$patherr/${mainfile}.err
+		elif [ "$suffix" = "err" ]; then
+			errf=$patherr/$logf
+			outf=$pathout/${mainfile}.out
+		else
+			echo "Unsupported suffix: [$suffix]!"
+			Usage
+		fi
+	fi
+	# error file
+	if [ -s $errf ]; then
+		echo -e "\nError detected in $errf !!!\n"
+	else
+		echo -e "\nAll Passed: $errf !!!\n"
+	fi
+	# out file
+	logtmp=$outf-$$
+	egrep -A2 '^location:|^dk-location' $outf |grep '^ *\[' > $logtmp
+	cnt_dknn=`grep '^\[\[.*\]\]$' $logtmp  |wc -l`
+	cnt_direct=`grep '^\[[^\[]' $logtmp |wc -l`
+	cnt_avg=`grep "^\[\[.*'\]$" $logtmp |wc -l`
+	cnt_tot=$((cnt_dknn+cnt_direct+cnt_avg))
+	printf "%5s: %-10s\n-----------\n" "Item" "count"
+	printf "%6s %-10s\n" "dknn" "$cnt_dknn"
+	printf "%6s %-10s\n" "direct" "$cnt_direct"
+	printf "%6s %-10s\n-----------\n" "avg" "$cnt_avg"
+	printf "%6s %-10s\n" "total" "$cnt_tot"
+
+	declare -a spset_dknn=(`grep '^\[\[.*\]\]$' $logtmp  |awk -F\' '{print $4}' |sort |uniq`)
+	printf "\nDKNN\n%4s: %-5s  %5s\n---------------------\n" "spid" "count" "ratio"
+	for cnt in $( seq ${#spset_dknn[@]} )
+	do
+		idx=$((cnt-1))
+		sp=${spset_dknn[$idx]}
+		cnt_sp=`grep '^\[\[.*\]\]$' $logtmp  |grep "'$sp'" |wc -l`
+		printf "%5d %5d  %-2.2f\n" $sp $cnt_sp `echo "scale=4;($cnt_sp)/($cnt_tot)*100" |bc`
+	done
+	declare -a spset_direct=(`grep '^\[[^\[]' $logtmp |awk -F, '{print $2}' |sort |uniq`)
+	printf "\nDirect\n%4s: %-5s  %5s\n---------------------\n" "spid" "count" "ratio"
+	for cnt in $( seq ${#spset_direct[@]} )
+	do
+		idx=$((cnt-1))
+		sp=${spset_direct[$idx]}
+		cnt_sp=`grep '^\[[^\[]' $logtmp |grep ", $sp, " |wc -l`
+		printf "%5d %5d  %-2.2f\n" $sp $cnt_sp `echo "scale=4;($cnt_sp)/($cnt_tot)*100" |bc`
+	done
+	declare -a spset_avg=(`grep "^\[\[.*'\]$" $logtmp |awk -F\' '{print $4}' |sort |uniq`)
+	printf "\nAVG\n%4s: %-5s  %5s\n---------------------\n" "spid" "count" "ratio"
+	for cnt in $( seq ${#spset_avg[@]} )
+	do
+		idx=$((cnt-1))
+		sp=${spset_avg[$idx]}
+		cnt_sp=`grep "^\[\[.*'\]$" $logtmp |grep "'$sp'" |wc -l`
+		printf "%5d %5d  %-2.2f\n" $sp $cnt_sp `echo "scale=4;($cnt_sp)/($cnt_tot)*100" |bc`
+	done
+
+	rm -f $logtmp
+fi
+
+
+if [ $nstop -eq 1 ]; then
+	goon=0
+    while true;
+    do
+        echo "Offline procedure begins at sampling point [$cnt]......."
+        echo -n "Continue[Y/n]?"
+        #FIXME: Parameters interactive confirm.
+        read -s opt
+        echo " $opt"
+        if [ "$opt" != "n" -a "$opt" != "N" ]; then
+            goon=1
+			echo "Sampling Point [$cnt]"
+			if [ $fakegps -eq 1 ]; then
+				offopts="-v -f" # Fake GPS
+				$offline $offopts -s $runtimes -i $cnt
+			else
+				offopts="-v"
+				sudo $offline $offopts -s $runtimes -i $cnt
+			fi
+			[ $? -eq 0 ] || exit 99
+
+            spidfmt=`printf '%06d' $cnt`
+            rawfilename=$date-$spidfmt.raw
+            echo -e "\nGenerating rmp file...\n"
+            $offline -v -t dat/$rawfilename
+            echo "-----------------------------------------------------------------"
+            cnt=`expr $cnt + 1`
+        else
+            [ $goon -eq 1 ] && break || exit 0
+        fi
+    done
+
+    echo -e "\nRenaming tbl files to be ready for clustering...\n"
+	[ -f tbl/cidaps.tbl ] && mv -f tbl/cidaps.tbl tbl/cidaps-$timestamp.tbl.bak
+	[ -f tbl/cfprints.tbl ] && mv -f tbl/cfprints.tbl tbl/cfprints-$timestamp.tbl.bak
+
+    echo -e "\nClustering...\n"
+    rmpfilename=$date.rmp
+    #$offline -c dat/$rmpfilename
+
+    echo -e "\nUpload SQL tables...\n"
+    #$offline -u 1
+fi
+
+
+if [ $makepyc -eq 1 ]; then
+	rm -f *.pyc 2>/dev/null
+    compileall_file=`locate compileall.py |grep -v pyc`
+    [ "${compileall_file##*/}" = "compileall.py" ] && echo "Found: $compileall_file" ||\
+         compileall_file="$PYTHONPATH/../compileall.py"
+    python $compileall_file .
+fi
+
+exit 0
+
+[ $fakegps -eq 1 ] && offopts="-v -f" || offopts="-v "
+onopts="-v "
+#onopts="-v -a 2"
+
+for spid in $(seq $start_spid $stop_spid)
+do
+    echo "Sampling Point [$spid]"
+	sudo $offline $offopts -s $runtimes -i $spid
+	spidfmt=`printf '%06d' $spid`
+	rawfilename=$date-$spidfmt.raw
+	$offline -v -t dat/$rawfilename
+	echo "-----------------------------------------------------------------"
+done
+if [ $aio -eq 1 ]; then
+    rmpfilename=$date.rmp
+    sudo $online $onopts -i dat/$rmpfilename
+fi
+
+
+exit 0
+RUNTIME=10
+RUNFILE=offline.py
+LOGPATH=log
+
+if [ $# -lt 1 ]; then
+    date=`date +%Y%m%d-%H%M%S`
+    echo -e "\nTime: $date\n"
+    LOGFILE=$LOGPATH/log-$date
+    declare -a LOGFILES=( $LOGFILE )
+    [ -d ${LOGPATH} ] || mkdir ${LOGPATH}
+    [ -f ${LOGFILE} ] && mv -f ${LOGFILE} ${LOGFILE}.bak
+    for x in $(seq ${RUNTIME})
+    do
+        echo "Survey $x:"
+        sudo python ${RUNFILE} |tee -a ${LOGFILE}
+        echo "-------------------------------------------------------------"
+    done
+else
+	declare -a LOGFILES=( "$@" )
+fi 
+
+
+for LOGFILE in ${LOGFILES[@]}
+do
+    echo -ne "\nChecking ${LOGFILE##*/} ... "
+    #Integrity checking.
+    stat_gga=`grep -e 'GGA' ${LOGFILE} |wc -l`
+    stat_gll=`grep -e 'GLL' ${LOGFILE} |wc -l`
+    #stat_rmc=`grep -e 'RMC' ${LOGFILE} |wc -l`
+    stat_all=`expr ${stat_gga} + ${stat_gll}`
+
+    stat_loc_all=`echo "($stat_all) * 2" |bc`
+    stat_loc_mline=`grep -e '^ *116' -e '^ *39' ${LOGFILE} |wc -l`
+    stat_loc_sline_noap=`sed -n "/^\['[0-9]*\-[0-9]*', 116\.[0-9]*, 39\.[0-9]*, \[\]]/p" ${LOGFILE} |wc -l`
+    stat_loc_all=`echo "(${stat_loc_mline}) + (${stat_loc_sline_noap}) * 2" |bc`
+    echo "OK"
+
+    printf "Total scan: %16d\n" ${stat_all}
+    echo "-------------------------------"
+    printf "GGA: %23d\nGLL: %23d\nRMC: %23d\n" ${stat_gga} ${stat_gll} ${stat_rmc}
+    printf "Lat/Lon OK: %13d/%02d\n" ${stat_loc_all} ${stat_loc_all}
+    printf "WLAN scan OK: %11d/%02d\n" `expr ${stat_all} - ${stat_loc_sline_noap}` ${stat_all}
+    echo -e "-------------------------------\n"
+done

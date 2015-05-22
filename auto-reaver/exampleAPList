@@ -1,0 +1,5 @@
+AA:BB:CC:DD:EE:FF 1 MyWlan
+00:22:33:DD:EE:FF 13 dlink343
+BB:22:33:DD:EE:FF 6 FRITZ!Box Fon WLAN 32
+#--This-AP-is-skipped--- BB:22:33:DD:EE:FF 6 MyWlan3
+# another skipped AP FF:11:33:DD:EE:FF 6 HomeNet

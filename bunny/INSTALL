@@ -1,0 +1,18 @@
+download lorcon:
+git clone https://code.google.com/p/lorcon/
+
+cd lorcon
+./configure --prefix=/usr
+	- You will also need 'libpcap-dev' package
+make
+make install
+
+Download pylorcon2 (the one on google code)
+sudo python setup.py install
+ - For this step you will need the python headers, on debian try installing 'python-dev' package
+
+repeat for:
+ -pcapy
+ -pcrypto
+ -keyczar
+ -pyasn1	(If you have 'python-setuptools' installed just run: 'easy_install pyasn1')

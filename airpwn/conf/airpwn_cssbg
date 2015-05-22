@@ -1,0 +1,9 @@
+begin airpwn_css
+match ^GET [^ ]+\.(?i:css)
+option reset
+response datadir/airpwn/content/airpwn_cssbg
+
+begin airpwn_bgimg
+match ^GET [^ ]+airpwnbg.jpg
+option reset
+response datadir/airpwn/content/airpwned_png

@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/trou/airscan
+	branch = master
+	commit = 8471bf7ce8ab3f77d1dfcb51b903a6a89d3bba41
+	parent = 762a0162ff77ed86ec4747f0d1a6437e0cbb2d57
+	cmdver = 0.2.0

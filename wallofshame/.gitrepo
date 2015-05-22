@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/0x0d/wallofshame
+	branch = master
+	commit = e9b885ad207b6eb799cbe13628150fcbe6cb1c1f
+	parent = 97ca19e509188aa0b773b58a2511d880d0248cda
+	cmdver = 0.2.0

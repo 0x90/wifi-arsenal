@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-15"
+ http-equiv="content-type">
+  <title>MDK3 Documentation</title>
+</head>
+<body>
+<div style="text-align: center;"><img
+ style="width: 466px; height: 145px;" alt="k2wrlz logo" src="k2wrlz.png"><br>
+<br>
+<big style="font-weight: bold;"><big>MDK3 Documentation</big></big><br>
+<br>
+<div style="text-align: left;">
+<div style="text-align: center;">MDK is a proof-of-concept tool to
+exploit common IEEE 802.11 protocol weaknesses.<br>
+<span style="text-decoration: underline;">It is your responsibility to
+make sure you have permission from the network owner before running MDK
+against it.</span><br>
+</div>
+<br>
+<br>
+MDK3 is a work from ASPj of k2wrlz, it uses the osdep library from the
+aircrack-ng project to inject frames on several operating systems.<br>
+Many parts of it have been contributed by the great aircrack-ng
+community:<br>
+<span style="font-weight: bold;">Antragon, moongray, Ace, Zero_Chaos,
+Hirte, thefkboss, ducttape, telek0miker, Le_Vert, sorbo, Andy Green,
+bahathir</span><br>
+THANK YOU!<br>
+<br>
+MDK3 is licenced under the GPLv2<br>
+<br>
+<br>
+<big>Contents:<br>
+1. Setting up your environment<br>
+2. Getting MDK3 to run (Compiling MDK3, where to get binaries)<br>
+3. How to use MDK3<br>
+4. The different test modes</big><br>
+<br>
+<br>
+<br>
+<big style="font-weight: bold;"><big>1. Setting up your environment<br>
+</big></big><big><big><br>
+</big><big><small><small>MDK3 is a tool, that "injects" data into
+wireless networks. "Injection" is the possibility to send self-made
+data through the air without being connected or associated to anything.
+MDK3 is used to send valid and invalid data, that does belong to the
+wireless management and not to a regular data connection. This is only
+possible with this Injection technique. Sadly, this is something, wifi
+equipment is NOT build for! To enable the injection feature on your
+wireless card, you need modified drivers. A lot of work has already
+been done by several hackers (including me) to make these modified
+drivers available for a lot of wifi adaptors.<br>
+To set up your driver for Injection, please visit <a
+ href="http://www.aircrack-ng.org">www.aircrack-ng.org</a> and follow
+the Driver Documentation there.<br>
+MDK3 uses the drivers and Injection routines from this project and its
+predecessor. Thus, all drivers listed there should work with MDK3.
+(Some special hardware, like Intel Centrino (ipw2200) is NOT supported
+since they can only inject data, and no management information!)<br>
+MDK3 works on Linux and maybe FreeBSD currently, soon it may run on
+Windows, too. It runs best with a pretty
+up-to-date kernel and drivers.<br>
+<br>
+<br>
+</small></small></big></big><big style="font-weight: bold;"><big>2.
+Getting MDK3 to run (Compiling MDK3, where to get binaries)<br>
+<br>
+</big></big><big><big><small><small>Some Linux distributions already
+contain a precompiled mdk3 binary. As far as I know, there are Debian
+and BackTrack having the old mdk2 in their repositories at the moment.
+If you do not use one of these, you have
+to create the binary yourself (compiling).<br>
+To do this, go to the directory, where you extracted the tarballs
+contents and simply type <span style="font-style: italic;">make<br>
+</span>To copy the compiled binary to your /usr/local/sbin directory
+(installing it), type <span style="font-style: italic;">make install</span>
+afterwards.<br>
+<br>
+<span style="font-style: italic;"></span><br>
+</small></small></big></big><big style="font-weight: bold;"><big>3. How
+to use MDK3<br>
+</big></big><big style="font-weight: bold;"><big><br>
+</big></big><big><big><small><small>Using MDK3 is quite simple, since
+it comes with lots of help screens directly included in the code.<br>
+You can easily access them by typing only <span
+ style="font-style: italic;">mdk3</span><br>
+MDK3 displays the main help screen. To see all possible options, type <span
+ style="font-style: italic;">mdk3 --fullhelp</span><br>
+To see only information for a specific test, type <span
+ style="font-style: italic;">mdk3 --help</span> followed by the test
+mode identifier (b, a, p, d, m or x)<br>
+<br>
+Before you can use MDK3, you need to setup your wireless adaptor. As
+far as there are different driver architectures, the way to setup your
+adaptor may vary depending on which driver is in use. To make this
+procedure easy, it is recommended to use airmon-ng from the aircrack
+project, since this can setup almost every known driver correctly.<br>
+To enable injection, your card needs to be started, switched to the
+monitor and a bitrate and channel have to be set.<br>
+<br>
+This way works for most of the cards, its the generic way thats
+provided by the kernel (sadly not every driver is using this kernel
+interface)<br>
+1. Insert your card, a new interface should appear (use <span
+ style="font-style: italic;">ifconfig -a</span> to show all available
+interfaces)<br>
+2. Start your interface with <span style="font-style: italic;">ifconfig</span>
+[your_interface] <span style="font-style: italic;">up<br>
+</span>3. Set the interface into monitor mode: <span
+ style="font-style: italic;">iwconfig </span>[your_interface]<span
+ style="font-style: italic;"> mode monitor</span><br>
+4. Set channel and bitrate: <span style="font-style: italic;">iwconfig
+</span>[your_interface] <span style="font-style: italic;">channel </span>[channel]<span
+ style="font-style: italic;"> rate 1M</span><br>
+This sets the bitrate for your injected data to 1 MBit, the lowest
+available rate, but with the highest possible range, to reach as many
+clients as possible.<br>
+IMPORTANT: You need to set the channel to the channel where the target
+AP/client is, otherwise it won't work! This is a very common error.<br>
+<br>
+To find APs and clients, it is recommended to use airodump-ng. Simply
+start it with <span style="font-style: italic;">airodump-ng</span>
+[your_interface] first, to see the available stations. If you decided
+on one CHANNEL where to run the test on, you should restart airodump
+and
+set it ONLY to this specific channel, so your card won't change
+channels anymore to find other stations. You can do this with <span
+ style="font-style: italic;">airodump-ng -c </span>[channel]
+[your_interface]<br>
+The good thing of using airodump-ng is, that you don't need to care
+about setting your card up correctly since airodump-ng already did this
+job. Nevertheless, airmon-ng is sometimes also necessary before
+starting airodump-ng.<br>
+<br>
+Your hardware is now correctly set up, and you can start usind MDK3.<br>
+<br>
+Another important notice for professional users: Some drivers do not
+correctly echo back injected frames to the system, thus your injected
+packets won't be seen if you sniff on the interface on which you are
+injecting. To check if the frames are sent correctly you need to setup
+another inteface on the same channel and sniff the injected frames with
+it!<br>
+<span style="font-style: italic;"><br>
+<br>
+</span></small></small></big></big><big style="font-weight: bold;"><big>4.
+The different test modes</big></big><br>
+<br>
+<span style="font-weight: bold; text-decoration: underline;">b&nbsp;&nbsp;
+- Beacon Flood Mode</span><br>
+<br>
+AccessPoints send out approximately 10 beacon frames per second. They
+are to identify the network. When you scan for networks, your card does
+in fact look for beacon frames on every available channel. With MDK3,
+it is possible to send these beacon frames, too. So people will see
+your fake networks when they scan with their wifi. Windows does scan
+automatically as long as it isn't connected and shows a bubble in the
+taskbar, if a network is found. Additionally, this mode can be used
+to hide a network by generating thousands of fake networks with the
+same name as the original one. This mode has several options to set
+network name, its encryption, its speed etc. So read on to get familiar
+with them:<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -n &lt;ssid&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This lets you set the
+name of the network. Only networks with the given name will be faked.
+This is used if you want to hide a network.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -f &lt;filename&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This lets you read the
+names for the networks from a file. This way you can fake multiple
+networks at once.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -v &lt;filename&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This is used to fake
+only a very specific set of networks. Every line is this file consists
+of the APs adress and its name. See the example file on how to use it.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -d<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Do not fake a real
+network, but fake an Ad-Hoc network with clients only. (networks
+without APs, where peers communicate directly)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -w<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This generates WEP
+encrypted networks<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -g<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This generates
+networks with IEEE-802.11g 54 Mbit. Without this option, you will get
+b-only 11 MBit networks<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -t<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Show networks using
+WPA TKIP encryption<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Show networks using
+WPA AES encryption<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -m<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Usually, MDK3
+generates networks with a random adress. But as far as not all adresses
+are used this day, this option refers to the adress database included
+in MDK3 to generate only AcessPoints with adresses from known hardware
+vendors. With this option it is hard to say, if a network is fake or
+not.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -h<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This makes MDK3 to
+change your card's channel to the channel where the fake network should
+actually be. Good thing about this is, its harder to determine if this
+network is fake, since the channel given in the beacon data matches the
+channel the packet is send on. Bad thing is, your card needs some time
+to change on a specific channel. So this slows down the injection
+speed. You
+could avoid this by generating fake networks on one channel only (see
+-c option below), but in this case, the targets don't need to change
+their channels in order to find the correct AP, thus they find the real
+AP a bit faster.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -c &lt;chan&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Set the channel where
+the fake network should be<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -s &lt;pps&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Set speed in frames
+per second (Default: 50). More speed = More fake networks. But don't
+get crazy with this option. Too many frames may overflow your card's
+buffers and it will crash!<br>
+<br>
+<br>
+<span style="font-weight: bold;">EXAMPLES:</span><br>
+<br>
+There is a WPA TKIP network named "Hack me" on channel 11, supporting
+up to 54 MBit with lots of clients. You want to confuse them a little
+by generating some fake clone networks:<br>
+<br>
+<span style="font-style: italic;">mdk3 </span>[your_interface] <span
+ style="font-style: italic;">b -n "Hack me" -g -t -m -c 11</span><br>
+<br>
+The b activates beacon flood mode, -n sets the name, -g makes it 54
+MBit, -t enables TKIP, -m makes MDK3 only use valid adresses and -c
+sets the correct channel. Do not forget to set your card's channel
+before your start such a test! You could also use -h option for this.<br>
+<br>
+<br>
+a&nbsp;&nbsp; - Authentication DoS mode<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sends authentication frames to all APs
+found in range.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Too much clients freeze or reset some
+APs.<br>
+<br>
+EXAMPLES:<br>
+<br>
+p&nbsp;&nbsp; - Basic probing and ESSID Bruteforce mode<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Probes AP and check for answer, useful
+for checking if SSID has<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; been correctly decloaked or if AP is in
+your adaptors sending range<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SSID Bruteforcing is also possible with
+this test mode.<br>
+<br>
+EXAMPLES:<br>
+<br>
+d&nbsp;&nbsp; - Deauthentication / Disassociation Amok Mode<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kicks everybody found from AP<br>
+<br>
+EXAMPLES:<br>
+<br>
+m&nbsp;&nbsp; - Michael shutdown exploitation (TKIP)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Cancels all traffic continuously<br>
+<br>
+EXAMPLES:<br>
+<br>
+x&nbsp;&nbsp; - 802.1X tests<br>
+<br>
+EXAMPLES:<br>
+<br>
+<br>
+<span style="font-weight: bold;">And for those who read this document
+until
+the end, here is the special Multi Destruction Mode to really
+shutdown and destroy a network.</span><br>
+WARNING: This could REALLY shutdown every communication, even until the
+hardware is manually resetted. This can crash drivers, computers and
+APs alike! So consider yourself to have been warned! Run these commands
+only, if there is no important data transmitted and you can afford some
+downtime!<br>
+<br>
+<br>
+<br>
+(c) Pedro Larbig 2007<br>
+</div>
+</div>
+</body>
+</html>

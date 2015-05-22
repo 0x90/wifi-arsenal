@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/azz2k/scapy-rssi
+	branch = master
+	commit = 7649a7eec5eae680222b50e90654f237e7e9b706
+	parent = 71a8a800f5b6ef1352dd34e366290e130a1c9437
+	cmdver = 0.2.0

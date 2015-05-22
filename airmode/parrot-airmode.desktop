@@ -1,0 +1,11 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Name=AirMode
+Encoding=UTF-8
+Exec=gksu airmode
+Icon=parrot-menu.png
+StartupNotify=false
+Terminal=false
+Type=Application
+Categories=05-01-wireless-tools;top10;
+X-Parrot-Package=airmode

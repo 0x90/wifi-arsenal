@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/eye9poob/Default-wps-pin
+	branch = master
+	commit = 2ed0e5e6b1f5c99f5a269c3ab029db59aa5a2461
+	parent = 3de463e875120ac912562903b899f9fcaf289178
+	cmdver = 0.2.0

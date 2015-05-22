@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/vanhoefm/modwifi
+	branch = master
+	commit = c1a69b3948af04b73472bc03b8d05052bbf4911d
+	parent = eebeca24dd824b76865cc36231cb3c7221069dd5
+	cmdver = 0.2.0

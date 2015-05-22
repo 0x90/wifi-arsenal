@@ -1,0 +1,17 @@
+Source: crda
+Section: admin
+Priority: optional
+Maintainer: Luis R. Rodriguez <mcgrof@gmail.com>
+Build-Depends: cdbs, debhelper (>= 5), gcc, wireless-regdb, libgcrypt11-dev, python-m2crypto, libnl1
+Standards-Version: 3.7.3
+
+Package: crda
+Architecture: all
+Depends: udev, libgcrypt11, libnl1
+Suggests: iw
+Description: Linux wireless central regulatory domain agent
+ This package provides CRDA to be used by the new Linux kernel wireless
+ subsystem to query from userspace regulatory domains. For more information
+ see:
+ .
+ http://wireless.kernel.org/en/developers/Regulatory/

@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/DepthDeluxe/dot11sniffer
+	branch = master
+	commit = eab2b4ba5a26a6dbc55e8dfe4d381c7365353349
+	parent = 9c24f7214d98999a88aaa5f092364655eda3b377
+	cmdver = 0.2.0

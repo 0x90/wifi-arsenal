@@ -1,0 +1,21 @@
+{
+    "att": {
+        "attack":"1",
+        "ruletype":"deny",
+        "type":"client",
+        "mac":"any"
+    },
+    "ap02": {
+        "attack": "0",
+        "ruletype": "allow",
+        "type": "ap",
+        "bssid": "02:ab:cd:ef:12:30"
+    },
+    "client02": {
+        "ruletype": "allow",
+        "attack": "0",
+        "type": "client",
+        "bssid": "02:ab:cd:ef:12:30",
+        "mac": "02:ab:cd:ef:12:30"
+    }
+}

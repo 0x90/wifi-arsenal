@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/rs91092/Scapy-wireless-scanner
+	branch = master
+	commit = 5af38ccd4a16cfaabaa488e5c0e7bb64c66a35ba
+	parent = f5759dde2e1a1e6c381d000a3688cac3ce727f52
+	cmdver = 0.2.0

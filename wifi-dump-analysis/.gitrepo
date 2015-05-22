@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/abnarain/wifi-dump-analysis
+	branch = master
+	commit = 5852d5cf1d743de79ac59c1c5202dd587eb1ec7f
+	parent = 660931912224591eaf1aa82d918df6fbcf30246a
+	cmdver = 0.2.0

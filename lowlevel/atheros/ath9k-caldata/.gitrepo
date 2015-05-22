@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/Noltari/ath9k_caldata
+	branch = master
+	commit = f6c81998a119c3dd768dfd9004d3bde46835433e
+	parent = 5a390170e60d58e212ddded4268bd4b3d1386e59
+	cmdver = 0.2.0

@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/hughobrien/ath9k-nav
+	branch = master
+	commit = d7da3e5de61a8a60bca2f0a17040c04a1e5fc9e0
+	parent = 71f0b63a6d9a2d2037f837d6bd88efd6bf018064
+	cmdver = 0.2.0

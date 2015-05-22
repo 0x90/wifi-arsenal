@@ -1,0 +1,8 @@
+include README
+include Makefile
+include MANIFEST*
+include api-2011.txt
+recursive-include examples *.py
+recursive-include pythonwifi *.py
+recursive-include docs *
+recursive-include tests *

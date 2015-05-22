@@ -1,0 +1,7 @@
+transforms/tmp
+.acceptedlicense
+wigle_creds.txt
+*.pyc
+*.db
+*.log
+*.sql

@@ -1,0 +1,27 @@
+(: Select all distinct MAC addresses :)
+distinct-values(
+	/packets/packet/wlan-mac-header/address-1 |
+	/packets/packet/wlan-mac-header/address-2 |
+	/packets/packet/wlan-mac-header/address-3 |
+	/packets/packet/wlan-mac-header/address-4
+)
+
+(: Select all distinct MAC addresses of a certain address field :)
+distinct-values(/packets/packet/wlan-mac-header/address-3)
+
+(: Select all distinct MAC addresses receiving data frames :)
+distinct-values(
+	/packets/packet/wlan-mac-header[frame-control[type = 2 and subtype = 0]]/address-1
+)
+
+(: Select all distinct MAC addresses sending beacon frames :)
+distinct-values(
+	/packets/packet/wlan-mac-header[frame-control[type = 0 and subtype = 8]]/address-2
+)
+
+(: Select average frame length :)
+avg(/packets/packet/@length)
+
+(: Get the list of times between packets :)
+for $i in (1 to count(packets/packet))
+  return packets/packet[$i]/@timestamp - packets/packet[$i + 1]/@timestamp

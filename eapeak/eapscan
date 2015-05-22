@@ -1,0 +1,317 @@
+#!/usr/bin/env python
+
+"""
+	-*- coding: utf-8 -*-
+	eapscan
+	
+	Author: Spencer McIntyre (Steiner) <smcintyre [at] securestate [dot] com>
+	
+	Copyright 2011 SecureState
+	
+	This program is free software; you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation; either version 2 of the License, or
+	(at your option) any later version.
+	
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+	MA 02110-1301, USA.
+		
+"""
+
+# TODO: Add verbosity options to display BSSID and Client MAC addresses
+
+__version__ = '0.0.7'
+__authors__ = [ 'Spencer McIntyre', 'SecureState R&D Team' ]
+
+import sys
+try:
+	from scapy.layers.l2 import eap_types as EAP_TYPES
+except ImportError:
+	print 'Error: Missing Scapy Libraries, Please Install Scapy From The Community Repository'
+	# http://hg.secdev.org/scapy-com # needs community repository because of the extra EAP layers I added.
+	print 'Error: Now Exiting...'
+	sys.exit(1)
+
+import argparse
+import logging
+from time import sleep
+from os import getuid
+
+from eapeak.common import checkInterface, setInterfaceChannel
+from eapeak.parse import EapeakParsingEngine
+from eapeak.networks import WirelessNetwork
+from eapeak.inject import WirelessStateMachine, WirelessStateMachineEAP
+from ipfunc import sanitizeMAC, getHwAddr
+
+from scapy.config import conf
+# these edit the load_layers configuration to keep layers we don't need out and consume less memory
+not_needed_layers = [	'bluetooth', 'cdp', 'dhcp', 'dhcp6', 'dns', 'eigrp', 'hsrp', 'inet6', 'ir',
+						'isakmp', 'l2tp', 'llmnr', 'mgcp', 'mobileip', 'netbios', 'netflow', 'ntp',
+						'ospf', 'ppi_cace', 'ppi_geotag', 'ppi', 'ppp', 'rip', 'rtp', 'sctp', 'sebek',
+						'skinny', 'smb', 'snmp', 'tftp', 'vrrp', 'x509'
+					]
+
+for layer in not_needed_layers:
+	if layer in conf.load_layers:
+		conf.load_layers.remove(layer)
+del layer, not_needed_layers
+conf.ipv6_enabled = False
+
+from scapy.volatile import RandMAC
+EAP_TYPES[0] = 'NONE'
+scapy_runtime_log = logging.getLogger("scapy.runtime")
+scapy_runtime_log.setLevel(logging.CRITICAL)
+
+GOOD = '\033[1;32m[+]\033[1;m '
+STATUS = '\033[1;34m[*]\033[1;m '
+ERROR = '\033[1;31m[-]\033[1;m '
+ERROR_SLEEP_TIME = 1.5	# time to wait between error and retry
+
+def eap_scan(interface, bssid, essid, check_range, outer_identity, verbose = False):
+	valid_eap_types = []
+	tries = 0
+	while tries < 5:
+		statemachine = WirelessStateMachineEAP(interface, bssid, RandMAC('00:*:*:*:*:*').__str__(), bssid)
+		if verbose:
+			sys.stdout.write(STATUS + 'Verbose: using source MAC address: ' + statemachine.source_mac + ' for connections\n')
+			sys.stdout.flush()
+		rsnInfo = statemachine.getRSNInformation(essid)
+		if rsnInfo != None:
+			break
+		tries += 1
+	if tries >= 5:
+		sys.stdout.write(ERROR + 'Could not obtain a probe response\n')
+		sys.stdout.flush()
+		return valid_eap_types
+	try:
+		status_str = ''
+		for eaptype in check_range:
+			sys.stdout.write((' ' * len(status_str)) + '\r')
+			sys.stdout.flush()
+			status_str = STATUS + 'Checking EAP Type: ' + EAP_TYPES.get(eaptype, str(eaptype)) + '\r'
+			sys.stdout.write(status_str)
+			sys.stdout.flush()
+			tries = 0
+			while tries < 5:
+				statemachine = WirelessStateMachineEAP(interface, bssid, RandMAC('00:*:*:*:*:*').__str__(), bssid)
+				if verbose:
+					sys.stdout.write(STATUS + 'Verbose: using source MAC address: ' + statemachine.source_mac + ' for checking EAP type: ' + EAP_TYPES.get(eaptype, str(eaptype)) + '\n')
+					sys.stdout.flush()
+				errCode = statemachine.connect(essid, rsnInfo)
+				if errCode:
+					sleep(ERROR_SLEEP_TIME)
+					tries += 1
+					continue # try same
+				errCode = statemachine.check_eap_type(eaptype, outer_identity, True)
+				if errCode == 0:	# supported
+					sys.stdout.write((' ' * len(status_str)) + '\r')
+					sys.stdout.flush()
+					status_str = GOOD + 'EAP Type: ' + EAP_TYPES.get(eaptype, str(eaptype)) + ' Supported\n'
+					sys.stdout.write(status_str)
+					sys.stdout.flush()
+					valid_eap_types.append(eaptype)
+					tries = 0
+					statemachine.close()
+					break # try next
+				elif errCode == 1:	# not supported
+					tries = 0
+					statemachine.close()
+					break # try next
+				elif errCode == 2:	# unknown error
+					sleep(ERROR_SLEEP_TIME)
+					tries += 1
+					statemachine.close()
+					continue # try same
+				elif errCode == 3:	# identity was rejected
+					tries = 0
+					statemachine.close()
+					sys.stdout.write((' ' * len(status_str)) + '\r')
+					sys.stdout.flush()
+					print ERROR + 'Identity String \'' + outer_identity + '\' Was Rejected'
+					return valid_eap_types	# should be empty but return it anyways
+			if tries == 0:
+				continue
+			sys.stdout.write((' ' * len(status_str)) + '\r')
+			sys.stdout.flush()
+			status_str = ERROR + 'EAP Type: ' + EAP_TYPES.get(eaptype, str(eaptype)) + ' Could Not Be Determined\n'
+			sys.stdout.write(status_str)	# haha STD
+			sys.stdout.flush()
+	except KeyboardInterrupt:
+		print '\n' + STATUS + 'Caught Ctrl+C'
+		return valid_eap_types
+	sys.stdout.write(' ' * len(status_str) + '\n') # overwrite checking stuff
+	sys.stdout.flush()
+	return valid_eap_types
+
+def wps_scan(interface, bssid, essid):
+	"""
+	This is very similar to running eapscan with the following options and is essentially a short cut
+	eapscan -c 11 -b 00:11:22:33:44:55 -e linksys -i mon0 --identity WFA-SimpleConfig-Registrar-1-0 --types 254
+	"""
+	print STATUS + 'Checking for WPS...'
+	try:
+		tries = 0
+		while tries < 5:
+			statemachine = WirelessStateMachineEAP(interface, bssid, RandMAC('00:*:*:*:*:*').__str__(), bssid)
+			errCode = statemachine.connect(essid)
+			if errCode:
+				sleep(ERROR_SLEEP_TIME)
+				tries += 1
+				continue # try same
+			errCode = statemachine.check_eap_type(254, 'WFA-SimpleConfig-Registrar-1-0', True)	# 254 is extended
+			if errCode == 0:	# supported
+				statemachine.close()
+				print GOOD + 'WPS Is Supported'
+				return True
+			elif errCode == 1:	# not supported
+				print STATUS + 'WPS Is Not Supported'
+				return False
+			elif errCode == 2:	# unknown error
+				sleep(ERROR_SLEEP_TIME)
+				tries += 1
+				statemachine.close()
+				continue # try same
+			elif errCode == 3:	# identity was rejected
+				print STATUS + 'WPS Is Not Supported'
+				return False
+	except KeyboardInterrupt:
+		print '\n' + STATUS + 'Caught Ctrl+C'
+		return False
+	return False
+
+def check_ap_connection(interface, bssid, essid, quite = True, verbose = False):
+	if not quite:
+		sys.stdout.write(STATUS + 'Checking Connection To AP')
+		sys.stdout.flush()
+	tries = 0
+	errCode = 0
+	try:
+		while tries < 3:
+			statemachine = WirelessStateMachine(interface, bssid, RandMAC('00:*:*:*:*:*').__str__(), bssid)
+			if not quite and verbose:
+				print '\n' + STATUS + 'Verbose: using source MAC address: ' + statemachine.source_mac + ' for testing connections'
+			errCode = statemachine.connect(essid)
+			if errCode != 0 and errCode < 4:
+				if not quite and verbose and errCode == 2:
+					print '\n' + ERROR + 'Verbose: did not receive a reply to the authentication request'
+				if not quite and verbose and errCode == 3:
+					print '\n' + ERROR + 'Verbose: did not receive a reply to the association request'
+				sleep(ERROR_SLEEP_TIME)
+				if not quite:
+					sys.stdout.write('.')
+					sys.stdout.flush()
+				tries += 1
+				continue
+			statemachine.close()
+			if errCode == 0:
+				tries = 0
+			break
+	except KeyboardInterrupt:
+		print '\n' + STATUS + 'Caught Ctrl+C'
+		return False
+	if tries != 0:
+		if not quite:
+			sys.stdout.write('\n' + ERROR + 'Connection Attempts Failed\n')
+			if errCode == 4 or errCode == 5:
+				sys.stdout.write('\n' + ERROR + 'Access Point Rejected Authentication/Associations Requests\n')
+			sys.stdout.flush()
+		return False
+	elif not quite:
+		sys.stdout.write(' OK!\n')
+		sys.stdout.flush()
+	return True
+
+def main():
+	parser = argparse.ArgumentParser(description = 'EAPScan: Actively Enumerate 802.1x Wireless Networks', conflict_handler='resolve')
+	parser.add_argument('-e', '--essid', dest = 'essid', action = 'store', required = True, default = '', help = 'target ESSID')
+	parser.add_argument('-b', '--bssid', dest = 'bssid', action = 'store', required = True, default = '', help = 'target BSSID')
+	parser.add_argument('-i', '--iface', dest = 'iface', action = 'store', required = True, help = 'interface to use when capturing live')
+	parser.add_argument('-v', '--version', action = 'version', version = parser.prog + ' Version: ' + __version__)
+	parser.add_argument('-c', '--channel', dest = 'channel', action = 'store', required = False, default = 0, type = int, help = 'target channel')
+	parser.add_argument('-V', '--verbose', dest = 'verbose', action = 'store_true', default = False, help = 'provide verbose output')
+	parser.add_argument('--all', dest = 'scan_all', action = 'store_true', default = False, help = 'scan all EAP types (4-254)')
+	parser.add_argument('--check-wps', dest = 'check_wps', action = 'store_true', default = False, help = 'check if WPS is enabled')
+	parser.add_argument('--identity', dest = 'identity', action = 'store', default = 'eapscan', help = 'EAP outer identity string')
+	parser.add_argument('--types', dest = 'eap_types', nargs = '+', action = 'store', default = [], help = 'list of specific EAP types to try')
+	parser.add_argument('--xml', dest = 'save_xml', action = 'store_true', default = False, help = 'export data to xml')
+	options = parser.parse_args()
+
+	if getuid():
+		print ERROR + 'Must Be Root To Inject Packets, Now Exiting...'
+		return 2
+
+	if not sanitizeMAC(options.bssid):
+		print ERROR + 'Invalid MAC Address, Now Exiting...'
+		return 3
+
+	if not checkInterface(options.iface) in [ 0, 1 ]:
+		print ERROR + 'Invalid Interface, Now Exiting...'
+		return 4
+	
+	if options.verbose:
+		print STATUS + 'Verbose output has been enabled'
+	
+	if options.channel:
+		if not 0 < options.channel < 15:
+			print ERROR + 'Invalid Channel Selected, Must Be Between 1-14'
+			return 6
+		if not setInterfaceChannel(options.iface, options.channel, True):
+			print ERROR + 'Failed To Set The Selected Channel'
+			return 7
+
+	# Build the list of EAP types that we're scanning for
+	if options.check_wps:
+		# Make sure the AP is responding
+		if not check_ap_connection(options.iface, options.bssid, options.essid, False, options.verbose):
+			print ERROR + 'Now Exiting...'
+			return 0
+		wps_scan(options.iface, options.bssid, options.essid)
+		return 0
+		
+	if options.scan_all:
+		print STATUS + 'Scanning All EAP Types, This Could Take A While...'
+		check_range = range(4, 254)
+	elif options.eap_types:
+		check_range = []
+		for eaptype in options.eap_types:
+			if eaptype.upper() in EAP_TYPES.values():
+				eaptype = str(EAP_TYPES.keys()[ EAP_TYPES.values().index(eaptype.upper()) ])
+			if eaptype.isdigit() and 3 < int(eaptype) < 255:
+				check_range.append(int(eaptype))
+			else:
+				print ERROR + 'Invalid EAP Type: ' + eaptype
+		if len(check_range) == 0:
+			print ERROR + 'No Usable EAP Types (4-254), Now Exiting...'
+			return 5
+	else:
+		check_range = EAP_TYPES.keys()
+		check_range.sort()
+		check_range = check_range[4:]
+
+	# Make sure the AP is responding
+	if not check_ap_connection(options.iface, options.bssid, options.essid, False, options.verbose):
+		print ERROR + 'Now Exiting...'
+		return 0
+
+	# Scan for the eap types
+	valid_eap_types = eap_scan(options.iface, options.bssid, options.essid, check_range, options.identity, options.verbose)
+
+	if options.save_xml:
+		eapeakParser = EapeakParsingEngine()
+		newNetwork = WirelessNetwork(options.essid, options.bssid)
+		[ newNetwork.addEapType(x) for x in valid_eap_types ]	# Python black magic trickery
+		eapeakParser.KnownNetworks[options.essid] = newNetwork
+		eapeakParser.BSSIDToSSIDMap[options.bssid] = options.essid
+		eapeakParser.exportXML()
+
+	return 0	
+
+if __name__ == '__main__':
+	main()

@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/P0cL4bs/3vilTwinAttacker
+	branch = master
+	commit = f5eb0c1ea01f1b1c2ff54adf6bc0beed0ae9eec6
+	parent = 7ad063cc2fe17aeac93730fb1617ee5270e13518
+	cmdver = 0.2.0

@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/doom5/ath9k_ath5k_full_permissive_unlock_all_channels.patch
+	branch = master
+	commit = 1f5b5817e36ab2ef57a432738e739f99ad19dbe5
+	parent = c5c8106a15099ecf694e9a9f848c442d976432b7
+	cmdver = 0.2.0

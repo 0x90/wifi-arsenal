@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+
+puts "\nWelcome to the BeEF installer!"
+
+if  RUBY_VERSION < '1.9'
+  puts "\n"
+  puts "Ruby version " + RUBY_VERSION + " is no longer supported. Please upgrade 1.9 or later."
+  puts ""
+  puts "OSX:"
+  puts "See README"
+  puts "\n"
+  exit
+end
+
+puts "\nPlease make sure you have installed SQLite before proceeding.  For instructions on how to do this please see the README file"
+
+puts "\nInstall Bundler: gem install bundler"
+
+puts "\nRun bundler in your BeEF folder: bundle install"
+
+puts "\nRun BeEF: ./beef"
+
+#Testing fork regroup

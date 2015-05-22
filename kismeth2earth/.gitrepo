@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/andreagrandi/kismeth2earth
+	branch = master
+	commit = e4eedb60cfc67a63e9d48f89cc53a6f82f7cf90b
+	parent = 1e379150dee53001c063a9e3fef43701a35d838c
+	cmdver = 0.2.0

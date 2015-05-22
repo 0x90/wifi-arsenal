@@ -1,0 +1,91 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+# BeEF Configuration file
+
+beef:
+    version: '0.4.3.7-alpha'
+    debug: false
+
+    restrictions:
+        # subnet of browser ip addresses that can hook to the framework
+        permitted_hooking_subnet: "0.0.0.0/0"
+        # subnet of browser ip addresses that can connect to the UI
+        # permitted_ui_subnet: "127.0.0.1/32"
+        permitted_ui_subnet: "0.0.0.0/0"
+
+    http:
+        debug: true #Thin::Logging.debug, very verbose. Prints also full exception stack trace.
+        host: "0.0.0.0"
+        port: "3000"
+        # if running behind a nat set the public ip address here
+        #public: ""
+        #public_port: "" # port setting is experimental
+        dns: "localhost"
+        panel_path: "/ui/panel"
+        hook_file: "/hook.js"
+        hook_session_name: "BEEFHOOK"
+        session_cookie_name: "BEEFSESSION"
+
+        # Prefer WebSockets over XHR-polling when possible.
+        websocket:
+          enable: false
+          secure: true # use WebSocketSecure work only on https domain and whit https support enabled in BeEF
+          port: 61985 # WS: good success rate through proxies
+          secure_port: 61986 # WSS
+          alive_timer: 1000 # poll BeEF every second
+
+        # Imitate a specified web server (default root page, 404 default error page, 'Server' HTTP response header)
+        web_server_imitation:
+            enable: false
+            type: "apache" #supported: apache, iis
+
+        # Experimental HTTPS support for the hook / admin / all other Thin managed web services
+        https:
+            enable: false
+            # In production environments, be sure to use a valid certificate signed for the value
+            # used in beef.http.dns (the domain name of the server where you run BeEF)
+            key: "beef_key.pem"
+            cert: "beef_cert.pem"
+
+    database:
+        # For information on using other databases please read the
+        # README.databases file
+
+        # supported DBs: sqlite, mysql, postgres
+        driver: "sqlite"
+
+        # db_file is only used for sqlite
+        db_file: "beef.db"
+
+        # db connection information is only used for mysql/postgres
+        db_host: "localhost"
+        db_name: "beef"
+        db_user: "beef"
+        db_passwd: "beef123"
+        db_encoding: "UTF-8"
+
+    # Credentials to authenticate in BeEF. Used by both the RESTful API and the Admin_UI extension
+    credentials:
+        user:   "pi"
+        passwd: "raspberry"
+
+    crypto_default_value_length: 80
+
+    # You may override default extension configuration parameters here
+    extension:
+        requester:
+            enable: true
+        proxy:
+            enable: true
+        metasploit:
+            enable: true #false
+        social_engineering:
+            enable: true #false
+        evasion:
+            enable: false
+        console:
+             shell:
+                enable: true #false

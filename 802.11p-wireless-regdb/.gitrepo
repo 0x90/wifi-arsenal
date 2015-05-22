@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/CTU-IIG/802.11p-wireless-regdb
+	branch = master
+	commit = 74149ca236121fafba3c28e779c735b7ec13c20a
+	parent = 763291f0487e47c60c9a607ec3809bc2ddaa3104
+	cmdver = 0.2.0

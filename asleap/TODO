@@ -1,0 +1,24 @@
+Stuff to do in no particular order:
+
+    + More testing (big endian, live captures, more stored captures with
+      various passwords and password lengths).
+    + Add asleap cmd line arg to test a specific password (move stuff out of 
+      genkeys.c and into common.c)
+    + Use a balanced tree instead of a linear, unsorted array to keep track of
+      STAs we have discovered. (duh)
+    + Break out asleap_data structure to contain just option information, use a 
+      dynamic linked list indexed by STA address of discovered LEAP challenge/
+      response information instead.
+    + Don't retry usernames that have already been cracked - session reporting
+      file?
+    + Keyboard option to skip the current username.  Trap CTRL/C - one CTRL/C 
+      skips current user, two in a row kills the program.
+    + Validate input files (.dat and .idx) that they are valid (assert?).
+    + Build in logic (initial header records?) that accurately identify the
+      dicthash and index files.  Error checking that the program is getting
+      the input it expects (record length > MIN && < MAX for example).
+    + Investigate the possibility of using Rainbow Tables from the
+      RainbowCrack project, searching by the last two bytes of the MD4 (NTLM)
+      hash.
+    + Add genkeys option to only write frames with a matching hash, to target a
+      single hash value.

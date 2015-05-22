@@ -1,0 +1,7 @@
+> ./run.py
+> python run.py
+
+Dependencies: 	python-matplotlib
+		tshark
+
+Everythin else... TODO

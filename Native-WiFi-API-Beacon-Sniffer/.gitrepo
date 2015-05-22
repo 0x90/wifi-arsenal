@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/6e726d/Native-WiFi-API-Beacon-Sniffer
+	branch = master
+	commit = 26ee395df2e764e4c3c0ecf01be5b36980a86ee8
+	parent = fb0748725b952705ade982cfe901659764654807
+	cmdver = 0.2.0

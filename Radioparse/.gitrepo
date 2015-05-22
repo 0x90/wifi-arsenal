@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/AlexanderSelzer/Radioparse
+	branch = master
+	commit = d0f54f37030ca325a25031327717a38abad14a07
+	parent = 82dc6fdcac329a99090f5498a17fbf5e1e7159e2
+	cmdver = 0.2.0

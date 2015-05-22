@@ -1,0 +1,13 @@
+# Lines starting with '#' and sections without content
+# are not displayed by a call to 'details'
+#
+[paths]
+online.py:fixPos():line 187
+
+
+[details]
+overhead for online position fix.
+
+
+[expected]
+one sql-query for all candidate clusters.

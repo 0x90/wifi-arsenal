@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/SYWorks/wifi-harvester
+	branch = master
+	commit = 470e7b96cc02d0d36c4b1eb743889566bc5f2343
+	parent = 4fe0576a6b5820f0f4b79e5a518d93ad97c83eb4
+	cmdver = 0.2.0

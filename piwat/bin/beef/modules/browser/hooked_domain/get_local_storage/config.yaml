@@ -1,0 +1,33 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+beef:
+    module:
+        get_local_storage:
+            enable: true
+            category: ["Browser", "Hooked Domain"]
+            name: "Get Local Storage"
+            description: "Extracts data from the HTML5 localStorage object."
+            authors: ["bcoles"]
+            target:
+                working:
+                    IE:
+                        min_ver: 8
+                        max_ver: latest
+                    FF:
+                        # It's actually 3.5 but min_ver only supports integers
+                        min_ver: 4
+                        max_ver: latest
+                    O:
+                        min_ver: 11
+                        max_ver: latest
+                    C:
+                        min_ver: 4
+                        max_ver: latest
+                    S:
+                        min_ver: 4
+                        max_ver: latest
+                not_working: ["ALL"]
+

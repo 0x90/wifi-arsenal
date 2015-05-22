@@ -1,0 +1,17 @@
+
+This is 'acs', an Automatic Channel Selection tool to which
+aims to find the optimal channel for initiating radiation
+(any beaconing mode of operation) using nl80211. The first
+implementation uses simple survey channel data, it will later
+adapt to use more data available from chipsets for this purpose.
+
+To build acs, just enter 'make'. If that fails, set the
+PKG_CONFIG_PATH environment variable to allow the Makefile
+to find libnl.
+
+'acs' is currently maintained at http://git.kernel.net/acs.git/,
+some more documentation is available at:
+
+http://wireless.kernel.org/en/users/Documentation/acs
+
+Please send all patches to Luis R. Rodriguez <mcgrof@gmail.com>

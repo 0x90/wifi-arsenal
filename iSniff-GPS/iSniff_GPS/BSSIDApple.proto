@@ -1,0 +1,27 @@
+message WifiDetected { 
+required string bssid = 1; 
+message Location {
+optional int64 latitude = 1;
+optional int64 longitude = 2;
+optional int64 valeur_inconnue3 = 3; 
+optional int64 valeur_inconnue4 = 4; 
+optional int64 valeur_inconnue5 = 5; 
+optional int64 valeur_inconnue6 = 6; 
+optional int64 valeur_inconnue7 = 7; 
+optional int64 valeur_inconnue8 = 8; 
+optional int64 valeur_inconnue9 = 9; 
+optional int64 valeur_inconnue10 = 10; 
+optional int64 valeur_inconnue11 = 11; 
+optional int64 valeur_inconnue12 = 12; 
+optional int64 valeur_inconnue21 = 21;
+}
+optional Location location= 2; 
+}
+
+message BlockBSSIDApple {
+optional int64 valeur_inconnue0 = 1; 
+repeated WifiDetected wifi = 2; 
+optional int32 valeur_inconnue1 = 3; 
+optional int32 valeur_inconnue2 = 4; 
+optional string APIName = 5;
+}

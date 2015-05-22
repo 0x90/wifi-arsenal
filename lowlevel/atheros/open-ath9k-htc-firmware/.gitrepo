@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/qca/open-ath9k-htc-firmware
+	branch = master
+	commit = 146bff1075a9f62c5d64c984bf6db502f8cd2671
+	parent = 435ecec1320789769a47ac0f1b1982192d5e2826
+	cmdver = 0.2.0

@@ -1,0 +1,189 @@
+\documentclass[11pt,a4paper,headinclude,footinclude,chapterprefix=on]{scrreprt}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage{graphicx}
+
+\usepackage{tikz}
+
+% ================================================================
+% Edit this accordingly!
+% ================================================================
+
+\newcommand{\trnumber}{TKN-13-XX}
+\newcommand{\trdate}{Oktober 2013}
+\newcommand{\trauthor}{Daniel Happ, Manoj Rege}
+\newcommand{\tremail}{\{happ, ravindra\}@tkn.tu-berlin.de}
+\newcommand{\trtitle}{Social Sensor Cloud -- Use Cases and Traffic Patterns}
+
+% ================================================================
+% Page Style
+% ================================================================
+
+\usepackage{geometry}
+\geometry{a4paper, inner=30mm, outer=25mm, top=40mm, bottom=42mm}
+
+\usepackage[headsepline,plainheadsepline,footsepline,plainfootsepline]{scrpage2}
+\clearscrheadfoot
+
+\ihead[\Large {\scshape TU Berlin }]{\Large {\scshape TU Berlin }}
+
+\ifoot[{\tiny \begin{minipage}{4.0cm}Copyright at Technical University Berlin.\newline All Rights reserved.\end{minipage}}]{{\tiny \begin{minipage}{4.0cm}Copyright at Technical University Berlin.\newline All Rights reserved.\end{minipage}}}
+\cfoot[\scriptsize \trnumber]{\scriptsize \trnumber}
+\ofoot[Page \pagemark]{Page \pagemark}
+
+\pagestyle{scrheadings}
+
+\usepackage{mathptmx}
+\usepackage[scaled=.92]{helvet}
+\usepackage{courier}
+
+\addtokomafont{pagefoot}{\normalfont}
+
+% ================================================================
+\begin{document}
+
+\bibliographystyle{plain}
+
+% ================================================================
+% Cover Sheet
+% ================================================================
+{
+\sffamily
+
+\thispagestyle{empty}
+
+\begin{tabularx}{\columnwidth}{cXc}
+  \includegraphics[height=1cm]{TU-Logo-3D-rot.pdf}
+  & &
+  \includegraphics[height=1cm]{tknlogo.pdf}
+  \\
+\end{tabularx}
+  
+
+\vspace{1.0cm}
+
+\begin{center}
+{\huge 
+\noindent
+Technical University Berlin
+
+\vspace{0.5cm}
+
+\noindent
+Telecommunication Networks Group
+
+\begin{center}
+\rule{15.5cm}{0.4pt}
+\end{center}
+}
+\end{center}
+
+\begin{minipage}[][11.0cm][c]{14.5cm}
+{\Huge
+
+\begin{center}
+\trtitle
+\end{center}
+
+\begin{center}
+\trauthor \\
+{\Large \tremail}
+\end{center}
+
+
+\begin{center}
+Berlin, \trdate
+\end{center}
+
+
+\vspace{0.5cm}
+
+}
+
+
+\begin{center}
+\setlength{\fboxrule}{2pt}\setlength{\fboxsep}{2mm}
+\fbox{TKN Technical Report \trnumber}
+\end{center}
+
+\end{minipage}
+
+\setlength{\fboxrule}{0.4pt}
+\setlength{\fboxsep}{0.4pt}
+
+\begin{center}
+
+  \rule{15.5cm}{0.4pt}
+
+  \vspace{0.5cm}
+
+  {\huge {TKN Technical Reports Series}}
+
+  \vspace{0.5cm}
+
+  {\huge Editor: Prof. Dr.-Ing. Adam Wolisz}
+
+  \vspace{0.5cm}
+
+ \end{center}
+
+
+}
+
+\begin{abstract}
+\subsection*{\abstractname}
+Abstract goes here.
+\end{abstract}
+
+\tableofcontents
+
+% ================================================================
+% Begin here
+% ================================================================
+
+\chapter{Introduction}
+\chapter{Related Work}
+\chapter{SSC Overview}
+\chapter{SSC Usecases}
+
+\begin{figure}[hb]
+\centering
+
+	\begin{tikzpicture}
+	\node (is-root) {sensor traffic patterns} [sibling distance=3cm]
+		child { node {on demand} }
+		child {
+		node {event-based} [sibling distance=3cm]
+			child { node {periodic} }
+			child { node {aperiodic} }
+		};
+	\end{tikzpicture}
+
+\caption{Characterization of different sensor traffic patterns.}
+\end{figure}
+
+\chapter{SSC Traffic Patterns}
+\chapter{Future Work}
+\chapter{Conclusion}
+
+\pagebreak
+
+%\bibliography{}
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+

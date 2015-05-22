@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/cozybit/wtf
+	branch = ft-arduino-wifi
+	commit = 8bc68eae145bc6e88c5e470f3315385a2baf0519
+	parent = 30afc2e6cf31a38d89cab34b784fb0a8ca3a6c34
+	cmdver = 0.2.0

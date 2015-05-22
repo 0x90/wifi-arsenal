@@ -1,0 +1,117 @@
+
+VERSION = 20091101
+
+MAJOR = 2
+MINOR = 0
+TINY = 0
+
+HOME = @srcdir@
+top_builddir = $(HOME)
+
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+datarootdir = @datarootdir@
+ETC	= ${DESTDIR}@sysconfdir@
+BIN	= ${DESTDIR}@bindir@
+DATAROOT = ${DESTDIR}@datarootdir@
+SHARE = ${DESTDIR}@datadir@/lorcon/
+MAN = ${DESTDIR}@mandir@
+LIB = ${DESTDIR}@libdir@
+INCLUDE = ${DESTDIR}@includedir@
+
+CC = @CC@
+LDFLAGS = @LDFLAGS@
+LIBS = @LIBS@ 
+CFLAGS = -I./ @CPPFLAGS@ @CFLAGS@ -DLORCON_VERSION=$(VERSION)
+SHELL = @SHELL@
+LIBTOOL = @LIBTOOL@
+LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(CFLAGS)
+
+DEPEND = .depend
+
+LIBOBJ = ifcontrol_linux.lo iwcontrol.lo madwifing_control.lo nl80211_control.lo \
+		 lorcon_packet.lo lorcon_packasm.lo lorcon_forge.lo \
+		 drv_mac80211.lo drv_tuntap.lo drv_madwifing.lo \
+		 lorcon.lo 
+LIBOUT = liborcon2.la
+
+TXTESTOBJ = tx.o
+TXTESTOUT = tx
+
+TXTUNOBJ  = tuntx.o
+TXTUNOUT  = tuntx
+
+L2PINGOBJ = l2ping80211.o
+L2PINGOUT = l2ping80211
+
+all:	$(DEPEND) $(LIBOUT) 
+
+$(LIBOUT):	$(LIBOBJ)
+	$(LIBTOOL) --mode=link $(CC) $(LDFLAGS) $(LIBS) -o $(LIBOUT) $(LIBOBJ) \
+					  -rpath $(LIB) -release $(MAJOR).$(MINOR).$(TINY)
+
+$(TXTESTOUT):	$(TXTESTOBJ)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $(TXTESTOUT) $(TXTESTOBJ) $(LIBS) -lorcon2
+
+$(TXTUNOUT):	$(TXTUNOBJ)
+	$(CC) $(LDFLAGS) -o $(TXTUNOUT) $(TXTUNOBJ) $(LIBS) -lorcon2 -lpcap
+
+$(L2PINGOUT):	$(L2PINGOBJ)
+	$(CC) $(LDFLAGS) -o $(L2PINGOUT) $(L2PINGOBJ) $(LIBS) -lorcon2 -lpcap
+
+install:	$(LIBOUT)
+	install -d -m 755 $(LIB)
+	$(LIBTOOL) --mode=install install -c $(LIBOUT) $(LIB)/$(LIBOUT)
+	install -d -m 755 $(INCLUDE)
+	install -d -m 755 $(INCLUDE)/lorcon2/
+	install -m 644 lorcon.h $(INCLUDE)/lorcon2/lorcon.h
+	install -m 644 lorcon_packet.h $(INCLUDE)/lorcon2/lorcon_packet.h
+	install -m 644 lorcon_packasm.h $(INCLUDE)/lorcon2/lorcon_packasm.h
+	install -m 644 lorcon_forge.h $(INCLUDE)/lorcon2/lorcon_forge.h
+	install -m 644 ieee80211.h $(INCLUDE)/lorcon2/lorcon_ieee80211.h
+	install -d -m 755 $(MAN)/man3
+	install -o root -m 644 lorcon.3 $(MAN)/man3/lorcon.3
+
+	$(LDCONFIG)
+
+clean:
+	@-rm -f *.o
+	@-rm -f *.lo
+	@-rm -f *.la
+	@-rm -rf .libs
+	@-rm -f $(TXTESTOUT)
+
+distclean:
+	@-$(MAKE) clean
+	@-rm -f *~
+	@-rm cscope.out
+	@-rm -f $(DEPEND)
+	@-rm -f config.status
+	@-rm -f config.h
+	@-rm -f config.log
+	@-rm -f Makefile
+
+dep:
+	@$(MAKE) depend
+
+depend:
+	@$(MAKE) $(DEPEND)
+
+$(DEPEND):
+	@-rm -f $(DEPEND)
+	@echo "Generating dependencies... "
+	@echo > $(DEPEND)
+	@$(CC) $(CFLAGS) -MM \
+		`echo $(LIBOBJ) | sed -e "s/\.lo/\.c/g"` >> $(DEPEND)
+
+include $(DEPEND)
+
+.c.o:	$(DEPEND)
+	$(CC) $(CFLAGS) -c $*.c -o $@ 
+
+.c.lo:	$(DEPEND)
+	$(LTCOMPILE) -c $*.c -o $@
+
+.SUFFIXES: .c .o .lo
+
+

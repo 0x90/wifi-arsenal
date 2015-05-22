@@ -1,0 +1,15 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+beef:
+    module:
+        insecure_url_skype:
+            enable: false
+            category: "Host"
+            name: "Make Skype Call (Skype)"
+            description: "This module will force the browser to attempt a skype call. It will exploit the insecure handling of URL schemes<br><br>The protocol handler used will be: skype."
+            authors: ["xntrik", "Nitesh Dhanjani"]
+            target:
+                user_notify: ['S', 'C', 'FF', 'O']

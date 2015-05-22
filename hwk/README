@@ -1,0 +1,65 @@
+/*******************************************************************************
+ *                ____                     _ __                                *
+ *     ___  __ __/ / /__ ___ ______ ______(_) /___ __                          *
+ *    / _ \/ // / / (_-</ -_) __/ // / __/ / __/ // /                          *
+ *   /_//_/\_,_/_/_/___/\__/\__/\_,_/_/ /_/\__/\_, /                           *
+ *                                            /___/ team                       *
+ *                                                                             *
+ * README                                                                      *
+ *                                                                             *
+ * DATE                                                                        *
+ * 8/03/2013                                                                   *
+ *                                                                             *
+ * AUTHOR                                                                      *
+ * atzeton - http://www.nullsecurity.net/                                      *
+ *                                                                             *
+ * LICENSE                                                                     *
+ * GNU GPLv2, see COPYING                                                      *
+ *                                                                             *
+ ******************************************************************************/
+
+What is hwk?
+===============
+
+hwk is a collection of packet crafting/network flooding tools: 
+
+- hawk for flooding the air with preconfigured or non-interactivly 
+  gained information
+  
+- eagle for RADIOTAP WLAN MGT and LLC header packet crafting. It also 
+  supports appending random 'payload'
+
+WARNING: This is an BETA release since it hasn't been tested sufficiently.
+
+
+Dependencies:
+=============
+
+- libpcap
+
+
+How to install?
+===============
+
+make
+(as root) make install
+make clean
+
+INFO: CAP_NET_RAW, CAP_NET_ADMIN, CAP_SYS_ADMIN (ioctls) capabilities are automatically set during installation.
+
+Usage
+=====
+
+See --help or the man files of hawk/eagle or man files!
+
+
+Bugs
+=====
+
+If you find any bugs, feel free to drop me a line!
+
+
+Stay tuned
+==========
+
+* http://nullsecurity.net/

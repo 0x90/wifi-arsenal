@@ -1,0 +1,8 @@
+ChangeLog
+
+0.3 -> 0.4
+
+	* /usr/sbin/hwk is now replaced by /usr/bin/hawk and /usr/bin/eagle
+	* moved to /usr/bin
+	* introduced setcap capabilities (see README)
+	

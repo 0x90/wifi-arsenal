@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/ransford/phystats
+	branch = master
+	commit = 0b9d215f9e92268af7c58017163699a51390bd55
+	parent = efbd60b9f5750e5838280c6f08d31c521a219641
+	cmdver = 0.2.0

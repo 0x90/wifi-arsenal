@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/byt3bl33d3r/pyReaver
+	branch = master
+	commit = 36d6586b0dc8b1a9d1d21ced0a560f5e6bd043d6
+	parent = a7f7a756596d959ec555c865c919cd41b5ad73bd
+	cmdver = 0.2.0

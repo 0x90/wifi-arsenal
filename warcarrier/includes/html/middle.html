@@ -1,0 +1,36 @@
+		function layer(layer){
+			var trafficLayer = new google.maps.TrafficLayer();
+			trafficLayer.setMap(map);
+		}
+		function initialize(maptype) {
+			if(maptype=='T'){
+				var mapOptions = {
+		          		center: new google.maps.LatLng(lat,lon), // First AP lat lon goes here
+       		 	 	 	zoom: 13,
+					mapTypeId: t
+        			};
+			type = 't';
+			}else if(maptype=='R'){
+                                var mapOptions = {
+                                        center: new google.maps.LatLng(lat,lon), // First AP lat lon goes here
+                                        zoom: 13,
+                                        mapTypeId: r
+                                };
+			type = 'r';
+			}else if(maptype=='S'){                                
+				var mapOptions = {
+                                        center: new google.maps.LatLng(lat,lon), // First AP lat lon goes here
+                                        zoom: 13,
+                                        mapTypeId: s
+                                };
+			type = 's';
+			}else if(maptype=='H'){                                
+				var mapOptions = {
+                                        center: new google.maps.LatLng(lat,lon), // First AP lat lon goes here
+                                        zoom: 13,
+                                        mapTypeId: h
+                                };
+			type = 'h';
+			}else{
+			}
+        		map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);

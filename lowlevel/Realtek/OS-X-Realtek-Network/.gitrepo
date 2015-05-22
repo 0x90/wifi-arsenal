@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/RehabMan/OS-X-Realtek-Network
+	branch = master
+	commit = 3fc03786ee2ca825fabad6c63b7117c107abfa57
+	parent = 283762e1343b2bf91e45d41609b8db69e400e80c
+	cmdver = 0.2.0

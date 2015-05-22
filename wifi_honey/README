@@ -1,0 +1,63 @@
+Wifi Honey
+==========
+
+Copyright (c) 2011, Robin Wood <robin@digininja.org>
+
+The idea for this script came while watching episode 26 of the Wifi Security
+Mega Primer from Security Tube ( http://www.securitytube.net/video/1921 ). If
+you have not watched it I highly recommend the series, it a great set of videos.
+
+In the video Vivek explains how to work out what encryption a client is looking
+for in a given network by setting up four fake access points, each with a
+different type of encryption, None, WEP, WPA and WPA2 and the seeing which of
+the four the client connects to.
+
+I've had mixed results with this, especially differentiating between WPA and
+WPA2 but as an idea it is sound and it does work some of the time so is
+certainly worth trying.
+
+In the case of WPA/WPA2, by running airodump-ng along side this you also end up
+capturing the first two packets of the four way handshake and so can attempt to
+crack the key with either aircrack-ng or coWPAtty.
+
+What this script does is to automate the setup process, it creates five monitor
+mode interfaces, four are used as APs and the fifth is used for airodump-ng. To
+make things easier, rather than having five windows all this is done in a screen
+session which allows you to switch between screens to see what is going on. All
+sessions are labelled so you know which is which.
+
+Installation
+============
+The script requires screen and the aircrack-ng suite, make sure they are both
+installed and in the path.
+
+You then need to make the wifi_honey.sh script executable and off you go.
+
+chmod a+x wifi_honey.sh
+
+Usage
+=====
+Usage is simple, start the script with the ESSID of the network you want to
+impersonate.
+
+./wifi_honey.sh fake_wpa_net
+
+You can also specify the channel to use and the interface you want to base the
+whole lot on:
+
+./wifi_honey.sh fake_wpa_net 1 wlan1
+
+The only other thing I can think of is that you should be in the directory with
+the wifi_honey_template.rc file in it otherwise it will fail when trying to
+create the screen resource file.
+
+If you want to make any changes to the screen resource file, such as changing
+the key to change tabs then make these in the wifi_honey_template.rc file, this
+is why I kept it as a separate file rather than generating a new one each time.
+
+Licence
+=======
+This project released under the Creative Commons Attribution-Share Alike 2.0
+UK: England & Wales
+
+( http://creativecommons.org/licenses/by-sa/2.0/uk/ )

@@ -1,0 +1,58 @@
+iwconfig Feature Matrix
+-----------------------
+
+Comparison of Linux iwconfig vs Python WiFi iwconfig.py.  iwconfig is the
+baseline to which iwconfig.py must match-up.
+
+Feature                iwconfig    iwconfig.py     Version     Note
+---------------        --------    -----------     -------     --------------------
+list devices            yes         yes
+list device properties  yes         partial                     not quite exact match
+
+read properties
+ wireless name          yes         yes             
+ ESSID                  yes         yes             
+ Nickname               yes         no
+ Mode                   yes         yes             
+ Frequency              yes         yes             
+ Access Point           yes         partial
+ Bit Rate               yes         yes             
+ Tx-Power               yes         yes             
+ Sensitivity            yes         partial
+ Retry Limit            yes         partial
+ RTS thr                yes         yes             
+ Encryption             yes         partial
+ Power Management       yes         partial
+ Link Quality           yes         partial
+ Signal level           yes         partial
+ Noise level            yes         partial
+ Rx invalid             yes         partial
+ Rx invalid crypt       yes         partial
+ Rx invalid frag        yes         partial
+ Tx excessive retries   yes         partial
+ Invalid misc           yes         partial
+ Missed Beacon          yes         partial
+
+write properties
+ wireless name          
+ ESSID                  
+ Nickname               
+ Mode                   
+ Frequency              
+ Access Point           
+ Bit Rate               
+ Tx-Power               
+ Sensitivity            
+ Retry Limit            
+ RTS thr                
+ Encryption             
+ Power Management       
+ Link Quality           
+ Signal level           
+ Noise level            
+ Rx invalid             
+ Rx invalid crypt       
+ Rx invalid frag        
+ Tx excessive retries   
+ Invalid misc           
+ Missed Beacon          

@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/SaltwaterC/aircrack-db
+	branch = master
+	commit = a1d2050409614c288d6c6173a4da5bd826d7adfb
+	parent = 0fafc4ccc018610c457eae34a922d36f14b4950d
+	cmdver = 0.2.0

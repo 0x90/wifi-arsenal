@@ -1,0 +1,3 @@
+[submodule "Subprojects/polarssl"]
+	path = Subprojects/polarssl
+	url = https://github.com/polarssl/polarssl.git

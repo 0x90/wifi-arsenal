@@ -1,0 +1,18 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+beef:
+    module:
+        detect_google_desktop:
+            enable: true
+            category: "Host"
+            name: "Detect Google Desktop"
+            description: "This module attempts to detect Google Desktop running on the default port 4664."
+            authors: ["bcoles"]
+            target:
+                not_working:
+                    ALL:
+                        os: ["iOS"]
+                working: ["ALL"]

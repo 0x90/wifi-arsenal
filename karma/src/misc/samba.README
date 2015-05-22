@@ -1,0 +1,10 @@
+This patch directs to a "free" share, it also directs name quires to "host" have it resolve.
+
+
+I run both of these services in the forground in loops, (there's some bugs withi this patch).
+
+
+while : ; do smbd -Di ; done
+while : ; do nmbd -Di ; done
+
+have fun!

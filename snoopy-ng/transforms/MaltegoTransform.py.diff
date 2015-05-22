@@ -1,0 +1,29 @@
+@@ -99,11 +99,10 @@
+                if (self.value is not None):
+                        return self.value;
+ 
+-       def getVar(self,varName,default=None):
+-               if (varName in self.values.keys()) and (self.values[varName] is not None):
+-                       return self.values[varName];
+-               else:
+-                       return default
++       def getVar(self,varName):
++               if (varName in self.values.keys()):
++                       if (self.values[varName] is not None):
++                               return self.values[varName];
+ 
+        def addEntity(self,enType,enValue):
+                me = MaltegoEntity(enType,enValue);
+@@ -163,11 +162,9 @@
+ 
+ 
+ def sanitise(value):
+-       if value is None:
+-               return ""
+        replace_these = ["&",">","<"];
+        replace_with = ["&amp;","&gt;","&lt;"];
+        tempvalue = value;
+        for i in range(0,len(replace_these)):
+                tempvalue = tempvalue.replace(replace_these[i],replace_with[i]);
+-       return tempvalue;
++       return tempvalue;

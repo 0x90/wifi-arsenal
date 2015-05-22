@@ -1,0 +1,17 @@
+*font:			Verdana 10
+# For Label:
+#*Label*cursor:		hand2
+#*Label*font:		Verdana 12
+*Label*highlightbackground:	black
+*Label*highlightthickness:	1
+*background:		white
+*Entry*background:	white
+*foreground:		black
+*Listbox*foreground:	RoyalBlue
+*Menu*foreground:	black
+*Menu*background:	white
+*Menu*font:		Verdana 10 bold underline
+
+*Button*background:	white
+*Button*cursor:		hand2
+*Button*activeforeground: blue

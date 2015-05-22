@@ -1,0 +1,34 @@
+WASH USAGE
+
+	Wash is a utility for identifying WPS enabled access points. It can survey from a live interface:
+
+		# wash -i mon0 
+
+	Or it can scan a list of pcap files:
+
+		# wash -f capture1.pcap capture2.pcap capture3.pcap
+
+	Wash will only show access points that support WPS. Wash displays the following information for each
+	discovered access point:
+
+		BSSID		The BSSID of the AP
+		Channel		The APs channel, as specified in the AP's beacon packet
+		WPS Version	The WPS version supported by the AP
+		WPS Locked	The locked status of WPS, as reported in the AP's beacon packet
+		ESSID		The ESSID of the AP
+
+	By default, wash will perform a passive survey. However, wash can be instructed to send probe requests
+	to each AP in order to obtain more information about the AP:
+
+		# wash -i mon0 --scan
+
+	By sending probe requests, wash will illicit a probe response from each AP. For WPS-capable APs, the
+	WPS information element typically contains additional information about the AP, including make, model,
+	and version data. This data is stored in the survey table of the reaver.db database.
+
+	The reaver.db SQLite database contains three tables:
+
+		history		This table lists attack history, including percent complete and recovered WPA keys
+		survey		This table is re-populated each time wash is run with detailed access point information
+		status		This table is used to indicate the overall status of wash/reaver
+

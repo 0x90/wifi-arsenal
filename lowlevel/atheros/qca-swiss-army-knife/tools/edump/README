@@ -1,0 +1,31 @@
+This is a tool to dump the eeprom contents of WLAN chips supported by ath9k.
+
+Requirements
+------------
+
+libpcicaccess (http://cgit.freedesktop.org/xorg/lib/libpciaccess/)
+
+Installation
+------------
+
+./autogen.sh
+./configure
+make
+make install
+
+Usage
+-----
+
+To dump everything:       "edump" or "edump -a"
+To dump the base header:  "edump -b"
+To dump the modal header: "edump -m"
+
+Help
+----
+
+"edump --help"
+
+Bugs
+----
+
+Report them to "ath9k-devel@qualcomm.com"

@@ -1,0 +1,87 @@
+CPyrit-CUDA
++++++++++++++
+
+A sub-package that adds CUDA-capability to Pyrit. Please see the main README
+for more information about Pyrit.
+
+http://code.google.com/p/pyrit/
+
+
+
+Requirements
+++++++++++++
+
+CPyrit-CUDA compiles and runs on Linux and MacOS. Windows is not (and
+probably never will be) supported; there are however some reports of successful
+installations on Windows with the help of MinGW.
+
+A couple of libraries and headers are required to build CPyrit-CUDA:
+
+  * Python >=2.5 and it's headers
+    http://www.python.org
+  * The OpenSSL library and headers
+    http://www.openssl.org
+  * The ZLib library and headers
+    http://www.zlib.net
+  * The Nvidia drivers and the Nvidia CUDA-Toolkit (not the so called SDK)
+
+Linux users running a binary distribution may need to install the development
+packages for Python (e.g. python-devel), OpenSSL (e.g. openssl-devel or
+libssl-dev) and ZLib (e.g. zlib-devel). You also need a C-compiler like gcc.
+Users of MacOS probably only need to have XCode installed.
+
+By default, setup.py looks into '/usr/local/cuda' and '/opt/cuda' to find the
+CUDA-headers and the compiler. Modify setup.py if you have those installed
+elsewhere.
+
+
+
+Installing
+++++++++++
+
+Unpack the source-code into a new directory like this:
+
+    tar xvzf cpyrit-cuda-0.4.0.tar.gz
+
+
+Switch to the module's directory. We use Python's distutils to compile and
+install the code:
+
+    cd cpyrit-cuda-0.4.0
+    python setup.py build
+
+
+If everything went well and no errors are thrown at you, use distutils again to
+install CPyrit-CUDA:
+
+    sudo python setup.py install
+
+
+You should see your CUDA-capable devices listed when executing
+'pyrit list_cores'.
+
+
+
+Reporting bugs / Getting help
++++++++++++++++++++++++++++++
+
+Please take a look at the Troubleshooting-page in Pyrit's Wiki if you have
+problems compiling or running Pyrit:
+
+    http://code.google.com/p/pyrit/wiki/Troubleshooting
+    
+    
+Please report bugs, glitches and enhancement proposals using Pyrit's issue-
+tracker:
+    
+    http://code.google.com/p/pyrit/issues/list
+
+
+
+License
++++++++
+
+Pyrit is free software - free as in freedom. Everyone can inspect, copy or
+modify it and share derived work under the GNU General Public License v3.
+You should have received a copy of the GNU General Public License along with
+Pyrit. If not, see <http://www.gnu.org/licenses/>.

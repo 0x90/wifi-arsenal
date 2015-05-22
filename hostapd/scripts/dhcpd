@@ -1,0 +1,11 @@
+#!/bin/bash
+###########Start DHCP, comment out / add relevant section##########
+#Thanks to Panji
+#Doesn't try to run dhcpd when already running
+if [ "$(pidof dhcpd)" == "" ]; then
+echo "Starting dhcpd..." &> $DHCP_LOGFILE
+dhcpd -cf $DHCP_OUTPUT_CONFIG $GENERAL_in &>> $DHCP_LOGFILE
+exit $?
+else
+	echo "dhcpd already started..." &>> $DHCP_LOGFILE
+fi

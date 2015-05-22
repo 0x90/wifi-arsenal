@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/aelam/ath9k
+	branch = master
+	commit = ad840167d9c2a4d916092b4ff2a125dd8cf77476
+	parent = 9f0b724626c8b6093129a3ee0ebce0f0f0d5c958
+	cmdver = 0.2.0

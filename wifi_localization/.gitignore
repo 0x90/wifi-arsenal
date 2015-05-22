@@ -1,0 +1,10 @@
+.DS_Store
+*.swp
+CMakeFiles/
+catkin_generated/
+devel/
+gtest/
+CMakeCache.txt
+Makefile
+CTestTestfile.cmake
+cmake_install.cmake

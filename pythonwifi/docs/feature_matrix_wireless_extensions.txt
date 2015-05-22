@@ -1,0 +1,72 @@
+WE Feature Matrix
+--------------
+
+Comparison of Linux Wireless Extension 22 vs Python WiFi.  WE22 is the baseline
+to which Python WiFi must match-up, but Python WiFi may have some convenience
+features not in WE22.
+
+                                   Python WiFi
+Feature           WE22    Class              Version   Note
+---------------   -----   ---------------    -------   --------------------
+/proc devices     yes     iwlib              0.3.1     get wireless devices from /proc
+SIOCGIFCONF       yes     iwlib              0.3.1     get wireless devices via ioctl
+
+SIOCSIWCOMMIT     yes     Wireless                     send commit instruction
+SIOCGIWNAME       yes     Wireless           0.3.1     get wireless protocol
+SIOCSIWNWID       yes     not implemented              set network id (pre-802.11)
+SIOCGIWNWID       yes     not implemented              get network id (the cell)
+
+SIOCSIWFREQ       yes     Wireless                     set channel/frequency (Hz)
+SIOCGIWFREQ       yes     Wireless           0.3.1     get channel/frequency (Hz)
+all freqs                 Wireless           0.3.1     get all frequencies/channels
+                                                           device can handle
+
+SIOCSIWMODE       yes     Wireless           0.3.1     set operation mode
+SIOCGIWMODE       yes     Wireless           0.3.1     get operation mode
+SIOCSIWSENS       yes     not implemented              set sensitivity (dBm)
+SIOCGIWSENS       yes     Wireless           0.3.1     get sensitivity (dBm)
+SIOCGIWRANGE      yes     Iwrange            0.3.1     get range of parameters
+SIOCGIWPRIV       yes     not implemented              get private ioctl interface
+SIOCGIWSTATS      yes     Iwstats            0.3.1     get /proc/net/wireless stats
+SIOCSIWSPY        yes     not implemented              set spy addresses
+SIOCGIWSPY        yes     not implemented              get spy info (quality of link)
+SIOCSIWTHRSPY     yes     not implemented              set spy threshold (spy event)
+SIOCGIWTHRSPY     yes     not implemented              get spy threshold
+SIOCSIWAP         yes     Wireless                     set access point MAC addresses
+SIOCGIWAP         yes     Wireless           0.3.1     get access point MAC addresses
+SIOCSIWSCAN       yes     Iwscan             0.3.1     trigger scanning (list cells)
+SIOCGIWSCAN       yes     Iwscan             0.3.1     get scanning results
+SIOCSIWESSID      yes     Wireless           0.3.1     set ESSID (network name)
+SIOCGIWESSID      yes     Wireless           0.3.1     get ESSID
+SIOCSIWNICKN      yes     not implemented              set node name/nickname
+SIOCGIWNICKN      yes     not implemented              get node name/nickname
+
+SIOCSIWRATE       yes     not implemented              set default bit rate (bps)
+SIOCGIWRATE       yes     Wireless           0.3.1     get default bit rate (bps)
+all bitrates              Wireless           0.3.1     get all bitrates device
+                                                           can handle
+
+SIOCSIWRTS        yes     not implemented              set RTS/CTS threshold (bytes)
+SIOCGIWRTS        yes     Wireless           0.3.1     get RTS/CTS threshold (bytes)
+SIOCSIWFRAG       yes     not implemented              set fragmentation thr (bytes)
+SIOCGIWFRAG       yes     Wireless           0.3.1     get fragmentation thr (bytes)
+SIOCSIWTXPOW      yes     not implemented              set transmit power (dBm)
+SIOCGIWTXPOW      yes     Wireless           0.3.1     get transmit power (dBm)
+SIOCSIWRETRY      yes     not implemented              set retry limits and lifetime
+SIOCGIWRETRY      yes     Wireless           0.3.1     get retry limits and lifetime
+SIOCSIWENCODE     yes     Wireless                     set encoding token & mode
+SIOCGIWENCODE     yes     Wireless           0.3.1     get encoding token & mode
+SIOCSIWPOWER      yes     not implemented              set Power Management settings
+SIOCGIWPOWER      yes     Wireless           0.3.1     get Power Management settings
+SIOCSIWMODUL      yes     not implemented              set Modulations settings
+SIOCGIWMODUL      yes     not implemented              get Modulations settings
+SIOCSIWGENIE      yes     not implemented              set generic IE
+SIOCGIWGENIE      yes     not implemented              get generic IE
+SIOCSIWMLME       yes     not implemented              request MLME operation
+SIOCSIWAUTH       yes     not implemented              set authentication mode params
+SIOCGIWAUTH       yes     not implemented              get authentication mode params
+SIOCSIWENCODEEXT  yes     not implemented              set encoding token & mode
+SIOCGIWENCODEEXT  yes     not implemented              get encoding token & mode
+SIOCSIWPMKSA      yes     not implemented              PMKSA cache operation
+
+

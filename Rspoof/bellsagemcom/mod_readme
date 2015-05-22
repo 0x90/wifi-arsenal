@@ -1,0 +1,5 @@
+# CREATE NEW WEBSITE PACKAGE FOLDER EXAMPLE
+-place the new directory in the rspoof root, then run:
+cd /root/rspoof/ 
+tar -pczf /root/rspoof/bellsagemcom.tar.gz bellsagemcom/
+

@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/bertabus/wifi-contour
+	branch = master
+	commit = 84eab5d2490eeefcf2af4d44081612685f1f2209
+	parent = 6f20a3455b899db8897e09cc32b4d4e205889454
+	cmdver = 0.2.0

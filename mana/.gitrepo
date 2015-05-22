@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/sensepost/mana
+	branch = master
+	commit = 2c6a10604f25fa6bbff7965be54e72228d5b7f56
+	parent = 5cae3bc5581481d6dac2a589341db642f9194493
+	cmdver = 0.2.0

@@ -1,0 +1,31 @@
+//
+// Prefix header for all source files of the 'KisMAC' target in the 'KisMAC' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+    #import <BIGL/BIGL.h>
+    #import <BIGeneric/BIGeneric.h>
+    #import <AppKit/AppKit.h>
+    #import <Security/Security.h>
+    #import <CoreServices/CoreServices.h>
+#endif
+
+#ifdef DEBUG
+#define DBNSLog NSLog
+#else
+#define DBNSLog( s, ... )
+#endif
+
+#define POLARSSL_MD4_C
+
+#define MD4_DIGEST_LENGTH 16
+#define SHA_DIGEST_LENGTH 20
+
+#define BAD_ADDRESS			0xFFFFFFFF
+#define ERROR_FREE_ADDRESS	0xDEBB20E3
+#define LAST_BIT			256
+
+#define SRET { [[WaveHelper importController] terminateWithCode: 1]; return; }
+#define RET { [[WaveHelper importController] terminateWithCode: -1]; return; }
+#define CHECK { if (_password != nil) RET; if (_isWep != encryptionTypeWEP && _isWep != encryptionTypeWEP40) RET; if ([_packetsLog count] < 8) RET; }

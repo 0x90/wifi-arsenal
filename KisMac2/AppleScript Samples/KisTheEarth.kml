@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.0">
+<Document>
+  <name>KisMAC</name>
+  <visibility>0</visibility>
+  <open>1</open>
+<NetworkLink>
+  <name>KisTheEarth</name>
+  <visibility>0</visibility>
+  <open>1</open>
+  <flyToView>0</flyToView>
+  <Url>
+    <href>/tmp/kismac-export.kml</href>
+    <refreshMode>onInterval</refreshMode>
+    <refreshInterval>10</refreshInterval>
+  </Url>
+</NetworkLink>
+</Document>
+</kml>

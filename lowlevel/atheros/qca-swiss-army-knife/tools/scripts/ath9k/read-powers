@@ -1,0 +1,319 @@
+#!/usr/bin/python
+#
+# Copyright (c) 2010 Atheros Communications Inc.
+#
+# Written by Luis R. Rodriguez <lrodriguez@atheros.com>
+#
+# Permission to use, copy, modify, and/or distribute this software for any
+# purpose with or without fee is hereby granted, provided that the above
+# copyright notice and this permission notice appear in all copies.
+#
+# THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+# WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+# MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+# ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+# WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+# ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+# OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+# This script can be used to read and interpret the power rate registers
+# for AR9003 using ath9k through debugfs. To use this you will need applied:
+#
+# 0001-ath9k-Add-debugfs-interface-to-dump-registers.patch
+#
+# from the crap/ directory of compat-wireless
+#
+# Usage: cat /sys/kernel/debug/ath9k/phy0/regdump | read-powers
+
+# TODO:
+#
+# - fix floating point calculations, right now we round off
+# - test with AR5008, AR9001, AR9002, and then ath5k family.
+
+import string, sys
+
+cck_rates = {
+	"1L" : 0, # DSSS
+	"2L" : 0, # DSSS
+	"2S" : 0, # DSSS
+	"5.5L" : 0, # CCK
+	"5.5S" : 0, # CCK
+	"11L" : 0, # CCK
+	"11S" : 0, # CCK
+}
+
+ofdm_rates = {
+	"6" : 0,
+	"9" : 0,
+	"12" : 0,
+	"18" : 0,
+	"24" : 0,
+	"36" : 0,
+	"48" : 0,
+	"54" : 0,
+	}
+
+mcs_rates_ht20 = {
+	"0" : 0,
+	"1" : 0,
+	"2" : 0,
+	"3" : 0,
+	"4" : 0,
+	"5" : 0,
+	"6" : 0,
+	"7" : 0,
+	"8" : 0,
+	"9" : 0,
+	"10" : 0,
+	"11" : 0,
+	"12" : 0,
+	"13" : 0,
+	"14" : 0,
+	"15" : 0,
+	"16" : 0,
+	"17" : 0,
+	"18" : 0,
+	"19" : 0,
+	"20" : 0,
+	"21" : 0,
+}
+
+mcs_rates_ht40 = {
+	"0" : 0,
+	"1" : 0,
+	"2" : 0,
+	"3" : 0,
+	"4" : 0,
+	"5" : 0,
+	"6" : 0,
+	"7" : 0,
+	"8" : 0,
+	"9" : 0,
+	"10" : 0,
+	"11" : 0,
+	"12" : 0,
+	"13" : 0,
+	"14" : 0,
+	"15" : 0,
+	"16" : 0,
+	"17" : 0,
+	"18" : 0,
+	"19" : 0,
+	"20" : 0,
+	"21" : 0,
+}
+
+# Not sure what this is
+ext_dup_rates = {
+	"40 dup CCK" : 0,
+	"40 dup OFDM" : 0,
+	"20 ext CCK" : 0,
+	"20 ext OFDM" : 0,
+}
+
+def powertx_rate1 (val):
+	ofdm_rates["6"]  = (val >> 0) & 0xff;
+	ofdm_rates["9"]  = (val >> 8) & 0xff;
+	ofdm_rates["12"] = (val >> 16) & 0xff
+	ofdm_rates["18"] = (val >> 24) & 0xff
+
+	print "%010s: 0x%08x" % ("Rate 1", val)
+
+def powertx_rate2 (val):
+	ofdm_rates["24"] = (val >> 0) & 0xff;
+	ofdm_rates["36"] = (val >> 8) & 0xff;
+	ofdm_rates["48"] = (val >> 16) & 0xff
+	ofdm_rates["54"] = (val >> 24) & 0xff
+
+	print "%010s: 0x%08x" % ("Rate 2", val)
+
+def powertx_rate3 (val):
+	cck_rates["1L"]  = (val >> 0)  & 0xff;	
+	# 1S is undefined
+	#cck_rates["1S"] = (val >> 8)  & 0xff;
+	cck_rates["2L"]  = (val >> 16) & 0xff;
+	cck_rates["2S"]  = (val >> 24) & 0xff;
+
+	print "%010s: 0x%08x" % ("Rate 3", val)
+
+def powertx_rate4 (val):
+	cck_rates["5.5L"] = (val >> 0)  & 0xff;
+	cck_rates["5.5S"] = (val >> 8)  & 0xff;
+	cck_rates["11L"]  = (val >> 16) & 0xff
+	cck_rates["11S"]  = (val >> 24) & 0xff
+
+	print "%010s: 0x%08x" % ("Rate 4", val)
+
+def powertx_rate5 (val):
+	mcs_rates_ht20["0"]  = (val >> 0) & 0xff;
+	mcs_rates_ht20["8"]  = (val >> 0) & 0xff;
+	mcs_rates_ht20["16"] = (val >> 0) & 0xff;
+
+	mcs_rates_ht20["1"]  = (val >> 8) & 0xff;
+	mcs_rates_ht20["2"]  = (val >> 8) & 0xff;
+	mcs_rates_ht20["3"]  = (val >> 8) & 0xff;
+
+	mcs_rates_ht20["9"]  = (val >> 8) & 0xff;
+	mcs_rates_ht20["10"] = (val >> 8) & 0xff;
+	mcs_rates_ht20["11"] = (val >> 8) & 0xff;
+
+	mcs_rates_ht20["17"] = (val >> 8) & 0xff;
+	mcs_rates_ht20["18"] = (val >> 8) & 0xff;
+	mcs_rates_ht20["19"] = (val >> 8) & 0xff;
+
+	mcs_rates_ht20["4"]  = (val >> 16) & 0xff
+
+	mcs_rates_ht20["5"]  = (val >> 24) & 0xff
+
+	print "%010s: 0x%08x" % ("Rate 5", val)
+
+def powertx_rate6 (val):
+	mcs_rates_ht20["6"]  = (val >> 0)  & 0xff;
+	mcs_rates_ht20["7"]  = (val >> 8)  & 0xff;
+	mcs_rates_ht20["12"] = (val >> 16) & 0xff
+	mcs_rates_ht20["13"] = (val >> 24) & 0xff
+
+	print "%010s: 0x%08x" % ("Rate 6", val)
+
+def powertx_rate7 (val):
+	mcs_rates_ht40["0"]  = (val >> 0) & 0xff;
+	mcs_rates_ht40["8"]  = (val >> 0) & 0xff;
+	mcs_rates_ht40["16"] = (val >> 0) & 0xff;
+
+	mcs_rates_ht40["1"]  = (val >> 8) & 0xff;
+	mcs_rates_ht40["2"]  = (val >> 8) & 0xff;
+	mcs_rates_ht40["3"]  = (val >> 8) & 0xff;
+
+	mcs_rates_ht40["9"]  = (val >> 8) & 0xff;
+	mcs_rates_ht40["10"] = (val >> 8) & 0xff;
+	mcs_rates_ht40["11"] = (val >> 8) & 0xff;
+
+	mcs_rates_ht40["17"] = (val >> 8) & 0xff;
+	mcs_rates_ht40["18"] = (val >> 8) & 0xff;
+	mcs_rates_ht40["19"] = (val >> 8) & 0xff;
+
+	mcs_rates_ht40["4"]  = (val >> 16) & 0xff
+
+	mcs_rates_ht40["5"]  = (val >> 24) & 0xff
+
+	print "%010s: 0x%08x" % ("Rate 7", val)
+
+def powertx_rate8 (val):
+	mcs_rates_ht40["6"]  = (val >> 0) & 0xff;
+	mcs_rates_ht40["7"]  = (val >> 8) & 0xff;
+	mcs_rates_ht40["12"] = (val >> 16) & 0xff
+	mcs_rates_ht40["13"] = (val >> 24) & 0xff
+
+	print "%010s: 0x%08x" % ("Rate 8", val)
+
+# What is 40 dup CCK, 40 dup OFDM, 20 ext cck, 20 ext ODFM ?
+def powertx_rate9 (val):
+	ext_dup_rates["40 dup CCK"]  = (val >> 0) & 0xff;
+	ext_dup_rates["40 dup OFDM"] = (val >> 8) & 0xff;
+	ext_dup_rates["20 ext CCK"]  = (val >> 16) & 0xff
+	ext_dup_rates["20 ext OFDM"] = (val >> 24) & 0xff
+
+	print "%010s: 0x%08x" % ("Rate 9", val)
+
+def powertx_rate10 (val):
+	mcs_rates_ht20["14"] = (val >> 0) & 0xff;
+	mcs_rates_ht20["15"] = (val >> 8) & 0xff;
+	mcs_rates_ht20["20"] = (val >> 16) & 0xff
+	mcs_rates_ht20["21"] = (val >> 24) & 0xff
+
+	print "%010s: 0x%08x" % ("Rate 10", val)
+
+def powertx_rate11 (val):
+	mcs_rates_ht20["22"] = (val >> 0) & 0xff;
+	mcs_rates_ht20["23"] = (val >> 8) & 0xff;
+
+	mcs_rates_ht40["22"] = (val >> 16) & 0xff
+	mcs_rates_ht40["23"] = (val >> 24) & 0xff
+
+	print "%010s: 0x%08x" % ("Rate 11", val)
+
+def powertx_rate12 (val):
+	mcs_rates_ht40["14"] = (val >> 0) & 0xff;
+	mcs_rates_ht40["15"] = (val >> 8) & 0xff;
+	mcs_rates_ht40["20"] = (val >> 16) & 0xff
+	mcs_rates_ht40["21"] = (val >> 24) & 0xff
+
+	print "%010s: 0x%08x" % ("Rate 12", val)
+
+registers = {
+	"0x00a3c0" : powertx_rate1,
+	"0x00a3c4" : powertx_rate2,
+	"0x00a3c8" : powertx_rate3,
+	"0x00a3cc" : powertx_rate4,
+	"0x00a3d0" : powertx_rate5,
+	"0x00a3d4" : powertx_rate6,
+	"0x00a3d8" : powertx_rate7,
+	"0x00a3dc" : powertx_rate8,
+	"0x00a3e0" : powertx_rate9,
+	"0x00a3e4" : powertx_rate10,
+	"0x00a3e8" : powertx_rate11,
+	"0x00a3ec" : powertx_rate12,
+	}
+
+def process_cck_rates():
+	print "CCK Rates"
+	print "======================"
+	for rate, double_dbm in cck_rates.iteritems():
+		dbm = "%.2f dBm" % (double_dbm / 2)
+		print "%010s %010s" % (rate + " Mbps", dbm)
+
+def process_ofdm_rates():
+	print "OFDM Rates"
+	print "======================"
+	for rate, double_dbm in sorted(map(lambda (k,v): (int(k,0), v), ofdm_rates.iteritems())):
+		rate_s = "%s" % rate
+		dbm = "%.02f dBm" % (double_dbm / 2)
+		print "%010s %010s" % (rate_s + " Mbps", dbm)
+
+def process_mcs_ht20_rates():
+	print "MCS20 Rates"
+	print "======================"
+	for rate, double_dbm in sorted(map(lambda (k,v): (int(k,0), v), mcs_rates_ht20.iteritems())):
+		rate_s = "%s" % rate
+		dbm = "%.02f dBm" % (double_dbm / 2)
+		print "%010s %010s" % ("MCS" + rate_s, dbm)
+
+
+def process_mcs_ht40_rates():
+	print "MCS40 Rates"
+	print "======================"
+	for rate, double_dbm in sorted(map(lambda (k,v): (int(k,0), v), mcs_rates_ht40.iteritems())):
+		rate_s = "%s" % rate
+		dbm = "%.2f dBm" % (double_dbm / 2)
+		print "%010s %010s" % ("MCS" + rate_s, dbm)
+
+def process_ext_dup_rates():
+	print "EXT-DUP Rates"
+	print "=========================="
+	for rate, double_dbm in ext_dup_rates.iteritems():
+		dbm = "%.2f dBm" % (double_dbm / 2)
+		print "%015s %010s" % (rate, dbm)
+
+def print_power_reg (reg, val):
+	if not reg in map(lambda x: int(x, 0), registers.keys()):
+		return
+	registers.get("0x%06x" % reg)(val)
+
+try:
+	print "Power register"
+	print "======================"
+	for line in sys.stdin.readlines():
+		reg, val  = map(lambda x: int(x, 0), string.split(line))
+		print_power_reg(reg, val)
+	print "-------------------------------------"
+
+	process_cck_rates()
+	process_ofdm_rates()
+	process_mcs_ht20_rates()
+	process_mcs_ht40_rates()
+	process_ext_dup_rates()
+
+except SystemExit: pass
+
+except:		
+	sys.stdout.write("uknown error\n")

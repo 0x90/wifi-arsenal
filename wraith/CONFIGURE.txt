@@ -1,0 +1,81 @@
+A. CONFIGURATION
+
+1) Postgresql
+ensure postgresql 9.3 is installed
+configure postgresql and nidus db
+sudo apt-get install postgresql-9.3-postgis-2.1
+sudo -u postgres psql
+CREATE EXTENSION adminpack;
+
+# create nidus user and nidus database  
+postgres@feral:/var/lib$ createuser nidus --pwprompt --no-superuser --no-createrole --no-createdb
+createdb --owner=nidus nidus
+
+# use btree_gist (see http://www.postgresql.org/docs/devel/static/rangetypes.html)
+sudo su - postgres
+postgres=# psql -d nidus
+postgres=# CREATE EXTENSION btree_gist;
+
+2) Dependencies
+ - dateutil 2.3 https://pypi.python.org/pypi/python-dateutil
+
+ - iw 3.17 https://www.kernel.org/pub/software/network/iw/iw-3.17.tar.xz
+   o install to /usr/sbin/iw
+
+ - psycopg2 2.5.4 https://pypi.python.org/pypi/psycopg2
+ 
+ - mgrs 1.1 https://pypi.python.org/packages/source/m/mgrs/mgrs-1.1.0.tar.gz
+   o may need python-setuptools
+   
+ - macchanger 1.7.0 http://www.gnu.org/software/macchanger
+   
+ - gui support
+   o python-tk
+   o tix
+
+3) Configure system for use
+ - Set up daemons
+   o dysktd
+     1) copy <pathtowraith>/dyskt/dysktd to /etc/init.d
+     2) change ownership to root/root (if necessary)
+     3) make dyskt.py executable (change permissions of dyskt.py to 755)
+   o nidusd
+     1) copy <pathtowraith>/nidus/nidusd to /etc/init.d
+     2) change ownership to root/root (if necessary)
+     3) make nidus.py executable (change permissions of nidus.py to 755)
+   o verify both do not start on boot (unless desired)
+ 
+  - Set up logs
+     cd /var/logs
+     mkdir wraith
+     sudo chown <user>:adm wraith
+     chmod 750 wraith
+     cd wraith
+     touch dyskt.log
+     touch nidus.log
+
+  - configure iw, iwconfig, ifconfig and binding raw socket for root access
+   o We need root access to iw, iwconfig and ifconfig
+     * One can modify the deamons to run as root
+     * One can run python interpreter as root
+     * Or one can modify the sudoers file as below
+       # Cmnd alias specification
+       Cmnd_Alias	IWCONFIG = /sbin/iwconfig
+       Cmnd_Alias	IFCONFIG = /sbin/ifconfig
+       Cmnd_Alias	IW = /usr/sbin/iw #--> iw 3.17
+       Cmnd_Alias   MACCHANGER = /usr/bin/macchanger
+       
+       # Allow user to execute iw* commands
+       <user> ALL=NOPASSWD:IWCONFIG
+       <user> ALL=NOPASSWD:IFCONFIG
+       <user> ALL=NOPASSWD:IW
+       <user> ALL=NOPASSWD:MACCHANGER
+  
+       sudo service sudo restart # to have it start immediately
+    o We need to give the python interpreter set raw capability
+      * Once again, we could run as root
+      * Or give the python interpreter set raw capability
+        sudo setcap cap_net_raw=+ep /usr/bin/python2.7 
+        sudo setcap cap_net_raw=-ep /usr/bin/python2.7
+      * Using dyskt daemon, set raw capabilities are temporarily enabled and
+        then removed after the raw socket is bound

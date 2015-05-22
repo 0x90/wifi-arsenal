@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/enkore/basiciw
+	branch = master
+	commit = 456e3f69224b14e1e104cdca8239ce93831bda73
+	parent = 85e9902880e50dd9e69fbcc5eddbb5022ac35cbe
+	cmdver = 0.2.0

@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/atechdad/badkarma
+	branch = master
+	commit = 889cb94d2730ecc860b6b2b441614fd03b931eb0
+	parent = 84c9672404d7ef06cd72fa88aebba125c3b79e3c
+	cmdver = 0.2.0

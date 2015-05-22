@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<!--
+  -- KARMA configuration file that runs a rogue base station with
+  -- DHCP, DNS, and HTTP services.  The HTTP service redirects all
+  -- requests to the ExampleWebExploit module that displays a simple
+  -- HTML page.  This page can be replaced with something that informs
+  -- the user that their wireless settings are insecure and that it
+  -- may be a violation of corporate security policy, etc.
+  -->
+
+<karma>
+
+  <!-- Configure modules -->
+  <option module="ACCESS-POINT" name="ssid" value="karma"/>
+  <option module="ACCESS-POINT" name="interface" value="ath0"/>
+
+  <!-- Run modules -->
+  <run module="ACCESS-POINT"/>
+  <run module="DHCP-SERVER"/>
+  <run module="POP3-SERVER"/>
+  <run module="FTP-SERVER"/>
+  <run module="CONTROLLER-SERVLET"/>
+  <run module="EXAMPLE-WEB-EXPLOIT"/>
+
+</karma>

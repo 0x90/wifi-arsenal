@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/anyfi/wperf
+	branch = master
+	commit = 7438de23d2a245ee961983cd0355955edbf47698
+	parent = 166cf36e4292146fb2841020c34e3095ebb2269c
+	cmdver = 0.2.0

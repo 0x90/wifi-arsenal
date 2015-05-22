@@ -1,0 +1,12 @@
+Introduction
+============
+
+wpa_supplicant has support for p2p networking (i.e., wifi direct).  This
+document describes how to set up and test this p2p networking.  At the time of
+this writing, only the ath9k driver supports wpa_supplicant's p2p.  So start by
+building wireless-testing HEAD kernel with ath9k.  You'll also need a recent
+wpa_supplicant.  See http://wireless.kernel.org/en/developers/p2p/howto for
+details on building these pieces.  I've decided not to provide details here in
+this README because the p2p stuff is under heavy development.  So the details
+are likely to change.
+

@@ -1,0 +1,8 @@
+# Lines starting with '#' and sections without content
+# are not displayed by a call to 'details'
+#
+[paths]
+db.py:getCIDcntMaxSeq():line 170
+
+[solution]
+Add ('cidcnt=%s' % num_macs) in where condition.

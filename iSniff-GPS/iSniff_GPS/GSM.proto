@@ -1,0 +1,60 @@
+message MyCell {
+    optional int64 MCC = 1;
+    optional int64 MNC = 2;
+    optional int64 CID = 3;
+    optional int64 LAC = 4;
+}
+
+message CellReqToApple1 { // seen on iphone4s e.g. 505:1:8784:21696338 result type 1 with channel ID in #11
+    repeated MyCell cell = 1;
+    optional int64 param3 = 3;
+    optional int64 param4 = 4;
+    optional string ua = 5;
+}
+
+message CellReqToApple25 { // seen on iphone5s e.g. 505:1:12300:135692802 result type 22, no channel number?
+    required MyCell cell = 25;
+    optional int64 unknown3 = 3;
+    optional int64 unknown4 = 4;
+}
+
+message CellResponse1 { // GSM/3G?
+    optional int64 MCC = 1;
+    optional int64 MNC = 2;
+    optional int64 CID = 3;
+    optional int64 LAC = 4;
+    message Location {
+        required int64 latitude = 1;
+        required int64 longitude = 2;
+        optional int64 data3 = 3;
+        optional int64 data4 = 4;
+        optional int64 data12 = 12;
+    }
+    optional Location location = 5;
+    optional int64 channel = 11;
+    optional int64 data12 = 12;
+}
+
+message CellResponse22 { // LTE?
+    optional int64 MCC = 1;
+    optional int64 MNC = 2;
+    optional int64 CID = 3;
+    optional int64 LAC = 4;
+    message Location {
+        required int64 latitude = 1;
+        required int64 longitude = 2;
+        optional int64 confidence = 3;
+        optional int64 data4 = 4;
+        optional int64 data12 = 12;
+    }
+    optional Location location = 5;
+    optional int64 channel = 6;
+}
+
+message CellInfoFromApple22 { // results in CellResponse22
+	repeated CellResponse22 cell = 22;
+}
+
+message CellInfoFromApple1 { // results in CellResponse1
+    repeated CellResponse1 cell = 1;
+}

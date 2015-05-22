@@ -1,0 +1,56 @@
+README
+======
+
+Python WiFi is a Python module that provides read and write access to a
+wireless network card's capabilities using the Linux Wireless Extensions.
+It was initially developed by Roman Joost with advice from Guido Goldstein
+of Infrae.  It is currently maintained by Sean Robinson.
+
+More information is available at http://pythonwifi.tuxfamily.org.  A
+mailing list for announcements and developer discussion is available at
+pythonwifi@lists.tuxfamily.org.
+
+Check the ./docs/feature_matrix_*.txt files for a detailed list of what is
+implemented.  This may not work with 64-bit Linux kernels, I would appreciate
+reports of success or failure on such systems.
+
+
+Example Applications
+--------------------
+The examples directory contains iwconfig.py and iwlist.py, which are sample
+re-implementations of iwconfig and iwlist.  These scripts use the pythonwifi
+module to duplicate the functionality of those programs as closely as possible.
+
+
+Files and Directories
+---------------------
+./docs/ - supporting documentation
+./docs/api/ - documentation of the pythonwifi API (not yet there)
+./docs/logos/ - the Python WiFi logo in various formats
+./examples/ - sample uses of pythonwifi module
+./pythonwifi/ - the module source code
+./INSTALL - installation instructions
+./Makefile - convenience commands for developers
+./README - this file
+./setup.py - installation script
+
+
+Python WiFi Users
+-----------------
+The methods in the Wireless class are the highest level interace. An example
+program, which prints the ESSID and the association mode:
+
+>>> from pythonwifi.iwlibs import Wireless
+>>> wifi = Wireless('eth1')
+>>> wifi.getEssid()
+'romanofski'
+>>> wifi.getMode()
+'Managed'
+
+
+License
+-------
+
+pythonwifi is licensed under LGPLv2+, however, the examples
+(e.g. iwconfig.py and iwlist.py) are licensed under GPLv2+.
+

@@ -1,0 +1,17 @@
+#
+# Copyright (c) 2006-2013 Wade Alcorn - wade@bindshell.net
+# Browser Exploitation Framework (BeEF) - http://beefproject.com
+# See the file 'doc/COPYING' for copying permission
+#
+beef:
+    module:
+        ajax_fingerprint:
+            enable: true
+            category: ["Browser", "Hooked Domain"]
+            name: "Fingerprint Ajax"
+            description: "Fingerprint Ajax and JS libraries present on the hooked page."
+            authors: ["qswain"]
+            target:
+                working: ["FF", "S"]
+                not_working: ["C"]
+
