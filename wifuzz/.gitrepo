@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/0x90/wifuzz
+	branch = master
+	commit = 9f19f055e3a3fbdfc9787c41c2da6e42b36809e1
+	parent = 3c586627c7c5e2c3fe031e99dd97e86e02ff4f5b
+	cmdver = 0.2.1
