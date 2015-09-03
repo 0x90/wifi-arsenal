@@ -6,6 +6,6 @@
 [subrepo]
 	remote = https://github.com/zhovner/airport-sniffer
 	branch = master
-	commit = 12553c19a5df50fac33502d2ba0d5c77c4efc473
-	parent = 5a4d34ab4004c29312361c42c834be1ba412de95
-	cmdver = 0.2.0
+	commit = 19d285d88aacdf52c6b183c69684ee836c4cc102
+	parent = d3be0b3d2892fa7c62e5534da0eb0209f09032f2
+	cmdver = 0.2.3
