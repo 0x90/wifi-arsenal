@@ -1,0 +1,5 @@
+# Runs CRDA for kernel wireless regulatory events.
+# For more information see:
+# http://wireless.kernel.org/en/developers/Regulatory/CRDA
+
+KERNEL=="regulatory*", ACTION=="change", SUBSYSTEM=="platform", RUN+="$(SBINDIR)crda"

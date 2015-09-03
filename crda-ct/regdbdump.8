@@ -1,0 +1,37 @@
+.TH regdbdump 8 "23 January 2009" "regdbdump" "Linux"
+.SH NAME
+regdbdump \- parse and print out regulatory rules file
+.SH SYNOPSIS
+
+.ad l
+.in +8
+.ti -8
+.B regdbdump
+.RI <path-to-regulatory.bin>
+
+
+.ad l
+.in +8
+.ti -8
+
+.SS
+.SH Description
+.B regdbdump
+can be used to parse the
+.B regulatory.bin
+file, the Linux wireless regulatory database used by
+.B crda,
+and print out its contents in human readable format.
+.B regdbdump
+will return non zero if the digital signature
+.B regdbdump
+was built with cannot verify the signature of the regulatory database.
+Should this happen unintentionally chances are your regulatory.bin file is
+corrupted or has been tampered with.
+
+.SH SEE ALSO
+.BR regulatory.bin (5)
+.BR crda (8)
+.BR iw (8)
+
+.BR http://wireless.kernel.org/en/developers/Regulatory/
