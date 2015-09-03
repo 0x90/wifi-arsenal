@@ -33,14 +33,14 @@ endif
 
 
 SBINFILES       = aireplay-ng$(EXE) airodump-ng$(EXE) airserv-ng$(EXE) \
-		  airtun-ng$(EXE) airbase-ng$(EXE) besside-ng$(EXE)
+		  airtun-ng$(EXE) airbase-ng$(EXE)
 		  
 OPTFILES	= aircrack-ng-opt-prof_gen aircrack-ng-opt \
 		  aircrack-ng-opt-prof prof/*
 
 
 ifeq ($(subst TRUE,true,$(filter TRUE true,$(experimental) $(EXPERIMENTAL))),true)
-	SBINFILES	+= wesside-ng$(EXE) tkiptun-ng$(EXE) easside-ng$(EXE)
+	SBINFILES	+= wesside-ng$(EXE) tkiptun-ng$(EXE) easside-ng$(EXE) besside-ng$(EXE)
 	BINFILES	+= buddy-ng$(EXE)
 endif
 
@@ -194,7 +194,7 @@ strip: $(BINFILES) $(SBINFILES)
 
 clean:
 	$(MAKE) -C $(OSD) clean
-	-rm -f $(SBINFILES) $(BINFILES) $(OPTFILES) airolib-ng$(EXE) *.o wesside-ng$(EXE) tkiptun-ng$(EXE) easside-ng$(EXE) buddy-ng$(EXE) a.out
+	-rm -f $(SBINFILES) $(BINFILES) $(OPTFILES) airolib-ng$(EXE) *.o wesside-ng$(EXE) tkiptun-ng$(EXE) easside-ng$(EXE) buddy-ng$(EXE) besside-ng$(EXE) a.out
 
 distclean: clean
 
@@ -234,6 +234,10 @@ check: all
 	./aircrack-ng$(EXE) -w $(TEST_DIR)/password.lst -a 2 -e test -q $(TEST_DIR)/wpa.cap | grep 'KEY FOUND! \[ biscotte \]'
 	./aircrack-ng$(EXE) -w $(TEST_DIR)/password.lst -a 2 -e linksys -q $(TEST_DIR)/wpa2-psk-linksys.cap | grep 'KEY FOUND! \[ dictionary \]'
 	./aircrack-ng$(EXE) -w $(TEST_DIR)/password.lst -a 2 -e linksys -q $(TEST_DIR)/wpa-psk-linksys.cap | grep 'KEY FOUND! \[ dictionary \]'
+	./aircrack-ng$(EXE) $(TEST_DIR)/wep_64_ptw.cap -l /dev/null | grep "KEY FOUND" | grep "1F:1F:1F:1F:1F"
+	./airdecap-ng$(EXE) -e linksys -p dictionary $(TEST_DIR)/wpa2-psk-linksys.cap -o /dev/null -c /dev/null | grep "decrypted WPA" | grep 25
+	./airdecap-ng$(EXE) -e linksys -p dictionary $(TEST_DIR)/wpa-psk-linksys.cap -o /dev/null -c /dev/null | grep "decrypted WPA" | grep 53
+	./airdecap-ng$(EXE) -e test -p biscotte $(TEST_DIR)/wpa.cap -o /dev/null -c /dev/null | grep "decrypted WPA" | grep 2
 	$(TEST_DIR)/test-airdecap-ng.sh $(CURDIR)
 ifeq ($(subst TRUE,true,$(filter TRUE true,$(sqlite) $(SQLITE))),true)
 	$(TEST_DIR)/test-airolib-sqlite.sh $(CURDIR)

@@ -1,7 +1,7 @@
 /*
  *  pcap-compatible 802.11 packet sniffer
  *
- *  Copyright (C) 2006-2014 Thomas d'Otreppe
+ *  Copyright (C) 2006-2015 Thomas d'Otreppe <tdotreppe@aircrack-ng.org>
  *  Copyright (C) 2004, 2005 Christophe Devine
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -73,9 +73,15 @@
 #include "osdep/common.h"
 #include "common.h"
 
+// libgcrypt thread callback definition for libgcrypt < 1.6.0
 #ifdef USE_GCRYPT
-	GCRY_THREAD_OPTION_PTHREAD_IMPL;
+	#if GCRYPT_VERSION_NUMBER < 0x010600
+		GCRY_THREAD_OPTION_PTHREAD_IMPL;
+	#endif
 #endif
+
+// in common.c
+extern int is_string_number(const char * str);
 
 void dump_sort( void );
 void dump_print( int ws_row, int ws_col, int if_num );
@@ -445,6 +451,13 @@ struct oui * load_oui_file(void) {
 				if (!(oui_ptr->next = (struct oui *)malloc(sizeof(struct oui)))) {
 					fclose(fp);
 					perror("malloc failed");
+					
+					while(oui_head != NULL)
+					{
+						oui_ptr = oui_head->next;
+						free(oui_head);
+						oui_head = oui_ptr;
+					}
 					return NULL;
 				}
 				oui_ptr = oui_ptr->next;
@@ -624,7 +637,7 @@ int check_shared_key(unsigned char *h80211, int caplen)
 char usage[] =
 
 "\n"
-"  %s - (C) 2006-2014 Thomas d\'Otreppe\n"
+"  %s - (C) 2006-2015 Thomas d\'Otreppe\n"
 "  http://www.aircrack-ng.org\n"
 "\n"
 "  usage: airodump-ng <options> <interface>[,<interface>,...]\n"
@@ -646,6 +659,7 @@ char usage[] =
 "      -x            <msecs> : Active Scanning Simulation\n"
 "      --manufacturer        : Display manufacturer from IEEE OUI list\n"
 "      --uptime              : Display AP Uptime from Beacon Timestamp\n"
+"      --wps                 : Display WPS information (if any)\n"
 "      --output-format\n"
 "                  <formats> : Output format. Possible values:\n"
 "                              pcap, ivs, csv, gps, kismet, netxml\n"
@@ -975,6 +989,10 @@ int dump_initialize( char *prefix, int ivs_only )
             perror( "fwrite(IVs file header) failed" );
             return( 1 );
         }
+    }
+    else
+    {
+        free( ofn );
     }
 
     return( 0 );
@@ -1422,22 +1440,18 @@ int dump_add_packet( unsigned char *h80211, int caplen, struct rx_info *ri, int 
 //         if(ap_cur->fcapt >= QLT_COUNT) update_rx_quality();
     }
 
-    if( h80211[0] == 0x80 )
+    switch( h80211[0] )
     {
-        ap_cur->nb_bcn++;
+        case  0x80:
+            ap_cur->nb_bcn++;
+        case  0x50:
+            /* reset the WPS state */
+            ap_cur->wps.state = 0xFF;
+            ap_cur->wps.ap_setup_locked = 0;
+            break;
     }
 
     ap_cur->nb_pkt++;
-
-    /* find wpa handshake */
-    if( h80211[0] == 0x10 )
-    {
-        /* reset the WPA handshake state */
-
-        if( st_cur != NULL && st_cur->wpa.state != 0xFF )
-            st_cur->wpa.state = 0;
-//        printf("initial auth %d\n", ap_cur->wpa_state);
-    }
 
     /* locate the station MAC in the 802.11 header */
 
@@ -1563,9 +1577,7 @@ int dump_add_packet( unsigned char *h80211, int caplen, struct rx_info *ri, int 
     {
         st_cur->power = ri->ri_power;
         st_cur->rate_from = ri->ri_rate;
-	// XXX: Why 'ri->ri_channel < 167'?
-	// TODO: Also addd explanation
-	if(ri->ri_channel > 0 && ri->ri_channel < 167)
+	if(ri->ri_channel > 0 && ri->ri_channel <= HIGHEST_CHANNEL)
 		st_cur->channel = ri->ri_channel;
 	else
 		st_cur->channel = G.channel[cardnum];
@@ -1845,6 +1857,54 @@ skip_probe:
                 ap_cur->security |= STD_QOS;
                 p += length+2;
             }
+            else if( (type == 0xDD && (length >= 4) && (memcmp(p+2, "\x00\x50\xF2\x04", 4) == 0)))
+            {
+                org_p = p;
+                p+=6;
+                int len = length, subtype = 0, sublen = 0;
+                while(len >= 4)
+                {
+                    subtype = (p[0] << 8) + p[1];
+                    sublen = (p[2] << 8) + p[3];
+                    if(sublen > len)
+                        break;
+                    switch(subtype)
+                    {
+                    case 0x104a: // WPS Version
+                        ap_cur->wps.version = p[4];
+                        break;
+                    case 0x1011: // Device Name
+                    case 0x1012: // Device Password ID
+                    case 0x1021: // Manufacturer
+                    case 0x1023: // Model
+                    case 0x1024: // Model Number
+                    case 0x103b: // Response Type
+                    case 0x103c: // RF Bands
+                    case 0x1041: // Selected Registrar
+                    case 0x1042: // Serial Number
+                        break;
+                    case 0x1044: // WPS State
+                        ap_cur->wps.state = p[4];
+                        break;
+                    case 0x1047: // UUID Enrollee
+                    case 0x1049: // Vendor Extension
+                    case 0x1054: // Primary Device Type
+                        break;
+                    case 0x1057: // AP Setup Locked
+                        ap_cur->wps.ap_setup_locked = p[4];
+                        break;
+                    case 0x1008: // Config Methods
+                    case 0x1053: // Selected Registrar Config Methods
+                        ap_cur->wps.meth = (p[4] << 8) + p[5];
+                        break;
+                    default:     // Unknown type-length-value
+                        break;
+                    }
+                    p += sublen+4;
+                    len -= sublen+4;
+                }
+                p = org_p + length+2;
+            }
             else p += length+2;
         }
     }
@@ -1950,7 +2010,7 @@ skip_probe:
 
         if( ap_cur->channel == -1 )
         {
-            if(ri->ri_channel > 0 && ri->ri_channel < 167)
+            if(ri->ri_channel > 0 && ri->ri_channel <= HIGHEST_CHANNEL)
                 ap_cur->channel = ri->ri_channel;
             else
                 ap_cur->channel = G.channel[cardnum];
@@ -3106,6 +3166,22 @@ void dump_print( int ws_row, int ws_col, int if_num )
     if (G.show_uptime)
     	strcat(strbuf, "       UPTIME  ");
 
+    if (G.show_wps)
+    {
+        strcat(strbuf, "WPS   ");
+        if ( ws_col > (columns_ap - 4) )
+        {
+            memset(strbuf+columns_ap, 32, G.maxsize_wps_seen - 6 );
+            snprintf(strbuf+columns_ap+G.maxsize_wps_seen-6, 9,"%s","   ESSID");
+            if ( G.show_manufacturer  )
+            {
+                memset(strbuf+columns_ap+G.maxsize_wps_seen+2, 32, G.maxsize_essid_seen-5 );
+                snprintf(strbuf+columns_ap+G.maxsize_essid_seen-5, 15,"%s","  MANUFACTURER");
+            }
+        }
+    }
+    else
+    {
     strcat(strbuf, "ESSID");
 
 	if ( G.show_manufacturer && ( ws_col > (columns_ap - 4) ) ) {
@@ -3113,7 +3189,7 @@ void dump_print( int ws_row, int ws_col, int if_num )
 		memset(strbuf+columns_ap, 32, G.maxsize_essid_seen - 5 ); // 5 is the len of "ESSID"
 		snprintf(strbuf+columns_ap+G.maxsize_essid_seen-5, 15,"%s","  MANUFACTURER");
 	}
-
+    }
 	strbuf[ws_col - 1] = '\0';
 	fprintf( stderr, "%s\n", strbuf );
 
@@ -3284,13 +3360,64 @@ void dump_print( int ws_row, int ws_col, int if_num )
 	    if( ws_col > (columns_ap - 4) )
 	    {
 		memset( strbuf, 0, sizeof( strbuf ) );
+		if (G.show_wps)
+		{
+		    if (ap_cur->wps.state != 0xFF)
+		    {
+		        if (ap_cur->wps.ap_setup_locked) // AP setup locked
+		            snprintf(strbuf, sizeof(strbuf)-1, "Locked");
+		        else
+		        {
+		            snprintf(strbuf, sizeof(strbuf)-1, "%d.%d", ap_cur->wps.version >> 4, ap_cur->wps.version & 0xF); // Version
+		            if (ap_cur->wps.meth) // WPS Config Methods
+		            {
+		                char tbuf[64];
+		                memset( tbuf, '\0', sizeof(tbuf) );
+		                int sep = 0;
+#define T(bit, name) do {                       \
+    if (ap_cur->wps.meth & (1<<bit)) {          \
+        if (sep)                                \
+            strcat(tbuf, ",");                  \
+        sep = 1;                                \
+        strncat(tbuf, name, (64-strlen(tbuf))); \
+    } } while (0)
+		                T(0, "USB");     // USB method
+		                T(1, "ETHER");   // Ethernet
+		                T(2, "LAB");     // Label
+		                T(3, "DISP");    // Display
+		                T(4, "EXTNFC");  // Ext. NFC Token
+		                T(5, "INTNFC");  // Int. NFC Token
+		                T(6, "NFCINTF"); // NFC Interface
+		                T(7, "PBC");     // Push Button
+		                T(8, "KPAD");    // Keypad
+		                snprintf(strbuf+strlen(strbuf), sizeof(strbuf)-strlen(strbuf), " %s", tbuf);
+#undef T
+		            }
+		        }
+		    }
+		    else
+		        snprintf(strbuf, sizeof(strbuf)-1, " ");
+
+			if (G.maxsize_wps_seen <= strlen(strbuf))
+				G.maxsize_wps_seen = strlen(strbuf);
+			else // write spaces (32)
+				memset( strbuf+strlen(strbuf), 32,  (G.maxsize_wps_seen - strlen(strbuf))  );
+		}
 		if(ap_cur->essid[0] != 0x00)
 		{
+		    if (G.show_wps)
+		    snprintf( strbuf + G.maxsize_wps_seen, sizeof(strbuf)-G.maxsize_wps_seen,
+			    "  %s", ap_cur->essid );
+		    else
 		    snprintf( strbuf,  sizeof( strbuf ) - 1,
 			    "%s", ap_cur->essid );
 		}
 		else
 		{
+		    if (G.show_wps)
+		    snprintf( strbuf + G.maxsize_wps_seen, sizeof(strbuf)-G.maxsize_wps_seen,
+			    "  <length:%3d>%s", ap_cur->ssid_length, "\x00" );
+		    else
 		    snprintf( strbuf,  sizeof( strbuf ) - 1,
 			    "<length:%3d>%s", ap_cur->ssid_length, "\x00" );
 		}
@@ -4433,6 +4560,8 @@ int dump_write_kismet_netxml( void )
 
 			/* Write client information */
 			dump_write_kismet_netxml_client_info(st_cur, 1);
+
+			fprintf(G.f_kis_xml, "\t</wireless-network>");
 		}
 		st_cur = st_cur->next;
 	}
@@ -4659,19 +4788,17 @@ int dump_write_kismet_csv( void )
 static char *strchr_n(char *str, int c, size_t n)
 {
 	size_t count = 0;
+	if (str == NULL || n == 0)
+	{
+		return NULL;
+	}
 	while(*str != c && *str != '\0' && count < n)
 	{
 		str++;
 		count++;
 	}
-	if(*str == c)
-	{
-		return str;
-	}
-	else
-	{
-		return NULL;
-	}
+
+	return (*str == c) ? str : NULL;
 }
 
 /* Read at least one full line from the network.
@@ -4688,7 +4815,7 @@ static int read_line(int sock, char *buffer, int pos, int size)
 	int status = 1;
 	if (pos < 0 || size < 1 || pos >= size || buffer == NULL || sock < 0)
 	{
-		return NULL;
+		return -1;
 	}
 	while(strchr_n(buffer, 0x0A, pos) == NULL && status > 0  && pos < size )
 	{
@@ -4739,10 +4866,11 @@ static int get_line_from_buffer(char *buffer, int size, char *line)
  * The string in "value" is null-terminated if the name was found.  If
  * the name was not found, the contents of "value" are undefined. 
  */
-static int json_get_value_for_name( char *buffer, char *name, char *value )
+static int json_get_value_for_name( const char *buffer, const char *name, char *value )
 {
-	char to_find[1537];
+	char * to_find;
 	char *cursor;
+	size_t to_find_len;
 	char *vcursor = value;
 	int ret = 0;
 	
@@ -4750,11 +4878,15 @@ static int json_get_value_for_name( char *buffer, char *name, char *value )
 	{
 		return 0;
 	}
-	
-	snprintf(to_find, sizeof(to_find), "\"%s\"", name);
-	if((cursor = strcasestr(buffer, to_find)) != NULL)
+
+	to_find_len = strlen(name) + 3;
+	to_find = (char*) malloc(to_find_len);
+	snprintf(to_find, to_find_len, "\"%s\"", name);
+	cursor = strstr(buffer, to_find);
+	free(to_find);
+	if(cursor != NULL)
 	{
-		cursor += strlen(to_find);
+		cursor += to_find_len -1;
 		while(*cursor != ':' && *cursor != '\0')
 		{
 			cursor++;
@@ -4825,6 +4957,7 @@ static int json_get_value_for_name( char *buffer, char *name, char *value )
 			ret = 1;
 		}
 	}
+
 	return ret;
 }
 
@@ -4839,6 +4972,9 @@ void gps_tracker( void )
     int mode;
     fd_set read_fd;
     struct timeval timeout;
+    memset(line, 0, 1537);
+    memset(buffer, 0, 1537);
+    memset(data, 0, 1537);
 
     /* attempt to connect to localhost, port 2947 */
 
@@ -4855,6 +4991,7 @@ void gps_tracker( void )
 
     if( connect( gpsd_sock, (struct sockaddr *) &gpsd_addr,
                  sizeof( gpsd_addr ) ) < 0 ) {
+        close(gpsd_sock);
         return;
     }
 
@@ -5999,14 +6136,17 @@ int main( int argc, char *argv[] )
         {"ignore-negative-one", 0, &G.ignore_negative_one, 1},
         {"manufacturer",  0, 0, 'M'},
         {"uptime",   0, 0, 'U'},
-		{"write-interval", 1, 0, 'W'},
+        {"write-interval", 1, 0, 'I'},
+        {"wps",  0, 0, 'W'},
         {0,          0, 0,  0 }
     };
 
 
 #ifdef USE_GCRYPT
-    // Register callback functions to ensure proper locking in the sensitive parts of libgcrypt.
-    gcry_control (GCRYCTL_SET_THREAD_CBS, &gcry_threads_pthread);
+    // Register callback functions to ensure proper locking in the sensitive parts of libgcrypt < 1.6.0
+    #if GCRYPT_VERSION_NUMBER < 0x010600
+        gcry_control (GCRYCTL_SET_THREAD_CBS, &gcry_threads_pthread);
+    #endif
     // Disable secure memory.
     gcry_control (GCRYCTL_DISABLE_SECMEM, 0);
     // Tell Libgcrypt that initialization has completed.
@@ -6084,7 +6224,8 @@ int main( int argc, char *argv[] )
     G.output_format_kismet_csv = 1;
     G.output_format_kismet_netxml = 1;
     G.file_write_interval = 5; // Write file every 5 seconds by default
-
+    G.maxsize_wps_seen  =  6;
+    G.show_wps     = 0;
 #ifdef HAVE_PCRE
     G.f_essid_regex = NULL;
 #endif
@@ -6166,7 +6307,7 @@ int main( int argc, char *argv[] )
         option_index = 0;
 
         option = getopt_long( argc, argv,
-                        "b:c:egiw:s:t:u:m:d:N:R:aHDB:Ahf:r:EC:o:x:MUW:",
+                        "b:c:egiw:s:t:u:m:d:N:R:aHDB:Ahf:r:EC:o:x:MUI:W",
                         long_options, &option_index );
 
         if( option < 0 ) break;
@@ -6187,7 +6328,7 @@ int main( int argc, char *argv[] )
                 printf("\"%s --help\" for help.\n", argv[0]);
                 return( 1 );
 
-            case 'W':
+            case 'I':
 
             	if (!is_string_number(optarg)) {
             		printf("Error: Write interval is not a number (>0). Aborting.\n");
@@ -6239,6 +6380,11 @@ int main( int argc, char *argv[] )
 	    case 'U' :
 	    		G.show_uptime = 1;
 	    		break;
+
+            case 'W':
+
+                G.show_wps = 1;
+                break;
 
             case 'c' :
 
@@ -6593,6 +6739,9 @@ usage:
         return( 1 );
     }
 
+    if (G.show_wps && G.show_manufacturer)
+        G.maxsize_essid_seen += G.maxsize_wps_seen;
+
     if(G.s_iface != NULL)
     {
         /* initialize cards */
@@ -6816,7 +6965,13 @@ usage:
     G.batt     = getBatteryString();
 
     G.elapsed_time = (char *) calloc( 1, 4 );
+    if(G.elapsed_time == NULL)
+    {
+        perror( "Error allocating memory" );
+        return 1;
+    }
     strncpy(G.elapsed_time, "0 s", 4 - 1);
+    G.elapsed_time[strlen(G.elapsed_time)] = 0;
 
 	/* Create start time string for kismet netxml file */
     G.airodump_start_time = (char *) calloc( 1, 1000 * sizeof(char) );

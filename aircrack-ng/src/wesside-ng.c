@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2005, 2006, 2007, 2008, 2009 Andrea Bittau <a.bittau@cs.ucl.ac.uk>
+ *  Copyright (C) 2005-2009 Andrea Bittau <a.bittau@cs.ucl.ac.uk>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@
 
 #include <sys/types.h>
 #include <sys/socket.h>
-#include <sys/termios.h>
+#include <termios.h>
 #include <sys/ioctl.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
@@ -199,7 +199,7 @@ void show_wep_stats( int B, int force, PTW_tableentry table[PTW_KEYHSBYTES][PTW_
     static int is_cleared = 0;
 
     return;
-
+    /*
     if( ioctl( 0, TIOCGWINSZ, &ws ) < 0 )
     {
         ws.ws_row = 25;
@@ -255,6 +255,7 @@ void show_wep_stats( int B, int force, PTW_tableentry table[PTW_KEYHSBYTES][PTW_
 //        printf( "\33[J" );
 
     printf( "\n" );
+    */
 }
 
 static struct wstate *get_ws(void)
@@ -1072,6 +1073,7 @@ static void got_ip(struct wstate *ws)
 	strncpy(ws->ws_netip, inet_ntoa(*in), 16-1);
 
 	time_print("Got IP=(%s)\n", ws->ws_netip);
+	memset(ws->ws_myip, 0, sizeof(ws->ws_myip));
 	strncpy(ws->ws_myip, ws->ws_netip, sizeof(ws->ws_myip)-1);
 
 	ptr = strchr(ws->ws_myip, '.');
@@ -1613,7 +1615,7 @@ static int do_crack(struct wstate *ws)
         int (* all)[256];
         int i,j;
 
-        all = malloc(256*32*sizeof(int));
+        all = malloc(32*sizeof(int [256]));
         if (all == NULL) {
             return 1;
         }
@@ -2035,7 +2037,7 @@ static void start(struct wstate *ws, char *dev)
 static void usage(char* pname)
 {
 	if (pname) {}
-
+    char *version_info = getVersion("Wesside-ng", _MAJ, _MIN, _SUB_MIN, _REVISION, _BETA, _RC);
 	printf("\n"
 		"  %s - (C) 2007, 2008, 2009 Andrea Bittau\n"
 		"  http://www.aircrack-ng.org\n"
@@ -2056,8 +2058,8 @@ static void usage(char* pname)
 		"       -f   <max chan> : Highest scanned chan (default: 11)\n"
 		"       -k      <txnum> : Ignore acks and tx txnum times\n"
 		"\n",
-		getVersion("Wesside-ng", _MAJ, _MIN, _SUB_MIN, _REVISION, _BETA, _RC));
-
+		version_info);
+    free(version_info);
 	exit(0);
 }
 

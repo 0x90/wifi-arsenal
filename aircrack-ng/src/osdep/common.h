@@ -1,5 +1,5 @@
 /* 
- * (c) 2010-2012 Thomas D'Otreppe <tdotreppe@aircrack-ng.org>
+ * (c) 2010-2015 Thomas d'Otreppe <tdotreppe@aircrack-ng.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -41,5 +41,8 @@ int getChannelFromFrequency(int frequency);
 #define ftruncate(a, b) _chsize(a,b)
 #endif
 */
+
+#define HIGHEST_CHANNEL 221
+#define LOWEST_CHANNEL -16
 
 #endif

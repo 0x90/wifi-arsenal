@@ -1,7 +1,7 @@
 /*
  *  802.11 WEP / WPA-PSK Key Cracker
  *
- *  Copyright (C) 2006-2014 Thomas d'Otreppe
+ *  Copyright (C) 2006-2015 Thomas d'Otreppe <tdotreppe@aircrack-ng.org>
  *  Copyright (C) 2004, 2005 Christophe Devine
  *
  *  Advanced WEP attacks developed by KoreK
@@ -76,8 +76,11 @@
 sqlite3 *db;
 #endif
 
+// libgcrypt thread callback definition for libgcrypt < 1.6.0
 #ifdef USE_GCRYPT
-	GCRY_THREAD_OPTION_PTHREAD_IMPL;
+	#if GCRYPT_VERSION_NUMBER < 0x010600
+		GCRY_THREAD_OPTION_PTHREAD_IMPL;
+	#endif
 #endif
 
 extern int get_nb_cpus();
@@ -181,7 +184,7 @@ const unsigned char R[256] =
 
 char usage[] =
 "\n"
-"  %s - (C) 2006-2014 Thomas d\'Otreppe\n"
+"  %s - (C) 2006-2015 Thomas d\'Otreppe\n"
 "  http://www.aircrack-ng.org\n"
 "\n"
 "  usage: aircrack-ng [options] <.cap / .ivs file(s)>\n"
@@ -337,10 +340,7 @@ void clean_exit(int ret)
 	while( ap_cur != NULL )
 	{
 		ap_next = ap_cur->next;
-
-		if( ap_cur != NULL )
-			free(ap_cur);
-
+		free(ap_cur);
 		ap_cur = ap_next;
 	}
 
@@ -476,6 +476,10 @@ inline int wpa_receive_passphrase(char *key, struct WPA_data* data)
 	return 1;
 }
 
+/* Returns number of BSSIDs.
+
+    Return value is negative for failures
+*/
 int checkbssids(char *bssidlist)
 {
 	int first = 1;
@@ -546,6 +550,10 @@ int checkbssids(char *bssidlist)
 			}
 
 			opt.firstbssid = (unsigned char *) malloc(sizeof(unsigned char));
+			if (opt.firstbssid == NULL){
+				free(frontlist);
+				return -1;
+			}
 			getmac(tmp, 1, opt.firstbssid);
 			first = 0;
 		}
@@ -1656,6 +1664,7 @@ void read_thread( void *arg )
 			    ( ap_cur->nb_ivs_vague >= opt.max_ivs ) )
 			{
 				eof_wait( &eof_notified );
+				free(buffer);
 				return;
 			}
 		}
@@ -1865,7 +1874,6 @@ void check_thread( void *arg )
 				fprintf( stderr, "\nInvalid packet capture length %d - "
 					"corrupted file?\n", pkh.caplen );
 				goto read_fail;
-				_exit( FAILURE );
 			}
 
 			while( ! atomic_read( &rb, fd, pkh.caplen, buffer ) )
@@ -2009,6 +2017,7 @@ void check_thread( void *arg )
 				sizeof( struct AP_info ) ) ) )
 			{
 				perror( "malloc failed" );
+				pthread_mutex_unlock( &mx_apl );
 				break;
 			}
 
@@ -2154,6 +2163,7 @@ void check_thread( void *arg )
 				sizeof( struct ST_info ) ) ) )
 			{
 				perror( "malloc failed" );
+				pthread_mutex_unlock( &mx_apl );
 				break;
 			}
 
@@ -3047,7 +3057,10 @@ int check_wep_key( unsigned char *wepkey, int B, int keylen )
 	if (keylen<=0)
 		keylen = opt.keylen;
 
+	pthread_mutex_lock(&mx_nb);
 	nb_tried++;
+	pthread_mutex_unlock(&mx_nb);
+	
 	bad = 0;
 
 	memcpy( K + 3, wepkey, keylen );
@@ -4128,7 +4141,7 @@ int next_dict(int nb)
 
 			if( ( opt.dict = fdopen( fileno(stdin) , "r" ) ) == NULL )
 			{
-				perror( "fopen(dictionary) failed" );
+				perror( "fdopen(stdin) failed" );
 				opt.nbdict++;
 				continue;
 			}
@@ -4215,8 +4228,10 @@ int sql_wpacallback(void* arg, int ccount, char** values, char** columnnames ) {
 		return 1;
 	}
 
+	pthread_mutex_lock(&mx_nb);
 	nb_tried++;
 	nb_kprev++;
+	pthread_mutex_unlock(&mx_nb);
 
 	if( ! opt.is_quiet )
 		show_wpa_stats( values[1], strlen(values[1]), (unsigned char*)(values[0]), ptk, mic, 0 );
@@ -4773,6 +4788,12 @@ int set_dicts(char* optargs)
 	return 0;
 }
 
+/*
+Uses the specified dictionary to crack the WEP key.
+
+Return: SUCCESS if it cracked the key,
+        FAILURE if it could not.
+*/
 int crack_wep_dict()
 {
 	struct timeval t_last;
@@ -4791,12 +4812,19 @@ int crack_wep_dict()
 	}
 
 	key = (char*) malloc(sizeof(char) * (opt.keylen + 1));
+	if (key == NULL)
+		return( FAILURE );
+
 	gettimeofday( &t_last, NULL );
 	t_last.tv_sec--;
 
 	while(1)
 	{
-		if( next_key( &key, keysize ) != SUCCESS) return( FAILURE );
+		if( next_key( &key, keysize ) != SUCCESS) 
+		{
+			free(key);
+			return( FAILURE );
+		}
 
 		i = strlen( key );
 
@@ -4833,6 +4861,12 @@ int crack_wep_dict()
 	}
 }
 
+/*
+Uses the PTW attack to crack the WEP key.
+
+Return: SUCCESS if it cracked the key,
+        FAILURE if it could not.
+*/
 static int crack_wep_ptw(struct AP_info *ap_cur)
 {
     int (* all)[256];
@@ -4840,7 +4874,7 @@ static int crack_wep_ptw(struct AP_info *ap_cur)
 
     opt.ap = ap_cur;
 
-    all = malloc(256*32*sizeof(int));
+    all = malloc(32*sizeof(int [256]));
     if (all == NULL) {
     	return FAILURE;
     }
@@ -4946,8 +4980,10 @@ int main( int argc, char *argv[] )
 #endif
 
 #ifdef USE_GCRYPT
-	// Register callback functions to ensure proper locking in the sensitive parts of libgcrypt.
-	gcry_control (GCRYCTL_SET_THREAD_CBS, &gcry_threads_pthread);
+	// Register callback functions to ensure proper locking in the sensitive parts of libgcrypt < 1.6.0
+	#if GCRYPT_VERSION_NUMBER < 0x010600
+		gcry_control (GCRYCTL_SET_THREAD_CBS, &gcry_threads_pthread);
+	#endif
 	// Disable secure memory.
 	gcry_control (GCRYCTL_DISABLE_SECMEM, 0);
 	// Tell Libgcrypt that initialization has completed.
@@ -5077,7 +5113,7 @@ int main( int argc, char *argv[] )
 				else if ( strcasecmp( optarg, "wpa" ) == 0 )
 					opt.amode = 2;
 
-				if( opt.amode != 1 && opt.amode != 2 )
+				if( ret1 !=1 || (opt.amode != 1 && opt.amode != 2) )
 				{
 					printf( "Invalid attack mode. [1,2] or [wep,wpa]\n" );
 					printf("\"%s --help\" for help.\n", argv[0]);
@@ -5774,8 +5810,10 @@ usage:
 __start:
 	/* launch the attack */
 
+	pthread_mutex_lock(&mx_nb);
 	nb_tried = 0;
 	nb_kprev = 0;
+	pthread_mutex_unlock(&mx_nb);
 
 	chrono( &t_begin, 1 );
 	chrono( &t_stats, 1 );

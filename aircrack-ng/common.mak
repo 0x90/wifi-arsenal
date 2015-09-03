@@ -141,7 +141,7 @@ ifeq ($(GCC_OVER45), 0)
 	GCC_OVER45	= $(shell expr 4.5 \<= `$(CC) -dumpversion | awk -F. '{ print $1$2 }'`)
 endif
 ifeq ($(GCC_OVER49), 0)
-	GCC_OVER45	= $(shell expr 4.9 \<= `$(CC) -dumpversion | awk -F. '{ print $1$2 }'`)
+	GCC_OVER49	= $(shell expr 4.9 \<= `$(CC) -dumpversion | awk -F. '{ print $1$2 }'`)
 endif
 
 
@@ -157,4 +157,8 @@ endif
 
 ifeq ($(GCC_OVER45), 1)
 	CFLAGS		+= -Wno-unused-but-set-variable -Wno-array-bounds
+endif
+
+ifeq ($(subst TRUE,true,$(filter TRUE true,$(duma) $(DUMA))),true)
+	LIBS += -lduma
 endif

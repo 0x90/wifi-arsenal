@@ -2,8 +2,8 @@
  *  802.11 monitor AP
  *  based on airtun-ng
  *
- *  Copyright (C) 2008-2014 Thomas d'Otreppe
- *  Copyright (C) 2008, 2009 Martin Beck
+ *  Copyright (C) 2008-2015 Thomas d'Otreppe <tdotreppe@aircrack-ng.org>
+ *  Copyright (C) 2008, 2009 Martin Beck <hirte@aircrack-ng.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -69,8 +69,11 @@
 #include "osdep/osdep.h"
 #include "osdep/common.h"
 
+// libgcrypt thread callback definition for libgcrypt < 1.6.0
 #ifdef USE_GCRYPT
-    GCRY_THREAD_OPTION_PTHREAD_IMPL;
+    #if GCRYPT_VERSION_NUMBER < 0x010600
+        GCRY_THREAD_OPTION_PTHREAD_IMPL;
+    #endif
 #endif
 
 static struct wif *_wi_in, *_wi_out;
@@ -156,7 +159,7 @@ extern const unsigned long int crc_tbl[256];
 
 char usage[] =
 "\n"
-"  %s - (C) 2008-2014 Thomas d'Otreppe\n"
+"  %s - (C) 2008-2015 Thomas d'Otreppe\n"
 "  Original work: Martin Beck\n"
 "  http://www.aircrack-ng.org\n"
 "\n"
@@ -3934,8 +3937,10 @@ int main( int argc, char *argv[] )
     memset(rCF, 0, sizeof(struct CF_packet));
 
 #ifdef USE_GCRYPT
-    // Register callback functions to ensure proper locking in the sensitive parts of libgcrypt.
-    gcry_control (GCRYCTL_SET_THREAD_CBS, &gcry_threads_pthread);
+    // Register callback functions to ensure proper locking in the sensitive parts of libgcrypt < 1.6.0
+    #if GCRYPT_VERSION_NUMBER < 0x010600
+        gcry_control (GCRYCTL_SET_THREAD_CBS, &gcry_threads_pthread);
+    #endif
     // Disable secure memory.
     gcry_control (GCRYCTL_DISABLE_SECMEM, 0);
     // Tell Libgcrypt that initialization has completed.
@@ -4562,8 +4567,6 @@ usage:
 	if (setuid( getuid() ) == -1) {
 		perror("setuid");
 	}
-
-    setuid( getuid() );
 
     /* XXX */
     if( opt.r_nbpps == 0 )

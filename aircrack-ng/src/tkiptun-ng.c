@@ -1,7 +1,7 @@
 /*
  *  802.11 WPA replay & injection attacks
  *
- *  Copyright (C) 2008, 2009 Martin Beck
+ *  Copyright (C) 2008, 2009 Martin Beck <hirte@aircrack-ng.org>
  *
  *  WEP decryption attack (chopchop) developed by KoreK
  *
@@ -143,7 +143,7 @@ extern int hexStringToHex(char* in, int length, unsigned char* out);
 char usage[] =
 
 "\n"
-"  %s - (C) 2008-2014 Thomas d\'Otreppe\n"
+"  %s - (C) 2008-2015 Thomas d\'Otreppe\n"
 "  http://www.aircrack-ng.org\n"
 "\n"
 "  usage: tkiptun-ng <options> <replay interface>\n"
@@ -2655,7 +2655,10 @@ int do_attack_tkipchop( unsigned char* src_packet, int src_packet_len )
             errno = 0;
 
             if( send_packet( h80211, data_end -1 ) != 0 )
+            {
+                free(chopped);
                 return( 1 );
+            }
 
             if( errno != EAGAIN )
             {
@@ -2698,7 +2701,10 @@ int do_attack_tkipchop( unsigned char* src_packet, int src_packet_len )
 
         n = read_packet( h80211, sizeof( h80211 ), NULL );
 
-        if( n  < 0 ) return( 1 );
+        if( n  < 0 ){
+            free(chopped);
+            return( 1 );
+        }
         if( n == 0 ) continue;
 
         nb_pkt_read++;
@@ -2717,6 +2723,7 @@ int do_attack_tkipchop( unsigned char* src_packet, int src_packet_len )
                 "\n\nFailure: got several deauthentication packets "
                 "from the AP - you need to start the whole process "
                 "all over again, as the client got disconnected.\n\n" );
+                    free(chopped);
                     return( 1 );
                 }
 
@@ -2738,6 +2745,7 @@ int do_attack_tkipchop( unsigned char* src_packet, int src_packet_len )
                 printf( "\n\nFailure: the access point does not properly "
                         "discard frames with an\ninvalid ICV - try running "
                         "aireplay-ng in authenticated mode (-h) instead.\n\n" );
+                free(chopped);
                 return( 1 );
 //             }
         }
@@ -4057,7 +4065,7 @@ int main( int argc, char *argv[] )
             case 'M' :
 
                 ret = sscanf( optarg, "%d", &opt.mic_failure_interval );
-                if( opt.mic_failure_interval < 0 )
+                if( ret != 1 || opt.mic_failure_interval < 0 )
                 {
                     printf( "Invalid MIC error timeout. [>=0]\n" );
                     printf("\"%s --help\" for help.\n", argv[0]);
@@ -4192,7 +4200,9 @@ usage:
     }
 
     /* drop privileges */
-    setuid( getuid() );
+    if (setuid( getuid() ) == -1) {
+	perror("setuid");
+    }
 
     /* XXX */
     if( opt.r_nbpps == 0 )

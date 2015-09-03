@@ -6,6 +6,6 @@
 [subrepo]
 	remote = https://github.com/aircrack-ng/aircrack-ng
 	branch = master
-	commit = 0e9df2560d9d1687d1caf952be414ef87b02f4f8
-	parent = 2e360f4311bd23ab55d1ab3018dfca3b8a8e9cac
+	commit = 9a335062e5dee47ae3513a8fed186f5fde8ce05a
+	parent = 583f4706a1dbca55429a5d97feba51fa32d3dabe
 	cmdver = 0.2.0

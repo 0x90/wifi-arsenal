@@ -2825,7 +2825,8 @@ static void resume_network(char *buf)
 		switch (state) {
 		/* ssid */
 		case 0:
-			strcpy(n->n_ssid, p);
+			strncpy(n->n_ssid, p, sizeof(n->n_ssid));
+			(n->n_ssid)[sizeof(n->n_ssid) -1] = '\0';
 			break;
 
 		/* key */
@@ -3130,6 +3131,7 @@ static void print_state(int UNUSED(x))
 
 static void usage(char *prog)
 {
+    char *version_info = getVersion("Besside-ng", _MAJ, _MIN, _SUB_MIN, _REVISION, _BETA, _RC);
         printf("\n"
                 "  %s - (C) 2010 Andrea Bittau\n"
                 "  http://www.aircrack-ng.org\n"
@@ -3149,9 +3151,9 @@ static void usage(char *prog)
                 "       -v              : verbose, -vv for more, etc.\n"
                 "       -h              : This help screen\n"
                 "\n",
-                getVersion("Besside-ng", _MAJ, _MIN, _SUB_MIN, _REVISION, _BETA, _RC),
+                version_info,
 		prog);
-
+    free(version_info);
 	exit(1);
 }
 

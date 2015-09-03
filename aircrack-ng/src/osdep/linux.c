@@ -1,7 +1,7 @@
 /*
  *  OS dependent APIs for Linux
  *
- *  Copyright (C) 2006-2013 Thomas d'Otreppe
+ *  Copyright (C) 2006-2015 Thomas d'Otreppe <tdotreppe@aircrack-ng.org>
  *  Copyright (C) 2004, 2005 Christophe Devine
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -72,6 +72,9 @@ struct nl80211_state state;
 static int chan;
 #endif //CONFIG_LIBNL
 
+/* if_nametoindex is defined in net/if.h but that conflicts with linux/if.h */
+extern unsigned int if_nametoindex (const char *__ifname);
+extern char *if_indextoname (unsigned int __ifindex, char *__ifname);
 
 typedef enum {
         DT_NULL = 0,
@@ -178,7 +181,7 @@ int check_crc_buf_osdep( unsigned char *buf, int len )
 static int is_ndiswrapper(const char * iface, const char * path)
 {
     int n, pid, unused;
-    if (!path)
+    if (!path || !iface)
 	return 0;
     if ((pid=fork())==0)
     {
@@ -223,10 +226,9 @@ static char * searchInside(const char * dir, const char * filename)
             (void)closedir(dp);
             return curfile;
         }
-        lstat(curfile, &sb);
 
         //If it's a directory and not a link, try to go inside to search
-        if (S_ISDIR(sb.st_mode) && !S_ISLNK(sb.st_mode))
+        if ( lstat(curfile, &sb)==0 && S_ISDIR(sb.st_mode) && !S_ISLNK(sb.st_mode))
         {
             //Check if the directory isn't "." or ".."
             if (strcmp(".", ep->d_name) && strcmp("..", ep->d_name))
@@ -261,22 +263,7 @@ static char * wiToolsPath(const char * tool)
                 "/usr/local/bin",
                 "/tmp"
         };
-    /*
-	#define SEPARATOR ":"
 
-	env = getenv("PATH");
-	if (env) {
-		path = strtok(env, SEPARATOR);
-		while (path) {
-			found = searchInside(path, tool);
-	                if (found != NULL)
-	                        return found;
-			path = strtok(NULL, SEPARATOR);
-		}
-	}
-	#undef SEPARATOR
-	*/
-	
 	// Also search in other known location just in case we haven't found it yet
 	nbelems = sizeof(paths) / sizeof(char *);
 	for (i = 0; i < nbelems; i++)
@@ -372,6 +359,7 @@ static void nl80211_cleanup(struct nl80211_state *state)
 
 /* Callbacks */
 
+/*
 static int error_handler(struct sockaddr_nl *nla, struct nlmsgerr *err,
                      void *arg)
 {
@@ -381,11 +369,14 @@ static int error_handler(struct sockaddr_nl *nla, struct nlmsgerr *err,
 	*ret = err->error;
 	return NL_STOP;
 }
+*/
 
+/*
 static void test_callback(struct nl_msg *msg, void *arg)
 {
 	if (msg || arg) { }
 }
+*/
 #endif /* End nl80211 */
 
 
@@ -402,7 +393,7 @@ static int linux_get_channel(struct wif *wi)
         strncpy( wrq.ifr_name, dev->main_if, IFNAMSIZ );
     else
         strncpy( wrq.ifr_name, wi_get_ifname(wi), IFNAMSIZ );
-
+    wrq.ifr_name[IFNAMSIZ-1] = 0;
 
     fd = dev->fd_in;
     if(dev->drivertype == DT_IPW2200)
@@ -436,7 +427,7 @@ static int linux_get_freq(struct wif *wi)
         strncpy( wrq.ifr_name, dev->main_if, IFNAMSIZ );
     else
         strncpy( wrq.ifr_name, wi_get_ifname(wi), IFNAMSIZ );
-
+    wrq.ifr_name[IFNAMSIZ-1] = 0;
 
     fd = dev->fd_in;
     if(dev->drivertype == DT_IPW2200)
@@ -526,7 +517,8 @@ static int linux_set_rate(struct wif *wi, int rate)
         strncpy( wrq.ifr_name, dev->main_if, IFNAMSIZ );
     else
         strncpy( wrq.ifr_name, wi_get_ifname(wi), IFNAMSIZ );
-
+    wrq.ifr_name[IFNAMSIZ-1] = 0;
+		
     wrq.u.bitrate.value = rate;
     wrq.u.bitrate.fixed = 1;
 
@@ -552,6 +544,7 @@ static int linux_get_rate(struct wif *wi)
         strncpy( wrq.ifr_name, dev->main_if, IFNAMSIZ );
     else
         strncpy( wrq.ifr_name, wi_get_ifname(wi), IFNAMSIZ );
+    wrq.ifr_name[IFNAMSIZ-1] = 0;
 
     if( ioctl( dev->fd_in, SIOCGIWRATE, &wrq ) < 0 )
     {
@@ -959,9 +952,6 @@ static int linux_set_channel_nl80211(struct wif *wi, int channel)
     unsigned int devid;
     struct nl_msg *msg;
     unsigned int freq;
-    int err;
-    struct nl_cb *cb;
-    struct nl_cb *s_cb;
     unsigned int htval = NL80211_CHAN_NO_HT;
 
     memset( s, 0, sizeof( s ) );
@@ -1036,15 +1026,6 @@ static int linux_set_channel_nl80211(struct wif *wi, int channel)
         fprintf(stderr, "failed to allocate netlink message\n");
         return 2;
     }
-    cb = nl_cb_alloc(NL_CB_DEFAULT);
-    s_cb = nl_cb_alloc(NL_CB_DEFAULT);
-    if (!cb || !s_cb) {
-        fprintf(stderr, "failed to allocate netlink callbacks\n");
-        err = 2;
-        goto out_free_msg;
-    }
-
-    //nl_cb_set(cb, NL_CB_VALID, NL_CB_CUSTOM, test_callback, NULL);
 
     genlmsg_put(msg, 0, 0, genl_family_get_id(state.nl80211), 0,
             0, NL80211_CMD_SET_WIPHY, 0);
@@ -1054,13 +1035,11 @@ static int linux_set_channel_nl80211(struct wif *wi, int channel)
     NLA_PUT_U32(msg, NL80211_ATTR_WIPHY_CHANNEL_TYPE, htval);
 
     nl_send_auto_complete(state.nl_sock,msg);
+    nlmsg_free(msg);
 
     dev->channel = channel;
 
     return( 0 );
- out_free_msg:
-    nlmsg_free(msg);
-    return err;
  nla_put_failure:
     return -ENOBUFS;
 }
@@ -1136,6 +1115,8 @@ static int linux_set_channel(struct wif *wi, int channel)
 
     memset( &wrq, 0, sizeof( struct iwreq ) );
     strncpy( wrq.ifr_name, wi_get_ifname(wi), IFNAMSIZ );
+    wrq.ifr_name[IFNAMSIZ-1] = 0;
+    
     wrq.u.freq.m = (double) channel;
     wrq.u.freq.e = (double) 0;
 
@@ -1189,6 +1170,8 @@ static int linux_set_freq(struct wif *wi, int freq)
 
     memset( &wrq, 0, sizeof( struct iwreq ) );
     strncpy( wrq.ifr_name, wi_get_ifname(wi), IFNAMSIZ );
+    wrq.ifr_name[IFNAMSIZ-1] = 0;
+    
     wrq.u.freq.m = (double) freq*100000;
     wrq.u.freq.e = (double) 1;
 
@@ -1265,6 +1248,7 @@ int linux_get_monitor(struct wif *wi)
     /* lookup iw mode */
     memset( &wrq, 0, sizeof( struct iwreq ) );
     strncpy( wrq.ifr_name, wi_get_ifname(wi), IFNAMSIZ );
+    wrq.ifr_name[IFNAMSIZ-1] = 0;
 
     if( ioctl( wi_fd(wi), SIOCGIWMODE, &wrq ) < 0 )
     {
@@ -1369,6 +1353,7 @@ int set_monitor( struct priv_linux *dev, char *iface, int fd )
 
         memset( &wrq, 0, sizeof( struct iwreq ) );
         strncpy( wrq.ifr_name, iface, IFNAMSIZ );
+        wrq.ifr_name[IFNAMSIZ-1] = 0;
         wrq.u.mode = IW_MODE_MONITOR;
 
         if( ioctl( fd, SIOCSIWMODE, &wrq ) < 0 )
@@ -1457,6 +1442,7 @@ static int openraw(struct priv_linux *dev, char *iface, int fd, int *arptype,
         /* set iw mode to managed on main interface */
         memset( &wrq2, 0, sizeof( struct iwreq ) );
         strncpy( wrq2.ifr_name, dev->main_if, IFNAMSIZ );
+        wrq2.ifr_name[IFNAMSIZ-1] = 0;
 
         if( ioctl( dev->fd_main, SIOCGIWMODE, &wrq2 ) < 0 )
         {
@@ -1510,6 +1496,7 @@ static int openraw(struct priv_linux *dev, char *iface, int fd, int *arptype,
     /* lookup iw mode */
     memset( &wrq, 0, sizeof( struct iwreq ) );
     strncpy( wrq.ifr_name, iface, IFNAMSIZ );
+    wrq.ifr_name[IFNAMSIZ-1] = 0;
 
     if( ioctl( fd, SIOCGIWMODE, &wrq ) < 0 )
     {
@@ -1619,7 +1606,7 @@ static int do_linux_open(struct wif *wi, char *iface)
     int kver, unused;
     struct utsname checklinuxversion;
     struct priv_linux *dev = wi_priv(wi);
-    char *iwpriv;
+    char *iwpriv = NULL;
     char strbuf[512];
     FILE *f;
     char athXraw[] = "athXraw";
@@ -2037,6 +2024,7 @@ close_out:
 close_in:
     close(dev->fd_in);
     if(iface_malloced) free(iface);
+    if(iwpriv) free(iwpriv);
     return 1;
 }
 
@@ -2249,24 +2237,29 @@ int get_battery_state(void)
 
     if (linux_apm == 1)
     {
+        char *battery_data = NULL;
+
         if ((apm = fopen("/proc/apm", "r")) != NULL ) {
-            if ( fgets(buf, 128,apm) != NULL ) {
-                int charging, ac;
-                fclose(apm);
+            battery_data = fgets(buf, 128, apm);
+            fclose(apm);
+        }
 
-                ret = sscanf(buf, "%*s %*d.%*d %*x %x %x %x %*d%% %d %s\n", &ac,
-                                                        &charging, &flag, &batteryTime, units);
+        if ( battery_data != NULL ) {
+            int charging, ac;
 
-                                if(!ret) return 0;
+            ret = sscanf(battery_data, "%*s %*d.%*d %*x %x %x %x %*d%% %d %s\n", &ac,
+                                                    &charging, &flag, &batteryTime, units);
+            if(!ret)
+                return 0;
 
-                if ((flag & 0x80) == 0 && charging != 0xFF && ac != 1 && batteryTime != -1) {
-                    if (!strncmp(units, "min", 32))
-                        batteryTime *= 60;
-                }
-                else return 0;
-                linux_acpi = 0;
-                return batteryTime;
+            if ((flag & 0x80) == 0 && charging != 0xFF && ac != 1 && batteryTime != -1) {
+                if (!strncmp(units, "min", 32))
+                    batteryTime *= 60;
             }
+            else
+                return 0;
+            linux_acpi = 0;
+            return batteryTime;
         }
         linux_apm = 0;
     }
@@ -2346,6 +2339,7 @@ int get_battery_state(void)
                 else if (strncmp(buf, "charging state:", 15) == 0) {
                                 /* the space makes it different than discharging */
                     if (strstr(buf, " charging" )) {
+                        closedir(batteries);
                         fclose( acpi );
                         return 0;
                     }

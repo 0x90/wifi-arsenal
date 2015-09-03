@@ -1,7 +1,7 @@
  /*
   *  Server for osdep network driver.  Uses osdep itself!  [ph33r teh recursion]
   *
-  *  Copyright (c) 2007, 2008, 2009  Andrea Bittau <a.bittau@cs.ucl.ac.uk>
+  *  Copyright (c) 2007-2009  Andrea Bittau <a.bittau@cs.ucl.ac.uk>
   *
   *  Advanced WEP attacks developed by KoreK
   *  WPA-PSK  attack code developed by Joshua Wright
@@ -69,7 +69,7 @@ static struct sstate *get_ss()
 static void usage(char *p)
 {
 	if (p) {}
-
+	char *version_info = getVersion("Airserv-ng", _MAJ, _MIN, _SUB_MIN, _REVISION, _BETA, _RC);
 	printf("\n"
 		"  %s - (C) 2007, 2008, 2009 Andrea Bittau\n"
 		"  http://www.aircrack-ng.org\n"
@@ -84,7 +84,7 @@ static void usage(char *p)
 		"       -c  <chan> : Channel to use\n"
 		"       -v <level> : Debug level (1 to 3; default: 1)\n"
 		"\n",
-		getVersion("Airserv-ng", _MAJ, _MIN, _SUB_MIN, _REVISION, _BETA, _RC));
+		version_info);
 	exit(1);
 }
 
@@ -429,6 +429,7 @@ static void handle_card(struct sstate *ss)
 	int rd;
 	struct rx_info *ri = (struct rx_info*) buf;
 	struct client *c;
+	struct client *next_c;
 
 	rd = card_read(ss, ri + 1, sizeof(buf) - sizeof(*ri), ri);
     if (rd >= 0)
@@ -444,9 +445,9 @@ static void handle_card(struct sstate *ss)
 
 	c = ss->ss_clients.c_next;
 	while (c != &ss->ss_clients) {
+		next_c = c->c_next;
 		client_send_packet(ss, c, buf, rd);
-		if (c == NULL) break;
-		c = c->c_next;
+		c = next_c;
 	}
 }
 

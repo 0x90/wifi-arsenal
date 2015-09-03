@@ -1,5 +1,5 @@
  /*
-  *  Copyright (c) 2007, 2008, 2009 Andrea Bittau <a.bittau@cs.ucl.ac.uk>
+  *  Copyright (c) 2007-2009 Andrea Bittau <a.bittau@cs.ucl.ac.uk>
   *
   *  This program is free software; you can redistribute it and/or modify
   *  it under the terms of the GNU General Public License as published by
@@ -1921,7 +1921,7 @@ void check_inet(struct east_state *es, struct timeval *tv)
 	/* data */
 	data = (unsigned char*) (uh+1);
 
-	strncpy((char*)data, "sorbo", 5);
+	memcpy(data, "sorbo", 5);
 	seq = (unsigned short*) (data+5);
 	*seq = htons(++es->es_rpacket_id);
 	data += S_HELLO_LEN;
@@ -2373,7 +2373,7 @@ void own(struct east_state *es)
 void usage(char *p)
 {
 	if (p) {}
-
+    char *version_info = getVersion("Easside-ng", _MAJ, _MIN, _SUB_MIN, _REVISION, _BETA, _RC);
 	printf("\n"
 		"  %s - (C) 2007, 2008, 2009 Andrea Bittau\n"
 		"  http://www.aircrack-ng.org\n"
@@ -2392,7 +2392,8 @@ void usage(char *p)
 		"       -c      <channel> : Lock card to this channel\n"
 		"       -n                : Determine Internet IP only\n"
 		"\n",
-		getVersion("Easside-ng", _MAJ, _MIN, _SUB_MIN, _REVISION, _BETA, _RC));
+		version_info);
+	free(version_info);
 }
 
 void load_prga(struct east_state *es)

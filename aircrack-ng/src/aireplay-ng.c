@@ -1,7 +1,7 @@
 /*
  *  802.11 WEP replay & injection attacks
  *
- *  Copyright (C) 2006-2014 Thomas d'Otreppe
+ *  Copyright (C) 2006-2015 Thomas d'Otreppe <tdotreppe@aircrack-ng.org>
  *  Copyright (C) 2004, 2005 Christophe Devine
  *
  *  WEP decryption attack (chopchop) developed by KoreK
@@ -140,7 +140,7 @@ extern const unsigned char crc_chop_tbl[256][4];
 char usage[] =
 
 "\n"
-"  %s - (C) 2006-2014 Thomas d\'Otreppe\n"
+"  %s - (C) 2006-2015 Thomas d\'Otreppe\n"
 "  http://www.aircrack-ng.org\n"
 "\n"
 "  usage: aireplay-ng <options> <replay interface>\n"
@@ -2407,6 +2407,7 @@ int do_attack_arp_resend( void )
     if( fwrite( &pfh_out, n, 1, f_cap_out ) != 1 )
     {
         perror( "fwrite failed\n" );
+        fclose( f_cap_out );
         return( 1 );
     }
 
@@ -2420,6 +2421,7 @@ int do_attack_arp_resend( void )
         if( fcntl( dev.fd_in, F_SETFL, O_NONBLOCK ) < 0 )
         {
             perror( "fcntl(O_NONBLOCK) failed" );
+            fclose( f_cap_out );
             return( 1 );
         }
     }
@@ -2450,6 +2452,8 @@ int do_attack_arp_resend( void )
             if( read( dev.fd_rtc, &n, sizeof( n ) ) < 0 )
             {
                 perror( "read(/dev/rtc) failed" );
+                free( arp );
+                fclose( f_cap_out );
                 return( 1 );
             }
 
@@ -2493,13 +2497,21 @@ int do_attack_arp_resend( void )
 
                 if( send_packet( arp[arp_off1].buf,
                                  arp[arp_off1].len ) < 0 )
-                    return( 1 );
+                    {
+                        free( arp );
+                        fclose( f_cap_out );
+                        return( 1 );
+                    }
 
                 if( ((double)ticks[0]/(double)RTC_RESOLUTION)*(double)opt.r_nbpps > (double)nb_pkt_sent  )
                 {
                     if( send_packet( arp[arp_off1].buf,
                                     arp[arp_off1].len ) < 0 )
+                    {
+                        free( arp );
+                        fclose( f_cap_out );
                         return( 1 );
+                    }
                 }
 
                 if( ++arp_off1 >= nb_arp )
@@ -2515,7 +2527,12 @@ int do_attack_arp_resend( void )
 
             caplen = read_packet( h80211, sizeof( h80211 ), NULL );
 
-            if( caplen  < 0 ) return( 1 );
+            if( caplen  < 0 )
+            {
+                free( arp );
+                fclose( f_cap_out );
+                return( 1 );
+            }
             if( caplen == 0 ) continue;
         }
         else
@@ -2718,6 +2735,8 @@ add_arp:
 
                 if( ( arp[nb_arp].buf = malloc( 128 ) ) == NULL ) {
                     perror( "malloc failed" );
+                    free(arp);
+                    fclose( f_cap_out );
                     return( 1 );
                 }
 
@@ -2735,6 +2754,8 @@ add_arp:
 
                 if( fwrite( &pkh, n, 1, f_cap_out ) != 1 ) {
                     perror( "fwrite failed" );
+                    free( arp );
+                    fclose( f_cap_out );
                     return( 1 );
                 }
 
@@ -2742,6 +2763,8 @@ add_arp:
 
                 if( fwrite( h80211, n, 1, f_cap_out ) != 1 ) {
                     perror( "fwrite failed" );
+                    free( arp );
+                    fclose( f_cap_out );
                     return( 1 );
                 }
 
@@ -2820,6 +2843,7 @@ int do_attack_caffe_latte( void )
     if( fwrite( &pfh_out, n, 1, f_cap_out ) != 1 )
     {
         perror( "fwrite failed\n" );
+        fclose( f_cap_out );
         return( 1 );
     }
 
@@ -2833,6 +2857,7 @@ int do_attack_caffe_latte( void )
         if( fcntl( dev.fd_in, F_SETFL, O_NONBLOCK ) < 0 )
         {
             perror( "fcntl(O_NONBLOCK) failed" );
+            fclose( f_cap_out );
             return( 1 );
         }
     }
@@ -2863,6 +2888,8 @@ int do_attack_caffe_latte( void )
             if( read( dev.fd_rtc, &n, sizeof( n ) ) < 0 )
             {
                 perror( "read(/dev/rtc) failed" );
+                free( arp );
+                fclose( f_cap_out );
                 return( 1 );
             }
 
@@ -2906,13 +2933,20 @@ int do_attack_caffe_latte( void )
 
                 if( send_packet( arp[arp_off1].buf,
                                  arp[arp_off1].len ) < 0 )
-                    return( 1 );
-
+                    {
+                        free( arp );
+                        fclose( f_cap_out );
+                        return( 1 );
+                    }
                 if( ((double)ticks[0]/(double)RTC_RESOLUTION)*(double)opt.r_nbpps > (double)nb_pkt_sent  )
                 {
                     if( send_packet( arp[arp_off1].buf,
                                     arp[arp_off1].len ) < 0 )
+                    {
+                        free( arp );
+                        fclose( f_cap_out );
                         return( 1 );
+                    }
                 }
 
                 if( ++arp_off1 >= nb_arp )
@@ -2928,8 +2962,15 @@ int do_attack_caffe_latte( void )
 
             caplen = read_packet( h80211, sizeof( h80211 ), NULL );
 
-            if( caplen  < 0 ) return( 1 );
-            if( caplen == 0 ) continue;
+            if( caplen  < 0 )
+            {
+                free( arp );
+                fclose( f_cap_out );
+                return( 1 );
+            }
+            
+            if( caplen == 0 ) 
+               continue;
         }
         else
         {
@@ -3131,6 +3172,8 @@ add_arp:
 
                 if( ( arp[nb_arp].buf = malloc( 128 ) ) == NULL ) {
                     perror( "malloc failed" );
+                    free(arp);
+                    fclose( f_cap_out );
                     return( 1 );
                 }
 
@@ -3159,6 +3202,8 @@ add_arp:
 
                 if( fwrite( &pkh, n, 1, f_cap_out ) != 1 ) {
                     perror( "fwrite failed" );
+                    free(arp);
+                    fclose( f_cap_out );
                     return( 1 );
                 }
 
@@ -3166,6 +3211,8 @@ add_arp:
 
                 if( fwrite( h80211, n, 1, f_cap_out ) != 1 ) {
                     perror( "fwrite failed" );
+                    free(arp);
+                    fclose( f_cap_out );
                     return( 1 );
                 }
 
@@ -3173,7 +3220,7 @@ add_arp:
             }
         }
     }
-
+    fclose( f_cap_out );
     return( 0 );
 }
 
@@ -3202,6 +3249,9 @@ int do_attack_migmode( void )
     else
         arp = (struct ARP_req*) malloc( sizeof( struct ARP_req ) );
 
+    if (arp == NULL)
+        return 1;
+
     /* capture only WEP data to broadcast address */
 
     opt.f_type    = 2;
@@ -3209,12 +3259,15 @@ int do_attack_migmode( void )
     opt.f_iswep   = 1;
     opt.f_fromds  = 1;
 
-    if(getnet(NULL, 1, 1) != 0)
+    if(getnet(NULL, 1, 1) != 0){
+        free(arp);
         return 1;
+    }
 
     if( memcmp( opt.f_bssid, NULL_MAC, 6 ) == 0 )
     {
         printf( "Please specify a BSSID (-b).\n" );
+        free(arp);
         return( 1 );
     }
     /* create and write the output pcap header */
@@ -3242,6 +3295,7 @@ int do_attack_migmode( void )
     if( ( f_cap_out = fopen( strbuf, "wb+" ) ) == NULL )
     {
         perror( "fopen failed" );
+        free(arp);
         return( 1 );
     }
 
@@ -3250,6 +3304,8 @@ int do_attack_migmode( void )
     if( fwrite( &pfh_out, n, 1, f_cap_out ) != 1 )
     {
         perror( "fwrite failed\n" );
+        free(arp);
+        fclose( f_cap_out );
         return( 1 );
     }
 
@@ -3266,6 +3322,8 @@ int do_attack_migmode( void )
         if( fcntl( dev.fd_in, F_SETFL, O_NONBLOCK ) < 0 )
         {
             perror( "fcntl(O_NONBLOCK) failed" );
+            free(arp);
+            fclose( f_cap_out );
             return( 1 );
         }
     }
@@ -3291,6 +3349,8 @@ int do_attack_migmode( void )
             if( read( dev.fd_rtc, &n, sizeof( n ) ) < 0 )
             {
                 perror( "read(/dev/rtc) failed" );
+                free( arp );
+                fclose( f_cap_out );
                 return( 1 );
             }
 
@@ -3334,13 +3394,21 @@ int do_attack_migmode( void )
 
                 if( send_packet( arp[arp_off1].buf,
                                  arp[arp_off1].len ) < 0 )
+                {
+                    free(arp);
+                    fclose( f_cap_out );
                     return( 1 );
+                }
 
                 if( ((double)ticks[0]/(double)RTC_RESOLUTION)*(double)opt.r_nbpps > (double)nb_pkt_sent  )
                 {
                     if( send_packet( arp[arp_off1].buf,
                                     arp[arp_off1].len ) < 0 )
+                    {
+                        free(arp);
+                        fclose( f_cap_out );
                         return( 1 );
+                    }
                 }
 
                 if( ++arp_off1 >= nb_arp )
@@ -3356,7 +3424,12 @@ int do_attack_migmode( void )
 
             caplen = read_packet( h80211, sizeof( h80211 ), NULL );
 
-            if( caplen  < 0 ) return( 1 );
+            if( caplen  < 0 )
+            {
+                free( arp );
+                fclose( f_cap_out );
+                return( 1 );
+            }
             if( caplen == 0 ) continue;
         }
         else
@@ -3544,6 +3617,8 @@ add_arp:
 
                 if( ( arp[nb_arp].buf = malloc( 128 ) ) == NULL ) {
                     perror( "malloc failed" );
+                    free(arp);
+                    fclose( f_cap_out );
                     return( 1 );
                 }
 
@@ -3578,6 +3653,8 @@ add_arp:
 
                 if( fwrite( &pkh, n, 1, f_cap_out ) != 1 ) {
                     perror( "fwrite failed" );
+                    free( arp );
+                    fclose( f_cap_out );
                     return( 1 );
                 }
 
@@ -3585,6 +3662,8 @@ add_arp:
 
                 if( fwrite( h80211, n, 1, f_cap_out ) != 1 ) {
                     perror( "fwrite failed" );
+                    free( arp );
+                    fclose( f_cap_out );
                     return( 1 );
                 }
 
@@ -4170,6 +4249,7 @@ int do_attack_chopchop( void )
         if( fcntl( dev.fd_in, F_SETFL, O_NONBLOCK ) < 0 )
         {
             perror( "fcntl(O_NONBLOCK) failed" );
+            free(chopped);
             return( 1 );
         }
     }
@@ -4196,6 +4276,7 @@ int do_attack_chopchop( void )
 "      Try running another aireplay-ng to fake authentication (attack \"-1\").\n"
 "    * The AP isn't vulnerable when operating in authenticated mode.\n"
 "      Try aireplay-ng in non-authenticated mode instead (no -h option).\n\n" );
+            free(chopped);
             return( 1 );
         }
 
@@ -4206,6 +4287,7 @@ int do_attack_chopchop( void )
             if( read( dev.fd_rtc, &n, sizeof( n ) ) < 0 )
             {
                 perror( "\nread(/dev/rtc) failed" );
+                free(chopped);
                 return( 1 );
             }
 
@@ -4356,7 +4438,10 @@ int do_attack_chopchop( void )
             errno = 0;
 
             if( send_packet( h80211, data_end -1 ) != 0 )
+            {
+                free(chopped);
                 return( 1 );
+            }
 
             if( errno != EAGAIN )
             {
@@ -4371,8 +4456,14 @@ int do_attack_chopchop( void )
 
         n = read_packet( h80211, sizeof( h80211 ), NULL );
 
-        if( n  < 0 ) return( 1 );
-        if( n == 0 ) continue;
+        if( n  < 0 )
+        {
+            free(chopped);
+            return( 1 );
+        }
+
+        if( n == 0 )
+            continue;
 
         nb_pkt_read++;
 
@@ -4410,6 +4501,7 @@ int do_attack_chopchop( void )
                 printf( "\n\nFailure: the access point does not properly "
                         "discard frames with an\ninvalid ICV - try running "
                         "aireplay-ng in authenticated mode (-h) instead.\n\n" );
+                free(chopped);
                 return( 1 );
             }
         }
@@ -4450,6 +4542,7 @@ int do_attack_chopchop( void )
                 printf( "\n\nFailure: the access point does not properly "
                         "discard frames with an\ninvalid ICV - try running "
                         "aireplay-ng in non-authenticated mode instead.\n\n" );
+                free(chopped);
                 return( 1 );
             }
         }
@@ -4561,6 +4654,7 @@ int do_attack_chopchop( void )
     if( ( f_cap_out = fopen( strbuf, "wb+" ) ) == NULL )
     {
         perror( "fopen failed" );
+        free(chopped);
         return( 1 );
     }
 
@@ -4569,6 +4663,8 @@ int do_attack_chopchop( void )
     if( fwrite( &pfh_out, n, 1, f_cap_out ) != 1 )
     {
         perror( "fwrite failed\n" );
+        free(chopped);
+        fclose( f_cap_out );
         return( 1 );
     }
 
@@ -4577,6 +4673,8 @@ int do_attack_chopchop( void )
     if( fwrite( &pkh, n, 1, f_cap_out ) != 1 )
     {
         perror( "fwrite failed" );
+        free(chopped);
+        fclose( f_cap_out );
         return( 1 );
     }
 
@@ -4585,6 +4683,8 @@ int do_attack_chopchop( void )
     if( fwrite( h80211, n, 1, f_cap_out ) != 1 )
     {
         perror( "fwrite failed" );
+        free(chopped);
+        fclose( f_cap_out );
         return( 1 );
     }
 
@@ -4603,6 +4703,7 @@ int do_attack_chopchop( void )
     if( ( f_cap_out = fopen( strbuf, "wb+" ) ) == NULL )
     {
         perror( "fopen failed" );
+        free(chopped);
         return( 1 );
     }
 
@@ -4611,9 +4712,12 @@ int do_attack_chopchop( void )
     if( fwrite( chopped + 24, n, 1, f_cap_out ) != 1 )
     {
         perror( "fwrite failed" );
+        free(chopped);
+        fclose( f_cap_out );
         return( 1 );
     }
 
+    free(chopped);
     fclose( f_cap_out );
 
     printf( "\nCompleted in %lds (%0.2f bytes/s)\n\n",
@@ -5330,6 +5434,7 @@ int tcp_test(const char* ip_str, const short port)
     if( fcntl( sock, F_SETFL, O_NONBLOCK ) < 0 )
     {
         perror( "fcntl(O_NONBLOCK) failed" );
+        close(sock);
         return( 1 );
     }
 
@@ -5377,6 +5482,7 @@ int tcp_test(const char* ip_str, const short port)
     if (send(sock, &nh, sizeof(nh), 0) != sizeof(nh))
     {
         perror("send");
+        close(sock);
         return -1;
     }
 
@@ -5392,6 +5498,7 @@ int tcp_test(const char* ip_str, const short port)
             if( errno != EAGAIN )
             {
                 perror("read");
+                close(sock);
                 return -1;
             }
         }
@@ -5452,6 +5559,7 @@ int tcp_test(const char* ip_str, const short port)
         if( fcntl( sock, F_SETFL, O_NONBLOCK ) < 0 )
         {
             perror( "fcntl(O_NONBLOCK) failed" );
+            close(sock);
             return( 1 );
         }
 
