@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/0x90/wireless-regdb
+	branch = master
+	commit = 29fd4dba87b9a5cae24d1542dcdc25f652f101ae
+	parent = 9c2ae01d726ef103e204aec8d93e367bccea3a00
+	cmdver = 0.2.0

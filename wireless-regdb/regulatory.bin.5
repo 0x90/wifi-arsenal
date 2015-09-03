@@ -1,0 +1,37 @@
+.TH regulatory.bin 5 "23 January 2009" "regulatory.bin" "Linux"
+.SH NAME
+regulatory.bin \- The Linux wireless regulatory database
+
+.ad l
+.in +8
+.ti -8
+
+.SS
+.SH Description
+.B regulatory.bin
+is the file used by the Linux wireless subsystem to keep its regulatory
+database information. It is read by
+.B crda
+upon the Linux kernel's request for regulatory information for a specific
+ISO / IEC 3166 alpha2 country code. The regulatory database is kept in
+a small binary format for size and code efficiency. The
+.B regulatory.bin
+file can be parsed and read in human format by using the
+.B regdbdump
+command. The
+.B regulatory.bin
+file should be updated upon regulatory changes or corrections.
+
+.SH Upkeeping
+The regulatory database is maintained by the community as such
+you are encouraged to send any corrections or updates to the
+linux-wireless mailing list:
+.B linux-wireless@vger.kernel.org
+
+.SH SEE ALSO
+.BR regdbdump (8)
+.BR crda (8)
+.BR iw (8)
+
+.BR http://wireless.kernel.org/en/developers/Regulatory/
+
