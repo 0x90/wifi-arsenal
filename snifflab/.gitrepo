@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/andrewhilts/snifflab
+	branch = master
+	commit = 9d83698e90e7861cfc100a34f375ddd70234c8f4
+	parent = 54a92d58028ec80389b15cf7079100a5c4395b06
+	cmdver = 0.2.0

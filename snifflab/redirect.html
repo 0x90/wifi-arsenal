@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="MobileOptimized" content="320">
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>Welcome to SniffLab!</title>
+		<style>
+			body {
+				font-family: Helvetica, Arial, sans-serif;
+				line-height: 1.5;
+				max-width: 500px;
+				margin:0 auto;
+				padding: 10px
+			}
+
+			h1:first-child {
+				margin-top: 0;
+			}
+
+			#login {
+				margin:0;
+				padding:0;
+			}
+
+			#joinBtn {
+				width:100%; 
+    			line-height:1.5;
+				border:0;
+				margin:0;
+			}
+
+			.btn {
+				display:block;
+				cursor: pointer;
+				text-align:center;
+				background: #ffde05;
+				background-image: -webkit-linear-gradient(top, #ffde05, #ebae15);
+				background-image: -moz-linear-gradient(top, #ffde05, #ebae15);
+				background-image: -ms-linear-gradient(top, #ffde05, #ebae15);
+				background-image: -o-linear-gradient(top, #ffde05, #ebae15);
+				background-image: linear-gradient(to bottom, #ffde05, #ebae15);
+				-webkit-border-radius: 28;
+				-moz-border-radius: 28;
+				border-radius: 28px;
+				font-family: Arial;
+				color: #000000;
+				font-size: 20px;
+				padding: 10px 20px 10px 20px;
+				text-decoration: none;
+			}
+
+			.btn:hover {
+				background: #ffbf00;
+				background-image: -webkit-linear-gradient(top, #ffbf00, #ff9900);
+				background-image: -moz-linear-gradient(top, #ffbf00, #ff9900);
+				background-image: -ms-linear-gradient(top, #ffbf00, #ff9900);
+				background-image: -o-linear-gradient(top, #ffbf00, #ff9900);
+				background-image: linear-gradient(to bottom, #ffbf00, #ff9900);
+				text-decoration: none;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Now Connected to SniffLab!</h1>
+		<p><strong>Note:</strong> This wireless network will only function for SSL connections if you install the Man-in-the-middling HTTPS certificate on your device.</p>
+		<a href="mitmproxy-ca.pem" id="certBtn" class="btn">Get Certificate</a>
+	</body>
+</html>

@@ -1,0 +1,9 @@
+pcaps/
+pcaps
+cybersniff/
+debugger.log
+mitmkeys.log
+*.log
+snifflab.graffle
+snifflab.png
+.DS_Store
