@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/xtr4nge/FruityWifi
+	branch = master
+	commit = dfcf1f12488662251d0f440e1db91537ce4bc9e0
+	parent = 5ee839c69ba343c0ad6ba0deaf9fe30cfb36a31f
+	cmdver = 0.2.0
