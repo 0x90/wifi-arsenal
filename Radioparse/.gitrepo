@@ -6,6 +6,6 @@
 [subrepo]
 	remote = https://github.com/AlexanderSelzer/Radioparse
 	branch = master
-	commit = d0f54f37030ca325a25031327717a38abad14a07
-	parent = 82dc6fdcac329a99090f5498a17fbf5e1e7159e2
+	commit = cbae2edb77870088a8f8eba9f9e5bbdaf0e176bb
+	parent = b4b216cec3809650edd2fe7ab582781f2018c550
 	cmdver = 0.2.0

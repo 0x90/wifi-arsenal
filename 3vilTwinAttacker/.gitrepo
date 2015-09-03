@@ -6,6 +6,6 @@
 [subrepo]
 	remote = https://github.com/P0cL4bs/3vilTwinAttacker
 	branch = master
-	commit = f5eb0c1ea01f1b1c2ff54adf6bc0beed0ae9eec6
-	parent = 7ad063cc2fe17aeac93730fb1617ee5270e13518
+	commit = 92f79d1d021481e7465ff439a127cb41de55cc69
+	parent = b4b216cec3809650edd2fe7ab582781f2018c550
 	cmdver = 0.2.0
