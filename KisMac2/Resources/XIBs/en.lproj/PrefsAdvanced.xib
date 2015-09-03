@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+<archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
+	<data>
+		<int key="IBDocument.SystemTarget">1050</int>
+		<string key="IBDocument.SystemVersion">14E46</string>
+		<string key="IBDocument.InterfaceBuilderVersion">7706</string>
+		<string key="IBDocument.AppKitVersion">1348.17</string>
+		<string key="IBDocument.HIToolboxVersion">758.70</string>
+		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
+			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
+			<string key="NS.object.0">7706</string>
+		</object>
+		<array key="IBDocument.IntegratedClassDependencies">
+=======
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
@@ -12,6 +26,7 @@
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 			<string>NSBox</string>
 			<string>NSButton</string>
 			<string>NSButtonCell</string>
@@ -19,18 +34,29 @@
 			<string>NSCustomView</string>
 			<string>NSTextField</string>
 			<string>NSTextFieldCell</string>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+		</array>
+		<array key="IBDocument.PluginDependencies">
+			<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+		</array>
+=======
 			<string>NSView</string>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 		</object>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 		<object class="NSMutableDictionary" key="IBDocument.Metadata">
 			<string key="NS.key.0">PluginDependencyRecalculationVersion</string>
 			<integer value="1" key="NS.object.0"/>
 		</object>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+		<array class="NSMutableArray" key="IBDocument.RootObjects" id="308779539">
+=======
 		<object class="NSMutableArray" key="IBDocument.RootObjects" id="308779539">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 			<object class="NSCustomObject" id="380747551">
 				<string key="NSClassName">PrefsAdvanced</string>
 			</object>
@@ -41,23 +67,36 @@
 				<string key="NSClassName">NSApplication</string>
 			</object>
 			<object class="NSCustomView" id="1070625840">
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+				<nil key="NSNextResponder"/>
+				<int key="NSvFlags">256</int>
+				<array class="NSMutableArray" key="NSSubviews">
+=======
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">256</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 					<object class="NSTextField" id="156242486">
 						<reference key="NSNextResponder" ref="1070625840"/>
 						<int key="NSvFlags">256</int>
 						<string key="NSFrame">{{17, 331}, {430, 37}}</string>
 						<reference key="NSSuperview" ref="1070625840"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 						<reference key="NSWindow"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="826256511">
 							<int key="NSCellFlags">67108864</int>
 							<int key="NSCellFlags2">138412032</int>
 							<string key="NSContents">If you don't know what it does, don't touch it, unless you don't mind it broken.</string>
 							<object class="NSFont" key="NSSupport" id="517477971">
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+								<bool key="IBIsSystemFont">YES</bool>
+=======
 								<string key="NSName">LucidaGrande</string>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 								<double key="NSSize">13</double>
 								<int key="NSfFlags">1044</int>
 							</object>
@@ -77,10 +116,21 @@
 							</object>
 						</object>
 						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+						<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+=======
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 					</object>
 					<object class="NSBox" id="353204184">
 						<reference key="NSNextResponder" ref="1070625840"/>
 						<int key="NSvFlags">256</int>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+						<array class="NSMutableArray" key="NSSubviews">
+							<object class="NSView" id="250427408">
+								<reference key="NSNextResponder" ref="353204184"/>
+								<int key="NSvFlags">274</int>
+								<array class="NSMutableArray" key="NSSubviews">
+=======
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="NSView" id="250427408">
@@ -88,12 +138,16 @@
 								<int key="NSvFlags">274</int>
 								<object class="NSMutableArray" key="NSSubviews">
 									<bool key="EncodedWithXMLCoder">YES</bool>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 									<object class="NSTextField" id="1019464789">
 										<reference key="NSNextResponder" ref="250427408"/>
 										<int key="NSvFlags">256</int>
 										<string key="NSFrame">{{110, 9}, {38, 22}}</string>
 										<reference key="NSSuperview" ref="250427408"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 										<reference key="NSWindow"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSTextFieldCell" key="NSCell" id="635510998">
 											<int key="NSCellFlags">-1804599231</int>
@@ -122,13 +176,20 @@
 											</object>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+=======
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 									</object>
 									<object class="NSTextField" id="318685684">
 										<reference key="NSNextResponder" ref="250427408"/>
 										<int key="NSvFlags">256</int>
 										<string key="NSFrame">{{13, 11}, {92, 17}}</string>
 										<reference key="NSSuperview" ref="250427408"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 										<reference key="NSWindow"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSTextFieldCell" key="NSCell" id="838364251">
 											<int key="NSCellFlags">67108864</int>
@@ -145,20 +206,31 @@
 											</object>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+=======
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 									</object>
 									<object class="NSTextField" id="759398175">
 										<reference key="NSNextResponder" ref="250427408"/>
 										<int key="NSvFlags">256</int>
 										<string key="NSFrame">{{153, -5}, {239, 30}}</string>
 										<reference key="NSSuperview" ref="250427408"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 										<reference key="NSWindow"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSTextFieldCell" key="NSCell" id="406828040">
 											<int key="NSCellFlags">67108864</int>
 											<int key="NSCellFlags2">272629760</int>
 											<string key="NSContents">Interval between deauth packets in msec.</string>
 											<object class="NSFont" key="NSSupport" id="26">
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+												<bool key="IBIsSystemFont">YES</bool>
+=======
 												<string key="NSName">LucidaGrande</string>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 												<double key="NSSize">11</double>
 												<int key="NSfFlags">3100</int>
 											</object>
@@ -167,6 +239,17 @@
 											<reference key="NSTextColor" ref="680451659"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+									</object>
+								</array>
+								<string key="NSFrame">{{2, 2}, {443, 37}}</string>
+								<reference key="NSSuperview" ref="353204184"/>
+							</object>
+						</array>
+						<string key="NSFrame">{{17, 266}, {447, 57}}</string>
+						<reference key="NSSuperview" ref="1070625840"/>
+=======
 									</object>
 								</object>
 								<string key="NSFrame">{{2, 2}, {443, 37}}</string>
@@ -177,6 +260,7 @@
 						<string key="NSFrame">{{17, 266}, {447, 57}}</string>
 						<reference key="NSSuperview" ref="1070625840"/>
 						<reference key="NSWindow"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						<string key="NSOffsets">{0, 0}</string>
 						<object class="NSTextFieldCell" key="NSTitleCell">
 							<int key="NSCellFlags">67108864</int>
@@ -184,9 +268,17 @@
 							<string key="NSContents">Deauthentication</string>
 							<reference key="NSSupport" ref="517477971"/>
 							<reference key="NSBackgroundColor" ref="926000313"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+							<object class="NSColor" key="NSTextColor" id="598754990">
+								<int key="NSColorSpace">6</int>
+								<string key="NSCatalogName">System</string>
+								<string key="NSColorName">labelColor</string>
+								<reference key="NSColor" ref="181221585"/>
+=======
 							<object class="NSColor" key="NSTextColor">
 								<int key="NSColorSpace">3</int>
 								<bytes key="NSWhite">MCAwLjgwMDAwMDAxMTkAA</bytes>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 							</object>
 						</object>
 						<reference key="NSContentView" ref="250427408"/>
@@ -198,6 +290,13 @@
 					<object class="NSBox" id="326960363">
 						<reference key="NSNextResponder" ref="1070625840"/>
 						<int key="NSvFlags">256</int>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+						<array class="NSMutableArray" key="NSSubviews">
+							<object class="NSView" id="606848034">
+								<reference key="NSNextResponder" ref="326960363"/>
+								<int key="NSvFlags">274</int>
+								<array class="NSMutableArray" key="NSSubviews">
+=======
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="NSView" id="606848034">
@@ -205,12 +304,16 @@
 								<int key="NSvFlags">274</int>
 								<object class="NSMutableArray" key="NSSubviews">
 									<bool key="EncodedWithXMLCoder">YES</bool>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 									<object class="NSTextField" id="1028541222">
 										<reference key="NSNextResponder" ref="606848034"/>
 										<int key="NSvFlags">256</int>
 										<string key="NSFrame">{{110, 9}, {37, 22}}</string>
 										<reference key="NSSuperview" ref="606848034"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 										<reference key="NSWindow"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSTextFieldCell" key="NSCell" id="962470361">
 											<int key="NSCellFlags">-1804599231</int>
@@ -223,13 +326,20 @@
 											<reference key="NSTextColor" ref="464811036"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+=======
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 									</object>
 									<object class="NSTextField" id="969406410">
 										<reference key="NSNextResponder" ref="606848034"/>
 										<int key="NSvFlags">256</int>
 										<string key="NSFrame">{{13, 11}, {92, 17}}</string>
 										<reference key="NSSuperview" ref="606848034"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 										<reference key="NSWindow"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSTextFieldCell" key="NSCell" id="371468463">
 											<int key="NSCellFlags">67108864</int>
@@ -241,13 +351,20 @@
 											<reference key="NSTextColor" ref="680451659"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+=======
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 									</object>
 									<object class="NSTextField" id="667112324">
 										<reference key="NSNextResponder" ref="606848034"/>
 										<int key="NSvFlags">256</int>
 										<string key="NSFrame">{{153, -5}, {277, 30}}</string>
 										<reference key="NSSuperview" ref="606848034"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 										<reference key="NSWindow"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSTextFieldCell" key="NSCell" id="361625439">
 											<int key="NSCellFlags">67108864</int>
@@ -259,6 +376,17 @@
 											<reference key="NSTextColor" ref="680451659"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+									</object>
+								</array>
+								<string key="NSFrame">{{2, 2}, {443, 37}}</string>
+								<reference key="NSSuperview" ref="326960363"/>
+							</object>
+						</array>
+						<string key="NSFrame">{{17, 205}, {447, 57}}</string>
+						<reference key="NSSuperview" ref="1070625840"/>
+=======
 									</object>
 								</object>
 								<string key="NSFrame">{{2, 2}, {443, 37}}</string>
@@ -269,6 +397,7 @@
 						<string key="NSFrame">{{17, 205}, {447, 57}}</string>
 						<reference key="NSSuperview" ref="1070625840"/>
 						<reference key="NSWindow"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						<string key="NSOffsets">{0, 0}</string>
 						<object class="NSTextFieldCell" key="NSTitleCell">
 							<int key="NSCellFlags">67108864</int>
@@ -276,10 +405,14 @@
 							<string key="NSContents">Beacon Flooding</string>
 							<reference key="NSSupport" ref="517477971"/>
 							<reference key="NSBackgroundColor" ref="926000313"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+							<reference key="NSTextColor" ref="598754990"/>
+=======
 							<object class="NSColor" key="NSTextColor">
 								<int key="NSColorSpace">3</int>
 								<bytes key="NSWhite">MCAwLjgwMDAwMDAxMTkAA</bytes>
 							</object>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						</object>
 						<reference key="NSContentView" ref="606848034"/>
 						<int key="NSBorderType">3</int>
@@ -290,6 +423,13 @@
 					<object class="NSBox" id="359786075">
 						<reference key="NSNextResponder" ref="1070625840"/>
 						<int key="NSvFlags">256</int>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+						<array class="NSMutableArray" key="NSSubviews">
+							<object class="NSView" id="677922011">
+								<reference key="NSNextResponder" ref="359786075"/>
+								<int key="NSvFlags">274</int>
+								<array class="NSMutableArray" key="NSSubviews">
+=======
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="NSView" id="677922011">
@@ -297,12 +437,16 @@
 								<int key="NSvFlags">274</int>
 								<object class="NSMutableArray" key="NSSubviews">
 									<bool key="EncodedWithXMLCoder">YES</bool>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 									<object class="NSTextField" id="696343904">
 										<reference key="NSNextResponder" ref="677922011"/>
 										<int key="NSvFlags">256</int>
 										<string key="NSFrame">{{13, 11}, {92, 17}}</string>
 										<reference key="NSSuperview" ref="677922011"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 										<reference key="NSWindow"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSTextFieldCell" key="NSCell" id="353537575">
 											<int key="NSCellFlags">67108864</int>
@@ -314,13 +458,20 @@
 											<reference key="NSTextColor" ref="680451659"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+=======
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 									</object>
 									<object class="NSTextField" id="768734606">
 										<reference key="NSNextResponder" ref="677922011"/>
 										<int key="NSvFlags">256</int>
 										<string key="NSFrame">{{139, -5}, {258, 30}}</string>
 										<reference key="NSSuperview" ref="677922011"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 										<reference key="NSWindow"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSTextFieldCell" key="NSCell" id="267131050">
 											<int key="NSCellFlags">67108864</int>
@@ -332,13 +483,20 @@
 											<reference key="NSTextColor" ref="680451659"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+=======
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 									</object>
 									<object class="NSTextField" id="1047334092">
 										<reference key="NSNextResponder" ref="677922011"/>
 										<int key="NSvFlags">256</int>
 										<string key="NSFrame">{{110, 9}, {24, 22}}</string>
 										<reference key="NSSuperview" ref="677922011"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 										<reference key="NSWindow"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSTextFieldCell" key="NSCell" id="1028736764">
 											<int key="NSCellFlags">-1804599231</int>
@@ -351,6 +509,17 @@
 											<reference key="NSTextColor" ref="464811036"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+									</object>
+								</array>
+								<string key="NSFrame">{{2, 2}, {443, 37}}</string>
+								<reference key="NSSuperview" ref="359786075"/>
+							</object>
+						</array>
+						<string key="NSFrame">{{17, 144}, {447, 57}}</string>
+						<reference key="NSSuperview" ref="1070625840"/>
+=======
 									</object>
 								</object>
 								<string key="NSFrame">{{2, 2}, {443, 37}}</string>
@@ -361,6 +530,7 @@
 						<string key="NSFrame">{{17, 144}, {447, 57}}</string>
 						<reference key="NSSuperview" ref="1070625840"/>
 						<reference key="NSWindow"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						<string key="NSOffsets">{0, 0}</string>
 						<object class="NSTextFieldCell" key="NSTitleCell">
 							<int key="NSCellFlags">67108864</int>
@@ -368,10 +538,14 @@
 							<string key="NSContents">Weak Scheduling Attack</string>
 							<reference key="NSSupport" ref="517477971"/>
 							<reference key="NSBackgroundColor" ref="926000313"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+							<reference key="NSTextColor" ref="598754990"/>
+=======
 							<object class="NSColor" key="NSTextColor">
 								<int key="NSColorSpace">3</int>
 								<bytes key="NSWhite">MCAwLjgwMDAwMDAxMTkAA</bytes>
 							</object>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						</object>
 						<reference key="NSContentView" ref="677922011"/>
 						<int key="NSBorderType">3</int>
@@ -384,7 +558,10 @@
 						<int key="NSvFlags">256</int>
 						<string key="NSFrame">{{14, 12}, {146, 32}}</string>
 						<reference key="NSSuperview" ref="1070625840"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 						<reference key="NSWindow"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="373350964">
 							<int key="NSCellFlags">67108864</int>
@@ -409,7 +586,10 @@
 						<int key="NSvFlags">256</int>
 						<string key="NSFrame">{{20, 58}, {441, 5}}</string>
 						<reference key="NSSuperview" ref="1070625840"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 						<reference key="NSWindow"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						<string key="NSOffsets">{0, 0}</string>
 						<object class="NSTextFieldCell" key="NSTitleCell">
 							<int key="NSCellFlags">67108864</int>
@@ -417,10 +597,14 @@
 							<string key="NSContents">Box</string>
 							<reference key="NSSupport" ref="517477971"/>
 							<reference key="NSBackgroundColor" ref="926000313"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+							<reference key="NSTextColor" ref="598754990"/>
+=======
 							<object class="NSColor" key="NSTextColor">
 								<int key="NSColorSpace">3</int>
 								<bytes key="NSWhite">MCAwLjgwMDAwMDAxMTkAA</bytes>
 							</object>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						</object>
 						<int key="NSBorderType">3</int>
 						<int key="NSBoxType">2</int>
@@ -432,7 +616,10 @@
 						<int key="NSvFlags">256</int>
 						<string key="NSFrame">{{159, 22}, {240, 17}}</string>
 						<reference key="NSSuperview" ref="1070625840"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 						<reference key="NSWindow"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="157913592">
 							<int key="NSCellFlags">67108864</int>
@@ -444,10 +631,21 @@
 							<reference key="NSTextColor" ref="18606032"/>
 						</object>
 						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+						<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+=======
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 					</object>
 					<object class="NSBox" id="495988534">
 						<reference key="NSNextResponder" ref="1070625840"/>
 						<int key="NSvFlags">256</int>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+						<array class="NSMutableArray" key="NSSubviews">
+							<object class="NSView" id="772852192">
+								<reference key="NSNextResponder" ref="495988534"/>
+								<int key="NSvFlags">274</int>
+								<array class="NSMutableArray" key="NSSubviews">
+=======
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="NSView" id="772852192">
@@ -455,12 +653,16 @@
 								<int key="NSvFlags">274</int>
 								<object class="NSMutableArray" key="NSSubviews">
 									<bool key="EncodedWithXMLCoder">YES</bool>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 									<object class="NSButton" id="383863536">
 										<reference key="NSNextResponder" ref="772852192"/>
 										<int key="NSvFlags">256</int>
 										<string key="NSFrame">{{14, 9}, {140, 18}}</string>
 										<reference key="NSSuperview" ref="772852192"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 										<reference key="NSWindow"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSButtonCell" key="NSCell" id="713320652">
 											<int key="NSCellFlags">67108864</int>
@@ -489,7 +691,10 @@
 										<int key="NSvFlags">256</int>
 										<string key="NSFrame">{{161, 3}, {258, 30}}</string>
 										<reference key="NSSuperview" ref="772852192"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 										<reference key="NSWindow"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSTextFieldCell" key="NSCell" id="945052062">
 											<int key="NSCellFlags">67108864</int>
@@ -501,6 +706,17 @@
 											<reference key="NSTextColor" ref="680451659"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+									</object>
+								</array>
+								<string key="NSFrame">{{2, 2}, {443, 37}}</string>
+								<reference key="NSSuperview" ref="495988534"/>
+							</object>
+						</array>
+						<string key="NSFrame">{{17, 83}, {447, 57}}</string>
+						<reference key="NSSuperview" ref="1070625840"/>
+=======
 									</object>
 								</object>
 								<string key="NSFrame">{{2, 2}, {443, 37}}</string>
@@ -511,6 +727,7 @@
 						<string key="NSFrame">{{17, 83}, {447, 57}}</string>
 						<reference key="NSSuperview" ref="1070625840"/>
 						<reference key="NSWindow"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						<string key="NSOffsets">{0, 0}</string>
 						<object class="NSTextFieldCell" key="NSTitleCell">
 							<int key="NSCellFlags">67108864</int>
@@ -518,10 +735,14 @@
 							<string key="NSContents">Debug Menu</string>
 							<reference key="NSSupport" ref="517477971"/>
 							<reference key="NSBackgroundColor" ref="926000313"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+							<reference key="NSTextColor" ref="598754990"/>
+=======
 							<object class="NSColor" key="NSTextColor">
 								<int key="NSColorSpace">3</int>
 								<bytes key="NSWhite">MCAwLjgwMDAwMDAxMTkAA</bytes>
 							</object>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						</object>
 						<reference key="NSContentView" ref="772852192"/>
 						<int key="NSBorderType">3</int>
@@ -529,6 +750,16 @@
 						<int key="NSTitlePosition">2</int>
 						<bool key="NSTransparent">NO</bool>
 					</object>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+				</array>
+				<string key="NSFrameSize">{481, 388}</string>
+				<string key="NSClassName">NSView</string>
+				<string key="NSExtension">NSResponder</string>
+			</object>
+		</array>
+		<object class="IBObjectContainer" key="IBDocument.Objects">
+			<array key="connectionRecords">
+=======
 				</object>
 				<string key="NSFrameSize">{481, 388}</string>
 				<reference key="NSSuperview"/>
@@ -545,6 +776,7 @@
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
 				<bool key="EncodedWithXMLCoder">YES</bool>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">controlBox</string>
@@ -617,6 +849,14 @@
 					</object>
 					<int key="connectionID">349</int>
 				</object>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+			</array>
+			<object class="IBMutableOrderedSet" key="objectRecords">
+				<array key="orderedObjects">
+					<object class="IBObjectRecord">
+						<int key="objectID">0</int>
+						<array key="object" id="0"/>
+=======
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -626,6 +866,7 @@
 						<object class="NSArray" key="object" id="0">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 						</object>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						<reference key="children" ref="308779539"/>
 						<nil key="parent"/>
 					</object>
@@ -644,8 +885,12 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">109</int>
 						<reference key="object" ref="1070625840"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+						<array class="NSMutableArray" key="children">
+=======
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 							<reference ref="156242486"/>
 							<reference ref="495988534"/>
 							<reference ref="504285813"/>
@@ -654,86 +899,143 @@
 							<reference ref="359786075"/>
 							<reference ref="326960363"/>
 							<reference ref="353204184"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+						</array>
+=======
 						</object>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						<reference key="parent" ref="0"/>
 						<string key="objectName">View</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">276</int>
 						<reference key="object" ref="156242486"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+						<array class="NSMutableArray" key="children">
+							<reference ref="826256511"/>
+						</array>
+=======
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="826256511"/>
 						</object>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						<reference key="parent" ref="1070625840"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">282</int>
 						<reference key="object" ref="353204184"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+						<array class="NSMutableArray" key="children">
+							<reference ref="1019464789"/>
+							<reference ref="318685684"/>
+							<reference ref="759398175"/>
+						</array>
+=======
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="1019464789"/>
 							<reference ref="318685684"/>
 							<reference ref="759398175"/>
 						</object>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						<reference key="parent" ref="1070625840"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">288</int>
 						<reference key="object" ref="326960363"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+						<array class="NSMutableArray" key="children">
+							<reference ref="1028541222"/>
+							<reference ref="969406410"/>
+							<reference ref="667112324"/>
+						</array>
+=======
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="1028541222"/>
 							<reference ref="969406410"/>
 							<reference ref="667112324"/>
 						</object>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						<reference key="parent" ref="1070625840"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">292</int>
 						<reference key="object" ref="359786075"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+						<array class="NSMutableArray" key="children">
+							<reference ref="696343904"/>
+							<reference ref="768734606"/>
+							<reference ref="1047334092"/>
+						</array>
+=======
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="696343904"/>
 							<reference ref="768734606"/>
 							<reference ref="1047334092"/>
 						</object>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						<reference key="parent" ref="1070625840"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">316</int>
 						<reference key="object" ref="120540679"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+						<array class="NSMutableArray" key="children">
+							<reference ref="373350964"/>
+						</array>
+=======
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="373350964"/>
 						</object>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						<reference key="parent" ref="1070625840"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">317</int>
 						<reference key="object" ref="631173960"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+						<array class="NSMutableArray" key="children"/>
+=======
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 						</object>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						<reference key="parent" ref="1070625840"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">340</int>
 						<reference key="object" ref="504285813"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+						<array class="NSMutableArray" key="children">
+							<reference ref="157913592"/>
+						</array>
+=======
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="157913592"/>
 						</object>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						<reference key="parent" ref="1070625840"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">341</int>
 						<reference key="object" ref="495988534"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+						<array class="NSMutableArray" key="children">
+							<reference ref="383863536"/>
+							<reference ref="152538053"/>
+						</array>
+=======
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="383863536"/>
 							<reference ref="152538053"/>
 						</object>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						<reference key="parent" ref="1070625840"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -760,10 +1062,16 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">286</int>
 						<reference key="object" ref="1019464789"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+						<array class="NSMutableArray" key="children">
+							<reference ref="635510998"/>
+						</array>
+=======
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="635510998"/>
 						</object>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						<reference key="parent" ref="353204184"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -774,10 +1082,16 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">284</int>
 						<reference key="object" ref="318685684"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+						<array class="NSMutableArray" key="children">
+							<reference ref="838364251"/>
+						</array>
+=======
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="838364251"/>
 						</object>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						<reference key="parent" ref="353204184"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -788,10 +1102,16 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">308</int>
 						<reference key="object" ref="759398175"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+						<array class="NSMutableArray" key="children">
+							<reference ref="406828040"/>
+						</array>
+=======
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="406828040"/>
 						</object>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						<reference key="parent" ref="353204184"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -802,10 +1122,16 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">290</int>
 						<reference key="object" ref="1028541222"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+						<array class="NSMutableArray" key="children">
+							<reference ref="962470361"/>
+						</array>
+=======
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="962470361"/>
 						</object>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						<reference key="parent" ref="326960363"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -816,10 +1142,16 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">291</int>
 						<reference key="object" ref="969406410"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+						<array class="NSMutableArray" key="children">
+							<reference ref="371468463"/>
+						</array>
+=======
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="371468463"/>
 						</object>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						<reference key="parent" ref="326960363"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -830,10 +1162,16 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">309</int>
 						<reference key="object" ref="667112324"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+						<array class="NSMutableArray" key="children">
+							<reference ref="361625439"/>
+						</array>
+=======
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="361625439"/>
 						</object>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						<reference key="parent" ref="326960363"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -844,10 +1182,16 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">295</int>
 						<reference key="object" ref="696343904"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+						<array class="NSMutableArray" key="children">
+							<reference ref="353537575"/>
+						</array>
+=======
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="353537575"/>
 						</object>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						<reference key="parent" ref="359786075"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -858,10 +1202,16 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">310</int>
 						<reference key="object" ref="768734606"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+						<array class="NSMutableArray" key="children">
+							<reference ref="267131050"/>
+						</array>
+=======
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="267131050"/>
 						</object>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						<reference key="parent" ref="359786075"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -872,10 +1222,16 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">314</int>
 						<reference key="object" ref="1047334092"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+						<array class="NSMutableArray" key="children">
+							<reference ref="1028736764"/>
+						</array>
+=======
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="1028736764"/>
 						</object>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						<reference key="parent" ref="359786075"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -886,10 +1242,16 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">346</int>
 						<reference key="object" ref="383863536"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+						<array class="NSMutableArray" key="children">
+							<reference ref="713320652"/>
+						</array>
+=======
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="713320652"/>
 						</object>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						<reference key="parent" ref="495988534"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -900,10 +1262,16 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">347</int>
 						<reference key="object" ref="152538053"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+						<array class="NSMutableArray" key="children">
+							<reference ref="945052062"/>
+						</array>
+=======
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="945052062"/>
 						</object>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 						<reference key="parent" ref="495988534"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -911,6 +1279,52 @@
 						<reference key="object" ref="945052062"/>
 						<reference key="parent" ref="152538053"/>
 					</object>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+				</array>
+			</object>
+			<dictionary class="NSMutableDictionary" key="flattenedProperties">
+				<string key="-1.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="-3.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="109.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="276.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="282.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="284.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="286.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="288.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="290.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="291.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="292.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="295.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="308.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="309.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="310.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="314.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="316.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="317.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="340.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="341.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="346.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="347.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="357.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="358.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="359.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="360.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="361.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="362.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="363.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="364.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="365.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="366.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="367.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="368.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="369.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="370.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+			</dictionary>
+			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
+			<nil key="activeLocalization"/>
+			<dictionary class="NSMutableDictionary" key="localizations"/>
+=======
 					<object class="IBObjectRecord">
 						<int key="objectID">318</int>
 						<reference key="object" ref="949856646"/>
@@ -1014,19 +1428,28 @@
 				<reference key="dict.sortedKeys" ref="0"/>
 				<reference key="dict.values" ref="0"/>
 			</object>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 			<nil key="sourceID"/>
 			<int key="maxID">370</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+		<bool key="IBDocument.previouslyAttemptedUpgradeToXcode5">NO</bool>
+=======
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencies">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.macosx</string>
 			<integer value="1050" key="NS.object.0"/>
 		</object>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.InterfaceBuilder3</string>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+			<integer value="4600" key="NS.object.0"/>
+=======
 			<integer value="3000" key="NS.object.0"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>

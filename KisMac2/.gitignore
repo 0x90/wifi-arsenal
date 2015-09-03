@@ -8,10 +8,19 @@ build/*
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 *.xcworkspace
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 !default.xcworkspace
 xcuserdata
 profile
 *.moved-aside
 
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+# OS X
+.DS_Store
+
+=======
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 Resources/Generic/vendor.db

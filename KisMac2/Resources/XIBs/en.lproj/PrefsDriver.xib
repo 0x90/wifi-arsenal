@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
+=======
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" promptedForUpgradeToXcode5="NO">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PrefsDriver">
@@ -22,15 +29,30 @@
                 <outlet property="_kdrone_settings" destination="361" id="375"/>
                 <outlet property="_kismet_host" destination="363" id="370"/>
                 <outlet property="_kismet_port" destination="365" id="371"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+                <outlet property="_range50GHzChannels" destination="h0Q-lh-9QI" id="DVd-bU-gDU"/>
+=======
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
                 <outlet property="_removeDriver" destination="272" id="300"/>
                 <outlet property="_savedumpsat" destination="223" id="332"/>
                 <outlet property="_selAll" destination="241" id="284"/>
                 <outlet property="_selNone" destination="255" id="285"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+                <outlet property="_use24GHzChannels" destination="YRi-cC-FQK" id="Gmm-bb-iGy"/>
+                <outlet property="_use50GHzChannels" destination="7CM-nX-c6v" id="PwB-gf-sMt"/>
+                <outlet property="_useAll50GHzChannels" destination="wAZ-Bz-xgr" id="SSg-k6-8NU"/>
+                <outlet property="_useRange50GHzChannels" destination="3Mx-lT-FtF" id="HiS-Mb-2VD"/>
+=======
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
                 <outlet property="controlBox" destination="109" id="119"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+=======
         <customObject id="-3" userLabel="Application"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
         <customView id="109" userLabel="View">
             <rect key="frame" x="0.0" y="0.0" width="475" height="514"/>
             <autoresizingMask key="autoresizingMask"/>
@@ -114,6 +136,246 @@
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <font key="titleFont" metaFont="system"/>
                 </box>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+                <box title="Channel Hopping" id="238">
+                    <rect key="frame" x="17" y="86" width="228" height="242"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <view key="contentView">
+                        <rect key="frame" x="2" y="2" width="224" height="225"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tabView id="AgY-Lv-Frq">
+                                <rect key="frame" x="-6" y="-9" width="236" height="230"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <font key="font" metaFont="system"/>
+                                <tabViewItems>
+                                    <tabViewItem label="General" identifier="1" id="0Qb-f2-WNS">
+                                        <view key="view" id="UuA-9j-OvQ">
+                                            <rect key="frame" x="10" y="33" width="216" height="184"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <button id="YRi-cC-FQK">
+                                                    <rect key="frame" x="15" y="140" width="186" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <buttonCell key="cell" type="check" title="2.4GHz Channels" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="yqK-gA-Uss">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="setValueForSender:" target="-2" id="76B-kX-GK6"/>
+                                                    </connections>
+                                                </button>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="gVv-mx-Uef">
+                                                    <rect key="frame" x="14" y="164" width="53" height="17"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Include:" id="hku-zJ-pru">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField verticalHuggingPriority="750" id="264">
+                                                    <rect key="frame" x="120" y="92" width="75" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="1" drawsBackground="YES" id="380">
+                                                        <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0" negativeFormat="-0" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="266">
+                                                            <attributedString key="attributedStringForZero">
+                                                                <fragment content="0"/>
+                                                            </attributedString>
+                                                            <decimal key="minimum" value="1"/>
+                                                            <real key="maximum" value="165"/>
+                                                        </numberFormatter>
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <connections>
+                                                        <action selector="setValueForSender:" target="-2" id="291"/>
+                                                    </connections>
+                                                </textField>
+                                                <textField verticalHuggingPriority="750" id="265">
+                                                    <rect key="frame" x="14" y="94" width="93" height="17"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" id="381">
+                                                        <font key="font" metaFont="system"/>
+                                                        <string key="title">Start Channel:
+</string>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <button id="7CM-nX-c6v">
+                                                    <rect key="frame" x="15" y="120" width="186" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <buttonCell key="cell" type="check" title="5.0GHz Channels" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="hwh-1y-7EI">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="setValueForSender:" target="-2" id="wBM-Oa-QOo"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                    </tabViewItem>
+                                    <tabViewItem label="2.4GHz" identifier="2" id="Vve-4C-KB9">
+                                        <view key="view" id="3Ac-On-zcs">
+                                            <rect key="frame" x="10" y="33" width="216" height="184"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <button verticalHuggingPriority="750" id="241">
+                                                    <rect key="frame" x="10" y="13" width="84" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <buttonCell key="cell" type="push" title="All" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="378">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="selAll:" target="-2" id="289"/>
+                                                        <outlet property="nextKeyView" destination="255" id="258"/>
+                                                    </connections>
+                                                </button>
+                                                <button verticalHuggingPriority="750" id="255">
+                                                    <rect key="frame" x="114" y="13" width="84" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <buttonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="379">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="selNone:" target="-2" id="288"/>
+                                                    </connections>
+                                                </button>
+                                                <matrix verticalHuggingPriority="750" mode="track" allowsEmptySelection="NO" autosizesCells="NO" id="248">
+                                                    <rect key="frame" x="8" y="43" width="200" height="138"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    <size key="cellSize" width="98" height="18"/>
+                                                    <size key="intercellSpacing" width="4" height="2"/>
+                                                    <buttonCell key="prototype" type="check" title="Channel 1" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="397">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <cells>
+                                                        <column>
+                                                            <buttonCell type="check" title="Channel 1" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="224">
+                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                            <buttonCell type="check" title="Channel 2" bezelStyle="regularSquare" imagePosition="left" alignment="left" tag="1" inset="2" id="233">
+                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                            <buttonCell type="check" title="Channel 3" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="252">
+                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                            <buttonCell type="check" title="Channel 4" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="251">
+                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                            <buttonCell type="check" title="Channel 5" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="247">
+                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                            <buttonCell type="check" title="Channel 6" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="242">
+                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                            <buttonCell type="check" title="Channel 7" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="227">
+                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                        </column>
+                                                        <column>
+                                                            <buttonCell type="check" title="Channel 8" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="232">
+                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                            <buttonCell type="check" title="Channel 9" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="225">
+                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                            <buttonCell type="check" title="Channel 10" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="249">
+                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                            <buttonCell type="check" title="Channel 11" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="229">
+                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                            <buttonCell type="check" title="Channel 12" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="240">
+                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                            <buttonCell type="check" title="Channel 13" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="235">
+                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                            <buttonCell type="check" title="Channel 14" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="230">
+                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                        </column>
+                                                    </cells>
+                                                    <connections>
+                                                        <action selector="setValueForSender:" target="-2" id="290"/>
+                                                    </connections>
+                                                </matrix>
+                                            </subviews>
+                                        </view>
+                                    </tabViewItem>
+                                    <tabViewItem label="5.0GHz" identifier="" id="L4F-tW-dTC">
+                                        <view key="view" id="ukX-G5-VWI">
+                                            <rect key="frame" x="10" y="33" width="216" height="184"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <button id="3Mx-lT-FtF">
+                                                    <rect key="frame" x="15" y="143" width="66" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <buttonCell key="cell" type="check" title="Range:" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="QHe-H0-p6p">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="setValueForSender:" target="-2" id="GqM-9l-MN2"/>
+                                                    </connections>
+                                                </button>
+                                                <textField verticalHuggingPriority="750" id="h0Q-lh-9QI">
+                                                    <rect key="frame" x="17" y="115" width="182" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="20-25,36" drawsBackground="YES" id="eM2-fi-Pey">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <connections>
+                                                        <action selector="setValueForSender:" target="-2" id="1mA-S6-hTz"/>
+                                                    </connections>
+                                                </textField>
+                                                <button id="wAZ-Bz-xgr">
+                                                    <rect key="frame" x="15" y="165" width="104" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <buttonCell key="cell" type="check" title="All Channels" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="TyJ-uR-rZ7">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="setValueForSender:" target="-2" id="3B9-DK-GDk"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                    </tabViewItem>
+                                </tabViewItems>
+                            </tabView>
+                        </subviews>
+                    </view>
+                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </box>
+=======
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
                 <box title="Global Settings" id="310">
                     <rect key="frame" x="17" y="16" width="437" height="60"/>
                     <autoresizingMask key="autoresizingMask"/>
@@ -138,7 +400,11 @@
                                         <attributedString key="attributedStringForZero">
                                             <fragment content="0.00"/>
                                         </attributedString>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+                                        <real key="minimum" value="0.1"/>
+=======
                                         <decimal key="minimum" value="0.2"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
                                         <decimal key="maximum" value="10"/>
                                     </numberFormatter>
                                     <font key="font" metaFont="system"/>
@@ -178,10 +444,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="402" id="261">
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+                                <rect key="frame" x="0.0" y="0.0" width="418" height="19"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <size key="intercellSpacing" width="3" height="2"/>
+                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+=======
                                 <rect key="frame" x="0.0" y="0.0" width="433" height="105"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
                                     <tableColumn identifier="capdevs" editable="NO" width="414.95401000976562" minWidth="92.954002380371094" maxWidth="1000" id="263">
@@ -247,7 +520,11 @@
                     <autoresizingMask key="autoresizingMask"/>
                     <popUpButtonCell key="cell" type="push" title="Driver1" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="276" id="385">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+                        <font key="font" metaFont="menu"/>
+=======
                         <font key="font" metaFont="system"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
                         <menu key="menu" title="OtherViews" id="275">
                             <items>
                                 <menuItem title="Driver1" state="on" id="276"/>
@@ -351,6 +628,10 @@
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+            </subviews>
+        </customView>
+=======
                 <box title="Channel Hopping" id="238">
                     <rect key="frame" x="17" y="89" width="228" height="242"/>
                     <autoresizingMask key="autoresizingMask"/>
@@ -502,5 +783,6 @@
             <rect key="frame" x="0.0" y="0.0" width="125" height="1"/>
             <autoresizingMask key="autoresizingMask"/>
         </view>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
     </objects>
 </document>

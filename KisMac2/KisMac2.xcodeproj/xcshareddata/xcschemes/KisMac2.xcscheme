@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+   LastUpgradeVersion = "0700"
+   version = "1.8">
+=======
    LastUpgradeVersion = "0600"
    version = "1.3">
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -20,6 +25,8 @@
                ReferencedContainer = "container:KisMac2.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
@@ -34,6 +41,7 @@
                ReferencedContainer = "container:KisMac2.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -42,6 +50,8 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
          <TestableReference
             skipped = "NO">
             <BuildableReference
@@ -52,6 +62,7 @@
                ReferencedContainer = "container:KisMac2.xcodeproj">
             </BuildableReference>
          </TestableReference>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
       </Testables>
       <MacroExpansion>
          <BuildableReference
@@ -62,6 +73,11 @@
             ReferencedContainer = "container:KisMac2.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+      <AdditionalOptions>
+      </AdditionalOptions>
+=======
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -71,8 +87,15 @@
       buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+=======
       allowLocationSimulation = "YES">
       <BuildableProductRunnable>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8D1107260486CEB800E47090"
@@ -90,7 +113,12 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+=======
       <BuildableProductRunnable>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8D1107260486CEB800E47090"

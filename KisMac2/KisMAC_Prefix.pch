@@ -4,11 +4,22 @@
 
 #ifdef __OBJC__
     #import <Cocoa/Cocoa.h>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+    #import <Foundation/Foundation.h>
+    #import <AppKit/AppKit.h>
+    #import <BIGL/BIGL.h>
+    #import <BIGeneric/BIGeneric.h>
+    #import <Security/Security.h>
+    #import <CoreServices/CoreServices.h>
+
+    #import "GBStorage.h"
+=======
     #import <BIGL/BIGL.h>
     #import <BIGeneric/BIGeneric.h>
     #import <AppKit/AppKit.h>
     #import <Security/Security.h>
     #import <CoreServices/CoreServices.h>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 #endif
 
 #ifdef DEBUG
@@ -28,4 +39,11 @@
 
 #define SRET { [[WaveHelper importController] terminateWithCode: 1]; return; }
 #define RET { [[WaveHelper importController] terminateWithCode: -1]; return; }
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
 #define CHECK { if (_password != nil) RET; if (_isWep != encryptionTypeWEP && _isWep != encryptionTypeWEP40) RET; if ([_packetsLog count] < 8) RET; }
+
+// 1201 = 5 minutes (plus one) for 0.25s interval
+#define MAX_YIELD_SIZE 1200
+=======
+#define CHECK { if (_password != nil) RET; if (_isWep != encryptionTypeWEP && _isWep != encryptionTypeWEP40) RET; if ([_packetsLog count] < 8) RET; }
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal

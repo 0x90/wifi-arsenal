@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
+=======
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" promptedForUpgradeToXcode5="NO">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PrefsSounds">
@@ -17,7 +24,11 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+=======
         <customObject id="-3" userLabel="Application"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
         <customView id="109" userLabel="View">
             <rect key="frame" x="0.0" y="0.0" width="439" height="223"/>
             <autoresizingMask key="autoresizingMask"/>
@@ -112,7 +123,11 @@ reet:</string>
                     <autoresizingMask key="autoresizingMask"/>
                     <popUpButtonCell key="cell" type="push" title="Item1" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="175" id="225">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+                        <font key="font" metaFont="menu"/>
+=======
                         <font key="font" metaFont="system"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
                         <menu key="menu" title="OtherViews" id="180">
                             <items>
                                 <menuItem title="Item1" state="on" id="175"/>
@@ -131,7 +146,11 @@ reet:</string>
                     <autoresizingMask key="autoresizingMask"/>
                     <popUpButtonCell key="cell" type="push" title="Item1" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="182" id="224">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+                        <font key="font" metaFont="menu"/>
+=======
                         <font key="font" metaFont="system"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
                         <menu key="menu" title="OtherViews" id="176">
                             <items>
                                 <menuItem title="Item1" state="on" id="182"/>
@@ -162,7 +181,11 @@ etet:
                     <autoresizingMask key="autoresizingMask"/>
                     <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="177" id="222">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+                        <font key="font" metaFont="menu"/>
+=======
                         <font key="font" metaFont="system"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
                         <menu key="menu" title="OtherViews" id="185">
                             <items>
                                 <menuItem title="None" state="on" id="177"/>
@@ -182,7 +205,11 @@ etet:
                     <autoresizingMask key="autoresizingMask"/>
                     <popUpButtonCell key="cell" type="push" title="Item1" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="188" id="221">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+                        <font key="font" metaFont="menu"/>
+=======
                         <font key="font" metaFont="system"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
                         <menu key="menu" title="OtherViews" id="187">
                             <items>
                                 <menuItem title="Item1" state="on" id="188"/>
@@ -207,9 +234,12 @@ etet:
                 </textField>
             </subviews>
         </customView>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
         <view id="215">
             <rect key="frame" x="0.0" y="0.0" width="125" height="1"/>
             <autoresizingMask key="autoresizingMask"/>
         </view>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
     </objects>
 </document>

@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
+=======
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" promptedForUpgradeToXcode5="NO">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="WayPoint">
@@ -18,9 +25,15 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Waypoint Coordinates" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="aKisMAC_WayPoints" animationBehavior="default" id="5" userLabel="Window">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+=======
         <customObject id="-3" userLabel="Application"/>
         <window title="Waypoint Coordinates" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="aKisMAC_WayPoints" animationBehavior="default" id="5" userLabel="Window">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="435" y="438" width="303" height="127"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1024" height="746"/>

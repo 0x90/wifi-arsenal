@@ -6,6 +6,6 @@
 [subrepo]
 	remote = https://github.com/IGRSoft/KisMac2
 	branch = master
-	commit = e9b37ff61cba74c21708c83d0d237cd116b797e8
-	parent = cfb8adebc7578f4ef2e4a650c09f898c520a3df4
+	commit = 651cabc6a59177b5257d540dbc8b5321710c46ca
+	parent = 8f7f70f51acd75522520de290434821abf40a529
 	cmdver = 0.2.0

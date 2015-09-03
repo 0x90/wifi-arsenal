@@ -25,8 +25,11 @@
 /* Begin PBXBuildFile section */
 		002E7DFC06A86C6F00C9D931 /* ImportController.m in Sources */ = {isa = PBXBuildFile; fileRef = 002E7DF806A86C6F00C9D931 /* ImportController.m */; };
 		0035337A06A5DD5700AB4577 /* example.dump in Resources */ = {isa = PBXBuildFile; fileRef = 0035332E06A5DD5700AB4577 /* example.dump */; };
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 		0035337B06A5DD5700AB4577 /* KisMAC.scriptSuite in Resources */ = {isa = PBXBuildFile; fileRef = 0035332F06A5DD5700AB4577 /* KisMAC.scriptSuite */; };
 		0035337C06A5DD5700AB4577 /* KisMAC.scriptTerminology in Resources */ = {isa = PBXBuildFile; fileRef = 0035333006A5DD5700AB4577 /* KisMAC.scriptTerminology */; };
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 		0035337D06A5DD5700AB4577 /* vendor.db in Resources */ = {isa = PBXBuildFile; fileRef = 0035333106A5DD5700AB4577 /* vendor.db */; };
 		0035339906A5DD5700AB4577 /* usbprism2_prep.sh in Resources */ = {isa = PBXBuildFile; fileRef = 0035334F06A5DD5700AB4577 /* usbprism2_prep.sh */; };
 		0035339A06A5DD5700AB4577 /* usbprism2_unprep.sh in Resources */ = {isa = PBXBuildFile; fileRef = 0035335006A5DD5700AB4577 /* usbprism2_unprep.sh */; };
@@ -52,8 +55,12 @@
 		0035346A06A5DD8500AB4577 /* PrefsTraffic.m in Sources */ = {isa = PBXBuildFile; fileRef = 003533ED06A5DD8500AB4577 /* PrefsTraffic.m */; };
 		0035346E06A5DD8500AB4577 /* PrefsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 003533F106A5DD8500AB4577 /* PrefsController.m */; };
 		0035347006A5DD8500AB4577 /* PrefsWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 003533F306A5DD8500AB4577 /* PrefsWindow.m */; };
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+		0035347406A5DD8500AB4577 /* BridgeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 003533F806A5DD8500AB4577 /* BridgeController.m */; };
+=======
 		0035347206A5DD8500AB4577 /* ScriptAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 003533F606A5DD8500AB4577 /* ScriptAdditions.m */; };
 		0035347406A5DD8500AB4577 /* ScriptController.m in Sources */ = {isa = PBXBuildFile; fileRef = 003533F806A5DD8500AB4577 /* ScriptController.m */; };
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 		0035347606A5DD8500AB4577 /* GPSController.m in Sources */ = {isa = PBXBuildFile; fileRef = 003533FB06A5DD8500AB4577 /* GPSController.m */; };
 		0035348806A5DD8500AB4577 /* WaveDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 0035341006A5DD8500AB4577 /* WaveDriver.m */; };
 		0035348C06A5DD8500AB4577 /* WaveDriverAirport.m in Sources */ = {isa = PBXBuildFile; fileRef = 0035341406A5DD8500AB4577 /* WaveDriverAirport.m */; };
@@ -69,7 +76,10 @@
 		00971F5706E4FFBF004307EA /* BISubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00971F5506E4FFBF004307EA /* BISubView.m */; };
 		0097241506E51844004307EA /* BIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0097241306E51844004307EA /* BIImageView.m */; };
 		0097243A06E51A99004307EA /* BITextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0097243806E51A99004307EA /* BITextView.m */; };
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 		009B192406FC83A800E8883A /* ScriptingEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 009B192206FC83A800E8883A /* ScriptingEngine.m */; };
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 		009D64F306FF73BA00B0F1EC /* MapViewAreaView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 009D64F206FF73BA00B0F1EC /* MapViewAreaView.mm */; };
 		00A622AA06FEE4FB005D248A /* Trace.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A622A806FEE4FB005D248A /* Trace.m */; };
 		00A7F9D306C6D20A00A6BB8F /* devilDocument.icns in Resources */ = {isa = PBXBuildFile; fileRef = 00A7F9D206C6D20A00A6BB8F /* devilDocument.icns */; };
@@ -86,7 +96,10 @@
 		691CF1B10E4CC47C0042B146 /* UsbVendorsRT73.plist in Resources */ = {isa = PBXBuildFile; fileRef = 691CF1AD0E4CC47C0042B146 /* UsbVendorsRT73.plist */; };
 		691CF1B20E4CC47C0042B146 /* UsbVendorsRT2570.plist in Resources */ = {isa = PBXBuildFile; fileRef = 691CF1AE0E4CC47C0042B146 /* UsbVendorsRT2570.plist */; };
 		691CF1B30E4CC47C0042B146 /* UsbVendorsRTL8187.plist in Resources */ = {isa = PBXBuildFile; fileRef = 691CF1AF0E4CC47C0042B146 /* UsbVendorsRTL8187.plist */; };
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 		69359CB30FB05DD2008B8722 /* WaveSpectrumDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 69359CB10FB05DD2008B8722 /* WaveSpectrumDriver.m */; };
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 		694A888D0F3CD87E006B819C /* WavePcapDump.m in Sources */ = {isa = PBXBuildFile; fileRef = 694A888B0F3CD87E006B819C /* WavePcapDump.m */; };
 		697B46400F0620DC00AC69EB /* WavePluginDeauthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 697B463E0F0620DC00AC69EB /* WavePluginDeauthentication.m */; };
 		698665470FAF5899002D1A84 /* spin.gif in Resources */ = {isa = PBXBuildFile; fileRef = 698665460FAF5899002D1A84 /* spin.gif */; };
@@ -104,7 +117,10 @@
 		69B54B300F0698C600AB7E6E /* WavePluginInjecting.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B54B2E0F0698C600AB7E6E /* WavePluginInjecting.m */; };
 		69BFC5770F077867008DB1AF /* WavePluginAuthenticationFlood.m in Sources */ = {isa = PBXBuildFile; fileRef = 69BFC5750F077867008DB1AF /* WavePluginAuthenticationFlood.m */; };
 		69BFC5F30F078532008DB1AF /* WavePluginBeaconFlood.m in Sources */ = {isa = PBXBuildFile; fileRef = 69BFC5F10F078532008DB1AF /* WavePluginBeaconFlood.m */; };
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 		69DF1ABE0F0D0F93000E9B94 /* KMCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DF1ABD0F0D0F93000E9B94 /* KMCommon.m */; };
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 		6C03D77009B547F2005B2316 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C03D76F09B547F2005B2316 /* Growl.framework */; };
 		6C03D77309B547F6005B2316 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6C03D76F09B547F2005B2316 /* Growl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		6C32713412CFC4070033A649 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C32713312CFC4070033A649 /* CoreLocation.framework */; };
@@ -117,6 +133,14 @@
 		6CF9EE6F0B6E9D2A00F54524 /* WaveDriverKismet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF9EE6D0B6E9D2A00F54524 /* WaveDriverKismet.m */; };
 		87C9272B0BAA137E0025A6AE /* WaveDriverKismetDrone.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C927290BAA137E0025A6AE /* WaveDriverKismetDrone.m */; };
 		87CEBA8309AEF03700AEB0B8 /* GrowlController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CEBA8109AEF03700AEB0B8 /* GrowlController.m */; };
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		A505CE411B271A410095C7A0 /* BIGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A505CE401B271A410095C7A0 /* BIGL.framework */; };
+		A505CE421B271A410095C7A0 /* BIGL.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A505CE401B271A410095C7A0 /* BIGL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A505CE441B271A410095C7A0 /* BIGeneric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A505CE431B271A410095C7A0 /* BIGeneric.framework */; };
+		A505CE451B271A410095C7A0 /* BIGeneric.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A505CE431B271A410095C7A0 /* BIGeneric.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+=======
 		87FA06BB0BF6C69C00A8F24C /* FSWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FA06B90BF6C69B00A8F24C /* FSWindow.m */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -124,6 +148,7 @@
 		A5295C461653C3A600A0B5D9 /* BIGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5295C3A1653C38E00A0B5D9 /* BIGL.framework */; };
 		A5295C471653C3BD00A0B5D9 /* BIGeneric.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A5295C441653C39800A0B5D9 /* BIGeneric.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A5295C481653C3BD00A0B5D9 /* BIGL.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A5295C3A1653C38E00A0B5D9 /* BIGL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 		A529AD771A20A4A100CD8E1E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A529AD751A20A4A100CD8E1E /* Localizable.strings */; };
 		A529AD981A20A4B400CD8E1E /* Crack.xib in Resources */ = {isa = PBXBuildFile; fileRef = A529AD781A20A4B400CD8E1E /* Crack.xib */; };
 		A529AD991A20A4B400CD8E1E /* GPSDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = A529AD7A1A20A4B400CD8E1E /* GPSDialog.xib */; };
@@ -145,6 +170,10 @@
 		A5353827180ABCE1008BB6A1 /* md5.c in Sources */ = {isa = PBXBuildFile; fileRef = A53536B5180ABCE0008BB6A1 /* md5.c */; };
 		A5353972180B15B9008BB6A1 /* DESSupport.c in Sources */ = {isa = PBXBuildFile; fileRef = A5353970180B15B9008BB6A1 /* DESSupport.c */; };
 		A5353975180B1C99008BB6A1 /* sha1.c in Sources */ = {isa = PBXBuildFile; fileRef = A5353974180B1C99008BB6A1 /* sha1.c */; };
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+		A54B4CDD1B6F847B003279DD /* DownloadMap.xib in Resources */ = {isa = PBXBuildFile; fileRef = A54B4CDB1B6F847B003279DD /* DownloadMap.xib */; };
+=======
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 		A57E644D1607BC9700BE1BCA /* AirCrackWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A57E64391607BC9700BE1BCA /* AirCrackWrapper.m */; };
 		A57E644F1607BC9700BE1BCA /* LEAP.m in Sources */ = {isa = PBXBuildFile; fileRef = A57E643B1607BC9700BE1BCA /* LEAP.m */; };
 		A57E64551607BC9700BE1BCA /* WaveNetLEAPCrack.m in Sources */ = {isa = PBXBuildFile; fileRef = A57E64411607BC9700BE1BCA /* WaveNetLEAPCrack.m */; };
@@ -161,15 +190,22 @@
 		A585F77B1771DB7100045928 /* HTTPStream.m in Sources */ = {isa = PBXBuildFile; fileRef = A585F77A1771DB7100045928 /* HTTPStream.m */; };
 		A5A2F59619DD74C20046299A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5A2F59519DD74C20046299A /* Images.xcassets */; };
 		A5A2F59A19DD9EB40046299A /* spin@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = A5A2F59919DD9EB40046299A /* spin@2x.gif */; };
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 		A5A2F5A219DDA11A0046299A /* greengem.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A5A2F59F19DDA11A0046299A /* greengem.pdf */; };
 		A5A2F5A319DDA11A0046299A /* orangegem.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A5A2F5A019DDA11A0046299A /* orangegem.pdf */; };
 		A5A2F5A419DDA11A0046299A /* redgem.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A5A2F5A119DDA11A0046299A /* redgem.pdf */; };
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 		A5A2F5AB19DDA55B0046299A /* NetworkLEAP.tif in Resources */ = {isa = PBXBuildFile; fileRef = A5A2F5A519DDA55B0046299A /* NetworkLEAP.tif */; };
 		A5A2F5AC19DDA55B0046299A /* NetworkNoEnc.tif in Resources */ = {isa = PBXBuildFile; fileRef = A5A2F5A619DDA55B0046299A /* NetworkNoEnc.tif */; };
 		A5A2F5AD19DDA55B0046299A /* NetworkStrange.tif in Resources */ = {isa = PBXBuildFile; fileRef = A5A2F5A719DDA55B0046299A /* NetworkStrange.tif */; };
 		A5A2F5AE19DDA55B0046299A /* NetworkUnkEnc.tif in Resources */ = {isa = PBXBuildFile; fileRef = A5A2F5A819DDA55B0046299A /* NetworkUnkEnc.tif */; };
 		A5A2F5AF19DDA55B0046299A /* NetworkWEP.tif in Resources */ = {isa = PBXBuildFile; fileRef = A5A2F5A919DDA55B0046299A /* NetworkWEP.tif */; };
 		A5A2F5B019DDA55B0046299A /* NetworkWPA.tif in Resources */ = {isa = PBXBuildFile; fileRef = A5A2F5AA19DDA55B0046299A /* NetworkWPA.tif */; };
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+		A5A6FA7E1B289F65006B90E1 /* GBStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A6FA791B289F65006B90E1 /* GBStorage.m */; };
+=======
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -180,6 +216,8 @@
 			remoteGlobalIDString = 8D1107260486CEB800E47090;
 			remoteInfo = KisMAC;
 		};
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 		A5295C391653C38E00A0B5D9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A5295C321653C38D00A0B5D9 /* BIGL.xcodeproj */;
@@ -194,6 +232,7 @@
 			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
 			remoteInfo = BIGeneric;
 		};
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -203,8 +242,13 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+				A505CE421B271A410095C7A0 /* BIGL.framework in CopyFiles */,
+				A505CE451B271A410095C7A0 /* BIGeneric.framework in CopyFiles */,
+=======
 				A5295C471653C3BD00A0B5D9 /* BIGeneric.framework in CopyFiles */,
 				A5295C481653C3BD00A0B5D9 /* BIGL.framework in CopyFiles */,
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 				6C03D77309B547F6005B2316 /* Growl.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -215,8 +259,11 @@
 		002E7DF706A86C6F00C9D931 /* ImportController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = ImportController.h; path = Sources/WindowControllers/ImportController.h; sourceTree = SOURCE_ROOT; };
 		002E7DF806A86C6F00C9D931 /* ImportController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = ImportController.m; path = Sources/WindowControllers/ImportController.m; sourceTree = SOURCE_ROOT; };
 		0035332E06A5DD5700AB4577 /* example.dump */ = {isa = PBXFileReference; lastKnownFileType = file; path = example.dump; sourceTree = "<group>"; };
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 		0035332F06A5DD5700AB4577 /* KisMAC.scriptSuite */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.scriptSuite; path = KisMAC.scriptSuite; sourceTree = "<group>"; };
 		0035333006A5DD5700AB4577 /* KisMAC.scriptTerminology */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.scriptTerminology; path = KisMAC.scriptTerminology; sourceTree = "<group>"; };
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 		0035333106A5DD5700AB4577 /* vendor.db */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = vendor.db; sourceTree = "<group>"; };
 		0035334106A5DD5700AB4577 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		0035334F06A5DD5700AB4577 /* usbprism2_prep.sh */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.sh; path = usbprism2_prep.sh; sourceTree = "<group>"; };
@@ -266,10 +313,15 @@
 		003533F106A5DD8500AB4577 /* PrefsController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PrefsController.m; sourceTree = "<group>"; };
 		003533F206A5DD8500AB4577 /* PrefsWindow.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PrefsWindow.h; sourceTree = "<group>"; };
 		003533F306A5DD8500AB4577 /* PrefsWindow.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PrefsWindow.m; sourceTree = "<group>"; };
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+		003533F706A5DD8500AB4577 /* BridgeController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = BridgeController.h; sourceTree = "<group>"; };
+		003533F806A5DD8500AB4577 /* BridgeController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = BridgeController.m; sourceTree = "<group>"; };
+=======
 		003533F506A5DD8500AB4577 /* ScriptAdditions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ScriptAdditions.h; sourceTree = "<group>"; };
 		003533F606A5DD8500AB4577 /* ScriptAdditions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = ScriptAdditions.m; sourceTree = "<group>"; };
 		003533F706A5DD8500AB4577 /* ScriptController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ScriptController.h; sourceTree = "<group>"; };
 		003533F806A5DD8500AB4577 /* ScriptController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = ScriptController.m; sourceTree = "<group>"; };
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 		003533FA06A5DD8500AB4577 /* GPSController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GPSController.h; sourceTree = "<group>"; };
 		003533FB06A5DD8500AB4577 /* GPSController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GPSController.m; sourceTree = "<group>"; };
 		0035340F06A5DD8500AB4577 /* WaveDriver.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = WaveDriver.h; sourceTree = "<group>"; };
@@ -298,8 +350,11 @@
 		0097241306E51844004307EA /* BIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIImageView.m; sourceTree = "<group>"; };
 		0097243706E51A99004307EA /* BITextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BITextView.h; sourceTree = "<group>"; };
 		0097243806E51A99004307EA /* BITextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BITextView.m; sourceTree = "<group>"; };
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 		009B192106FC83A800E8883A /* ScriptingEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptingEngine.h; sourceTree = "<group>"; };
 		009B192206FC83A800E8883A /* ScriptingEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptingEngine.m; sourceTree = "<group>"; };
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 		009D64F206FF73BA00B0F1EC /* MapViewAreaView.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 30; path = MapViewAreaView.mm; sourceTree = "<group>"; };
 		00A622A706FEE4FB005D248A /* Trace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trace.h; sourceTree = "<group>"; };
 		00A622A806FEE4FB005D248A /* Trace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trace.m; sourceTree = "<group>"; };
@@ -324,13 +379,19 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* KisMAC_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KisMAC_Prefix.pch; sourceTree = "<group>"; };
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 		689FF0710DB9AEF500ED7BE5 /* OUItoVendorDB.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = OUItoVendorDB.pl; sourceTree = "<group>"; };
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 		691CF1AC0E4CC47B0042B146 /* UsbVendorsIntersil.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UsbVendorsIntersil.plist; sourceTree = "<group>"; };
 		691CF1AD0E4CC47C0042B146 /* UsbVendorsRT73.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UsbVendorsRT73.plist; sourceTree = "<group>"; };
 		691CF1AE0E4CC47C0042B146 /* UsbVendorsRT2570.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UsbVendorsRT2570.plist; sourceTree = "<group>"; };
 		691CF1AF0E4CC47C0042B146 /* UsbVendorsRTL8187.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UsbVendorsRTL8187.plist; sourceTree = "<group>"; };
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 		69359CB00FB05DD2008B8722 /* WaveSpectrumDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveSpectrumDriver.h; sourceTree = "<group>"; };
 		69359CB10FB05DD2008B8722 /* WaveSpectrumDriver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveSpectrumDriver.m; sourceTree = "<group>"; };
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 		694A888A0F3CD87E006B819C /* WavePcapDump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WavePcapDump.h; sourceTree = "<group>"; };
 		694A888B0F3CD87E006B819C /* WavePcapDump.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WavePcapDump.m; sourceTree = "<group>"; };
 		697B463D0F0620DC00AC69EB /* WavePluginDeauthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WavePluginDeauthentication.h; sourceTree = "<group>"; };
@@ -373,7 +434,10 @@
 		69BFC5F00F078532008DB1AF /* WavePluginBeaconFlood.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WavePluginBeaconFlood.h; sourceTree = "<group>"; };
 		69BFC5F10F078532008DB1AF /* WavePluginBeaconFlood.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WavePluginBeaconFlood.m; sourceTree = "<group>"; };
 		69DF1ABB0F0D0E40000E9B94 /* KMCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMCommon.h; sourceTree = "<group>"; };
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 		69DF1ABD0F0D0F93000E9B94 /* KMCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMCommon.m; sourceTree = "<group>"; };
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 		6C03D76F09B547F2005B2316 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = Resources/Growl.framework; sourceTree = "<group>"; };
 		6C32713312CFC4070033A649 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		6C41BAAE0AA0B52900E0B411 /* GPSInfoController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GPSInfoController.h; sourceTree = "<group>"; };
@@ -392,11 +456,17 @@
 		87C927290BAA137E0025A6AE /* WaveDriverKismetDrone.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = WaveDriverKismetDrone.m; sourceTree = "<group>"; };
 		87CEBA8009AEF03700AEB0B8 /* GrowlController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GrowlController.h; sourceTree = "<group>"; };
 		87CEBA8109AEF03700AEB0B8 /* GrowlController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GrowlController.m; sourceTree = "<group>"; };
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+		8D1107320486CEB800E47090 /* KisMac2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KisMac2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A505CE401B271A410095C7A0 /* BIGL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BIGL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A505CE431B271A410095C7A0 /* BIGeneric.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BIGeneric.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+=======
 		87FA06B80BF6C69B00A8F24C /* FSWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSWindow.h; sourceTree = "<group>"; };
 		87FA06B90BF6C69B00A8F24C /* FSWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSWindow.m; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* KisMac2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KisMac2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5295C321653C38D00A0B5D9 /* BIGL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BIGL.xcodeproj; path = BIGL/BIGL.xcodeproj; sourceTree = "<group>"; };
 		A5295C3B1653C39700A0B5D9 /* BIGeneric.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BIGeneric.xcodeproj; path = BIGeneric/BIGeneric.xcodeproj; sourceTree = "<group>"; };
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 		A529AD761A20A4A100CD8E1E /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A529AD791A20A4B400CD8E1E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Crack.xib; sourceTree = "<group>"; };
 		A529AD7B1A20A4B400CD8E1E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GPSDialog.xib; sourceTree = "<group>"; };
@@ -414,6 +484,13 @@
 		A529AD931A20A4B400CD8E1E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PrefsTraffic.xib; sourceTree = "<group>"; };
 		A529AD951A20A4B400CD8E1E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/WayPointDialog.xib; sourceTree = "<group>"; };
 		A529AD971A20A4B400CD8E1E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/wepInjection.xib; sourceTree = "<group>"; };
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+		A53536B4180ABCE0008BB6A1 /* md4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = md4.c; sourceTree = "<group>"; };
+		A53536B5180ABCE0008BB6A1 /* md5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = md5.c; sourceTree = "<group>"; };
+		A535396B180B073D008BB6A1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		A5353970180B15B9008BB6A1 /* DESSupport.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = DESSupport.c; sourceTree = "<group>"; };
+		A5353971180B15B9008BB6A1 /* DESSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DESSupport.h; sourceTree = "<group>"; };
+=======
 		A5353684180ABCE0008BB6A1 /* md4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md4.h; sourceTree = "<group>"; };
 		A5353685180ABCE0008BB6A1 /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
 		A53536B4180ABCE0008BB6A1 /* md4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = md4.c; sourceTree = "<group>"; };
@@ -423,11 +500,17 @@
 		A5353970180B15B9008BB6A1 /* DESSupport.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = DESSupport.c; sourceTree = "<group>"; };
 		A5353971180B15B9008BB6A1 /* DESSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DESSupport.h; sourceTree = "<group>"; };
 		A5353973180B1C8D008BB6A1 /* sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha1.h; sourceTree = "<group>"; };
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 		A5353974180B1C99008BB6A1 /* sha1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sha1.c; sourceTree = "<group>"; };
 		A537417719DD457900434C6E /* dmgBackground.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = dmgBackground.tiff; sourceTree = "<group>"; };
 		A537418D19DD4AAC00434C6E /* WaveHelperTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveHelperTest.m; sourceTree = "<group>"; };
 		A537418E19DD4AAC00434C6E /* WaveNetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveNetTest.m; sourceTree = "<group>"; };
 		A537418F19DD4AAC00434C6E /* WavePacketTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WavePacketTest.m; sourceTree = "<group>"; };
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+		A54B4CDC1B6F847B003279DD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DownloadMap.xib; sourceTree = "<group>"; };
+		A55AAF181B6FD30F00B2200B /* OUItoVendorDB.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = OUItoVendorDB.py; sourceTree = "<group>"; };
+=======
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 		A57E64381607BC9700BE1BCA /* AirCrackWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirCrackWrapper.h; sourceTree = "<group>"; };
 		A57E64391607BC9700BE1BCA /* AirCrackWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirCrackWrapper.m; sourceTree = "<group>"; };
 		A57E643A1607BC9700BE1BCA /* LEAP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEAP.h; sourceTree = "<group>"; };
@@ -457,18 +540,33 @@
 		A581FC2B177B36A800C05CE9 /* FCS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCS.m; sourceTree = "<group>"; };
 		A585F7791771DB7100045928 /* HTTPStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPStream.h; sourceTree = "<group>"; };
 		A585F77A1771DB7100045928 /* HTTPStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPStream.m; sourceTree = "<group>"; };
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+		A599CC9B1B82349000C48A5D /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		A599CC9C1B82349000C48A5D /* md4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md4.h; sourceTree = "<group>"; };
+		A599CC9D1B82349000C48A5D /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
+		A599CC9E1B82349000C48A5D /* sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha1.h; sourceTree = "<group>"; };
+		A59E42D71796ADBF00B1139F /* updateHelpIndex.command */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = updateHelpIndex.command; sourceTree = SOURCE_ROOT; };
+		A5A2F59519DD74C20046299A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Resources/Images.xcassets; sourceTree = "<group>"; };
+		A5A2F59919DD9EB40046299A /* spin@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "spin@2x.gif"; sourceTree = "<group>"; };
+=======
 		A59E42D71796ADBF00B1139F /* updateHelpIndex.command */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = updateHelpIndex.command; sourceTree = SOURCE_ROOT; };
 		A5A2F59519DD74C20046299A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Resources/Images.xcassets; sourceTree = "<group>"; };
 		A5A2F59919DD9EB40046299A /* spin@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "spin@2x.gif"; sourceTree = "<group>"; };
 		A5A2F59F19DDA11A0046299A /* greengem.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = greengem.pdf; sourceTree = "<group>"; };
 		A5A2F5A019DDA11A0046299A /* orangegem.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = orangegem.pdf; sourceTree = "<group>"; };
 		A5A2F5A119DDA11A0046299A /* redgem.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = redgem.pdf; sourceTree = "<group>"; };
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 		A5A2F5A519DDA55B0046299A /* NetworkLEAP.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = NetworkLEAP.tif; sourceTree = "<group>"; };
 		A5A2F5A619DDA55B0046299A /* NetworkNoEnc.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = NetworkNoEnc.tif; sourceTree = "<group>"; };
 		A5A2F5A719DDA55B0046299A /* NetworkStrange.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = NetworkStrange.tif; sourceTree = "<group>"; };
 		A5A2F5A819DDA55B0046299A /* NetworkUnkEnc.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = NetworkUnkEnc.tif; sourceTree = "<group>"; };
 		A5A2F5A919DDA55B0046299A /* NetworkWEP.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = NetworkWEP.tif; sourceTree = "<group>"; };
 		A5A2F5AA19DDA55B0046299A /* NetworkWPA.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = NetworkWPA.tif; sourceTree = "<group>"; };
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+		A5A6FA781B289F65006B90E1 /* GBStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBStorage.h; sourceTree = "<group>"; };
+		A5A6FA791B289F65006B90E1 /* GBStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBStorage.m; sourceTree = "<group>"; };
+=======
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -476,14 +574,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 				A5295C451653C3A600A0B5D9 /* BIGeneric.framework in Frameworks */,
 				A5295C461653C3A600A0B5D9 /* BIGL.framework in Frameworks */,
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 				6C03D77009B547F2005B2316 /* Growl.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				00F57BD306A881210035AE2F /* AppleScriptKit.framework in Frameworks */,
 				0093E65506B2A1F300B3357A /* AddressBook.framework in Frameworks */,
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+				A505CE411B271A410095C7A0 /* BIGL.framework in Frameworks */,
 				00F9C64006DB378F00E357F0 /* Security.framework in Frameworks */,
 				00F9C65006DB37E200E357F0 /* Carbon.framework in Frameworks */,
+				A505CE441B271A410095C7A0 /* BIGeneric.framework in Frameworks */,
+=======
+				00F9C64006DB378F00E357F0 /* Security.framework in Frameworks */,
+				00F9C65006DB37E200E357F0 /* Carbon.framework in Frameworks */,
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 				00F9C65106DB37E200E357F0 /* IOKit.framework in Frameworks */,
 				6CA3BCCB09B2A58F00DCB407 /* Accelerate.framework in Frameworks */,
 				6CF938C410A7DFDF00B32F94 /* CoreWLAN.framework in Frameworks */,
@@ -497,10 +605,15 @@
 		0035332D06A5DD5700AB4577 /* Generic */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+				A55AAF181B6FD30F00B2200B /* OUItoVendorDB.py */,
+				0035332E06A5DD5700AB4577 /* example.dump */,
+=======
 				689FF0710DB9AEF500ED7BE5 /* OUItoVendorDB.pl */,
 				0035332E06A5DD5700AB4577 /* example.dump */,
 				0035332F06A5DD5700AB4577 /* KisMAC.scriptSuite */,
 				0035333006A5DD5700AB4577 /* KisMAC.scriptTerminology */,
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 				0035333106A5DD5700AB4577 /* vendor.db */,
 			);
 			name = Generic;
@@ -545,8 +658,11 @@
 		003533A406A5DD8500AB4577 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 				87FA06B80BF6C69B00A8F24C /* FSWindow.h */,
 				87FA06B90BF6C69B00A8F24C /* FSWindow.m */,
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 				003533A706A5DD8500AB4577 /* InfoController.h */,
 				003533A806A5DD8500AB4577 /* InfoController.mm */,
 				003533A906A5DD8500AB4577 /* ScanController.h */,
@@ -592,7 +708,10 @@
 				00875D190708ADB300CACFCB /* WaveHelper.h */,
 				00875D1A0708ADB300CACFCB /* WaveHelper.m */,
 				69DF1ABB0F0D0E40000E9B94 /* KMCommon.h */,
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 				69DF1ABD0F0D0F93000E9B94 /* KMCommon.m */,
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 			);
 			name = Core;
 			path = Sources/Core;
@@ -643,6 +762,16 @@
 			path = PreferencePanes;
 			sourceTree = "<group>";
 		};
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+		003533F406A5DD8500AB4577 /* BridgeController */ = {
+			isa = PBXGroup;
+			children = (
+				003533F706A5DD8500AB4577 /* BridgeController.h */,
+				003533F806A5DD8500AB4577 /* BridgeController.m */,
+			);
+			name = BridgeController;
+			path = Sources/BridgeController;
+=======
 		003533F406A5DD8500AB4577 /* ScriptingCore */ = {
 			isa = PBXGroup;
 			children = (
@@ -655,6 +784,7 @@
 			);
 			name = ScriptingCore;
 			path = Sources/ScriptingCore;
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 			sourceTree = "<group>";
 		};
 		003533F906A5DD8500AB4577 /* Support */ = {
@@ -761,6 +891,10 @@
 		00F57C1606A886350035AE2F /* XIB */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+				A54B4CDB1B6F847B003279DD /* DownloadMap.xib */,
+=======
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 				A529AD781A20A4B400CD8E1E /* Crack.xib */,
 				A529AD7A1A20A4B400CD8E1E /* GPSDialog.xib */,
 				A529AD7C1A20A4B400CD8E1E /* Import.xib */,
@@ -796,14 +930,21 @@
 			isa = PBXGroup;
 			children = (
 				A57E64371607BC9700BE1BCA /* Crypto */,
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 				69359CAF0FB05D47008B8722 /* WaveSpectrumDrivers */,
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 				69A9B3150F04D74B00D1E817 /* WavePlugins */,
 				003533A006A5DD8500AB4577 /* 3rd Party */,
 				003533A406A5DD8500AB4577 /* Controller */,
 				003533B206A5DD8500AB4577 /* Core */,
 				003533D206A5DD8500AB4577 /* Driver */,
 				003533DA06A5DD8500AB4577 /* Preferences */,
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+				003533F406A5DD8500AB4577 /* BridgeController */,
+=======
 				003533F406A5DD8500AB4577 /* ScriptingCore */,
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 				003533F906A5DD8500AB4577 /* Support */,
 				003533FE06A5DD8500AB4577 /* Views */,
 				0035340E06A5DD8500AB4577 /* WaveDrivers */,
@@ -832,6 +973,11 @@
 		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+				A505CE431B271A410095C7A0 /* BIGeneric.framework */,
+				A505CE401B271A410095C7A0 /* BIGL.framework */,
+=======
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
 				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
 				A535396B180B073D008BB6A1 /* Cocoa.framework */,
@@ -910,6 +1056,13 @@
 			path = Resources/UsbDevicesPlist;
 			sourceTree = "<group>";
 		};
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+		69719DAF0F7E928900949310 /* Subprojects */ = {
+			isa = PBXGroup;
+			children = (
+				A5A6FA761B289F65006B90E1 /* GBStorage */,
+				A5353659180ABCDD008BB6A1 /* polarssl */,
+=======
 		69359CAF0FB05D47008B8722 /* WaveSpectrumDrivers */ = {
 			isa = PBXGroup;
 			children = (
@@ -926,6 +1079,7 @@
 				A5353659180ABCDD008BB6A1 /* polarssl */,
 				A5295C3B1653C39700A0B5D9 /* BIGeneric.xcodeproj */,
 				A5295C321653C38D00A0B5D9 /* BIGL.xcodeproj */,
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 			);
 			path = Subprojects;
 			sourceTree = "<group>";
@@ -995,6 +1149,8 @@
 			path = GPSSatInfo;
 			sourceTree = "<group>";
 		};
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 		A5295C331653C38D00A0B5D9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1011,6 +1167,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 		A5353659180ABCDD008BB6A1 /* polarssl */ = {
 			isa = PBXGroup;
 			children = (
@@ -1023,6 +1180,15 @@
 		A5353668180ABCDF008BB6A1 /* include */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+				A599CC9B1B82349000C48A5D /* config.h */,
+				A599CC9C1B82349000C48A5D /* md4.h */,
+				A599CC9D1B82349000C48A5D /* md5.h */,
+				A599CC9E1B82349000C48A5D /* sha1.h */,
+			);
+			name = include;
+			path = include/polarssl;
+=======
 				A535366B180ABCDF008BB6A1 /* polarssl */,
 			);
 			path = include;
@@ -1037,6 +1203,7 @@
 				A5353685180ABCE0008BB6A1 /* md5.h */,
 			);
 			path = polarssl;
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 			sourceTree = "<group>";
 		};
 		A535369A180ABCE0008BB6A1 /* library */ = {
@@ -1092,14 +1259,29 @@
 				A5A2F5A819DDA55B0046299A /* NetworkUnkEnc.tif */,
 				A5A2F5A919DDA55B0046299A /* NetworkWEP.tif */,
 				A5A2F5AA19DDA55B0046299A /* NetworkWPA.tif */,
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 				A5A2F59F19DDA11A0046299A /* greengem.pdf */,
 				A5A2F5A019DDA11A0046299A /* orangegem.pdf */,
 				A5A2F5A119DDA11A0046299A /* redgem.pdf */,
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 			);
 			name = Indicators;
 			path = Resources/Indicators;
 			sourceTree = "<group>";
 		};
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+		A5A6FA761B289F65006B90E1 /* GBStorage */ = {
+			isa = PBXGroup;
+			children = (
+				A5A6FA781B289F65006B90E1 /* GBStorage.h */,
+				A5A6FA791B289F65006B90E1 /* GBStorage.m */,
+			);
+			path = GBStorage;
+			sourceTree = "<group>";
+		};
+=======
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1131,7 +1313,11 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = NO;
 				LastTestingUpgradeCheck = 0600;
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+				LastUpgradeCheck = 0700;
+=======
 				LastUpgradeCheck = 0600;
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 			};
 			buildConfigurationList = 00A915960858D6410093943F /* Build configuration list for PBXProject "KisMac2" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1147,6 +1333,8 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* KisMAC */;
 			projectDirPath = "";
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 			projectReferences = (
 				{
 					ProductGroup = A5295C3C1653C39700A0B5D9 /* Products */;
@@ -1157,6 +1345,7 @@
 					ProjectRef = A5295C321653C38D00A0B5D9 /* BIGL.xcodeproj */;
 				},
 			);
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* KisMac2 */,
@@ -1165,6 +1354,8 @@
 		};
 /* End PBXProject section */
 
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 /* Begin PBXReferenceProxy section */
 		A5295C3A1653C38E00A0B5D9 /* BIGL.framework */ = {
 			isa = PBXReferenceProxy;
@@ -1182,11 +1373,17 @@
 		};
 /* End PBXReferenceProxy section */
 
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 /* Begin PBXResourcesBuildPhase section */
 		8D1107290486CEB800E47090 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+				0035337A06A5DD5700AB4577 /* example.dump in Resources */,
+				A529ADA21A20A4B400CD8E1E /* PrefsMap.xib in Resources */,
+				A5A2F5B019DDA55B0046299A /* NetworkWPA.tif in Resources */,
+=======
 				A5A2F5A419DDA11A0046299A /* redgem.pdf in Resources */,
 				A5A2F5A319DDA11A0046299A /* orangegem.pdf in Resources */,
 				0035337A06A5DD5700AB4577 /* example.dump in Resources */,
@@ -1194,12 +1391,16 @@
 				A5A2F5B019DDA55B0046299A /* NetworkWPA.tif in Resources */,
 				0035337B06A5DD5700AB4577 /* KisMAC.scriptSuite in Resources */,
 				0035337C06A5DD5700AB4577 /* KisMAC.scriptTerminology in Resources */,
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 				0035337D06A5DD5700AB4577 /* vendor.db in Resources */,
 				0035339906A5DD5700AB4577 /* usbprism2_prep.sh in Resources */,
 				A529AD981A20A4B400CD8E1E /* Crack.xib in Resources */,
 				A529ADA41A20A4B400CD8E1E /* PrefsSounds.xib in Resources */,
 				0035339A06A5DD5700AB4577 /* usbprism2_unprep.sh in Resources */,
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 				A5A2F5A219DDA11A0046299A /* greengem.pdf in Resources */,
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 				A529AD9C1A20A4B400CD8E1E /* MainMenu.xib in Resources */,
 				A529ADA61A20A4B400CD8E1E /* WayPointDialog.xib in Resources */,
 				A529AD771A20A4A100CD8E1E /* Localizable.strings in Resources */,
@@ -1218,6 +1419,10 @@
 				691CF1B00E4CC47C0042B146 /* UsbVendorsIntersil.plist in Resources */,
 				691CF1B10E4CC47C0042B146 /* UsbVendorsRT73.plist in Resources */,
 				691CF1B20E4CC47C0042B146 /* UsbVendorsRT2570.plist in Resources */,
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+				A54B4CDD1B6F847B003279DD /* DownloadMap.xib in Resources */,
+=======
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 				691CF1B30E4CC47C0042B146 /* UsbVendorsRTL8187.plist in Resources */,
 				A529AD9F1A20A4B400CD8E1E /* PrefsDriver.xib in Resources */,
 				A529AD9E1A20A4B400CD8E1E /* PrefsAdvanced.xib in Resources */,
@@ -1247,7 +1452,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+			shellScript = "python \"$PROJECT_DIR/Resources/Generic/OUItoVendorDB.py\"";
+=======
 			shellScript = "\"$PROJECT_DIR/Resources/Generic/OUItoVendorDB.pl\" -d /tmp/OUI.txt \"$PROJECT_DIR/Resources/Generic/vendor.db\"";
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 		};
 		6910302B0F9E313700C4E466 /* Create DMG */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1308,8 +1517,12 @@
 				0035346A06A5DD8500AB4577 /* PrefsTraffic.m in Sources */,
 				0035346E06A5DD8500AB4577 /* PrefsController.m in Sources */,
 				0035347006A5DD8500AB4577 /* PrefsWindow.m in Sources */,
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+				0035347406A5DD8500AB4577 /* BridgeController.m in Sources */,
+=======
 				0035347206A5DD8500AB4577 /* ScriptAdditions.m in Sources */,
 				0035347406A5DD8500AB4577 /* ScriptController.m in Sources */,
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 				0035347606A5DD8500AB4577 /* GPSController.m in Sources */,
 				0035348806A5DD8500AB4577 /* WaveDriver.m in Sources */,
 				0035348C06A5DD8500AB4577 /* WaveDriverAirport.m in Sources */,
@@ -1322,10 +1535,17 @@
 				00971F3F06E4FA6F004307EA /* BIView.m in Sources */,
 				00971F5706E4FFBF004307EA /* BISubView.m in Sources */,
 				0097241506E51844004307EA /* BIImageView.m in Sources */,
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+				A5A6FA7E1B289F65006B90E1 /* GBStorage.m in Sources */,
+				0097243A06E51A99004307EA /* BITextView.m in Sources */,
+				0090AC8606E5E3250096C5FC /* MapControlPanel.m in Sources */,
+				00E1426E06E62A44009DC179 /* PointView.m in Sources */,
+=======
 				0097243A06E51A99004307EA /* BITextView.m in Sources */,
 				0090AC8606E5E3250096C5FC /* MapControlPanel.m in Sources */,
 				00E1426E06E62A44009DC179 /* PointView.m in Sources */,
 				009B192406FC83A800E8883A /* ScriptingEngine.m in Sources */,
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 				00A622AA06FEE4FB005D248A /* Trace.m in Sources */,
 				009D64F306FF73BA00B0F1EC /* MapViewAreaView.mm in Sources */,
 				00875D1C0708ADB300CACFCB /* WaveHelper.m in Sources */,
@@ -1338,7 +1558,10 @@
 				6C94AA300ADF3FBC001BE161 /* GPSSatInfo.m in Sources */,
 				6CF9EE6F0B6E9D2A00F54524 /* WaveDriverKismet.m in Sources */,
 				87C9272B0BAA137E0025A6AE /* WaveDriverKismetDrone.m in Sources */,
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
 				87FA06BB0BF6C69C00A8F24C /* FSWindow.m in Sources */,
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 				69AF11750E4B292800B1D770 /* IntersilJack.mm in Sources */,
 				69AF11780E4B292800B1D770 /* RT73Jack.mm in Sources */,
 				69AF117A0E4B292800B1D770 /* RalinkJack.mm in Sources */,
@@ -1356,9 +1579,13 @@
 				69BFC5770F077867008DB1AF /* WavePluginAuthenticationFlood.m in Sources */,
 				69BFC5F30F078532008DB1AF /* WavePluginBeaconFlood.m in Sources */,
 				A5353826180ABCE1008BB6A1 /* md4.c in Sources */,
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+				694A888D0F3CD87E006B819C /* WavePcapDump.m in Sources */,
+=======
 				69DF1ABE0F0D0F93000E9B94 /* KMCommon.m in Sources */,
 				694A888D0F3CD87E006B819C /* WavePcapDump.m in Sources */,
 				69359CB30FB05DD2008B8722 /* WaveSpectrumDriver.m in Sources */,
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 				6C461C6F12CEC58100156CBF /* WavePluginMidi.m in Sources */,
 				A57E644D1607BC9700BE1BCA /* AirCrackWrapper.m in Sources */,
 				A57E644F1607BC9700BE1BCA /* LEAP.m in Sources */,
@@ -1524,6 +1751,17 @@
 			name = wepInjection.xib;
 			sourceTree = "<group>";
 		};
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+		A54B4CDB1B6F847B003279DD /* DownloadMap.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A54B4CDC1B6F847B003279DD /* en */,
+			);
+			name = DownloadMap.xib;
+			sourceTree = "<group>";
+		};
+=======
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -1539,6 +1777,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
 					"$(SRCROOT)/Resources",
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+					"$(BUILT_PRODUCTS_DIR)",
+=======
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1546,18 +1788,30 @@
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/Subprojects/polarssl/include",
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+					"$(SRCROOT)/Subprojects/BIGeneric/**",
+				);
+				INFOPLIST_FILE = Resources/Info.plist;
+				INSTALL_PATH = /Applications;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+=======
 					"$(SRCROOT)/Subprojects/BIGeneric",
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = /Applications;
 				OTHER_CFLAGS = "";
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 				OTHER_LDFLAGS = (
 					"-lcrypto",
 					"-lpcap",
 					"-framework",
 					Apple80211,
 				);
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+				PRODUCT_BUNDLE_IDENTIFIER = com.igrsoft.kismac;
+				PRODUCT_NAME = KisMac2;
+=======
 				PRODUCT_NAME = KisMac2;
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -1565,6 +1819,7 @@
 					"-Wno-unknown-pragmas",
 					"-Wall",
 				);
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1605,24 +1860,40 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
 					"$(SRCROOT)/Resources",
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+					"$(BUILT_PRODUCTS_DIR)",
+=======
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = KisMAC_Prefix.pch;
 				GCC_UNROLL_LOOPS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/Subprojects/polarssl/include",
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+					"$(SRCROOT)/Subprojects/BIGeneric/**",
+				);
+				INFOPLIST_FILE = Resources/Info.plist;
+				INSTALL_PATH = /Applications;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+=======
 					"$(SRCROOT)/Subprojects/BIGeneric",
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = /Applications;
 				OTHER_CFLAGS = "";
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 				OTHER_LDFLAGS = (
 					"-lcrypto",
 					"-lpcap",
 					"-framework",
 					Apple80211,
 				);
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+				PRODUCT_BUNDLE_IDENTIFIER = com.igrsoft.kismac;
+				PRODUCT_NAME = KisMac2;
+=======
 				PRODUCT_NAME = KisMac2;
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -1630,6 +1901,7 @@
 					"-Wno-unknown-pragmas",
 					"-Wall",
 				);
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

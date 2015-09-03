@@ -44,13 +44,21 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleGetInfoString</key>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+	<string>KisMAC 0.3.4, © 2002-2013 Geoffrey Kruse &amp; KisMAC Community (Rewrited by Vitalii Parovishnyk &amp; IGR Software)</string>
+=======
 	<string>KisMAC 0.3, © 2002-2013 Geoffrey Kruse &amp; KisMAC Community (Rewrited by Vitalii Parovishnyk &amp; IGR Software)</string>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 	<key>CFBundleHelpBookFolder</key>
 	<string>KisMACHelp</string>
 	<key>CFBundleHelpBookName</key>
 	<string>KisMAC Help</string>
 	<key>CFBundleIdentifier</key>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+=======
 	<string>com.igrsoft.kismac</string>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

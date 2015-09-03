@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
+=======
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -89,7 +96,11 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" id="1193">
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+                                <rect key="frame" x="48" y="1" width="462" height="33"/>
+=======
                                 <rect key="frame" x="48" y="4" width="462" height="30"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                 <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" id="2382">
                                     <font key="font" metaFont="systemBold" size="24"/>
@@ -187,6 +198,10 @@
                 <outlet property="delegate" destination="466" id="730"/>
                 <outlet property="initialFirstResponder" destination="1353" id="1444"/>
             </connections>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+            <point key="canvasLocation" x="-0.5" y="-33"/>
+=======
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
         </window>
         <menu title="MainMenu" systemMenu="main" id="29" userLabel="MainMenu">
             <items>
@@ -249,7 +264,11 @@
                         <items>
                             <menuItem title="New" keyEquivalent="n" id="906">
                                 <connections>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+                                    <action selector="tryNew:" target="1397" id="7E1-qL-Re6"/>
+=======
                                     <action selector="new:" target="1397" id="1429"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
                                 </connections>
                             </menuItem>
                             <menuItem title="Open..." keyEquivalent="o" id="920">
@@ -553,6 +572,16 @@
                                     <action selector="selChannel:" target="466" id="1040"/>
                                 </connections>
                             </menuItem>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+                            <menuItem isSeparatorItem="YES" id="MCe-4B-Knt"/>
+                            <menuItem title="Custom Channel" tag="14" id="pjv-MR-e1o">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="selChannel:" target="466" id="qSg-qM-jQF"/>
+                                </connections>
+                            </menuItem>
+=======
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
                         </items>
                     </menu>
                 </menuItem>
@@ -1027,7 +1056,11 @@ CA
                                 <rect key="frame" x="0.0" y="0.0" width="204" height="16"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+=======
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
                                     <tableColumn width="201" minWidth="16" maxWidth="1000" id="508">
@@ -1083,10 +1116,17 @@ CA
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="14" id="723">
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+                                <rect key="frame" x="0.0" y="0.0" width="276.5" height="16"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <size key="intercellSpacing" width="3" height="2"/>
+                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+=======
                                 <rect key="frame" x="0.0" y="0.0" width="276" height="16"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
                                     <tableColumn identifier="key" editable="NO" width="79" minWidth="40" maxWidth="1000" id="721">
@@ -1133,7 +1173,10 @@ CA
                 </scrollView>
             </subviews>
         </customView>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
         <customObject id="1103" userLabel="Font Manager" customClass="NSFontManager"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
         <customObject id="1137" userLabel="WaveContainer" customClass="WaveContainer"/>
         <customObject id="1180" userLabel="TrafficController" customClass="TrafficController">
             <connections>
@@ -1159,7 +1202,11 @@ CA
                                 <rect key="frame" x="0.0" y="0.0" width="775" height="16"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+=======
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
                                     <tableColumn identifier="id" editable="NO" width="20" minWidth="20" maxWidth="100" id="2091">
@@ -1175,7 +1222,11 @@ CA
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                     </tableColumn>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+                                    <tableColumn identifier="channel" editable="NO" width="25" minWidth="15" maxWidth="1000" id="1204">
+=======
                                     <tableColumn identifier="channel" editable="NO" width="20" minWidth="15" maxWidth="1000" id="1204">
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Ch">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1318,7 +1369,11 @@ CA
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                     </tableColumn>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+                                    <tableColumn identifier="lastseen" editable="NO" width="150" minWidth="55" maxWidth="1000" id="1205">
+=======
                                     <tableColumn identifier="lastseen" editable="NO" width="140.149" minWidth="54.149000000000001" maxWidth="1000" id="1205">
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Last Seen">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1331,7 +1386,11 @@ CA
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                     </tableColumn>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+                                    <tableColumn identifier="challengeResponse" editable="NO" width="50" minWidth="40" maxWidth="50" id="1210">
+=======
                                     <tableColumn identifier="challengeResponse" editable="NO" width="40" minWidth="40" maxWidth="40" id="1210">
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="right" title="Ch/Re">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1417,10 +1476,17 @@ CA
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="14" headerView="2432" id="1244">
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+                                                    <rect key="frame" x="0.0" y="0.0" width="292" height="16"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                                    <size key="intercellSpacing" width="3" height="2"/>
+                                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+=======
                                                     <rect key="frame" x="0.0" y="0.0" width="277" height="16"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                     <tableColumns>
                                                         <tableColumn identifier="key" editable="NO" width="101" minWidth="40" maxWidth="1000" id="1236">
@@ -1515,6 +1581,15 @@ CA
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="14" headerView="2429" id="1240">
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+                                                    <rect key="frame" x="0.0" y="0.0" width="439" height="16"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <size key="intercellSpacing" width="3" height="2"/>
+                                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                                    <tableColumns>
+                                                        <tableColumn identifier="client" editable="NO" width="82.539000000000001" minWidth="39.039000000000001" maxWidth="1000" id="1233">
+=======
                                                     <rect key="frame" x="0.0" y="0.0" width="426" height="16"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
@@ -1522,6 +1597,7 @@ CA
                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                     <tableColumns>
                                                         <tableColumn identifier="client" editable="NO" width="84.039000000000001" minWidth="39.039000000000001" maxWidth="1000" id="1233">
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Client">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1534,7 +1610,11 @@ CA
                                                             </textFieldCell>
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                         </tableColumn>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+                                                        <tableColumn identifier="vendor" editable="NO" width="49.5" minWidth="10" maxWidth="1000" id="1234">
+=======
                                                         <tableColumn identifier="vendor" editable="NO" width="49" minWidth="10" maxWidth="1000" id="1234">
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Vendor">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1547,7 +1627,11 @@ CA
                                                             </textFieldCell>
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                         </tableColumn>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+                                                        <tableColumn identifier="signal" editable="NO" width="34.5" minWidth="10" maxWidth="1000" id="1242">
+=======
                                                         <tableColumn identifier="signal" editable="NO" width="33" minWidth="10" maxWidth="1000" id="1242">
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Signal">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1560,7 +1644,11 @@ CA
                                                             </textFieldCell>
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                         </tableColumn>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+                                                        <tableColumn identifier="sent" editable="NO" width="50" minWidth="10" maxWidth="1000" id="1230">
+=======
                                                         <tableColumn identifier="sent" editable="NO" width="48" minWidth="10" maxWidth="1000" id="1230">
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="sent Bytes">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1573,7 +1661,11 @@ CA
                                                             </textFieldCell>
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                         </tableColumn>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+                                                        <tableColumn identifier="received" editable="NO" width="53.607419999999998" minWidth="10" maxWidth="1000" id="1232">
+=======
                                                         <tableColumn identifier="received" editable="NO" width="52.607419999999998" minWidth="10" maxWidth="1000" id="1232">
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="recv. Bytes">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1586,7 +1678,11 @@ CA
                                                             </textFieldCell>
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                         </tableColumn>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+                                                        <tableColumn identifier="ipa" width="64.509770000000003" minWidth="60.009770000000003" maxWidth="1000" id="1513">
+=======
                                                         <tableColumn identifier="ipa" width="62.009770000000003" minWidth="60.009770000000003" maxWidth="1000" id="1513">
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="IP Address">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1599,7 +1695,11 @@ CA
                                                             </textFieldCell>
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                         </tableColumn>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+                                                        <tableColumn identifier="lastseen" editable="NO" width="85.649000000000001" minWidth="54.149900000000002" maxWidth="1000" id="1231">
+=======
                                                         <tableColumn identifier="lastseen" editable="NO" width="91.149000000000001" minWidth="54.149900000000002" maxWidth="1000" id="1231">
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Last Seen">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1658,7 +1758,11 @@ CA
                 </openGLView>
             </subviews>
         </customView>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+        <customObject id="1397" userLabel="ScriptController" customClass="BridgeController"/>
+=======
         <customObject id="1397" userLabel="ScriptController" customClass="ScriptController"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
         <menu title="Menu" id="1446" userLabel="Search Menu">
             <items>
                 <menuItem title="Search Category" id="1525"/>
@@ -1708,7 +1812,10 @@ CA
                 <menuItem title="Clear Recent Searches" tag="1002" id="1448"/>
             </items>
         </menu>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+=======
         <imageCell controlSize="small" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="2093" userLabel="Image Cell"/>
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
     </objects>
     <resources>
         <image name="NSApplicationIcon" width="128" height="128"/>

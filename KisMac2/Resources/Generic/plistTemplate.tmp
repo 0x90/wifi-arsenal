@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>01:00:0C</key>
+	<string>Cisco-multicast</string>
+	<key>01:00:10</key>
+	<string>Hughes-multicast</string>
+	<key>01:00:1D</key>
+	<string>Enterasys-multicast</string>
+	<key>01:00:5E</key>
+	<string>multicast</string>
+	<key>01:00:5E:00:00:01</key>
+	<string>all-hosts-multicast</string>
+	<key>01:00:5E:00:00:02</key>
+	<string>all-routers-multicast</string>
+	<key>01:00:5E:00:00:04</key>
+	<string>DVMRP-multicast</string>
+	<key>01:00:5E:00:00:05</key>
+	<string>OSPF-multicast</string>
+	<key>01:00:5E:00:00:06</key>
+	<string>OSPF-designated-multicast</string>
+	<key>01:00:5E:00:00:09</key>
+	<string>RIP2-multicast</string>
+	<key>01:00:5E:00:00:0C</key>
+	<string>DHCP-agent-multicast</string>
+	<key>01:00:5E:00:00:0D</key>
+	<string>PIM-multicast</string>
+	<key>01:00:5E:00:00:0E</key>
+	<string>RSVP-encapsulation</string>
+	<key>01:00:5E:00:00:10</key>
+	<string>IGRP-multicast</string>
+	<key>01:00:5E:00:00:12</key>
+	<string>VRRP-multicast</string>
+	<key>01:00:5E:00:00:EB</key>
+	<string>DNS-multicast</string>
+	<key>01:00:5E:00:01:01</key>
+	<string>NTP-multicast</string>
+	<key>01:00:5E:00:01:08</key>
+	<string>NIS-plus-multicast</string>
+	<key>01:00:5E:00:01:8D</key>
+	<string>DHCP-server-multicast</string>
+	<key>01:00:5E:00:07:06</key>
+	<string>Tivoli-multicast</string>
+	<key>01:00:5E:00:07:13</key>
+	<string>PolyCom-multicast</string>

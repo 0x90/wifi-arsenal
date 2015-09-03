@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+   LastUpgradeVersion = "0700"
+=======
    LastUpgradeVersion = "0600"
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -29,6 +33,11 @@
       buildConfiguration = "Release">
       <Testables>
       </Testables>
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+      <AdditionalOptions>
+      </AdditionalOptions>
+=======
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -38,6 +47,10 @@
       buildConfiguration = "Release"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
+<<<<<<< 651cabc6a59177b5257d540dbc8b5321710c46ca
+      debugServiceExtension = "internal"
+=======
+>>>>>>> Merge branch 'master' of https://github.com/0x90/wifi-arsenal
       allowLocationSimulation = "YES">
       <MacroExpansion>
          <BuildableReference
