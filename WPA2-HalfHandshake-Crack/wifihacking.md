@@ -20,7 +20,7 @@ There are different attacks one can perform depending on a number of factors, ho
  * **Content inspection:** View resources being sent to and from a user 
  * **Content injection:** Send a user malicious content they didn't ask for
 
-Note: Sending packets (generally associated with _Content injection_ and _Denial of Service_) is a destructive process. Your device has to put out RF signals to perform these attacks, and they can be **triangulated back to your location**. Reading packets from around you (generally associated with _Content inspection_) is a non-destructive process. It's impossible for an outside observer to know if your computer is reading packets or not, even if those packets weren't explicitly sent to your device.
+Note: Sending packets (generally associated with _Content injection_ and _Denial of Service_) is a destructive process. Your device has to put out RF signals to perform these attacks, and they can be **trilaterated back to your location**. Reading packets from around you (generally associated with _Content inspection_) is a non-destructive process. It's impossible for an outside observer to know if your computer is reading packets or not, even if those packets weren't explicitly sent to your device.
 
 I'll be talking about the types of situations you can perform each type of attack.  
 
@@ -155,7 +155,7 @@ Aircrack does not have a built in way of doing this so I wrote a tool for it see
 
 Once cracked, you can throw up an ad-hoc network and have the client probing for that network connect to you.
 
-##Triangulating clients
+##Trilaterating clients
 
 You'll notice from the above airodump outputs, PWR is an output for each client.
 

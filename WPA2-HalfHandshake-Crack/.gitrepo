@@ -6,6 +6,6 @@
 [subrepo]
 	remote = https://github.com/dxa4481/WPA2-HalfHandshake-Crack
 	branch = master
-	commit = 0d564b1dd3221e7d78cbb4c329646a9352a0e087
-	parent = f313210e8b630cdf2a7e3880a590913fcb010c4f
+	commit = 84fa6be2196f65131cd8c6444a598907d5815318
+	parent = b4b216cec3809650edd2fe7ab582781f2018c550
 	cmdver = 0.2.0
