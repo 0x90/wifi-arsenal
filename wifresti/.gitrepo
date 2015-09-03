@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/LionSec/wifresti
+	branch = master
+	commit = f06a4fe60d9514a64a270776ee0d68cbae988ceb
+	parent = db2cb697fc146b22d5b7b0259ffdd21172c45927
+	cmdver = 0.2.0
