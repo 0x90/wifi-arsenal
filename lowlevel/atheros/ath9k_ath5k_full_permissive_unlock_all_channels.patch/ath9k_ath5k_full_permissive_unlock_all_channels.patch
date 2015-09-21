@@ -1,0 +1,64 @@
+--- regd.c.bk	2013-06-03 23:28:53.699436203 +0200
++++ regd.c	2013-06-03 23:39:01.531794715 +0200
+@@ -60,6 +60,21 @@
+ #define ATH9K_5GHZ_NO_MIDBAND	ATH9K_5GHZ_5150_5350, \
+ 				ATH9K_5GHZ_5725_5850
+ 
++/* My permissive rules */
++#define ATH9K_2ALL		REG_RULE(2412-10, 2484+10, 40, 0, 20, 0)
++#define ATH9K_5ALL		REG_RULE(5040-10, 5850+10, 40, 0, 20, 0)
++#define ATH9K_ALL		ATH9K_2ALL, \
++				ATH9K_5ALL
++
++/* Permissive rules for all */
++static const struct ieee80211_regdomain ath_world_regdom_full_permissive = {
++        .n_reg_rules = 2,
++        .alpha2 =  "99",
++        .reg_rules = {
++                ATH9K_ALL,
++        }
++};
++
+ /* Can be used for:
+  * 0x60, 0x61, 0x62 */
+ static const struct ieee80211_regdomain ath_world_regdom_60_61_62 = {
+@@ -144,20 +159,21 @@
+ 	case 0x60:
+ 	case 0x61:
+ 	case 0x62:
+-		return &ath_world_regdom_60_61_62;
++		/*return &ath_world_regdom_60_61_62;*/
+ 	case 0x63:
+ 	case 0x65:
+-		return &ath_world_regdom_63_65;
++		/*return &ath_world_regdom_63_65;*/
+ 	case 0x64:
+-		return &ath_world_regdom_64;
++		/*return &ath_world_regdom_64;*/
+ 	case 0x66:
+ 	case 0x69:
+-		return &ath_world_regdom_66_69;
++		/*return &ath_world_regdom_66_69;*/
+ 	case 0x67:
+ 	case 0x68:
+ 	case 0x6A:
+ 	case 0x6C:
+-		return &ath_world_regdom_67_68_6A_6C;
++		/*return &ath_world_regdom_67_68_6A_6C;*/
++		return &ath_world_regdom_full_permissive;
+ 	default:
+ 		WARN_ON(1);
+ 		return ath_default_world_regdomain();
+@@ -318,10 +334,10 @@
+ 		 * - If AP mode does not yet support radar detection/DFS
+ 		 *   do not allow AP mode
+ 		 */
+-		if (!(ch->flags & IEEE80211_CHAN_DISABLED))
++		/*if (!(ch->flags & IEEE80211_CHAN_DISABLED))
+ 			ch->flags |= IEEE80211_CHAN_RADAR |
+ 				     IEEE80211_CHAN_NO_IBSS |
+-				     IEEE80211_CHAN_PASSIVE_SCAN;
++				     IEEE80211_CHAN_PASSIVE_SCAN;*/
+ 	}
+ }
+ 
