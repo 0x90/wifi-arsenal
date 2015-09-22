@@ -1,0 +1,11 @@
+#!/bin/sh
+
+VALUE=${1:-}
+DEBUG_ANI=/sys/kernel/debug/ieee80211/phy0/ath9k/ani
+
+if [ -z "$VALUE" ]; then
+	cat ${DEBUG_ANI}
+else
+	echo "${VALUE}" > ${DEBUG_ANI}
+fi
+

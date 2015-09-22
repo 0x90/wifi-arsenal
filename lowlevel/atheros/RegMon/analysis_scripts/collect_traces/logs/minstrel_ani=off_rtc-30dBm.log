@@ -1,0 +1,284 @@
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+Experiment:
+	"minstrel_ani=off_rtc-30dBm"
+	Minstrel channel coherence based rate control
+
+Setup:
+	Two PCEngines Alix nodes set up on a table, one as AP
+	and the other one acting as a station where the AP is sending iperf
+	traffic to the STA. (download scenario).
+
+	iperf		iperf
+	sending ----->	receiving
+	[ ap ]		[ sta ]
+
+	The measurement invovles multiple packet sizes (1500) for both
+	TCP and UDP. For each packet size, TCP transmits 500MB while UDP
+	packets are sent with multiple packet rates (50 200 600 1200 pkt/s)
+	for the duration of 240 s.
+
+		AP		sta
+	lan	10.1.0.1		10.1.0.2
+	wifi	10.10.0.1	10.10.0.2
+
+	In this setup, we simulate changes to the channel by using a Vaunix
+	Lab Brick Digital Attenuator and alternating between +0
+	and +30 dBm attenuation.
+
+	The channel coherence time (= time between attenuation switches) is
+	measured for each of the following durations:
+	20000 50 100 1000
+	We perform 1 runs for each interval setting.
+
+Time:
+	2015/05/13 18:23:32
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+18:23:32: copying files ...
+18:23:32: copying files/add_monitor.sh to 10.1.0.1:/usr/sbin/add_monitor
+18:23:36: copying files/measurement.sh to 10.1.0.1:/etc/init.d/
+18:23:39: copying files/measurement.sh to 10.1.0.1:/usr/sbin/measurement
+18:23:43: copying files/ani to 10.1.0.1:/usr/sbin/ani
+18:23:46: copying files/netcat-trace-server to 10.1.0.1:/etc/init.d/
+18:23:50: copying files/add_monitor.sh to 10.1.0.2:/usr/sbin/add_monitor
+18:23:53: copying files/measurement.sh to 10.1.0.2:/etc/init.d/
+18:23:57: copying files/measurement.sh to 10.1.0.2:/usr/sbin/measurement
+18:24:00: copying files/ani to 10.1.0.2:/usr/sbin/ani
+18:24:04: copying files/netcat-trace-server to 10.1.0.2:/etc/init.d/
+18:24:08: setting up monitor interfaces ...
+18:24:08: ssh on 10.1.0.2: add_monitor
+creating monitor interface mon0
+18:24:11: ssh on 10.1.0.1: add_monitor
+creating monitor interface mon0
+18:24:15: starting experiment ...
+18:24:15: [ OK ] creating directory './traces//minstrel_ani=off_rtc'
+18:24:15: --- measuring TCP ---
+18:24:15: stopping all previous iperf instances
+18:24:15: ssh on 10.1.0.1: killall iperf 2>/dev/null
+18:24:18: ssh on 10.1.0.2: killall iperf 2>/dev/null
+18:24:22: stopping all previous iperf instances
+18:24:22: ssh on 10.1.0.1: /etc/init.d/netcat-trace-server restart 10
+Starting netcat server on port 8000 ...
+Starting netcat server on port 8001 ...
+Starting netcat server on port 8002 ...
+Starting netcat server on port 8003 ...
+Starting netcat server on port 8004 ...
+Starting netcat server on port 8005 ...
+Starting netcat server on port 8006 ...
+Starting netcat server on port 8007 ...
+Starting netcat server on port 8008 ...
+Starting netcat server on port 8009 ...
+18:24:25: ssh on 10.1.0.2: /etc/init.d/netcat-trace-server restart 10
+Starting netcat server on port 8000 ...
+Starting netcat server on port 8001 ...
+Starting netcat server on port 8002 ...
+Starting netcat server on port 8003 ...
+Starting netcat server on port 8004 ...
+Starting netcat server on port 8005 ...
+Starting netcat server on port 8006 ...
+Starting netcat server on port 8007 ...
+Starting netcat server on port 8008 ...
+Starting netcat server on port 8009 ...
+18:24:34: nc on 10.1.0.1:8003: /usr/sbin/hping3 10.10.0.255 --udp --baseport 8888 --destport 8888 -e "START_ATT=30" -c 1 --fast 2>/dev/null 1>/dev/null ; exit
+18:24:36: [ OK ] preparing attenuator log file
+18:24:36: # sudo ./attenuator_lab_brick -r ms -f ./wf_att.csv -l ./attenuator/attenuator_proto=tcp_cct=20000.log
+18:24:36: starting attenuation: 0 <-> 30, PID: 10158
+18:24:41: starting TCP iperf server on 10.1.0.2
+18:24:41: restarting wifi on 10.1.0.2 ...
+18:24:41: nc on 10.1.0.2:8001: /usr/bin/iperf -s -p 12000; exit
+18:24:41: nc on 10.1.0.2:8002: wifi; exit
+------------------------------------------------------------
+Server listening on TCP port 12000
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+18:25:02: nc on 10.1.0.2:8009: add_monitor; exit
+creating monitor interface mon0
+18:25:03: == Round 1: round=1_proto=tcp_size=1500_data=500MB_cct=20000_run=1
+18:25:03: ssh on 10.1.0.1: /etc/init.d/measurement.sh start round=1_proto=tcp_size=1500_data=500MB_cct=20000_run=1
+starting traces for round=1_proto=tcp_size=1500_data=500MB_cct=20000_run=1... done
+18:25:07: ssh on 10.1.0.2: /etc/init.d/measurement.sh start round=1_proto=tcp_size=1500_data=500MB_cct=20000_run=1
+starting traces for round=1_proto=tcp_size=1500_data=500MB_cct=20000_run=1... done
+18:25:16: nc on 10.1.0.1:8003: /usr/sbin/hping3 10.10.0.255 --udp --baseport 8888 --destport 8888 -e "START_round=1_proto=tcp_size=1500_data=500MB_cct=20000_run=1" -c 1 --fast 2>/dev/null 1>/dev/null ; exit
+18:25:20: iperf: starting on AP
+18:25:20: nc on 10.1.0.1:8004: touch /tmp/iperf.lock; iperf -c 10.10.0.2 -p 12000 -n 500MB; rm /tmp/iperf.lock; exit
+------------------------------------------------------------
+Client connecting to 10.10.0.2, TCP port 12000
+TCP window size: 43.8 KByte (default)
+------------------------------------------------------------
+[  4] local 10.10.0.1 port 40102 connected with 10.10.0.2 port 12000
+[  5] local 10.10.0.2 port 12000 connected with 10.10.0.1 port 40102
+[ ID] Interval       Transfer     Bandwidth
+[  4]  0.0-150.0 sec   500 MBytes  28.0 Mbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  5]  0.0-150.6 sec   500 MBytes  27.8 Mbits/sec
+18:27:51: iperf: client done on AP
+18:27:51: nc on 10.1.0.1:8003: /usr/sbin/hping3 10.10.0.255 --udp --baseport 8888 --destport 8888 -e "STOP_round=1_proto=tcp_size=1500_data=500MB_cct=20000_run=1" -c 1 --fast 2>/dev/null 1>/dev/null ; exit
+18:27:53: ssh on 10.1.0.1: /etc/init.d/measurement.sh stop
+stopping traces for ... done
+18:27:57: ssh on 10.1.0.2: /etc/init.d/measurement.sh stop
+stopping traces for ... done
+18:28:01: stopping all iperf instances ...
+18:28:01: nc on 10.1.0.2:8007: killall iperf 2>/dev/null; exit
+18:28:02: nc on 10.1.0.1:8007: killall iperf 2>/dev/null; exit
+18:28:03: collecting traces ...
+18:28:35: [ OK ] terminating Attenuator control (10158)
+18:28:35: [ OK ] copying attenuator log file to traces
+18:29:00: nc on 10.1.0.1:8003: /usr/sbin/hping3 10.10.0.255 --udp --baseport 8888 --destport 8888 -e "START_ATT=30" -c 1 --fast 2>/dev/null 1>/dev/null ; exit
+18:29:02: [ OK ] preparing attenuator log file
+18:29:02: # sudo ./attenuator_lab_brick -r ms -f ./wf_att.csv -l ./attenuator/attenuator_proto=tcp_cct=50.log
+18:29:02: starting attenuation: 0 <-> 30, PID: 10426
+18:29:07: starting TCP iperf server on 10.1.0.2
+18:29:07: restarting wifi on 10.1.0.2 ...
+18:29:07: nc on 10.1.0.2:8001: /usr/bin/iperf -s -p 12000; exit
+18:29:07: nc on 10.1.0.2:8002: wifi; exit
+------------------------------------------------------------
+Server listening on TCP port 12000
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+18:29:29: nc on 10.1.0.2:8009: add_monitor; exit
+creating monitor interface mon0
+18:29:30: == Round 2: round=2_proto=tcp_size=1500_data=500MB_cct=50_run=1
+18:29:30: ssh on 10.1.0.1: /etc/init.d/measurement.sh start round=2_proto=tcp_size=1500_data=500MB_cct=50_run=1
+starting traces for round=2_proto=tcp_size=1500_data=500MB_cct=50_run=1... done
+18:29:33: ssh on 10.1.0.2: /etc/init.d/measurement.sh start round=2_proto=tcp_size=1500_data=500MB_cct=50_run=1
+starting traces for round=2_proto=tcp_size=1500_data=500MB_cct=50_run=1... done
+18:29:42: nc on 10.1.0.1:8003: /usr/sbin/hping3 10.10.0.255 --udp --baseport 8888 --destport 8888 -e "START_round=2_proto=tcp_size=1500_data=500MB_cct=50_run=1" -c 1 --fast 2>/dev/null 1>/dev/null ; exit
+18:29:46: iperf: starting on AP
+18:29:46: nc on 10.1.0.1:8004: touch /tmp/iperf.lock; iperf -c 10.10.0.2 -p 12000 -n 500MB; rm /tmp/iperf.lock; exit
+------------------------------------------------------------
+Client connecting to 10.10.0.2, TCP port 12000
+TCP window size: 43.8 KByte (default)
+------------------------------------------------------------
+[  4] local 10.10.0.1 port 40103 connected with 10.10.0.2 port 12000
+[  5] local 10.10.0.2 port 12000 connected with 10.10.0.1 port 40103
+[ ID] Interval       Transfer     Bandwidth
+[  4]  0.0-190.8 sec   500 MBytes  22.0 Mbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  5]  0.0-191.1 sec   500 MBytes  21.9 Mbits/sec
+18:32:58: iperf: client done on AP
+18:32:58: nc on 10.1.0.1:8003: /usr/sbin/hping3 10.10.0.255 --udp --baseport 8888 --destport 8888 -e "STOP_round=2_proto=tcp_size=1500_data=500MB_cct=50_run=1" -c 1 --fast 2>/dev/null 1>/dev/null ; exit
+18:33:00: ssh on 10.1.0.1: /etc/init.d/measurement.sh stop
+stopping traces for ... done
+18:33:04: ssh on 10.1.0.2: /etc/init.d/measurement.sh stop
+stopping traces for ... done
+18:33:08: stopping all iperf instances ...
+18:33:08: nc on 10.1.0.2:8007: killall iperf 2>/dev/null; exit
+18:33:09: nc on 10.1.0.1:8007: killall iperf 2>/dev/null; exit
+18:33:10: collecting traces ...
+18:33:43: [ OK ] terminating Attenuator control (10426)
+18:33:43: [ OK ] copying attenuator log file to traces
+18:34:08: nc on 10.1.0.1:8003: /usr/sbin/hping3 10.10.0.255 --udp --baseport 8888 --destport 8888 -e "START_ATT=30" -c 1 --fast 2>/dev/null 1>/dev/null ; exit
+18:34:10: [ OK ] preparing attenuator log file
+18:34:10: # sudo ./attenuator_lab_brick -r ms -f ./wf_att.csv -l ./attenuator/attenuator_proto=tcp_cct=100.log
+18:34:10: starting attenuation: 0 <-> 30, PID: 10732
+18:34:15: starting TCP iperf server on 10.1.0.2
+18:34:15: restarting wifi on 10.1.0.2 ...
+18:34:15: nc on 10.1.0.2:8001: /usr/bin/iperf -s -p 12000; exit
+18:34:15: nc on 10.1.0.2:8002: wifi; exit
+------------------------------------------------------------
+Server listening on TCP port 12000
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+18:34:37: nc on 10.1.0.2:8009: add_monitor; exit
+creating monitor interface mon0
+18:34:38: == Round 3: round=3_proto=tcp_size=1500_data=500MB_cct=100_run=1
+18:34:38: ssh on 10.1.0.1: /etc/init.d/measurement.sh start round=3_proto=tcp_size=1500_data=500MB_cct=100_run=1
+starting traces for round=3_proto=tcp_size=1500_data=500MB_cct=100_run=1... done
+18:34:41: ssh on 10.1.0.2: /etc/init.d/measurement.sh start round=3_proto=tcp_size=1500_data=500MB_cct=100_run=1
+starting traces for round=3_proto=tcp_size=1500_data=500MB_cct=100_run=1... done
+18:34:50: nc on 10.1.0.1:8003: /usr/sbin/hping3 10.10.0.255 --udp --baseport 8888 --destport 8888 -e "START_round=3_proto=tcp_size=1500_data=500MB_cct=100_run=1" -c 1 --fast 2>/dev/null 1>/dev/null ; exit
+18:34:54: iperf: starting on AP
+18:34:54: nc on 10.1.0.1:8004: touch /tmp/iperf.lock; iperf -c 10.10.0.2 -p 12000 -n 500MB; rm /tmp/iperf.lock; exit
+------------------------------------------------------------
+Client connecting to 10.10.0.2, TCP port 12000
+TCP window size: 43.8 KByte (default)
+------------------------------------------------------------
+[  4] local 10.10.0.1 port 40104 connected with 10.10.0.2 port 12000
+[  5] local 10.10.0.2 port 12000 connected with 10.10.0.1 port 40104
+[ ID] Interval       Transfer     Bandwidth
+[  4]  0.0-189.3 sec   500 MBytes  22.2 Mbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  5]  0.0-189.7 sec   500 MBytes  22.1 Mbits/sec
+18:38:04: iperf: client done on AP
+18:38:04: nc on 10.1.0.1:8003: /usr/sbin/hping3 10.10.0.255 --udp --baseport 8888 --destport 8888 -e "STOP_round=3_proto=tcp_size=1500_data=500MB_cct=100_run=1" -c 1 --fast 2>/dev/null 1>/dev/null ; exit
+18:38:06: ssh on 10.1.0.1: /etc/init.d/measurement.sh stop
+stopping traces for ... done
+18:38:11: ssh on 10.1.0.2: /etc/init.d/measurement.sh stop
+stopping traces for ... done
+18:38:15: stopping all iperf instances ...
+18:38:15: nc on 10.1.0.2:8007: killall iperf 2>/dev/null; exit
+18:38:16: nc on 10.1.0.1:8007: killall iperf 2>/dev/null; exit
+18:38:17: collecting traces ...
+18:38:50: [ OK ] terminating Attenuator control (10732)
+18:38:50: [ OK ] copying attenuator log file to traces
+18:39:15: nc on 10.1.0.1:8003: /usr/sbin/hping3 10.10.0.255 --udp --baseport 8888 --destport 8888 -e "START_ATT=30" -c 1 --fast 2>/dev/null 1>/dev/null ; exit
+18:39:17: [ OK ] preparing attenuator log file
+18:39:17: # sudo ./attenuator_lab_brick -r ms -f ./wf_att.csv -l ./attenuator/attenuator_proto=tcp_cct=1000.log
+18:39:17: starting attenuation: 0 <-> 30, PID: 11019
+18:39:22: starting TCP iperf server on 10.1.0.2
+18:39:22: restarting wifi on 10.1.0.2 ...
+18:39:22: nc on 10.1.0.2:8001: /usr/bin/iperf -s -p 12000; exit
+18:39:22: nc on 10.1.0.2:8002: wifi; exit
+------------------------------------------------------------
+Server listening on TCP port 12000
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+18:39:43: nc on 10.1.0.2:8009: add_monitor; exit
+creating monitor interface mon0
+18:39:44: == Round 4: round=4_proto=tcp_size=1500_data=500MB_cct=1000_run=1
+18:39:44: ssh on 10.1.0.1: /etc/init.d/measurement.sh start round=4_proto=tcp_size=1500_data=500MB_cct=1000_run=1
+starting traces for round=4_proto=tcp_size=1500_data=500MB_cct=1000_run=1... done
+18:39:48: ssh on 10.1.0.2: /etc/init.d/measurement.sh start round=4_proto=tcp_size=1500_data=500MB_cct=1000_run=1
+starting traces for round=4_proto=tcp_size=1500_data=500MB_cct=1000_run=1... done
+18:39:57: nc on 10.1.0.1:8003: /usr/sbin/hping3 10.10.0.255 --udp --baseport 8888 --destport 8888 -e "START_round=4_proto=tcp_size=1500_data=500MB_cct=1000_run=1" -c 1 --fast 2>/dev/null 1>/dev/null ; exit
+18:40:01: iperf: starting on AP
+18:40:01: nc on 10.1.0.1:8004: touch /tmp/iperf.lock; iperf -c 10.10.0.2 -p 12000 -n 500MB; rm /tmp/iperf.lock; exit
+------------------------------------------------------------
+Client connecting to 10.10.0.2, TCP port 12000
+TCP window size: 43.8 KByte (default)
+------------------------------------------------------------
+[  4] local 10.10.0.1 port 40105 connected with 10.10.0.2 port 12000
+[  5] local 10.10.0.2 port 12000 connected with 10.10.0.1 port 40105
+[ ID] Interval       Transfer     Bandwidth
+[  4]  0.0-227.9 sec   500 MBytes  18.4 Mbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  5]  0.0-228.1 sec   500 MBytes  18.4 Mbits/sec
+18:43:50: iperf: client done on AP
+18:43:50: nc on 10.1.0.1:8003: /usr/sbin/hping3 10.10.0.255 --udp --baseport 8888 --destport 8888 -e "STOP_round=4_proto=tcp_size=1500_data=500MB_cct=1000_run=1" -c 1 --fast 2>/dev/null 1>/dev/null ; exit
+18:43:52: ssh on 10.1.0.1: /etc/init.d/measurement.sh stop
+stopping traces for ... done
+18:43:56: ssh on 10.1.0.2: /etc/init.d/measurement.sh stop
+stopping traces for ... done
+18:44:00: stopping all iperf instances ...
+18:44:00: nc on 10.1.0.2:8007: killall iperf 2>/dev/null; exit
+18:44:01: nc on 10.1.0.1:8007: killall iperf 2>/dev/null; exit
+18:44:02: collecting traces ...
+18:44:36: [ OK ] terminating Attenuator control (11019)
+18:44:36: [ OK ] copying attenuator log file to traces
+18:44:56: stopping netcat-trace-servers ...
+18:44:56: ssh on 10.1.0.1: /etc/init.d/netcat-trace-server stop
+Terminating netcat server on port 8000 ...
+Terminating netcat server on port 8001 ...
+Terminating netcat server on port 8002 ...
+Terminating netcat server on port 8003 ...
+Terminating netcat server on port 8004 ...
+Terminating netcat server on port 8005 ...
+Terminating netcat server on port 8006 ...
+Terminating netcat server on port 8007 ...
+Terminating netcat server on port 8008 ...
+Terminating netcat server on port 8009 ...
+18:45:00: ssh on 10.1.0.2: /etc/init.d/netcat-trace-server stop
+Terminating netcat server on port 8000 ...
+Terminating netcat server on port 8001 ...
+Terminating netcat server on port 8002 ...
+Terminating netcat server on port 8003 ...
+Terminating netcat server on port 8004 ...
+Terminating netcat server on port 8005 ...
+Terminating netcat server on port 8006 ...
+Terminating netcat server on port 8007 ...
+Terminating netcat server on port 8008 ...
+Terminating netcat server on port 8009 ...
+18:45:06: collecting traces ...
+18:45:13: [ OK ] copying log file to traces
+18:45:13: done.

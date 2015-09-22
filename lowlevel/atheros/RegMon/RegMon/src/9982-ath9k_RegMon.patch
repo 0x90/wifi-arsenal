@@ -1,0 +1,305 @@
+--- a/drivers/net/wireless/ath/ath9k/ath9k.h
++++ b/drivers/net/wireless/ath/ath9k/ath9k.h
+@@ -30,6 +30,16 @@
+ #include "mci.h"
+ #include "dfs.h"
+ 
++#ifdef CPTCFG_ATH9K_DEBUGFS
++	/* RegMon */
++	#include <linux/timer.h>
++	#include <linux/hrtimer.h>
++	/* maximum number of 32-bit registers RegMon monitors */
++	#define MAX_REG_COUNT 12
++	/* maximum size RegMons ringbuffer in number of rows */
++	#define REG_LOG_ROWS 30000
++#endif
++
+ struct ath_node;
+ struct ath_vif;
+ 
+@@ -955,6 +965,14 @@ struct ath_led {
+ 	struct led_classdev cdev;
+ };
+ 
++#ifdef CPTCFG_ATH9K_DEBUGFS
++	/* RegMon hrtimer */
++	struct hrtimer_mod {
++		struct hrtimer timer;	/* the hrtime */
++	        ktime_t interval;	/* interval to use in hrtimer_forward */
++	};
++#endif
++
+ struct ath_softc {
+ 	struct ieee80211_hw *hw;
+ 	struct device *dev;
+@@ -1012,6 +1030,21 @@ struct ath_softc {
+ 
+ #ifdef CPTCFG_ATH9K_DEBUGFS
+ 	struct ath9k_debug debug;
++
++	/* RegMon */
++	s64 *reg_hosttime;
++	u32 reg_interval;
++	u32 reg_hz;
++	u32 reg[MAX_REG_COUNT];
++	u32 *reg_log[MAX_REG_COUNT];
++	int reg_last;
++	int reg_current;
++	int reg_count;
++	int shutdown;
++	spinlock_t reg_lock;
++	struct dentry *debugfs_dir;
++	struct timer_list reg_timer;
++	struct hrtimer_mod hrtm;
+ #endif
+ 	struct delayed_work tx_complete_work;
+ 	struct delayed_work hw_pll_work;
+--- a/drivers/net/wireless/ath/ath9k/init.c
++++ b/drivers/net/wireless/ath/ath9k/init.c
+@@ -30,6 +30,154 @@ struct ath9k_eeprom_ctx {
+ 	struct ath_hw *ah;
+ };
+ 
++/* RegMon reads from userspace */
++static ssize_t reg_log_read(struct file *file, char __user *userbuf,
++			    size_t count, loff_t *ppos)
++{
++	struct ath_softc *sc = file->private_data;
++	char buf[256];
++	size_t len, n, ret;
++	size_t sum = 0;
++	u8 i;
++	loff_t pos;
++
++	spin_lock_bh(&sc->reg_lock);
++
++	while (sc->reg_last != sc->reg_current && count > 0) {
++		spin_unlock_bh(&sc->reg_lock);
++
++		/* first entry host time, second wifi cards mac time */
++		len = scnprintf(buf, sizeof(buf), "%.19lld %.8x%.8x",
++				sc->reg_hosttime[sc->reg_last],
++				(unsigned int) sc->reg_log[0][sc->reg_last],
++				(unsigned int) sc->reg_log[1][sc->reg_last]);
++
++		/* print register values */
++		for (i = 2; i < MAX_REG_COUNT; i++) {
++			len += scnprintf(buf + len, sizeof(buf) - len,
++					 " %.8x", (unsigned int)
++					 sc->reg_log[i][sc->reg_last]);
++		}
++
++		/* add line wrap */
++		len += scnprintf(buf + len, sizeof(buf) - len, "\n");
++
++		n = 0;
++		if (*ppos < len && count > 0) {
++			n = count;
++			pos = *ppos;
++
++			if (pos < 0)
++				return -EINVAL;
++
++			if (n > len - pos)
++				n = len - pos;
++
++			ret = copy_to_user(userbuf, buf + pos, n);
++			if (ret == n)
++				return -EFAULT;
++
++			n -= ret;
++			*ppos = pos + n;
++		}
++
++		spin_lock_bh(&sc->reg_lock);
++
++		sum += n;
++		count -= n;
++		if (count <= 0)
++			break;
++
++		userbuf += n;
++		*ppos = 0;
++
++		if (++sc->reg_last >= REG_LOG_ROWS - 1)
++			sc->reg_last = 0;
++	}
++
++	spin_unlock_bh(&sc->reg_lock);
++
++	return sum;
++ }
++
++/* RegMon file handles */
++ static const struct file_operations reg_log_ops = {
++	.read = reg_log_read,
++	.open = simple_open,
++	.owner = THIS_MODULE,
++	.llseek = default_llseek,
++ };
++
++ /* Register RegMons periodic readings via htimer */
++ static enum hrtimer_restart read_registers(struct hrtimer *hrtimer)
++ {
++	struct hrtimer_mod  *hrtm = container_of(hrtimer, struct hrtimer_mod, timer);
++	struct ath_softc *sc = container_of(hrtm, struct ath_softc, hrtm);
++	struct ath_hw *ah = sc->sc_ah;
++	static struct timespec ts;
++	int i;
++
++	if (sc->shutdown)
++		return HRTIMER_NORESTART;
++
++	/* get current kernel time per row */
++	getnstimeofday(&ts);
++	sc->reg_hosttime[sc->reg_current] = timespec_to_ns(&ts);
++
++	/* get upper 32-bit tsf timestamp from card */
++	sc->reg_log[0][sc->reg_current] = REG_READ(ah, 0x8050);
++	/* get lower 32-bit tsf timestamp from card */
++	sc->reg_log[1][sc->reg_current] = REG_READ(ah, 0x804c);
++
++	/* freeze all MIB registers */
++	REG_WRITE(ah, AR_MIBC, AR_MIBC_FMC);
++
++	/* read current MAC states from hardware registers
++	 * 0x80f8 -> MAC cycles (number of clock cycles at a given clock speed)
++	 *                      5GHz @20MHz -> tick freq. = 40MHz
++	 *                      5GHz @40MHz -> tick freq. = 80MHz
++	 *                      2.4GHz @20MHz -> tick freq. = 44MHz
++	 *                      2.4GHz @40MHz -> tick freq. = 88MHz
++	 * 0x80ec -> TX busy (number of cycles the transmitter unit is active)
++	 * 0x80f0 -> RX busy (number of cycles the receiver unit is active)
++	 * 0x80f4 -> MAC busy (sum of TX, RX and energy detection busy cycles) */
++	sc->reg_log[2][sc->reg_current] = REG_READ(ah, 0x80f8); //MAC counter
++	sc->reg_log[3][sc->reg_current] = REG_READ(ah, 0x80ec); //TX busy
++	sc->reg_log[4][sc->reg_current] = REG_READ(ah, 0x80f0); //RX busy
++	sc->reg_log[5][sc->reg_current] = REG_READ(ah, 0x80f4); //ED busy
++
++	/* un-freeze MIB registers */
++	REG_WRITE(ah, AR_MIBC, 0);
++
++	/* read lower 32-bit tsf again to calc duration of MAC state readings */
++	sc->reg_log[6][sc->reg_current] = REG_READ(ah, 0x804c);
++
++	/* if set, than read additional register values [7...MAX_REG_COUNT] */
++	for (i = 7; i < MAX_REG_COUNT; i++) {
++		if (sc->reg[7] != 0)
++			sc->reg_log[i][sc->reg_current] = REG_READ(ah, sc->reg[i]);
++		else
++			sc->reg_log[i][sc->reg_current] = 0;
++	}
++
++	/* handle ring buffer writings */
++	spin_lock(&sc->reg_lock);
++	if (++sc->reg_current > REG_LOG_ROWS - 1)
++		sc->reg_current = 0;
++	if ((sc->reg_last == sc->reg_current) &&
++	    (++sc->reg_last > REG_LOG_ROWS - 1))
++			sc->reg_last = 0;
++	spin_unlock(&sc->reg_lock);
++
++	/* set sampling interval if changed */
++	if (sc->reg_interval > 0)
++		hrtimer_forward(hrtimer, ktime_get(), ns_to_ktime(sc->reg_interval));
++	else
++		hrtimer_forward(hrtimer, ktime_get(), ns_to_ktime(10000000));
++
++	return HRTIMER_RESTART;
++ }
++
+ static char *dev_info = "ath9k";
+ 
+ MODULE_AUTHOR("Atheros Communications");
+@@ -923,7 +1071,11 @@ int ath9k_init_device(u16 devid, struct 
+ 	struct ath_common *common;
+ 	struct ath_hw *ah;
+ 	int error = 0;
++	int i, res;
+ 	struct ath_regulatory *reg;
++	/* RegMon varaibles*/
++	char *name;
++	char text[32];
+ 
+ 	/* Bring up device */
+ 	error = ath9k_init_softc(devid, sc, bus_ops);
+@@ -984,6 +1136,49 @@ int ath9k_init_device(u16 devid, struct 
+ 	ath_init_leds(sc);
+ 	ath_start_rfkill_poll(sc);
+ 
++#ifdef CPTCFG_ATH9K_DEBUGFS
++/* RegMon debugfs entries */
++	sc->reg_hosttime = kmalloc(REG_LOG_ROWS * sizeof(s64), GFP_KERNEL);
++
++	for (i = 0; i < MAX_REG_COUNT; i++)
++		sc->reg_log[i] = kmalloc(REG_LOG_ROWS * sizeof(u32), GFP_KERNEL);
++
++	sc->reg_lock = __SPIN_LOCK_UNLOCKED(regmon);
++	sc->reg_hz = HZ;
++
++	sc->debugfs_dir = debugfs_create_dir("regmon", sc->hw->wiphy->debugfsdir);
++	if (sc->debugfs_dir) {
++		debugfs_create_u32("sampling_interval", S_IWUSR | S_IRUSR,
++				   sc->debugfs_dir, &sc->reg_interval);
++		debugfs_create_u32("kernel_hz", S_IRUSR, sc->debugfs_dir,
++				   &sc->reg_hz);
++		debugfs_create_file("register_log", S_IRUSR, sc->debugfs_dir,
++				    sc, &reg_log_ops);
++
++		/* debugfs hocks to specify register adresses from user space */
++		for (i = 7; i < MAX_REG_COUNT; i++) {
++			sprintf(text, "register_%d", i);
++			name = text;
++			debugfs_create_x32(name, S_IWUSR | S_IRUSR,
++					   sc->debugfs_dir, &sc->reg[i]);
++		}
++
++		/* start hrtimers with default interval of 10.000.000 nsec */
++		sc->reg_interval = 10000000;
++		hrtimer_init(&sc->hrtm.timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
++		sc->hrtm.timer.function = read_registers;
++
++		/* a certain delay seems to be needed for proper start */
++		usleep_range(10000000,20000000);
++		res = hrtimer_start(&sc->hrtm.timer, sc->hrtm.interval,
++				    HRTIMER_MODE_REL);
++		if(res)
++			printk(KERN_ERR "ath9k debug: regmon got stopped.\n");
++		else
++			printk(KERN_ERR "ath9k debug: regmon started successfuly.\n");
++	};
++#endif
++
+ 	return 0;
+ 
+ debug_cleanup:
+@@ -1004,6 +1199,7 @@ deinit:
+ static void ath9k_deinit_softc(struct ath_softc *sc)
+ {
+ 	int i = 0;
++	int res;
+ 
+ 	ath9k_deinit_p2p(sc);
+ 	ath9k_deinit_btcoex(sc);
+@@ -1017,6 +1213,21 @@ static void ath9k_deinit_softc(struct at
+ 	if (sc->dfs_detector != NULL)
+ 		sc->dfs_detector->exit(sc->dfs_detector);
+ 
++#ifdef CPTCFG_ATH9K_DEBUGFS
++	/* RegMon de-init */
++	sc->shutdown = 1;
++	res = hrtimer_cancel(&sc->hrtm.timer);
++	printk(KERN_ERR "ath9k debug: regmon stopped hrtimer\n");
++
++	debugfs_remove_recursive(sc->debugfs_dir);
++
++	kfree(sc->reg_hosttime);
++
++	for (i = 0; i < MAX_REG_COUNT; i++) {
++		kfree(sc->reg_log[i]);
++	}
++#endif
++
+ 	ath9k_eeprom_release(sc);
+ }
+ 

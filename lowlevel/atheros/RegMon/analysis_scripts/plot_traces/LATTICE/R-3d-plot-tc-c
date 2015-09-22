@@ -1,0 +1,88 @@
+require(lattice)
+filename="trace-tc-c"
+
+Durchsatz <- function()
+{
+	grid=list();
+	grid$arr_mod=vector();
+	grid$arr_tx=vector();
+	grid$arr_thr=vector();
+	
+	data = read.table(filename);
+	len = length(data[[1]])
+	
+	for( i in 1:len )
+	{
+		grid$arr_mod=c(grid$arr_mod, data[[1]][[i]])
+		grid$arr_tx=c(grid$arr_tx, data[[2]][[i]])
+		grid$arr_thr=c(grid$arr_thr, data[[3]][[i]])
+	}
+	
+	wireframe( 
+		arr_thr~arr_mod * arr_tx, 
+		grid,
+		drape=TRUE, 
+		aspect = c(1, 0.4),  
+		colorkey=TRUE, 
+		default.scales = list(distance = c(1, 1, 1), 
+		arrows=FALSE), 
+		screen = list(z = -40, x = -60),
+		par.settings = list(regions=list(alpha=0.75))
+		)
+}
+
+Jitter <- function()
+{
+	grid=list();
+	grid$arr_mod=vector();
+	grid$arr_tx=vector();
+	grid$arr_jit=vector();
+
+	data = read.table(filename);
+	len = length(data[[1]])
+
+	for( i in 1:len )
+	{
+		grid$arr_mod=c(grid$arr_mod, data[[1]][[i]])
+		grid$arr_tx=c(grid$arr_tx, data[[2]][[i]])
+		grid$arr_jit=c(grid$arr_jit, data[[4]][[i]])
+	}
+	
+	wireframe( 
+		arr_jit~arr_mod * arr_tx, 
+		grid, 
+		drape=TRUE, 
+		aspect = c(1, 0.4),  
+		colorkey=TRUE, 
+		default.scales = list(distance = c(1, 1, 1), 
+		arrows=FALSE), 
+		screen = list(z = -40, x = -60) 
+	)
+}
+
+Raten <- function()
+{
+	data = read.table(filename);
+	len = length(data[[1]]);
+	tmp=matrix(0, 54, 25);
+	for( i in 1:len )
+	{
+		tmp[  data[[1]][[i]] ,data[[2]][[i]]+1  ] = data[[3]][[i]];
+	}
+	op <- par(mfrow=c(1,8))
+	for (i in c(6, 9, 12, 18, 24, 36, 48, 54))
+	{
+		plot(
+			tmp[i,],
+		 	type="b",
+		 	main=paste("modulation",i),
+		 	xlab="tx_power",
+		 	ylab="rate",
+		 	ylim=c(0,15000),
+		 	
+		 	)
+	}	
+	par(op)
+	
+#	return(tmp);
+}

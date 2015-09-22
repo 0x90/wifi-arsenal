@@ -1,0 +1,235 @@
+--- a/ath/if_ath_pci.c	2010-04-01 23:53:16.000000000 +0200
++++ b/ath/if_ath_pci.c	2010-04-21 00:09:57.880206946 +0200
+@@ -52,6 +52,8 @@
+ #include <linux/if_arp.h>
+ #include <linux/netdevice.h>
+ #include <linux/cache.h>
++#include <linux/debugfs.h>
++#include <linux/time.h>
+ 
+ #include <linux/pci.h>
+ 
+@@ -65,6 +67,9 @@
+ #include "ah_devid.h"
+ #include "if_ath_pci.h"
+ 
++#define AR5K_MIBC	0x0040
++#define AR5K_MIBC_FREEZE	(1 << 1)
++
+ #if (LINUX_VERSION_CODE < KERNEL_VERSION(2,4,0))
+ /*
+  * PCI initialization uses Linux 2.4.x version and
+@@ -78,6 +83,18 @@
+ #ifdef CONFIG_PM
+ 	u32	aps_pmstate[16];
+ #endif
++	int	shutdown;
++	struct dentry	*debugfs_dir;
++	spinlock_t	reg_lock;
++	u32	reg_interval;
++	u32	reg_hz;
++	u32	reg[10];
++	struct timer_list	reg_timer;
++	long	reg_sec[1400];
++	long	reg_usec[1400];
++	u32	reg_log[1400][10];
++	int	reg_last;
++	int	reg_current;
+ };
+ 
+ /*
+@@ -150,6 +168,127 @@
+ 	{ ubnt, "SR71",    0x168c, 0x0027, 0x0777, 0x4082, 10 },
+ };
+ 
++static struct dentry *ath_pci_debugfs_dir;
++
++static int
++reg_log_open(struct inode *inode, struct file *file)
++{
++	file->private_data = inode->i_private;
++	return 0;
++}
++
++static ssize_t
++reg_log_read(struct file *file, char __user *userbuf, size_t count, loff_t *ppos)
++{
++	struct ath_pci_softc *sc = file->private_data;
++	char buf[256];
++	size_t available, n, ret;
++	loff_t pos;
++	size_t sum = 0;
++
++	spin_lock_bh(&sc->reg_lock);
++
++	while (sc->reg_last != sc->reg_current && count > 0) {
++		spin_unlock_bh(&sc->reg_lock);
++
++		available = scnprintf(buf, sizeof(buf), "%ld.%.6ld %#.8x %#.8x %#.8x %#.8x %#.8x %#.8x %#.8x %#.8x %#.8x %#.8x\n", sc->reg_sec[sc->reg_last], sc->reg_usec[sc->reg_last], (unsigned int) sc->reg_log[sc->reg_last][0], (unsigned int) sc->reg_log[sc->reg_last][1], (unsigned int) sc->reg_log[sc->reg_last][2], (unsigned int) sc->reg_log[sc->reg_last][3], (unsigned int) sc->reg_log[sc->reg_last][4], (unsigned int) sc->reg_log[sc->reg_last][5], (unsigned int) sc->reg_log[sc->reg_last][6], (unsigned int) sc->reg_log[sc->reg_last][7], (unsigned int) sc->reg_log[sc->reg_last][8], (unsigned int) sc->reg_log[sc->reg_last][9]);
++
++		n = 0;
++		if (*ppos < available && count > 0) {
++			n = count;
++			pos = *ppos;
++
++			if (pos < 0) {
++				return -EINVAL;
++			}
++
++			if (n > available - pos) {
++				n = available - pos;
++			}
++
++			ret = copy_to_user(userbuf, buf + pos, n);
++			if (ret == n) {
++				return -EFAULT;
++			}
++
++			n -= ret;
++			*ppos = pos + n;
++		}
++
++		spin_lock_bh(&sc->reg_lock);
++
++		sum += n;
++		count -= n;
++		if (count <= 0) {
++			break;
++		}
++
++		userbuf += n;
++		*ppos = 0;
++
++		if (++sc->reg_last >= 1399) {
++			sc->reg_last = 0;
++		}
++	}
++
++	spin_unlock_bh(&sc->reg_lock);
++
++	return sum;
++}
++
++static const struct file_operations reg_log_ops = {
++	.read = reg_log_read,
++	.open = reg_log_open,
++};
++
++static void
++reg_timer(unsigned long arg)
++{
++	struct ath_pci_softc *sc = (struct ath_pci_softc *) arg;
++	struct ath_hal *ah = sc->aps_sc.sc_ah;
++	int i;
++	unsigned long old_jiffies = jiffies;
++	struct timeval tv;
++
++	if (sc->shutdown) {
++		return;
++	}
++
++	do_gettimeofday(&tv);
++
++	if (sc->reg_interval > 0) {
++		sc->reg_sec[sc->reg_current] = tv.tv_sec;
++		sc->reg_usec[sc->reg_current] = tv.tv_usec;
++
++		OS_REG_WRITE(ah, AR5K_MIBC, AR5K_MIBC_FREEZE);
++		for (i = 0; i < 10; i++) {
++			if (sc->reg[i] > 0) {
++				sc->reg_log[sc->reg_current][i] = OS_REG_READ(ah, sc->reg[i]);
++			} else {
++				sc->reg_log[sc->reg_current][i] = 0;
++			}
++		}
++		OS_REG_WRITE(ah, AR5K_MIBC, 0);
++
++		spin_lock(&sc->reg_lock);
++
++		if (++sc->reg_current >= 1399) {
++			sc->reg_current = 0;
++		}
++
++		if (sc->reg_last == sc->reg_current) {
++			if (++sc->reg_last >= 1399) {
++				sc->reg_last = 0;
++			}
++		}
++
++		spin_unlock(&sc->reg_lock);
++	}
++
++	sc->reg_timer.expires = old_jiffies + (sc->reg_interval <= 0 ? HZ : sc->reg_interval);
++	add_timer(&sc->reg_timer);
++}
++
+ static int
+ ath_pci_probe(struct pci_dev *pdev, const struct pci_device_id *id)
+ {
+@@ -295,6 +435,29 @@
+ 		pdev->vendor, pdev->device,
+ 		pdev->subsystem_vendor, pdev->subsystem_device);
+ 
++	sc->reg_lock = SPIN_LOCK_UNLOCKED;
++	sc->reg_hz = HZ;
++	sc->debugfs_dir = debugfs_create_dir(dev->name, ath_pci_debugfs_dir);
++	debugfs_create_u32("reg_interval", S_IWUSR | S_IRUSR, sc->debugfs_dir, &sc->reg_interval);
++	debugfs_create_u32("reg_hz", S_IRUSR, sc->debugfs_dir, &sc->reg_hz);
++	debugfs_create_file("reg_log", S_IRUSR, sc->debugfs_dir, sc, &reg_log_ops);
++	debugfs_create_x32("reg0", S_IWUSR | S_IRUSR, sc->debugfs_dir, &sc->reg[0]);
++	debugfs_create_x32("reg1", S_IWUSR | S_IRUSR, sc->debugfs_dir, &sc->reg[1]);
++	debugfs_create_x32("reg2", S_IWUSR | S_IRUSR, sc->debugfs_dir, &sc->reg[2]);
++	debugfs_create_x32("reg3", S_IWUSR | S_IRUSR, sc->debugfs_dir, &sc->reg[3]);
++	debugfs_create_x32("reg4", S_IWUSR | S_IRUSR, sc->debugfs_dir, &sc->reg[4]);
++	debugfs_create_x32("reg5", S_IWUSR | S_IRUSR, sc->debugfs_dir, &sc->reg[5]);
++	debugfs_create_x32("reg6", S_IWUSR | S_IRUSR, sc->debugfs_dir, &sc->reg[6]);
++	debugfs_create_x32("reg7", S_IWUSR | S_IRUSR, sc->debugfs_dir, &sc->reg[7]);
++	debugfs_create_x32("reg8", S_IWUSR | S_IRUSR, sc->debugfs_dir, &sc->reg[8]);
++	debugfs_create_x32("reg9", S_IWUSR | S_IRUSR, sc->debugfs_dir, &sc->reg[9]);
++
++	init_timer(&sc->reg_timer);
++	sc->reg_timer.expires = jiffies + HZ;
++	sc->reg_timer.data = (unsigned long) sc;
++	sc->reg_timer.function = reg_timer;
++	add_timer(&sc->reg_timer);
++
+ 	/* ready to process interrupts */
+ 	sc->aps_sc.sc_invalid = 0;
+ 
+@@ -318,6 +481,10 @@
+ 	struct net_device *dev = pci_get_drvdata(pdev);
+ 	struct ath_pci_softc *sc = netdev_priv(dev);
+ 
++	sc->shutdown = 1;
++	del_timer_sync(&sc->reg_timer);
++	debugfs_remove_recursive(sc->debugfs_dir);
++
+ 	ath_detach(dev);
+ 	if (dev->irq)
+ 		free_irq(dev->irq, dev);
+@@ -430,11 +597,15 @@
+ 	net80211_init_module();
+ 	RC_INIT
+ #endif
++
++	ath_pci_debugfs_dir = debugfs_create_dir(dev_info, NULL);
++
+ 	if (pci_register_driver(&ath_pci_driver) < 0) {
+ 		printk(KERN_ERR "%s: No devices found, driver not installed.\n", dev_info);
+ 		return (-ENODEV);
+ 	}
+ 	ath_sysctl_register();
++
+ 	return (0);
+ }
+ module_init(init_ath_pci);
+@@ -444,6 +615,9 @@
+ {
+ 	ath_sysctl_unregister();
+ 	pci_unregister_driver(&ath_pci_driver);
++
++	debugfs_remove(ath_pci_debugfs_dir);
++
+ #ifdef SINGLE_MODULE
+ 	RC_EXIT
+ 	net80211_exit_module();

@@ -1,0 +1,59 @@
+#!/bin/sh
+export PATH=/bin:/sbin:/usr/bin:/usr/sbin
+
+PID_DIR=/var/run/netcat-trace-server/
+COUNT=${2:-5}
+BASE_PORT=8000
+
+if [ ! -d "$PID_DIR" ]; then
+	mkdir "$PID_DIR"
+fi
+
+start() {
+	PORT=$BASE_PORT
+	for i in `seq 1 $COUNT`; do
+
+		PID_FILE="${PID_DIR}${PORT}.pid"
+		if [ ! -f "$PID_FILE" ]; then
+			echo "Starting netcat server on port $PORT ..."
+			( while true; do netcat -l -p $PORT -e /bin/sh ; sleep 1; done ) &
+			PID=$!
+			echo $PID > "$PID_FILE"
+		fi
+		let PORT="PORT + 1"
+	done
+}
+
+
+stop() {
+
+	for pidf in `ls -1 "$PID_DIR"`; do
+
+		PID_FILE="${PID_DIR}${pidf}"
+
+		if [ -f "$PID_FILE" ]; then
+			kill -9 `cat "$PID_FILE"`
+			PORT=`echo "$pidf" | sed 's/\.pid//'`
+			echo "Terminating netcat server on port $PORT ..."
+			echo "exit;" | nc 127.0.0.1 $PORT 2>/dev/null
+			rm "$PID_FILE"
+		fi
+	done
+}
+
+case "$1" in
+	start)
+		start
+	;;
+	stop)
+		stop
+	;;
+	restart)
+		stop
+		start
+	;;
+	*)
+		echo "Usage: $0 {start|stop|restart}" 
+esac
+
+

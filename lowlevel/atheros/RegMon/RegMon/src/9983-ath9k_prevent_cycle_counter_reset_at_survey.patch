@@ -1,0 +1,78 @@
+--- a/drivers/net/wireless/ath/hw.c
++++ b/drivers/net/wireless/ath/hw.c
+@@ -144,7 +144,7 @@ void ath_hw_cycle_counters_update(struct
+ 	u32 cycles, busy, rx, tx;
+ 	void *ah = common->ah;
+ 
+-	/* freeze */
++	/* freeze mac cycles to read register values */
+ 	REG_WRITE(ah, AR_MIBC, AR_MIBC_FMC);
+ 
+ 	/* read */
+@@ -153,25 +153,41 @@ void ath_hw_cycle_counters_update(struct
+ 	rx = REG_READ(ah, AR_RFCNT);
+ 	tx = REG_READ(ah, AR_TFCNT);
+ 
+-	/* clear */
+-	REG_WRITE(ah, AR_CCCNT, 0);
+-	REG_WRITE(ah, AR_RFCNT, 0);
+-	REG_WRITE(ah, AR_RCCNT, 0);
+-	REG_WRITE(ah, AR_TFCNT, 0);
++	/*clear counters if near overflow */
++	if (cycles > (U32_MAX >> 2)) {
++		/* clear */
++		REG_WRITE(ah, AR_CCCNT, 0);
++		REG_WRITE(ah, AR_RFCNT, 0);
++		REG_WRITE(ah, AR_RCCNT, 0);
++		REG_WRITE(ah, AR_TFCNT, 0);
++	}
+ 
+ 	/* unfreeze */
+ 	REG_WRITE(ah, AR_MIBC, 0);
+ 
+-	/* update all cycle counters here */
+-	common->cc_ani.cycles += cycles;
+-	common->cc_ani.rx_busy += busy;
+-	common->cc_ani.rx_frame += rx;
+-	common->cc_ani.tx_frame += tx;
+-
+-	common->cc_survey.cycles += cycles;
+-	common->cc_survey.rx_busy += busy;
+-	common->cc_survey.rx_frame += rx;
+-	common->cc_survey.tx_frame += tx;
++	if (cycles > common->cc_current.cycles){
++		common->cc_current.cycles = cycles - common->cc_current.cycles;
++		common->cc_current.rx_busy = busy - common->cc_current.rx_busy;
++		common->cc_current.rx_frame = rx - common->cc_current.rx_frame;
++		common->cc_current.tx_frame = tx - common->cc_current.tx_frame;
++	} else {
++		common->cc_current.cycles = cycles;
++		common->cc_current.rx_busy = busy;
++		common->cc_current.cycles = rx;
++		common->cc_current.tx_frame = tx;
++	}
++
++	/* update survey counters */
++	common->cc_survey.cycles += common->cc_current.cycles;
++	common->cc_survey.rx_busy += common->cc_current.rx_busy;
++	common->cc_survey.rx_busy += common->cc_current.cycles;
++	common->cc_survey.tx_frame += common->cc_current.tx_frame;
++
++	/* update ani counters */
++	common->cc_ani.cycles += common->cc_current.cycles;
++	common->cc_ani.rx_busy += common->cc_current.rx_busy;
++	common->cc_ani.rx_busy += common->cc_current.cycles;
++	common->cc_ani.tx_frame += common->cc_current.tx_frame;
+ }
+ EXPORT_SYMBOL(ath_hw_cycle_counters_update);
+ 
+--- a/drivers/net/wireless/ath/ath.h
++++ b/drivers/net/wireless/ath/ath.h
+@@ -172,6 +172,7 @@ struct ath_common {
+ 	unsigned int clockrate;
+ 
+ 	spinlock_t cc_lock;
++	struct ath_cycle_counters cc_current;
+ 	struct ath_cycle_counters cc_ani;
+ 	struct ath_cycle_counters cc_survey;
+ 

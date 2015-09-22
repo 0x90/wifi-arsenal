@@ -1,0 +1,154 @@
+#!/bin/sh /etc/rc.common
+
+#define & start register tracing on the node
+
+export PATH=/bin:/sbin:/usr/bin:/usr/sbin
+
+#check whether madwifi or ath5k register reading is enabled
+[ -f /sys/kernel/debug/ath_pci/wifi0/reg_interval ] && DEBUG_PATH=/sys/kernel/debug/ath_pci/wifi0/
+[ -f /sys/kernel/debug/ieee80211/phy0/bluse/reg_interval ] && DEBUG_PATH=/sys/kernel/debug/ieee80211/phy0/bluse/
+[ -f /sys/kernel/debug/ieee80211/phy0/bluse_ht/reg_interval ] && DEBUG_PATH=/sys/kernel/debug/ieee80211/phy0/bluse_ht/
+
+START=93
+STOP=11
+
+start() {
+
+  # set the register polling interval (minimum = 1)
+  echo 500000 > ${DEBUG_PATH}/reg_interval
+  
+  # mac cycles @ 40MHz in 802.11a
+  # echo 0x80f8 > ${DEBUG_PATH}/reg0
+  
+  # mac cycles spent in tx
+  # echo 0x80ec > ${DEBUG_PATH}/reg1
+  
+  # mac cyles spent in rx
+  # echo 0x80f0 > ${DEBUG_PATH}/reg2
+  
+  # mac cylces spend in ernergy detection
+  # echo 0x80f4 > ${DEBUG_PATH}/reg3
+  
+  
+  # dynamics of carrier sense thresholds & noise
+  # echo 0x9864 > ${DEBUG_PATH}/reg4
+  
+  # current rssi regsiter
+  # echo 0x9c1c > ${DEBUG_PATH}/reg5
+
+ # NAV register (current)
+ #define AR5K_NAV_5210           0x808c
+ #define AR5K_NAV_5211           0x8084
+ #define AR5K_NAV                (ah->ah_version == AR5K_AR5210 ? \
+ # echo 0x8084 > ${DEBUG_PATH}/reg6                        
+ 
+#TSF mac time 64 bit 
+  #define DIAG_FORCE_RXCLR                (1<<20) /* force rxclear (ignore CCA) */
+  #define DIAG_IGNORE_NAV                 (1<<21) /* ignore received nav */
+  #define AR_TSF_L32                      0x804c  /* MAC local clock lower 32 bits */
+  #define AR_TSF_U32                      0x8050  /* MAC local clock upper 32 bits */
+  #define AR_TST_ADDAC                    0x8054  /* ADDAC test register */
+  #echo 0x8050 > ${DEBUG_PATH}/reg7
+  #echo 0x804c > ${DEBUG_PATH}/reg8
+
+  # PHY error filter register
+  #define AR5K_PHY_ERR_FIL                0x810c
+  #define AR5K_PHY_ERR_FIL_RADAR          0x00000020      /* Radar signal */
+  #define AR5K_PHY_ERR_FIL_OFDM           0x00020000      /* OFDM false detect (ANI) */
+  #define AR5K_PHY_ERR_FIL_CCK            0x02000000      /* CCK false detect (ANI) */
+  #echo 0x812c > ${DEBUG_PATH}/reg9
+
+###HIER SCHEINT KEINE VERAENDERUNG MESSBAR !!! 
+  
+###NEU FEB 2011
+  #define	AR_PHY_AGC_CONTROL	0x9860		/* chip calibration and noise floor setting */
+  #define	AR_PHY_AGC_CONTROL_CAL	0x00000001	/* do internal calibration */
+  #define	AR_PHY_AGC_CONTROL_NF	0x00000002	/* do noise-floor calculation */
+  #define AR_PHY_AGC_CONTROL_ENABLE_NF     0x00008000 /* Enable noise floor calibration to happen */
+  #define AR_PHY_AGC_CONTROL_NO_UPDATE_NF  0x00020000 /* Don't update noise floor automatically */
+  #echo 0x9860 > ${DEBUG_PATH}/reg6
+
+  #PHY coarse agility control register
+  #define AR5K_PHY_AGCCOARSE              0x985c          /* Register Address */
+  #define AR5K_PHY_AGCCOARSE_LO           0x00007f80      /* AGC Coarse low */
+  #define AR5K_PHY_AGCCOARSE_LO_S         7
+  #define AR5K_PHY_AGCCOARSE_HI           0x003f8000      /* AGC Coarse high */
+  #define AR5K_PHY_AGCCOARSE_HI_S         15
+  #echo 0x985c > ${DEBUG_PATH}/reg6
+
+###NEU FEB 2011
+  #define	AR_PHY_DESIRED_SZ	0x9850
+  #define	AR_PHY_DESIRED_SZ_ADC		0x000000FF
+  #define	AR_PHY_DESIRED_SZ_ADC_S		0
+  #define	AR_PHY_DESIRED_SZ_PGA		0x0000FF00
+  #define	AR_PHY_DESIRED_SZ_PGA_S		8
+  #define	AR_PHY_DESIRED_SZ_TOT_DES	0x0FF00000
+  #define	AR_PHY_DESIRED_SZ_TOT_DES_S	20
+  #echo 0x9850 > ${DEBUG_PATH}/reg7
+
+###NEU FEB 2011
+  #define	AR_PHY_ADC_CTL		0x982C
+  #define	AR_PHY_ADC_CTL_OFF_INBUFGAIN	0x00000003
+  #define	AR_PHY_ADC_CTL_OFF_INBUFGAIN_S	0
+  #define	AR_PHY_ADC_CTL_OFF_PWDDAC	0x00002000
+  #define	AR_PHY_ADC_CTL_OFF_PWDBANDGAP	0x00004000 /* BB Rev 4.2+ only */
+  #define	AR_PHY_ADC_CTL_OFF_PWDADC	0x00008000 /* BB Rev 4.2+ only */
+  #define	AR_PHY_ADC_CTL_ON_INBUFGAIN	0x00030000
+  #define	AR_PHY_ADC_CTL_ON_INBUFGAIN_S	16
+  #echo 0x982C > ${DEBUG_PATH}/reg8
+
+  #PHY signal register
+  #define AR5K_PHY_SIG                    0x9858          /* Register Address */
+  #define AR5K_PHY_SIG_FIRSTEP            0x0003f000      /* FIRSTEP */
+  #define AR5K_PHY_SIG_FIRSTEP_S          12
+  #define AR5K_PHY_SIG_FIRPWR             0x03fc0000      /* FIPWR */
+  #define AR5K_PHY_SIG_FIRPWR_S           18
+ # echo 0x9858 > ${DEBUG_PATH}/reg7
+
+  #* RSSI threshold register
+  #define AR5K_RSSI_THR                   0x8018          /* Register Address */
+  #define AR5K_RSSI_THR_M                 0x000000ff      /* Mask for RSSI threshold [5211+] */
+  #define AR5K_RSSI_THR_BMISS_5210        0x00000700      /* Mask for Beacon Missed threshold [5210] */
+  #define AR5K_RSSI_THR_BMISS_5210_S      8
+  #define AR5K_RSSI_THR_BMISS_5211        0x0000ff00      /* Mask for Beacon Missed threshold [5211+] */
+  #define AR5K_RSSI_THR_BMISS_5211_S      8
+  #define AR5K_RSSI_THR_BMISS             (ah->ah_version == AR5K_AR5210 ? \
+  #                                        AR5K_RSSI_THR_BMISS_5210 : AR5K_RSSI_THR_BMISS_5211)
+  #define AR5K_RSSI_THR_BMISS_S           8
+  #echo 0x8018 > ${DEBUG_PATH}/reg7
+
+
+  #Desired ADC/PGA size register
+  #define AR5K_PHY_SIG                    0x9858          /* Register Address */
+  #define AR5K_PHY_SIG_FIRSTEP            0x0003f000      /* FIRSTEP */
+  #define AR5K_PHY_SIG_FIRSTEP_S          12
+  #define AR5K_PHY_SIG_FIRPWR             0x03fc0000      /* FIPWR */
+  #define AR5K_PHY_SIG_FIRPWR_S           18
+ # echo 0x9858 > ${DEBUG_PATH}/reg8
+
+  #define AR5K_PHY_OFDM_SELFCORR                  0x9924                  /* Register Address */
+  #define AR5K_PHY_OFDM_SELFCORR_CYPWR_THR1_EN    0x00000001      /* Enable cyclic RSSI thr 1 */
+  #define AR5K_PHY_OFDM_SELFCORR_CYPWR_THR1       0x000000fe      /* Mask for Cyclic RSSI threshold 1 */
+  #define AR5K_PHY_OFDM_SELFCORR_CYPWR_THR1_S     1
+  #define AR5K_PHY_OFDM_SELFCORR_CYPWR_THR3       0x00000100      /* Cyclic RSSI threshold 3 (field) (?) */
+  #define AR5K_PHY_OFDM_SELFCORR_RSSI_1ATHR_EN    0x00008000      /* Enable 1A RSSI threshold (?) */
+  #define AR5K_PHY_OFDM_SELFCORR_RSSI_1ATHR       0x00010000      /* 1A RSSI threshold (field) (?) */
+  #define AR5K_PHY_OFDM_SELFCORR_LSCTHR_HIRSSI    0x00800000      /* Long sc threshold hi rssi (?) */
+  #echo 0x9924 > ${DEBUG_PATH}/reg8 
+
+# echo 0x9b00 > DEBUG_PATH/reg7
+ #define AR5K_BB_GAIN_BASE               0x9b00  /* BaseBand Amplifier Gain table base address */
+ #define AR5K_BB_GAIN(_n)                (AR5K_BB_GAIN_BASE + ((_n) << 2))
+ #define AR5K_RF_GAIN_BASE               0x9a00  /* RF Amplrifier Gain table base address */
+ #define AR5K_RF_GAIN(_n)                (AR5K_RF_GAIN_BASE
+
+  # * PHY Channel status register [5112+] (?)
+  #define AR5K_PHY_CHAN_STATUS            0x9c38
+  #define AR5K_PHY_CHAN_STATUS_BT_ACT     0x00000001
+  #define AR5K_PHY_CHAN_STATUS_RX_CLR_RAW 0x00000002
+  #define AR5K_PHY_CHAN_STATUS_RX_CLR_MAC 0x00000004
+  #define AR5K_PHY_CHAN_STATUS_RX_CLR_PAP
+ # echo 0x9c38 > ${DEBUG_PATH}/reg8
+
+}
+

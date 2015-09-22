@@ -1,0 +1,7 @@
+#!/bin/bash
+#
+# shortcut to create a histogram from the piped input
+# Bluse Sept. 2012
+
+/usr/bin/awk ' NF > 0{ counts[$0] = counts[$0] + 1; } END { for (word in counts) print word, counts[word]; }' | sort -n
+
