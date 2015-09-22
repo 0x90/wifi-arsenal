@@ -1,0 +1,19 @@
+TARGETNAME=atheros_eeprom_tool
+TARGETTYPE=PROGRAM
+
+USE_LIBCMT = 1
+
+UMTYPE=windows
+UMENTRY=winmain
+
+_NT_TARGET_VERSION= $(_NT_TARGET_VERSION_WIN7)
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+SOURCES = atheros_eeprom_tool.cpp atheros_eeprom_tool.rc
+
+!IF "$(SDV_BUILD_AS_CPP)" != ""
+USER_C_FLAGS=/TP $(USER_C_FLAGS)
+!ENDIF
+
+TARGETLIBS = $(DDK_LIB_PATH)\cfgmgr32.lib $(SDK_LIB_PATH)\advapi32.lib $(SDK_LIB_PATH)\setupapi.lib $(SDK_LIB_PATH)\comdlg32.lib $(USER_L_FLAGS)

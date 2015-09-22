@@ -1,0 +1,29 @@
+#include <windows.h>
+
+#ifndef DBG
+#define OFFICIAL_BUILD 1
+#undef  BETA
+#endif
+
+#include <ntverp.h>
+
+#undef  VER_COMPANYNAME_STR
+#undef  VER_PRODUCTNAME_STR
+
+#define VER_FILETYPE VFT_DRV
+#define VER_FILESUBTYPE VFT2_DRV_SYSTEM
+#define VER_FILEDESCRIPTION_STR "Atheros EEPROM Driver"
+
+#if defined(_X86_)
+#define VER_INTERNALNAME_STR "ath32.sys"
+#elif defined(_AMD64_)
+#define VER_INTERNALNAME_STR "ath64.sys"
+#else
+#define VER_INTERNALNAME_STR "atheeprom.sys"
+#endif
+
+#define VER_COMPANYNAME_STR "AnV Sofware"
+#define VER_PRODUCTNAME_STR "Atheros EEPROM Driver"
+#define VER_LEGALCOPYRIGHT_STR "Copyright (C) 2014 AnV Software"
+
+#include "common.ver"

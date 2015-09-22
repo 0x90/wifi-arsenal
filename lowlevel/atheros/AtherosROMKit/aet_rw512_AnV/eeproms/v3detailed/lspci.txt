@@ -1,0 +1,31 @@
+03:00.0 Network controller: Atheros Communications Inc. AR9285 Wireless Network Adapter (PCI-Express) (rev 01)
+        Subsystem: Device 1a3b:1089
+        Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr- Stepping- SERR- FastB2B- DisINTx-
+        Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast >TAbort- <TAbort- <MAbort- >SERR- <PERR- INTx-
+        Latency: 0, Cache Line Size: 64 bytes
+        Interrupt: pin A routed to IRQ 17
+        Region 0: Memory at d3e00000 (64-bit, non-prefetchable) [size=64K]
+        Capabilities: [40] Power Management version 3
+                Flags: PMEClk- DSI- D1+ D2- AuxCurrent=375mA PME(D0+,D1+,D2-,D3hot+,D3cold+)
+                Status: D0 PME-Enable- DSel=0 DScale=0 PME-
+        Capabilities: [50] Message Signalled Interrupts: Mask- 64bit- Queue=0/0 Enable-
+                Address: 00000000  Data: 0000
+        Capabilities: [60] Express (v2) Legacy Endpoint, MSI 00
+                DevCap: MaxPayload 128 bytes, PhantFunc 0, Latency L0s <512ns, L1 <64us
+                        ExtTag- AttnBtn- AttnInd- PwrInd- RBE+ FLReset-
+                DevCtl: Report errors: Correctable- Non-Fatal- Fatal- Unsupported-
+                        RlxdOrd+ ExtTag- PhantFunc- AuxPwr- NoSnoop-
+                        MaxPayload 128 bytes, MaxReadReq 512 bytes
+                DevSta: CorrErr+ UncorrErr- FatalErr- UnsuppReq+ AuxPwr+ TransPend-
+                LnkCap: Port #0, Speed 2.5GT/s, Width x1, ASPM L0s L1, Latency L0 <512ns, L1 <64us
+                        ClockPM- Suprise- LLActRep- BwNot-
+                LnkCtl: ASPM L1 Enabled; RCB 64 bytes Disabled- Retrain- CommClk+
+                        ExtSynch- ClockPM- AutWidDis- BWInt- AutBWInt-
+                LnkSta: Speed 2.5GT/s, Width x1, TrErr- Train- SlotClk+ DLActive- BWMgmt- ABWMgmt-
+        Capabilities: [100] Advanced Error Reporting <?>
+        Capabilities: [140] Virtual Channel <?>
+        Capabilities: [160] Device Serial Number 12-14-24-ff-ff-17-15-00
+        Capabilities: [170] Power Budgeting <?>
+        Kernel driver in use: ath9k
+        Kernel modules: ath9k
+

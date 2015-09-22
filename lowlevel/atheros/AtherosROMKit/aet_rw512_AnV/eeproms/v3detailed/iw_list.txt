@@ -1,0 +1,57 @@
+Wiphy phy0
+        Band 1:
+                HT capabilities: 0x104e
+                        * 20/40 MHz operation
+                        * SM PS disabled
+                        * 40 MHz short GI
+                        * max A-MSDU len 3839
+                        * DSSS/CCK 40 MHz
+                HT A-MPDU factor: 0x0003 (65535 bytes)
+                HT A-MPDU density: 0x0006 (8 usec)
+                HT MCS set: ff 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00
+                HT TX/RX MCS rate indexes supported:
+                        MCS index 0
+                        MCS index 1
+                        MCS index 2
+                        MCS index 3
+                        MCS index 4
+                        MCS index 5
+                        MCS index 6
+                        MCS index 7
+                Frequencies:
+                        * 2412 MHz [1] (20.0 dBm)
+                        * 2417 MHz [2] (20.0 dBm)
+                        * 2422 MHz [3] (20.0 dBm)
+                        * 2427 MHz [4] (20.0 dBm)
+                        * 2432 MHz [5] (20.0 dBm)
+                        * 2437 MHz [6] (20.0 dBm)
+                        * 2442 MHz [7] (20.0 dBm)
+                        * 2447 MHz [8] (20.0 dBm)
+                        * 2452 MHz [9] (20.0 dBm)
+                        * 2457 MHz [10] (20.0 dBm)
+                        * 2462 MHz [11] (20.0 dBm)
+                        * 2467 MHz [12] (20.0 dBm)
+                        * 2472 MHz [13] (20.0 dBm)
+                        * 2484 MHz [14] (disabled)
+                Bitrates:
+                        * 1.0 Mbps
+                        * 2.0 Mbps (short preamble supported)
+                        * 5.5 Mbps (short preamble supported)
+                        * 11.0 Mbps (short preamble supported)
+                        * 6.0 Mbps
+                        * 9.0 Mbps
+                        * 12.0 Mbps
+                        * 18.0 Mbps
+                        * 24.0 Mbps
+                        * 36.0 Mbps
+                        * 48.0 Mbps
+                        * 54.0 Mbps
+        max # scan SSIDs: 4
+        Supported interface modes:
+                 * IBSS
+                 * managed
+                 * AP
+                 * AP/VLAN
+                 * monitor
+                 * mesh point
+

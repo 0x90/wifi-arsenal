@@ -1,0 +1,13 @@
+ath9k 0000:03:00.0: PCI INT A -> GSI 17 (level, low) -> IRQ 17
+ath9k 0000:03:00.0: setting latency timer to 64
+phy0: Selected rate control algorithm 'ath9k_rate_control'
+Registered led device: ath9k-phy0::radio
+Registered led device: ath9k-phy0::assoc
+Registered led device: ath9k-phy0::tx
+Registered led device: ath9k-phy0::rx
+phy0: Atheros AR9285 MAC/BB Rev:2 AR5133 RF Rev:e0: mem=0xf8e00000, irq=17
+cfg80211: Calling CRDA for country: RU
+cfg80211: Regulatory domain changed to country: RU
+        (start_freq - end_freq @ bandwidth), (max_antenna_gain, max_eirp)
+        (2402000 KHz - 2482000 KHz @ 40000 KHz), (N/A, 2000 mBm)
+

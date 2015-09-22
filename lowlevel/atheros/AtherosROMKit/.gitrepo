@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/andyvand/AtherosROMKit
+	branch = master
+	commit = c98fbe4140502dda263c32029774c3bf5da3f366
+	parent = 06dc2e58b8663ea351b0de9846e92d76e6a14207
+	cmdver = 0.2.3

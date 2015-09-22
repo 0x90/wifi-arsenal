@@ -1,0 +1,10 @@
+TARGETNAME=atheeprom
+TARGETTYPE=DRIVER
+
+MSC_WARNING_LEVEL=/W4 /WX
+
+SOURCES = atheeprom.c atheeprom.rc
+
+!IF "$(SDV_BUILD_AS_CPP)" != ""
+USER_C_FLAGS=$(USER_C_FLAGS) /TP
+!ENDIF

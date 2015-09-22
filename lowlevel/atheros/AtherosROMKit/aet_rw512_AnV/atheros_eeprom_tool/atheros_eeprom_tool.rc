@@ -1,0 +1,266 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#ifndef APSTUDIO_INVOKED
+#include "targetver.h"
+#endif
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON1               ICON                    "..\\ACU.ico"
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDC_ATHEROS_EEPROM_TOOL MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "E&xit",                       IDM_EXIT
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About ...",                  IDM_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDC_ATHEROS_EEPROM_TOOL ACCELERATORS 
+BEGIN
+    "?",            IDM_ABOUT,              ASCII,  ALT
+    "/",            IDM_ABOUT,              ASCII,  ALT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAIN DIALOGEX 0, 0, 329, 109
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "EEPROM tool for Atheros 9k cards"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "Read EEPROM",IDC_CHECKREAD,"Button",BS_AUTORADIOBUTTON,6,3,62,10
+    CONTROL         "Write EEPROM",IDC_CHECKWRITE,"Button",BS_AUTORADIOBUTTON,6,56,63,10
+    EDITTEXT        IDC_SAVEPATH,58,19,229,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Save to:",IDC_SAVE,16,21,38,13
+    LTEXT           "Write from:",IDC_WRITE,15,76,43,12
+    EDITTEXT        IDC_WRITEPATH,59,74,227,12,ES_AUTOHSCROLL | ES_READONLY | WS_DISABLED
+    PUSHBUTTON      "READ",IDC_BTNREAD,139,35,50,14,WS_DISABLED
+    PUSHBUTTON      "WRITE",IDC_BTNWRITE,139,91,50,14,WS_DISABLED
+    PUSHBUTTON      "Open",IDC_OPENR,294,18,29,14
+    PUSHBUTTON      "Open",IDC_OPENW,294,73,29,14,WS_DISABLED
+    PUSHBUTTON      "Modes and Channels",IDC_MODCHAN,239,91,84,14,WS_DISABLED
+    CONTROL         "Use custom modes and channels",IDC_OVERRIDE,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,6,94,121,10
+END
+
+IDD_MODCHAN DIALOGEX 0, 0, 232, 196
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_CAPTION | WS_SYSMENU
+CAPTION "Modes and Channels"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "0x60",IDC_C60,"Button",BS_AUTORADIOBUTTON | WS_GROUP,58,77,32,10
+    CONTROL         "0x63",IDC_C63,"Button",BS_AUTORADIOBUTTON,58,89,32,10
+    CONTROL         "0x64",IDC_C64,"Button",BS_AUTORADIOBUTTON,58,101,32,10
+    CONTROL         "0x66",IDC_C66,"Button",BS_AUTORADIOBUTTON,58,113,32,10
+    CONTROL         "0x67",IDC_C67,"Button",BS_AUTORADIOBUTTON,58,125,32,10
+    CONTROL         "Custom",IDC_RBCUSTOM,"Button",BS_AUTORADIOBUTTON,58,143,40,10
+    DEFPUSHBUTTON   "OK",IDC_MCOK,91,180,50,14
+    PUSHBUTTON      "Cancel",IDC_MCCANCEL,174,180,50,14,NOT WS_VISIBLE
+    CONTROL         "802.11g",IDC_24g,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,10,28,43,10
+    LTEXT           "2.4 GHz:",IDC_STATIC,10,6,29,8
+    LTEXT           "5 GHz:",IDC_STATIC,122,6,22,8
+    CONTROL         "802.11n (20MHz)",IDC_24n20,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,38,71,10
+    CONTROL         "802.11n (40MHz)",IDC_24n40,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,48,71,10
+    CONTROL         "802.11a",IDC_5a,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,122,28,43,10
+    CONTROL         "802.11n (40MHz)",IDC_5n40,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,122,48,71,10
+    CONTROL         "802.11n (20MHz)",IDC_5n20,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,122,38,71,10
+    LTEXT           "1-14",IDC_STATIC,10,77,16,8
+    LTEXT           "5150-5350MHz, 5470-5850MHz",IDC_STATIC,122,77,102,8
+    LTEXT           "1-13",IDC_STATIC,10,89,16,8
+    LTEXT           "5150-5350MHz, 5725-5850MHz",IDC_STATIC,122,89,102,8
+    LTEXT           "1-11",IDC_STATIC,10,101,16,8
+    LTEXT           "5150-5350MHz, 5725-5850MHz",IDC_STATIC,122,101,102,8
+    LTEXT           "1-11",IDC_STATIC,10,113,16,8
+    LTEXT           "5150-5350MHz, 5470-5850MHz",IDC_STATIC,122,113,102,8
+    LTEXT           "1-13",IDC_STATIC,10,125,16,8
+    LTEXT           "5150-5350MHz, 5470-5850MHz",IDC_STATIC,122,125,102,8
+    LTEXT           "Enter RegDmn in hex",IDC_STATIC,122,143,68,8
+    EDITTEXT        IDC_CUSTOMRD,10,142,40,12,ES_AUTOHSCROLL
+    GROUPBOX        "Channels (compatible with 802.11n)",IDC_STATIC,7,67,217,71
+    GROUPBOX        "Modes",IDC_STATIC,7,18,217,44
+    LTEXT           "MAC",IDC_STATIC,12,167,15,8
+    EDITTEXT        IDC_MAC,30,165,97,12,ES_AUTOHSCROLL
+END
+
+IDD_CHOOSE DIALOGEX 0, 0, 285, 66
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Choose device"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_DEVLIST,7,7,271,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "HardwareID:",IDC_STATIC,124,23,42,8
+    DEFPUSHBUTTON   "OK",IDC_CHOK,119,48,50,14
+    LTEXT           "",IDC_DEVINST,7,34,271,12,SS_WORDELLIPSIS
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#ifndef APSTUDIO_INVOKED\r\n"
+    "#include ""targetver.h""\r\n"
+    "#endif\r\n"
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_MODCHAN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 224
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 194
+    END
+
+    IDD_CHOOSE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 278
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 62
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_APP_TITLE           "atheros_eeprom_tool"
+    IDC_ATHEROS_EEPROM_TOOL "ATHEROS_EEPROM_TOOL"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+1 RT_MANIFEST "atheros_eeprom_tool.manifest"
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
+#ifndef DBG
+#define OFFICIAL_BUILD 1
+#undef  BETA
+#endif
+
+#include <ntverp.h>
+
+#undef  VER_COMPANYNAME_STR
+#undef  VER_PRODUCTNAME_STR
+
+#define VER_FILETYPE VFT_DRV
+#define VER_FILESUBTYPE VFT2_DRV_SYSTEM
+#define VER_FILEDESCRIPTION_STR "Atheros EEPROM Tool"
+
+#if defined(_X86_)
+#define VER_INTERNALNAME_STR "atheros_eeprom_tool.exe"
+#elif defined(_AMD64_)
+#define VER_INTERNALNAME_STR "atheros_eeprom_tool64.exe"
+#else
+#define VER_INTERNALNAME_STR "atheros_eeprom_tool.exe"
+#endif
+
+#define VER_COMPANYNAME_STR "AnV Sofware"
+#define VER_PRODUCTNAME_STR "Atheros EEPROM Tool"
+#define VER_LEGALCOPYRIGHT_STR "Copyright (C) 2014 AnV Software"
+
+#include "common.ver"
