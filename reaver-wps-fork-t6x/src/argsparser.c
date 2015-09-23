@@ -41,9 +41,12 @@ int process_arguments(int argc, char **argv)
     int long_opt_index = 0;
     char bssid[MAC_ADDR_LEN] = { 0 };
     char mac[MAC_ADDR_LEN] = { 0 };
-    char *short_options = "K:b:e:m:i:t:d:c:T:x:r:g:l:o:p:s:C:1:2:aA5ELfnqvDShwXN";
+    char *short_options = "W:K:b:e:m:i:t:d:c:T:x:r:g:l:o:p:s:C:1:2:ZaA5ELfnqvDShwXNPH0";
     struct option long_options[] = {
+		{ "generate-pin", required_argument, NULL, 'W' },
+		{ "stop-in-m1", no_argument, NULL, '0' },
         { "pixie-dust", required_argument, NULL, 'K' },
+        { "no-auto-pass", no_argument, NULL, 'Z' },
         { "interface", required_argument, NULL, 'i' },
         { "bssid", required_argument, NULL, 'b' },
         { "essid", required_argument, NULL, 'e' },
@@ -77,6 +80,8 @@ int process_arguments(int argc, char **argv)
         { "win7", no_argument, NULL, 'w' },
         { "exhaustive", no_argument, NULL, 'X' },
         { "help", no_argument, NULL, 'h' },
+	{ "pixiedust-loop", no_argument, NULL, 'P' },
+	{ "pixiedust-log", no_argument, NULL, 'H' },
         { 0, 0, 0, 0 }
     };
 
@@ -87,10 +92,30 @@ int process_arguments(int argc, char **argv)
     {
         switch(c)
         {
-	    case 'K':
-		//set valor para pixie
-		set_op_pixie(atoi(optarg));
-		break;
+			case 'W':
+                //set default pin generator
+                set_op_gen_pin(atoi(optarg));
+                break;
+            case '0':
+                //set stop in m1
+                set_stop_in_m1(1);
+                break;
+            case 'Z':
+                //set valor para auto get pass
+                set_op_autopass(0);
+                break;
+            case 'K':
+                //set valor para pixie
+                set_op_pixie(atoi(optarg));
+                /*
+                if( (atoi(optarg)==1) || (atoi(optarg)==2) ) 
+                {
+                    //need option -S, already set here
+                    set_dh_small(1);
+                    printf("Option (-K 1) or (-K 2) must use the -S option. -S Option enabled now, continuing.\n");
+                }
+                */
+            break;
             case 'i':
                 set_iface(optarg);
                 break;
@@ -190,6 +215,12 @@ int process_arguments(int argc, char **argv)
             case 'N':
                 set_oo_send_nack(0);
                 break;
+	    case 'P':
+                set_pixie_loop(1);
+                break;
+	    case 'H':
+                set_pixie_log(1);
+                break;
             default:
                 ret_val = EXIT_FAILURE;
         }
@@ -219,6 +250,12 @@ void init_default_settings(void)
     set_p1_index(0);
     set_p2_index(0);
     set_op_pixie(0);
+    set_op_autopass(1);
+    set_pixie_loop(0);
+    set_pixie_log(0);
+	set_stop_in_m1(0);
+	set_op_gen_pin(0);
+    set_exhaustive(0);
 }
 
 /* Parses the recurring delay optarg */
@@ -251,6 +288,7 @@ void parse_static_pin(char *pin)
     if(pin)
     {
         len = strlen(pin);
+        //set_max_pin_attempts(1);
 
         if(len == 4 || len == 7 || len == 8)
         {

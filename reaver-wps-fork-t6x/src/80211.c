@@ -39,8 +39,20 @@ const u_char *next_packet(struct pcap_pkthdr *header)
     const u_char *packet = NULL;
 
     /* Loop until we get a valid packet, or until we run out of packets */
+#ifdef __APPLE__
+    struct pcap_pkthdr *pkt_header = NULL;
+    int status = 1;
+    while ((status = pcap_next_ex(get_handle(), &pkt_header, &packet)) == 1 || status == 0) // status == 0 indicates timeout
+#else
     while((packet = pcap_next(get_handle(), header)) != NULL)
+#endif
     {
+
+#ifdef __APPLE__
+      if (status == 0) continue;
+      memcpy(header, pkt_header, sizeof(*header));
+#endif
+        
         if(get_validate_fcs())
         {
             if(check_fcs(packet, header->len))
@@ -49,7 +61,9 @@ const u_char *next_packet(struct pcap_pkthdr *header)
             }
             else
             {
+#ifndef __APPLE__
                 cprintf(INFO, "[!] Found packet with bad FCS, skipping...\n");
+#endif
             }
         }
         else
@@ -609,6 +623,70 @@ int check_fcs(const u_char *packet, size_t len)
         if(has_rt_header())
         {
             rt_header = (struct radio_tap_header *) packet;
+            
+#ifdef __APPLE__
+                        unsigned char *body = (unsigned char*) (rt_header+1);
+                        uint32_t present = rt_header->flags;
+                        uint8_t rflags = 0;
+                        int i;
+                        for (i = IEEE80211_RADIOTAP_TSFT; i <= IEEE80211_RADIOTAP_EXT; i++) {
+                                if (!(present & (1 << i))) continue;
+                                switch (i) {
+                                            case IEEE80211_RADIOTAP_TSFT:
+                                                body += sizeof(uint64_t);
+                                                break;
+                        
+                                            case IEEE80211_RADIOTAP_FLAGS:
+                                                rflags = *((uint8_t*)body);
+                                                /* fall through */
+                                            case IEEE80211_RADIOTAP_RATE:
+                                                body += sizeof(uint8_t);
+                                                break;
+                        
+                                            case IEEE80211_RADIOTAP_CHANNEL:
+                                                body += sizeof(uint16_t)*2;
+                                                break;
+                        
+                                            case IEEE80211_RADIOTAP_RX_FLAGS:
+                                            case IEEE80211_RADIOTAP_FHSS:
+                                                body += sizeof(uint16_t);
+                                                break;
+                        
+                                            case IEEE80211_RADIOTAP_DB_ANTSIGNAL:
+                                            case IEEE80211_RADIOTAP_DBM_ANTNOISE:
+                                            case IEEE80211_RADIOTAP_DBM_ANTSIGNAL:
+                                            case IEEE80211_RADIOTAP_DB_ANTNOISE:
+                                            case IEEE80211_RADIOTAP_ANTENNA:
+                                                body++;
+                                                break;
+                        
+                                            case 18: // IEEE80211_RADIOTAP_XCHANNEL
+                                                body += sizeof(uint32_t);
+                                                body += sizeof(uint16_t);
+                                                body += sizeof(uint8_t);
+                                                body += sizeof(uint8_t);
+                                                break;
+                                        
+                                            case 19: // IEEE80211_RADIOTAP_MCS
+                                                body += 3*sizeof(uint8_t);
+                                                break;
+                                        
+                                            default:
+                                                i = IEEE80211_RADIOTAP_EXT+1;
+                                                break;
+                                    }
+                            }
+                        #define IEEE80211_RADIOTAP_F_BADFCS 0x40
+                        if (rflags & IEEE80211_RADIOTAP_F_BADFCS) {
+                                // bad FCS, ignore
+                                return 0;
+                            }
+                        if (!(rflags & IEEE80211_RADIOTAP_F_FCS)) {
+                                // fcs not always present
+                                return 1;
+                            }
+#endif
+            
             offset += rt_header->len;
         }
 

@@ -251,10 +251,9 @@ void crack()
             pin = NULL;
 
             /* If we've hit our max number of pin attempts, quit */
-            if((get_max_pin_attempts() > 0) && 
-                    (get_pin_count() == get_max_pin_attempts()))
+            if( (get_max_pin_attempts() > 0) && (get_pin_count() == get_max_pin_attempts()) )
             {
-                if(get_exhaustive()){
+                if(get_exhaustive()==0){   
                     cprintf(WARNING, "[+] Quitting after %d crack attempts\n", get_max_pin_attempts());
                     break;
                 }
@@ -308,10 +307,60 @@ int get_pin_count()
     {
         pin_count = P1_SIZE + get_p2_index();
     }
+     
+    if(get_max_pin_attempts() > 0 && get_max_pin_attempts() < 10000 )
+    {
+        pin_count = get_p1_index() + get_p2_index();
+    }
     return pin_count;
 }
 
-/* Displays the status and rate of cracking */
+char *get_max_time_remaining(int average, int attempts_remaining)
+{
+	char *max_time, hours[8], minutes[3], seconds[3];
+	int max_hours = 0, max_minutes = 0, max_seconds = 0;
+
+	max_time = malloc(16);
+
+	if(!max_time)
+		exit(-1);
+
+	if(average)
+	{
+		max_seconds = attempts_remaining * average;
+		if(max_seconds > 60)
+		{
+			max_minutes = max_seconds / 60;
+			max_seconds -= max_minutes * 60;
+		}
+		if(max_minutes > 60)
+		{
+			max_hours = max_minutes / 60;
+			max_minutes -= max_hours * 60;
+		}
+
+		if(max_seconds < 0 || max_minutes < 0 || max_hours < 0)
+		{
+			free(max_time);
+			return NULL;
+		}
+
+		sprintf(hours, "%d", max_hours);
+		sprintf(minutes, "%s%d", max_minutes > 9 ? "" : "0", max_minutes);
+		sprintf(seconds, "%s%d", max_seconds > 9 ? "" : "0", max_seconds);
+
+		sprintf(max_time, "%s:%s:%s", hours, minutes, seconds);
+	}
+	else
+	{
+		free(max_time);
+		return NULL;
+	}
+
+	return max_time;
+}
+
+//Displays the status and rate of cracking
 void display_status(time_t start_time)
 {
     float percentage = 0;
@@ -323,10 +372,8 @@ void display_status(time_t start_time)
     {
         attempts = get_p1_index() + get_p2_index();
     }
-    /* 
-     * If we've found the first half of the key, then the entire key1 keyspace
-     * has been exhausted/eliminated. Our output should reflect that.
-     */
+     // If we've found the first half of the key, then the entire key1 keyspace
+     // has been exhausted/eliminated. Our output should reflect that. 
     else if(get_key_status() == KEY2_WIP)
     {
         attempts = P1_SIZE + get_p2_index();

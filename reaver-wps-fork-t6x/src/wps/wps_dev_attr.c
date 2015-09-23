@@ -12,6 +12,8 @@
  * See README and COPYING for more details.
  */
 
+ #include "globule.h"
+ 
 #include "includes.h"
 
 #include "common.h"
@@ -187,13 +189,24 @@ static int wps_process_manufacturer(struct wps_device_data *dev, const u8 *str,
     wpa_hexdump_ascii(MSG_DEBUG, "WPS: Manufacturer", str, str_len);
 
     /****** ADD THIS PART ******/
-    printf("[P] WPS Manufacturer: ");
+    if ( (get_debug() == 4) || (globule->op_gen_pin >0))
+    { //verbose (-vvv)
+        printf("[P] WPS Manufacturer: ");
+    }
     int pixiecnt = 0;
     for (; pixiecnt < str_len; pixiecnt++) {
-	printf("%c", (char *) str[pixiecnt]);
+        if ( (get_debug() == 4) || (globule->op_gen_pin >0))
+        { //verbose (-vvv)
+            printf("%c", (char *) str[pixiecnt]);
+        }
     }
-    printf("\n");
+    if ( (get_debug() == 4) || (globule->op_gen_pin >0))
+    { //verbose (-vvv)
+        printf("\n");
+    }
     /******/
+	
+
 
     os_free(dev->manufacturer);
     dev->manufacturer = os_malloc(str_len + 1);
@@ -215,6 +228,24 @@ static int wps_process_model_name(struct wps_device_data *dev, const u8 *str,
     }
 
     wpa_hexdump_ascii(MSG_DEBUG, "WPS: Model Name", str, str_len);
+    
+    /****** ADD THIS PART ******/
+    if ( (get_debug() == 4) || (globule->op_gen_pin >0))
+    { //verbose (-vvv)
+        printf("[P] WPS Model Name: ");
+    }
+    int pixiecnt = 0;
+    for (; pixiecnt < str_len; pixiecnt++) {
+        if ( (get_debug() == 4) || (globule->op_gen_pin >0))
+        { //verbose (-vvv)
+            printf("%c", (char *) str[pixiecnt]);
+        }
+    }
+    if ( (get_debug() == 4) || (globule->op_gen_pin >0))
+    { //verbose (-vvv)
+        printf("\n");
+    }
+    /******/
 
     os_free(dev->model_name);
     dev->model_name = os_malloc(str_len + 1);
@@ -238,14 +269,23 @@ static int wps_process_model_number(struct wps_device_data *dev, const u8 *str,
     wpa_hexdump_ascii(MSG_DEBUG, "WPS: Model Number", str, str_len);
 
     /****** ADD THIS PART ******/
-    printf("[P] WPS Model Number: ");
+    if ( (get_debug() == 4) || (globule->op_gen_pin >0))
+    { //verbose (-vvv)
+        printf("[P] WPS Model Number: ");
+    }
     int pixiecnt = 0;
     for (; pixiecnt < str_len; pixiecnt++) {
-	printf("%c", (char *) str[pixiecnt]);
+        if ( (get_debug() == 4) || (globule->op_gen_pin >0))
+        { //verbose (-vvv)
+            printf("%c", (char *) str[pixiecnt]);
+        }
     }
-    printf("\n");
+    if ( (get_debug() == 4) || (globule->op_gen_pin >0))
+    { //verbose (-vvv)
+        printf("\n");
+    }
     /******/
-
+	
     os_free(dev->model_number);
     dev->model_number = os_malloc(str_len + 1);
     if (dev->model_number == NULL)
@@ -266,6 +306,66 @@ static int wps_process_serial_number(struct wps_device_data *dev,
     }
 
     wpa_hexdump_ascii(MSG_DEBUG, "WPS: Serial Number", str, str_len);
+	
+	/****** ADD THIS PART ******/
+    if ( (get_debug() == 4) || (globule->op_gen_pin >0))
+    { //verbose (-vvv)
+        printf("[P] Access Point Serial Number: ");
+    }
+    int pixiecnt = 0;
+    for (; pixiecnt < str_len; pixiecnt++) {
+        if ( (get_debug() == 4) || (globule->op_gen_pin >0))
+        { //verbose (-vvv)
+            printf("%c", (char *) str[pixiecnt]);
+        }
+    }
+    if ( (get_debug() == 4) || (globule->op_gen_pin >0))
+    { //verbose (-vvv)
+        printf("\n");
+    }
+    /******/
+	
+	if(globule->stop_in_m1 == 1)
+	{
+		//exit reaver, need this to get manufac and model for the wash option
+		exit(0);
+	}
+	
+	//generate pin, created by http://www.devttys0.com/ team
+	//https://github.com/devttys0/wps/tree/master/pingens/belkin
+	if(globule->op_gen_pin == 1)
+	{
+		printf("[Pin Gen] Belkin Default Pin Generator by devttys0 team\n");
+		if(str_len < 4) //serial muito curto
+		{
+		    printf("[Pin Gen] Model Serial Number too short\n");
+		    exit(0);
+		}
+		printf("[Pin Gen] Pin Generated : %08d\n",pingen_belkin(mac2str(get_bssid(),'\0'), str, str_len, 0));
+		printf("[Pin Gen] Pin Generated (+1): %08d\n",pingen_belkin(mac2str(get_bssid(),'\0'), str, str_len, 1));
+		printf("[Pin Gen] Pin Generated (-1): %08d\n\n",pingen_belkin(mac2str(get_bssid(),'\0'), str, str_len, -1));
+		exit(0);
+	}	
+	
+	//generate pin, created by http://www.devttys0.com/ team
+	//https://github.com/devttys0/wps/tree/master/pingens/dlink
+	if(globule->op_gen_pin == 2)
+	{
+		printf("[Pin Gen] D-Link Default Pin Generator by devttys0 team\n");
+		printf("[Pin Gen] Pin Generated : %08d\n",pingen_dlink(mac2str(get_bssid(),'\0'), 0));
+		printf("[Pin Gen] Pin Generated (+1): %08d\n",pingen_dlink(mac2str(get_bssid(),'\0'), 1));
+		printf("[Pin Gen] Pin Generated (-1): %08d\n\n",pingen_dlink(mac2str(get_bssid(),'\0'), -1));
+		exit(0);
+	}		
+    
+    if(globule->op_gen_pin == 3)
+	{
+		printf("[Pin Gen] Zyxel Default Pin Generator\n");
+		printf("[Pin Gen] Pin Generated : %08d\n",pingen_zyxel(mac2str(get_bssid(),'\0'), 0));
+        printf("[Pin Gen] Pin Generated (+1): %08d\n",pingen_zyxel(mac2str(get_bssid(),'\0'), 1));
+        printf("[Pin Gen] Pin Generated (-1): %08d\n",pingen_zyxel(mac2str(get_bssid(),'\0'), -1));
+		exit(0);
+	}
 
     os_free(dev->serial_number);
     dev->serial_number = os_malloc(str_len + 1);

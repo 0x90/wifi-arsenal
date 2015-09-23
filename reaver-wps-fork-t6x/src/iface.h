@@ -35,9 +35,18 @@
 #define IFACE_H
 
 #include <sys/ioctl.h>
+#ifdef __APPLE__
+#include <sys/socket.h>
+#include <net/ethernet.h>
+#include <ifaddrs.h>
+#include <net/if_dl.h>
+#endif
 #include <net/if.h>
 #include <netinet/in.h>
+
+#ifndef __APPLE__
 #include "lwe/iwlib.h"
+#endif
 
 #include "defs.h"
 #include "globule.h"

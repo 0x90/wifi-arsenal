@@ -38,6 +38,8 @@
 
 struct globals
 {
+    int pixie_loop;                 /* Loops through up to M4 */
+    int pixie_log;                 /* Logs PixieDust hashes to executing directory */
     int last_wps_state;             /* Holds the previous WPS state as stored in wps->state */
 
     int p1_index;                   /* Index into p1 array for building WPS pins */
@@ -140,8 +142,13 @@ struct globals
                                      * wpa_supplicant's wps_data structure, needed for almost all wpa_supplicant
                                      * function calls.
                                      */
-    int op_pixie;
-    char cmd_reaver_test[4000];
+									 
+    int op_pixie;					/* make pixiewps */	
+    char cmd_reaver_test[4000];		/* auto reaver with pin */
+    int op_autopass;				/* auto reaver with pin */
+	int stop_in_m1;					/* stop reaver in m1 message */
+	int op_gen_pin;					/* gen default pin */
+	
 
 } *globule;
 
@@ -247,5 +254,14 @@ void set_exec_string(char *string);
 char *get_exec_string(void);
 void set_oo_send_nack(int value);
 int get_oo_send_nack(void);
+void set_op_pixie(int index);
+void set_op_autopass(int index);
+void set_cmd_reaver_test(char *string);
+void set_pixie_loop(int value);
+int get_pixie_loop();
+void set_pixie_log(int value);
+int get_pixie_log();
+void set_stop_in_m1(int index);
+
 
 #endif

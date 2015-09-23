@@ -2,7 +2,7 @@ WASH USAGE
 
 	Wash is a utility for identifying WPS enabled access points. It can survey from a live interface:
 
-		# wash -i mon0 
+		# wash -i wlan0mon
 
 	Or it can scan a list of pcap files:
 
@@ -20,7 +20,7 @@ WASH USAGE
 	By default, wash will perform a passive survey. However, wash can be instructed to send probe requests
 	to each AP in order to obtain more information about the AP:
 
-		# wash -i mon0 --scan
+		# wash -i wlan0mon --scan
 
 	By sending probe requests, wash will illicit a probe response from each AP. For WPS-capable APs, the
 	WPS information element typically contains additional information about the AP, including make, model,

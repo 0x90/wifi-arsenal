@@ -246,9 +246,30 @@ void set_max_pin_attempts(int value)
 {
     globule->max_pin_attempts = value;
 }
+
 int get_max_pin_attempts()
 {
     return globule->max_pin_attempts;
+}
+
+void set_pixie_loop(int value)
+{
+    globule->pixie_loop = value;
+}
+
+int get_pixie_loop()
+{
+    return globule->pixie_loop;
+}
+
+void set_pixie_log(int value)
+{
+    globule->pixie_log = value;
+}
+
+int get_pixie_log()
+{
+    return globule->pixie_log;
 }
 
 void set_max_num_probes(int value)
@@ -598,6 +619,21 @@ int get_oo_send_nack(void)
 void set_op_pixie(int index)
 {
     globule->op_pixie = index;
+}
+
+void set_op_autopass(int index)
+{
+    globule->op_autopass = index;
+}
+
+void set_stop_in_m1(int index)
+{
+    globule->stop_in_m1 = index;
+}
+
+void set_op_gen_pin(int index)
+{
+    globule->op_gen_pin = index;
 }
 
 void set_cmd_reaver_test(char *string)

@@ -5,33 +5,41 @@ prefix=@prefix@
 exec_prefix=@exec_prefix@
 CONFDIR=@sysconfdir@/@target@
 CFLAGS=-DCONF_DIR='"$(CONFDIR)"' -DREAVER_DATABASE='"$(CONFDIR)/reaver.db"' @CFLAGS@
+UNAME := $(shell uname)
+ifeq ($(UNAME), Linux)
 LDFLAGS=$(LIBWPS_DIR)/*.o wps/*.o tls/bignum.o tls/libtls.a utils/libutils.a crypto/libcrypto.a lwe/libiw.a @LDFLAGS@
+LIBIWNAME=libiw
+endif
+ifeq ($(UNAME), Darwin)
+LIBIWNAME=
+LDFLAGS=$(LIBWPS_DIR)/*.o wps/*.o tls/bignum.o tls/libtls.a utils/libutils.a crypto/libcrypto.a @LDFLAGS@
+endif
 
 all: wash reaver
 
-wash: wps libiw libwps.o argsparser.o globule.o init.o misc.o 80211.o iface.o
+wash: wps $(LIBIWNAME) libwps.o argsparser.o globule.o init.o misc.o 80211.o iface.o
 	$(CC) $(CFLAGS) $(INC) wpsmon.c *.o $(LDFLAGS) -o wash
 
-reaver: wps libiw libwps.o argsparser.o globule.o init.o sigint.o sigalrm.o misc.o cracker.o
+reaver: wps $(LIBIWNAME) libwps.o argsparser.o globule.o init.o sigint.o sigalrm.o misc.o cracker.o
 	$(CC) $(CFLAGS) $(INC) wpscrack.c *.o $(LDFLAGS) -o reaver
 
 libwps.o:
-	(cd $(LIBWPS_DIR) && make)
+	(cd $(LIBWPS_DIR) && $(MAKE))
 
 wps: libutils libcrypto
-	(cd wps && make)
+	(cd wps && $(MAKE))
 
 libutils:
-	(cd utils && make)
+	(cd utils && $(MAKE))
 
 libcrypto: libtls
-	(cd crypto && make)
+	(cd crypto && $(MAKE))
 
 libtls:
-	(cd tls && make)
+	(cd tls && $(MAKE))
 
 libiw:
-	(cd lwe && make BUILD_STATIC=y libiw.a)
+	(cd lwe && $(MAKE) BUILD_STATIC=y libiw.a)
 
 init.o:
 	$(CC) $(CFLAGS) init.c -c
@@ -93,12 +101,12 @@ install: cleanbin
 clean:
 	rm -f *~ *.o reaver wash
 	rm -rf *.cache config.status config.log
-	(cd utils && make clean)
-	(cd tls && make clean)
-	(cd crypto && make clean)
-	(cd wps && make clean)
-	(cd lwe && make realclean)
-	(cd $(LIBWPS_DIR) && make clean)
+	(cd utils && $(MAKE) clean)
+	(cd tls && $(MAKE) clean)
+	(cd crypto && $(MAKE) clean)
+	(cd wps && $(MAKE) clean)
+	(cd lwe && $(MAKE) realclean)
+	(cd $(LIBWPS_DIR) && $(MAKE) clean)
 	rm -f Makefile config.h
 
 cleanbin: 

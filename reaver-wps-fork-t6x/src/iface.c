@@ -34,6 +34,28 @@
 #include "iface.h"
 
 /* Populates globule->mac with the MAC address of the interface globule->iface */
+#ifdef __APPLE__
+int read_iface_mac() {
+        struct ifaddrs* iflist;
+        int found = 0;
+        if (getifaddrs(&iflist) == 0) {
+                struct ifaddrs* cur;
+                for (cur = iflist; cur; cur = cur->ifa_next) {
+                        if ((cur->ifa_addr->sa_family == AF_LINK) &&
+                                             (strcmp(cur->ifa_name, get_iface()) == 0) &&
+                                             cur->ifa_addr) {
+                                struct sockaddr_dl* sdl = (struct sockaddr_dl*)cur->ifa_addr;
+                                set_mac(LLADDR(sdl));
+                                found = 1;
+                                break;
+                            }
+                    }
+                
+                freeifaddrs(iflist);
+            }
+        return found;
+    }
+#else
 int read_iface_mac()
 {
     struct ifreq ifr;
@@ -68,7 +90,7 @@ int read_iface_mac()
 
     return ret_val;
 }
-
+#endif
 /* 
  * Goes to the next 802.11 channel.
  * This is mostly required for APs that hop channels, which usually hop between channels 1, 6, and 11.
@@ -112,6 +134,24 @@ int next_channel()
 }
 
 /* Sets the 802.11 channel for the selected interface */
+#ifdef __APPLE__
+int change_channel(int channel)
+{
+        cprintf(VERBOSE, "[+] Switching %s to channel %d\n", get_iface(), channel);
+        // Unfortunately, there is no API to change the channel
+        pid_t pid = fork();
+    	if (!pid) {
+        		char chan_arg[32];
+        		sprintf(chan_arg, "-c%d", channel);
+        		char* argv[] = {"/System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport", chan_arg, NULL};
+        		execve("/System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport", argv, NULL);
+        	}
+    	int status;
+    	waitpid(pid,&status,0);
+        set_channel(channel);
+    	return 0;
+    }
+#else
 int change_channel(int channel)
 {
     int skfd = 0, ret_val = 0;
@@ -146,3 +186,4 @@ int change_channel(int channel)
 
     return ret_val;
 }
+#endif

@@ -121,7 +121,30 @@ pcap_t *capture_init(char *capture_source)
     pcap_t *handle = NULL;
     char errbuf[PCAP_ERRBUF_SIZE] = { 0 };
 
-    handle = pcap_open_live(capture_source, BUFSIZ, 1, 0, errbuf);
+    #ifdef __APPLE__
+        // must disassociate from any current AP.  This is the only way.
+        pid_t pid = fork();
+    	if (!pid) {
+        		char* argv[] = {"/System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport", "-z", NULL};
+        		execve("/System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport", argv, NULL);
+        	}
+    	int status;
+    	waitpid(pid,&status,0);
+    
+    
+        handle = pcap_create(capture_source,errbuf);
+        if (handle) {
+                pcap_set_snaplen(handle, BUFSIZ);
+                pcap_set_timeout(handle, 50);
+                pcap_set_rfmon(handle, 1);
+                pcap_set_promisc(handle, 1);
+                int status = pcap_activate(handle);
+                if (status)
+                        cprintf(CRITICAL, "pcap_activate status %d\n", status);
+            }
+    #else
+            handle = pcap_open_live(capture_source, BUFSIZ, 1, 0, errbuf);
+    #endif
     if(!handle)
     {
         handle = pcap_open_offline(capture_source, errbuf);

@@ -129,19 +129,32 @@ int wps_derive_keys(struct wps_data *wps)
     wpa_hexdump_key(MSG_DEBUG, "WPS: EMSK", wps->emsk, WPS_EMSK_LEN);
 
     /****** ADD THIS PART ******/
-    strcat(cmd_pixie," -a ");
-    printf("[P] AuthKey: ");
+
+    memset(pixie_authkey,0,sizeof(pixie_authkey));
+    if ( get_debug()==4 )
+    { //verbose (-vvv)
+        printf("[P] AuthKey: ");
+    }
     int pixiecnt = 0;
     for (; pixiecnt < WPS_AUTHKEY_LEN; pixiecnt++) {
-        printf("%02x", wps->authkey[pixiecnt]);
+        if ( get_debug()==4 )
+        { //verbose (-vvv)
+            printf("%02x", wps->authkey[pixiecnt]);
+        }
         sprintf(cmd_pixie_aux, "%02x",  wps->authkey[pixiecnt]);
-        strcat(cmd_pixie,cmd_pixie_aux);
+        strcat(pixie_authkey, cmd_pixie_aux);
         if (pixiecnt != WPS_AUTHKEY_LEN - 1) {
-            printf(":");
-            strcat(cmd_pixie,":");
+            if ( get_debug()==4 )
+            { //verbose (-vvv)
+                printf(":");
+            }
+            strcat(pixie_authkey,":");
         }
     }
-    printf("\n");
+    if ( get_debug()==4 )
+    { //verbose (-vvv)
+        printf("\n");
+    }
     /******/
 
     return 0;

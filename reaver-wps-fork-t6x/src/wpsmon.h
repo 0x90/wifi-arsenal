@@ -95,6 +95,7 @@ struct global_variables
     FILE *fp;
     int bssid_count;
     unsigned char **bssids;
+	 
 } wpsmon;
 
 void monitor(char *bssid, int passive, int source, int channel, int mode);
