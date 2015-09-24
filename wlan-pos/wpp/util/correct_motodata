@@ -1,8 +1,0 @@
-#!/bin/bash
-# $0 <moto bad csv>
-# moto sometime has only 13 col with height info omitted.
-# e.g. 
-# alexy@x200:~/wlan-pos$ ./tool/correct_motodata dat/fpp_rawdata/moto/fpp_rawdata_moto_20101015.csv > tmp1.csv 
-
-
-awk -F, 'BEGIN{OFS=","}{if(NF==13) $10=$10",";print}' $1

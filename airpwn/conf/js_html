@@ -1,4 +1,0 @@
-begin js_html
-match ^(GET|POST)
-ignore ^GET [^ ?]+\.(jpg|jpeg|gif|png|tif|tiff)
-response datadir/airpwn/content/js_html

@@ -1,3 +1,0 @@
-#!/bin/bash
-PREVIOUS_MONTH=`date +'%m' -d 'last month'`
-./showMyPinDates | grep -P -e "---|"$(date +%Y-)$PREVIOUS_MONTH

@@ -1,9 +1,0 @@
-#! /bin/sh
-
-LIBTOOLIZE=`which glibtoolize` || LIBTOOLIZE=`which libtoolize`
-
-aclocal \
-&& $LIBTOOLIZE \
-&& automake --gnu --add-missing \
-&& autoreconf 
-

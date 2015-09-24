@@ -1,7 +1,0 @@
-* Cuando el SSID viene choto, como lo filtramos?
-    Lo filtramos guardando solo los q vienen en string.printable
-* Distintos Beacon tienen distinto tama#o. En que difieren? Podemos poner mas datos en request?
-* Ver que significa el campo timestamp en Beacon.
-* Levantar en modo monitor la placa **SOLO UNA VEZ**. 
-* Quitar de logstalgia los distintos resource types. Para eso hay que recompilar y bleh.
-    Grosso marian!

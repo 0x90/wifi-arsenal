@@ -1,3 +1,0 @@
-include *.rst
-include LICENSE
-recursive-include extras *

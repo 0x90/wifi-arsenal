@@ -1,8 +1,0 @@
-This directory contains sample configuration files for various
-injections.  They are:
-
-airpwned_img - replace all HTTP images with a PNG saying "airpwned".
-ftp_resp - inject a greeting on FTP sessions
-greet_html - inject a greeting (big red and blinking) into HTML pages
-js_html - inject some sample javascript into HTML pages
-owned_img - another HTTP image replacement, with a JPG saying "owned".

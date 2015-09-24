@@ -1,5 +1,0 @@
-# ignore compiled python files
-*.pyc
-
-# ignore redis db
-*.rdb

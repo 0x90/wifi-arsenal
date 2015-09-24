@@ -1,4 +1,0 @@
-begin airpwned_img
-match ^GET [^ ]+\.(?i:jpg|jpeg|gif|png)
-option reset
-response datadir/airpwn/content/airpwned_png

@@ -1,6 +1,0 @@
-
-# ignore testing directory
-tmp/**/* 
-
-# ignore python precompiled files
-*.pyc

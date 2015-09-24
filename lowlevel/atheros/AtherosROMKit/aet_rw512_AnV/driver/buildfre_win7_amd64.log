@@ -1,4 +1,0 @@
-BUILD: Computing Include file dependencies:
-BUILD: Examining c:\users\gebruiker\documents\atheros_wifi_mod\aet_rw512_anv\driver directory for files to compile.
-1>Compiling and Linking c:\users\gebruiker\documents\atheros_wifi_mod\aet_rw512_anv\driver *************
-1>'nmake.exe /nologo BUILDMSG=Stop. -i BUILD_PASS=PASS2 LINKONLY=1 NOPASS0=1 MAKEDIR_RELATIVE_TO_BASEDIR='

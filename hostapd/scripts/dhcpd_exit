@@ -1,2 +1,0 @@
-#!/bin/bash
-killall dhcpd &>>$DHCP_LOGFILE

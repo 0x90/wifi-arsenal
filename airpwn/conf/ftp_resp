@@ -1,3 +1,0 @@
-begin ftp_resp
-match ^USER [a-zA-Z0-9]+
-response datadir/airpwn/content/ftp_resp

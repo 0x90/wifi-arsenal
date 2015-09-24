@@ -1,7 +1,0 @@
-There are multiple tools bundled as part of mana, some are written by us, some are modifications of others, as such multiple licenses apply.
-
-hostapd-manna is a modified version of hostapd and inherits hostapd's license, a modified BSD license. More details are included in the CONTRIBUTIONS file in the hostapd-manna directory.
-
-sslstrip's original license was GPL v3, both LeonardoNVE and our own modifications fall under the same license available at https://github.com/moxie0/sslstrip/blob/master/COPYING
-
-firelamb, crackapd, the configuration files and scripts not already inheriting a license from the above and written by SensePost are licensed under a Creative Commons Attribution-ShareAlike 4.0 International License (http://creativecommons.org/licenses/by-sa/4.0/) Permissions beyond the scope of this license may be available at http://sensepost.com/contact us/.

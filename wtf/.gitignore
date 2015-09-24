@@ -1,7 +1,0 @@
-*.pyc
-nosetests.xml
-loggy
-.*.sw?
-.ropeproject
-tags
-*.dot

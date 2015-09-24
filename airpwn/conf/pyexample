@@ -1,4 +1,0 @@
-begin pyexample
-match ^(GET|POST)
-ignore ^GET [^ ?]+\.(jpg|jpeg|gif|png|tif|tiff)
-pymodule datadir/airpwn/pyexample

@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='UTF-8' standalone='no' ?>
-<!DOCTYPE PosReq_FC SYSTEM "PosReq_FC.dtd">
-<PosReq_FC>
- <SPID val="123" />
- <ServID val="456" />
- <Time val="20101228-092633" />
- <UserInfo imei="351553040596788" imsi="460000894118015" UserAgent="Motorola/beihaitd" />
- <CellInfo mcc="460" mnc="00" lac="4586" cid="2582" rss="-55" />
-</PosReq_FC>

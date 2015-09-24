@@ -1,8 +1,0 @@
-{
-  "name": "rssiScanner",
-  "version": "0.0.1",
-  "dependencies": {
-    "shelljs": "~0.2.6",
-    "ws": "~0.4.31"
-  }
-}

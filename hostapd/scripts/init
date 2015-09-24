@@ -1,4 +1,0 @@
-#!/bin/bash
-#Initial wifi interface configuration
-echo "Configuring $GENERAL_in" &> $GENERAL_LOGFILE
-ifconfig $GENERAL_in up $GENERAL_ip_wlan  netmask $GENERAL_netmask &>> $GENERAL_LOGFILE

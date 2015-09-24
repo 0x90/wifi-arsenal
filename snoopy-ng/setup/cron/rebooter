@@ -1,3 +1,0 @@
-# Reboot every day at 3am
-# Place me in /etc/cron.d/
-01 03 * * * root  /sbin/reboot

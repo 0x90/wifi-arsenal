@@ -1,4 +1,0 @@
-begin site_hijack
-match ^(GET|POST).*
-ignore (^GET [^ ?]+\.(?i:jpg|jpeg|gif|png|ico|css)|(?i:host: .*google.com))
-response datadir/airpwn/content/site_hijack

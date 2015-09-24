@@ -1,0 +1,516 @@
+[submodule "3vilTwinAttacker"]
+	path = 3vilTwinAttacker
+	url = https://github.com/P0cL4bs/3vilTwinAttacker
+[submodule "802.11-data"]
+	path = 802.11-data
+	url = https://github.com/ewa/802.11-data
+[submodule "802.11p-wireless-regdb"]
+	path = 802.11p-wireless-regdb
+	url = https://github.com/CTU-IIG/802.11p-wireless-regdb
+[submodule "80211-fun"]
+	path = 80211-fun
+	url = https://github.com/flupzor/80211-fun
+[submodule "acs"]
+	path = acs
+	url = https://github.com/mcgrof/acs
+[submodule "aircrack-db"]
+	path = aircrack-db
+	url = https://github.com/SaltwaterC/aircrack-db
+[submodule "aircrack-ng"]
+	path = aircrack-ng
+	url = https://github.com/aircrack-ng/aircrack-ng
+[submodule "airmode"]
+	path = airmode
+	url = https://github.com/Frozenbox/airmode
+[submodule "airodump-iv"]
+	path = airodump-iv
+	url = https://github.com/ivanlei/airodump-iv
+[submodule "airport-sniffer"]
+	path = airport-sniffer
+	url = https://github.com/zhovner/airport-sniffer
+[submodule "airpwn"]
+	path = airpwn
+	url = https://github.com/M0Rf30/airpwn
+[submodule "airscan"]
+	path = airscan
+	url = https://github.com/trou/airscan
+[submodule "airview"]
+	path = airview
+	url = https://github.com/Crypt0s/airview
+[submodule "airxploit"]
+	path = airxploit
+	url = https://github.com/balle/airxploit
+[submodule "auto-reaver"]
+	path = auto-reaver
+	url = https://github.com/0x90/auto-reaver
+[submodule "badkarma"]
+	path = badkarma
+	url = https://github.com/atechdad/badkarma
+[submodule "banjax"]
+	path = banjax
+	url = https://github.com/0x90/banjax
+[submodule "basiciw"]
+	path = basiciw
+	url = https://github.com/enkore/basiciw
+[submodule "belkin4xx"]
+	path = belkin4xx
+	url = https://bitbucket.org/dudux/belkin4xx
+[submodule "bully"]
+	path = bully
+	url = https://github.com/Lrs121/bully
+[submodule "bunny"]
+	path = bunny
+	url = https://github.com/mothran/bunny
+[submodule "chap2asleap"]
+	path = chap2asleap
+	url = https://github.com/xiao106347/chap2asleap
+[submodule "CloudCrackInstaller"]
+	path = CloudCrackInstaller
+	url = https://github.com/tjetzinger/CloudCrackInstaller
+[submodule "cookie-monster"]
+	path = cookie-monster
+	url = https://github.com/0x90/cookie-monster
+[submodule "cornuprobia"]
+	path = cornuprobia
+	url = https://github.com/4ZM/cornuprobia
+[submodule "COUCHFI"]
+	path = COUCHFI
+	url = https://github.com/calvinmetcalf/COUCHFI
+[submodule "crda"]
+	path = crda
+	url = https://github.com/mcgrof/crda
+[submodule "crda-ct"]
+	path = crda-ct
+	url = https://github.com/0x90/crda-ct
+[submodule "darm"]
+	path = darm
+	url = https://github.com/eldraco/darm
+[submodule "dot11decrypt"]
+	path = dot11decrypt
+	url = https://github.com/mfontanini/dot11decrypt
+[submodule "dot11er"]
+	path = dot11er
+	url = https://github.com/timow/dot11er
+[submodule "dot11sniffer"]
+	path = dot11sniffer
+	url = https://github.com/DepthDeluxe/dot11sniffer
+[submodule "eap_detect"]
+	path = eap_detect
+	url = https://github.com/Raiton/eap_detect
+[submodule "eapeak"]
+	path = eapeak
+	url = https://github.com/securestate/eapeak
+[submodule "easy-creds"]
+	path = easy-creds
+	url = https://github.com/brav0hax/easy-creds
+[submodule "fakeAP"]
+	path = fakeAP
+	url = https://github.com/DanMcInerney/fakeAP
+[submodule "fern-wifi-cracker"]
+	path = fern-wifi-cracker
+	url = https://github.com/0x90/fern-wifi-cracker
+[submodule "frame-randomizer"]
+	path = frame-randomizer
+	url = https://github.com/mike-albano/frame-randomizer
+[submodule "FruityWifi"]
+	path = FruityWifi
+	url = https://github.com/xtr4nge/FruityWifi
+[submodule "FuzzAP"]
+	path = FuzzAP
+	url = https://github.com/lostincynicism/FuzzAP
+[submodule "FWAP"]
+	path = FWAP
+	url = https://github.com/szehl/FWAP
+[submodule "GrapplingHook"]
+	path = GrapplingHook
+	url = https://github.com/nseetharaman/GrapplingHook
+[submodule "haiku-wifi"]
+	path = haiku-wifi
+	url = https://github.com/jedahan/haiku-wifi
+[submodule "horst"]
+	path = horst
+	url = https://github.com/br101/horst
+[submodule "hostapd.py"]
+	path = hostapd.py
+	url = https://github.com/nims11/hostapd.py
+[submodule "hostapd-wpe"]
+	path = hostapd-wpe
+	url = https://github.com/OpenSecurityResearch/hostapd-wpe
+[submodule "hotspotd"]
+	path = hotspotd
+	url = https://github.com/prahladyeri/hotspotd
+[submodule "huawei_wifi"]
+	path = huawei_wifi
+	url = https://github.com/davux/huawei_wifi
+[submodule "iSniff-GPS"]
+	path = iSniff-GPS
+	url = https://github.com/hubert3/iSniff-GPS
+[submodule "karma"]
+	path = karma
+	url = https://github.com/atimorin/karma
+[submodule "KisMac2"]
+	path = KisMac2
+	url = https://github.com/IGRSoft/KisMac2
+[submodule "kismeth2earth"]
+	path = kismeth2earth
+	url = https://github.com/andreagrandi/kismeth2earth
+[submodule "LANs.py"]
+	path = LANs.py
+	url = https://github.com/DanMcInerney/LANs.py
+[submodule "libcowpatty"]
+	path = libcowpatty
+	url = https://github.com/adambregenzer/libcowpatty
+[submodule "libnl"]
+	path = libnl
+	url = https://github.com/tgraf/libnl
+[submodule "lorcon"]
+	path = lorcon
+	url = https://github.com/0x90/lorcon
+[submodule "ath10k-firmware"]
+	path = ath10k-firmware
+	url = https://github.com/kvalo/ath10k-firmware
+[submodule "ath9k-4W-patch"]
+	path = ath9k-4W-patch
+	url = https://github.com/rboninsegna/ath9k-4W-patch
+[submodule "ath9k_ath5k_full_permissive_unlock_all_channels.patch"]
+	path = ath9k_ath5k_full_permissive_unlock_all_channels.patch
+	url = https://github.com/doom5/ath9k_ath5k_full_permissive_unlock_all_channels.patch
+[submodule "ath9k_caldata"]
+	path = ath9k_caldata
+	url = https://github.com/Noltari/ath9k_caldata
+[submodule "ath9k-docs"]
+	path = ath9k-docs
+	url = https://github.com/erikarn/ath9k-docs
+[submodule "ath9k_dynack"]
+	path = ath9k_dynack
+	url = https://github.com/LorenzoBianconi/ath9k_dynack
+[submodule "ath9k_grt"]
+	path = ath9k_grt
+	url = https://github.com/valkjsaaa/ath9k_grt
+[submodule "mac-analyzer"]
+	path = mac-analyzer
+	url = https://github.com/abnarain/mac-analyzer
+[submodule "ath9k-nav"]
+	path = ath9k-nav
+	url = https://github.com/hughobrien/ath9k-nav
+[submodule "ath9k"]
+	path = ath9k
+	url = https://github.com/aelam/ath9k
+[submodule "ath9k-spectral-scan"]
+	path = ath9k-spectral-scan
+	url = https://github.com/kazikcz/ath9k-spectral-scan
+[submodule "AtherosROMKit"]
+	path = AtherosROMKit
+	url = https://github.com/andyvand/AtherosROMKit
+[submodule "FFT_eval"]
+	path = FFT_eval
+	url = https://github.com/simonwunderlich/FFT_eval
+[submodule "open-ath9k-htc-firmware"]
+	path = open-ath9k-htc-firmware
+	url = https://github.com/qca/open-ath9k-htc-firmware
+[submodule "qca-swiss-army-knife"]
+	path = qca-swiss-army-knife
+	url = https://github.com/mcgrof/qca-swiss-army-knife
+[submodule "RegMon"]
+	path = RegMon
+	url = https://github.com/thuehn/RegMon
+[submodule "speccy"]
+	path = speccy
+	url = https://github.com/bcopeland/speccy
+[submodule "bcmon"]
+	path = bcmon
+	url = https://github.com/0x90/bcmon
+[submodule "BrcmPatchRAM"]
+	path = BrcmPatchRAM
+	url = https://github.com/the-darkvoid/BrcmPatchRAM
+[submodule "broadcom-wl-monitormode"]
+	path = broadcom-wl-monitormode
+	url = https://github.com/timofurrer/broadcom-wl-monitormode
+[submodule "packetspammer"]
+	path = packetspammer
+	url = git://git.warmcat.com/packetspammer.git
+[submodule "phystats"]
+	path = phystats
+	url = https://github.com/ransford/phystats
+[submodule "OS-X-Realtek-Network"]
+	path = OS-X-Realtek-Network
+	url = https://github.com/RehabMan/OS-X-Realtek-Network
+[submodule "rtl8812au"]
+	path = rtl8812au
+	url = https://github.com/gnab/rtl8812au
+[submodule "lrc"]
+	path = lrc
+	url = https://github.com/0x0d/lrc
+[submodule "mana"]
+	path = mana
+	url = https://github.com/sensepost/mana
+[submodule "MappingWirelessNetworks"]
+	path = MappingWirelessNetworks
+	url = https://github.com/jeffThompson/MappingWirelessNetworks
+[submodule "modwifi"]
+	path = modwifi
+	url = https://github.com/vanhoefm/modwifi
+[submodule "Native-WiFi-API-Beacon-Sniffer"]
+	path = Native-WiFi-API-Beacon-Sniffer
+	url = https://github.com/6e726d/Native-WiFi-API-Beacon-Sniffer
+[submodule "null-packet-wifi-prompt"]
+	path = null-packet-wifi-prompt
+	url = https://bitbucket.org/edkeeble/null-packet-wifi-prompt
+[submodule "openrtls"]
+	path = openrtls
+	url = https://github.com/konker/openrtls
+[submodule "openwips-ng"]
+	path = openwips-ng
+	url = https://github.com/0x90/openwips-ng
+[submodule "pcap2xml"]
+	path = pcap2xml
+	url = https://github.com/securitytube/pcap2xml
+[submodule "peapwn"]
+	path = peapwn
+	url = https://github.com/rpp0/peapwn
+[submodule "piwat"]
+	path = piwat
+	url = https://github.com/0x90/piwat
+[submodule "pixiewps"]
+	path = pixiewps
+	url = https://github.com/wiire/pixiewps
+[submodule "probemon"]
+	path = probemon
+	url = https://github.com/jjb3tee3/probemon
+[submodule "PwnSTAR"]
+	path = PwnSTAR
+	url = https://github.com/SilverFoxx/PwnSTAR
+[submodule "py80211"]
+	path = py80211
+	url = https://github.com/0x90/py80211
+[submodule "pykismetstats"]
+	path = pykismetstats
+	url = https://github.com/0x90/pykismetstats
+[submodule "pylorcon2"]
+	path = pylorcon2
+	url = https://github.com/tom5760/pylorcon2
+[submodule "pyReaver"]
+	path = pyReaver
+	url = https://github.com/byt3bl33d3r/pyReaver
+[submodule "pyrit"]
+	path = pyrit
+	url = https://github.com/0x90/pyrit
+[submodule "python-radiotap"]
+	path = python-radiotap
+	url = https://github.com/bcopeland/python-radiotap
+[submodule "pythonwifi"]
+	path = pythonwifi
+	url = http://git.tuxfamily.org/pythonwifi/pythonwifi.git
+[submodule "PyWiWi"]
+	path = PyWiWi
+	url = https://github.com/6e726d/PyWiWi
+[submodule "Radioparse"]
+	path = Radioparse
+	url = https://github.com/AlexanderSelzer/Radioparse
+[submodule "reaver-wps"]
+	path = reaver-wps
+	url = https://github.com/gabrielrcouto/reaver-wps
+[submodule "reaver-wps-fork-t6x"]
+	path = reaver-wps-fork-t6x
+	url = https://github.com/t6x/reaver-wps-fork-t6x
+[submodule "Rspoof"]
+	path = Rspoof
+	url = https://github.com/zackiles/Rspoof
+[submodule "rssi"]
+	path = rssi
+	url = https://github.com/AravinthPanch/rssi
+[submodule "scapy-fakeap"]
+	path = scapy-fakeap
+	url = https://github.com/rpp0/scapy-fakeap
+[submodule "scapy-rssi"]
+	path = scapy-rssi
+	url = https://github.com/azz2k/scapy-rssi
+[submodule "scapy-survey"]
+	path = scapy-survey
+	url = https://github.com/tuomasb/scapy-survey
+[submodule "Scapy-wireless-scanner"]
+	path = Scapy-wireless-scanner
+	url = https://github.com/rs91092/Scapy-wireless-scanner
+[submodule "skybluetero"]
+	path = skybluetero
+	url = https://github.com/0x90/skybluetero
+[submodule "smallWifiTools"]
+	path = smallWifiTools
+	url = https://github.com/3ll060/smallWifiTools
+[submodule "snifflab"]
+	path = snifflab
+	url = https://github.com/andrewhilts/snifflab
+[submodule "sniffMyPackets"]
+	path = sniffMyPackets
+	url = https://github.com/catalyst256/sniffMyPackets.git
+[submodule "snoopy-ng"]
+	path = snoopy-ng
+	url = https://github.com/sensepost/snoopy-ng
+[submodule "waidps"]
+	path = waidps
+	url = https://github.com/SYWorks/waidps
+[submodule "wallofshame"]
+	path = wallofshame
+	url = https://github.com/0x0d/wallofshame
+[submodule "WAPMap"]
+	path = WAPMap
+	url = https://github.com/hack1thu7ch/WAPMap
+[submodule "warcarrier"]
+	path = warcarrier
+	url = https://github.com/0x90/warcarrier
+[submodule "Watcher"]
+	path = Watcher
+	url = https://github.com/catalyst256/Watcher.git
+[submodule "wifi"]
+	path = wifi
+	url = https://github.com/rockymeza/wifi
+[submodule "wifi-contour"]
+	path = wifi-contour
+	url = https://github.com/bertabus/wifi-contour
+[submodule "wifi-default-password"]
+	path = wifi-default-password
+	url = https://bitbucket.org/jpgerek/wifi-default-password
+[submodule "wifi-dump-analysis"]
+	path = wifi-dump-analysis
+	url = https://github.com/abnarain/wifi-dump-analysis
+[submodule "wifi_dump_parser-v3"]
+	path = wifi_dump_parser-v3
+	url = https://github.com/abnarain/wifi_dump_parser-v3
+[submodule "wifi-harvester"]
+	path = wifi-harvester
+	url = https://github.com/SYWorks/wifi-harvester
+[submodule "wifi-heatmap"]
+	path = wifi-heatmap
+	url = https://github.com/beaugunderson/wifi-heatmap
+[submodule "wifi-linux"]
+	path = wifi-linux
+	url = https://github.com/dixel/wifi-linux
+[submodule "wifi-locator"]
+	path = wifi-locator
+	url = https://github.com/clockfort/wifi-locator
+[submodule "wifi-monitor"]
+	path = wifi-monitor
+	url = https://github.com/tadashi/wifi-monitor
+[submodule "wifi-scan"]
+	path = wifi-scan
+	url = https://bitbucket.org/edkeeble/wifi-scan
+[submodule "wifi_geolocation"]
+	path = wifi_geolocation
+	url = https://github.com/genekogan/wifi_geolocation
+[submodule "wifi_localization"]
+	path = wifi_localization
+	url = https://github.com/utexas-air-fri/wifi_localization
+[submodule "wifidec"]
+	path = wifidec
+	url = https://github.com/twitchyliquid64/wifidec
+[submodule "wifijammer"]
+	path = wifijammer
+	url = https://github.com/DanMcInerney/wifijammer
+[submodule "wifimonster"]
+	path = wifimonster
+	url = https://github.com/flankerhqd/wifimonster
+[submodule "wifiphisher"]
+	path = wifiphisher
+	url = https://github.com/sophron/wifiphisher
+[submodule "WifiScanAndMap"]
+	path = WifiScanAndMap
+	url = https://github.com/cyberpython/WifiScanAndMap
+[submodule "WifiStalker"]
+	path = WifiStalker
+	url = https://github.com/blaa/WifiStalker
+[submodule "wifitap"]
+	path = wifitap
+	url = https://github.com/viscousliquid/wifitap
+[submodule "wifite"]
+	path = wifite
+	url = https://github.com/derv82/wifite
+[submodule "wifite-mod-pixiewps"]
+	path = wifite-mod-pixiewps
+	url = https://github.com/aanarchyy/wifite-mod-pixiewps
+[submodule "wifivis"]
+	path = wifivis
+	url = https://github.com/mitdbg/wifivis
+[submodule "wifiwho"]
+	path = wifiwho
+	url = https://github.com/meeuw/wifiwho
+[submodule "wifresti"]
+	path = wifresti
+	url = https://github.com/LionSec/wifresti
+[submodule "wifuzz"]
+	path = wifuzz
+	url = https://github.com/0x90/wifuzz
+[submodule "wifuzzit"]
+	path = wifuzzit
+	url = https://github.com/0xd012/wifuzzit
+[submodule "wifi_decode"]
+	path = wifi_decode
+	url = https://github.com/cmpxchg8/wifi_decode
+[submodule "wipi"]
+	path = wipi
+	url = https://github.com/dioh/wipi
+[submodule "wireless_half-mini"]
+	path = wireless_half-mini
+	url = https://github.com/toleda/wireless_half-mini
+[submodule "wireless-ids"]
+	path = wireless-ids
+	url = https://github.com/SYWorks/wireless-ids
+[submodule "wireless-radar"]
+	path = wireless-radar
+	url = https://github.com/stef/wireless-radar
+[submodule "wireless-regdb"]
+	path = wireless-regdb
+	url = https://github.com/0x90/wireless-regdb
+[submodule "Wireless-Sniffer"]
+	path = Wireless-Sniffer
+	url = https://github.com/gauravpatwardhan/Wireless-Sniffer
+[submodule "WirelessConfig"]
+	path = WirelessConfig
+	url = https://github.com/acidprime/WirelessConfig
+[submodule "WLAN-Monitoring"]
+	path = WLAN-Monitoring
+	url = https://github.com/sajjanbh/WLAN-Monitoring
+[submodule "wlan-pos"]
+	path = wlan-pos
+	url = https://github.com/0x90/wlan-pos
+[submodule "wlan-stats"]
+	path = wlan-stats
+	url = https://github.com/hughobrien/wlan-stats
+[submodule "wmd"]
+	path = wmd
+	url = https://github.com/securestate/wmd
+[submodule "wmon"]
+	path = wmon
+	url = https://github.com/wmon/wmon
+[submodule "wpa-bruteforcer"]
+	path = wpa-bruteforcer
+	url = https://github.com/SYWorks/wpa-bruteforcer
+[submodule "WPA2-HalfHandshake-Crack"]
+	path = WPA2-HalfHandshake-Crack
+	url = https://github.com/dxa4481/WPA2-HalfHandshake-Crack
+[submodule "wperf"]
+	path = wperf
+	url = https://github.com/anyfi/wperf
+[submodule "wps"]
+	path = wps
+	url = https://github.com/devttys0/wps
+[submodule "wps-scripts"]
+	path = wps-scripts
+	url = https://github.com/0x90/wps-scripts
+[submodule "wpscrack"]
+	path = wpscrack
+	url = https://github.com/ml31415/wpscrack
+[submodule "wpsoffline"]
+	path = wpsoffline
+	url = https://bitbucket.org/dudux/wpsoffline
+[submodule "wraith"]
+	path = wraith
+	url = https://github.com/wraith-wireless/wraith
+[submodule "wreck"]
+	path = wreck
+	url = https://github.com/zombiesam/wreck
+[submodule "wspy"]
+	path = wspy
+	url = https://github.com/Nan-Do/wspy
+[submodule "wtf"]
+	path = wtf
+	url = https://github.com/cozybit/wtf

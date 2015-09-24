@@ -1,8 +1,0 @@
-*.pyc
-*.egg*
-build/
-dist/
-docs/_build
-tmp/
-.coverage
-htmlcov

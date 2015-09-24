@@ -1,9 +1,0 @@
-darm - intelligent network sniffer for the masses (this is a fork of leandrinux original code)
-
-darm is an attempt to create a very easy to use app that will sniff and report information about the activities happening on a live network. The main goal is to educate the public so that it becomes aware of the security of their communications. darm is being developed by leandrinux as a project for fun.
- 
-Current features:
-
-- Sniffs live network interfaces or capture files and analyzes them, getting important protocol-specific information such as IP addresses and port numbers.
-- Supports Ethernet, 802.11, IP, ARP, UDP, TCP and DNS protocols
-- Reassembles tcp threads, and dumps them to files when they are closed (FIN or RST), or when darm is forced to close.

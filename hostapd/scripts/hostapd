@@ -1,4 +1,0 @@
-#!/bin/bash
-#start hostapd
-echo 'Starting Hostapd...' > $HOSTAPD_LOGFILE
-hostapd -B $HOSTAPD_OUTPUT_CONFIG &>> $HOSTAPD_LOGFILE

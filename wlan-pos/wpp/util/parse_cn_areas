@@ -1,4 +1,0 @@
-#!/bin/bash
-# $0 <source html>
-
-grep 'nbsp;' $1  |grep '<br>' |sed 's/<br>/\n/g' |sed 's/span class="content">/\n/g' |grep -v content |grep -v span |sed 's/&nbsp;//g' |sed 's/ /,/g' > area_code_name_cn.csv

@@ -1,8 +1,0 @@
-Banjax is a library for low-level programming of IEEE 802.11 wireless
-network interfaces on the GNU/Linux operating system. The library is
-intended to simplify the writing of programs that sniff, manipulate
-and inject IEEE 802.11 traffic. Uses for banjax include traffic
-analysis, monitoring of link quality and capacity and performing acts
-of network evil such as deauthentication and man-in-the-middle
-attacks. Banjax is written in C++ and there is a SWIG wrapper to
-access banjax functionality from Guile.

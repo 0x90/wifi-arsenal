@@ -1,7 +1,0 @@
-*.pyc
-*.pyo
-*.ini
-*.csv
-*.txt
-*.m
-!/*.txt

@@ -1,4 +1,0 @@
-begin puppy_jpg
-match ^GET [^ ]+\.(?i:jpg|jpeg|gif|png)
-option reset
-response datadir/airpwn/content/puppy_jpg

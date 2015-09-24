@@ -1,2 +1,0 @@
-sqlite3 macaddr.db
-create table macaddr (mac TEXT, vendor TEXT);

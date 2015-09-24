@@ -1,4 +1,0 @@
-Twisted
-scapy
-BeautifulSoup
-python-nmap

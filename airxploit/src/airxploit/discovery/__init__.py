@@ -1,2 +1,0 @@
-import sdp
-import rfcomm

@@ -1,6 +1,0 @@
-[submodule "Subprojects/polarssl"]
-	path = Subprojects/polarssl
-	url = https://github.com/polarssl/polarssl.git
-[submodule "Subprojects/GBStorage"]
-	path = Subprojects/GBStorage
-	url = https://github.com/lmirosevic/GBStorage.git
