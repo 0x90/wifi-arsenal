@@ -955,3 +955,6 @@
 [submodule "openwifimap-api"]
 	path = openwifimap-api
 	url = https://github.com/freifunk/openwifimap-api
+[submodule "PyScapy"]
+	path = PyScapy
+	url = https://github.com/ogreworld/PyScapy
