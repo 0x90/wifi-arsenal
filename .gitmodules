@@ -961,3 +961,9 @@
 [submodule "atheros_wlan"]
 	path = atheros_wlan
 	url = https://github.com/feravolt/atheros_wlan
+[submodule "aircrack-ng-iphone"]
+	path = aircrack-ng-iphone
+	url = https://github.com/jedivind/aircrack-ng-iphone
+[submodule "AIRBASE-NG-SSLSTRIP-AIRSTRIP"]
+	path = AIRBASE-NG-SSLSTRIP-AIRSTRIP
+	url = https://github.com/hacker404/AIRBASE-NG-SSLSTRIP-AIRSTRIP-
