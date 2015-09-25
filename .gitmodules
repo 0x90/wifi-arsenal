@@ -514,3 +514,441 @@
 [submodule "wtf"]
 	path = wtf
 	url = https://github.com/cozybit/wtf
+[submodule "RTL8188-hostapd"]
+	path = RTL8188-hostapd
+	url = https://github.com/jenssegers/RTL8188-hostapd
+[submodule "monit-hostapd"]
+	path = monit-hostapd
+	url = https://github.com/fabiocannizzo/monit-hostapd
+[submodule "DebAPoint"]
+	path = DebAPoint
+	url = https://github.com/joseccnet/DebAPoint
+[submodule "hostapd-karma"]
+	path = hostapd-karma
+	url = https://github.com/xtr4nge/hostapd-karma
+[submodule "wifisoftap"]
+	path = wifisoftap
+	url = https://github.com/coolshou/wifisoftap
+[submodule "hostapd-wpe-openwrt"]
+	path = hostapd-wpe-openwrt
+	url = https://github.com/TarlogicSecurity/hostapd-wpe-openwrt
+[submodule "hostapd-ap6210"]
+	path = hostapd-ap6210
+	url = https://github.com/Bananian/hostapd-ap6210
+[submodule "hostapd-mana"]
+	path = hostapd-mana
+	url = https://github.com/sensepost/hostapd-mana
+[submodule "RougeDetection"]
+	path = RougeDetection
+	url = https://github.com/bagsofnarcissism/RougeDetection
+[submodule "apbleed"]
+	path = apbleed
+	url = https://github.com/vanhoefm/apbleed
+[submodule "IndoorPositionr"]
+	path = IndoorPositionr
+	url = https://github.com/otherview/IndoorPositionr
+[submodule "probecap"]
+	path = probecap
+	url = https://github.com/hydrogen18/probecap
+[submodule "airown"]
+	path = airown
+	url = https://github.com/sh0/airown
+[submodule "packetvector"]
+	path = packetvector
+	url = https://github.com/derosier/packetvector
+[submodule "ADSLPT-WPA"]
+	path = ADSLPT-WPA
+	url = https://github.com/AndrewGomes/ADSLPT-WPA
+[submodule "airodump-logger"]
+	path = airodump-logger
+	url = https://github.com/atiti/airodump-logger
+[submodule "txpower_RTL8187"]
+	path = txpower_RTL8187
+	url = https://github.com/Demontager/txpower
+[submodule "pythonAir"]
+	path = pythonAir
+	url = https://github.com/Slickness/pythonAir
+[submodule "android_external_wpa_supplicant_8_ath"]
+	path = android_external_wpa_supplicant_8_ath
+	url = https://github.com/danielhk/android_external_wpa_supplicant_8_ath
+[submodule "hostapd-rtl871xdrv"]
+	path = hostapd-rtl871xdrv
+	url = https://github.com/pritambaral/hostapd-rtl871xdrv
+[submodule "hostapd-rtl"]
+	path = hostapd-rtl
+	url = https://github.com/jekader/hostapd-rtl
+[submodule "pycaptiveads"]
+	path = pycaptiveads
+	url = https://github.com/oukiar/pycaptiveads
+[submodule "rogue_ap"]
+	path = rogue_ap
+	url = https://github.com/andrew14824/rogue_ap
+[submodule "WPA_DECRYPTION_MPI"]
+	path = WPA_DECRYPTION_MPI
+	url = https://github.com/shagrath89m/WPA_DECRYPTION_MPI
+[submodule "Auto-Airodump-NG"]
+	path = Auto-Airodump-NG
+	url = https://github.com/JackAHall/Auto-Airodump-NG
+[submodule "reaver-webui"]
+	path = reaver-webui
+	url = https://github.com/fopina/reaver-webui
+[submodule "AtEar"]
+	path = AtEar
+	url = https://github.com/NORMA-Inc/AtEar
+[submodule "wpa-autopwn"]
+	path = wpa-autopwn
+	url = https://github.com/vnik5287/wpa-autopwn
+[submodule "datasamalen"]
+	path = datasamalen
+	url = https://github.com/4ZM/datasamalen
+[submodule "scapybase"]
+	path = scapybase
+	url = https://github.com/jahrome/scapybase
+[submodule "airtap"]
+	path = airtap
+	url = https://github.com/wshen0123/airtap
+[submodule "mitm_rogue_wifi_ap"]
+	path = mitm_rogue_wifi_ap
+	url = https://github.com/wshen0123/mitm_rogue_wifi_ap
+[submodule "openCAPWAP"]
+	path = openCAPWAP
+	url = https://github.com/vollero/openCAPWAP
+[submodule "RT73-USB-Wireless-"]
+	path = RT73-USB-Wireless-
+	url = https://github.com/Marchrius/RT73-USB-Wireless-
+[submodule "atheros-patches"]
+	path = atheros-patches
+	url = https://github.com/zeplios/atheros-patches
+[submodule "ath-info"]
+	path = ath-info
+	url = https://github.com/mickflemm/ath-info
+[submodule "fixsum"]
+	path = fixsum
+	url = https://github.com/joycechu/fixsum
+[submodule "atheros_library"]
+	path = atheros_library
+	url = https://github.com/Noltari/atheros_library
+[submodule "Atheros-AR9271"]
+	path = Atheros-AR9271
+	url = https://github.com/aaronkish/Atheros-AR9271
+[submodule "py_DD_WRT_Remote_Mac_Adder"]
+	path = py_DD_WRT_Remote_Mac_Adder
+	url = https://github.com/mzhaase/py_DD_WRT_Remote_Mac_Adder
+[submodule "ap51flash"]
+	path = ap51flash
+	url = https://github.com/cl4u2/ap51flash
+[submodule "ath9k-htc-firmware-blob"]
+	path = ath9k-htc-firmware-blob
+	url = https://github.com/olerem/ath9k-htc-firmware-blob
+[submodule "modwifi-tools"]
+	path = modwifi-tools
+	url = https://github.com/vanhoefm/modwifi-tools
+[submodule "VX"]
+	path = VX
+	url = https://github.com/hellais/VX
+[submodule "PiWAT2"]
+	path = PiWAT2
+	url = https://github.com/Crypt0s/PiWAT
+[submodule "airspf"]
+	path = airspf
+	url = https://github.com/davll/airspf
+[submodule "Burgess"]
+	path = Burgess
+	url = https://github.com/Jtfinlay/Burgess
+[submodule "aircrack-bws"]
+	path = aircrack-bws
+	url = https://github.com/jesseDtucker/aircrack-bws
+[submodule "mt76"]
+	path = mt76
+	url = https://github.com/openwrt/mt76
+[submodule "mt7601u"]
+	path = mt7601u
+	url = https://github.com/kuba-moo/mt7601u
+[submodule "mwlwifi"]
+	path = mwlwifi
+	url = https://github.com/kaloz/mwlwifi
+[submodule "wifi_beacons"]
+	path = wifi_beacons
+	url = https://github.com/abnarain/wifi_beacons
+[submodule "oculus"]
+	path = oculus
+	url = https://github.com/abnarain/oculus
+[submodule "covert_channel"]
+	path = covert_channel
+	url = https://github.com/abnarain/covert_channel
+[submodule "wifi_dump-tmpfs"]
+	path = wifi_dump-tmpfs
+	url = https://github.com/abnarain/wifi_dump-tmpfs
+[submodule "wireless-info"]
+	path = wireless-info
+	url = https://github.com/wlanslovenija/wireless-info
+[submodule "make-a-new-mac80211-to-wirelessAP"]
+	path = make-a-new-mac80211-to-wirelessAP
+	url = https://github.com/fhector/make-a-new-mac80211-to-wirelessAP
+[submodule "Minstrel-Blues"]
+	path = Minstrel-Blues
+	url = https://github.com/thuehn/Minstrel-Blues
+[submodule "setbssid"]
+	path = setbssid
+	url = https://github.com/sheenhx/setbssid
+[submodule "iitis-generator"]
+	path = iitis-generator
+	url = https://github.com/iitis/iitis-generator
+[submodule "CloudMAC-Misc"]
+	path = CloudMAC-Misc
+	url = https://github.com/Kanel/CloudMAC-Misc
+[submodule "wifinator"]
+	path = wifinator
+	url = https://github.com/techlib/wifinator
+[submodule "wi-finder"]
+	path = wi-finder
+	url = https://github.com/romebop/wi-finder
+[submodule "mr-nosy"]
+	path = mr-nosy
+	url = https://github.com/jgumbley/mr-nosy
+[submodule "wifitracker"]
+	path = wifitracker
+	url = https://github.com/DHNishi/wifitracker
+[submodule "airfree-wt"]
+	path = airfree-wt
+	url = https://github.com/rednaks/airfree-wt
+[submodule "sigmon"]
+	path = sigmon
+	url = https://github.com/terbo/sigmon
+[submodule "WiFi-Rifle"]
+	path = WiFi-Rifle
+	url = https://github.com/sensepost/WiFi-Rifle
+[submodule "terUNIFI"]
+	path = terUNIFI
+	url = https://github.com/termax/terUNIFI
+[submodule "emc-contest-data-visualization"]
+	path = emc-contest-data-visualization
+	url = https://github.com/frankxu2004/emc-contest-data-visualization
+[submodule "lianwifi"]
+	path = lianwifi
+	url = https://github.com/5alt/lianwifi
+[submodule "libairpcap-nl"]
+	path = libairpcap-nl
+	url = https://github.com/hbock/libairpcap-nl
+[submodule "wireless-rool-nodejs"]
+	path = wireless-rool-nodejs
+	url = https://github.com/bakerface/wireless-tools
+[submodule "wprobe"]
+	path = wprobe
+	url = https://github.com/shizhai/wprobe
+[submodule "airtraf"]
+	path = airtraf
+	url = https://github.com/saintkepha/airtraf
+[submodule "cac"]
+	path = cac
+	url = https://github.com/paulpatras/cac
+[submodule "madwifi-be"]
+	path = madwifi-be
+	url = https://github.com/paulpatras/madwifi-be
+[submodule "Blackbox"]
+	path = Blackbox
+	url = https://github.com/twitchyliquid64/Blackbox
+[submodule "list-aps"]
+	path = list-aps
+	url = https://github.com/jiixyj/list-aps
+[submodule "liber80211"]
+	path = liber80211
+	url = https://github.com/brycethomas/liber80211
+[submodule "80211ping"]
+	path = 80211ping
+	url = https://github.com/tillwo/80211ping
+[submodule "wifi-beeper"]
+	path = wifi-beeper
+	url = https://github.com/tillwo/wifi-beeper
+[submodule "gopacket-80211"]
+	path = gopacket-80211
+	url = https://github.com/dutchcoders/gopacket-80211
+[submodule "80211scrambler"]
+	path = 80211scrambler
+	url = https://github.com/travisgoodspeed/80211scrambler
+[submodule "80211mgmtDoS"]
+	path = 80211mgmtDoS
+	url = https://github.com/phildom/80211mgmtDoS
+[submodule "brcm80211-trace-cmd"]
+	path = brcm80211-trace-cmd
+	url = https://github.com/arend/brcm80211-trace-cmd
+[submodule "80211_raw"]
+	path = 80211_raw
+	url = https://github.com/MinimumLaw/80211_raw
+[submodule "80211p_raw"]
+	path = 80211p_raw
+	url = https://github.com/allanmatthew/80211p_raw
+[submodule "pcap80211analyzer"]
+	path = pcap80211analyzer
+	url = https://github.com/enukane/pcap80211analyzer
+[submodule "agentapd"]
+	path = agentapd
+	url = https://github.com/mengning/agentapd
+[submodule "cloudap"]
+	path = cloudap
+	url = https://github.com/mengning/cloudap
+[submodule "wifidog-gateway"]
+	path = wifidog-gateway
+	url = https://github.com/wifidog/wifidog-gateway
+[submodule "remoteapd"]
+	path = remoteapd
+	url = https://github.com/mengning/remoteapd
+[submodule "frame-utils.js"]
+	path = frame-utils.js
+	url = https://github.com/rhodey/frame-utils.js
+[submodule "ciscowebauth"]
+	path = ciscowebauth
+	url = https://github.com/darizotas/ciscowebauth
+[submodule "dauth"]
+	path = dauth
+	url = https://github.com/roobre/dauth
+[submodule "ath10k-mesh"]
+	path = ath10k-mesh
+	url = https://github.com/bcopeland/ath10k-mesh
+[submodule "android_packetspammer"]
+	path = android_packetspammer
+	url = https://github.com/bcopeland/android_packetspammer
+[submodule "android_iw"]
+	path = android_iw
+	url = https://github.com/bcopeland/android_iw
+[submodule "airdump"]
+	path = airdump
+	url = https://github.com/taoliu-fnet/airdump
+[submodule "radioparse"]
+	path = radioparse
+	url = https://github.com/AlexanderSelzer/radioparse
+[submodule "packet-injector"]
+	path = packet-injector
+	url = https://github.com/juzna/packet-injector
+[submodule "fRobot"]
+	path = fRobot
+	url = https://github.com/sail308/fRobot
+[submodule "rogueDetect"]
+	path = rogueDetect
+	url = https://github.com/olanb7/rogueDetect
+[submodule "naive_project"]
+	path = naive_project
+	url = https://github.com/veenfang/naive_project
+[submodule "PCS"]
+	path = PCS
+	url = https://github.com/gvnn3/PCS
+[submodule "packetparser"]
+	path = packetparser
+	url = https://github.com/flupzor/packetparser
+[submodule "wifite2"]
+	path = wifite2
+	url = https://github.com/derv82/wifite2
+[submodule "wpacrack"]
+	path = wpacrack
+	url = https://github.com/derv82/wpacrack
+[submodule "Hostapd-with-WebID"]
+	path = Hostapd-with-WebID
+	url = https://github.com/yunus/Hostapd-with-WebID
+[submodule "Wps-Ultimate-Cracker"]
+	path = Wps-Ultimate-Cracker
+	url = https://github.com/younextvictim/Wps-Ultimate-Cracker
+[submodule "HT-WPS-Breaker"]
+	path = HT-WPS-Breaker
+	url = https://github.com/SilentGhostX/HT-WPS-Breaker
+[submodule "android_reaver-wps"]
+	path = android_reaver-wps
+	url = https://github.com/kriswebdev/android_reaver-wps
+[submodule "reaver_reattempt"]
+	path = reaver_reattempt
+	url = https://github.com/Oweoqi/reaver_reattempt
+[submodule "reaver-ui"]
+	path = reaver-ui
+	url = https://github.com/deoxxa/reaver-ui
+[submodule "reavetard"]
+	path = reavetard
+	url = https://github.com/eibbors/reavetard
+[submodule "greaver"]
+	path = greaver
+	url = https://github.com/sigginet/greaver
+[submodule "phpreaver"]
+	path = phpreaver
+	url = https://github.com/phpreaver/phpreaver
+[submodule "AutoPixieWps"]
+	path = AutoPixieWps
+	url = https://github.com/nxxxu/AutoPixieWps
+[submodule "penetrator-wps"]
+	path = penetrator-wps
+	url = https://github.com/xXx-stalin-666-money-xXx/penetrator-wps
+[submodule "pixiewps-android"]
+	path = pixiewps-android
+	url = https://github.com/ru-faraon/pixiewps-android
+[submodule "pyxiewps"]
+	path = pyxiewps
+	url = https://github.com/jgilhutton/pyxiewps
+[submodule "captiveportal"]
+	path = captiveportal
+	url = https://github.com/bendemott/captiveportal
+[submodule "AirLibre"]
+	path = AirLibre
+	url = https://github.com/nathanshimp/AirLibre
+[submodule "Airvengers"]
+	path = Airvengers
+	url = https://github.com/hiteshchoudhary/Airvengers
+[submodule "fake-ap3.py"]
+	path = fake-ap3.py
+	url = https://github.com/awhitehatter/fake-ap3.py
+[submodule "Wifi_Trojans"]
+	path = Wifi_Trojans
+	url = https://github.com/ahhh/Wifi_Trojans
+[submodule "wireless_RSSI"]
+	path = wireless_RSSI
+	url = https://github.com/agnostino/wireless_RSSI
+[submodule "rogueap"]
+	path = rogueap
+	url = https://github.com/bram-glasswall/rogueap
+[submodule "dockerfile-hostapd"]
+	path = dockerfile-hostapd
+	url = https://github.com/dweinstein/dockerfile-hostapd
+[submodule "cupid"]
+	path = cupid
+	url = https://github.com/lgrangeia/cupid
+[submodule "hostapd-wpe-extended"]
+	path = hostapd-wpe-extended
+	url = https://github.com/NerdyProjects/hostapd-wpe-extended
+[submodule "hostapd-acs"]
+	path = hostapd-acs
+	url = https://github.com/swaminathanvasanth/hostapd-acs
+[submodule "connme"]
+	path = connme
+	url = https://github.com/kurokid/connme
+[submodule "wifi-ap"]
+	path = wifi-ap
+	url = https://github.com/foosel/wifi-ap
+[submodule "zarp"]
+	path = zarp
+	url = https://github.com/hatRiot/zarp
+[submodule "EvilAP_Defender"]
+	path = EvilAP_Defender
+	url = https://github.com/moha99sa/EvilAP_Defender
+[submodule "wifihisicipy"]
+	path = wifihisicipy
+	url = https://github.com/saljam/wifihisicipy
+[submodule "BitcoinWifi"]
+	path = BitcoinWifi
+	url = https://github.com/ragmondo/BitcoinWifi
+[submodule "infernal-twin"]
+	path = infernal-twin
+	url = https://github.com/entropy1337/infernal-twin
+[submodule "milicone"]
+	path = milicone
+	url = https://github.com/jazoza/milicone
+[submodule "AP"]
+	path = AP
+	url = https://github.com/wtweeker/AP
+[submodule "gtaiad"]
+	path = gtaiad
+	url = https://github.com/jedivind/gtaiad
+[submodule "como"]
+	path = como
+	url = https://github.com/JackieXie168/como
+[submodule "madwifi-hopping"]
+	path = madwifi-hopping
+	url = https://github.com/paulpatras/madwifi-hopping
+[submodule "Secpi"]
+	path = Secpi
+	url = https://github.com/nrohsak/Secpi
