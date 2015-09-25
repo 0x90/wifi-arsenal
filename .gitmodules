@@ -952,3 +952,6 @@
 [submodule "Secpi"]
 	path = Secpi
 	url = https://github.com/nrohsak/Secpi
+[submodule "openwifimap-api"]
+	path = openwifimap-api
+	url = https://github.com/freifunk/openwifimap-api
