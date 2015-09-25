@@ -967,3 +967,9 @@
 [submodule "AIRBASE-NG-SSLSTRIP-AIRSTRIP"]
 	path = AIRBASE-NG-SSLSTRIP-AIRSTRIP
 	url = https://github.com/hacker404/AIRBASE-NG-SSLSTRIP-AIRSTRIP-
+[submodule "killosx"]
+	path = killosx
+	url = https://github.com/d4rkcat/killosx
+[submodule "HandShaker"]
+	path = HandShaker
+	url = https://github.com/d4rkcat/HandShaker
