@@ -66,6 +66,25 @@ rboninsegna/ath9k-4W-patch - Resources for increasing power of ath9k devices, su
 doom5/ath9k_ath5k_full_permissive_unlock_all_channels.patch - This kernel patch enable all 2GHZ & 5GHZ channels (without restriction) for ath9k & ath5k forced to use buildin world regulatory. Work with: 0x60, 0x61, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x6a, 0x6c
 Noltari/ath9k_caldata - ath9k_caldata tools
 
+
+## Links
+
+http://www.willhackforsushi.com/papers/80211_Pocket_Reference_Guide.pdf
+
+http://my.safaribooksonline.com/book/networking/wireless/0596001835/802dot11-framing-in-detail/wireless802dot11-chp-4-sect-3
+
+https://code.wireshark.org/review/gitweb?p=wireshark.git;a=blob_plain;f=manuf
+
+http://en.wikipedia.org/wiki/IEEE_802.11
+
+https://supportforums.cisco.com/document/52391/80211-frames-starter-guide-learn-wireless-sniffer-traces
+
+http://fossies.org/dox/wireshark-1.10.7/packet-ieee80211_8c_source.html
+
+http://documentation.netgear.com/reference/nld/wireless/WirelessNetworkingBasics-3-05.html
+
+https://github.com/jwiegley/scapy/blob/master/scapy/layers/dot11.py
+
 ## REPOS
 https://github.com/tom5760/pylorcon2
 https://code.google.com/p/pylorcon/
