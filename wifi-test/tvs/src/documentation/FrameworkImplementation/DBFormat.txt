@@ -1,0 +1,12 @@
+TVS contains a text file, $TVS_ROOT/etc/TVSListing, which list all 
+information about which validation suites using which scenerios need to be 
+run, and in what order.
+
+TVSLising uses the following format:
+SUITENAME SCENERIO1 SCENERIO2 ...
+
+Where each line is a record, and the validation suites are executed from top 
+to bottom using the scenerios listed from left to right.
+
+
+

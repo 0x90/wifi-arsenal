@@ -1,0 +1,35 @@
+#!/bin/bash
+# ----------------------------------------------
+# TVSEnvironment: Setup environment used by TVS
+#
+# NOTE: This script is used both as a normal 
+#       source script (to do things like '. TVSEnvironment')
+#       and as configuration file used by tvs
+#       perl scripts.  The perl scripts parse
+#       the output of this script in order to
+#       import environment variables.  Therefore
+#       the only output from this script should
+#       be from running "env".
+
+# Needed for basic TET functionality
+PATH=$PATH:/usr/tet/bin
+TET_ROOT=/usr/tet
+
+export PATH TET_ROOT TVS_ROOT 
+
+########################################################
+# Needed for TVS functionality
+TVS_ROOT=$TET_ROOT/TVS
+TVS_PIDFILE=/var/run/TVSController.pid
+TVS_VERBOSE=0
+TVS_REBOOT_ON_RESTART=1 # set to 1 to enable reboots
+PATH=$PATH:$TVS_ROOT/bin
+export PATH TVS_ROOT TVS_STATEFILE TVS_CONTROLLER_PATH \
+       TVS_PIDFILE TVS_VERBOSE TVS_REBOOT_ON_RESTART
+
+# used by perl scripts importing environment 
+# changes made in this script
+
+
+env
+

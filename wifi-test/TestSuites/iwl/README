@@ -1,0 +1,18 @@
+1. How to compile?
+All of test cases will be compile in TVS system. User just come in 
+TVS system and run "make".
+
+2. How to install?
+As a part of TVS, it will be installed in /usr/tet/TVS/tset/iwl dir
+after user installed TVS package.
+
+3. How to run?
++ Check/Modify parameters in iwl/tvs_env
++ Check/Modify scenario in iwl/tet_scen
++ Define which scenarios need to be run in /usr/tet/TVS/etc/TVSListing
++ . /etc/TVSEnvironment
++ tvs run
+
+4. How to get the results?
+All last running test reports are at /usr/tet/TVS/Reports/latest
+

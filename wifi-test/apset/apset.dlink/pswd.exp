@@ -1,0 +1,49 @@
+#!/usr/bin/expect -f
+#
+# Copyright (c) 2006 - 2009, Intel Corporation.
+#
+# This program is free software; you can redistribute it and/or modify it
+# under the terms and conditions of the GNU General Public License,
+# version 2, as published by the Free Software Foundation.
+
+# This program is distributed in the hope it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License 
+# for more details.
+
+# You should have received a copy of the GNU General Public License along with
+# this program; if not, write to the Free Software Foundation, Inc.
+# 51 Franklin St - Fifth Floor, Boston, MA 02110-1301 USA.
+
+# Authors:
+#       Yan, Yechun <yechun.yan@intel.com>
+#
+# Contact: WiFi Test Development <wifi-test-devel@lists.sourceforge.net>
+set APUSER	admin
+set APPSWD	admin
+set APIP [lindex $argv 0]
+set CMD [lrange $argv 1 end]
+
+spawn telnet $APIP
+expect "*login:"
+send "$APUSER\n"
+expect "*word:"
+send "$APPSWD\n"
+expect "D-Link*"
+foreach {cmd1 cmd2 cmd3 cmd4 cmd5} $CMD {
+		if {$cmd5 != "END"} {  
+		send "$cmd1 $cmd2 $cmd3 $cmd4 $cmd5 \r";
+		expect "D-Link*";
+		continue }
+		if {$cmd4 != "END"} {
+		send "$cmd1 $cmd2 $cmd3 $cmd4 \r";
+		expect "D-Link*"
+		continue }
+	send "$cmd1 $cmd2 $cmd3 \r"
+	expect "D-Link*"
+}
+send "reboot \n "
+expect "Rebooting*"
+#send "quit \n"
+#expect "*"
+exit

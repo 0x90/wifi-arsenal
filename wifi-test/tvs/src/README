@@ -1,0 +1,160 @@
+--** Telecom Linux Technology Validation Suite (TVS) **--
+
+TVS is used for validating a given distribution's TLT compliance by
+utilizing the Open Group's Test Environment Toolkit (TET) and
+various other dependancies.
+
+** For more information on TET, see ...
+** For more information on TLT, see http://www.carrierlinux.org
+** For more details on how to use TVS see
+   ./documentation/ValidationSuiteSpecifications.pdf
+** For brief Instuction on running test suite, see ./Instruction
+TVS is installed on top of TET, and is composed of:
+	- A set of TET validation suites, each restricted
+          to a specific layout and coding style for 
+          the sake of automating TVS build/execution.
+	- A framework which ties together each of the 
+          TET validation suites that make up TVS and provides
+          mechanism for building/executing TVS along with
+          tools for generating test reports.
+        - Documentation on how to extend/build/execute TVS
+
+Even though TET validation suites can be designed to build as part
+of the test run on the test machine, TVS will not be utilized this
+way.  As a result, TVS is used like a normal user space component
+in TLT.  In other words, TVS will be used by:
+
+	1. Building as a user space component in a TLT build system.
+           This results in a tvs-VERSION.i386.rpm RPM package.
+	2. Moving the RPM to a test machine and installing the RPM.
+           This will require installing various dependancies that
+           are specified by the TVS spec file.  (For example, a TLT
+           complient distribution is not required to have Perl installed,
+           but TVS needs Perl.)
+	3. Running TVS via framework discussed below
+	4. Inspecting the test report and making and determining if
+	   the test machine is TLT complient 
+
+Layout of TVS on build system:
+
+tvs/
+ |-- Makefile <--| Standard entry points for building
+ |-- tvs.spec <--| TVS in a TLT build environment
+ | 
+ |__src/
+     |-- README <-- This file
+     |-- bin/  <-- Generated from building TVS/src/Framework
+     |    |-- tvs
+     |    |-- TVSController
+     |    |__ TVSReportGenerator
+     |
+     |-- lib/  <-- Generated from building TVS/src/Framework
+     |    |-- TVSFramework.pm
+     |    |-- TVSFunctions.sh
+     |    |__ TVSFunctions.o
+     |    ... As other language extensions are supported
+     |        then more versions of TVS libraries will be created
+     |
+     |-- inc/  <-- Generated from building TVS/src/Framework
+     |    |__ TVSFunctions.h
+     |
+     |-- etc/  <-- Contained in the components/TVS cvs project
+     |    |-- TVSEnvironment
+     |    |-- TVSListing
+     |    |-- master_build.cfg
+     |    |-- master_clean.cfg
+     |    |__ master_execute.cfg
+     |
+     |-- tsets/ <-- Generated from building TVS/TestSuites
+     |     |-- SuiteOne/
+     |     |-- SuiteTwo/
+     |     ...
+     |
+     |-- src/  <-- Contained in the components/TVS cvs project
+     |    |-- TestSuites
+     |    |       |-- SuiteOne/
+     |    |       |-- SuiteTwo/
+     |    |       ...
+     |    |
+     |    |__ Framework/
+     |    ...
+     |
+     |__ documentation/ <-- Contained in the components/TVS cvs project
+          |-- ValidationSuiteSpecifications.html
+          |-- FrameworkImplementation/ 
+          |__ TestPlans/
+                 |-- SuiteOne/TestPlan.html
+                 |-- SuiteTwo/TestPlan.html
+                 ...
+
+Layout of a minimal validation suite on build system:
+
+SuiteOne/  <-- Contained in the components/TVS cvs project
+  |-- TVSOptions
+  |-- tet_scen
+  |-- tvs_env
+  |__ tset/
+        |-- test1
+        |-- test2
+        ...
+
+Binary TVS Layout (Result of installing TVS RPM):
+
+/etc/rc.d/init.d/tvs
+
+/etc/TVSEnvironment
+
+/usr/tet/TVS/
+ |-- bin/
+ |    |-- TVSController
+ |    |__ TVSReportGenerator
+ |
+ |-- lib/
+ |    |-- TVSFunctions.sh
+ |    |-- libTVSFunctions.so
+ |    |__ TVSFunctions.pl
+ |
+ |-- etc/
+ |    |-- TVSListing
+ |    |__ master_execute.cfg
+ |
+ |-- tsets/
+ |     |-- SuiteOne/
+ |     |-- SuiteTwo/
+ |     ...
+ |
+ |-- documentation/
+ |
+ |-- var/  <-- Generated at runtime
+ |    |-- state
+ |    |__ results
+ |           |-- <SESSION ID>/
+ |           |        |-- SuiteOne/
+ |           |        |        |-- ScenerioOne/journal
+ |           |        |        |-- ScenerioTwo/journal
+ |           |        |        ...
+ |           |        |-- SuiteTwo/
+ |           |        |        ...
+ |           |        |        
+ |           |        ...
+ |           |
+ |           ...
+ |
+ |__ Reports/  <-- Generated at runtime
+        |-- latest <-- Symbolic link to lastest session report
+        |-- <SESSION ID>/
+        |         |-- FullReport
+        |         |__ SummaryReport
+        |
+        ...
+
+
+
+
+
+
+
+
+
+
+

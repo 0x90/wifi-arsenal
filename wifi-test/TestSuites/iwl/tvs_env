@@ -1,0 +1,47 @@
+# Global environment variables used in testing
+# We need define 802.11a/b/g/n in which our tests run.
+# Valid value: A-ONLY, B-ONLY, G-ONLY, N-ONLY/N5-ONLY, N2.4-ONLY
+iwl_band=B-ONLY
+
+# In the test environment, there are two networks. First network connected
+# with stable ethernet that all test machines connect to, second network 
+# is wireless network that AP, wireless card of test macine connect to
+# There is an AP in the wireless network. AP essid will be defined
+# according to the AP name
+iwl_ap=otc-11215947-cisco2 # AP name. essid will be ${iwl_ap}-5g for 5g band
+			  # and ${iwl_ap}-2.4g for 2.4g band
+# To access the AP, its IP address is needed
+iwl_wap=192.168.50.8
+# The application in bridge that is used to set parameters in AP
+iwl_apset_cmd="test@ipw-srv /usr/local/apset/apset.cisco2/apset.cisco2"
+# TODO: We need find more smooth way to set AP
+
+# There is a machine that connects to both network. That machine is
+# bridge between test machine and AP before wireless network is created
+# The machine wired connects to test machine and AP
+# iwl_esrv is hostname that connect to network
+iwl_esrv=ipw-srv
+# iwl_ehost is bridge IP address in wireless network
+iwl_wsrv=192.168.50.74
+
+# Hostname of test machine. OK we can get the name at runtime
+# iwl_ehost=ipw-t61
+# Test machine IP address in wireless network
+iwl_whost=192.168.50.171
+
+# Hostname of peer test machine.  Some cases need second machines
+iwl_epeer=ipw-mv4
+# Peer machine IP address in wireless network
+iwl_wpeer=192.168.50.161
+
+# Function that loads Vendor driver
+iwl_load_module_vendor=iwl_load_iwlwifi
+
+export iwl_band
+export iwl_ap iwl_wap iwl_apset_cmd
+export iwl_esrv iwl_wsrv
+export iwl_whost iwl_ehost
+export iwl_epeer iwl_wpeer
+export iwl_load_module_vendor
+
+env

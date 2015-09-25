@@ -1,0 +1,399 @@
+#! /usr/bin/perl
+#
+# Copyright (C) 2006 Intel Corporation.
+#
+# This program is free software; you can redistribute it and/or modify it
+# under the terms and conditions of the GNU General Public License,
+# version 2, as published by the Free Software Foundation.
+
+# This program is distributed in the hope it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License # for more details.
+
+# You should have received a copy of the GNU General Public License along with
+# this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+# Place - Suite 330, Boston, MA 02111-1307 USA.
+
+# Authors:
+#       Mi, Jun <jun.mi@intel.com>
+#	Zheng, jiajia <jiajia.zheng@intel.com>
+# Contact: WiFi Test Development <wifi-test-devel@lists.sourceforge.net>
+
+use FindBin;
+use lib $FindBin::Bin;
+
+use function;
+use config;
+
+#$config::ssid_2g="otc-11215947-cisco-2.4g";
+#$config::ssid_5g="otc-11215947-cisco-5g";
+#$config::channel_2g=11;
+#$config::channel_5g=149;
+#$config::KEYVALUE1="1111000000";
+#$config::KEYVALUE2="2222000000";
+#$config::KEYVALUE3="11112222333344445555666611";
+#$config::KEYVALUE4="12345678901234567890123456";
+
+
+sub user_man
+{
+	print "Usage:  apset [OPTIONS]\n";
+	print "[OPTIONS]:\n";
+	print "	The following are general options:\n";
+	print "		--reset				\n";
+	print "		--reboot			\n";
+	print "		[MODE]			A-ONLY|G-ONLY|B-ONLY|N-ONLY|N2.4-ONLY|N5-ONLY\n";
+	print "************************************************************\n";
+        print "** Notice: Set Mode before the belowing settings.         **\n";
+        print "************************************************************\n";
+	print "		[CHANNEL]		1~11; 36~64\n";
+	print "		[CHANNEL-WIDTH]         20; 40-above; 40-below\n";
+	print "		[SSID]			<SSID>	\n";
+	print "		[NOSSID]                <SSID>  \n";
+	print "		[BCAST]                  enable|disable    \n";
+	print "		[RATE]			0|2000000|5500000|...|36000000|...|54000000;6000000|9000000|...|36000000|...|54000000\n";
+	print "		[BEACON]		20~4000     \n";
+	print "		[DTIM]			1~100, 1 default\n";
+	print "		[RTS]			0~2347, 2347 default\n";
+	print "		[FRAG]	   		256~2346, 2346 default\n";
+	print "		[QOS]			on|off\n";
+	print "*************************************************************** \n";
+        print "**     The following are WEP configuration options :         ** \n";
+	print "** Notice: Set WEP enable|disable before other settings!     ** \n";
+	print "*************************************************************** \n";
+        print "		[WEP]                   enable|disable\n";
+	print "		[KEYIDX]		1~4		1  default\n";
+	print "		[ENCRYPT]		64|128          \n";      
+	print "		[KEY1]			<KEY1>		\n";
+	print "		[KEY2]			<KEY2>		\n";
+	print "		[KEY3]			<KEY3>		\n";
+	print "		[KEY4]			<KEY4>		\n";
+        print "*************************************************************** \n";
+        print "**     The following are WPA configuration options :         ** \n";
+        print "** Notice: Set AUTH type before other settings!              ** \n";
+        print "*************************************************************** \n";
+        print "		[AUTH]                  open|shared|wpa|wpa2|psk|psk2|radius  \n";
+	print "		[WPA-CRYPTO]		AES|TKIP|WEP128|WEP40\n";
+        exit 1;
+}
+
+unless(@ARGV){
+	user_man;
+}
+
+
+sub reset
+{
+		$mode=0;
+		function::nowpa("$mode",$config::ssid_2g);
+		function::createssid(rem,"$mode",$config::ssid_2g);
+		function::createssid(add,"$mode",$config::ssid_2g);
+		function::chanset("$mode",$config::channel_2g);
+		function::chanwidth($mode,20);
+	       	function::stfrag($mode,2346);
+	        function::keyset(rem,$mode);
+		function::aprate($mode,default);
+		function::qos($mode);
+		function::activate($mode);
+
+		$mode=1;
+		function::nowpa("$mode",$config::ssid_5g);
+                function::createssid(rem,"$mode",$config::ssid_5g);
+                function::createssid(add,"$mode",$config::ssid_5g);
+                function::chanset("$mode",$config::channel_5g);
+                function::chanwidth($mode,20);
+		function::stfrag($mode,2346);
+                function::keyset(rem,$mode);
+		function::aprate($mode,default);
+		function::qos($mode);
+		function::activate($mode);
+}
+my(@array)= @ARGV;
+
+$size= scalar @ARGV;
+#reset to default setting: no secuirty, 11n mode...
+for ($i = 0; $i < $size;  $i++){
+	if (@array[$i] eq "--reboot"){
+                function::reboot;
+		::reset;
+		function::radius($config::EAP_Server, $config::EAP_Auth_Port, $config::Shared_Secret);
+		sleep 2;
+		# TODO, Need to figure out why need to run it twice
+		function::radius($config::EAP_Server, $config::EAP_Auth_Port, $config::Shared_Secret);
+        }
+	if (@array[$i] eq "--reset"){
+		::reset;
+		exit 0;
+	}
+	if (@array[$i] eq "MODE"){
+		$i++;
+		if (@array[$i] eq "A-ONLY"){
+			print "it's A-ONLY. \n";
+			$mode=1;
+			$ssid=$config::ssid_5g;
+			$channel=$config::channel_5g;
+			function::aprate($mode,default);
+                	function::mscrate($mode,"m0-7","no ");
+                	function::mscrate($mode,"m8-15","no ");
+		}
+		if (@array[$i] eq "G-ONLY"){
+			print "it's G-ONLY. \n";
+			$mode=0;
+			$ssid=$config::ssid_2g;
+			$channel=$config::channel_2g;
+                        function::aprate($mode,"only-ofdm");
+                	function::mscrate($mode,"m0-7","no ");
+                	function::mscrate($mode,"m8-15","no ");
+		}
+		if (@array[$i] eq "B-ONLY"){
+                        print "it's B-ONLY. \n";
+                        $mode=0;
+                        $ssid=$config::ssid_2g;
+                        $channel=$config::channel_2g;
+                        function::aprate($mode,"basic-1.0 basic-2.0 basic-5.5 basic-11");
+                        function::aprate($mode,"only-ofdm","no ");
+			function::mscrate($mode,"m0-7","no ");
+                        function::mscrate($mode,"m8-15","no ");
+		}
+		if (@array[$i] eq "N2.4-ONLY"){
+                        print "it's N2.4-ONLY. \n";
+                        $mode=0;
+                        $ssid=$config::ssid_2g;
+                        $channel=$config::channel_2g;
+			function::mscrate($mode,default);
+		}
+		if (@array[$i] eq "N5-ONLY"){
+                        print "it's N5-ONLY. \n";
+                        $mode=1;
+                        $ssid=$config::ssid_5g;
+                        $channel=$config::channel_5g;
+			function::mscrate($mode,default);
+                }
+		if (@array[$i] eq "N-ONLY"){
+                        print "it's N5-ONLY. \n";
+                        $mode=1;
+                        $ssid=$config::ssid_5g;
+                        $channel=$config::channel_5g;
+			function::mscrate($mode,default);
+                }
+	}
+	if (@array[$i] eq "CHANNEL"){
+                print "setting channel. \n";
+		$i++;
+                $haschan=1;
+                $channel=@array[$i];
+        }
+	if (@array[$i] eq "RADIUS"){
+                print "setting radius server. \n";
+		function::radius($config::EAP_Server, $config::EAP_Auth_Port, $config::Shared_Secret);
+        }
+	if (@array[$i] eq "CHANNEL-WIDTH"){
+                print "setting channel width. \n";
+                $i++;
+                $haschanwidth=1;
+                $channelwidth=@array[$i];
+        }
+
+	if (@array[$i] eq "SSID"){
+		$i++;
+		$hasssid=1;
+		$ssid=@array[$i];
+	}
+        if (@array[$i] eq "NOSSID"){
+		$i++;
+                $nossid=1;
+                $ssid=@array[$i];
+        }
+
+	if (@array[$i] eq "BCAST"){
+		$i++;
+		if (@array[$i] eq "enable"){
+			$bcast=0;	
+		}
+		if (@array[$i] eq "disable"){
+			$bcast=1;	
+		}
+	}
+        if (@array[$i] eq "RATE"){
+		$i++;
+		$hasrate=1;
+		$rate=@array[$i]
+        }
+       if (@array[$i] eq "FRAG"){
+                $i++;
+		$hasfrag=1;
+                $frag=@array[$i];
+        }
+       if (@array[$i] eq "AUTH"){
+                $hasauth=1;
+                $i++;
+                if (@array[$i] eq "open"){
+                        $auth="open";
+                }
+                if (@array[$i] eq "shared"){
+                        $auth="shared";
+                }
+		if (@array[$i] eq "wpa" or @array[$i] eq "wpa2"){
+			$haswpa=1;
+		}
+		if (@array[$i] eq "psk" or @array[$i] eq "psk2"){
+			$haspsk=1;
+		}
+		if (@array[$i] eq "radius"){
+                        $has8021x=1;
+                }
+           }
+        if (@array[$i] eq "WEP"){
+                $i++;
+                if (@array[$i] eq "enable"){
+			print "haswep";
+                        $haswep=1;
+		}
+		if (@array[$i] eq "disable"){
+			$haswep=0;
+                }
+        }
+        if (@array[$i] eq "ENCRYPT"){
+                $i++;
+		$haskey=1;
+		$activekeyindex=1;
+                if (@array[$i] eq "64"){
+                        $keymode=40;
+                }
+                if (@array[$i] eq "128"){
+                        $keymode=128;
+                }
+        }
+        if (@array[$i] eq "KEYIDX"){
+                $i++;
+ 	        $haskey=1;
+                $activekeyindex=@array[$i];
+		if ($activekeyindex eq "1"){
+			$keymode=40;
+			$key=$config::KEYVALUE1;
+		}
+		if ($activekeyindex eq "2"){
+                        $keymode=40;
+                        $key=$config::KEYVALUE2;
+                }
+		if ($activekeyindex eq "3"){
+                        $keymode=128;
+                        $key=$config::KEYVALUE3;
+                }
+		 if ($activekeyindex eq "4"){
+                        $keymode=128;
+                        $key=$config::KEYVALUE4;
+                }
+
+        }
+	
+        if (@array[$i] eq "KEY1"){
+                $i++;
+  	        $haskey=1;
+		$activekeyindex=1;
+                $key=@array[$i];
+		
+        }
+        if (@array[$i] eq "KEY2"){
+                $i++;
+		$haskey=1;
+		$activekeyindex=2;
+                $key=@array[$i];
+        }
+        if (@array[$i] eq "KEY3"){
+                $i++;
+		$haskey=1;
+		$activekeyindex=3;
+                $key=@array[$i];
+        }
+        if (@array[$i] eq "KEY4"){
+                $i++;
+		$haskey=1;
+		$activekeyindex=4;
+                $key=@array[$i];
+        }
+	if (@array[$i] eq "WPA-CRYPTO"){
+		$cipher=1;
+		$i++;
+		if (@array[$i] eq "AES"){
+                        $cipher="aes-ccm";
+                }
+		if (@array[$i] eq "TKIP"){
+			$cipher="tkip";
+		}
+		if (@array[$i] eq "WEP128"){
+			$cipher="wep128";
+		}
+		if (@array[$i] eq "WEP40"){
+			$cipher="wep40";
+		}
+	}
+}
+
+
+if ($hasfrag eq 1){
+	function::stfrag($mode,$frag);
+}
+if ($hasrate eq 1){
+	function::aprate($mode,$rate);       
+}
+if ($hasssid eq 1){
+	if ($mode eq "1"){
+        function::createssid(rem,"$mode",$config::ssid_5g);
+        function::createssid(add,"$mode",$ssid);
+        }
+        if ($mode eq "0"){
+        function::createssid(rem,"$mode",$config::ssid_2g);
+        function::createssid(add,"$mode",$ssid);
+        }
+}
+
+if ($nossid eq 1){
+        if ($mode eq "1"){
+        function::createssid(rem,"$mode",$ssid);
+        }
+        if ($mode eq "0"){
+        function::createssid(rem,"$mode",$ssid);
+        }
+}
+
+if ($hasauth eq 1){
+        function::apauth($mode,$ssid,$auth);
+        if ($auth eq "shared"){
+                function::apauth($mode,$ssid,"open","no ");
+        }
+}
+
+if ($bcast eq 0){
+	function::ssidbcast($mode,$ssid);
+}
+if ($bcast eq 1){
+	function::ssidbcast($mode,$ssid,"no ");
+}
+
+if ($haswep eq 1){
+	print "setting wep";
+	function::setwep($mode);
+}
+ 
+if ($haskey eq 1){
+#	function::keyset(rem,$mode,$activekeyindex,$keymode,$key);
+	function::keyset(add,$mode,$activekeyindex,$keymode,$key);
+}
+if ($haswpa eq 1){
+	function::setwpa($mode, $ssid, $cipher);
+}
+if ($haspsk eq 1){
+	function::setpsk($mode, $ssid, $cipher);
+}
+if ($has8021x eq 1){
+        function::set8021x($mode, $ssid, $cipher);
+}
+
+if ($haschan eq 1){
+	function::chanset($mode, $channel);
+}
+if ($haschanwidth eq 1){
+        function::chanwidth($mode, $channelwidth);
+}
+

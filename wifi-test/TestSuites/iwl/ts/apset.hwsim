@@ -1,0 +1,103 @@
+#!/bin/bash
+#
+#Copyright (c) 2006 - 2009, Intel Corporation
+#Author: Jeff Zheng <jeff.zheng@intel.com>
+#Contact: WiFi Test Development <wifi-test-devel@lists.sourceforge.net>
+#
+#This program is free software; you can redistribute it and/or 
+#modify it under the terms of the GNU General Public License version 
+#2 as published by the Free Software Foundation.
+#
+#This program is distributed in the hope that it will be useful, but 
+#WITHOUT ANY WARRANTY; without even the implied warranty of 
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU 
+#General Public License for more details.
+#
+#You should have received a copy of the GNU General Public License 
+#along with this program; if not, write to the Free Software Foundation, 
+#Inc., 51 Franklin St - Fifth Floor, Boston, MA 02110-1301 USA.
+#
+set -x
+pkill -9 hostapd
+ssid=hwsim
+conf=/tmp/hostapd.conf
+echo "interface=wlan1" > $conf
+echo "driver=nl80211" >> $conf
+
+
+while true ;
+do 
+    [ $# -eq 0 ] && break;
+    case "$1" in
+	# Reset AP, Do nothing for hostapd
+	--reset) 
+	    case $iwl_band in
+	    A-ONLY|N-ONLY|N5-ONLY)
+		echo "ssid=${ssid}-5g" >> $conf
+		echo hw_mode=a >> $conf
+		echo channel=149 >> $conf
+		shift
+		;;
+	    G-ONLY|B-ONLY|N2.4-ONLY)
+		echo "ssid=${ssid}-2.4g" >> $conf
+		echo hw_mode=g >> $conf
+		echo channel=1 >> $conf
+		shift
+		;;
+	    esac
+	    ;;
+	#The Following settings are used for setupconfig!
+	MODE)
+	    shift
+	    case $1 in
+	    A-ONLY)
+		echo "ssid=${ssid}-5g" >> $conf
+		echo hw_mode=a >> $conf
+		echo channel=149 >> $conf
+		shift
+		;;
+	    N-ONLY|N5-ONLY)
+		echo "ssid=${ssid}-5g" >> $conf
+		echo hw_mode=a >> $conf
+		echo "ieee80211n=1" >> $conf
+		echo channel=149 >> $conf
+		shift
+		;;
+	    G-ONLY)
+		echo "ssid=${ssid}-2.4g" >> $conf
+		echo hw_mode=g >> $conf
+		echo channel=1 >> $conf
+		shift
+		;;
+	    B-ONLY)
+		echo "ssid=${ssid}-2.4g" >> $conf
+		echo hw_mode=b >> $conf
+		echo channel=1 >> $conf
+		shift
+		;;
+	    N2.4-ONLY)
+		echo "ssid=${ssid}-2.4g" >> $conf
+		echo hw_mode=g >> $conf
+		echo channel=1 >> $conf
+		echo "ieee80211n=1" >> $conf
+		shift
+		;;
+	    *)
+		echo "Wrong args for MODE setting!"
+		break
+		;;
+	    esac
+	    ;;
+	*)    shift;;
+    esac
+done
+# load mac80211_hwsim anyway
+modprobe mac80211_hwsim
+sleep 1
+ifconfig wlan1 up
+sleep 1
+iw dev mon.wlan1 del
+sleep 1
+hostapd $conf &
+sleep 1
+

@@ -1,0 +1,203 @@
+#!/usr/bin/perl -W
+# Copyright (c) <2002>, Intel Corporation
+# All rights reserved.
+# 
+# Redistribution and use in source and binary forms, with or 
+# without modification, are permitted provided that the following 
+# conditions are met:
+# 
+# Redistributions of source code must retain the above copyright 
+# notice, this list of conditions and the following disclaimer.
+# Redistributions in binary form must reproduce the above copyright 
+# notice, this list of conditions and the following disclaimer in
+# the documentation and/or other materials provided with the distribution.
+# 
+# Neither the name of Intel Corporation, nor the names 
+# of its contributors may be used to endorse or promote products 
+# derived from this software without specific prior written permission.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+# OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+# SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+# TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+# OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
+# OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+# NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+
+###############################################################################
+## TVS System Startup Script
+##
+## Rusty Lynch <rusty.lynch@intel.com>
+###############################################################################
+##   Copyright (c) Intel Corp., 2001
+##
+###############################################################################
+
+#################### CHKCONFIG Data (man chkconfig for details) ###############
+# chkconfig: 3 99 99
+# description: Telecom Linux Validation suite
+###############################################################################
+
+my ($verbose);
+
+sub GetState {
+    my ($state);
+
+    open TMP, "<$ENV{'TVS_ROOT'}/var/state"
+	or die "Unable to open state file: $!\n";
+    $state = <TMP>;
+    close TMP;
+
+    return $state;
+}
+
+sub GetPid {
+    my ($pid);
+
+    return if !stat $ENV{'TVS_PIDFILE'};
+
+    open TMP, "<$ENV{'TVS_PIDFILE'}"
+	or die "Unable to open : $ENV{'TVS_PIDFILE'}$!\n";
+    $pid = <TMP>;
+    close TMP;
+
+    return $pid;
+}
+
+sub InsideTest {
+    my ($pid);
+
+    $pid = GetPid();
+    if (!defined $pid) {
+	print "InsideTest returning -1\n" if defined $verbose;
+	return -1;
+    }
+
+    return -1 unless kill 0, $pid;
+
+    print "InsideTest returning 0\n" if defined $verbose;
+    return 0;
+}
+
+sub StartTVS {
+    my($STATUS, $state);
+    if (0 == InsideTest()) {
+	print "TVS is already running...\n";
+    } else {
+	if( -e "$ENV{'TVS_ROOT'}/var/state"){
+        	$state = GetState();
+	
+        	($STATUS) = split(/ /, $state);
+        	if($STATUS =~ /COMPLETE/){
+                	print "Last TVS run is completed\n";
+			return True;
+        	}else{
+		        system "echo -e '\007\007\007=====TVS will continue the last run, do you want abort it(Y/N)?=====' > /dev/console";
+			unlink "/tmp/tvsabort";
+			system "$ENV{'TVS_ROOT'}/bin/waitkey 5 || touch /tmp/tvsabort";
+			if(! -e "/tmp/tvsabort"){
+	        		print "Starting TVS ...\n";
+				system "$ENV{'TVS_ROOT'}/bin/TVSController >>/dev/console 2>&1 & ";
+	        	}
+		}
+	}
+
+    }
+    return True;
+}
+
+sub RunTVS {
+    my($STATUS, $state);
+    if (0 == InsideTest()) {
+	print "TVS is already running...\n";
+    } else {
+        	print "Starting TVS ...\n";
+		system "$ENV{'TVS_ROOT'}/bin/TVSController";
+    }
+    return True;
+}
+
+sub StopTVS {
+    # If the pid file does not exist, then the
+    # controller is not running.
+    return 0 if !stat $ENV{'TVS_PIDFILE'};
+
+    print "Stopping TVS ...\n";
+    
+    # send a SIGTERM signal
+    kill "TERM", GetPid() or die "Unable to signal TVSController: $!\n";
+
+    return True;
+}
+
+sub ForceStop {
+    # Shoot all instances in the head
+    system "killall -9 TVSController";
+
+    # Remove all temporary files
+    unlink $ENV{'TVS_PIDFILE'};
+    unlink $ENV{'TVS_ROOT'} . "/var/state";
+}
+
+sub Usage {
+    print "Usage: tvs {start|run|stop|restart|status|forcestop|clearall}\n";
+    exit -1;
+}
+
+#################
+# Main function
+{
+    Usage() unless defined $ARGV[0];
+
+    ######################
+    # Get TVS environment
+    open(TMP, "/etc/TVSEnvironment|") or die "Could not open file: $!\n";
+    while (<TMP>) {
+	if ($_ =~ /^(.+)=(.+)$/) {
+	    $ENV{"$1"} = "$2";
+	}
+    }
+    close(TMP);
+
+    $verbose = 1 if exists $ENV{'TVS_VERBOSE'} && $ENV{'TVS_VERBOSE'} =~ /1/;
+
+    if ($ARGV[0] =~ /^start$/) {
+	StartTVS() or die "Error starting TVS!\n";
+    } elsif($ARGV[0] =~ /^run$/) {
+        RunTVS() or die "Error starting TVS!\n";
+    } elsif($ARGV[0] =~ /^stop$/) {
+	StopTVS() or die "TVS is not running.\n";
+    } elsif($ARGV[0] =~ /^restart$/) {
+	# For restarts, ignore any errors from stopping
+	StopTVS();
+	StartTVS() or die "Error starting TVS";
+    } elsif($ARGV[0] =~ /^status$/) {
+	if (0 == InsideTest()) {
+	    print "TVS is currently running: " . GetState() . "\n";
+	} else {
+	    print "TVS is not running.\n";
+	}
+    } elsif ($ARGV[0] =~ /^forcestop$/) {
+	ForceStop();
+    } elsif ($ARGV[0] =~ /^clearall$/) {
+	ForceStop();
+	
+	# remove all runtime results
+    } else {
+	Usage();
+    }
+}
+
+
+
+
+
+
+
+
+

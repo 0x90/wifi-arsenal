@@ -1,0 +1,29 @@
+At any given time in the lifecycle of a TVS run, $TVS_ROOT/var/state 
+contains the current state of TVS.  This state is used by outside
+applications/scripts in determining the progress of TVS, and is also
+used internal to TVS for determining where to pickup from when TVS
+has been restarted.
+
+NOTE: If $TVS_ROOT/var/state does not exist then TVS has completed
+
+The format of the state file is:
+RUNNING|RESTART|ABORT|COMPLETE SESSION_ID CURRENT_SUITE_NAME SCENERIO 
+
+RUNNING            - Indicates that TVS is currently running
+RESTART            - Indicates that TVS has requested a reboot
+                     and should be restarted using the same suite/scenerio
+                     when the system is back up.
+ABORT              - Indicates that TVS aborted its last run and
+                     is no longer running.
+COMPLETE           - Indicates that TVS completed its last run.
+SESSION_ID         - Unique ID associated with a given run of TVS.
+                     Restarts will pickup on the same session ID.
+CURRENT_SUITE_NAME - Name of validation suite being executed
+SCENERIO           - Name of scenerio the current suite is using
+
+
+
+
+
+
+

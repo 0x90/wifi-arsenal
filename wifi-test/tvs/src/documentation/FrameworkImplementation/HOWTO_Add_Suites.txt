@@ -1,0 +1,75 @@
+To have a validation suite added to the official list TVS validation suites, built 
+automatically by the build system and distributed as an integral part of TVS, follow 
+the steps here:
+1.	Add your suite directory into "tvs/src/TestSuites/" in cvs. 
+2.	Add a line in tvs/etc/TVSListing. TVSListing contains a record per line, where 
+each validation suite gets a single record.  The record is then split into fields 
+delimited by white space.  The first entry is the name of the validation suite 
+where the name of the validation suite is the name of the root directory for the 
+validation suite.  Each additional field contains the scenario names for TVS to 
+execute on the validation suite in order from left to right.
+For example, given the following record:
+"Feature_X_Suite PRD2.3 PRD2.4 PRD2.5"
+3.	Append your suite directory name to "TESTSUITES" in 
+tvs/src/TestSuites/Makefile. There is line in this makefile that defines all the 
+suites that need to be built. That is:
+TESTSUITES =  suite1 suite2 suite3 Feature_X_Suite
+Just append your suite directory name at the end of this line. 
+4.	Write a makefile in each of your test case's directory. In this makefile, build 
+your test case to binary format and copy them to the installed directory. See 
+the example below and template in tvs/src/TestSuites/
+5.	In your test suite's tet_scen file, write a scenario named "build" and list the 
+test case here. When building your test case,  TVS will invoke "tcc" to build 
+according your test suite's tet_scen file and its scenario "build". For each line 
+in this scenario, tcc will try to call "make" at the test case's directory, so each 
+of you test case directory needs a makefile and you needs to put line at 
+scenario "build" in the tet_scen file.
+The following is an example:
+If your test suite named SuiteOne and have one test case named testcase1, the 
+directory structure may look like this:                                      
+tvs/
+ |-- Makefile
+ |-- tvs.spec
+ | 
+ |__src/
+     |-- tsets/
+     |     |-- SuiteOne/
+     |             |-- tet_scen/
+     |             | -- test1/
+     |                   | -- testcase1                                                |
+     |
+     |-- src/
+     |    |-- TestSuites
+                  |-- SuiteOne/
+                         |-- tet_scen/
+                         |-- tset/
+                              | -- test1/
+                                      | -- Makefile
+                                      | -- testcase1.c     
+| -- testcase1                                           
+Here tvs/src/src is the source file directory and you need to add the suite here. The 
+tvs/src/tsets directory is the installed directory and you should install your suite here 
+in your test case's makefile.
+So the makefile may like this:
+DEPTH = ../../../../..
+LIBDIR	= $(TET_ROOT)/lib/tet3
+TVSLIBDIR = $(DEPTH)/lib/
+TVSINCDIR = $(DEPTH)/inc
+INCDIR	= $(TET_ROOT)/inc/tet3
+CFLAGS	= -I$(INCDIR) -I$(TVSINCDIR)
+all	install :build
+	mkdir -p  ${DEPTH}/tsets/SuiteOne/test1
+	cp tc1 ${DEPTH}/tsets/SuiteOne/test1
+build: tc1.c $(INCDIR)/tet_api.h $(TVSINCDIR)/TVSFunctions.h 
+$(TVSLIBDIR)/TVSFunctions.o
+	gcc $(CFLAGS) -o testcase1 testcase1.c $(TVSLIBDIR)/TVSFunctions.o 
+$(LIBDIR)/tcm.o $(LIBDIR)/libapi.a $(SYSLIBS)
+clean:
+	rm -f *.o testcase1
+And the tet_scen file may look like this:
+build
+	/tset/testcase1/testcase1
+all
+	"starting scenario"
+	/testcase1/testcase1
+	"done"

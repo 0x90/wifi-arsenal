@@ -1,0 +1,416 @@
+#!/usr/bin/perl -W
+# Copyright (c) <2002>, Intel Corporation
+# All rights reserved.
+# 
+# Redistribution and use in source and binary forms, with or 
+# without modification, are permitted provided that the following 
+# conditions are met:
+# 
+# Redistributions of source code must retain the above copyright 
+# notice, this list of conditions and the following disclaimer.
+# Redistributions in binary form must reproduce the above copyright 
+# notice, this list of conditions and the following disclaimer in
+# the documentation and/or other materials provided with the distribution.
+# 
+# Neither the name of Intel Corporation, nor the names 
+# of its contributors may be used to endorse or promote products 
+# derived from this software without specific prior written permission.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+# OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+# SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+# TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+# OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
+# OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+# NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+
+# ---------------------------------------------------------------------
+# TVSReportGenerator:
+#
+# ---------------------------------------------------------------------
+# Rusty Lynch
+# ---------------------------------------------------------------------
+my ($verbose, %results);
+
+use English;
+use FileHandle;
+sub ParseJournals {
+    my (%state) = @_;
+    my ($suite, $scen, $db, %r);
+
+    $suite = 0;
+    $scen = 0;
+
+    print "ParseJournals()\n"
+	if defined $verbose;
+
+    $db = $state{'LISTING'};
+    my ($rep_dir);
+    $rep_dir = $ENV{'TVS_ROOT'} . "/Reports/";
+    mkdir $rep_dir unless stat $rep_dir;
+
+    $rep_dir = $rep_dir . $state{'SESSION_ID'};
+    mkdir $rep_dir unless stat $rep_dir;
+
+    $logfile = $rep_dir . "/screen.log";
+    unlink $logfile;
+
+    SUITE: while (exists $db->[$suite]) {
+	$logfile1 = $ENV{'TVS_ROOT'} . "/var/results/" .
+	    $state{'SESSION_ID'} . "/" .
+            $db->[$suite][0] . "/screen.log";
+        system "cat $logfile1 >> $logfile";
+
+	while (exists $db->[$suite][1][$scen]) {
+	    my ($dir, $j);
+
+	    $dir = $ENV{'TVS_ROOT'} . "/var/results/" .
+		$state{'SESSION_ID'} . "/" .
+		    $db->[$suite][0] . "/" .
+			$db->[$suite][1][$scen] . "/";
+
+	    if (!stat $dir) {
+		print "ParseJournals: Journal for " .
+		    $db->[$suite][0] . " running scenerio " .
+			$db->[$suite][1][$scen] . " does not exist\n";
+		$scen++;
+		next;
+
+	    };
+
+	    print "ParseJournals: Processing $dir\n" if defined $verbose;
+	    opendir(JDIR, "$dir") or die "Unable to open $dir: $!\n";
+	    while($j = readdir(JDIR)) {
+		my (@a);
+
+		next if $j =~ /^\.\.?$/;
+		print "ParseJournals: Adding $j\n" if defined $verbose;
+
+		open(JOURNAL, "<$dir/$j") or die "Unable to open $j: $!\n";
+		while(<JOURNAL>) {
+		    my ($line) = $_;
+
+		    chomp $line;
+		    push @a, $line;
+		}
+		$r{"$db->[$suite][0]"}{"$db->[$suite][1][$scen]"}{"$j"} = \@a;
+	    }
+	    close(JDIR);
+	    $scen++;
+	}
+
+	$scen = 0;
+	$suite++;
+    }
+
+    return %r;
+}
+
+sub DumpJournals {
+    my (%journals) = @_;
+
+    print "DumpJournals()\n" if defined $verbose;
+
+    foreach (keys %journals) {
+	my ($suite) = $_;
+	print "suite: $suite\n";
+
+	foreach (keys %{$journals{$suite}}) {
+	    my ($scen) = $_;
+
+	    print "scenario: $scen\n";
+	    foreach (keys %{$journals{$suite}{$scen}}) {
+		my ($journal) = $_;
+
+		print "journal: $journal\n";
+		my (@a) = @{$journals{$suite}{$scen}{$journal}};
+		foreach (@a) {
+		    print "$_\n";
+		}
+	    }
+	}
+    }
+}
+
+sub ReportJournals {
+    my (%journals)= @_;
+
+    my ($rep_dir);
+    $rep_dir = $ENV{'TVS_ROOT'} . "/Reports/";
+    mkdir $rep_dir unless stat $rep_dir;
+
+    $rep_dir = $rep_dir . $state{'SESSION_ID'};
+    mkdir $rep_dir unless stat $rep_dir;
+
+    # create a symbolic link to latest session
+    unlink $rep_dir . "/../latest";
+    symlink $rep_dir, $rep_dir . "/../latest";
+
+    open (FULLREPORT, ">$rep_dir/FullReport.txt")
+	or die "Unable to open new full report file: $!\n";
+    open (FAILREPORT, ">$rep_dir/FailReport.txt")
+	or die "Unable to open new fail report file: $!\n";
+    open (SUMMARYREPORT, ">$rep_dir/SummaryReport.txt")
+	or die "Unable to open new full report file: $!\n";
+
+    #################################
+    ## Replace with something useful
+#    print FULLREPORT "<html></html>\n";
+#    print SUMMARYREPORT "<html></html>\n";
+
+
+
+    my (@info);
+    my (%res, %total);
+    my (@suitename, @resultcode, %scenname);
+    my ($suite, $scen);
+    @resultcode = (ALL, 0, 1, 7,103,101, 102);
+#    push @suitename, "Total";
+    $scenname{'Total'} = 0;
+    $suite = "Total";
+    foreach (@resultcode){
+	$res{$suite}{$suite}{$_} = 0;
+    }
+    print "ReportJournals()\n" if defined $verbose;
+#    print %journals;
+    foreach (keys %journals) {
+	my ($suite) = $_;
+        my (@scena);
+	print "suite: $suite\n";
+
+	push @suitename, $suite;
+	foreach (@resultcode){
+		$res{$suite}{$suite}{$_} = 0;
+	}
+
+	foreach (keys %{$journals{$suite}}) {
+	    my ($scen) = $_;
+	    my ($tpname) = "";
+	    push  @scena, $scen;
+
+	    foreach (@resultcode){
+		$res{$suite}{$scen}{$_} = 0;
+	    }
+
+	    print "scenario: $scen\n";
+	    foreach (keys %{$journals{$suite}{$scen}}) {
+		my ($journal) = $_;
+	    	my ($tpdesc) = "";
+
+		print "journal: $journal\n";
+		my (@a) = @{$journals{$suite}{$scen}{$journal}};
+		foreach (@a) {
+			chomp;
+			($number,$middle,$text) = split(/\|/);
+
+			if( $number == 520){
+				push @info, $text;
+			    #print "$text\n";
+			}elsif( $number == 201){
+				$tpname=$text;
+			}elsif( $number == 202){
+				$tpdesc=$text;
+			}elsif( $number == 200){
+				@info = ();
+				($activity1,$tpnumber1,$time1) = split(/ /, $middle);
+				print "$activity1"
+			}elsif( $number == 220){
+				my($activity,$tpnumber,$result,$time) = split(/ /, $middle);
+				if($result != 105){
+				$res{'Total'}{'Total'}{'ALL'}++;
+				$res{$suite}{$suite}{'ALL'}++;
+				$res{$suite}{$scen}{'ALL'}++;
+
+				$res{'Total'}{'Total'}{"$result"}++;
+				$res{$suite}{$suite}{"$result"}++;
+				$res{$suite}{$scen}{"$result"}++;
+				}
+				if($result == 102){
+					$tpnumber = $tpnumber1;
+					$time = $time1;
+				}
+				if( $result != 0 ){
+					write FAILREPORT;
+					foreach (@info){
+						print FAILREPORT "        " . $_ . "\n";	
+					} 
+#					print FAILREPORT $info;
+#					print FAILREPORT "$suite : $scen  $tpnumber $text $time\n";
+				}
+				{
+					write FULLREPORT;
+#					foreach (@info){
+#						print FULLREPORT "        " . $_ . "\n";	
+#					} 
+#					print FULLREPORT $info;
+#					print FULLREPORT "$suite : $scen  $tpnumber $text $time\n";
+				}
+format FULLREPORT_TOP=
+                  Test Report of Last Session
+=====================================================================
+tpname         Short Description 			    Result
+.
+format FULLREPORT=
+@<<<<<<<<<<<<<<@<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<@<<<<<<<<
+$tpname,$tpdesc,$text
+.
+format FAILREPORT_TOP=
+                  Detail Test Report of Last Session
+=====================================================================
+The following testcases do Not pass:
+Suite : Scenario : tpname      TC No. TP No.
+.
+format FAILREPORT=
+@<<<<<<<<<<<<<<<<<<<<<<<<@|||||@||||||@<<<<<<<<<<<<<<<@|||||||||||
+$suite . ":" . $scen . ":" . $tpname,$activity, $tpnumber,$text,$time
+.
+			}
+		}
+	    }
+
+	}
+        $scenname{$suite} = \@scena;
+    }
+
+
+    $FORMAT_TOP_NAME = "SUMOUT_TOP";
+    $FORMAT_NAME = "SUMOUT";
+    select  SUMMARYREPORT;
+    foreach (@suitename) {
+	$suite = $_;
+	$scen = $suite;
+	write;
+    }
+    print "======================================================================\n";
+#    $FORMAT_NAME = "SUMOUT";
+#    $FORMAT_TOP_NAME = "SUMOUT_TOP";
+
+    push @suitename, "Total";
+    foreach (@suitename) {
+	$suite = $_;
+	$scen = $suite;
+	if($suite eq "Total"){
+		print "======================================================================\n";
+	}
+	write;
+
+	my(@a) = @{$scenname{$suite}};
+	$FORMAT_NAME = "SCENOUT";
+	foreach (@a) {
+	    $scen = $_;
+#     	    print "$suite  $res{$suite}{'ALL'}    $res{$suite}{'PASS'}     $res{$suite}{'FAIL'}   $res{$suite}{'NORESULT'}\n";
+	    write;
+
+     	}
+        $FORMAT_NAME = "SUMMARYREPORT";
+
+    }
+    system "cat $rep_dir/FullReport.txt";
+    system "cat $rep_dir/FailReport.txt";
+    system "cat $rep_dir/SummaryReport.txt";
+
+    $logfile = $rep_dir . "/screen.log";
+    system "cat $rep_dir/FullReport.txt>>$logfile";
+    system "cat $rep_dir/FailReport.txt>>$logfile";
+    system "cat $rep_dir/SummaryReport.txt>>$logfile";
+
+format SUMMARYREPORT_TOP=
+               Summary Test Report of Last Session
+======================================================================
+              Total   Pass    Fail   NoResult Finish  Fatal  Crash
+======================================================================
+.
+
+format SUMMARYREPORT=
+@<<<<<<<<<<<@|||||||@|||||||@|||||||@|||||||@|||||||@|||||||@|||||||
+$scen,$res{$suite}{$scen}{'ALL'},$res{$suite}{$scen}{'0'},$res{$suite}{$scen}{'1'},$res{$suite}{$scen}{'7'},$res{$suite}{$scen}{'103'},$res{$suite}{$scen}{'101'},$res{$suite}{$scen}{'102'}
+.
+
+format SCENOUT=
+@<<<<<<<<<<<@|||||||@|||||||@|||||||@|||||||@|||||||@|||||||@|||||||
+" :" . $scen,$res{$suite}{$scen}{'ALL'},$res{$suite}{$scen}{'0'},$res{$suite}{$scen}{'1'},$res{$suite}{$scen}{'7'},$res{$suite}{$scen}{'103'},$res{$suite}{$scen}{'101'},$res{$suite}{$scen}{'102'}
+.
+
+    close (SUMMARYREPORT);
+    close (FULLREPORT);
+    close (FAILREPORT);
+
+}
+#$scen,$res{$suite}{$scen}{'ALL'},$res{$suite}{$scen}{'PASS'},$res{$suite}{$scen}{'FAIL'},$res{$suite}{$scen}{'NORESULT'},$res{$suite}{$$scen}{'ABORT'}
+
+
+
+
+#################
+# Main function
+{
+#    my (%state);
+
+    ######################
+    # Get TVS environment
+    open(TMP, "/etc/TVSEnvironment|") or die "Could not open file: $!\n";
+    while (<TMP>) {
+	if ($_ =~ /^(.+)=(.+)$/) {
+	    $ENV{"$1"} = "$2";
+	}
+    }
+    close(TMP);
+
+    # Enable/Disable Debugging Info
+    $verbose = 1 if exists $ENV{'TVS_VERBOSE'} && $ENV{'TVS_VERBOSE'} =~ /1/;
+
+    ###############################################
+    # Get the persisted state
+    if (stat $ENV{'TVS_ROOT'} . "/var/state") {
+	open STATE, "<$ENV{'TVS_ROOT'}/var/state"
+	    or die "Unable to open state file: $!\n";
+	while (<STATE>) {
+	    ($state{'STATUS'}, $state{'SESSION_ID'},
+	     $state{'CURRENT_SUITE'}, $state{'CURRENT_SCENERIO'}) = split;
+	}
+	close TMP;
+
+	print "state: $state{'STATUS'}, $state{'SESSION_ID'}, " .
+	    "$state{'CURRENT_SUITE'}, $state{'CURRENT_SCENERIO'}\n"
+		if defined $verbose;
+    }
+
+    ###############################################
+    # Build Suite DB:
+    # Read in $TVS_ROOT/etc/TVSListing to find out
+    # what all validation suites and scenerios need
+    # to be run, and in what order.
+    {
+	my (@db);
+
+	open (TMP, "<$ENV{'TVS_ROOT'}/etc/TVSListing")
+	    or die "Unable to open listing: $!\n";
+	while (<TMP>) {
+	    next if $_ =~ /^\#/ or $_ =~ /^$/;
+
+	    my (@r) = split /\W+/, $_;
+	    push @db, [shift @r, \@r];
+	}
+	close (TMP);
+
+	$state{'LISTING'} = \@db;
+    }
+
+    #############################################
+    # Build hash of all results from all tcc runs
+    my (%journals) = ParseJournals(%state);
+
+    DumpJournals(%journals) if defined $verbose;
+
+    ReportJournals(%journals);
+
+}
+
+
+
+

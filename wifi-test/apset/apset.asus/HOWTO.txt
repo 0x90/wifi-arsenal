@@ -1,0 +1,94 @@
+# Copyright (c) 2006 - 2009, Intel Corporation.
+#
+# This program is free software; you can redistribute it and/or modify it
+# under the terms and conditions of the GNU General Public License,
+# version 2, as published by the Free Software Foundation.
+
+# This program is distributed in the hope it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License 
+# for more details.
+
+# You should have received a copy of the GNU General Public License along with
+# this program; if not, write to the Free Software Foundation, Inc.
+# 51 Franklin St - Fifth Floor, Boston, MA 02110-1301 USA.
+
+# Authors:
+#       Yan, Yechun <yechun.yan@intel.com>
+#
+# Contact: WiFi Test Development <wifi-test-devel@lists.sourceforge.net>
+
+APSET RSH HOWTO
+
+This document will give a step by step instructions to introduce how to use
+apset tool to enable testcases run automaticly.
+
+[NOTE]	1. This tools currently support ASUS WL500g and Linksys WRT54G Access 
+	   point with according firmware.
+	2. Before this you must be sure you know how to configure your AP 
+	   back your original setting, because our tests will change ap 
+	   setting frequencily, that's why we write this tool.
+
+Steps:
+	1. If you are using ASUS-WL500g, please go to
+	   http://wl500g.info/
+	   download suitable firmware, which authored by Oleg, not official.
+	   If you are using WRT54G, please go to
+	   http://www.linksysinfo.org/
+	   to download ewrt-0.3-beta to update your firmware.
+	2. Update firmware through web interface original firmware offered.
+	   For asus: 	System SETUP -> Firmware Upgrade.
+	   For Linksys: Administration -> Firmware Upgrade.
+	   Please keep power non-stopped!!!
+	3. ewrt has offered ssh service automaticly.
+	   To WL500-g, you need telnet to it first; then 
+	   	create a file named "post-boot" under /tmp/local/sbin
+		and 
+		  # echo '#!/bin/sh' >> /tmp/local/sbin/post-boot
+		  # echo "dropbear"  >> /tmp/local/sbin/post-boot
+		and then
+		  # mkdir -p /usr/local/etc/dropbear
+		  # dropbearkey -t dss -f \
+		  	/usr/local/etc/dropbear/dropbear_dss_host_key
+		  # dropbearkey -t rsa -f \
+		  	/usr/local/etc/dropbear/dropbear_rsa_host_key
+	    The following steps will enable your AP system can be reached from
+	    WAN port. If your AP is used as a node to outside network, you'd 
+	    better not follow these instructsions. Anyway, you can connect to
+	    AP by Lan ports and wireless connection by default.
+	    	  # touch /usr/local/sbin/post-firewall
+		  # echo "#!/bin/sh" >> /usr/local/sbin/post-firewall
+		  # echo "iptables -D INPUT -j DROP" \
+		  	>> /usr/local/sbin/post-firewall
+		  # echo "iptables -A INPUT -p tcp \
+		  	--dport 22 -j ACCEPT" >> /usr/local/sbin/post-firewall
+		  # echo "iptables -t nat -A PREROUTING \
+		  	-i $1 -p tcp --dport 22 -j DNAT \
+			--to-destination $4:22" \
+			>> /usr/local/sbin/post-firewall
+		  # echo "iptables -A INPUT -j DROP" \
+		  	>> /usr/local/sbin/post-firewall
+	    The following steps MUST be excuted, or your effort on configuration
+	    will be lost.
+	    	  # flashfs save
+		  # flashfs commit
+		  # flashfs enable
+		  # reboot
+	    You can also refer to http://www.macsat.com/JustSSHGuide.php for 
+	    more detail steps to config ssh service.
+	4. After Big Step 3, we can ssh to 192.168.1.1, default user & pswd are 
+	   both "admin". You can modify password by 'passwd' command, Do 
+	   remember flashfs save, commit, and enable must be execute, because of	   the file  system.
+	   Then you can install the auto-config tool for AP, 
+	   	  # cp -r apset.sh/ /usr/bin
+	   	  # ln -s /usr/bin/apset.rsh/apset.new /usr/bin/apset
+	   and you need to edit some options in this directory,
+	   	  # vi /usr/bin/apset.rsh/pswd.exp
+	   check if variable APUSER and APPSWD is right for you.
+	5. And make sure your Laptop are correctly connect to AP by Lan at 
+	   least, then run the following command: 
+	          # apset --reset
+	   If you see some command(nvram ... exit) are auto executed and AP 
+	   power light blink to reboot, Congratulations, you can do automatic 
+	   tests.
+

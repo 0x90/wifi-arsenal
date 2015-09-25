@@ -1,0 +1,384 @@
+#!/bin/bash
+#
+# Copyright (c) 2006 - 2009, Intel Corporation.
+#
+# This program is free software; you can redistribute it and/or modify it
+# under the terms and conditions of the GNU General Public License,
+# version 2, as published by the Free Software Foundation.
+
+# This program is distributed in the hope it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License 
+# for more details.
+
+# You should have received a copy of the GNU General Public License along with
+# this program; if not, write to the Free Software Foundation, Inc.
+# 51 Franklin St - Fifth Floor, Boston, MA 02110-1301 USA.
+
+# Authors:
+#       Yan, Yechun <yechun.yan@intel.com>
+#
+# Contact: WiFi Test Development <wifi-test-devel@lists.sourceforge.net>
+
+APIP=192.168.1.1;
+COMMAND_LINE="";
+SSID="otc-11215947-asus-2.4g"
+KEYVALUE1=1111000000
+KEYVALUE2=2222000000
+KEYVALUE3=11112222333344445555666611
+KEYVALUE4=12345678901234567890123456
+PSKKEY="sharedsecret"
+#export IPWAUTO=$TESTROOT/../apset/apset.rsh
+#export IPWAUTO="$(echo "$0" | sed "s/\/apset$//g")"
+export IPWAUTO=`dirname $0`
+function user_man
+{
+	echo "Usage:  $IPWAUTO/apset [OPTIONS]";
+	echo "[OPTIONS]:";
+	echo "	The following are general options:";
+	echo "		[MODE]			MIXED|G-ONLY|B-ONLY";
+	echo "************************************************************";
+        echo "**  Notice: Set Mode before the belowing settings.";
+        echo "************************************************************";
+	echo "		[CHANNEL]		1~11,'6' means 2.437GHz	";
+	echo "		[SSID]			<SSID>	";
+	echo "		[BCAST]			enable|disable";
+	echo "		[RATE]			1|2|5.5|6|9|11|12|18|24|36|48|54";
+	echo "		[BEACON]		20~1000, 100 default";
+	echo "		[DTIM]			1~16348, 1 default";
+	echo "		[RTS]			0~2347, 2347 default";
+	echo "		[FRAG]			256~2346, 2346 default	";
+	echo "		[QOS]			on|off";
+	echo "		[AUTH]			open|shared|radius|wpa|wpa2|psk|psk2";
+	echo "	The following are WEP configuration options :";
+	echo "		[WEP]			enable|disable	";
+	echo "*************************************************************** ";
+	echo "**  Notice: if you want to make any following option work    ** ";
+	echo "**	 please add 'WEP enabled' before them! 		   ** ";
+	echo "*************************************************************** ";
+	echo "		[KEYIDX]		1~4		1 default";
+	echo "		[ENCRYPT]		64|128			";
+	echo "		[KEY1]			<KEY1>		";
+	echo "		[KEY2]			<KEY2>		";
+	echo "		[KEY3]			<KEY3>		";
+	echo "		[KEY4]			<KEY4>		";
+	echo "		The following are WPA configuration options";
+	echo "		[WPA-CRYPTO]		AES|TKIP|AES+TKIP	";
+	echo "		[PSK-KEY]		8~63 characters		";
+	echo "		[RADIUS-IP]		IP address of radius server ";
+	echo "		[RADIUS-PORT]		Port of radius server   ";
+	echo "		[RADIUS-KEY]		Sharedkey of radius server ";
+	exit 1;
+}
+function do_apset
+{
+	echo "\$APIP is $APIP";
+	echo "COMMAND_LINE is ${COMMAND_LINE}"
+	$IPWAUTO/pswd.exp $APIP $COMMAND_LINE 
+	sleep 40;
+	exit
+}
+
+if [ $# -eq 0 ]
+then
+	user_man;
+fi
+
+
+while true ;
+do 
+	if [ $# -eq 0 ]
+	then
+		echo "Congratulations! Modify success!";
+		do_apset;
+		break;
+	fi
+	case "$1" in
+		--reset)  	
+			COMMAND_LINE="set wl_gmode=1 set wl_channel=11 set wl_ssid=$SSID set wl_closed=0 set wl_auth_mode=open set wl_rate=0 set set set wl_rts=2347 set wl_frag=2346 set wl_wep=disable set wl_key=1 set wl_wep_x=0 set wl_wep_bit=64 set wl_wme=off set wl_wme_no_ack=off set wl_key1="" set wl_key2="" set wl_key3="" set wl_key4="" "
+			shift
+			;;
+##The Following settings are used for setupconfig!##
+		MODE)
+			shift
+			case "$1" in
+				MIXED)
+					COMMAND_LINE="${COMMAND_LINE} set wl_gmode=1";
+					shift
+					;;
+				G-ONLY)
+					COMMAND_LINE="${COMMAND_LINE} set wl_gmode=5";
+					shift
+					;;
+				B-ONLY)
+					COMMAND_LINE="${COMMAND_LINE} set wl_gmode=0";
+					shift
+					;;
+				esac
+			;;
+		CHANNEL)
+			shift
+			COMMAND_LINE="${COMMAND_LINE} set wl_channel=${1}";
+			shift
+			;;
+		SSID)
+			shift;
+			COMMAND_LINE="${COMMAND_LINE} set wl_ssid=$1";
+			shift
+			;;
+		BCAST)
+			shift
+			case $1 in
+			disable)
+				COMMAND_LINE="${COMMAND_LINE} set wl_closed=1";
+				shift
+				;;
+			enable)
+				COMMAND_LINE="${COMMAND_LINE} set wl_closed=0";
+				shift
+				;;
+			esac
+			;;
+		AUTH)
+			shift
+			auth=${1}
+			[ "$auth" == "wpa2" ] && auth=wpa
+			[ "$auth" == "psk2" ] && auth=psk
+			COMMAND_LINE="${COMMAND_LINE} set wl_auth_mode=${auth}";
+			case $auth in
+			psk)
+				COMMAND_LINE="${COMMAND_LINE} set wl_wpa_psk=$PSKKEY";
+                        	shift
+                        	;;
+			*)
+				shift
+				;;
+			esac
+			;;
+		RATE)
+			shift
+			case $1 in
+			1)
+			COMMAND_LINE="${COMMAND_LINE} set wl_rate=1000000";
+			shift
+			;;
+			2)
+			COMMAND_LINE="${COMMAND_LINE} set wl_rate=2000000";
+			shift
+			;;
+			5.5)	
+			COMMAND_LINE="${COMMAND_LINE} set wl_rate=5500000";
+			shift
+			;;
+			6)
+			COMMAND_LINE="${COMMAND_LINE} set wl_rate=6000000";
+			shift
+			;;
+			9)
+			COMMAND_LINE="${COMMAND_LINE} set wl_rate=9000000";
+			shift
+			;;
+			11)
+			COMMAND_LINE="${COMMAND_LINE} set wl_rate=11000000";
+			shift
+			;;
+			12)
+			COMMAND_LINE="${COMMAND_LINE} set wl_rate=12000000";
+			shift
+			;;
+			18)
+			COMMAND_LINE="${COMMAND_LINE} set wl_rate=18000000";
+			shift
+			;;
+			24)
+			COMMAND_LINE="${COMMAND_LINE} set wl_rate=24000000";
+			shift
+			;;
+			36)
+			COMMAND_LINE="${COMMAND_LINE} set wl_rate=36000000";
+			shift
+			;;
+			48)
+			COMMAND_LINE="${COMMAND_LINE} set wl_rate=48000000";
+			shift
+			;;
+			54)
+			COMMAND_LINE="${COMMAND_LINE} set wl_rate=54000000";
+			shift
+			;;
+			*)
+				echo "Wrong args for RATE setting!"
+				break
+					;;
+			esac
+			;;
+
+		BEACON)
+			shift
+			COMMAND_LINE="${COMMAND_LINE} set wl_bcn=${1}";
+			shift
+			;;
+		DTIM)
+			shift
+			COMMAND_LINE="${COMMAND_LINE} set wl_dtim=${1}";
+			shift
+			;;
+		RTS)
+			shift
+			COMMAND_LINE="${COMMAND_LINE} set wl_rts=${1}";
+			shift
+			;;
+		FRAG)
+			shift
+			COMMAND_LINE="${COMMAND_LINE} set wl_frag=${1}";
+			shift
+			;;
+		QOS)
+			shift
+			COMMAND_LINE="${COMMAND_LINE} set wl_wme=${1}"
+			shift
+			;;
+		NOACK)
+			shift
+			COMMAND_LINE="${COMMAND_LINE} set wl_wme_no_ack=${1}"
+			shift
+			;;
+
+#The following options are used for WEP security configuration.
+		WEP)
+			shift
+			case $1 in
+				disable)
+					COMMAND_LINE="${COMMAND_LINE} set wl_wep_x=0";
+					COMMAND_LINE="${COMMAND_LINE} set wl_wep=disabled";
+					COMMAND_LINE="${COMMAND_LINE} set security_mode=disabled";
+					shift
+					;;
+				enable)
+					COMMAND_LINE="${COMMAND_LINE} set wl_wep_x=1";
+					COMMAND_LINE="${COMMAND_LINE} set wl_wep=enabled";
+					COMMAND_LINE="${COMMAND_LINE} set security_mode=wep";
+					shift
+					;;
+				*)
+					echo "Wrong args for WEP setting!"
+					break
+					;;
+			esac
+			;;
+		KEYIDX)
+			shift
+			COMMAND_LINE="${COMMAND_LINE} set wl_key=${1}";
+#######################################################################################################################
+# For automation testing, we keep the key of Asus AP consistent with Dlink AP
+			case $1 in
+			1)
+				COMMAND_LINE="${COMMAND_LINE} set wl_wep_x=1 set wl_wep_bit=64 set wl_key1=$KEYVALUE1";
+				shift
+				;;
+			2)	
+				COMMAND_LINE="${COMMAND_LINE} set wl_wep_x=1 set wl_wep_bit=64 set wl_key2=$KEYVALUE2";
+				shift
+				;;
+			3)	
+				COMMAND_LINE="${COMMAND_LINE} set wl_wep_x=2 set wl_wep_bit=128 set wl_key3=$KEYVALUE3";
+				shift
+				;;
+			4)
+				COMMAND_LINE="${COMMAND_LINE} set wl_wep_x=2 set wl_wep_bit=128 set wl_key4=$KEYVALUE4";
+				shift
+				;;
+			*)
+				echo "Wrong args for WEP setting!"
+                                        break
+					;;
+			esac
+			;;
+#######################################################################################################################
+		ENCRYPT)
+			shift
+			case $1 in
+				64)
+					COMMAND_LINE="${COMMAND_LINE} set wl_wep_x=1";
+					COMMAND_LINE="${COMMAND_LINE} set wl_wep_bit=64";
+					shift
+					;;
+				128)
+					COMMAND_LINE="${COMMAND_LINE} set wl_wep_x=2";
+					COMMAND_LINE="${COMMAND_LINE} set wl_wep_bit=128";
+					shift
+					;;
+				*)
+					echo "Wrong args for WEP setting!"
+					break
+					;;
+			esac
+			;;	
+		KEY1)
+			shift
+			COMMAND_LINE="${COMMAND_LINE} set wl_key1=${1}";
+			shift
+			;;
+		KEY2)
+			shift
+			COMMAND_LINE="${COMMAND_LINE} set wl_key2=${1}";
+			shift
+			;;
+		KEY3)
+			shift
+			COMMAND_LINE="${COMMAND_LINE} set wl_key3=${1}";
+			shift
+			;;
+		KEY4)
+			shift
+			COMMAND_LINE="${COMMAND_LINE} set wl_key4=${1}";
+			shift
+			;;
+
+#The following are for the WPA encryption configuration
+		WPA-CRYPTO)
+			shift
+			case $1 in
+				TKIP)
+				COMMAND_LINE="${COMMAND_LINE} set wl_crypto=tkip";
+				shift
+				;;
+				AES)
+				COMMAND_LINE="${COMMAND_LINE} set wl_crypto=aes";
+				shift
+				;;
+				TKIP+AES)
+				COMMAND_LINE="${COMMAND_LINE} set wl_crypto=tkip+aes";
+				shift
+				;;
+				*)
+				echo "Wrong args for WPA_CRYPTO"
+				break
+				;;
+			esac
+			;;
+		PSK-KEY)
+			shift
+			COMMAND_LINE="${COMMAND_LINE} set wl_wpa_psk=${1}";
+			shift
+			;;
+		RADIUS-IP)
+			shift
+			COMMAND_LINE="${COMMAND_LINE} set wl_radius_ipaddr=${1}";
+			shift
+			;;
+		RADIUS-PORT)
+			shift
+			COMMAND_LINE="${COMMAND_LINE} set wl_radius_port=${1}";
+			shift
+			;;
+		RADIUS-KEY)
+			shift
+			COMMAND_LINE="${COMMAND_LINE} set wl_radius_key=${1}";
+			shift
+			;;	
+		*)	echo "error parameter \"$1\" , please refer to man page."
+			exit 1
+			;;
+	esac
+done

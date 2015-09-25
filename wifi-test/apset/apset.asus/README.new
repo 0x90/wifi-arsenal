@@ -1,0 +1,71 @@
+#
+# Copyright (c) 2006 - 2009, Intel Corporation.
+#
+# This program is free software; you can redistribute it and/or modify it
+# under the terms and conditions of the GNU General Public License,
+# version 2, as published by the Free Software Foundation.
+
+# This program is distributed in the hope it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License 
+# for more details.
+
+# You should have received a copy of the GNU General Public License along with
+# this program; if not, write to the Free Software Foundation, Inc.
+# 51 Franklin St - Fifth Floor, Boston, MA 02110-1301 USA.
+
+# Authors:
+#       Yan, Yechun <yechun.yan@intel.com>
+#
+# Contact: WiFi Test Development <wifi-test-devel@lists.sourceforge.net>
+
+NEW ipw-auto tool:apset.rsh/
+1.Why new?
+2.How new?
+3.How to know if this tool can be used on my AP?
+4.How to setup?
+
+1.Why new?
+	We have a ipw-auto tool before to change ap setting(apset.web/),
+	which simulate a http client to make AP configuration change.
+	But this is hard to control when ap change 
+	even firmware update(server page change).
+	Some day I found firmware run on AP is embed linux, which is 
+	opensource, and some group are modifying it for advance configuraion
+	or function purpose. Key point is most of them setup ssh server on
+	AP. So we can telnet/ssh to the embed linux, and change AP setting,
+	such as ssid, channel etc. by command.
+
+2.How new?
+	Finally I found it's convenient change AP setting by "nvram", 
+	which is the general tool on flash mem based system.So I build
+	a new file apset.new to change ap setting, nvram is easy to use:
+	nvram [show|get|set] [name=value] [commit]
+	For example: we need to change the ssid of AP:
+		nvram set wl_ssid=abcde
+		nvram commit
+		reboot	
+	then it will works fine with new ssid abcde.
+	
+	The problem to us is to find out what "name" is related to our setting,
+	which always be boring, and a more boring thing is there are trivial
+	different between different firmware, in fact 80% of "name" between
+	differnet firmware, and there is no firwware can be used on both ASUS
+	and LINKSYS ap.
+	
+3.How to know if this tool can be used on my AP?
+	I have test it on ASUS WL-500g with 1.9.2.7-5a (which can be download
+	at http://www.chupa.nl/beta/wizard.php?brand=1&mode=1&cat=firmware).
+	I think WL-500g with firmware by Oleg can use this tool.
+	And WRT54G with openwrt firmware can also use it.	
+
+4.How to setup?
+	cp apset.new pswd.exp /usr/bin/ipw-auto
+	ln -s /usr/bin/ipw-auto/apset.new /usr/bin/apset
+
+Copyright (c) 2006 - 2009, Intel Corporation.  All rights reserved.
+
+This material may be distributed only subject to the terms and
+conditions set forth in the Open Publication License, v1.0 or later
+(the latest version is presently available at
+http://www.opencontent.org/openpub/).

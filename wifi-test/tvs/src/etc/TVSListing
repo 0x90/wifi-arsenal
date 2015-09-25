@@ -1,0 +1,27 @@
+# TVS Runtime Listing: TVS will execute the following validation
+#                      suites in order.
+
+##################################################################
+# Entries need to be in the following format:
+#
+#SuiteName ScenerioOne [ScenerioTwo] ...
+#
+# For example, an entry for a validation suite called "ltp"
+# that has four scenerios named "quickhit", "sched", "mm",
+# and "math" would have an entry like:
+#
+iwl Build_RPM
+iwl Start_A_Band
+iwl bat_a
+iwl Start_B_Band
+iwl bat_b
+iwl Start_N_Band
+iwl bat_n
+iwl Start_N2_Band
+iwl bat_n2
+iwl Start_G_Band
+iwl bat_g
+iwl Start_G_Band
+iwl bat_power
+iwl bat_check
+

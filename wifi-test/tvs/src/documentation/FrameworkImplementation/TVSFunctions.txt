@@ -1,0 +1,102 @@
+The following functions are made available to validation suite 
+developers:
+     
+Function:    tvs_test_purpose_start
+Description:    Each TP function should call this API at the 
+beginning. In fact, TVS will use this function to save the current 
+test case's journal file path to a file so that when the test case 
+crashed and reboot the system, tvs can find the journal file next 
+time when the machine boot up again and merge it to the test 
+suite's journal file.
+Debug Hooks: NONE
+Parameters: An information string that will be recorded in the 
+journal file.
+ 
+Function:    tvs_test_purpose_finish 
+Description:  Each TP function should call this API at the end and 
+give out a result code. The TP function should return after call this 
+API.
+Debug Hooks: NONE
+Parameters: Result code. The valid results may be PASS, FAIL, 
+FATAL, FINISH (in shell), and TET_PASS, TET_FAIL, 
+TET_FATAL, TET_FINISH (in C).
+
+Function:    tvs_request_restart
+Description: Cause TVS to stop tcc, note all appropriate logs, and 
+then gracefully reboot the system.  On a properly configured           
+test machine, TVS will automatically be restarted, and will 
+complete the unfinished validation session starting with the 
+suite/scenario that called this function. That means TVS will start 
+from the current scenario and the test case will be run again. So 
+you need to call tvs_scenario_run_count to determine whether the 
+test case is called first time or second time after reboot. 
+Debug Hooks: In order for TVS to call 'reboot', and not just exit, the 
+environment variable TVS_REBOOT_ON_RESTART must be set 
+to 1.  (This can be configured in /etc/TVSEnvironment.) Otherwise, 
+the TVS just interrupt the test and return to console.
+Parameters:  NONE
+
+Function:    tvs_set_rerun_on_crash
+Description: Normally, when TVS is started after an expected 
+reboot (or crash), TVS will complete the unfinished validation 
+session, but skip the suite/scenario that triggered crash. This 
+function will make the TVS startup treat a crash like a requested 
+reboot.
+Debug Hooks: NONE
+Parameters:  NONE
+
+Function:    tvs_unset_rerun_on_crash
+Description: Corresponding to tvs_set_rerun_on_crash, this 
+function will make test case enter normal situation.
+Debug Hooks: NONE
+Parameters:  NONE
+
+Function:    tvs_scenario_run_count 
+Description: If the test case calls tvs_request_restart or 
+tvs_set_rerun_on_crash, the test case can know how many times 
+it has been run by this function. This function is for C language and 
+in shell script, the count can be gotten by 
+$TVS_SCENARIO_RUN_COUNT.
+Debug Hooks: NONE
+Parameters: NONE 
+
+Function:    tvs_restart_ntimes
+Description:   For convenience, the test case can use this API to 
+request several reboot. The system will restart each time this API 
+is executed until the restart count reaches the parameter 
+"rerun_time". And at that time, the API just returns without any 
+actions.
+Debug Hooks: NONE
+Parameters:  The times to restart.
+
+Function:    tvs_set_timeout 
+Description:   You can use this API to set  maximal run time for 
+your test case. If the time out, the system will reboot. When the 
+system boots up and TVS is invoked again next time, the current 
+scenario will be skipped. If you hope the test case can be executed 
+again, just call set_rerun_on_crash. This function is used for those 
+cases that may hang up the system.
+Debug Hooks: NONE
+Parameters: The time in seconds.
+
+Function:    tvs_exit_scenario
+Description: If the test case meets some fatal error and the next 
+cases in the current scenario cannot be executed any more, this 
+function can be used to abort the current scenario, and let TVS 
+skip to the next scenario. If an error in one test purpose function 
+cause the other test purpose in the current test case not able to 
+run any more, the test purpose function can just give TVS a result 
+FATAL or TET_FATAL, and the current test case will be aborted 
+and next test case will be run. It doesn't need to cancel the whole 
+scenario.
+Debug Hooks: NONE
+Parameters: NONE
+
+Function:    tvs_exit_suite
+Description: If the test case meets some fatal error and the next 
+cases in the current suite cannot be executed any more, this 
+function can be used to abort the current suite, and let TVS skip to 
+the next suite. 
+Debug Hooks: NONE
+Parameters: NONE
+

@@ -1,0 +1,362 @@
+#!/bin/bash
+#
+# Copyright (c) 2006 - 2009, Intel Corporation.
+#
+# This program is free software; you can redistribute it and/or modify it
+# under the terms and conditions of the GNU General Public License,
+# version 2, as published by the Free Software Foundation.
+
+# This program is distributed in the hope it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License 
+# for more details.
+
+# You should have received a copy of the GNU General Public License along with
+# this program; if not, write to the Free Software Foundation, Inc.
+# 51 Franklin St - Fifth Floor, Boston, MA 02110-1301 USA.
+
+# Authors:
+#       Yan, Yechun <yechun.yan@intel.com>
+#
+# Contact: WiFi Test Development <wifi-test-devel@lists.sourceforge.net>
+
+APIP=192.168.1.2;
+COMMAND_LINE="";
+SSID_G="otc-11215947-dlink-2.4g"
+SSID_A="otc-11215947-dlink-5g"
+KEYVALUE1=1111000000
+KEYVALUE2=2222000000
+KEYVALUE3=11112222333344445555666611
+KEYVALUE4=12345678901234567890123456
+#export IPWAUTO=$TESTROOT/../apset/apset.rsh
+#export IPWAUTO="$(echo "$0" | sed "s/\/apset$//g")"
+export IPWAUTO=`dirname $0`
+function user_man
+{
+	echo "Usage:  $IPWAUTO/apset [OPTIONS]";
+	echo "[OPTIONS]:";
+	echo "	The following are general options:";
+	echo "		--reset			";
+	echo "		[MODE]			A-ONLY|G-ONLY";
+	echo "************************************************************";
+	echo "** Notice: Set Mode before the belowing settings.";
+	echo "************************************************************";
+	echo"		[CHANNEL]		1~11; 149~165,+4";
+	echo "		[SSID]			<SSID>	";
+	echo "		[BCAST]			enable|disable";
+	echo "		[RATE]			2G-mode: best|1|2|5.5|6|9|11|12|18|24|36|48|54";
+	echo "					5G-mode: best|6|9|12|1824|36|48|54";
+	echo "		[BEACON]		20~1000, 100 default";
+	echo "		[DTIM]			1~16348, 1 default";
+	echo "		[RTS]			0~2347, 2347 default";
+	echo "		[FRAG]			256~2346, 2346 default	";
+	echo "		[AUTH]			open|shared|auto|wpa|psk|wpa2|psk2";
+	echo "	The following are WEP configuration options :";
+	echo "*************************************************************** ";
+	echo "**  Notice: make sure you set 'WEP enable' before choose a key.    ** ";
+	echo "*************************************************************** ";
+	echo "		[WEP]			enable|disable	";
+	echo "		[KEYIDX]		[index]";
+	echo "		[KEY]		[index] [40|104|128] <value>";
+	echo "	The following are WPA configuration options :";
+	echo "		[WPA-CRYPTO]		AES|TKIP|AES+TKIP	";
+	echo "		[RADIUS-IP]		IP address of radius server ";
+	echo "		[RADIUS-PORT]		Port of radius server   ";
+	exit 1;
+}
+function do_apset
+{
+	echo "\$APIP is $APIP";
+	echo "\$COMMAND_LINE is $COMMAND_LINE";
+	$IPWAUTO/pswd.exp $APIP $COMMAND_LINE; 
+	sleep 40;
+	exit
+}
+
+if [ $# -eq 0 ]
+then
+	user_man;
+fi
+
+
+while true ;
+do 
+	if [ $# -eq 0 ]
+	then
+		echo "Congratulations! Modify success!";
+		do_apset;
+		break;
+	fi
+	case "$1" in
+#Reset AP to the default setting.
+		--reset)  	
+COMMAND_LINE="config wlan 0 END END set ssid $SSID_A END END set ssidsuppress disable END END set channel 5745 END END set authentication open-system END END set encryption disable END END set rate best END END set beaconinterval 100 END END set dtim 1 END END set rtsthreshold 2346 END END set fragmentthreshold 2346 END END config wlan 1 END END set ssid $SSID_G END END set ssidsuppress disable END END set channel 2462 END END set authentication open-system END END set encryption disable END END set rate best END END set beaconinterval 100 END END set dtim 1 END END set rtsthreshold 2346 END END set fragmentthreshold 2346 END END";
+			shift
+			;;
+#The Following settings are used for setupconfig!
+		MODE)
+			shift
+			case $1 in
+			A-ONLY)
+				COMMAND_LINE="${COMMAND_LINE} config wlan 0 END END";
+				shift
+				;;
+			G-ONLY)
+				COMMAND_LINE="${COMMAND_LINE} config wlan 1 END END";
+				shift
+				;;
+			*)
+				echo "Wrong args for MODE setting!"
+                                break
+                                ;;
+			esac
+			;;
+		CHANNEL)
+			shift
+			case $1 in
+			1)
+			COMMAND_LINE="${COMMAND_LINE} set channel 2412 END END";
+			shift
+			;;
+			2)
+			COMMAND_LINE="${COMMAND_LINE} set channel 2417 END END";
+			shift
+			;;
+			3)
+			COMMAND_LINE="${COMMAND_LINE} set channel 2422 END END";
+			shift
+			;;
+			4)
+			COMMAND_LINE="${COMMAND_LINE} set channel 2427 END END";
+			shift
+			;;
+			5)
+			COMMAND_LINE="${COMMAND_LINE} set channel 2432 END END";
+			shift
+			;;
+			6)
+			COMMAND_LINE="${COMMAND_LINE} set channel 2437 END END";
+			shift
+			;;
+			7)
+			COMMAND_LINE="${COMMAND_LINE} set channel 2442 END END";
+			shift
+			;;
+			8)
+			COMMAND_LINE="${COMMAND_LINE} set channel 2447 END END";
+			shift
+			;;
+			9)
+			COMMAND_LINE="${COMMAND_LINE} set channel 2452 END END";
+			shift
+			;;
+			10)
+			COMMAND_LINE="${COMMAND_LINE} set channel 2457 END END";
+			shift
+			;;
+			11)
+			COMMAND_LINE="${COMMAND_LINE} set channel 2462 END END";
+			shift
+			;;
+			149)
+			COMMAND_LINE="${COMMAND_LINE} set channel 5745 END END";
+			shift
+			;;
+			153)
+			COMMAND_LINE="${COMMAND_LINE} set channel 5765 END END";
+			shift
+			;;
+			157)
+			COMMAND_LINE="${COMMAND_LINE} set channel 5785 END END";
+			shift
+			;;
+			161)
+			COMMAND_LINE="${COMMAND_LINE} set channel 5805 END END";
+			shift
+			;;
+			165)
+			COMMAND_LINE="${COMMAND_LINE} set channel 5825 END END";
+			shift
+			;;
+			*)
+				echo "Wrong args for CHANNEL setting!"
+				break
+					;;
+			esac
+			;;	
+		SSID)
+			shift;
+			COMMAND_LINE="${COMMAND_LINE} set ssid $1 END END";
+			shift
+			;;
+		BCAST)
+			shift
+			case $1 in
+			enable)
+			COMMAND_LINE="${COMMAND_LINE} set ssidsuppress disable END END";
+				shift
+				;;
+			disable)
+			COMMAND_LINE="${COMMAND_LINE} set ssidsuppress enable END END";
+				shift
+				;;
+			*)
+				echo "Wrong args for BCAST setting!"
+				break
+					;;
+			esac
+			;;
+		
+
+		RATE)
+			shift
+			COMMAND_LINE="${COMMAND_LINE} set rate $1 END END";
+			shift
+			;;
+		BEACON)
+			shift
+			COMMAND_LINE="${COMMAND_LINE} set beaconinterval $1 END END";
+			shift
+			;;
+		DTIM)
+			shift
+			COMMAND_LINE="${COMMAND_LINE} set dtim $1 END END";
+			shift
+			;;
+		RTS)
+			shift
+			COMMAND_LINE="${COMMAND_LINE} set rtsthreshold $1 END END";
+			shift
+			;;
+		FRAG)
+			shift
+			COMMAND_LINE="${COMMAND_LINE} set fragmentthreshold $1 END END"; 
+			shift
+			;;
+#The following option is for secuirity.
+		AUTH)
+			shift
+			case $1 in
+			auto)
+			COMMAND_LINE="${COMMAND_LINE} set authentication auto END END";
+			shift
+			;;
+			open)
+			COMMAND_LINE="${COMMAND_LINE} set authentication open-system END END";
+			shift
+			;;
+			shared)
+			COMMAND_LINE="${COMMAND_LINE} set authentication shared-key END END";
+                        shift
+                        ;;
+			wpa)
+			COMMAND_LINE="${COMMAND_LINE} set authentication WPA END END";
+			shift
+			;;
+			psk)
+			COMMAND_LINE="${COMMAND_LINE} set authentication WPA-PSK END END";
+			shift
+			;;
+			wpa2)
+			COMMAND_LINE="${COMMAND_LINE} set authentication WPA2 END END";
+			shift
+			;;
+			psk2)
+			COMMAND_LINE="${COMMAND_LINE} set authentication WPA2-PSK END END";
+			shift
+			;;
+			*)
+				echo "Wrong args for AUTH setting!"
+				break
+					;;
+			esac
+			;;
+#The following options are used for WEP configuration.
+		WEP)
+			shift
+			case $1 in
+				disable)
+				COMMAND_LINE="${COMMAND_LINE} set encryption disable END END";
+					shift
+					;;
+				enable)
+				COMMAND_LINE="${COMMAND_LINE} set encryption enable END END";
+					shift
+					;;
+				*)
+					echo "Wrong args for WEP setting!"
+					break
+					;;
+			esac
+			;;
+		KEY)
+			shift
+			COMMAND_LINE="${COMMAND_LINE} set key $1 $2 $3";
+			shift 3
+			;;
+		KEYIDX)
+			shift
+			case $1 in 
+				1)
+				COMMAND_LINE="${COMMAND_LINE} set key 1 default END ";
+				shift
+				;;
+				2)
+				COMMAND_LINE="${COMMAND_LINE} set key 2 default END";
+				shift
+				;;
+				3)
+				COMMAND_LINE="${COMMAND_LINE} set key 3 default END";
+				shift
+				;;
+				4)
+				COMMAND_LINE="${COMMAND_LINE} set key 4 default END";
+                                shift
+                                ;;
+				*)
+				echo "Wrong args for KEYIDX"
+				break
+				;;
+			esac
+			;;
+#			COMMAND_LINE="${COMMAND_LINE} set key $1 default END";
+#			shift 
+#			;;
+
+#The following options are used for WPA configuration.
+		WPA-CRYPTO)
+			shift
+			case $1 in
+                                TKIP)
+                                COMMAND_LINE="${COMMAND_LINE} set cipher tkip END END";
+                                shift
+                                ;;
+                                AES)
+                                COMMAND_LINE="${COMMAND_LINE} set cipher aes END END";
+                                shift
+                                ;;
+                                TKIP+AES)
+                                COMMAND_LINE="${COMMAND_LINE} set cipher auto END END";
+                                shift
+                                ;;
+                                *)
+                                echo "Wrong args for WPA_CRYPTO"
+                                break
+                                ;;
+                        esac
+                        ;;
+		RADIUS-IP)
+			shift
+			COMMAND_LINE="${COMMAND_LINE} set radiusname $1 END END";
+			shift
+			;;
+		RADIUS-PORT)
+			shift
+			COMMAND_LINE="${COMMAND_LINE} set radiusport $1 END END";
+			shift
+			;;
+		*)	echo "error parameter \"$1\" , please refer to man page."
+			exit 1
+			;;
+	esac
+done

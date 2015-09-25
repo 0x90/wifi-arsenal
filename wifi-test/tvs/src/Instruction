@@ -1,0 +1,76 @@
+================================================================
+  This file contain the brief instruction for running test suite
+ of each components, such as special configration, how to modify
+ "TVSListing" file,etc.
+  Each component will have a section.
+================================================================
+[SNMPAgent]
+  Just run tvs, the 7 scenarios can be run automatically
+[ngpt]
+-- make sure ngpt and ngpt-devel rpm are installed
+$ vi /usr/tet/TVS/etc/TVSListing
+   --- For TLT, add "ngpt standard bincomp"
+   --- For MVL, add "ngpt mvl_standard mvl_bincomp"
+$ tvs run
+
+[dprobes]
+-- make sure dprobes and kernel-source rpm are installed
+1. check if dprobes is built into kernel by default 
+$ dprobes -r -a	  -- Expected to print: "Remove dprobes on all modules"
+
+2. When dprobes is built-in by default or manually rebuilt,
+$ vi /usr/tet/TVS/etc/TVSListing
+   --- For TLT  add "dprobes tlt"
+   --- For MVL	add "dprobes mvl"
+
+3. If needed to recompile kernel,
+--- configuration
+$ vi /usr/tet/TVS/tsets/dprobes/bin/Config.py
+   --- set the expected 'BUILD_LABEL'
+   --- set the correct 'KERNEL_CONFIG'
+   --- set the correct 'KERNEL_VERSION'
+   --- set the correct 'RPM_KERNEL_SRC_DIR'
+   --- set the correct 'KERNEL_SRC'
+	--- For TLT	build, it's the resolute path of kernel-source rpm
+	--- For MVL	build, it's the location of kernel source directory
+$ vi /usr/tet/TVS/tsets/dprobes/bin/makebin.sh
+   --- set the correct 'KERNEL_SRC_PATH'
+	--- For TLT	build, it's the newly installed kernel source tree
+	--- For MVL	build, it's the location of kernel source tree
+--- run test cases
+$ vi /etc/TVSEnvironment
+   --- set TVS_REBOOT_ON_RESTART = 1
+$ vi /usr/tet/TVS/etc/TVSListing
+   --- add "dprobes prep probes post"
+$ tvs run
+
+[watchdogtimer]
+    In TVSListing file, the scenario "noaction" doesn't need to 
+reboot.
+
+[lcrash]
+[panicsel]
+[evlog]
+[E100]
+[lkcd]
+[ResourceMonitor]
+
+[MCA]
+Before running the test suite, two files need to be edited:
+
+1. Edit ${TVSROOT}/tsets/MCA/pylib/Config.py
+   - KERNEL_SOURCE can be set to a kernel source rpm file name
+     or the path of the kernel source path.
+   - KERNEL_VERSION is necessary only if you need to make a ram
+     disk.
+   - set KERNEL_CONFIG to the kernel config file appears in the
+     "configs" directory of kernel source. If you want to use
+     the default ".config", set it to ""
+
+2. Edit ${TVSROOT}/tsets/MCA/pylib/Control.py
+   - set USE_INITRD to 1 if you want to make a ram disk.
+   - set PENTIUM4 to 1 if you are using a pentium 4 platform.
+   - set BOOT_LOADER to Grub or Lilo according to what you are
+     using now.
+   - MCATS_DEBUG should be set to 0 to test the MCA component
+     instead of the MCA test suite itself.

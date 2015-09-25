@@ -1,0 +1,194 @@
+
+*****************************************
+**	  Testing environment	       ** 
+*****************************************
+
+The minimum testing system requirements are listed below.
+a) Two test machines
+   One as test machine, the other as peer machine in IBSS network testing. 
+   If only BSS is tested, one test machine is enough.
+b) One server machine
+   The server machine needs two Ethernet cards, one connects to the 
+   Test machine network and the other to the AP network.
+c) One AP
+   Both Cisco AP, Dlink and ASUS AP with CLI (Command Line Interface)
+   are supported. For example, Dlink DWL-8200 AP and Cisco1200 series AP. 
+
+Here is an example of our test environment:
+
+  --------------
+ | Test Machine |
+  --------------\
+                 \ ---------                    --------
+                  | Test    |     -------      |  AP    |   ---
+                  | machine |----| Server |----| network|--| AP |
+                  | network |     -------      |        |   ---
+                 / ---------                    --------
+  ------------- /
+ | Peer Machine |
+  --------------
+
+
+******************************************
+**		Quick Start		**
+******************************************
+Precondition
+1. This test script license is GPLv2. But this test script needs tet from
+   http://tetworks.opengroup.org/tet/, tet license is Artistic.
+2. perl-Net-Telnet packages should be installed in Server.
+3. Currently, Quick Start only supports Cisco AP. 
+   We have tested on Fedora System and Cisco1252 AP.
+4. Suggest to Reset Cisco AP to Factory Defaults (Except IP Address).
+   <SYSTEM SOFTWARE> -> <System Configuration> -> <Reset to Factory
+   Defaults (Except IP Address)>
+5. Have to run testing as root.
+
+Part1: Setup Server & AP network
+================================
+a) Get the wireless test script. 
+b) Copy the apset directory to <server machine>:/usr/local/bin/. 
+   Configure the following environmental variables in 
+   /usr/local/bin/apset/apset.cisco/config.pm 
+     $ap: AP IP address in the AP network
+     $ssid_2g: SSID of 802.11g band, it has to be xxx-2.4g, such as cisco-2.4g
+     $ssid_5g: SSID of 802.11a band, it has to be xxx-5g, such as cisco-5g
+     $EAP_Server: EAP Server IP
+     $Shared_Secret: Sharedsecret used in WPA authentication
+     $AP_Login: Login username
+     $AP_Password: Login password
+     $AP_Enable_Password: IOS enable password
+c) Now, you are able to set AP automatically by running AP setting scripts. 
+   For example, setting AP's mode and channel.  
+     ./apset.cisco MODE A-ONLY CHANNEL 40.
+
+Part2. Setup Test Machine & Peer Machine
+========================================
+a) Put the wireless test script in Test Machine
+b) If test machine does not have Internet access, you have to download tet
+   (see howto.txt Part2) and put it into the wireless test script directory.
+   Note that tet license is Artistic.
+c) Install and configure test environment
+   ./config.sh -flrt
+   (input accordingly)
+d) Run sanity testing:
+   . /etc/TVSEnvironment
+   tvs run
+e) If two cases passed, Congratulations, you make test script running!
+
+Part3. Start Testing!
+=====================
+a) /usr/tet/TVS/tset/iwl/tet_scen defines many scenarios for different purpose.
+   For example, p1_a is the p1 testing on 802.11a mode.
+   You can define your own testing scenarios.
+b) /usr/tet/TVS/etc/TVSListing defines which scenarios that will be run.
+   For example, run ABAT testing on 802.11a mode using the following scenarios .
+	iwl Start_A_Band
+	iwl bat_a
+   Notes: Start_A_Band, or bat_a etc, are test scenarios that defined in tet_scen
+c) Run test script:
+   . /etc/TVSEnvironment
+   tvs run
+d) Get the testing reports from /usr/tet/TVS/Reports/latest, 
+   here are the testing reports for the latest testing.
+
+
+******************************************
+**	Manual configuration            **
+******************************************
+
+The above section gets you start testing as quickly as possible.
+This section will explain how to configure the testing environment manually. 
+You can skip this section, if the Quick Start works for you. 
+
+Part1: Setup Server & AP network
+================================
+
+a) Repeat the step a) in Quick Start Part1.
+b) If using Cisco AP, please repeat step b) in Quick Start Part1.
+   If using Dlink AP,
+   1. make sure that "expect" is installed on the server machine
+   2. use "admin" as the User Name and "admin" as the Password in AP LOGIN page. 
+      Or modify the APUSER and APPSWD in /usr/local/bin/apset/apset.dlink/pswd.exp
+   3. Configure the following variables in /usr/local/bin/apset/apset.dlink/apset.dlink.
+        APIP: AP IP address in the AP network
+        SSID_G: SSID of 802.11g band, it has to be xxx-2.4g, such as otc-dlink-2.4g
+        SSID_A: SSID of 802.11a band, it has to be xxx-5g, such as otc-dlink-5g
+c) Use ssh-keygen to generate id_rsa.pub the public key of test machine. 
+d) Copy the public key to server machine and cat it into \
+   root@<Server>:/root/.ssh/authorized_keys,
+   making the test machine a trusted station of server machine.
+
+Part2. Setup Test Machine & Peer Machine
+========================================
+a) Install tet on test machine. It is by default installed at /usr/tet.
+    download http://tetworks.opengroup.org/tet/tet3.7a-unsup.src.tar.gz
+    tar zxf tet3.7a-unsup.src.tar.gz
+    sh configure -t lite
+    cd src; make; make install
+    cd ..
+    mkdir -p /usr/tet
+    cp -r bin inc lib /usr/tet
+b) Install the wireless test script on test machine.
+    make
+    make install
+c) Copy id_rsa.pub of test machine to the peer machine and cat it into 
+   root@<Peer>:/root/.ssh/authorized_keys,
+   making the test machine a trusted station of the peer machine.
+d) Edit /usr/tet/TVS/tsets/iwl/tvs_env
+    iwl_ap        #which AP you want to use in testing. 
+                   Note that the suffix -2.4g or -5g is not needed here. 
+    iwl_wap       #AP IP address
+    iwl_apset_cmd #Where you put the AP setting script
+    iwl_esrv      #Server hostname
+    iwl_wsrv      #Server IP address in wireless network
+    iwl_whost     #Test machine IP address in wireless network
+    iwl_epeer     #Peer machine hostname
+    iwl_wpeer     #Peer machine IP address in wireless network
+    iwl_load_module_vendor	#Wireless card vendor (see )
+
+Part3. Start Testing!
+=====================
+This part is the same as Quick Start Part3. 
+
+
+******************************************
+**      Different card support          **
+******************************************
+
+This test script was written for Intel wireless cards, considering 
+the compatibility with wireless cards from other vendors. The general
+test cases are hardware independent except for driver loading. So the
+test script make driver-loading as configurable function.
+
+a) Define the global variable iwl_load_module_vendor in
+   /usr/tet/TVS/tsets/iwl/tvs_env. By default, it is set to 
+   iwl_load_iwlwifi, which supports iwl3945 and iwlagn.
+b) Currently, two load modules are supported. 
+   iwl_load_iwlwifi() for iwl3945 and iwlagn
+   iwl_load_evp() for iwmc3200wifi
+   Details can be found in /usr/tet/TVS/tsets/iwl/ts/iwl_common.sh
+
+
+******************************************
+** Different wireless utility support   **
+******************************************
+
+Up to now most test cases use wireless extension. But in the future, we will
+use iw/nl80211. To use iw/nl80211, we can add a line:
+. iwl_iw.sh
+between two sequent lines at the bottom of each test suites (like wep.sh)
+. iwl_common.sh
+. $TVS_ROOT/lib/TVSFunctions.sh
+
+Please refer to abat_iw.sh
+
+
+******************************************
+**    Contribute to the test suites     **
+******************************************
+
+If you want to contribute to the test suites, please go to /usr/tet/TVS/tsets/iwl/ts. 
+The scripts named as iwl_xxx.sh are common function scripts, others are test case scripts. 
+Those iwl_xxx.sh scripts are worth reading to understand how the automation testing works. 
+
+

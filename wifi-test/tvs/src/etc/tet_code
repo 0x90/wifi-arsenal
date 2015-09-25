@@ -1,0 +1,21 @@
+
+# TET reserved codes
+0 "PASS"
+1 "FAIL"
+2 "UNRESOLVED"
+3 "NOTINUSE"
+4 "UNSUPPORTED"
+5 "UNTESTED"
+6 "UNINITIATED"
+7 "NORESULT"
+
+# Test suite additional codes
+101 "FATAL"	Abort
+102 "INSPECT"
+103 "FINISH"
+104 "ABORT"
+105 "RESTART"
+106 "TIMEOUT"
+
+
+

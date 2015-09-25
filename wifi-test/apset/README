@@ -1,0 +1,22 @@
+1. How to enable WEP.
+CMD: WEP enable KEYIDX [index]
+default value:
+KEYIDX=1---->$KEYVALUE1=1111000000
+KEYIDX=2---->$KEYVALUE2=2222000000
+KEYIDX=3---->$KEYVALUE3=11112222333344445555666611
+KEYIDX=4---->$KEYVALUE4=12345678901234567890123456
+
+2. How to enable WPA-Enterprise
+CMD: AUTH wpa WPA-CRYPTO [AES|TKIP|...]
+default radius server:
+	IP: 192.168.1.74
+	Auto-port: 1812
+	Acct-port: 1813
+	Shared-Secret: sharedsecret
+
+3. How to enable WPA-PSK
+CMD: AUTH psk WPA-CRYPTO [AES|TKIP]
+default password: sharedsecret
+
+4. Need to sync the default channel of "tet script" and "apset script" 
+

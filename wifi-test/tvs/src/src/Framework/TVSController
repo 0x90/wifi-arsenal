@@ -1,0 +1,470 @@
+#!/usr/bin/perl -W
+# Copyright (c) <2002>, Intel Corporation
+# All rights reserved.
+# 
+# Redistribution and use in source and binary forms, with or 
+# without modification, are permitted provided that the following 
+# conditions are met:
+# 
+# Redistributions of source code must retain the above copyright 
+# notice, this list of conditions and the following disclaimer.
+# Redistributions in binary form must reproduce the above copyright 
+# notice, this list of conditions and the following disclaimer in
+# the documentation and/or other materials provided with the distribution.
+# 
+# Neither the name of Intel Corporation, nor the names 
+# of its contributors may be used to endorse or promote products 
+# derived from this software without specific prior written permission.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+# OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+# SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+# TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+# OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
+# OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+# NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+
+# ---------------------------------------------------------------------
+# TVSController: 
+# $Id: TVSController,v 1.2 2004/05/08 06:36:08 xling Exp $
+# ---------------------------------------------------------------------
+# Rusty Lynch
+# ---------------------------------------------------------------------
+
+my ($verbose, $abort, $restart, $restartnext, %state);
+
+sub DeathHandler {
+    print "Arrrrrrrrr.... gasp... Ye got me!\n" if defined $verbose;
+
+    $abort = 1;
+    system "killall tcc";
+    unlink $ENV{'TVS_PIDFILE'};
+}
+
+sub RestartRequestHandler {
+    if( -f "/tmp/tvsrestartnext" ){
+	$restartnext = 1;
+    	$restart = 1;
+	unlink "/tmp/tvsrestartnext";
+    	unlink $ENV{'TVS_PIDFILE'};
+	return;
+    }
+    if( ! -f "/tmp/tvsexitscen" && ! -f "/tmp/tvsexitsuite" ){
+    	print "RestartRequestHandler...\n" if defined $verbose;
+    	$restart = 1;
+    }else{
+    	print "Exit current scenario and skip to next...\n" if defined $verbose;
+	if( -f "/tmp/tvsexitsuite" ){
+		$exitsuite = 1;
+	}
+    	unlink "/tmp/tvsexitscen";
+    	unlink "/tmp/tvsexitsuite";
+    }
+    # TODO: Simply killing tcc will cause tcc to loose some of the
+    #       strings to be writen to the log due to the way tcc implements
+    #       buffered IO.  Although, simply exiting will stop tcc from
+    #       continuing execution of the current scenario, which could
+    #       potentially last for a very long time.
+    #
+    #       Some way needs to be found to make tcc flush before exiting.
+    #       If we don't mind maintaining a patch for tcc then it's an easy
+    #       fix, but I will leave that decision to someone else.
+    system "killall -1 tcc";
+    unlink $ENV{'TVS_PIDFILE'};
+}
+
+sub SetRerunOnPanic {
+    print "SetRerunOnPanic...\n" if defined $verbose;
+
+    $state{'STATUS'} = "RESTART";
+    PersistState();
+}
+
+sub UnsetRerunOnPanic {
+    print "UnsetRerunOnPanic...\n" if defined $verbose;
+
+    $state{'STATUS'} = "RUNNING";
+    PersistState();
+}
+
+sub SaveJournalName {
+    open FILE, ">$ENV{'TVS_ROOT'}/var/journalname" 
+	or die "Unable to open journal name file: $!\n";
+    print FILE "$ENV{'TET_JOURNAL_FILE'}";
+    `sync`
+}
+
+sub ReadJournalName {
+	if( -f "$ENV{'TVS_ROOT'}/var/journalname"){ 
+	open FILE, "<$ENV{'TVS_ROOT'}/var/journalname" 
+	or die "Unable to open journal name file: $!\n";
+	while (<FILE>) {
+	    ($ENV{'TET_JOURNAL_FILE'}) = split;
+	}
+	close FILE;
+	}
+	if( -f "$ENV{'TVS_ROOT'}/var/resfile"){ 
+	open FILE, "<$ENV{'TVS_ROOT'}/var/resfile" 
+	or die "Unable to open journal name file: $!\n";
+	while (<FILE>) {
+	    ($ENV{'TET_RESFILE'}) = split;
+	}		
+	close FILE;
+	}	
+}
+sub ValidationEngine {
+    my ($suite, $scen, $db);
+
+    # Record start time for TVS
+    $ENV{'TVS_START_TIME'} = `date +%s`;
+
+    print "ValidationEngine($state{'CURRENT_SUITE'})\n"
+	if defined $verbose;
+
+    $db = $state{'LISTING'};
+
+    SUITE: while (exists $db->[$state{'CURRENT_SUITE'}]) {
+
+	# Recored the start time for the current suite
+        $ENV{'TVS_SUITE_START_TIME'} = `date +%s`;
+
+	$suite = $state{'CURRENT_SUITE'};
+
+        # Record the name of the suite
+        $ENV{'TVS_SUITE_NAME'} = $db->[$suite][0];
+
+	$suite_envfile = "$ENV{'TVS_ROOT'}/tsets/$db->[$suite][0]/tvs_env";
+	if( -f $suite_envfile){
+		print "read suite environment file :$suite_envfile\n";
+		if( ! -x $suite_envfile){
+			system("chmod ugo+x $suite_envfile ");
+		}
+		open(TMP, $suite_envfile . "|");
+		while (<TMP>) {
+			if ($_ =~ /^(.+)=(.+)$/) {
+				$ENV{"$1"} = "$2";
+			}
+		}
+		close(TMP);
+	}
+
+	$session_dir = $ENV{'TVS_ROOT'} .
+	    "/var/results/$state{'SESSION_ID'}";
+	$journal_dir = $session_dir . "/$db->[$suite][0]";
+	mkdir $session_dir;
+	unlink $ENV{'TVS_ROOT'} . "/var/results/latest";
+ 	symlink $session_dir, $ENV{'TVS_ROOT'} . "/var/results/latest";
+
+   	mkdir $journal_dir;
+	unlink $ENV{'TVS_ROOT'} . "/var/results/latestsuite";
+ 	symlink $journal_dir, $ENV{'TVS_ROOT'} . "/var/results/latestsuite";
+
+
+	SCEN:while (exists $db->[$suite][1][$state{'CURRENT_SCENARIO'}] &&
+	       !defined $abort && !defined $restart) {
+	    $scen = $state{'CURRENT_SCENARIO'};
+	    unlink $ENV{'TVS_ROOT'} . "/var/results/latestscen";
+            symlink $journal_dir . "/" . $db->[$suite][1][$state{'CURRENT_SCENARIO'}], $ENV{'TVS_ROOT'} . "/var/results/latestscen";
+	    print "Executing [$suite][1][$scen]\n" if defined $verbose;
+
+            # Record the name of the scenario
+            $ENV{'TVS_SCENARIO_NAME'} = $db->[$suite][1][$scen];
+
+	    my ($rdir) = $ENV{'TVS_ROOT'} .
+		"/var/results/" .
+		    $state{'SESSION_ID'} . "/" .
+			$db->[$suite][0] . "/" .
+			    $db->[$suite][1][$scen];
+
+	    mkdir $rdir;
+
+	    PersistState();
+
+            # Record start time for current scenario
+            $ENV{'TVS_SCENARIO_START_TIME'} = `date +%s`;
+
+	    # Record the number of times that this scenario
+	    # has been executed (inclusive).  The trick to this
+	    # little hack is that every time a suite is rerun,
+            # the journal file from the previous run is moved
+	    # to journal.TIMESTAMP
+	    $ENV{'TVS_SCENARIO_RUN_COUNT'} = `ls $rdir|wc -l` + 1;
+	    $ENV{'TET_JOURNAL_FILE'} = "$journal_dir/$db->[$suite][1][$scen]/journal";
+	    SaveJournalName();
+	    $exitsuite = 0;
+
+	    ################################################
+	    # Execute the test case controller, tcc, using
+	    # the framework wide execution configuration and
+	    # redirecting the log to a place where a report
+	    # generation utility can find later.
+
+	    system("tcc -I -p " .
+		   " -j $ENV{'TVS_ROOT'}/var/results/" .
+		   $state{'SESSION_ID'} . "/" .
+		   $db->[$suite][0] . "/" .
+		   $db->[$suite][1][$scen] . "/journal " .
+		   "-x $ENV{'TVS_ROOT'}/etc/master_execute.cfg " .
+		   "-e TVS/tsets/" .
+		   $db->[$suite][0] . " " .
+		   $db->[$suite][1][$scen] .
+		   " 2>&1 |tee -a $journal_dir/screen.log "
+		   );
+	    system("killall wdtdm >/dev/null 2>&1");
+	    last SCEN if $exitsuite == 1;
+	    last SUITE if defined $abort || defined $restart;
+
+	    print "Incrementing scenerio...\n" if defined $verbose;
+	    $state{'CURRENT_SCENARIO'}++;
+
+	}
+
+	print "Moving to next suite...\n" if defined $verbose;
+	$state{'CURRENT_SCENARIO'} = 0;
+	$state{'CURRENT_SUITE'}++;
+    }
+
+    if (defined $abort) {
+	$state{'STATUS'} = "ABORT";
+    } elsif (defined $restart) {
+	if (defined $restartnext){
+	     $state{'STATUS'} = "RESTARTNEXT";
+	}else{
+	     $state{'STATUS'} = "RESTART";
+        }
+    } else {
+	$state{'STATUS'} = "COMPLETE";
+    }
+
+    system("$ENV{'TVS_ROOT'}/bin/TVSReportGenerator");
+    PersistState();
+
+    if (defined $restart &&
+	exists $ENV{'TVS_REBOOT_ON_RESTART'} &&
+	$ENV{'TVS_REBOOT_ON_RESTART'} =~ /1/) {
+	print "Rebooting as requested by validation suite...\n"
+	    if defined $verbose;
+
+	system("reboot");
+    }
+    exit 0;
+}
+
+sub PersistState {
+    
+    if (!stat $ENV{'TVS_ROOT'} . "/var/") {
+	# var is created at runtime so it might not exist yet
+	mkdir $ENV{'TVS_ROOT'} . "/var/"; 
+    }
+
+    open STATE, ">$ENV{'TVS_ROOT'}/var/state" 
+	or die "Unable to open state file: $!\n";
+    print STATE "$state{'STATUS'} $state{'SESSION_ID'} " .
+	"$state{'CURRENT_SUITE'} $state{'CURRENT_SCENARIO'}";
+    print "updating state: $state{'STATUS'} $state{'SESSION_ID'} " .
+	"$state{'CURRENT_SUITE'} $state{'CURRENT_SCENARIO'}\n"
+	    if defined $verbose;
+    close STATE;
+
+    # Force the disk to sync just incase one of our test panics
+    # the kernel before the file system gets around to syncing
+    `sync`;
+}
+
+#################
+# Main function
+{
+
+
+    ###############################################################
+    # Get TVS environment:  This is basicly the same as sourcing a 
+    #                       file in a shell script.  If there is a 
+    #                       language feature in Perl to do the same
+    #                       thing then please replace this block.
+    open(TMP, "/etc/TVSEnvironment|") or die "Could not open file: $!\n";
+    while (<TMP>) {
+	if ($_ =~ /^(.+)=(.+)$/) {
+	    $ENV{"$1"} = "$2";
+	}
+    }
+    close(TMP);
+
+    # Enable/Disable Debugging Info
+    $verbose = 1 if exists $ENV{'TVS_VERBOSE'} && $ENV{'TVS_VERBOSE'} =~ /1/;
+
+    # Record PID
+    system "echo -n $$ > $ENV{'TVS_PIDFILE'}";
+
+    ###############################################
+    # Setup signal handlers:
+    # 
+    # Signal                Feature
+    # ------                -------
+    # SIGHUP                Request Restart (reboot if enabled).
+    # SIGTERM               Abort TVS run.
+    # SIGINT                Abort TVS run.
+    # SIGUSR1               Enable TVS to treat unexpected restarts (ie panics)
+    #                       the same as a requested restart.
+    # SIGUSR2               Reset TVS back to default behavior for unexpected
+    #                       restarts.
+    $SIG{HUP}     = \&RestartRequestHandler;
+    $SIG{TERM}    = \&DeathHandler;
+    $SIG{INT}     = \&DeathHandler;
+    $SIG{__DIE__} = \&DeathHandler;
+    $SIG{USR1}    = \&SetRerunOnPanic;
+    $SIG{USR2}    = \&UnsetRerunOnPanic;
+    $SIG{TRAP}    = \&SetRerunOnPanic;
+    $SIG{ILL}    = \&UnsetRerunOnPanic;
+
+    ###############################################
+    # Get the persisted state
+    if (stat $ENV{'TVS_ROOT'} . "/var/state") {	
+	open STATE, "<$ENV{'TVS_ROOT'}/var/state" 
+	    or die "Unable to open state file: $!\n";
+	while (<STATE>) {
+	    ($state{'STATUS'}, $state{'SESSION_ID'}, 
+	     $state{'CURRENT_SUITE'}, $state{'CURRENT_SCENARIO'}) = split;
+	}
+	close TMP;
+
+	print "state: $state{'STATUS'}, $state{'SESSION_ID'}, " . 
+	    "$state{'CURRENT_SUITE'}, $state{'CURRENT_SCENARIO'}\n" 
+		if defined $verbose;
+    }
+
+    ###############################################
+    # Build Suite DB:
+    # Read in $TVS_ROOT/etc/TVSListing to find out
+    # what all validation suites and scenerios need
+    # to be run, and in what order.
+    {
+	my (@db);
+
+	open (TMP, "<$ENV{'TVS_ROOT'}/etc/TVSListing") 
+	    or die "Unable to open listing: $!\n";
+	while (<TMP>) {
+	    next if $_ =~ /^\#/ or $_ =~ /^$/;
+
+	    my (@r) = split /\W+/, $_;	
+	    push @db, [shift @r, \@r];
+	}
+	close (TMP);
+	
+	$state{'LISTING'} = \@db;
+    }
+
+    ###############
+    # Inside Test?
+    if (exists $state{'STATUS'} && 
+	! ($state{'STATUS'} =~ /COMPLETE/)) {
+	if ($state{'STATUS'} =~ /RESTARTNEXT/) {
+	    print "Skipping to next scenario...\n" if $verbose;
+	    $state{'CURRENT_SCENARIO'}++;
+	}elsif ($state{'STATUS'} =~ /RESTART/) {
+            ####################
+            # Expected Restart #
+	    ####################
+
+	    ###############################################################
+	    # The last TVS run was asked to restart. Pickup on the last
+	    # validation suite and start over again from the first scenerio
+	    print "Restarting TVS ...\n" if $verbose;
+
+	    # Annotate Log and update state for suite rerun
+	    $state{'STATUS'} = "RUNNING";
+
+        }else {
+            ######################
+            # Unexpected Restart #
+            ######################
+
+	    ###############################################################
+	    # The last TVS run died unexpectedly so skip past the scenario
+	    # that caused a problem and restart TVS
+	    print "Skipping problematic scenario...\n" if $verbose;
+	    #######################################################
+	    # If unexpected reboot, merge the journal file
+	    ReadJournalName();
+	    system("cat $ENV{'TET_RESFILE'} >> $ENV{'TET_JOURNAL_FILE'}"); 
+            open FILE, ">>$ENV{'TET_JOURNAL_FILE'}" or die "Unable to open journal name file: $!\n";
+            print FILE "220|0 1 102 00:00:00|CRASH";
+	    close FILE;
+            # increment to next suite in the scenario
+	    $state{'CURRENT_SCENARIO'}++;
+	    
+	    # NOTE: I am letting the validation engine handle
+            #       the situation where there are no more scenarios
+            #       for the current suite
+	}
+	# Annotate Log and update state for suite rerun
+	$state{'STATUS'} = "RUNNING";
+	
+	PersistState();
+
+	# Copy save previous run's journal file
+	{
+	    my ($db, $scen, $suite, $jdir);
+	    
+	    $suite = $state{'CURRENT_SUITE'};
+	    $scen = $state{'CURRENT_SCENARIO'};
+	    $db = $state{'LISTING'};
+
+	    $jdir = "$ENV{'TVS_ROOT'}/var/results/" . 
+		$state{'SESSION_ID'} . "/" . $db->[$suite][0] . "/" .
+		    $db->[$suite][1][$scen] . "/";
+	    
+	    rename "$jdir/journal", "$jdir/journal." . time;
+	}
+
+	
+	# execute validation engine
+	return ValidationEngine();
+
+    } else {
+	print "Starting new tvs run ...\n" if defined $verbose;
+
+	# The idea of a session ID, is that it is unique.
+	# Using a time stamp we run the risk of a time change
+	# on the system resulting in this number not being unique.
+	# Although, it makes it easier for humans to know what
+	# is happening.
+        #// modify by LingXiaoFeng
+	$state{'SESSION_ID'} = `date +%S%M%H-%d-%m-%Y`;
+	chomp $state{'SESSION_ID'};
+
+	########################################
+	# Create the new run time directories 
+	if (!stat $ENV{'TVS_ROOT'} . "/var") {
+	    mkdir $ENV{'TVS_ROOT'} . "/var" 
+		or die "Unable to create runtime results directory: $!\n";
+	}
+
+	if (!stat $ENV{'TVS_ROOT'} . "/var/results/") {
+	    mkdir $ENV{'TVS_ROOT'} . "/var/results" 
+		or die "Unable to create runtime results directory: $!\n";
+	}
+
+	mkdir $ENV{'TVS_ROOT'} . "/var/results/$state{'SESSION_ID'}" 
+	    or die "Unable to create new session results dir: $!\n";
+
+	# Set current suite to first suite
+	$state{'CURRENT_SUITE'} = 0;
+	$state{'CURRENT_SCENARIO'} = 0;
+
+	# Annotate log and update state for fresh run
+	$state{'STATUS'} = "RUNNING";
+	PersistState();
+
+	# execute validation engine
+	return ValidationEngine();
+    }
+
+    unlink $ENV{'TVS_PIDFILE'};
+}
+
+
