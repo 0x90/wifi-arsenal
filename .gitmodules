@@ -976,3 +976,6 @@
 [submodule "apflood"]
 	path = apflood
 	url = https://github.com/d4rkcat/apflood
+[submodule "MulitFi"]
+	path = MulitFi
+	url = https://github.com/shpala/MulitFi
