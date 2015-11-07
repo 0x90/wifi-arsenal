@@ -982,3 +982,6 @@
 [submodule "ptf-modules"]
 	path = ptf-modules
 	url = https://github.com/vvalien/ptf-modules
+[submodule "mitm-helper-wifi"]
+	path = mitm-helper-wifi
+	url = https://github.com/jakev/mitm-helper-wifi
