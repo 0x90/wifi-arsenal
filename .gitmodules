@@ -136,9 +136,6 @@
 [submodule "hostapd-wpe"]
 	path = hostapd-wpe
 	url = https://github.com/OpenSecurityResearch/hostapd-wpe
-[submodule "hotspotd"]
-	path = hotspotd
-	url = https://github.com/prahladyeri/hotspotd
 [submodule "huawei_wifi"]
 	path = huawei_wifi
 	url = https://github.com/davux/huawei_wifi
@@ -577,9 +574,6 @@
 [submodule "hostapd-rtl"]
 	path = hostapd-rtl
 	url = https://github.com/jekader/hostapd-rtl
-[submodule "pycaptiveads"]
-	path = pycaptiveads
-	url = https://github.com/oukiar/pycaptiveads
 [submodule "rogue_ap"]
 	path = rogue_ap
 	url = https://github.com/andrew14824/rogue_ap
@@ -697,9 +691,6 @@
 [submodule "CloudMAC-Misc"]
 	path = CloudMAC-Misc
 	url = https://github.com/Kanel/CloudMAC-Misc
-[submodule "wifinator"]
-	path = wifinator
-	url = https://github.com/techlib/wifinator
 [submodule "wi-finder"]
 	path = wi-finder
 	url = https://github.com/romebop/wi-finder
@@ -859,9 +850,6 @@
 [submodule "reaver-ui"]
 	path = reaver-ui
 	url = https://github.com/deoxxa/reaver-ui
-[submodule "reavetard"]
-	path = reavetard
-	url = https://github.com/eibbors/reavetard
 [submodule "greaver"]
 	path = greaver
 	url = https://github.com/sigginet/greaver
@@ -931,15 +919,9 @@
 [submodule "BitcoinWifi"]
 	path = BitcoinWifi
 	url = https://github.com/ragmondo/BitcoinWifi
-[submodule "infernal-twin"]
-	path = infernal-twin
-	url = https://github.com/entropy1337/infernal-twin
 [submodule "milicone"]
 	path = milicone
 	url = https://github.com/jazoza/milicone
-[submodule "AP"]
-	path = AP
-	url = https://github.com/wtweeker/AP
 [submodule "gtaiad"]
 	path = gtaiad
 	url = https://github.com/jedivind/gtaiad
@@ -958,9 +940,6 @@
 [submodule "PyScapy"]
 	path = PyScapy
 	url = https://github.com/ogreworld/PyScapy
-[submodule "atheros_wlan"]
-	path = atheros_wlan
-	url = https://github.com/feravolt/atheros_wlan
 [submodule "aircrack-ng-iphone"]
 	path = aircrack-ng-iphone
 	url = https://github.com/jedivind/aircrack-ng-iphone
@@ -979,9 +958,9 @@
 [submodule "MulitFi"]
 	path = MulitFi
 	url = https://github.com/shpala/MulitFi
-[submodule "ptf-modules"]
-	path = ptf-modules
-	url = https://github.com/vvalien/ptf-modules
 [submodule "mitm-helper-wifi"]
 	path = mitm-helper-wifi
 	url = https://github.com/jakev/mitm-helper-wifi
+[submodule "hotspotd"]
+	path = hotspotd
+	url = https://github.com/0x90/hotspotd
