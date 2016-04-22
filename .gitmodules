@@ -964,3 +964,12 @@
 [submodule "hotspotd"]
 	path = hotspotd
 	url = https://github.com/0x90/hotspotd
+[submodule "wifiScanMap"]
+	path = wifiScanMap
+	url = https://github.com/mehdilauters/wifiScanMap
+[submodule "marfil"]
+	path = marfil
+	url = https://github.com/pupi1985/marfil
+[submodule "sly-fi"]
+	path = sly-fi
+	url = https://github.com/sinistermachine/sly-fi
