@@ -973,3 +973,6 @@
 [submodule "sly-fi"]
 	path = sly-fi
 	url = https://github.com/sinistermachine/sly-fi
+[submodule "wiwo"]
+	path = wiwo
+	url = https://github.com/CoreSecurity/wiwo
