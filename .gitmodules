@@ -976,3 +976,6 @@
 [submodule "wiwo"]
 	path = wiwo
 	url = https://github.com/CoreSecurity/wiwo
+[submodule "curscout"]
+	path = curscout
+	url = https://github.com/bennett-elder/curscout
