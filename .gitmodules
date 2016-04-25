@@ -979,3 +979,24 @@
 [submodule "curscout"]
 	path = curscout
 	url = https://github.com/bennett-elder/curscout
+[submodule "uniband-installer"]
+	path = uniband-installer
+	url = https://github.com/wi-fi-analyzer/uniband-installer
+[submodule "wlandecrypter"]
+	path = wlandecrypter
+	url = https://github.com/wi-fi-analyzer/wlandecrypter
+[submodule "smoothie"]
+	path = smoothie
+	url = https://github.com/XayOn/smoothie
+[submodule "pyrcrack"]
+	path = pyrcrack
+	url = https://github.com/XayOn/pyrcrack
+[submodule "wireless"]
+	path = wireless
+	url = https://github.com/joshvillbrandt/wireless
+[submodule "airoscriptng"]
+	path = airoscriptng
+	url = https://github.com/wi-fi-analyzer/airoscriptng
+[submodule "aggr-inject"]
+	path = aggr-inject
+	url = https://github.com/rpp0/aggr-inject
