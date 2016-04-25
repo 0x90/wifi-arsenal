@@ -1000,3 +1000,9 @@
 [submodule "aggr-inject"]
 	path = aggr-inject
 	url = https://github.com/rpp0/aggr-inject
+[submodule "osx-wifi-scan"]
+	path = osx-wifi-scan
+	url = https://github.com/kornysietsma/osx-wifi-scan
+[submodule "3WiFi"]
+	path = 3WiFi
+	url = https://github.com/binarymaster/3WiFi
