@@ -1006,3 +1006,6 @@
 [submodule "3WiFi"]
 	path = 3WiFi
 	url = https://github.com/binarymaster/3WiFi
+[submodule "WiFi-Pumpkin"]
+	path = WiFi-Pumpkin
+	url = https://github.com/P0cL4bs/WiFi-Pumpkin.git
