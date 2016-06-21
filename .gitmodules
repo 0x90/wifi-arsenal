@@ -1009,3 +1009,12 @@
 [submodule "WiFi-Pumpkin"]
 	path = WiFi-Pumpkin
 	url = https://github.com/P0cL4bs/WiFi-Pumpkin.git
+[submodule "airgeddon"]
+	path = airgeddon
+	url = https://github.com/v1s1t0r1sh3r3/airgeddon
+[submodule "call-for-wpa3"]
+	path = call-for-wpa3
+	url = https://github.com/d33tah/call-for-wpa3
+[submodule "wi-door"]
+	path = wi-door
+	url = https://github.com/Vivek-Ramachandran/wi-door
