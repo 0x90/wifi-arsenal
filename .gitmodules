@@ -1018,3 +1018,6 @@
 [submodule "wi-door"]
 	path = wi-door
 	url = https://github.com/Vivek-Ramachandran/wi-door
+[submodule "uploadwpa"]
+	path = uploadwpa
+	url = https://github.com/Alf-Alfa/uploadwpa
