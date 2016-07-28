@@ -1,0 +1,15 @@
+diff -Naur a/include/linux/ieee80211.h b/include/linux/ieee80211.h
+--- a/include/linux/ieee80211.h	2012-11-29 06:03:44.000000000 +0100
++++ b/include/linux/ieee80211.h	2013-01-13 13:44:48.652150736 +0100
+@@ -123,9 +123,9 @@
+ 
+    802.11e clarifies the figure in section 7.1.2. The frame body is
+    up to 2304 octets long (maximum MSDU size) plus any crypt overhead. */
+-#define IEEE80211_MAX_DATA_LEN		2304
++#define IEEE80211_MAX_DATA_LEN		7951
+ /* 30 byte 4 addr hdr, 2 byte QoS, 2304 byte MSDU, 12 byte crypt, 4 byte FCS */
+-#define IEEE80211_MAX_FRAME_LEN		2352
++#define IEEE80211_MAX_FRAME_LEN		7999
+ 
+ #define IEEE80211_MAX_SSID_LEN		32
+ 

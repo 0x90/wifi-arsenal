@@ -1,0 +1,176 @@
+diff --git a/include/net/mac80211.h b/include/net/mac80211.h
+index f7eba13..d360355 100644
+--- a/include/net/mac80211.h
++++ b/include/net/mac80211.h
+@@ -458,6 +458,8 @@ struct ieee80211_bss_conf {
+  * @IEEE80211_TX_CTL_DONTFRAG: Don't fragment this packet even if it
+  *	would be fragmented by size (this is optional, only used for
+  *	monitor injection).
++ * @IEEE80211_TX_CTL_HAS_VALID_BITRATE: The frame has a preset bitrate and the
++ * 	bitrate field is valid (internal to mac80211)
+  *
+  * Note: If you have to add new flags to the enumeration, then don't
+  *	 forget to update %IEEE80211_TX_TEMPORARY_FLAGS when necessary.
+@@ -493,6 +495,7 @@ enum mac80211_tx_control_flags {
+ 	IEEE80211_TX_STATUS_EOSP		= BIT(28),
+ 	IEEE80211_TX_CTL_USE_MINRATE		= BIT(29),
+ 	IEEE80211_TX_CTL_DONTFRAG		= BIT(30),
++	IEEE80211_TX_CTL_HAS_VALID_BITRATE	= BIT(31),
+ };
+ 
+ #define IEEE80211_TX_CTL_STBC_SHIFT		23
+@@ -508,7 +511,8 @@ enum mac80211_tx_control_flags {
+ 	IEEE80211_TX_STAT_AMPDU | IEEE80211_TX_STAT_AMPDU_NO_BACK |	      \
+ 	IEEE80211_TX_CTL_RATE_CTRL_PROBE | IEEE80211_TX_CTL_NO_PS_BUFFER |    \
+ 	IEEE80211_TX_CTL_MORE_FRAMES | IEEE80211_TX_CTL_LDPC |		      \
+-	IEEE80211_TX_CTL_STBC | IEEE80211_TX_STATUS_EOSP)
++	IEEE80211_TX_CTL_STBC | IEEE80211_TX_STATUS_EOSP |		      \
++	IEEE80211_TX_CTL_HAS_VALID_BITRATE)
+ 
+ /**
+  * enum mac80211_rate_control_flags - per-rate flags set by the
+@@ -656,9 +660,15 @@ struct ieee80211_tx_info {
+ 						IEEE80211_TX_MAX_RATES];
+ 					s8 rts_cts_rate_idx;
+ 					/* 3 bytes free */
+-				};
++				} __attribute__((packed));
+ 				/* only needed before rate control */
+-				unsigned long jiffies;
++				struct {
++					/* same position as rates[0] */
++					struct ieee80211_tx_rate prerate;
++					unsigned long jiffies;
++					/* preset rate settings */
++					u16 bitrate;
++				} __attribute__((packed));
+ 			};
+ 			/* NB: vif can be NULL for injected frames */
+ 			struct ieee80211_vif *vif;
+diff --git a/net/mac80211/tx.c b/net/mac80211/tx.c
+index 8914d2d..e50e935 100644
+--- a/net/mac80211/tx.c
++++ b/net/mac80211/tx.c
+@@ -792,6 +792,45 @@ ieee80211_tx_h_rate_ctrl(struct ieee80211_tx_data *tx)
+ }
+ 
+ static ieee80211_tx_result debug_noinline
++ieee80211_tx_h_rate_preset(struct ieee80211_tx_data *tx)
++{
++	struct ieee80211_tx_info *info = IEEE80211_SKB_CB(tx->skb);
++	struct ieee80211_supported_band *sband;
++	u16 bitrate;
++	s8 idx;
++	int i;
++
++	sband = tx->local->hw.wiphy->bands[info->band];
++
++	bitrate = info->control.bitrate;
++
++	for (i = 1; i < IEEE80211_TX_MAX_RATES; i++)
++		info->control.rates[i].idx = -1;
++
++	if (info->control.rates[0].flags & IEEE80211_TX_RC_MCS) {
++		if (info->control.rates[0].idx < 0)
++			return TX_DROP;
++		return TX_CONTINUE;
++	}
++
++	idx = -1;
++	for (i = 0; i < sband->n_bitrates; i++) {
++		if (sband->bitrates[i].bitrate > bitrate)
++			continue;
++		if (idx >= 0 &&
++		    sband->bitrates[i].bitrate < sband->bitrates[idx].bitrate)
++			continue;
++		idx = i;
++	}
++	if (unlikely(idx < 0))
++		return TX_DROP;
++
++	info->control.rates[0].idx = idx;
++
++	return TX_CONTINUE;
++}
++
++static ieee80211_tx_result debug_noinline
+ ieee80211_tx_h_sequence(struct ieee80211_tx_data *tx)
+ {
+ 	struct ieee80211_tx_info *info = IEEE80211_SKB_CB(tx->skb);
+@@ -1362,8 +1401,12 @@ static int invoke_tx_handlers(struct ieee80211_tx_data *tx)
+ 	CALL_TXH(ieee80211_tx_h_ps_buf);
+ 	CALL_TXH(ieee80211_tx_h_check_control_port_protocol);
+ 	CALL_TXH(ieee80211_tx_h_select_key);
+-	if (!(tx->local->hw.flags & IEEE80211_HW_HAS_RATE_CONTROL))
+-		CALL_TXH(ieee80211_tx_h_rate_ctrl);
++	if (!(tx->local->hw.flags & IEEE80211_HW_HAS_RATE_CONTROL)) {
++		if (unlikely(info->flags & IEEE80211_TX_CTL_HAS_VALID_BITRATE))
++			CALL_TXH(ieee80211_tx_h_rate_preset);
++		else
++			CALL_TXH(ieee80211_tx_h_rate_ctrl);
++	}
+ 
+ 	if (unlikely(info->flags & IEEE80211_TX_INTFL_RETRANSMISSION)) {
+ 		__skb_queue_tail(&tx->skbs, tx->skb);
+@@ -1521,10 +1564,14 @@ static bool ieee80211_parse_tx_radiotap(struct sk_buff *skb)
+ 	int ret = ieee80211_radiotap_iterator_init(&iterator, rthdr, skb->len,
+ 						   NULL);
+ 	u16 txflags;
++	u8 known, flags, mcs;
+ 
+ 	info->flags |= IEEE80211_TX_INTFL_DONT_ENCRYPT |
+ 		       IEEE80211_TX_CTL_DONTFRAG;
+ 
++	info->control.prerate.count = 1;
++	info->control.prerate.flags = 0;
++
+ 	/*
+ 	 * for every radiotap entry that is present
+ 	 * (ieee80211_radiotap_iterator_next returns -ENOENT when no more
+@@ -1569,6 +1616,46 @@ static bool ieee80211_parse_tx_radiotap(struct sk_buff *skb)
+ 			txflags = get_unaligned_le16(iterator.this_arg);
+ 			if (txflags & IEEE80211_RADIOTAP_F_TX_NOACK)
+ 				info->flags |= IEEE80211_TX_CTL_NO_ACK;
++			if (txflags & IEEE80211_RADIOTAP_F_TX_CTS)
++				info->control.prerate.flags |=
++					IEEE80211_TX_RC_USE_CTS_PROTECT;
++			if (txflags & IEEE80211_RADIOTAP_F_TX_RTS)
++				info->control.prerate.flags |=
++					IEEE80211_TX_RC_USE_RTS_CTS;
++			break;
++
++		case IEEE80211_RADIOTAP_RATE:
++			info->flags |= IEEE80211_TX_CTL_HAS_VALID_BITRATE;
++			info->control.bitrate = *iterator.this_arg * 5;
++			break;
++
++		case IEEE80211_RADIOTAP_MCS:
++			known = *iterator.this_arg;
++			flags = *(iterator.this_arg + 1);
++			mcs = *(iterator.this_arg + 2);
++			if (known & IEEE80211_RADIOTAP_MCS_HAVE_MCS) {
++				info->flags |= 
++					IEEE80211_TX_CTL_HAS_VALID_BITRATE;
++				info->control.prerate.flags |= 
++						IEEE80211_TX_RC_MCS;
++				info->control.prerate.idx = mcs;
++			}
++			if (known & IEEE80211_RADIOTAP_MCS_HAVE_BW) {
++				if ((flags & IEEE80211_RADIOTAP_MCS_BW_MASK)
++				    == IEEE80211_RADIOTAP_MCS_BW_40)
++					info->control.prerate.flags |= 
++						IEEE80211_TX_RC_40_MHZ_WIDTH;
++			}
++			if (known & IEEE80211_RADIOTAP_MCS_HAVE_GI) {
++				if (flags & IEEE80211_RADIOTAP_MCS_SGI)
++					info->control.prerate.flags |= 
++						IEEE80211_TX_RC_SHORT_GI;
++			}
++			if (known & IEEE80211_RADIOTAP_MCS_HAVE_FMT) {
++				if (flags & IEEE80211_RADIOTAP_MCS_FMT_GF)
++					info->control.prerate.flags |= 
++						IEEE80211_TX_RC_GREEN_FIELD;
++			}
+ 			break;
+ 
+ 		/*

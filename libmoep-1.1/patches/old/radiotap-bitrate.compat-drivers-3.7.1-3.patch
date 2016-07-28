@@ -1,0 +1,118 @@
+diff -Naur a/include/net/mac80211.h b/include/net/mac80211.h
+--- a/include/net/mac80211.h	2013-01-10 22:01:05.000000000 +0100
++++ b/include/net/mac80211.h	2013-01-19 12:59:47.000000000 +0100
+@@ -364,6 +364,8 @@
+  * @IEEE80211_TX_INTFL_RETRANSMISSION: This frame is being retransmitted
+  *	after TX status because the destination was asleep, it must not
+  *	be modified again (no seqno assignment, crypto, etc.)
++ * @IEEE80211_TX_CTL_HAS_VALID_BITRATE: The frame has a preset bitrate and the
++ * 	bitrate field is valid (internal to mac80211)
+  * @IEEE80211_TX_INTFL_NL80211_FRAME_TX: Frame was requested through nl80211
+  *	MLME command (internal to mac80211 to figure out whether to send TX
+  *	status to user space)
+@@ -415,7 +417,7 @@
+ 	IEEE80211_TX_CTL_NO_PS_BUFFER		= BIT(17),
+ 	IEEE80211_TX_CTL_MORE_FRAMES		= BIT(18),
+ 	IEEE80211_TX_INTFL_RETRANSMISSION	= BIT(19),
+-	/* hole at 20, use later */
++	IEEE80211_TX_CTL_HAS_VALID_BITRATE	= BIT(20),
+ 	IEEE80211_TX_INTFL_NL80211_FRAME_TX	= BIT(21),
+ 	IEEE80211_TX_CTL_LDPC			= BIT(22),
+ 	IEEE80211_TX_CTL_STBC			= BIT(23) | BIT(24),
+@@ -439,8 +441,9 @@
+ 	IEEE80211_TX_STAT_TX_FILTERED |	IEEE80211_TX_STAT_ACK |		      \
+ 	IEEE80211_TX_STAT_AMPDU | IEEE80211_TX_STAT_AMPDU_NO_BACK |	      \
+ 	IEEE80211_TX_CTL_RATE_CTRL_PROBE | IEEE80211_TX_CTL_NO_PS_BUFFER |    \
+-	IEEE80211_TX_CTL_MORE_FRAMES | IEEE80211_TX_CTL_LDPC |		      \
+-	IEEE80211_TX_CTL_STBC | IEEE80211_TX_STATUS_EOSP)
++	IEEE80211_TX_CTL_MORE_FRAMES | IEEE80211_TX_CTL_HAS_VALID_BITRATE |   \
++	IEEE80211_TX_CTL_LDPC | IEEE80211_TX_CTL_STBC |                       \
++	IEEE80211_TX_STATUS_EOSP)
+ 
+ /**
+  * enum mac80211_rate_control_flags - per-rate flags set by the
+@@ -560,7 +563,11 @@
+ 					/* 3 bytes free */
+ 				};
+ 				/* only needed before rate control */
+-				unsigned long jiffies;
++				struct {
++					unsigned long jiffies;
++					/* bitrate in units of 100 Kbps */
++					u16 bitrate;
++				};
+ 			};
+ 			/* NB: vif can be NULL for injected frames */
+ 			struct ieee80211_vif *vif;
+diff -Naur a/net/mac80211/tx.c b/net/mac80211/tx.c
+--- a/net/mac80211/tx.c	2013-01-10 22:01:05.000000000 +0100
++++ b/net/mac80211/tx.c	2013-01-19 12:59:47.000000000 +0100
+@@ -782,6 +782,41 @@
+ }
+ 
+ static ieee80211_tx_result debug_noinline
++ieee80211_tx_h_rate_preset(struct ieee80211_tx_data *tx)
++{
++	struct ieee80211_tx_info *info = IEEE80211_SKB_CB(tx->skb);
++	struct ieee80211_supported_band *sband;
++	u16 bitrate;
++	s8 idx;
++	int i;
++
++	sband = tx->local->hw.wiphy->bands[info->band];
++
++	bitrate = info->control.bitrate;
++
++	idx = -1;
++	for (i = 0; i < sband->n_bitrates; i++) {
++		if (sband->bitrates[i].bitrate > bitrate)
++			continue;
++		if (idx >= 0 &&
++		    sband->bitrates[i].bitrate < sband->bitrates[idx].bitrate)
++			continue;
++		idx = i;
++	}
++	if (unlikely(idx < 0))
++		return TX_DROP;
++
++	info->control.rates[0].idx = idx;
++	info->control.rates[0].count = 1;
++	info->control.rates[0].flags = 0;
++
++	for (i = 1; i < IEEE80211_TX_MAX_RATES; i++)
++		info->control.rates[i].idx = -1;
++
++	return TX_CONTINUE;
++}
++
++static ieee80211_tx_result debug_noinline
+ ieee80211_tx_h_sequence(struct ieee80211_tx_data *tx)
+ {
+ 	struct ieee80211_tx_info *info = IEEE80211_SKB_CB(tx->skb);
+@@ -1333,8 +1368,12 @@
+ 	CALL_TXH(ieee80211_tx_h_ps_buf);
+ 	CALL_TXH(ieee80211_tx_h_check_control_port_protocol);
+ 	CALL_TXH(ieee80211_tx_h_select_key);
+-	if (!(tx->local->hw.flags & IEEE80211_HW_HAS_RATE_CONTROL))
+-		CALL_TXH(ieee80211_tx_h_rate_ctrl);
++	if (!(tx->local->hw.flags & IEEE80211_HW_HAS_RATE_CONTROL)) {
++		if (unlikely(info->flags & IEEE80211_TX_CTL_HAS_VALID_BITRATE))
++			CALL_TXH(ieee80211_tx_h_rate_preset);
++		else
++			CALL_TXH(ieee80211_tx_h_rate_ctrl);
++	}
+ 
+ 	if (unlikely(info->flags & IEEE80211_TX_INTFL_RETRANSMISSION)) {
+ 		__skb_queue_tail(&tx->skbs, tx->skb);
+@@ -1550,6 +1589,11 @@
+ 				info->flags |= IEEE80211_TX_CTL_NO_ACK;
+ 			break;
+ 
++		case IEEE80211_RADIOTAP_RATE:
++			info->flags |= IEEE80211_TX_CTL_HAS_VALID_BITRATE;
++			info->control.bitrate = *iterator.this_arg * 5;
++			break;
++
+ 		/*
+ 		 * Please update the file
+ 		 * Documentation/networking/mac80211-injection.txt

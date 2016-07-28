@@ -1,0 +1,58 @@
+
+Moep80211 injection library
+===========================
+
+The moep80211 injection library allows for frame injection on monitor mode
+devices with per-frame radiotap options such as TX rate / MCS index and RTS/CTS
+protection. Most of these options require small patches of the mac80211
+susbsystem and device specific drivers.
+
+
+Installation
+------------
+
+To install moep80211 you can use the following commands:
+
+	./configure
+	make
+	make install
+
+See ./configure --help for details on the available parameters. For example you
+can use --prefix=DIR to specify the installation prefix or --enable-examples to
+build the example programs.
+
+If you use a git checkout you must run the following commands first:
+
+	apt-get install autoconf-archive automake autoconf autoconf-archive autotools-dev libnl-3-dev libnl-genl-3-dev libnl-route-3-dev libtool pkg-config
+	autoreconf -fi
+
+A lot of functionality of the moep80211 library requires some patches to the
+mac80211 subsystem. This version is known to work with compat-drivers-3.9-rc2-2,
+other versions might work as well but are not tested. Use the following commands
+to install a patched version of the drivers.
+
+	tar -xjf compat-drivers-3.9-rc2-2.tar.bz2
+	cd compat-drivers-3.9-rc2-2
+	patch -p1 < ../patches/radiotap-bitrate_mcs_rtscts.compat-drivers-3.9-rc2-2.patch
+	patch -p1 < ../patches/radiotap-hole18_vht.compat-drivers-3.9-rc2-2.patch
+
+	(additional device specific patches might be nescessary, see the patches
+	directory for available patches)
+
+	make
+	make install
+
+
+Documentation
+-------------
+
+See moep80211(3) and other manual pages for a detailed description of the
+functionality.
+
+To link your programs against this library use pkg-config or -lmoep80211.
+
+
+Where to get the latest
+-----------------------
+
+moep80211 is available at moep80211.net.

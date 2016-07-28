@@ -1,0 +1,19 @@
+diff -urN compat-wireless-3.6.8-1-old/drivers/net/wireless/rt2x00/rt2x00mac.c compat-wireless-3.6.8-1/drivers/net/wireless/rt2x00/rt2x00mac.c
+--- compat-wireless-3.6.8-1-old/drivers/net/wireless/rt2x00/rt2x00mac.c	2012-11-29 06:03:26.000000000 +0100
++++ compat-wireless-3.6.8-1/drivers/net/wireless/rt2x00/rt2x00mac.c	2013-02-08 22:23:28.102988110 +0100
+@@ -139,7 +139,14 @@
+ 	 * either RTS or CTS-to-self frame and handles everything
+ 	 * inside the hardware.
+ 	 */
+-	if (!rt2x00dev->ops->hw->set_rts_threshold &&
++	/*
++	 * We want to enable the manual use of RTS/CTS and CTS-to-self in
++	 * monitor mode.
++	 * Check for monitor mode here, but the vif seems to be null in monitor
++	 * mode.
++	 */
++	if ((!rt2x00dev->ops->hw->set_rts_threshold || !tx_info->control.vif ||
++	     tx_info->control.vif->type == NL80211_IFTYPE_MONITOR) &&
+ 	    (tx_info->control.rates[0].flags & (IEEE80211_TX_RC_USE_RTS_CTS |
+ 						IEEE80211_TX_RC_USE_CTS_PROTECT))) {
+ 		if (rt2x00queue_available(queue) <= 1)

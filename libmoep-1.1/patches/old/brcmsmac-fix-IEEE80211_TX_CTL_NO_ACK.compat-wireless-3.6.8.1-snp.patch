@@ -1,0 +1,16 @@
+diff -Naur compat-wireless-3.6.8-1-snp/drivers/net/wireless/brcm80211/brcmsmac/main.c commoep/drivers/net/wireless/brcm80211/brcmsmac/main.c
+--- compat-wireless-3.6.8-1-snp/drivers/net/wireless/brcm80211/brcmsmac/main.c	2013-01-04 18:37:01.931676756 +0100
++++ commoep/drivers/net/wireless/brcm80211/brcmsmac/main.c	2013-01-04 18:40:47.827673325 +0100
+@@ -6960,8 +6960,10 @@
+ 	if (frag == 0)
+ 		mcl |= TXC_STARTMSDU;
+ 
+-	if (!is_multicast_ether_addr(h->addr1))
+-		mcl |= TXC_IMMEDACK;
++	if (!(tx_info->flags & IEEE80211_TX_CTL_NO_ACK)) {
++		if (!is_multicast_ether_addr(h->addr1))
++			mcl |= TXC_IMMEDACK;
++	}
+ 
+ 	if (wlc->band->bandtype == BRCM_BAND_5G)
+ 		mcl |= TXC_FREQBAND_5G;

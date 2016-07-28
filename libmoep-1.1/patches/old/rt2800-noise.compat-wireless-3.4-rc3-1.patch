@@ -1,0 +1,69 @@
+diff -urN compat-wireless-3.4-rc3-1-old/drivers/net/wireless/rt2x00/rt2800lib.c compat-wireless-3.4-rc3-1/drivers/net/wireless/rt2x00/rt2800lib.c
+--- compat-wireless-3.4-rc3-1-old/drivers/net/wireless/rt2x00/rt2800lib.c	2012-04-17 22:54:12.000000000 +0200
++++ compat-wireless-3.4-rc3-1/drivers/net/wireless/rt2x00/rt2800lib.c	2012-06-09 13:58:16.618683426 +0200
+@@ -555,6 +555,22 @@
+ 	return (int)max(rssi0, rssi2);
+ }
+ 
++static int rt2800_get_snr(u32 rxwi_w3)
++{
++	u8 snr0 = rt2x00_get_field32(rxwi_w3, RXWI_W3_SNR0);
++	u8 snr1 = rt2x00_get_field32(rxwi_w3, RXWI_W3_SNR1);
++
++	/*
++	 * Convert the value from the descriptor into the SNR value
++	 * If the value in the descriptor is 0, it is considered invalid
++	 * and the default (extremely low) snr value is assumed
++	 */
++	snr0 = (snr0) ? ((0xeb - snr0) * 3) / 16 : 0;
++	snr1 = (snr1) ? ((0xeb - snr1) * 3) / 16 : 0;
++
++	return (snr1) ? (int)min(snr0, snr1) : (int)snr0;
++}
++
+ void rt2800_process_rxwi(struct queue_entry *entry,
+ 			 struct rxdone_entry_desc *rxdesc)
+ {
+@@ -594,6 +610,12 @@
+ 	 */
+ 	rxdesc->rssi = rt2800_agc_to_rssi(entry->queue->rt2x00dev, word);
+ 
++	rt2x00_desc_read(rxwi, 3, &word);
++
++	rxdesc->snr = rt2800_get_snr(word);
++	if (rxdesc->rate_mode == RATE_MODE_CCK)
++		rxdesc->flags |= RX_FLAG_NO_NOISE_VAL;
++
+ 	/*
+ 	 * Remove RXWI descriptor from start of buffer.
+ 	 */
+@@ -4498,6 +4520,7 @@
+ 	 */
+ 	rt2x00dev->hw->flags =
+ 	    IEEE80211_HW_SIGNAL_DBM |
++	    IEEE80211_HW_NOISE_DBM |
+ 	    IEEE80211_HW_SUPPORTS_PS |
+ 	    IEEE80211_HW_PS_NULLFUNC_STACK |
+ 	    IEEE80211_HW_AMPDU_AGGREGATION |
+diff -urN compat-wireless-3.4-rc3-1-old/drivers/net/wireless/rt2x00/rt2x00dev.c compat-wireless-3.4-rc3-1/drivers/net/wireless/rt2x00/rt2x00dev.c
+--- compat-wireless-3.4-rc3-1-old/drivers/net/wireless/rt2x00/rt2x00dev.c	2012-04-17 22:54:12.000000000 +0200
++++ compat-wireless-3.4-rc3-1/drivers/net/wireless/rt2x00/rt2x00dev.c	2012-06-09 13:56:05.398032738 +0200
+@@ -689,6 +689,7 @@
+ 	rx_status->freq = rt2x00dev->curr_freq;
+ 	rx_status->rate_idx = rate_idx;
+ 	rx_status->signal = rxdesc.rssi;
++	rx_status->noise = rxdesc.rssi - rxdesc.snr;
+ 	rx_status->flag = rxdesc.flags;
+ 	rx_status->antenna = rt2x00dev->link.ant.active.rx;
+ 
+diff -urN compat-wireless-3.4-rc3-1-old/drivers/net/wireless/rt2x00/rt2x00queue.h compat-wireless-3.4-rc3-1/drivers/net/wireless/rt2x00/rt2x00queue.h
+--- compat-wireless-3.4-rc3-1-old/drivers/net/wireless/rt2x00/rt2x00queue.h	2012-04-17 22:54:12.000000000 +0200
++++ compat-wireless-3.4-rc3-1/drivers/net/wireless/rt2x00/rt2x00queue.h	2012-06-09 13:15:49.820990994 +0200
+@@ -183,6 +183,7 @@
+ 	u64 timestamp;
+ 	int signal;
+ 	int rssi;
++	int snr;
+ 	int size;
+ 	int flags;
+ 	int dev_flags;

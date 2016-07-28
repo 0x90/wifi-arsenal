@@ -1,0 +1,82 @@
+diff --git a/include/net/ieee80211_radiotap.h b/include/net/ieee80211_radiotap.h
+index 8b5b714..eb7d5ca 100644
+--- a/include/net/ieee80211_radiotap.h
++++ b/include/net/ieee80211_radiotap.h
+@@ -178,6 +178,10 @@ struct ieee80211_radiotap_header {
+  *
+  *     Number of unicast retries a transmitted frame used.
+  *
++ * IEEE80211_RADIOTAP_XCHANNEL      u32, u16, u8, u8,           data
++ *
++ *     Not used, just here to garantee a hole free set.
++ *
+  * IEEE80211_RADIOTAP_MCS	u8, u8, u8		unitless
+  *
+  *     Contains a bitmap of known fields/flags, the flags, and
+@@ -210,7 +214,7 @@ enum ieee80211_radiotap_type {
+ 	IEEE80211_RADIOTAP_TX_FLAGS = 15,
+ 	IEEE80211_RADIOTAP_RTS_RETRIES = 16,
+ 	IEEE80211_RADIOTAP_DATA_RETRIES = 17,
+-
++	IEEE80211_RADIOTAP_XCHANNEL = 18,
+ 	IEEE80211_RADIOTAP_MCS = 19,
+ 	IEEE80211_RADIOTAP_AMPDU_STATUS = 20,
+ 	IEEE80211_RADIOTAP_VHT = 21,
+@@ -316,6 +320,42 @@ enum ieee80211_radiotap_type {
+ #define IEEE80211_RADIOTAP_VHT_FLAG_LDPC_EXTRA_OFDM_SYM		0x10
+ #define IEEE80211_RADIOTAP_VHT_FLAG_BEAMFORMED			0x20
+ 
++#define IEEE80211_RADIOTAP_VHT_BW_MASK				0x1f
++#define		IEEE80211_RADIOTAP_VHT_BW_20			 0
++#define		IEEE80211_RADIOTAP_VHT_BW_40			 1
++#define		IEEE80211_RADIOTAP_VHT_BW_20L			 2
++#define		IEEE80211_RADIOTAP_VHT_BW_20U			 3
++#define		IEEE80211_RADIOTAP_VHT_BW_80			 4
++#define		IEEE80211_RADIOTAP_VHT_BW_40L			 5
++#define		IEEE80211_RADIOTAP_VHT_BW_40U			 6
++#define		IEEE80211_RADIOTAP_VHT_BW_20LL			 7
++#define		IEEE80211_RADIOTAP_VHT_BW_20LU			 8
++#define		IEEE80211_RADIOTAP_VHT_BW_20UL			 9
++#define		IEEE80211_RADIOTAP_VHT_BW_20UU			10
++#define		IEEE80211_RADIOTAP_VHT_BW_160			11
++#define		IEEE80211_RADIOTAP_VHT_BW_80L			12
++#define		IEEE80211_RADIOTAP_VHT_BW_80U			13
++#define		IEEE80211_RADIOTAP_VHT_BW_40LL			14
++#define		IEEE80211_RADIOTAP_VHT_BW_40LU			15
++#define		IEEE80211_RADIOTAP_VHT_BW_40UL			16
++#define		IEEE80211_RADIOTAP_VHT_BW_40UU			17
++#define		IEEE80211_RADIOTAP_VHT_BW_20LLL			18
++#define		IEEE80211_RADIOTAP_VHT_BW_20LLU			19
++#define		IEEE80211_RADIOTAP_VHT_BW_20LUL			20
++#define		IEEE80211_RADIOTAP_VHT_BW_20LUU			21
++#define		IEEE80211_RADIOTAP_VHT_BW_20ULL			22
++#define		IEEE80211_RADIOTAP_VHT_BW_20ULU			23
++#define		IEEE80211_RADIOTAP_VHT_BW_20UUL			24
++#define		IEEE80211_RADIOTAP_VHT_BW_20UUU			25
++
++#define IEEE80211_RADIOTAP_VHT_NSS_MASK				0x0f
++#define IEEE80211_RADIOTAP_VHT_MCS_MASK				0xf0
++
++#define IEEE80211_RADIOTAP_VHT_COD_0				0x01
++#define IEEE80211_RADIOTAP_VHT_COD_1				0x02
++#define IEEE80211_RADIOTAP_VHT_COD_2				0x04
++#define IEEE80211_RADIOTAP_VHT_COD_3				0x08
++
+ 
+ /* helpers */
+ static inline int ieee80211_get_radiotap_len(unsigned char *data)
+diff --git a/net/wireless/radiotap.c b/net/wireless/radiotap.c
+index a271c27..e230280 100644
+--- a/net/wireless/radiotap.c
++++ b/net/wireless/radiotap.c
+@@ -41,8 +41,10 @@ static const struct radiotap_align_size rtap_namespace_sizes[] = {
+ 	[IEEE80211_RADIOTAP_TX_FLAGS] = { .align = 2, .size = 2, },
+ 	[IEEE80211_RADIOTAP_RTS_RETRIES] = { .align = 1, .size = 1, },
+ 	[IEEE80211_RADIOTAP_DATA_RETRIES] = { .align = 1, .size = 1, },
++	[IEEE80211_RADIOTAP_XCHANNEL] = { .align = 4, .size = 8, },
+ 	[IEEE80211_RADIOTAP_MCS] = { .align = 1, .size = 3, },
+ 	[IEEE80211_RADIOTAP_AMPDU_STATUS] = { .align = 4, .size = 8, },
++	[IEEE80211_RADIOTAP_VHT] = { .align = 2, .size = 12, },
+ 	/*
+ 	 * add more here as they are defined in radiotap.h
+ 	 */

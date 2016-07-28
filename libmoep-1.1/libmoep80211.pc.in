@@ -1,0 +1,10 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: libmoep80211
+Description: Moep80211 injection library
+Version: @PACKAGE_VERSION@
+Libs: -L${libdir} -lmoep80211
+Cflags: -I${includedir}

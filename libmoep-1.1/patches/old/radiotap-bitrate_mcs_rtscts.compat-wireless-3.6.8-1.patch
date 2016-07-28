@@ -1,0 +1,189 @@
+diff -urN compat-wireless-3.6.8-1-snp-old/include/net/mac80211.h compat-wireless-3.6.8-1-snp/include/net/mac80211.h
+--- compat-wireless-3.6.8-1-snp-old/include/net/mac80211.h	2012-11-29 06:03:45.000000000 +0100
++++ compat-wireless-3.6.8-1-snp/include/net/mac80211.h	2013-02-19 19:44:12.317825144 +0100
+@@ -359,6 +359,8 @@
+  * @IEEE80211_TX_INTFL_RETRANSMISSION: This frame is being retransmitted
+  *	after TX status because the destination was asleep, it must not
+  *	be modified again (no seqno assignment, crypto, etc.)
++ * @IEEE80211_TX_CTL_HAS_VALID_BITRATE: The frame has a preset bitrate and the
++ * 	bitrate field is valid (internal to mac80211)
+  * @IEEE80211_TX_INTFL_NL80211_FRAME_TX: Frame was requested through nl80211
+  *	MLME command (internal to mac80211 to figure out whether to send TX
+  *	status to user space)
+@@ -410,7 +412,7 @@
+ 	IEEE80211_TX_CTL_NO_PS_BUFFER		= BIT(17),
+ 	IEEE80211_TX_CTL_MORE_FRAMES		= BIT(18),
+ 	IEEE80211_TX_INTFL_RETRANSMISSION	= BIT(19),
+-	/* hole at 20, use later */
++	IEEE80211_TX_CTL_HAS_VALID_BITRATE	= BIT(20),
+ 	IEEE80211_TX_INTFL_NL80211_FRAME_TX	= BIT(21),
+ 	IEEE80211_TX_CTL_LDPC			= BIT(22),
+ 	IEEE80211_TX_CTL_STBC			= BIT(23) | BIT(24),
+@@ -434,8 +436,9 @@
+ 	IEEE80211_TX_STAT_TX_FILTERED |	IEEE80211_TX_STAT_ACK |		      \
+ 	IEEE80211_TX_STAT_AMPDU | IEEE80211_TX_STAT_AMPDU_NO_BACK |	      \
+ 	IEEE80211_TX_CTL_RATE_CTRL_PROBE | IEEE80211_TX_CTL_NO_PS_BUFFER |    \
+-	IEEE80211_TX_CTL_MORE_FRAMES | IEEE80211_TX_CTL_LDPC |		      \
+-	IEEE80211_TX_CTL_STBC | IEEE80211_TX_STATUS_EOSP)
++	IEEE80211_TX_CTL_MORE_FRAMES | IEEE80211_TX_CTL_HAS_VALID_BITRATE |   \
++	IEEE80211_TX_CTL_LDPC | IEEE80211_TX_CTL_STBC |                       \
++	IEEE80211_TX_STATUS_EOSP)
+ 
+ /**
+  * enum mac80211_rate_control_flags - per-rate flags set by the
+@@ -555,9 +558,15 @@
+ 					struct ieee80211_tx_rate rates[
+ 						IEEE80211_TX_MAX_RATES];
+ 					s8 rts_cts_rate_idx;
+-				};
++				} __attribute__((packed));
+ 				/* only needed before rate control */
+-				unsigned long jiffies;
++				struct {
++					/* same position as rates[0] */
++					struct ieee80211_tx_rate prerate;
++					unsigned long jiffies;
++					/* preset rate settings */
++					u16 bitrate;
++				} __attribute__((packed));
+ 			};
+ 			/* NB: vif can be NULL for injected frames */
+ 			struct ieee80211_vif *vif;
+diff -urN compat-wireless-3.6.8-1-snp-old/net/mac80211/tx.c compat-wireless-3.6.8-1-snp/net/mac80211/tx.c
+--- compat-wireless-3.6.8-1-snp-old/net/mac80211/tx.c	2012-11-29 06:03:45.000000000 +0100
++++ compat-wireless-3.6.8-1-snp/net/mac80211/tx.c	2013-02-19 19:44:12.317825144 +0100
+@@ -782,6 +782,45 @@
+ }
+ 
+ static ieee80211_tx_result debug_noinline
++ieee80211_tx_h_rate_preset(struct ieee80211_tx_data *tx)
++{
++	struct ieee80211_tx_info *info = IEEE80211_SKB_CB(tx->skb);
++	struct ieee80211_supported_band *sband;
++	u16 bitrate;
++	s8 idx;
++	int i;
++
++	sband = tx->local->hw.wiphy->bands[tx->channel->band];
++
++	bitrate = info->control.bitrate;
++
++	for (i = 1; i < IEEE80211_TX_MAX_RATES; i++)
++		info->control.rates[i].idx = -1;
++
++	if (info->control.rates[0].flags & IEEE80211_TX_RC_MCS) {
++		if (info->control.rates[0].idx < 0)
++			return TX_DROP;
++		return TX_CONTINUE;
++	}
++
++	idx = -1;
++	for (i = 0; i < sband->n_bitrates; i++) {
++		if (sband->bitrates[i].bitrate > bitrate)
++			continue;
++		if (idx >= 0 &&
++		    sband->bitrates[i].bitrate < sband->bitrates[idx].bitrate)
++			continue;
++		idx = i;
++	}
++	if (unlikely(idx < 0))
++		return TX_DROP;
++
++	info->control.rates[0].idx = idx;
++
++	return TX_CONTINUE;
++}
++
++static ieee80211_tx_result debug_noinline
+ ieee80211_tx_h_sequence(struct ieee80211_tx_data *tx)
+ {
+ 	struct ieee80211_tx_info *info = IEEE80211_SKB_CB(tx->skb);
+@@ -1333,8 +1372,12 @@
+ 	CALL_TXH(ieee80211_tx_h_ps_buf);
+ 	CALL_TXH(ieee80211_tx_h_check_control_port_protocol);
+ 	CALL_TXH(ieee80211_tx_h_select_key);
+-	if (!(tx->local->hw.flags & IEEE80211_HW_HAS_RATE_CONTROL))
+-		CALL_TXH(ieee80211_tx_h_rate_ctrl);
++	if (!(tx->local->hw.flags & IEEE80211_HW_HAS_RATE_CONTROL)) {
++		if (unlikely(info->flags & IEEE80211_TX_CTL_HAS_VALID_BITRATE))
++			CALL_TXH(ieee80211_tx_h_rate_preset);
++		else
++			CALL_TXH(ieee80211_tx_h_rate_ctrl);
++	}
+ 
+ 	if (unlikely(info->flags & IEEE80211_TX_INTFL_RETRANSMISSION)) {
+ 		__skb_queue_tail(&tx->skbs, tx->skb);
+@@ -1501,10 +1544,14 @@
+ 	int ret = ieee80211_radiotap_iterator_init(&iterator, rthdr, skb->len,
+ 						   NULL);
+ 	u16 txflags;
++	u8 known, flags, mcs;
+ 
+ 	info->flags |= IEEE80211_TX_INTFL_DONT_ENCRYPT |
+ 		       IEEE80211_TX_CTL_DONTFRAG;
+ 
++	info->control.prerate.count = 1;
++	info->control.prerate.flags = 0;
++
+ 	/*
+ 	 * for every radiotap entry that is present
+ 	 * (ieee80211_radiotap_iterator_next returns -ENOENT when no more
+@@ -1549,6 +1596,46 @@
+ 			txflags = get_unaligned_le16(iterator.this_arg);
+ 			if (txflags & IEEE80211_RADIOTAP_F_TX_NOACK)
+ 				info->flags |= IEEE80211_TX_CTL_NO_ACK;
++			if (txflags & IEEE80211_RADIOTAP_F_TX_CTS)
++				info->control.prerate.flags |=
++					IEEE80211_TX_RC_USE_CTS_PROTECT;
++			if (txflags & IEEE80211_RADIOTAP_F_TX_RTS)
++				info->control.prerate.flags |=
++					IEEE80211_TX_RC_USE_RTS_CTS;
++			break;
++
++		case IEEE80211_RADIOTAP_RATE:
++			info->flags |= IEEE80211_TX_CTL_HAS_VALID_BITRATE;
++			info->control.bitrate = *iterator.this_arg * 5;
++			break;
++
++		case IEEE80211_RADIOTAP_MCS:
++			known = *iterator.this_arg;
++			flags = *(iterator.this_arg + 1);
++			mcs = *(iterator.this_arg + 2);
++			if (known & IEEE80211_RADIOTAP_MCS_HAVE_MCS) {
++				info->flags |= 
++					IEEE80211_TX_CTL_HAS_VALID_BITRATE;
++				info->control.prerate.flags |= 
++						IEEE80211_TX_RC_MCS;
++				info->control.prerate.idx = mcs;
++			}
++			if (known & IEEE80211_RADIOTAP_MCS_HAVE_BW) {
++				if ((flags & IEEE80211_RADIOTAP_MCS_BW_MASK)
++				    == IEEE80211_RADIOTAP_MCS_BW_40)
++					info->control.prerate.flags |= 
++						IEEE80211_TX_RC_40_MHZ_WIDTH;
++			}
++			if (known & IEEE80211_RADIOTAP_MCS_HAVE_GI) {
++				if (flags & IEEE80211_RADIOTAP_MCS_SGI)
++					info->control.prerate.flags |= 
++						IEEE80211_TX_RC_SHORT_GI;
++			}
++			if (known & IEEE80211_RADIOTAP_MCS_HAVE_FMT) {
++				if (flags & IEEE80211_RADIOTAP_MCS_FMT_GF)
++					info->control.prerate.flags |= 
++						IEEE80211_TX_RC_GREEN_FIELD;
++			}
+ 			break;
+ 
+ 		/*
+diff -urN compat-wireless-3.6.8-1-snp-old/net/wireless/radiotap.c compat-wireless-3.6.8-1-snp/net/wireless/radiotap.c
+--- compat-wireless-3.6.8-1-snp-old/net/wireless/radiotap.c	2012-11-29 06:03:44.000000000 +0100
++++ compat-wireless-3.6.8-1-snp/net/wireless/radiotap.c	2013-02-19 19:44:40.913820133 +0100
+@@ -41,6 +41,8 @@
+ 	[IEEE80211_RADIOTAP_TX_FLAGS] = { .align = 2, .size = 2, },
+ 	[IEEE80211_RADIOTAP_RTS_RETRIES] = { .align = 1, .size = 1, },
+ 	[IEEE80211_RADIOTAP_DATA_RETRIES] = { .align = 1, .size = 1, },
++	[18] = { .align = 4, .size = 8}, // not defined in radiotap.h
++	[IEEE80211_RADIOTAP_MCS] = { .align = 1, .size = 3 },
+ 	/*
+ 	 * add more here as they are defined in radiotap.h
+ 	 */

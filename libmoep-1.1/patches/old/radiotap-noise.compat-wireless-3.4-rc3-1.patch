@@ -1,0 +1,96 @@
+diff -urN compat-wireless-3.4-rc3-1-old/include/net/mac80211.h compat-wireless-3.4-rc3-1/include/net/mac80211.h
+--- compat-wireless-3.4-rc3-1-old/include/net/mac80211.h	2012-04-17 22:54:13.000000000 +0200
++++ compat-wireless-3.4-rc3-1/include/net/mac80211.h	2012-06-12 19:56:35.628238985 +0200
+@@ -664,6 +664,7 @@
+  * @RX_FLAG_SHORT_GI: Short guard interval was used
+  * @RX_FLAG_NO_SIGNAL_VAL: The signal strength value is not present.
+  *	Valid only for data frames (mainly A-MPDU)
++ * @RX_FLAG_NO_NOISE_VAL: The noise strength value is not present.
+  */
+ enum mac80211_rx_flags {
+ 	RX_FLAG_MMIC_ERROR	= 1<<0,
+@@ -678,6 +679,7 @@
+ 	RX_FLAG_40MHZ		= 1<<10,
+ 	RX_FLAG_SHORT_GI	= 1<<11,
+ 	RX_FLAG_NO_SIGNAL_VAL	= 1<<12,
++	RX_FLAG_NO_NOISE_VAL	= 1<<13,
+ };
+ 
+ /**
+@@ -694,6 +696,9 @@
+  * @signal: signal strength when receiving this frame, either in dBm, in dB or
+  *	unspecified depending on the hardware capabilities flags
+  *	@IEEE80211_HW_SIGNAL_*
++ * @noise: noise strength when receiving this frame, either in dBm, in dB or
++ *	unspecified depending on the hardware capabilities flags
++ *	@IEEE80211_HW_NOISE_*
+  * @antenna: antenna used
+  * @rate_idx: index of data rate into band's supported rates or MCS index if
+  *	HT rates are use (RX_FLAG_HT)
+@@ -705,6 +710,7 @@
+ 	enum ieee80211_band band;
+ 	int freq;
+ 	int signal;
++	int noise;
+ 	int antenna;
+ 	int rate_idx;
+ 	int flag;
+@@ -1174,6 +1180,15 @@
+  * @IEEE80211_HW_SCAN_WHILE_IDLE: The device can do hw scan while
+  *	being idle (i.e. mac80211 doesn't have to go idle-off during the
+  *	the scan).
++ *
++ * @IEEE80211_HW_NOISE_UNSPEC:
++ *	Hardware can provide noise values but we don't know its units.
++ *	If possible please provide dB or dBm instead.
++ *
++ * @IEEE80211_HW_NOISE_DBM:
++ *	Hardware gives noise values in dBm, decibel difference from
++ *	one milliwatt. This is the preferred method since it is standardized
++ *	between different devices.
+  */
+ enum ieee80211_hw_flags {
+ 	IEEE80211_HW_HAS_RATE_CONTROL			= 1<<0,
+@@ -1201,6 +1216,8 @@
+ 	IEEE80211_HW_AP_LINK_PS				= 1<<22,
+ 	IEEE80211_HW_TX_AMPDU_SETUP_IN_HW		= 1<<23,
+ 	IEEE80211_HW_SCAN_WHILE_IDLE			= 1<<24,
++	IEEE80211_HW_NOISE_UNSPEC			= 1<<25,
++	IEEE80211_HW_NOISE_DBM				= 1<<26,
+ };
+ 
+ /**
+diff -urN compat-wireless-3.4-rc3-1-old/net/mac80211/rx.c compat-wireless-3.4-rc3-1/net/mac80211/rx.c
+--- compat-wireless-3.4-rc3-1-old/net/mac80211/rx.c	2012-04-17 22:54:12.000000000 +0200
++++ compat-wireless-3.4-rc3-1/net/mac80211/rx.c	2012-05-23 23:14:51.300735517 +0200
+@@ -82,8 +82,12 @@
+ 
+ 	if (status->flag & RX_FLAG_MACTIME_MPDU)
+ 		len += 8;
+-	if (local->hw.flags & IEEE80211_HW_SIGNAL_DBM)
+-		len += 1;
++	if (local->hw.flags & IEEE80211_HW_SIGNAL_DBM &&
++	    !(status->flag & RX_FLAG_NO_SIGNAL_VAL))
++		len++;
++	if (local->hw.flags & IEEE80211_HW_NOISE_DBM &&
++	    !(status->flag & RX_FLAG_NO_NOISE_VAL)) 
++		len++;
+ 
+ 	if (len & 1) /* padding for RX_FLAGS if necessary */
+ 		len++;
+@@ -185,6 +189,15 @@
+ 		pos++;
+ 	}
+ 
++	/* IEEE80211_RADIOTAP_DBM_ANTNOISE */
++	if (local->hw.flags & IEEE80211_HW_SIGNAL_DBM &&
++	    !(status->flag & RX_FLAG_NO_NOISE_VAL)) {
++		*pos = status->noise;
++		rthdr->it_present |=
++			cpu_to_le32(1 << IEEE80211_RADIOTAP_DBM_ANTNOISE);
++		pos++;
++	}
++
+ 	/* IEEE80211_RADIOTAP_LOCK_QUALITY is missing */
+ 
+ 	/* IEEE80211_RADIOTAP_ANTENNA */

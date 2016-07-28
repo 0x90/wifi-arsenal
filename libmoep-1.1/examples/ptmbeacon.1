@@ -1,0 +1,36 @@
+.TH PTMBEACON 1 2014-5-5 "moep80211" "MOEP80211 Manual"
+.SH NAME
+ptmbeacon \- a packet transfer module for moep80211 with beacons
+.SH SYNOPSIS
+.B ptmbeacon
+.RI [ OPTION "]... " IF " " FREQ
+.SH DESCRIPTION
+This program translates between IEEE 802.3 and Moep 802.11. It creates a tap
+device which can be used to access a Moep 802.11 network at a radio device via
+IEEE 802.3. The radio interface IF is used on frequency FREQ [in MHz, you can
+use M for MHz]. The program also sends out beacon frames in regular intervals.
+.TP
+.BR "-a" ", " "--hwaddr" =\fIADDR
+Set the hardware address to ADDR
+.TP
+.BR "-i" ", " "--ipaddr" =\fIADDR
+Set the ip address to ADDR
+.TP
+.BR "-m" ", " "--mtu" =\fISIZE
+Set the mtu to SIZE
+.TP
+.BR "-?" ", " "--help"
+Give a help list
+.TP
+.BR "--usage"
+Give a short usage message
+.TP
+.BR "-V" ", " "--version"
+Print program version
+.P
+Mandatory or optional arguments to long options are also mandatory or optional
+for any corresponding short options.
+.SH BUGS
+Report bugs to <leclaire@in.tum.de>.
+.SH SEE ALSO
+.BR ptmsimple (3)

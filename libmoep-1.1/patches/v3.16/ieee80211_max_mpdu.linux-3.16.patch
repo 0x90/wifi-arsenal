@@ -1,0 +1,18 @@
+--- a/include/linux/ieee80211.h	2014-09-07 12:32:40.000000000 +0000
++++ b/include/linux/ieee80211.h	2014-12-08 13:46:02.216008689 +0000
+@@ -153,13 +153,13 @@
+ 
+    802.11e clarifies the figure in section 7.1.2. The frame body is
+    up to 2304 octets long (maximum MSDU size) plus any crypt overhead. */
+-#define IEEE80211_MAX_DATA_LEN		2304
++#define IEEE80211_MAX_DATA_LEN		7951
+ /* 802.11ad extends maximum MSDU size for DMG (freq > 40Ghz) networks
+  * to 7920 bytes, see 8.2.3 General frame format
+  */
+ #define IEEE80211_MAX_DATA_LEN_DMG	7920
+ /* 30 byte 4 addr hdr, 2 byte QoS, 2304 byte MSDU, 12 byte crypt, 4 byte FCS */
+-#define IEEE80211_MAX_FRAME_LEN		2352
++#define IEEE80211_MAX_FRAME_LEN		7999
+ 
+ #define IEEE80211_MAX_SSID_LEN		32
+ 
