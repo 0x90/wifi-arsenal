@@ -1024,3 +1024,6 @@
 [submodule "monmob"]
 	path = monmob
 	url = https://github.com/tuter/monmob
+[submodule "moepdefend"]
+	path = moepdefend
+	url = https://github.com/moepinet/moepdefend
