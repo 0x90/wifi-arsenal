@@ -1021,3 +1021,6 @@
 [submodule "uploadwpa"]
 	path = uploadwpa
 	url = https://github.com/Alf-Alfa/uploadwpa
+[submodule "monmob"]
+	path = monmob
+	url = https://github.com/tuter/monmob
