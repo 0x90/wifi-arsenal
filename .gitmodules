@@ -331,9 +331,6 @@
 [submodule "skybluetero"]
 	path = skybluetero
 	url = https://github.com/0x90/skybluetero
-[submodule "smallWifiTools"]
-	path = smallWifiTools
-	url = https://github.com/3ll060/smallWifiTools
 [submodule "snifflab"]
 	path = snifflab
 	url = https://github.com/andrewhilts/snifflab
