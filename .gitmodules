@@ -1033,3 +1033,6 @@
 [submodule "airodump_mod"]
 	path = airodump_mod
 	url = https://github.com/maroviher/airodump_mod
+[submodule "linssid"]
+	path = linssid
+	url = https://github.com/luigino/linssid
