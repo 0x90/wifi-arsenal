@@ -55,9 +55,6 @@
 [submodule "belkin4xx"]
 	path = belkin4xx
 	url = https://bitbucket.org/dudux/belkin4xx
-[submodule "bully"]
-	path = bully
-	url = https://github.com/Lrs121/bully
 [submodule "bunny"]
 	path = bunny
 	url = https://github.com/mothran/bunny
