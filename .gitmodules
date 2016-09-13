@@ -721,9 +721,6 @@
 [submodule "wireless-rool-nodejs"]
 	path = wireless-rool-nodejs
 	url = https://github.com/bakerface/wireless-tools
-[submodule "wprobe"]
-	path = wprobe
-	url = https://github.com/shizhai/wprobe
 [submodule "airtraf"]
 	path = airtraf
 	url = https://github.com/saintkepha/airtraf
@@ -1024,3 +1021,15 @@
 [submodule "moepdefend"]
 	path = moepdefend
 	url = https://github.com/moepinet/moepdefend
+[submodule "kismet-fork"]
+	path = kismet-fork
+	url = https://github.com/ymah/kismet-fork
+[submodule "mac_chat"]
+	path = mac_chat
+	url = https://github.com/airties-summerseed/mac_chat
+[submodule "hijack"]
+	path = hijack
+	url = https://github.com/0x0d/hijack
+[submodule "airodump_mod"]
+	path = airodump_mod
+	url = https://github.com/maroviher/airodump_mod
