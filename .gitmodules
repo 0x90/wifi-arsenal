@@ -76,9 +76,6 @@
 [submodule "crda"]
 	path = crda
 	url = https://github.com/mcgrof/crda
-[submodule "crda-ct"]
-	path = crda-ct
-	url = https://github.com/0x90/crda-ct
 [submodule "darm"]
 	path = darm
 	url = https://github.com/eldraco/darm
@@ -1018,9 +1015,6 @@
 [submodule "kismet-fork"]
 	path = kismet-fork
 	url = https://github.com/ymah/kismet-fork
-[submodule "mac_chat"]
-	path = mac_chat
-	url = https://github.com/airties-summerseed/mac_chat
 [submodule "hijack"]
 	path = hijack
 	url = https://github.com/0x0d/hijack
@@ -1030,3 +1024,6 @@
 [submodule "linssid"]
 	path = linssid
 	url = https://github.com/luigino/linssid
+[submodule "bully"]
+	path = bully
+	url = https://github.com/aanarchyy/bully
