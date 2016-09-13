@@ -1033,3 +1033,24 @@
 [submodule "iwcap"]
 	path = iwcap
 	url = https://github.com/lrouter/iwcap
+[submodule "bully-android"]
+	path = bully-android
+	url = https://github.com/Droid-MAX/bully
+[submodule "mitm-rogue-WiFi-AP"]
+	path = mitm-rogue-WiFi-AP
+	url = https://github.com/wshen0123/mitm-rogue-WiFi-AP
+[submodule "pyric"]
+	path = pyric
+	url = https://github.com/wraith-wireless/pyric
+[submodule "mupe"]
+	path = mupe
+	url = https://github.com/DE-IBH/mupe
+[submodule "ap-notify"]
+	path = ap-notify
+	url = https://github.com/doctaweeks/ap-notify
+[submodule "smd_wifi_monitor"]
+	path = smd_wifi_monitor
+	url = https://github.com/smd-ros-devel/smd_wifi_monitor
+[submodule "haircrack"]
+	path = haircrack
+	url = https://github.com/AdamKnube/haircrack
