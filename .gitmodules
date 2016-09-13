@@ -595,9 +595,6 @@
 [submodule "scapybase"]
 	path = scapybase
 	url = https://github.com/jahrome/scapybase
-[submodule "airtap"]
-	path = airtap
-	url = https://github.com/wshen0123/airtap
 [submodule "mitm_rogue_wifi_ap"]
 	path = mitm_rogue_wifi_ap
 	url = https://github.com/wshen0123/mitm_rogue_wifi_ap
