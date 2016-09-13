@@ -787,9 +787,6 @@
 [submodule "android_iw"]
 	path = android_iw
 	url = https://github.com/bcopeland/android_iw
-[submodule "airdump"]
-	path = airdump
-	url = https://github.com/taoliu-fnet/airdump
 [submodule "radioparse"]
 	path = radioparse
 	url = https://github.com/AlexanderSelzer/radioparse
@@ -1027,3 +1024,12 @@
 [submodule "bully"]
 	path = bully
 	url = https://github.com/aanarchyy/bully
+[submodule "crda-ct"]
+	path = crda-ct
+	url = https://github.com/0x90/crda-ct
+[submodule "iwraw"]
+	path = iwraw
+	url = https://github.com/erstrom/iwraw
+[submodule "iwcap"]
+	path = iwcap
+	url = https://github.com/lrouter/iwcap
