@@ -256,9 +256,6 @@
 [submodule "pcap2xml"]
 	path = pcap2xml
 	url = https://github.com/securitytube/pcap2xml
-[submodule "peapwn"]
-	path = peapwn
-	url = https://github.com/rpp0/peapwn
 [submodule "piwat"]
 	path = piwat
 	url = https://github.com/0x90/piwat
@@ -979,9 +976,6 @@
 [submodule "airoscriptng"]
 	path = airoscriptng
 	url = https://github.com/wi-fi-analyzer/airoscriptng
-[submodule "aggr-inject"]
-	path = aggr-inject
-	url = https://github.com/rpp0/aggr-inject
 [submodule "osx-wifi-scan"]
 	path = osx-wifi-scan
 	url = https://github.com/kornysietsma/osx-wifi-scan
@@ -1066,3 +1060,12 @@
 [submodule "itamae"]
 	path = itamae
 	url = https://github.com/wraith-wireless/itamae
+[submodule "PyRIC"]
+	path = PyRIC
+	url = https://github.com/wraith-wireless/PyRIC
+[submodule "aggr-inject"]
+	path = aggr-inject
+	url = https://github.com/rpp0/aggr-inject
+[submodule "peapwn"]
+	path = peapwn
+	url = https://github.com/rpp0/peapwn
