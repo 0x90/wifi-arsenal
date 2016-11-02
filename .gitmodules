@@ -232,9 +232,6 @@
 [submodule "lrc"]
 	path = lrc
 	url = https://github.com/0x0d/lrc
-[submodule "mana"]
-	path = mana
-	url = https://github.com/sensepost/mana
 [submodule "MappingWirelessNetworks"]
 	path = MappingWirelessNetworks
 	url = https://github.com/jeffThompson/MappingWirelessNetworks
@@ -1078,3 +1075,6 @@
 [submodule "kismetclient"]
 	path = kismetclient
 	url = https://github.com/PaulMcMillan/kismetclient
+[submodule "mana"]
+	path = mana
+	url = https://github.com/sensepost/mana
