@@ -1069,3 +1069,12 @@
 [submodule "peapwn"]
 	path = peapwn
 	url = https://github.com/rpp0/peapwn
+[submodule "airpwn-ng"]
+	path = airpwn-ng
+	url = https://github.com/ICSec/airpwn-ng
+[submodule "kismet"]
+	path = kismet
+	url = https://github.com/kismetwireless/kismet
+[submodule "kismetclient"]
+	path = kismetclient
+	url = https://github.com/PaulMcMillan/kismetclient
