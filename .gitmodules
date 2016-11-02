@@ -1060,3 +1060,6 @@
 [submodule "win32wifi"]
 	path = win32wifi
 	url = https://github.com/almondg/win32wifi
+[submodule "captiv8"]
+	path = captiv8
+	url = https://github.com/wraith-wireless/captiv8
