@@ -1057,3 +1057,6 @@
 [submodule "create_ap"]
 	path = create_ap
 	url = https://github.com/oblique/create_ap
+[submodule "win32wifi"]
+	path = win32wifi
+	url = https://github.com/almondg/win32wifi
