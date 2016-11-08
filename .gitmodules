@@ -1099,3 +1099,36 @@
 [submodule "hostapd-mana-openwrt"]
 	path = hostapd-mana-openwrt
 	url = https://github.com/adde88/hostapd-mana-openwrt
+[submodule "hostapd-mana"]
+	path = hostapd-mana
+	url = https://github.com/adde88/hostapd-mana
+[submodule "Hostapd-with-Karma"]
+	path = Hostapd-with-Karma
+	url = https://github.com/StudentWan/Hostapd-with-Karma
+[submodule "kali_2_hostapd-wpe_installer"]
+	path = kali_2_hostapd-wpe_installer
+	url = https://github.com/inetsec/kali_2_hostapd-wpe_installer
+[submodule "gr-ieee80211ah"]
+	path = gr-ieee80211ah
+	url = https://github.com/zitouni/gr-ieee80211ah
+[submodule "WIG"]
+	path = WIG
+	url = https://github.com/6e726d/WIG
+[submodule "cenarius"]
+	path = cenarius
+	url = https://github.com/adelashraf/cenarius
+[submodule "libpcap-80211-c"]
+	path = libpcap-80211-c
+	url = https://github.com/weaknetlabs/libpcap-80211-c
+[submodule "mac80211-user"]
+	path = mac80211-user
+	url = https://github.com/chillancezen/mac80211-user
+[submodule "pyWPSLocalisation"]
+	path = pyWPSLocalisation
+	url = https://github.com/akrv/pyWPSLocalisation
+[submodule "kismet-deauth-wpa2-handshake-plugin"]
+	path = kismet-deauth-wpa2-handshake-plugin
+	url = https://github.com/ph4r05/kismet-deauth-wpa2-handshake-plugin
+[submodule "kismon"]
+	path = kismon
+	url = https://github.com/Kismon/kismon
