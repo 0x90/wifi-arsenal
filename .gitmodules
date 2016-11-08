@@ -1078,3 +1078,24 @@
 [submodule "mana"]
 	path = mana
 	url = https://github.com/sensepost/mana
+[submodule "WHAT-PRO"]
+	path = WHAT-PRO
+	url = https://github.com/smoz1986/WHAT-PRO
+[submodule "TCP-SeqNum"]
+	path = TCP-SeqNum
+	url = https://github.com/bwoolf1122/TCP-SeqNum
+[submodule "WifiAttack"]
+	path = WifiAttack
+	url = https://github.com/AbbySec/WifiAttack
+[submodule "Armory"]
+	path = Armory
+	url = https://github.com/justinbeatz/Armory
+[submodule "Wifimon"]
+	path = Wifimon
+	url = https://github.com/Wifimon/Wifimon
+[submodule "802.11p-iw"]
+	path = 802.11p-iw
+	url = https://github.com/CTU-IIG/802.11p-iw
+[submodule "gr-ieee802-11"]
+	path = gr-ieee802-11
+	url = https://github.com/bastibl/gr-ieee802-11
