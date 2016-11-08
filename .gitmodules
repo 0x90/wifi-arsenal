@@ -1138,3 +1138,15 @@
 [submodule "USB-WiFi-Autoreset"]
 	path = USB-WiFi-Autoreset
 	url = https://github.com/jessebrizzi/USB-WiFi-Autoreset
+[submodule "wifi_statistics"]
+	path = wifi_statistics
+	url = https://github.com/simonwunderlich/wifi_statistics
+[submodule "wpe-parse"]
+	path = wpe-parse
+	url = https://github.com/sa7mon/wpe-parse
+[submodule "Pyrit"]
+	path = Pyrit
+	url = https://github.com/JPaulMora/Pyrit
+[submodule "bcm-public"]
+	path = bcm-public
+	url = https://github.com/seemoo-lab/bcm-public
