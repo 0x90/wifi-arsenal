@@ -1153,3 +1153,6 @@
 [submodule "resfi"]
 	path = resfi
 	url = https://github.com/resfi/resfi
+[submodule "bcm-rpi3"]
+	path = bcm-rpi3
+	url = https://github.com/seemoo-lab/bcm-rpi3
