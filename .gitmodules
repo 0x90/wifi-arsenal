@@ -517,9 +517,6 @@
 [submodule "hostapd-ap6210"]
 	path = hostapd-ap6210
 	url = https://github.com/Bananian/hostapd-ap6210
-[submodule "hostapd-mana"]
-	path = hostapd-mana
-	url = https://github.com/sensepost/hostapd-mana
 [submodule "RougeDetection"]
 	path = RougeDetection
 	url = https://github.com/bagsofnarcissism/RougeDetection
@@ -1099,3 +1096,6 @@
 [submodule "gr-ieee802-11"]
 	path = gr-ieee802-11
 	url = https://github.com/bastibl/gr-ieee802-11
+[submodule "hostapd-mana-openwrt"]
+	path = hostapd-mana-openwrt
+	url = https://github.com/adde88/hostapd-mana-openwrt
