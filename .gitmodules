@@ -1150,3 +1150,6 @@
 [submodule "bcm-public"]
 	path = bcm-public
 	url = https://github.com/seemoo-lab/bcm-public
+[submodule "resfi"]
+	path = resfi
+	url = https://github.com/resfi/resfi
