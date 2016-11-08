@@ -1132,3 +1132,9 @@
 [submodule "kismon"]
 	path = kismon
 	url = https://github.com/Kismon/kismon
+[submodule "wifi-scan-new"]
+	path = wifi-scan-new
+	url = https://github.com/bmegli/wifi-scan
+[submodule "USB-WiFi-Autoreset"]
+	path = USB-WiFi-Autoreset
+	url = https://github.com/jessebrizzi/USB-WiFi-Autoreset
