@@ -1156,3 +1156,9 @@
 [submodule "bcm-rpi3"]
 	path = bcm-rpi3
 	url = https://github.com/seemoo-lab/bcm-rpi3
+[submodule "mitmAP"]
+	path = mitmAP
+	url = https://github.com/xdavidhu/mitmAP
+[submodule "Rollmac"]
+	path = Rollmac
+	url = https://github.com/violentshell/Rollmac
