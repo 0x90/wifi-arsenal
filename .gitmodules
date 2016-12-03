@@ -1162,3 +1162,6 @@
 [submodule "Rollmac"]
 	path = Rollmac
 	url = https://github.com/violentshell/Rollmac
+[submodule "air-hammer"]
+	path = air-hammer
+	url = https://github.com/Wh1t3Rh1n0/air-hammer/
