@@ -1165,3 +1165,195 @@
 [submodule "air-hammer"]
 	path = air-hammer
 	url = https://github.com/Wh1t3Rh1n0/air-hammer/
+[submodule "iwzone"]
+	path = iwzone
+	url = https://github.com/bumby/iwzone
+[submodule "mass-deauthentication"]
+	path = mass-deauthentication
+	url = https://github.com/StoneDesigns/mass-deauthentication
+[submodule "802.11r"]
+	path = 802.11r
+	url = https://github.com/hd1de/802.11r
+[submodule "AirPirate"]
+	path = AirPirate
+	url = https://github.com/gat3way/AirPirate
+[submodule "react80211"]
+	path = react80211
+	url = https://github.com/fabriziogiuliano/react80211
+[submodule "DeSniffer"]
+	path = DeSniffer
+	url = https://github.com/wirelesshack/DeSniffer
+[submodule "802.11i-Analysis"]
+	path = 802.11i-Analysis
+	url = https://github.com/PeppeMir/802.11i-Analysis
+[submodule "dw"]
+	path = dw
+	url = https://github.com/ndyakov/dw
+[submodule "WiFi-802.11-Demo-Sniffer"]
+	path = WiFi-802.11-Demo-Sniffer
+	url = https://github.com/dcrisan/WiFi-802.11-Demo-Sniffer
+[submodule "WiFi-Analyzer"]
+	path = WiFi-Analyzer
+	url = https://github.com/b00sti/WiFi-Analyzer
+[submodule "Dot11Attacker"]
+	path = Dot11Attacker
+	url = https://github.com/haknmcaobin/Dot11Attacker
+[submodule "libfcap"]
+	path = libfcap
+	url = https://github.com/teddyyy/libfcap
+[submodule "NiFiCapture"]
+	path = NiFiCapture
+	url = https://github.com/CTurt/NiFiCapture
+[submodule "disable-802.11b-snmp"]
+	path = disable-802.11b-snmp
+	url = https://github.com/claymichaels/disable-802.11b-snmp
+[submodule "classIV"]
+	path = classIV
+	url = https://github.com/jkingsman/classIV
+[submodule "SSIDentity"]
+	path = SSIDentity
+	url = https://github.com/SamClarke2012/SSIDentity
+[submodule "801.11Project"]
+	path = 801.11Project
+	url = https://github.com/iceowl/801.11Project
+[submodule "wlan-macos"]
+	path = wlan-macos
+	url = https://github.com/sbxfc/wlan-macos
+[submodule "Wifi-monitor"]
+	path = Wifi-monitor
+	url = https://github.com/eye9poob/Wifi-monitor
+[submodule "kismet_baro"]
+	path = kismet_baro
+	url = https://github.com/scottjpack/kismet_baro
+[submodule "wobs"]
+	path = wobs
+	url = https://github.com/observ3r/wobs
+[submodule "autokwaker"]
+	path = autokwaker
+	url = https://github.com/pasdesignal/autokwaker
+[submodule "ScapyGELFtoGraylog2"]
+	path = ScapyGELFtoGraylog2
+	url = https://github.com/wouterbudding/ScapyGELFtoGraylog2
+[submodule "wi5-aggregation"]
+	path = wi5-aggregation
+	url = https://github.com/Wi5/wi5-aggregation
+[submodule "wifi-hacker"]
+	path = wifi-hacker
+	url = https://github.com/esc0rtd3w/wifi-hacker
+[submodule "WHAT-Pi"]
+	path = WHAT-Pi
+	url = https://github.com/smoz1986/WHAT-Pi
+[submodule "WHAT"]
+	path = WHAT
+	url = https://github.com/smoz1986/WHAT
+[submodule "ath_spectral"]
+	path = ath_spectral
+	url = https://github.com/LorenzoBianconi/ath_spectral
+[submodule "ieiit-kbp4111-80211"]
+	path = ieiit-kbp4111-80211
+	url = https://github.com/trama/ieiit-kbp4111-80211
+[submodule "wbc-utils"]
+	path = wbc-utils
+	url = https://github.com/skullkey/wbc-utils
+[submodule "Wave"]
+	path = Wave
+	url = https://github.com/hkparker/Wave
+[submodule "IEEE802.11-complete"]
+	path = IEEE802.11-complete
+	url = https://github.com/UtkMSNL/IEEE802.11-complete
+[submodule "fluxion"]
+	path = fluxion
+	url = https://github.com/deltaxflux/fluxion
+[submodule "Crippled"]
+	path = Crippled
+	url = https://github.com/Konsole512/Crippled
+[submodule "hostapd-wpe-auto"]
+	path = hostapd-wpe-auto
+	url = https://github.com/risataimpt/hostapd-wpe
+[submodule "parsecaps"]
+	path = parsecaps
+	url = https://github.com/sa7mon/parsecaps
+[submodule "rogueap-launcher"]
+	path = rogueap-launcher
+	url = https://github.com/wouter-glasswall/rogueap
+[submodule "startools"]
+	path = startools
+	url = https://github.com/sa7mon/startools
+[submodule "WifiTrafficAnalyzer"]
+	path = WifiTrafficAnalyzer
+	url = https://github.com/Bob-King/WifiTrafficAnalyzer
+[submodule "awesome-wifi-security"]
+	path = awesome-wifi-security
+	url = https://github.com/edelahozuah/awesome-wifi-security
+[submodule "Side-channel"]
+	path = Side-channel
+	url = https://github.com/UtkMSNL/Side-channel
+[submodule "WiFi-scheduling"]
+	path = WiFi-scheduling
+	url = https://github.com/UtkMSNL/WiFi-scheduling
+[submodule "ares"]
+	path = ares
+	url = https://github.com/deltaxflux/ares
+[submodule "Hijacker"]
+	path = Hijacker
+	url = https://github.com/chrisk44/Hijacker
+[submodule "Auto-mdk3_v02"]
+	path = Auto-mdk3_v02
+	url = https://github.com/Yokai-Seishinkage/Auto-mdk3_v02
+[submodule "mass-deauth"]
+	path = mass-deauth
+	url = https://github.com/Andy-Maclachlan/mass-deauth
+[submodule "mdk3_6.1"]
+	path = mdk3_6.1
+	url = https://github.com/ytisf/mdk3_6.1
+[submodule "mdk3"]
+	path = mdk3
+	url = git://git.kali.org/packages/mdk3.git
+[submodule "iStupid"]
+	path = iStupid
+	url = https://github.com/dinosec/iStupid
+[submodule "mass-deauth-attack"]
+	path = mass-deauth-attack
+	url = https://github.com/shunghsiyu/mass-deauth-attack
+[submodule "probr-analysis"]
+	path = probr-analysis
+	url = https://github.com/probr/probr-analysis
+[submodule "probr-core"]
+	path = probr-core
+	url = https://github.com/probr/probr-core
+[submodule "get-rssi"]
+	path = get-rssi
+	url = https://github.com/h3pr5tq/get-rssi
+[submodule "accumulation-rssi"]
+	path = accumulation-rssi
+	url = https://github.com/h3pr5tq/accumulation-rssi
+[submodule "geowifi"]
+	path = geowifi
+	url = https://github.com/yzfedora/geowifi
+[submodule "wit"]
+	path = wit
+	url = https://github.com/substack/wit
+[submodule "linux-wifi-tools"]
+	path = linux-wifi-tools
+	url = https://github.com/R2dR/linux-wifi-tools
+[submodule "linux-wifi-reconnector"]
+	path = linux-wifi-reconnector
+	url = https://github.com/dcorking/linux-wifi-reconnector
+[submodule "libuwifi"]
+	path = libuwifi
+	url = https://github.com/br101/libuwifi
+[submodule "Wifi-Signal-Plotter"]
+	path = Wifi-Signal-Plotter
+	url = https://github.com/s7jones/Wifi-Signal-Plotter
+[submodule "wime"]
+	path = wime
+	url = https://github.com/anburocky3/wime
+[submodule "wirelessjammer"]
+	path = wirelessjammer
+	url = https://github.com/phr34k0/wirelessjammer
+[submodule "WiPy"]
+	path = WiPy
+	url = https://github.com/bliz937/WiPy
+[submodule "platform-hostapd"]
+	path = platform-hostapd
+	url = https://github.com/experimental-platform/platform-hostapd
