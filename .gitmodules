@@ -1384,9 +1384,6 @@
 [submodule "whereami"]
 	path = whereami
 	url = https://github.com/kootenpv/whereami
-[submodule "linux-80211n-csitool"]
-	path = linux-80211n-csitool
-	url = https://github.com/dhalperi/linux-80211n-csitool
 [submodule "rollmac"]
 	path = rollmac
 	url = https://github.com/violentshell/rollmac
