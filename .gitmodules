@@ -1357,3 +1357,36 @@
 [submodule "platform-hostapd"]
 	path = platform-hostapd
 	url = https://github.com/experimental-platform/platform-hostapd
+[submodule "linux_wifi_config"]
+	path = linux_wifi_config
+	url = https://github.com/mytechia/linux_wifi_config
+[submodule "airodump_mar_attack"]
+	path = airodump_mar_attack
+	url = https://github.com/maroviher/airodump_mar_attack
+[submodule "Pwnstar9.0-for-WPA-Phishing"]
+	path = Pwnstar9.0-for-WPA-Phishing
+	url = https://github.com/musket33/Pwnstar9.0-for-WPA-Phishing
+[submodule "WifiDirectLinux"]
+	path = WifiDirectLinux
+	url = https://github.com/arplote/WifiDirectLinux
+[submodule "do-wifi"]
+	path = do-wifi
+	url = https://github.com/ealexeev/do-wifi
+[submodule "zizzania"]
+	path = zizzania
+	url = https://github.com/cyrus-and/zizzania
+[submodule "wifi-frequency-hacker"]
+	path = wifi-frequency-hacker
+	url = https://github.com/singe/wifi-frequency-hacker
+[submodule "access_points"]
+	path = access_points
+	url = https://github.com/kootenpv/access_points
+[submodule "whereami"]
+	path = whereami
+	url = https://github.com/kootenpv/whereami
+[submodule "linux-80211n-csitool"]
+	path = linux-80211n-csitool
+	url = https://github.com/dhalperi/linux-80211n-csitool
+[submodule "rollmac"]
+	path = rollmac
+	url = https://github.com/violentshell/rollmac
