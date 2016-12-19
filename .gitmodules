@@ -1387,3 +1387,6 @@
 [submodule "rollmac"]
 	path = rollmac
 	url = https://github.com/violentshell/rollmac
+[submodule "linux-80211n-csitool"]
+	path = linux-80211n-csitool
+	url = https://github.com/dhalperi/linux-80211n-csitool
