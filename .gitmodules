@@ -1393,3 +1393,15 @@
 [submodule "Wifi-Dumper"]
 	path = Wifi-Dumper
 	url = https://github.com/Viralmaniar/Wifi-Dumper
+[submodule "WifiDeauth"]
+	path = WifiDeauth
+	url = https://github.com/Revimal/WifiDeauth
+[submodule "wpa2hc"]
+	path = wpa2hc
+	url = https://github.com/historypeats/wpa2hc
+[submodule "WIRELESSINFO"]
+	path = WIRELESSINFO
+	url = https://github.com/rgupta9/WIRELESSINFO
+[submodule "Wireless-forensics-framework"]
+	path = Wireless-forensics-framework
+	url = https://github.com/nipunjaswal/Wireless-forensics-framework
