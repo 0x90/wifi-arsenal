@@ -1405,3 +1405,30 @@
 [submodule "Wireless-forensics-framework"]
 	path = Wireless-forensics-framework
 	url = https://github.com/nipunjaswal/Wireless-forensics-framework
+[submodule "disassociatedWiFi"]
+	path = disassociatedWiFi
+	url = https://github.com/bradleykirwan/disassociatedWiFi
+[submodule "VistaRFmon"]
+	path = VistaRFmon
+	url = https://github.com/inguardians/VistaRFmon
+[submodule "wifiJamMac"]
+	path = wifiJamMac
+	url = https://github.com/rajkotraja/wifiJamMac
+[submodule "osxwificrack"]
+	path = osxwificrack
+	url = git://git.code.sf.net/p/osxwificrack/code
+[submodule "wifi-pentesting"]
+	path = wifi-pentesting
+	url = https://github.com/baldwmic/wifi-pentesting
+[submodule "ee202a"]
+	path = ee202a
+	url = https://github.com/anchigel/ee202a
+[submodule "Eircog"]
+	path = Eircog
+	url = https://github.com/nosmo/Eircog
+[submodule "Aerial"]
+	path = Aerial
+	url = https://github.com/Nick-the-Greek/Aerial
+[submodule "kali-wireless"]
+	path = kali-wireless
+	url = https://github.com/rringler/kali-wireless
