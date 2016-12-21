@@ -1468,3 +1468,12 @@
 [submodule "wifiscanvisualizer"]
 	path = wifiscanvisualizer
 	url = https://github.com/securitytube/wifiscanvisualizer
+[submodule "JamWiFi"]
+	path = JamWiFi
+	url = https://github.com/unixpickle/JamWiFi
+[submodule "libs/libuwifi"]
+	path = libs/libuwifi
+	url = https://github.com/br101/libuwifi
+[submodule "autopwn/haircrack"]
+	path = autopwn/haircrack
+	url = https://github.com/AdamKnube/haircrack
