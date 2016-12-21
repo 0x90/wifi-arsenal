@@ -1432,3 +1432,36 @@
 [submodule "kali-wireless"]
 	path = kali-wireless
 	url = https://github.com/rringler/kali-wireless
+[submodule "connect-wifi"]
+	path = connect-wifi
+	url = https://github.com/mousam05/connect-wifi
+[submodule "wifi_based_population_estimator"]
+	path = wifi_based_population_estimator
+	url = https://github.com/siriuxy/wifi_based_population_estimator
+[submodule "python3-wifi"]
+	path = python3-wifi
+	url = https://github.com/llazzaro/python3-wifi
+[submodule "wifirxpower"]
+	path = wifirxpower
+	url = https://github.com/cnlohr/wifirxpower
+[submodule "ofxSniffer"]
+	path = ofxSniffer
+	url = https://github.com/HalfdanJ/ofxSniffer
+[submodule "wifi_monitor"]
+	path = wifi_monitor
+	url = https://github.com/dave5623/wifi_monitor
+[submodule "wifispy"]
+	path = wifispy
+	url = https://github.com/Geovation/wifispy
+[submodule "RadiusStats"]
+	path = RadiusStats
+	url = https://github.com/sillent/RadiusStats
+[submodule "rifsniff"]
+	path = rifsniff
+	url = https://github.com/dappiu/rifsniff
+[submodule "js-packet-injector"]
+	path = js-packet-injector
+	url = https://github.com/juzna/packet-injector
+[submodule "RogueDetection"]
+	path = RogueDetection
+	url = https://github.com/baggybin/RogueDetection
