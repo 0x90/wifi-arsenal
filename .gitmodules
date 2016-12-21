@@ -1465,3 +1465,6 @@
 [submodule "RogueDetection"]
 	path = RogueDetection
 	url = https://github.com/baggybin/RogueDetection
+[submodule "wifiscanvisualizer"]
+	path = wifiscanvisualizer
+	url = https://github.com/securitytube/wifiscanvisualizer
