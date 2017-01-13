@@ -1477,3 +1477,12 @@
 [submodule "autopwn/haircrack"]
 	path = autopwn/haircrack
 	url = https://github.com/AdamKnube/haircrack
+[submodule "python-wireless-attacks"]
+	path = python-wireless-attacks
+	url = https://github.com/jordan-wright/python-wireless-attacks
+[submodule "cherry"]
+	path = cherry
+	url = https://github.com/axilirator/cherry
+[submodule "WiFi-autopwner"]
+	path = WiFi-autopwner
+	url = https://github.com/Mi-Al/WiFi-autopwner.git
