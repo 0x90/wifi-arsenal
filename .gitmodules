@@ -1486,3 +1486,6 @@
 [submodule "WiFi-autopwner"]
 	path = WiFi-autopwner
 	url = https://github.com/Mi-Al/WiFi-autopwner.git
+[submodule "Python-Wi-Fi-Positioning-System"]
+	path = Python-Wi-Fi-Positioning-System
+	url = https://github.com/initbrain/Python-Wi-Fi-Positioning-System
