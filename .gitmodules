@@ -1489,3 +1489,6 @@
 [submodule "Python-Wi-Fi-Positioning-System"]
 	path = Python-Wi-Fi-Positioning-System
 	url = https://github.com/initbrain/Python-Wi-Fi-Positioning-System
+[submodule "find-lf"]
+	path = find-lf
+	url = https://github.com/schollz/find-lf
