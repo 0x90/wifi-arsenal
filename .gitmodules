@@ -1492,3 +1492,6 @@
 [submodule "find-lf"]
 	path = find-lf
 	url = https://github.com/schollz/find-lf
+[submodule "wifi-bruteforcer-fsecurify"]
+	path = wifi-bruteforcer-fsecurify
+	url = https://github.com/faizann24/wifi-bruteforcer-fsecurify
