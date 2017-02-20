@@ -277,9 +277,6 @@
 [submodule "pyReaver"]
 	path = pyReaver
 	url = https://github.com/byt3bl33d3r/pyReaver
-[submodule "pyrit"]
-	path = pyrit
-	url = https://github.com/0x90/pyrit
 [submodule "python-radiotap"]
 	path = python-radiotap
 	url = https://github.com/bcopeland/python-radiotap
