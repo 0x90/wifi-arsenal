@@ -1495,3 +1495,9 @@
 [submodule "wifi-bruteforcer-fsecurify"]
 	path = wifi-bruteforcer-fsecurify
 	url = https://github.com/faizann24/wifi-bruteforcer-fsecurify
+[submodule "WPSmash"]
+	path = WPSmash
+	url = https://github.com/DanMcInerney/WPSmash
+[submodule "FreeWifi"]
+	path = FreeWifi
+	url = https://github.com/kylemcdonald/FreeWifi
