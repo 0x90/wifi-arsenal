@@ -217,9 +217,6 @@
 [submodule "broadcom-wl-monitormode"]
 	path = broadcom-wl-monitormode
 	url = https://github.com/timofurrer/broadcom-wl-monitormode
-[submodule "packetspammer"]
-	path = packetspammer
-	url = git://git.warmcat.com/packetspammer.git
 [submodule "phystats"]
 	path = phystats
 	url = https://github.com/ransford/phystats
@@ -544,9 +541,6 @@
 [submodule "pythonAir"]
 	path = pythonAir
 	url = https://github.com/Slickness/pythonAir
-[submodule "android_external_wpa_supplicant_8_ath"]
-	path = android_external_wpa_supplicant_8_ath
-	url = https://github.com/danielhk/android_external_wpa_supplicant_8_ath
 [submodule "hostapd-rtl871xdrv"]
 	path = hostapd-rtl871xdrv
 	url = https://github.com/pritambaral/hostapd-rtl871xdrv
@@ -655,9 +649,6 @@
 [submodule "make-a-new-mac80211-to-wirelessAP"]
 	path = make-a-new-mac80211-to-wirelessAP
 	url = https://github.com/fhector/make-a-new-mac80211-to-wirelessAP
-[submodule "Minstrel-Blues"]
-	path = Minstrel-Blues
-	url = https://github.com/thuehn/Minstrel-Blues
 [submodule "setbssid"]
 	path = setbssid
 	url = https://github.com/sheenhx/setbssid
@@ -763,9 +754,6 @@
 [submodule "ciscowebauth"]
 	path = ciscowebauth
 	url = https://github.com/darizotas/ciscowebauth
-[submodule "dauth"]
-	path = dauth
-	url = https://github.com/roobre/dauth
 [submodule "ath10k-mesh"]
 	path = ath10k-mesh
 	url = https://github.com/bcopeland/ath10k-mesh
@@ -1015,9 +1003,6 @@
 [submodule "iwraw"]
 	path = iwraw
 	url = https://github.com/erstrom/iwraw
-[submodule "iwcap"]
-	path = iwcap
-	url = https://github.com/lrouter/iwcap
 [submodule "bully-android"]
 	path = bully-android
 	url = https://github.com/Droid-MAX/bully
@@ -1033,9 +1018,6 @@
 [submodule "ap-notify"]
 	path = ap-notify
 	url = https://github.com/doctaweeks/ap-notify
-[submodule "smd_wifi_monitor"]
-	path = smd_wifi_monitor
-	url = https://github.com/smd-ros-devel/smd_wifi_monitor
 [submodule "haircrack"]
 	path = haircrack
 	url = https://github.com/AdamKnube/haircrack
@@ -1288,9 +1270,6 @@
 [submodule "WiFi-scheduling"]
 	path = WiFi-scheduling
 	url = https://github.com/UtkMSNL/WiFi-scheduling
-[submodule "ares"]
-	path = ares
-	url = https://github.com/deltaxflux/ares
 [submodule "Hijacker"]
 	path = Hijacker
 	url = https://github.com/chrisk44/Hijacker
@@ -1411,9 +1390,6 @@
 [submodule "wifiJamMac"]
 	path = wifiJamMac
 	url = https://github.com/rajkotraja/wifiJamMac
-[submodule "osxwificrack"]
-	path = osxwificrack
-	url = git://git.code.sf.net/p/osxwificrack/code
 [submodule "wifi-pentesting"]
 	path = wifi-pentesting
 	url = https://github.com/baldwmic/wifi-pentesting
@@ -1498,3 +1474,9 @@
 [submodule "FreeWifi"]
 	path = FreeWifi
 	url = https://github.com/kylemcdonald/FreeWifi
+[submodule "BRUTEIT"]
+	path = BRUTEIT
+	url = https://github.com/cyclo-techtwister/BRUTEIT
+[submodule "WPAdiz"]
+	path = WPAdiz
+	url = https://github.com/leminski/WPAdiz
