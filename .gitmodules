@@ -1477,3 +1477,6 @@
 [submodule "WPAdiz"]
 	path = WPAdiz
 	url = https://github.com/leminski/WPAdiz
+[submodule "Pwnstar9-0-for-Kali-2016R1-2"]
+	path = Pwnstar9-0-for-Kali-2016R1-2
+	url = https://github.com/musket33/Pwnstar9-0-for-Kali-2016R1-2
