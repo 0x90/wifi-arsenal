@@ -1480,3 +1480,6 @@
 [submodule "KisMac2"]
 	path = KisMac2
 	url = https://github.com/IGRSoft/KisMac2
+[submodule "wifite-openwrt"]
+	path = wifite-openwrt
+	url = https://github.com/kbeflo/wifite-openwrt
