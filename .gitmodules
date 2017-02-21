@@ -250,9 +250,6 @@
 [submodule "pcap2xml"]
 	path = pcap2xml
 	url = https://github.com/securitytube/pcap2xml
-[submodule "piwat"]
-	path = piwat
-	url = https://github.com/0x90/piwat
 [submodule "pixiewps"]
 	path = pixiewps
 	url = https://github.com/wiire/pixiewps
