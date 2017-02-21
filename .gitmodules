@@ -139,9 +139,6 @@
 [submodule "karma"]
 	path = karma
 	url = https://github.com/atimorin/karma
-[submodule "KisMac2"]
-	path = KisMac2
-	url = https://github.com/IGRSoft/KisMac2
 [submodule "kismeth2earth"]
 	path = kismeth2earth
 	url = https://github.com/andreagrandi/kismeth2earth
@@ -1480,3 +1477,6 @@
 [submodule "Pwnstar9-0-for-Kali-2016R1-2"]
 	path = Pwnstar9-0-for-Kali-2016R1-2
 	url = https://github.com/musket33/Pwnstar9-0-for-Kali-2016R1-2
+[submodule "KisMac2"]
+	path = KisMac2
+	url = https://github.com/IGRSoft/KisMac2
