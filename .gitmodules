@@ -1483,3 +1483,6 @@
 [submodule "wifite-openwrt"]
 	path = wifite-openwrt
 	url = https://github.com/kbeflo/wifite-openwrt
+[submodule "osx-wificleaner"]
+	path = osx-wificleaner
+	url = https://github.com/mubix/osx-wificleaner
