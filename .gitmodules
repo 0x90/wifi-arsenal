@@ -1492,3 +1492,6 @@
 [submodule "WiBroute"]
 	path = WiBroute
 	url = https://github.com/Brom95/WiBroute
+[submodule "Domain-WIFILocate"]
+	path = Domain-WIFILocate
+	url = https://github.com/killswitch-GUI/Domain-WIFILocate
