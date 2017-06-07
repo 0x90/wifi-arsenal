@@ -1495,3 +1495,6 @@
 [submodule "Domain-WIFILocate"]
 	path = Domain-WIFILocate
 	url = https://github.com/killswitch-GUI/Domain-WIFILocate
+[submodule "ath9k-4W-patch2"]
+	path = ath9k-4W-patch2
+	url = https://github.com/rboninsegna/ath9k-4W-patch
