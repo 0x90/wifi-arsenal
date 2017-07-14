@@ -1498,3 +1498,12 @@
 [submodule "ath9k-4W-patch2"]
 	path = ath9k-4W-patch2
 	url = https://github.com/rboninsegna/ath9k-4W-patch
+[submodule "RogueSploit"]
+	path = RogueSploit
+	url = https://github.com/B4ckP0r7/RogueSploit
+[submodule "probeSniffer"]
+	path = probeSniffer
+	url = https://github.com/xdavidhu/probeSniffer
+[submodule "netattack"]
+	path = netattack
+	url = https://github.com/chrizator/netattack
