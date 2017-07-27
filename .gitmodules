@@ -1510,3 +1510,6 @@
 [submodule "hcxtools"]
 	path = hcxtools
 	url = https://github.com/ZerBea/hcxtools
+[submodule "wifi-cracking"]
+	path = wifi-cracking
+	url = https://github.com/brannondorsey/wifi-cracking
