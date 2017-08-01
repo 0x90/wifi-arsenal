@@ -1495,3 +1495,6 @@
 [submodule "wifi-cracking"]
 	path = wifi-cracking
 	url = https://github.com/brannondorsey/wifi-cracking
+[submodule "fluxion"]
+	path = fluxion
+	url = https://github.com/FluxionNetwork/fluxion
