@@ -385,9 +385,6 @@
 [submodule "WifiScanAndMap"]
 	path = WifiScanAndMap
 	url = https://github.com/cyberpython/WifiScanAndMap
-[submodule "WifiStalker"]
-	path = WifiStalker
-	url = https://github.com/blaa/WifiStalker
 [submodule "wifitap"]
 	path = wifitap
 	url = https://github.com/viscousliquid/wifitap
@@ -475,9 +472,6 @@
 [submodule "wraith"]
 	path = wraith
 	url = https://github.com/wraith-wireless/wraith
-[submodule "wreck"]
-	path = wreck
-	url = https://github.com/zombiesam/wreck
 [submodule "wspy"]
 	path = wspy
 	url = https://github.com/Nan-Do/wspy
@@ -997,9 +991,6 @@
 [submodule "iwraw"]
 	path = iwraw
 	url = https://github.com/erstrom/iwraw
-[submodule "bully-android"]
-	path = bully-android
-	url = https://github.com/Droid-MAX/bully
 [submodule "mitm-rogue-WiFi-AP"]
 	path = mitm-rogue-WiFi-AP
 	url = https://github.com/wshen0123/mitm-rogue-WiFi-AP
@@ -1135,15 +1126,9 @@
 [submodule "Rollmac"]
 	path = Rollmac
 	url = https://github.com/violentshell/Rollmac
-[submodule "air-hammer"]
-	path = air-hammer
-	url = https://github.com/Wh1t3Rh1n0/air-hammer/
 [submodule "iwzone"]
 	path = iwzone
 	url = https://github.com/bumby/iwzone
-[submodule "mass-deauthentication"]
-	path = mass-deauthentication
-	url = https://github.com/StoneDesigns/mass-deauthentication
 [submodule "802.11r"]
 	path = 802.11r
 	url = https://github.com/hd1de/802.11r
@@ -1234,9 +1219,6 @@
 [submodule "IEEE802.11-complete"]
 	path = IEEE802.11-complete
 	url = https://github.com/UtkMSNL/IEEE802.11-complete
-[submodule "fluxion"]
-	path = fluxion
-	url = https://github.com/deltaxflux/fluxion
 [submodule "Crippled"]
 	path = Crippled
 	url = https://github.com/Konsole512/Crippled
