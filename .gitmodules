@@ -1066,9 +1066,6 @@
 [submodule "hostapd-mana"]
 	path = hostapd-mana
 	url = https://github.com/adde88/hostapd-mana
-[submodule "Hostapd-with-Karma"]
-	path = Hostapd-with-Karma
-	url = https://github.com/StudentWan/Hostapd-with-Karma
 [submodule "kali_2_hostapd-wpe_installer"]
 	path = kali_2_hostapd-wpe_installer
 	url = https://github.com/inetsec/kali_2_hostapd-wpe_installer
