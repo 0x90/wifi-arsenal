@@ -1495,3 +1495,6 @@
 [submodule "fluxion"]
 	path = fluxion
 	url = https://github.com/FluxionNetwork/fluxion
+[submodule "BoopSuite"]
+	path = BoopSuite
+	url = https://github.com/MisterBianco/BoopSuite
