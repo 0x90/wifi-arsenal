@@ -1498,3 +1498,6 @@
 [submodule "BoopSuite"]
 	path = BoopSuite
 	url = https://github.com/MisterBianco/BoopSuite
+[submodule "airpwn-ng-new"]
+	path = airpwn-ng-new
+	url = https://github.com/ICSec/airpwn-ng
