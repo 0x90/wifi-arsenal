@@ -28,9 +28,6 @@
 [submodule "airport-sniffer"]
 	path = airport-sniffer
 	url = https://github.com/zhovner/airport-sniffer
-[submodule "airpwn"]
-	path = airpwn
-	url = https://github.com/M0Rf30/airpwn
 [submodule "airscan"]
 	path = airscan
 	url = https://github.com/trou/airscan
@@ -1123,9 +1120,6 @@
 [submodule "Rollmac"]
 	path = Rollmac
 	url = https://github.com/violentshell/Rollmac
-[submodule "iwzone"]
-	path = iwzone
-	url = https://github.com/bumby/iwzone
 [submodule "802.11r"]
 	path = 802.11r
 	url = https://github.com/hd1de/802.11r
