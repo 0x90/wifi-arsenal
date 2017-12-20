@@ -1495,3 +1495,9 @@
 [submodule "airpwn-ng-new"]
 	path = airpwn-ng-new
 	url = https://github.com/ICSec/airpwn-ng
+[submodule "wifikicker"]
+	path = wifikicker
+	url = https://github.com/viluhaxor/wifikicker
+[submodule "WiFiStat"]
+	path = WiFiStat
+	url = https://github.com/MarkLalor/WiFiStat
