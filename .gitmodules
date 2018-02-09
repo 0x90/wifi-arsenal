@@ -1501,3 +1501,6 @@
 [submodule "WiFiStat"]
 	path = WiFiStat
 	url = https://github.com/MarkLalor/WiFiStat
+[submodule "PiDense"]
+	path = PiDense
+	url = https://github.com/WiPi-Hunter/PiDense
