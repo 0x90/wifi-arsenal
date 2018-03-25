@@ -1024,9 +1024,6 @@
 [submodule "peapwn"]
 	path = peapwn
 	url = https://github.com/rpp0/peapwn
-[submodule "airpwn-ng"]
-	path = airpwn-ng
-	url = https://github.com/ICSec/airpwn-ng
 [submodule "kismet"]
 	path = kismet
 	url = https://github.com/kismetwireless/kismet
@@ -1492,9 +1489,6 @@
 [submodule "BoopSuite"]
 	path = BoopSuite
 	url = https://github.com/MisterBianco/BoopSuite
-[submodule "airpwn-ng-new"]
-	path = airpwn-ng-new
-	url = https://github.com/ICSec/airpwn-ng
 [submodule "wifikicker"]
 	path = wifikicker
 	url = https://github.com/viluhaxor/wifikicker
@@ -1504,3 +1498,42 @@
 [submodule "PiDense"]
 	path = PiDense
 	url = https://github.com/WiPi-Hunter/PiDense
+[submodule "wifi-txpower-unlocker"]
+	path = wifi-txpower-unlocker
+	url = https://github.com/Manouchehri/wifi-txpower-unlocker
+[submodule "packetEssentials"]
+	path = packetEssentials
+	url = https://github.com/ICSec/packetEssentials
+[submodule "foxHunter"]
+	path = foxHunter
+	url = https://github.com/ICSec/foxHunter
+[submodule "Chura-Liya"]
+	path = Chura-Liya
+	url = https://github.com/ICSec/Chura-Liya
+[submodule "kSnarf"]
+	path = kSnarf
+	url = https://github.com/ICSec/kSnarf
+[submodule "pyDot11"]
+	path = pyDot11
+	url = https://github.com/ICSec/pyDot11
+[submodule "airpwn-ng"]
+	path = airpwn-ng
+	url = https://github.com/ICSec/airpwn-ng
+[submodule "wavecrack"]
+	path = wavecrack
+	url = https://github.com/wavestone-cdt/wavecrack
+[submodule "PiKarma"]
+	path = PiKarma
+	url = https://github.com/WiPi-Hunter/PiKarma
+[submodule "PiSavar"]
+	path = PiSavar
+	url = https://github.com/WiPi-Hunter/PiSavar
+[submodule "PiFinger"]
+	path = PiFinger
+	url = https://github.com/WiPi-Hunter/PiFinger
+[submodule "WiFi-Miner-Detector"]
+	path = WiFi-Miner-Detector
+	url = https://github.com/360PegasusTeam/WiFi-Miner-Detector
+[submodule "sparrow-wifi"]
+	path = sparrow-wifi
+	url = https://github.com/ghostop14/sparrow-wifi
