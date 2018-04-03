@@ -1537,3 +1537,6 @@
 [submodule "sparrow-wifi"]
 	path = sparrow-wifi
 	url = https://github.com/ghostop14/sparrow-wifi
+[submodule "P4wnP1_WiFi_covert_channel_client"]
+	path = P4wnP1_WiFi_covert_channel_client
+	url = https://github.com/mame82/P4wnP1_WiFi_covert_channel_client
