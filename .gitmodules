@@ -1549,3 +1549,9 @@
 [submodule "airpydump"]
 	path = airpydump
 	url = https://github.com/hash3liZer/airpydump
+[submodule "eaphammer"]
+	path = eaphammer
+	url = https://github.com/s0lst1c3/eaphammer
+[submodule "PSKracker"]
+	path = PSKracker
+	url = https://github.com/soxrok2212/PSKracker
