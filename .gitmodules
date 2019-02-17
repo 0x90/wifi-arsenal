@@ -1540,3 +1540,12 @@
 [submodule "P4wnP1_WiFi_covert_channel_client"]
 	path = P4wnP1_WiFi_covert_channel_client
 	url = https://github.com/mame82/P4wnP1_WiFi_covert_channel_client
+[submodule "WiFiJammer.py"]
+	path = WiFiJammer.py
+	url = https://github.com/hash3liZer/WiFiJammer.py
+[submodule "WiFiBroot"]
+	path = WiFiBroot
+	url = https://github.com/hash3liZer/WiFiBroot
+[submodule "airpydump"]
+	path = airpydump
+	url = https://github.com/hash3liZer/airpydump
