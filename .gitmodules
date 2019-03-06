@@ -1579,3 +1579,6 @@
 [submodule "wifikill"]
 	path = wifikill
 	url = https://github.com/roglew/wifikill
+[submodule "mdk4"]
+	path = mdk4
+	url = https://github.com/aircrack-ng/mdk4
