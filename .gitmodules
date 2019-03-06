@@ -1555,3 +1555,6 @@
 [submodule "PSKracker"]
 	path = PSKracker
 	url = https://github.com/soxrok2212/PSKracker
+[submodule "wirespy"]
+	path = wirespy
+	url = https://github.com/AresS31/wirespy
