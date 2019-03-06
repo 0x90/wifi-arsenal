@@ -1558,3 +1558,24 @@
 [submodule "wirespy"]
 	path = wirespy
 	url = https://github.com/AresS31/wirespy
+[submodule "dwpa"]
+	path = dwpa
+	url = https://github.com/RealEnder/dwpa
+[submodule "roguehostapd"]
+	path = roguehostapd
+	url = https://github.com/wifiphisher/roguehostapd
+[submodule "probequest"]
+	path = probequest
+	url = https://github.com/SkypLabs/probequest
+[submodule "rogue"]
+	path = rogue
+	url = https://github.com/InfamousSYN/rogue
+[submodule "krackattacks-scripts"]
+	path = krackattacks-scripts
+	url = https://github.com/vanhoefm/krackattacks-scripts
+[submodule "evilportals"]
+	path = evilportals
+	url = https://github.com/kbeflo/evilportals
+[submodule "wifikill"]
+	path = wifikill
+	url = https://github.com/roglew/wifikill
