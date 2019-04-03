@@ -1582,3 +1582,33 @@
 [submodule "mdk4"]
 	path = mdk4
 	url = https://github.com/aircrack-ng/mdk4
+[submodule "krackattacks"]
+	path = krackattacks
+	url = https://github.com/vanhoefm/krackattacks
+[submodule "krackinfo"]
+	path = krackinfo
+	url = https://github.com/kristate/krackinfo
+[submodule "krackdetector"]
+	path = krackdetector
+	url = https://github.com/securingsam/krackdetector
+[submodule "KRACKDetection"]
+	path = KRACKDetection
+	url = https://github.com/IronMage/KRACKDetection
+[submodule "krackattacks-poc-zerokey"]
+	path = krackattacks-poc-zerokey
+	url = https://github.com/vanhoefm/krackattacks-poc-zerokey
+[submodule "Krack-wps"]
+	path = Krack-wps
+	url = https://github.com/Programmuser/Krack-wps
+[submodule "KRACK-toolkit"]
+	path = KRACK-toolkit
+	url = https://github.com/omaidf/KRACK-toolkit
+[submodule "WPA2-KRACK"]
+	path = WPA2-KRACK
+	url = https://github.com/jiansiting/WPA2-KRACK
+[submodule "wpseyes"]
+	path = wpseyes
+	url = https://github.com/h4ckzard/wpseyes
+[submodule "Thesis"]
+	path = Thesis
+	url = https://github.com/grazianomarallo/Thesis
