@@ -1612,3 +1612,57 @@
 [submodule "Thesis"]
 	path = Thesis
 	url = https://github.com/grazianomarallo/Thesis
+[submodule "PCAP-CRACKER"]
+	path = PCAP-CRACKER
+	url = https://github.com/BroadbentT/PCAP-CRACKER
+[submodule "krackattacks-Test-Vulnerability"]
+	path = krackattacks-Test-Vulnerability
+	url = https://github.com/p5panam/krackattacks-Test-Vulnerability
+[submodule "krackattack-all-zero-tk-key"]
+	path = krackattack-all-zero-tk-key
+	url = https://github.com/lucascouto/krackattack-all-zero-tk-key
+[submodule "KrackPlus"]
+	path = KrackPlus
+	url = https://github.com/fwalloe/KrackPlus
+[submodule "KrackAttack"]
+	path = KrackAttack
+	url = https://github.com/Guppster/KrackAttack
+[submodule "krack-poc"]
+	path = krack-poc
+	url = https://github.com/Hackndo/krack-poc
+[submodule "KRACK"]
+	path = KRACK
+	url = https://github.com/chinatso/KRACK
+[submodule "krackattacks-pineapple"]
+	path = krackattacks-pineapple
+	url = https://github.com/adde88/krackattacks-pineapple
+[submodule "wifite2mod"]
+	path = wifite2mod
+	url = https://github.com/nuncan/wifite2mod
+[submodule "wifite2-docker"]
+	path = wifite2-docker
+	url = https://github.com/random-robbie/wifite2-docker
+[submodule "wifiteintaller"]
+	path = wifiteintaller
+	url = https://github.com/zonesecure/wifiteintaller
+[submodule "WiFite2-RPi3-nexmon"]
+	path = WiFite2-RPi3-nexmon
+	url = https://github.com/awesome-pentest-gadgets/WiFite2-RPi3-nexmon
+[submodule "CODEX"]
+	path = CODEX
+	url = https://github.com/DEADSEC-SECURITY/CODEX
+[submodule "Tools-Airgeddon"]
+	path = Tools-Airgeddon
+	url = https://github.com/wahyu227/Tools-Airgeddon
+[submodule "nabui"]
+	path = nabui
+	url = https://github.com/KhasMek/nabui
+[submodule "ninjaberry"]
+	path = ninjaberry
+	url = https://github.com/mrusme/ninjaberry
+[submodule "easy-bettercap"]
+	path = easy-bettercap
+	url = https://github.com/bootes-void/easy-bettercap
+[submodule "krack"]
+	path = krack
+	url = https://github.com/tolgahanakgun/krack
