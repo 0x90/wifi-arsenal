@@ -1666,3 +1666,6 @@
 [submodule "krack"]
 	path = krack
 	url = https://github.com/tolgahanakgun/krack
+[submodule "piwifipineapple"]
+	path = piwifipineapple
+	url = https://github.com/f1rsty/piwifipineapple.git
