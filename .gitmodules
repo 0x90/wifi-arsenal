@@ -1669,3 +1669,6 @@
 [submodule "piwifipineapple"]
 	path = piwifipineapple
 	url = https://github.com/f1rsty/piwifipineapple.git
+[submodule "PINEAPPLE"]
+	path = PINEAPPLE
+	url = https://github.com/charlieporth1/PINEAPPLE
