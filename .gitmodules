@@ -1672,3 +1672,21 @@
 [submodule "PINEAPPLE"]
 	path = PINEAPPLE
 	url = https://github.com/charlieporth1/PINEAPPLE
+[submodule "Wifi-Cracker"]
+	path = Wifi-Cracker
+	url = https://github.com/BadAppsDevelopment/Wifi-Cracker
+[submodule "OneShot"]
+	path = OneShot
+	url = https://github.com/drygdryg/OneShot
+[submodule "easy-hcx"]
+	path = easy-hcx
+	url = https://github.com/t3chnocat/easy-hcx
+[submodule "pmkid-extractor"]
+	path = pmkid-extractor
+	url = https://github.com/davidetestoni/pmkid-extractor
+[submodule "wpa2-enterprise-attack"]
+	path = wpa2-enterprise-attack
+	url = https://github.com/ricardojoserf/wpa2-enterprise-attack
+[submodule "WirelessMayhem"]
+	path = WirelessMayhem
+	url = https://github.com/c0mix/WirelessMayhem
