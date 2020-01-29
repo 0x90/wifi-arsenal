@@ -1690,3 +1690,6 @@
 [submodule "WirelessMayhem"]
 	path = WirelessMayhem
 	url = https://github.com/c0mix/WirelessMayhem
+[submodule "openwifi"]
+	path = openwifi
+	url = https://github.com/open-sdr/openwifi
