@@ -1624,3 +1624,6 @@
 [submodule "wifi-monitor"]
 	path = wifi-monitor
 	url = https://github.com/eye9poob/Wifi-monitor
+[submodule "hostapd-mana-openwrt"]
+	path = hostapd-mana-openwrt
+	url = https://github.com/adde88/hostapd-mana-openwrt
