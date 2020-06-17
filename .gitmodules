@@ -352,9 +352,6 @@
 [submodule "wifi-locator"]
 	path = wifi-locator
 	url = https://github.com/clockfort/wifi-locator
-[submodule "wifi-monitor"]
-	path = wifi-monitor
-	url = https://github.com/tadashi/wifi-monitor
 [submodule "wifi-scan"]
 	path = wifi-scan
 	url = https://bitbucket.org/edkeeble/wifi-scan
