@@ -1024,9 +1024,6 @@
 [submodule "hostapd-mana-openwrt"]
 	path = hostapd-mana-openwrt
 	url = https://github.com/adde88/hostapd-mana-openwrt
-[submodule "hostapd-mana"]
-	path = hostapd-mana
-	url = https://github.com/adde88/hostapd-mana
 [submodule "gr-ieee80211ah"]
 	path = gr-ieee80211ah
 	url = https://github.com/zitouni/gr-ieee80211ah
