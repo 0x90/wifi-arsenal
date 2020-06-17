@@ -262,9 +262,6 @@
 [submodule "pylorcon2"]
 	path = pylorcon2
 	url = https://github.com/tom5760/pylorcon2
-[submodule "pyReaver"]
-	path = pyReaver
-	url = https://github.com/byt3bl33d3r/pyReaver
 [submodule "python-radiotap"]
 	path = python-radiotap
 	url = https://github.com/bcopeland/python-radiotap
@@ -532,9 +529,6 @@
 [submodule "hostapd-rtl"]
 	path = hostapd-rtl
 	url = https://github.com/jekader/hostapd-rtl
-[submodule "rogue_ap"]
-	path = rogue_ap
-	url = https://github.com/andrew14824/rogue_ap
 [submodule "WPA_DECRYPTION_MPI"]
 	path = WPA_DECRYPTION_MPI
 	url = https://github.com/shagrath89m/WPA_DECRYPTION_MPI
@@ -910,9 +904,6 @@
 [submodule "curscout"]
 	path = curscout
 	url = https://github.com/bennett-elder/curscout
-[submodule "uniband-installer"]
-	path = uniband-installer
-	url = https://github.com/wi-fi-analyzer/uniband-installer
 [submodule "smoothie"]
 	path = smoothie
 	url = https://github.com/XayOn/smoothie
@@ -1039,9 +1030,6 @@
 [submodule "hostapd-mana"]
 	path = hostapd-mana
 	url = https://github.com/adde88/hostapd-mana
-[submodule "kali_2_hostapd-wpe_installer"]
-	path = kali_2_hostapd-wpe_installer
-	url = https://github.com/inetsec/kali_2_hostapd-wpe_installer
 [submodule "gr-ieee80211ah"]
 	path = gr-ieee80211ah
 	url = https://github.com/zitouni/gr-ieee80211ah
@@ -1057,9 +1045,6 @@
 [submodule "mac80211-user"]
 	path = mac80211-user
 	url = https://github.com/chillancezen/mac80211-user
-[submodule "pyWPSLocalisation"]
-	path = pyWPSLocalisation
-	url = https://github.com/akrv/pyWPSLocalisation
 [submodule "kismet-deauth-wpa2-handshake-plugin"]
 	path = kismet-deauth-wpa2-handshake-plugin
 	url = https://github.com/ph4r05/kismet-deauth-wpa2-handshake-plugin
@@ -1411,9 +1396,6 @@
 [submodule "BRUTEIT"]
 	path = BRUTEIT
 	url = https://github.com/cyclo-techtwister/BRUTEIT
-[submodule "WPAdiz"]
-	path = WPAdiz
-	url = https://github.com/leminski/WPAdiz
 [submodule "Pwnstar9-0-for-Kali-2016R1-2"]
 	path = Pwnstar9-0-for-Kali-2016R1-2
 	url = https://github.com/musket33/Pwnstar9-0-for-Kali-2016R1-2
@@ -1480,9 +1462,6 @@
 [submodule "Chura-Liya"]
 	path = Chura-Liya
 	url = https://github.com/ICSec/Chura-Liya
-[submodule "kSnarf"]
-	path = kSnarf
-	url = https://github.com/ICSec/kSnarf
 [submodule "pyDot11"]
 	path = pyDot11
 	url = https://github.com/ICSec/pyDot11
