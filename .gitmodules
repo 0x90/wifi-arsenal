@@ -1501,9 +1501,6 @@
 [submodule "mdk4"]
 	path = mdk4
 	url = https://github.com/aircrack-ng/mdk4
-[submodule "krackattacks"]
-	path = krackattacks
-	url = https://github.com/vanhoefm/krackattacks
 [submodule "krackinfo"]
 	path = krackinfo
 	url = https://github.com/kristate/krackinfo
