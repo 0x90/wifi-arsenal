@@ -1018,9 +1018,6 @@
 [submodule "gr-ieee802-11"]
 	path = gr-ieee802-11
 	url = https://github.com/bastibl/gr-ieee802-11
-[submodule "hostapd-mana-openwrt"]
-	path = hostapd-mana-openwrt
-	url = https://github.com/adde88/hostapd-mana-openwrt
 [submodule "gr-ieee80211ah"]
 	path = gr-ieee80211ah
 	url = https://github.com/zitouni/gr-ieee80211ah
