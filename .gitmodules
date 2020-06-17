@@ -1615,3 +1615,174 @@
 [submodule "PyRIC"]
 	path = PyRIC
 	url = https://github.com/wraith-wireless/PyRIC
+[submodule "geoprobe"]
+	path = geoprobe
+	url = https://github.com/Nirei/geoprobe
+[submodule "wifiexplorer-sensor"]
+	path = wifiexplorer-sensor
+	url = https://github.com/adriangranados/wifiexplorer-sensor
+[submodule "Probe-Hunter"]
+	path = Probe-Hunter
+	url = https://github.com/mgp25/Probe-Hunter
+[submodule "Peanuts"]
+	path = Peanuts
+	url = https://github.com/NoobieDog/Peanuts
+[submodule "krackattacks"]
+	path = krackattacks
+	url = https://github.com/vanhoefm/krackattacks
+[submodule "WifiBF"]
+	path = WifiBF
+	url = https://github.com/Squuv/WifiBF
+[submodule "wifipumpkin3"]
+	path = wifipumpkin3
+	url = https://github.com/P0cL4bs/wifipumpkin3
+[submodule "wids-wips"]
+	path = wids-wips
+	url = https://github.com/pbalogh-sa/wids-wips
+[submodule "RogueAP-Detector"]
+	path = RogueAP-Detector
+	url = https://github.com/anotherik/RogueAP-Detector
+[submodule "Wall-of-Shame"]
+	path = Wall-of-Shame
+	url = https://github.com/teambi0s/Wall-of-Shame
+[submodule "ManaToolkit"]
+	path = ManaToolkit
+	url = https://github.com/adde88/ManaToolkit
+[submodule "etd"]
+	path = etd
+	url = https://github.com/stavinski/etd
+[submodule "WiFiHunter"]
+	path = WiFiHunter
+	url = https://github.com/MA24th/WiFiHunter
+[submodule "hcx-wifite"]
+	path = hcx-wifite
+	url = https://github.com/overmod1/hcx-wifite
+[submodule "krackattacks-test-ap-ft"]
+	path = krackattacks-test-ap-ft
+	url = https://github.com/d30sa1/krackattacks-test-ap-ft
+[submodule "Wireless_peeker"]
+	path = Wireless_peeker
+	url = https://github.com/FXShu/Wireless_peeker
+[submodule "AircrackPy"]
+	path = AircrackPy
+	url = https://github.com/4nth0nySLT/AircrackPy
+[submodule "wpasnff"]
+	path = wpasnff
+	url = https://github.com/dredge17/wpasnff
+[submodule "invasit-network"]
+	path = invasit-network
+	url = https://github.com/valvesss/invasit-network
+[submodule "wpakey"]
+	path = wpakey
+	url = https://github.com/rofl0r/wpakey
+[submodule "wifibang"]
+	path = wifibang
+	url = https://github.com/Leviathan36/wifibang
+[submodule "Noon"]
+	path = Noon
+	url = https://github.com/cristi092/Noon
+[submodule "eewids"]
+	path = eewids
+	url = https://github.com/techge/eewids
+[submodule "Auto-Besside-Capturer"]
+	path = Auto-Besside-Capturer
+	url = https://github.com/sethleedy/Auto-Besside-Capturer
+[submodule "phalloc-sniffer"]
+	path = phalloc-sniffer
+	url = https://github.com/phalloc/phalloc-sniffer
+[submodule "beaconleak"]
+	path = beaconleak
+	url = https://github.com/cjcase/beaconleak
+[submodule "wifiBuddy"]
+	path = wifiBuddy
+	url = https://github.com/s0m3-1/wifiBuddy
+[submodule "wpa2own"]
+	path = wpa2own
+	url = https://github.com/philcryer/wpa2own
+[submodule "capbreaker"]
+	path = capbreaker
+	url = https://github.com/ghsi10/capbreaker
+[submodule "KeyGrab"]
+	path = KeyGrab
+	url = https://github.com/ryansisco/KeyGrab
+[submodule "probequest-framework"]
+	path = probequest-framework
+	url = https://github.com/SkypLabs/probequest
+[submodule "Dot11Hunter"]
+	path = Dot11Hunter
+	url = https://github.com/SecHeart/Dot11Hunter
+[submodule "anubis"]
+	path = anubis
+	url = https://github.com/sundaysec/anubis
+[submodule "wifimitm"]
+	path = wifimitm
+	url = https://github.com/mvondracek/wifimitm
+[submodule "wifi-mac-tracking"]
+	path = wifi-mac-tracking
+	url = https://github.com/rpp0/wifi-mac-tracking
+[submodule "FakeAP-other"]
+	path = FakeAP-other
+	url = https://github.com/vtr0n/FakeAP
+[submodule "jfap"]
+	path = jfap
+	url = https://github.com/jduck/jfap
+[submodule "pyfi"]
+	path = pyfi
+	url = https://github.com/IsmaelRLG/pyfi
+[submodule "dot11anonymizer"]
+	path = dot11anonymizer
+	url = https://github.com/adriangranados/dot11anonymizer
+[submodule "wifi_landing_2"]
+	path = wifi_landing_2
+	url = https://github.com/argaon/wifi_landing_2
+[submodule "deauth_dot11decrypt"]
+	path = deauth_dot11decrypt
+	url = https://github.com/WeareJoker/deauth_dot11decrypt
+[submodule "scapy-dot11-toolkit"]
+	path = scapy-dot11-toolkit
+	url = https://github.com/zachMelody/scapy-dot11-toolkit
+[submodule "Dot11Monitoring"]
+	path = Dot11Monitoring
+	url = https://github.com/Inkln/Dot11Monitoring
+[submodule "widowmaker"]
+	path = widowmaker
+	url = https://github.com/violentshell/widowmaker
+[submodule "pinecone"]
+	path = pinecone
+	url = https://github.com/pinecone-wifi/pinecone
+[submodule "FakeAuth"]
+	path = FakeAuth
+	url = https://github.com/scriptedp0ison/FakeAuth
+[submodule "refluxion"]
+	path = refluxion
+	url = https://github.com/chinarulezzz/refluxion
+[submodule "WiFiSuite"]
+	path = WiFiSuite
+	url = https://github.com/NickSanzotta/WiFiSuite
+[submodule "python-wifi-survey-heatmap"]
+	path = python-wifi-survey-heatmap
+	url = https://github.com/jantman/python-wifi-survey-heatmap
+[submodule "wifi-configurator"]
+	path = wifi-configurator
+	url = https://github.com/ConnectBox/wifi-configurator
+[submodule "hashcatch"]
+	path = hashcatch
+	url = https://github.com/staz0t/hashcatch
+[submodule "nzyme"]
+	path = nzyme
+	url = https://github.com/lennartkoopmann/nzyme
+[submodule "wifi-pentesting-guide"]
+	path = wifi-pentesting-guide
+	url = https://github.com/ricardojoserf/wifi-pentesting-guide
+[submodule "raw-packet"]
+	path = raw-packet
+	url = https://github.com/raw-packet/raw-packet
+[submodule "Curfew"]
+	path = Curfew
+	url = https://github.com/RavSS/Curfew
+[submodule "wombat"]
+	path = wombat
+	url = https://github.com/Perdu/wombat
+[submodule "panoptiphone"]
+	path = panoptiphone
+	url = https://github.com/Perdu/panoptiphone
