@@ -1165,9 +1165,6 @@
 [submodule "Wave"]
 	path = Wave
 	url = https://github.com/hkparker/Wave
-[submodule "IEEE802.11-complete"]
-	path = IEEE802.11-complete
-	url = https://github.com/UtkMSNL/IEEE802.11-complete
 [submodule "Crippled"]
 	path = Crippled
 	url = https://github.com/Konsole512/Crippled
