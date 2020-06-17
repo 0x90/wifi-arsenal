@@ -577,9 +577,6 @@
 [submodule "atheros_library"]
 	path = atheros_library
 	url = https://github.com/Noltari/atheros_library
-[submodule "Atheros-AR9271"]
-	path = Atheros-AR9271
-	url = https://github.com/aaronkish/Atheros-AR9271
 [submodule "py_DD_WRT_Remote_Mac_Adder"]
 	path = py_DD_WRT_Remote_Mac_Adder
 	url = https://github.com/mzhaase/py_DD_WRT_Remote_Mac_Adder
