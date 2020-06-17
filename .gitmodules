@@ -916,9 +916,6 @@
 [submodule "uniband-installer"]
 	path = uniband-installer
 	url = https://github.com/wi-fi-analyzer/uniband-installer
-[submodule "wlandecrypter"]
-	path = wlandecrypter
-	url = https://github.com/wi-fi-analyzer/wlandecrypter
 [submodule "smoothie"]
 	path = smoothie
 	url = https://github.com/XayOn/smoothie
