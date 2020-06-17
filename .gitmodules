@@ -775,9 +775,6 @@
 [submodule "android_reaver-wps"]
 	path = android_reaver-wps
 	url = https://github.com/kriswebdev/android_reaver-wps
-[submodule "reaver_reattempt"]
-	path = reaver_reattempt
-	url = https://github.com/Oweoqi/reaver_reattempt
 [submodule "reaver-ui"]
 	path = reaver-ui
 	url = https://github.com/deoxxa/reaver-ui
@@ -1210,9 +1207,6 @@
 [submodule "mdk3_6.1"]
 	path = mdk3_6.1
 	url = https://github.com/ytisf/mdk3_6.1
-[submodule "mdk3"]
-	path = mdk3
-	url = git://git.kali.org/packages/mdk3.git
 [submodule "iStupid"]
 	path = iStupid
 	url = https://github.com/dinosec/iStupid
@@ -1456,9 +1450,6 @@
 [submodule "packetEssentials"]
 	path = packetEssentials
 	url = https://github.com/ICSec/packetEssentials
-[submodule "foxHunter"]
-	path = foxHunter
-	url = https://github.com/ICSec/foxHunter
 [submodule "Chura-Liya"]
 	path = Chura-Liya
 	url = https://github.com/ICSec/Chura-Liya
