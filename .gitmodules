@@ -1120,9 +1120,6 @@
 [submodule "wlan-macos"]
 	path = wlan-macos
 	url = https://github.com/sbxfc/wlan-macos
-[submodule "Wifi-monitor"]
-	path = Wifi-monitor
-	url = https://github.com/eye9poob/Wifi-monitor
 [submodule "kismet_baro"]
 	path = kismet_baro
 	url = https://github.com/scottjpack/kismet_baro
@@ -1629,4 +1626,4 @@
 	url = https://github.com/sensepost/hostapd-mana
 [submodule "wifi-monitor"]
 	path = wifi-monitor
-	url = https://github.com/tadashi/wifi-monitor/
+	url = https://github.com/eye9poob/Wifi-monitor
