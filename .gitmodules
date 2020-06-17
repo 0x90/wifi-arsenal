@@ -958,9 +958,6 @@
 [submodule "mitm-rogue-WiFi-AP"]
 	path = mitm-rogue-WiFi-AP
 	url = https://github.com/wshen0123/mitm-rogue-WiFi-AP
-[submodule "pyric"]
-	path = pyric
-	url = https://github.com/wraith-wireless/pyric
 [submodule "mupe"]
 	path = mupe
 	url = https://github.com/DE-IBH/mupe
@@ -982,9 +979,6 @@
 [submodule "itamae"]
 	path = itamae
 	url = https://github.com/wraith-wireless/itamae
-[submodule "PyRIC"]
-	path = PyRIC
-	url = https://github.com/wraith-wireless/PyRIC
 [submodule "aggr-inject"]
 	path = aggr-inject
 	url = https://github.com/rpp0/aggr-inject
