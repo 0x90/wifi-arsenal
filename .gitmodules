@@ -1627,3 +1627,6 @@
 [submodule "hostapd-mana"]
 	path = hostapd-mana
 	url = https://github.com/sensepost/hostapd-mana
+[submodule "wifi-monitor"]
+	path = wifi-monitor
+	url = https://github.com/tadashi/wifi-monitor/
