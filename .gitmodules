@@ -1627,3 +1627,6 @@
 [submodule "openwifi"]
 	path = openwifi
 	url = https://github.com/open-sdr/openwifi
+[submodule "hostapd-mana"]
+	path = hostapd-mana
+	url = https://github.com/sensepost/hostapd-mana
