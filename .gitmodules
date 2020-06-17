@@ -595,9 +595,6 @@
 [submodule "PiWAT2"]
 	path = PiWAT2
 	url = https://github.com/Crypt0s/PiWAT
-[submodule "airspf"]
-	path = airspf
-	url = https://github.com/davll/airspf
 [submodule "Burgess"]
 	path = Burgess
 	url = https://github.com/Jtfinlay/Burgess
@@ -925,9 +922,6 @@
 [submodule "wireless"]
 	path = wireless
 	url = https://github.com/joshvillbrandt/wireless
-[submodule "airoscriptng"]
-	path = airoscriptng
-	url = https://github.com/wi-fi-analyzer/airoscriptng
 [submodule "osx-wifi-scan"]
 	path = osx-wifi-scan
 	url = https://github.com/kornysietsma/osx-wifi-scan
@@ -1027,9 +1021,6 @@
 [submodule "TCP-SeqNum"]
 	path = TCP-SeqNum
 	url = https://github.com/bwoolf1122/TCP-SeqNum
-[submodule "WifiAttack"]
-	path = WifiAttack
-	url = https://github.com/AbbySec/WifiAttack
 [submodule "Armory"]
 	path = Armory
 	url = https://github.com/justinbeatz/Armory
@@ -1294,12 +1285,6 @@
 [submodule "Pwnstar9.0-for-WPA-Phishing"]
 	path = Pwnstar9.0-for-WPA-Phishing
 	url = https://github.com/musket33/Pwnstar9.0-for-WPA-Phishing
-[submodule "WifiDirectLinux"]
-	path = WifiDirectLinux
-	url = https://github.com/arplote/WifiDirectLinux
-[submodule "do-wifi"]
-	path = do-wifi
-	url = https://github.com/ealexeev/do-wifi
 [submodule "zizzania"]
 	path = zizzania
 	url = https://github.com/cyrus-and/zizzania
