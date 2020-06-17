@@ -853,9 +853,6 @@
 [submodule "EvilAP_Defender"]
 	path = EvilAP_Defender
 	url = https://github.com/moha99sa/EvilAP_Defender
-[submodule "wifihisicipy"]
-	path = wifihisicipy
-	url = https://github.com/saljam/wifihisicipy
 [submodule "BitcoinWifi"]
 	path = BitcoinWifi
 	url = https://github.com/ragmondo/BitcoinWifi
@@ -871,9 +868,6 @@
 [submodule "madwifi-hopping"]
 	path = madwifi-hopping
 	url = https://github.com/paulpatras/madwifi-hopping
-[submodule "Secpi"]
-	path = Secpi
-	url = https://github.com/nrohsak/Secpi
 [submodule "openwifimap-api"]
 	path = openwifimap-api
 	url = https://github.com/freifunk/openwifimap-api
@@ -1351,9 +1345,6 @@
 [submodule "wifiJamMac"]
 	path = wifiJamMac
 	url = https://github.com/rajkotraja/wifiJamMac
-[submodule "wifi-pentesting"]
-	path = wifi-pentesting
-	url = https://github.com/baldwmic/wifi-pentesting
 [submodule "ee202a"]
 	path = ee202a
 	url = https://github.com/anchigel/ee202a
