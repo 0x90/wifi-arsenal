@@ -1786,3 +1786,30 @@
 [submodule "panoptiphone"]
 	path = panoptiphone
 	url = https://github.com/Perdu/panoptiphone
+[submodule "split"]
+	path = split
+	url = https://github.com/mcgregol/split
+[submodule "PACE"]
+	path = PACE
+	url = https://github.com/redoverture/PACE
+[submodule "WireCrack"]
+	path = WireCrack
+	url = https://github.com/proxyanon/WireCrack
+[submodule "boa"]
+	path = boa
+	url = https://github.com/ajmwagar/boa
+[submodule "ESSID-Uncover"]
+	path = ESSID-Uncover
+	url = https://github.com/harshadms/ESSID-Uncover
+[submodule "wifight"]
+	path = wifight
+	url = https://github.com/teknoraver/wifight
+[submodule "EagleEye"]
+	path = EagleEye
+	url = https://github.com/pmsosa/EagleEye
+[submodule "airgeddon-plugins"]
+	path = airgeddon-plugins
+	url = https://github.com/KeyofBlueS/airgeddon-plugins
+[submodule "wapi"]
+	path = wapi
+	url = https://github.com/vy/wapi
