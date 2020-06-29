@@ -1813,3 +1813,6 @@
 [submodule "wapi"]
 	path = wapi
 	url = https://github.com/vy/wapi
+[submodule "wifite3"]
+	path = wifite3
+	url = https://github.com/R33V/wifite3
