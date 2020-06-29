@@ -1816,3 +1816,6 @@
 [submodule "wifite3"]
 	path = wifite3
 	url = https://github.com/R33V/wifite3
+[submodule "realtek_rtwifi"]
+	path = realtek_rtwifi
+	url = https://github.com/kimocoder/realtek_rtwifi
