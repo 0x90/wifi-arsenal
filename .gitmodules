@@ -1819,3 +1819,6 @@
 [submodule "realtek_rtwifi"]
 	path = realtek_rtwifi
 	url = https://github.com/kimocoder/realtek_rtwifi
+[submodule "PRISM-AP"]
+	path = PRISM-AP
+	url = https://github.com/1N3/PRISM-AP
