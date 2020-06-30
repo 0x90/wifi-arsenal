@@ -1822,3 +1822,6 @@
 [submodule "PRISM-AP"]
 	path = PRISM-AP
 	url = https://github.com/1N3/PRISM-AP
+[submodule "websploit"]
+	path = websploit
+	url = https://github.com/websploit/websploit
