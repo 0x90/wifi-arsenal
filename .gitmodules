@@ -1840,3 +1840,9 @@
 [submodule "wifiteinstall"]
 	path = wifiteinstall
 	url = https://github.com/trudertube/wifiteinstall
+[submodule "manafix"]
+	path = manafix
+	url = https://github.com/rkhunt3r/manafix
+[submodule "wifite2-requirements"]
+	path = wifite2-requirements
+	url = https://github.com/KatzeMau/wifite2-requirements
