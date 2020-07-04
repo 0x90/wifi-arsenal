@@ -1825,3 +1825,12 @@
 [submodule "websploit"]
 	path = websploit
 	url = https://github.com/websploit/websploit
+[submodule "Wifi-Hacking"]
+	path = Wifi-Hacking
+	url = https://github.com/ankit0183/Wifi-Hacking
+[submodule "wlanMonGenerator"]
+	path = wlanMonGenerator
+	url = https://github.com/bavxhack/wlanMonGenerator
+[submodule "wifi-data-safari"]
+	path = wifi-data-safari
+	url = https://github.com/brangerbriz/wifi-data-safari
