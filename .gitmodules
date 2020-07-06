@@ -1846,3 +1846,9 @@
 [submodule "wifite2-requirements"]
 	path = wifite2-requirements
 	url = https://github.com/KatzeMau/wifite2-requirements
+[submodule "Mobile_Phone_Tracking"]
+	path = Mobile_Phone_Tracking
+	url = https://github.com/Bojak4616/Mobile_Phone_Tracking
+[submodule "probe-stalker"]
+	path = probe-stalker
+	url = https://github.com/GlennPegden2/probe-stalker
