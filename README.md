@@ -316,6 +316,7 @@ TOC created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 * [airodump_mar_attack](https://github.com/maroviher/airodump_mar_attack/) - Maroviher attack
 * [AirPirate](https://github.com/gat3way/AirPirate/) - Android 802.11 pentesting tool 
 * [airxploit](https://github.com/balle/airxploit/) - Wireless discovery and exploitation framework written in Python
+* [Alfa Arsenal](https://github.com/ardittirana/alfa-arsenal) - Policy-gated wireless auditing suite for authorized testing with WPA/WPA2 handshake and PMKID capture, WPS checks and rogue AP simulation
 * [anubis](https://github.com/sundaysec/anubis) - Captive wifi hotspot bypass tool for Linux 
 * [AtEar](https://github.com/NORMA-Inc/AtEar/) - Wireless Hacking, WiFi Security, Vulnerability Analyzer, Pentestration
 * [beaconLeak](https://github.com/cjcase/beaconleak) - beaconLeak is an open source tool developed as a proof of concept of the beacon stuffing method as a covert channel. This channel allows command and control or data exfiltration using the wireless network card without association or authentication.

@@ -38,6 +38,7 @@ airtraf;https://github.com/saintkepha/airtraf/;Wireless 802.11 network sniffer a
 Airvengers;https://github.com/hiteshchoudhary/Airvengers/;A GUI to pentest wifi Network, based on Aircrack-ng tools;Attack;Encryption;WPA/WPA2;
 airview;https://github.com/Crypt0s/airview/;A python web application compliment to py80211 which allows you to visualize the airwaves around you with your web browser. ;Visual;;;
 airxploit;https://github.com/balle/airxploit/;Wireless discovery and exploitation framework written in Python;Attack;;;
+Alfa Arsenal;https://github.com/ardittirana/alfa-arsenal;Policy-gated wireless auditing suite for authorized testing with WPA/WPA2 handshake and PMKID capture, WPS checks and rogue AP simulation;Attack;;;
 android_packetspammer;https://github.com/bcopeland/android_packetspammer/;Packetspammer sends unencrypted broadcast packets down a mac80211 wireless interface that should be set for Monitor mode;Attack;DoS;;
 anubis;https://github.com/sundaysec/anubis;Captive wifi hotspot bypass tool for Linux ;Attack;;;
 Ap-notify;https://github.com/doctaweeks/ap-notify/;An example of using the Linux kernel netlink protocol, specifically nl80211 via libnl/libnl-genl, to catch stations associating/disassociating with an 802.11 AP;Misc;;;
